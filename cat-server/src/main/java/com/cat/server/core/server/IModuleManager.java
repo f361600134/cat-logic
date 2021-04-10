@@ -1,0 +1,26 @@
+package com.cat.server.core.server;
+
+/**
+ * 	模块Manager接口
+ * @author Jeremy
+ * @param <T>
+ */
+public interface IModuleManager<I, T> {
+	
+	/**
+	 *  通过id获取到域信息
+	 *  对于普通玩家, id即为playerId
+	 *  对于家族,id即为家族id
+	 *  对于派昂帮,id即为排行榜类型id
+	 * @param id
+	 * @return
+	 */
+	public T getDomain(I id);
+	
+	/**
+	 * 
+	 * @param id
+	 */
+	public void remove(I id);
+
+}

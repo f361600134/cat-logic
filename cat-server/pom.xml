@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+
+<groupId>com.cat</groupId>
+<artifactId>cat-server</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<packaging>jar</packaging>
+
+<name>cat-server</name>
+<url>http://maven.apache.org</url>
+
+<properties>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+ 
+<dependencies>
+
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>3.8.1</version> 
+		<scope>test</scope>
+	</dependency>
+ 
+	<!-- cat-core -->
+	<dependency>
+		<groupId>com.cat</groupId>
+		<artifactId>cat-orm</artifactId>
+		<version>0.0.1</version>
+	</dependency>
+
+	<dependency>
+		<groupId>com.cat</groupId>
+		<artifactId>cat-net</artifactId>
+		<version>0.0.1</version>
+	</dependency>
+
+	<!-- commons-io -->
+	<dependency>
+		<groupId>commons-io</groupId>
+		<artifactId>commons-io</artifactId>
+		<version>2.6</version>
+	</dependency>
+
+	<!-- commons-->
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-lang3</artifactId>
+		<version>3.10</version>
+	</dependency>
+
+	<!-- httpclient -->
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpclient</artifactId>
+		<version>4.5.13</version>
+	</dependency>
+
+	<!-- protostuff-core -->
+	<dependency>
+		<groupId>io.protostuff</groupId>
+		<artifactId>protostuff-core</artifactId>
+		<version>1.7.2</version>
+	</dependency>
+
+	<dependency>
+		<groupId>io.protostuff</groupId>
+		<artifactId>protostuff-runtime</artifactId>
+		<version>1.7.2</version>
+	</dependency>
+
+	<!-- druid -->
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>druid</artifactId>
+		<version>1.1.10</version>
+	</dependency>
+	
+	<!-- dubbo -->
+	<dependency>
+	    <groupId>org.apache.dubbo</groupId>
+	    <artifactId>dubbo</artifactId>
+	    <version>2.7.5</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.apache.zookeeper</groupId>
+	    <artifactId>zookeeper</artifactId>
+	    <version>3.4.14</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.curator</groupId>
+		<artifactId>curator-framework</artifactId>
+		<version>4.0.0</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.apache.curator</groupId>
+		<artifactId>curator-recipes</artifactId>
+		<version>4.0.0</version>
+	</dependency>
+	
+	<!-- cat-api -->
+	<dependency>
+		<groupId>com.cat</groupId>
+		<artifactId>cat-api</artifactId>
+		<version>0.0.1</version>
+	</dependency>
+	
+</dependencies>
+
+</project>

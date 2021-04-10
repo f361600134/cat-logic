@@ -1,0 +1,74 @@
+package com.cat.server.game.module.item.domain;
+
+import com.cat.orm.core.annotation.PO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
+/**
+* @author Jeremy
+*/
+@PO(name = "item")
+public class Item extends ItemPo implements IItem{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9085231092692832763L;
+	private final static Logger log = LoggerFactory.getLogger(Item.class);
+
+	public Item() {
+
+	}
+	
+	/**
+	 * 创建一个道具对象
+	 */
+	public static Item create(long playerId, int configId, int count) {
+		Item item = new Item();
+		item.setConfigId(configId);
+		item.setCount(count);
+		item.setPlayerId(playerId);
+		return item;
+	}
+	
+	/**
+	 * 增加数量
+	 */
+	@Override
+	public int addCount(int value) {
+		if(value <= 0) {
+			log.info("addCount, the value must be greater than 0, value:"+value);
+			return getCount();
+		}
+		int expect = getCount() + value;
+		expect = expect > Integer.MAX_VALUE ? Integer.MAX_VALUE : expect;
+		this.setCount(expect);
+		return expect;
+	}
+	
+	/**
+	 * 减少数量
+	 */
+	@Override
+	public int deductCount(int value) {
+		if(value <= 0) {
+			log.info("deductCount, the value must be greater than 0, value:"+value);
+			return getCount();
+		}
+		int expect = getCount() - value;
+		expect = expect < 0 ? 0 : expect;
+		this.setCount(expect);
+		return expect;
+	}
+	
+	@Override
+	public Class<?> clazz() {
+		return Item.class;
+	}
+
+	@Override
+	public long getUniqueId() {
+		return getItemId();
+	}
+
+}

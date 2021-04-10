@@ -1,0 +1,116 @@
+package com.cat.server.core.event;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.Priority;
+import com.google.common.eventbus.EventBus;
+
+/**
+ * 游戏事件总线
+ *支持两种事件机制
+ *发布订阅,默认注册. 不能移除掉
+ *监听机制,像活动类任务, 只有活动开启时才注册, 活动结束取消注册.
+ *
+ *这里可能会有一个问题, 因为IObserver被spring包装过,所以要确定一下发送的时间是否可以被识别
+ */
+public class GameEventBus implements Lifecycle{
+	
+	private static final Logger logger = LoggerFactory.getLogger(GameEventBus.class);
+	
+	@Autowired(required = false)
+	private List<IObserver> observers;
+	
+	private EventBus eventBus;
+	
+	/**
+	 * 是否运行状态, 如果不是运行状态, 则不能把事件发送出去
+	 */
+	private transient boolean running;
+	
+	/**
+	 * 伪单例, 获取事件处理器
+	 */
+	private static GameEventBus gameEventBus;
+	
+	/**
+	 * 初始化构造
+	 */
+	public GameEventBus(){
+		this.eventBus = new EventBus(); 
+	}
+	
+	/**
+	 * 注册观察者相关的订阅事件
+	 * @param object
+	 */
+	public void register() {
+		observers.forEach(o -> eventBus.register(o));
+	}
+	
+	/**
+	 * 发送事件
+	 * @param event
+	 */
+	public void post(IEvent event) {
+		if (!this.running) {
+			return;
+		}
+		eventBus.post(event);
+	}
+	
+	/**
+	 * 发送多个事件
+	 * @param events
+	 */
+	public void post(IEvent ...events) {
+		if (!this.running) {
+			return;
+		}
+		if (events.length <= 0) {
+			return;
+		}
+		for (IEvent event : events) {
+			if (event == null) {
+				continue;
+			}
+			post(event);
+		}
+	}
+	
+	public static GameEventBus getInstance() {
+        return  SpringContextHolder.getBean(GameEventBus.class);
+    }
+	
+	/**
+	 * 	发布事件
+	 * @param event
+	 */
+	public static void publishEvent(IEvent event) {
+		if (gameEventBus == null) {
+			gameEventBus =  SpringContextHolder.getBean(GameEventBus.class);
+		}
+		gameEventBus.post(event);
+	}
+	
+	@Override
+	public void start() throws Throwable {
+		this.running = true;
+		this.register();
+	}
+	
+	@Override
+	public void stop() throws Throwable {
+		this.running = false;
+	}
+	
+	@Override
+	public int priority() {
+		return Priority.LOGIC_INITIALIZATION.getPriority();
+	}
+}
