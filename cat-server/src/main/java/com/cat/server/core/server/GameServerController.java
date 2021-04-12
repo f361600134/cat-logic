@@ -17,8 +17,8 @@ import io.netty.buffer.ByteBuf;
 /**
  * 游戏服分发处理器
  */
-@Primary
-@Component
+//@Primary
+//@Component
 public class GameServerController extends DefaultServerController {
 	
 	private static final Logger log = LoggerFactory.getLogger(GameServerController.class);

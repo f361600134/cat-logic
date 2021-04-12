@@ -5,8 +5,8 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
 	<context:property-placeholder location="classpath:application.properties" />
-	<import resource="classpath:spring-db.xml"/>
-<!-- 	<import resource="classpath:dubbo-consumer.xml"/> -->
+	<import resource="classpath:xml/spring-db.xml"/>
+<!-- 	<import resource="classpath:xml/dubbo-consumer.xml"/> -->
 	<context:component-scan base-package="com.cat.server,com.cat.net" />
 	
 </beans> 

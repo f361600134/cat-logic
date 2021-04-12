@@ -115,4 +115,97 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	
 </dependencies>
 
+<build>
+<finalName>cat-server</finalName>
+<plugins>
+	<plugin>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>2.3.2</version>  
+		<configuration>
+			<source>1.8</source>
+			<target>1.8</target>
+			<encoding>UTF-8</encoding>
+		</configuration>
+	</plugin>
+	
+	<!--resource process -->
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-resources-plugin</artifactId>
+		<configuration>
+			<encoding>UTF-8</encoding>
+		</configuration>
+		<executions>
+			<execution>
+				<id>copy-resources</id>
+				<phase>validate</phase>
+				<goals>
+					<goal>copy-resources</goal>
+				</goals>
+				<configuration>
+					<outputDirectory>${basedir}/target/release</outputDirectory>
+					<resources>
+						<!-- 过滤config并输出到target目录下 -->
+						<resource>
+							<directory>src/main/resources</directory>
+							<filtering>true</filtering>
+						</resource>
+						<resource>
+							<directory>shell</directory>
+							<filtering>true</filtering>
+						</resource>
+					</resources>
+				</configuration>
+				
+			</execution>
+		</executions>
+	</plugin>
+	<!-- 输出依赖的jar包 -->
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-dependency-plugin</artifactId>
+		<executions>
+			<execution>
+				<id>copy-dependencies</id>
+				<phase>prepare-package</phase>
+				<goals>
+					<goal>copy-dependencies</goal>
+				</goals>
+				<configuration>
+					<outputDirectory>${project.build.directory}/release/lib</outputDirectory>
+					<overWriteReleases>false</overWriteReleases>
+					<overWriteSnapshots>false</overWriteSnapshots>
+					<overWriteIfNewer>true</overWriteIfNewer>
+				</configuration>
+			</execution>
+		</executions>
+	</plugin>
+	<!-- 打成可运行jar包 -->
+	<plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+		<artifactId>maven-jar-plugin</artifactId>
+		<configuration>
+			<excludes>
+				<exclude>**/*.properties</exclude>
+				<exclude>**/*.xml</exclude>
+				<exclude>**/*.sh</exclude>
+				<exclude>/config</exclude>
+			</excludes>
+			<outputDirectory>${project.build.directory}/release</outputDirectory>
+			<archive>
+				<manifest>
+					<addClasspath>true</addClasspath>
+					<classpathPrefix>lib/</classpathPrefix>
+					<mainClass>com.cat.server.App</mainClass>
+				</manifest>
+				<manifestEntries>
+					<Class-Path>.</Class-Path>
+				</manifestEntries>
+			</archive>
+		</configuration>
+	</plugin>
+		
+	</plugins>
+</build>
+
 </project>

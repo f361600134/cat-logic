@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.cat.net.http.process.RequestProcessor;
 import com.cat.orm.core.base.BasePo;
 import com.cat.orm.core.db.process.DataProcessorAsyn;
 import com.cat.server.core.config.ConfigManager;
@@ -81,15 +80,6 @@ public class LogicComponent {
 	public GameEventBus GameEventBus() {
 		logger.info("注册[GameEventBus]服务");
 		return new GameEventBus();
-	}
-	
-	/**
-	 * 注册http处理器
-	 * @return
-	 */
-	@Bean
-	public RequestProcessor requestProcessor() {
-		return new RequestProcessor();
 	}
 	
 }
