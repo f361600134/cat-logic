@@ -9,6 +9,7 @@ import com.cat.server.game.data.proto.PBBag.PBMissionInfo;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mission.handler.IMissionHandler;
+import com.cat.server.game.module.mission.handler.MainMissionHandler;
 import com.cat.server.game.module.mission.handler.MainMissionHandler.Builder;
 import com.cat.server.game.module.mission.handler.MissionHandler;
 import com.cat.server.game.module.mission.type.IMission;
@@ -28,6 +29,7 @@ public class MainMissionDomain extends AbstractModuleDomain<Long, MainMission> i
 
 	// 代理处理代理类
 	private MissionHandler<MainMissionType> missionHandler;
+//	private MainMissionHandler missionHandler;
 
 	public MainMissionDomain() {
 	}
@@ -56,14 +58,14 @@ public class MainMissionDomain extends AbstractModuleDomain<Long, MainMission> i
 //					MainMissionType nextNission = MainMissionType.create(nextConfigId);
 //					missionData.addMissionPojo(nextNission);
 //				}).build();
-		missionHandler = new MissionHandler<>();
+		missionHandler = new MissionHandler<>(bean.getMissionData());
 		missionHandler.setPlayerId(getPlayerId());
-		missionHandler.setMissionData(bean.getMissionData());
+		//missionHandler.setMissionData(bean.getMissionData());
 		missionHandler.setAfterRewardedListener((mission, missionData) -> {
 					int nextConfigId = 0;
 					MainMissionType nextNission = MainMissionType.create(nextConfigId);
 					missionData.addMissionPojo(nextNission);
-		});
+		}); 
 	}
 	
 	@Override

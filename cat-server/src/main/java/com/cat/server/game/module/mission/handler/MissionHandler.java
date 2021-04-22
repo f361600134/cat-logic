@@ -57,7 +57,7 @@ public class MissionHandler<T extends IMission> implements IMissionHandler{
 	 */
 	private transient List<? super IMission> updateList;
 
-	public MissionHandler() {
+	public MissionHandler(MissionTypeData<T> missionData) {
 		this.missionConfigs = ArrayListMultimap.create();
 		this.updateList = Lists.newArrayList();
 		initMissionConfigs();
