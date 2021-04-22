@@ -2,8 +2,6 @@ package com.cat.server.game.module.attribute.domain;
 
 /**
  * 带有属性的实体对象
- *
- * @author hdh
  */
 public interface IAttributeEntity extends IAttributeNodeHolder {
 

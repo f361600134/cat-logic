@@ -6,9 +6,6 @@ import com.cat.server.game.helper.log.NatureEnum;
 
 /**
  * 属性节点
- * 
- * @author hdh
- *
  */
 public interface IAttributeNode {
 
