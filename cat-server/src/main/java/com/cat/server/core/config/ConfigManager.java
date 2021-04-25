@@ -18,19 +18,19 @@ import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.lifecycle.Priority;
 
-public class ConfigManager implements IConfigManager, Lifecycle{
+public class ConfigManager implements IConfigManager, Lifecycle {
 
 	private static final Logger logger = LoggerFactory.getLogger(ConfigManager.class);
 
 	private final Map<Class<? extends IGameConfig>, IConfigContainer<?>> containers;
-	
+
 	public ConfigManager() {
 		this.containers = new HashMap<>();
 	}
-	
-    public static ConfigManager getInstance() {
-        return  SpringContextHolder.getBean(ConfigManager.class);
-    }
+
+	public static ConfigManager getInstance() {
+		return SpringContextHolder.getBean(ConfigManager.class);
+	}
 
 	@Override
 	public <T extends IGameConfig> T getConfig(Class<T> clazz, int id) {
@@ -87,16 +87,16 @@ public class ConfigManager implements IConfigManager, Lifecycle{
 
 	@SuppressWarnings("unchecked")
 	public void onInitialize() throws Exception {
-		//初始化本地配置
+		// 初始化本地配置
 		Collection<Class<?>> clazzList = ClassManager.instance().getClassByAnnotationClass(ConfigPath.class);
 		for (Class<?> clazz : clazzList) {
-			Class<IGameConfig> claz = (Class<IGameConfig>)clazz;
+			Class<IGameConfig> claz = (Class<IGameConfig>) clazz;
 			this.registerContainer(new DefaultLocalConfigContainer<>(claz));
 		}
-		//初始化远程配置
+		// 初始化远程配置
 		clazzList = ClassManager.instance().getClassByAnnotationClass(ConfigUrl.class);
 		for (Class<?> clazz : clazzList) {
-			Class<IGameConfig> claz = (Class<IGameConfig>)clazz;
+			Class<IGameConfig> claz = (Class<IGameConfig>) clazz;
 			this.registerContainer(new DefaultRemoteConfigContainer<>(claz));
 		}
 		for (IConfigContainer<?> container : containers.values()) {
@@ -118,7 +118,7 @@ public class ConfigManager implements IConfigManager, Lifecycle{
 	public void start() throws Throwable {
 		this.onInitialize();
 	}
-	
+
 	@Override
 	public int priority() {
 		return Priority.LOGIC_INITIALIZATION.getPriority();

@@ -25,7 +25,7 @@ import com.cat.orm.core.redis.RedisProcessor;
 public class RedisComponent {
 
 	private static final Logger log = LoggerFactory.getLogger(RedisComponent.class);
-	
+
 	@Value("${spring.redis.host}")
 	private String redisHost;
 	@Value("${spring.redis.port}")
@@ -46,51 +46,53 @@ public class RedisComponent {
 	private long maxWait;
 	@Value("${spring.redis.lettuce.pool.shutdown.timeout}") // 关闭超时
 	private long shutdownTimeout;
-	
-	@Bean
-    public LettuceConnectionFactory lettuceConnectionFactory() {
-        //redis配置
-        RedisStandaloneConfiguration redisConfiguration = new RedisStandaloneConfiguration(redisHost, redisPort);
-        redisConfiguration.setDatabase(database);
-        redisConfiguration.setPassword(redisPassword);
 
-        //连接池配置
-        GenericObjectPoolConfig<Object> genericObjectPoolConfig = new GenericObjectPoolConfig<Object>();
-        genericObjectPoolConfig.setMaxIdle(maxIdle);
-        genericObjectPoolConfig.setMinIdle(minIdle);
-        genericObjectPoolConfig.setMaxTotal(maxActive);
-        genericObjectPoolConfig.setMaxWaitMillis(maxWait);
-
-        //redis客户端配置
-        LettucePoolingClientConfiguration.LettucePoolingClientConfigurationBuilder builder = LettucePoolingClientConfiguration.builder();
-        builder.commandTimeout(Duration.ofMillis(timeout));
-        builder.shutdownTimeout(Duration.ofMillis(shutdownTimeout));
-        builder.poolConfig(genericObjectPoolConfig);
-        LettuceClientConfiguration lettuceClientConfiguration = builder.build();
-
-        //根据配置和客户端配置创建连接
-        LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory(redisConfiguration, lettuceClientConfiguration);
-        lettuceConnectionFactory.afterPropertiesSet();
-        return lettuceConnectionFactory;
-    }
-	
 	@Bean
-    public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory connectionFactory) {
-        RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new GenericFastJsonRedisSerializer());
-        
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(new GenericFastJsonRedisSerializer());
-        redisTemplate.setConnectionFactory(connectionFactory);
-        return redisTemplate;
-    }
-	
+	public LettuceConnectionFactory lettuceConnectionFactory() {
+		// redis配置
+		RedisStandaloneConfiguration redisConfiguration = new RedisStandaloneConfiguration(redisHost, redisPort);
+		redisConfiguration.setDatabase(database);
+		redisConfiguration.setPassword(redisPassword);
+
+		// 连接池配置
+		GenericObjectPoolConfig<Object> genericObjectPoolConfig = new GenericObjectPoolConfig<Object>();
+		genericObjectPoolConfig.setMaxIdle(maxIdle);
+		genericObjectPoolConfig.setMinIdle(minIdle);
+		genericObjectPoolConfig.setMaxTotal(maxActive);
+		genericObjectPoolConfig.setMaxWaitMillis(maxWait);
+
+		// redis客户端配置
+		LettucePoolingClientConfiguration.LettucePoolingClientConfigurationBuilder builder = LettucePoolingClientConfiguration
+				.builder();
+		builder.commandTimeout(Duration.ofMillis(timeout));
+		builder.shutdownTimeout(Duration.ofMillis(shutdownTimeout));
+		builder.poolConfig(genericObjectPoolConfig);
+		LettuceClientConfiguration lettuceClientConfiguration = builder.build();
+
+		// 根据配置和客户端配置创建连接
+		LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory(redisConfiguration,
+				lettuceClientConfiguration);
+		lettuceConnectionFactory.afterPropertiesSet();
+		return lettuceConnectionFactory;
+	}
+
 	@Bean
-    public RedisProcessor redisProcessor(RedisTemplate<String, Serializable> redisTemplate) {
+	public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory connectionFactory) {
+		RedisTemplate<String, Serializable> redisTemplate = new RedisTemplate<>();
+		redisTemplate.setKeySerializer(new StringRedisSerializer());
+		redisTemplate.setValueSerializer(new GenericFastJsonRedisSerializer());
+
+		redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+		redisTemplate.setHashValueSerializer(new GenericFastJsonRedisSerializer());
+		redisTemplate.setConnectionFactory(connectionFactory);
+		return redisTemplate;
+	}
+
+	@Bean
+	public RedisProcessor redisProcessor(RedisTemplate<String, Serializable> redisTemplate) {
 		log.info("注册[RedisProcessor]服务");
 		Collection<Class<BasePo>> cols = ClassManager.instance().getClassByType(BasePo.class);
-        return new RedisProcessor(cols, redisTemplate);
-    }
-	
+		return new RedisProcessor(cols, redisTemplate);
+	}
+
 }

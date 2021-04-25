@@ -5,20 +5,21 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 游戏服配置
+ * 
  * @author Jeremy
  * @date 2020年6月29日
  *
  */
 @Configuration
 public class ServerConfig {
-	
-	//	服务器ip
+
+	// 服务器ip
 	@Value("${cat.game.server.serverId}")
 	private int serverId;
-	//	后台地址
+	// 后台地址
 	@Value("${cat.game.server.backstageUrl}")
 	private String backstageUrl;
-	//	后台地址
+	// 后台地址
 	@Value("${cat.game.server.remoteUrl}")
 	private String remoteUrl;
 
@@ -45,5 +46,5 @@ public class ServerConfig {
 	public void setRemoteUrl(String remoteUrl) {
 		this.remoteUrl = remoteUrl;
 	}
-	
+
 }
