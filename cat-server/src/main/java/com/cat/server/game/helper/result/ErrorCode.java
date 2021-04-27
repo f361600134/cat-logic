@@ -58,6 +58,7 @@ public enum ErrorCode implements ModuleDefines {
     CHAT_SYSTEM_NOT_ALLOWED(CHAT, 12, "该频道禁止聊天"),
     CHAT_TIME_LIMIT(CHAT, 13, "剩余x秒后可聊天"),
     CHAT_TARGET_IS_SELF(CHAT, 14, "聊天目标不能是自己"),
+    CHAT_CHANNEL_NOT_ALLOWED_DELETE(CHAT, 15, "聊天不允许被删除"),
     
     
     

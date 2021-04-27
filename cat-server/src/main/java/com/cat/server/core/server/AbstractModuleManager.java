@@ -5,14 +5,14 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-import com.cat.orm.core.base.BasePo;
-import com.cat.orm.core.db.process.DataProcessorAsyn;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.google.common.collect.Maps;
+import com.cat.orm.core.base.BasePo;
+import com.cat.orm.core.db.process.DataProcessorAsyn;
 
 /**
  * 	抽象类Manager
@@ -26,12 +26,11 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 	@Autowired protected DataProcessorAsyn process;
 	
 	/**域缓存*/
-	protected final Map<I, T> domains;
+	protected final Map<I, T> domains = new ConcurrentHashMap<>();
 	protected Class<T> clazz;
 	
 	@SuppressWarnings("unchecked")
 	public AbstractModuleManager() {
-		this.domains = Maps.newConcurrentMap();
 		try {
 			Type superClass = getClass().getGenericSuperclass();
 			this.clazz = (Class<T>)(((ParameterizedType) superClass).getActualTypeArguments()[1]);

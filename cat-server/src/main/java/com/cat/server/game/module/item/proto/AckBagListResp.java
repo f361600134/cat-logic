@@ -30,7 +30,7 @@ public class AckBagListResp implements IProtocol {
 			builder.addBags(itemInfo);
 		}
     }
-
+    
 	@Override
 	public short protocol() {
 		 return PBDefine.PBProtocol.AckUpdateBagList_VALUE;

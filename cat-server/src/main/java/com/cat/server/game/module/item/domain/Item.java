@@ -1,9 +1,9 @@
 package com.cat.server.game.module.item.domain;
 
-import com.cat.orm.core.annotation.PO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
+
+import com.cat.orm.core.annotation.PO;
 
 /**
 * @author Jeremy

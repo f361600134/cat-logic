@@ -2,34 +2,33 @@ package com.cat.server.game.module.chat.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import com.cat.server.core.config.ConfigManager;
-import com.cat.server.game.data.config.local.ConfigChatModel;
-import com.cat.server.game.data.config.local.ConfigConstantPlus;
-import com.cat.server.game.data.proto.PBPlayer.ReqChat;
-import com.cat.server.game.helper.result.ConfigTipsMgr;
-import com.cat.server.game.module.chat.assist.ChatEnum;
-import com.cat.server.game.module.chat.domain.Chat;
-import com.cat.server.game.module.chat.domain.ChatDomain;
-import com.cat.server.game.module.chat.domain.ChatDomainGroup;
-import com.cat.server.game.module.chat.domain.ChatRule;
-import com.cat.server.game.module.chat.proto.AckChatResp;
-import com.cat.server.game.module.player.domain.Player;
-import com.cat.server.game.module.player.domain.PlayerContext;
-import com.cat.server.game.module.player.proto.AckTipsResp;
-import com.cat.server.game.module.player.service.PlayerService;
-import com.cat.server.utils.StringUtilitys;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import com.cat.server.core.config.ConfigManager;
+import com.cat.server.game.data.config.local.ConfigChatModel;
+import com.cat.server.game.data.config.local.ConfigConstantPlus;
+import com.cat.server.game.data.proto.PBPlayer.ReqChat;
+import com.cat.server.game.helper.result.ConfigTipsMgr;
+import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.chat.assist.ChannelType;
+import com.cat.server.game.module.chat.domain.Chat;
+import com.cat.server.game.module.chat.domain.ChatDetail;
+import com.cat.server.game.module.chat.domain.ChatDomain;
+import com.cat.server.game.module.chat.domain.ChatRule;
+import com.cat.server.game.module.chat.magaer.ChatManager;
+import com.cat.server.game.module.chat.proto.AckChatResp;
+import com.cat.server.game.module.player.domain.Player;
+import com.cat.server.game.module.player.domain.PlayerContext;
+import com.cat.server.game.module.player.proto.AckTipsResp;
+import com.cat.server.game.module.player.service.PlayerService;
+import com.cat.server.utils.Pair;
+import com.cat.server.utils.StringUtilitys;
 
 @Service
 public class ChatService {
@@ -38,44 +37,46 @@ public class ChatService {
 	
 	@Autowired private PlayerService playerService;
 	
-	/**
-	 * key: channelId
-	 * value: ChatDomainGroup聊天组
-	 */
-	private Map<Integer, ChatDomainGroup> domainMap = Maps.newConcurrentMap();
+	@Autowired private ChatManager chatManager;
 	
-	/**
-	 * key: playerId
-	 * value: ChatRule聊天约束
-	 */
-	private Map<Long, Map<Integer, ChatRule>> playerRuleMap = Maps.newConcurrentMap();
+//	/**
+//	 * key: channelId
+//	 * value: ChatDomainGroup聊天组
+//	 */
+//	private Map<Integer, ChatDomainGroup> domainMap = Maps.newConcurrentMap();
+	
+//	/**
+//	 * key: playerId
+//	 * value: ChatRule聊天约束
+//	 */
+//	private Map<Long, Map<Integer, ChatRule>> playerRuleMap = Maps.newConcurrentMap();
 	
 		
-	/**
-	 * 获取聊天域, 对于家族聊天不同家族不同聊天域,domainId为家族id作为区分, 对于世界等只有一个聊天域,domainId可以设置为频道号
-	 * @param channelType
-	 * @param domainId
-	 * @return
-	 */
-	public ChatDomain getOrCreateDomain(int channelType, long domainId) {
-		ChatDomainGroup domainGroup = getOrCreateDomainGroup(channelType);
-		return domainGroup.getOrCreateDomain(domainId);
-	}
+//	/**
+//	 * 获取聊天域, 对于家族聊天不同家族不同聊天域,domainId为家族id作为区分, 对于世界等只有一个聊天域,domainId可以设置为频道号
+//	 * @param channelType
+//	 * @param domainId
+//	 * @return
+//	 */
+//	public ChatDomain getOrCreateDomain(int channelType, long domainId) {
+//		ChatDomainGroup domainGroup = getOrCreateDomainGroup(channelType);
+//		return domainGroup.getOrCreateDomain(domainId);
+//	}
 	
-	/**
-	 * 获取聊天域组
-	 * @param channelType
-	 * @param domainId
-	 * @return
-	 */
-	public ChatDomainGroup getOrCreateDomainGroup(int channelType) {
-		ChatDomainGroup domainGroup = domainMap.get(channelType);
-		if (domainGroup == null) {
-			domainGroup = new ChatDomainGroup(channelType);
-			domainMap.put(channelType, domainGroup);
-		}
-		return domainGroup;
-	}
+//	/**
+//	 * 获取聊天域组
+//	 * @param channelType
+//	 * @param domainId
+//	 * @return
+//	 */
+//	public ChatDomainGroup getOrCreateDomainGroup(int channelType) {
+//		ChatDomainGroup domainGroup = domainMap.get(channelType);
+//		if (domainGroup == null) {
+//			domainGroup = new ChatDomainGroup(channelType);
+//			domainMap.put(channelType, domainGroup);
+//		}
+//		return domainGroup;
+//	}
 	
 	/**
 	 * 获取玩家指定渠道的渠道规则
@@ -86,17 +87,18 @@ public class ChatService {
 	 * @date 2020年12月15日下午11:50:44
 	 */
 	public ChatRule getChatRule(long playerId, int channelType) {
-		Map<Integer, ChatRule> chatRuleMap = playerRuleMap.get(playerId);
-		if (chatRuleMap == null) {
-			chatRuleMap  = Maps.newHashMap();
-			playerRuleMap.put(playerId, chatRuleMap);
-		}
-		ChatRule rule = chatRuleMap.get(channelType);
-		if (rule == null) {
-			rule = ChatRule.create(channelType);
-			chatRuleMap.put(channelType, rule);
-		}
-		return rule;
+//		Map<Integer, ChatRule> chatRuleMap = playerRuleMap.get(playerId);
+//		if (chatRuleMap == null) {
+//			chatRuleMap  = Maps.newHashMap();
+//			playerRuleMap.put(playerId, chatRuleMap);
+//		}
+//		ChatRule rule = chatRuleMap.get(channelType);
+//		if (rule == null) {
+//			rule = ChatRule.create(channelType);
+//			chatRuleMap.put(channelType, rule);
+//		}
+//		return rule;
+		return null;
 	}
 	
 	////////////////业务/////////////////////////
@@ -106,14 +108,14 @@ public class ChatService {
 	 */
 	public void onLogin(long playerId) {
 		try {
-			for (ChatEnum chatEnum : ChatEnum.values()) {
-				ChatDomain chatDomain = chatEnum.getDomain(playerId);
-				if (chatDomain == null) {
-					continue;
-				}
-				AckChatResp ack = chatDomain.toAllProto();
-				playerService.sendMessage(playerId, ack);
-			}
+//			for (ChatEnum chatEnum : ChatEnum.values()) {
+//				ChatDomain chatDomain = chatEnum.getDomain(playerId);
+//				if (chatDomain == null) {
+//					continue;
+//				}
+//				AckChatResp ack = chatDomain.toAllProto();
+//				playerService.sendMessage(playerId, ack);
+//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -137,25 +139,25 @@ public class ChatService {
 	 */
 	public void onSecond() {
 		try {
-			for (ChatEnum chatEnum : ChatEnum.values()) {
-				Collection<ChatDomain> domains = chatEnum.getAllDomain();
-				if (domains == null) {
-					continue;
-				}
-				for (ChatDomain chatDomain : domains) {
-					if (chatDomain == null || !chatDomain.isBroadcast()) {
-						continue;
-					}
-					AckChatResp resp = chatDomain.toNewerProto();
-					if (resp == null) {
-						continue;
-					}
-					Collection<Long> playerIds = chatEnum.findPlayerIds(chatDomain);
-					if(!playerIds.isEmpty()) {
-						playerService.sendMessage(playerIds, resp);
-					}
-				}
-			}
+//			for (ChatEnum chatEnum : ChatEnum.values()) {
+//				Collection<ChatDomain> domains = chatEnum.getAllDomain();
+//				if (domains == null) {
+//					continue;
+//				}
+//				for (ChatDomain chatDomain : domains) {
+//					if (chatDomain == null || !chatDomain.isBroadcast()) {
+//						continue;
+//					}
+//					AckChatResp resp = chatDomain.toNewerProto();
+//					if (resp == null) {
+//						continue;
+//					}
+//					Collection<Long> playerIds = chatEnum.findPlayerIds(chatDomain);
+//					if(!playerIds.isEmpty()) {
+//						playerService.sendMessage(playerIds, resp);
+//					}
+//				}
+//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -166,7 +168,7 @@ public class ChatService {
 	 * 1. 系统聊天
 	 * 2. 功能分享
 	 */
-	public void onChat(ChatEnum chatEnum, int configId, Object... args) {
+	public void onChat(ChannelType channelType, int configId, Object... args) {
 		try {
 			ConfigChatModel config = ConfigManager.getInstance().getConfig(ConfigChatModel.class, configId);
 			if(config==null) {
@@ -175,47 +177,34 @@ public class ChatService {
 			}
 			String text = config.getModelDesc();
 			String content = StringUtilitys.formatString(text, Arrays.asList(args));
-			Chat chat = Chat.createSystemChat(content, chatEnum.getCh());
-			chatEnum.addChat(chat);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	/**
-	 * 系统聊天
-	 */
-	public void onChat(ChatEnum chatEnum, String content) {
-		try {
-			if (content.length() > 100) {//长度限制,拒绝广播
+			
+			ChatDomain chatDomain = chatManager.getDomain(channelType.getChannel());
+			if (chatDomain == null) {
 				return;
 			}
-			Chat chat = Chat.createSystemChat(content, chatEnum.getCh());
-			chatEnum.addChat(chat);
+			ChatDetail chatDetail = ChatDetail.create(content);
+			chatDomain.sendMsg(chatDetail);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
 	
 	/**
 	 * 支持自定义系统聊天,譬如GM内容
 	 * 1. 系统聊天
 	 * 2. 功能分享
 	 */
-	public void onChat(ChatEnum chatEnum, Long playerId, String content) {
+	public void onChat(ChannelType channelType, Long playerId, String content) {
 		try {
 			if (content.length() > 100) {//长度限制,拒绝广播
 				return;
 			}
-			Chat chat = Chat.create(-1, content, chatEnum.getCh(), playerId);
-			if(chatEnum==ChatEnum.CH_SYSTEM) {
-				//系统频道直接发送消息
-				AckChatResp resp = AckChatResp.newInstance();
-				resp.addChat(chatEnum.getCh(), chat.toProto());
-				playerService.sendMessage(playerId, resp);
+			ChatDomain chatDomain = chatManager.getDomain(channelType.getChannel());
+			if (chatDomain == null) {
 				return;
 			}
-			chatEnum.addChat(chat);
+			ChatDetail chatDetail = ChatDetail.create(-1, content, playerId);
+			chatDomain.sendMsg(chatDetail);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -225,18 +214,24 @@ public class ChatService {
 	 * 聊天业务逻辑入口
 	 * 新增聊天添加到聊天域, 不实时更新, 定时推送到前端
 	 */
-	public int chat(ReqChat data, long playerId) {
+	public ErrorCode chat(ReqChat data, long playerId) {
 		int channelId = data.getChatChannel();
 		String content = data.getContent();
 		long recvId = data.getPlayerId();
 		
-		List<Object> retList = checkContent(content);
-		int code = (int)retList.get(0);
-		if (code != 0) {//校验文本
+		
+		ChatDomain domain = chatManager.getDomain(channelId);
+		if (domain == null) {
+			return ErrorCode.CHAT_CHANNEL_NOT_EXISTS;
+		}
+		
+		Pair<ErrorCode, String> pair = checkContent(content);
+		ErrorCode code = pair.getLeft();
+		if (!code.isSuccess()) {//校验文本
 			return code;
 		}
 		//使用过滤后的文本
-		content = retList.get(1).toString();
+		content = pair.getRight();
 
 		PlayerContext context = playerService.getPlayerContext(playerId);
 		final Player player = context.getPlayer();
@@ -248,7 +243,7 @@ public class ChatService {
 			AckTipsResp resp = AckTipsResp.newInstance();
 			resp.setTipsId(ConfigTipsMgr.Chat_417).addParams(lessTime);
 			playerService.sendMessage(playerId, resp);
-			return ConfigTipsMgr.Chat_411;
+			return ErrorCode.CHAT_CD;
 		}
 		//提示聊天过快, 但依旧允许其聊天
 		if (curTime < rule.getNextSpeakTime()) { 
@@ -258,28 +253,19 @@ public class ChatService {
 			playerService.sendMessage(playerId, resp);
 		}
 		
-		ChatEnum chatEnum = ChatEnum.getEnum(channelId);
-		if (chatEnum == null) {
-			return ConfigTipsMgr.Chat_410;	//不存在该频道
-		}
-		Chat chat = chatEnum.createChat(player, content, recvId);
-		code = chatEnum.check(player, chat);
-		if (code != 0) {
-			return code; 
-		}
-		chatEnum.addChat(chat);
+		ChatDetail chatDetail = ChatDetail.create(player.getPlayerId(), content, recvId);
+		code = domain.sendMsg(chatDetail);
 		rule.onChatSuccess();
-		return 0;
+		return code;
 	}
-	
+
 	/**
 	 * 聊天过滤
 	 * @return 0:错误码, 1:转换后的文本
 	 */
-	private List<Object> checkContent(final String content) {
-		
+	private Pair<ErrorCode, String> checkContent(final String content) {
 		String str = content;
-		List<String> tags = Lists.newArrayList();
+		List<String> tags = new ArrayList<>();
 		//对文字进行分解,玩家输入的文字只能包含图片
 		int firstindex = str.indexOf("<");
 		int lastindex = str.indexOf(">", firstindex);
@@ -294,18 +280,18 @@ public class ChatService {
 		}
 		int realLen = str.length() - tags.size();
 		
-		int code = 0;
+		ErrorCode code = ErrorCode.SUCCESS;
 		if (StringUtils.isBlank(str)) {
-			code = ConfigTipsMgr.Chat_419;//聊天内容为空
+			code = ErrorCode.CHAT_MESSAGE_IS_EMPTY;//聊天内容为空
 		} 
 		if (content.length() > 100) {//总长度大于100超过限制
-			code = ConfigTipsMgr.Chat_415;
+			code = ErrorCode.CHAT_MESSAGE_TOO_LONG;
 		}
 		if (realLen > ConfigConstantPlus.chat) {//文字长度大于100超过限制
-			code = ConfigTipsMgr.Chat_415;
+			code = ErrorCode.CHAT_MESSAGE_TOO_LONG;
 		}
 		if (tags.size() > ConfigConstantPlus.expression) {//玩家只能发送表情标签, 表情大于5, 视为失败
-			code = ConfigTipsMgr.Chat_416;
+			code = ErrorCode.CHAT_MESSAGE_TOO_LONG;
 		}
 		//文本过滤
 //		str = BadWordFilter.doFilter(str);
@@ -313,12 +299,8 @@ public class ChatService {
 		for (String tag : tags) {
 			str = str.replaceFirst("\\?", tag);
 		}
-		//最终返回
-		List<Object> retList = new ArrayList<>();
-		retList.add(code);
-		retList.add(str);
 		
-		return retList;
+		return Pair.of(code, str);
 	}
 	
 }

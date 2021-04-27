@@ -193,7 +193,7 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 
 	@Override
 	public Collection<V> subRankInfo(int fromRank, int toRank) {
-		return subRank2(fromRank, toRank);
+		return subRank(fromRank, toRank);
 	}
 
 	@Override
@@ -226,7 +226,7 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 			if (v != null) updateSet.add(v);
 		}
 		//	批量移除数据
-		removeOverflow();
+		this.deleteSet.addAll(removeOverflow());
 		//	处理数据
 		callBack();
 	}
@@ -263,7 +263,7 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	 */
 	private void putVal(K key, V v) {
 		map.put(key, v);
-		deleteSet = removeOverflow();
+		deleteSet.addAll(removeOverflow());
 		//变动数据加入集合
 		updateSet.add(v);
 		//调用监听
@@ -315,7 +315,7 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	}
 	
 	/**
-	 * 返回截取的指定开始到指定结束的数据,足则返回,不足则返回全部.
+	 * 返回截取的指定开始到指定结束的数据,足则返回,不足则返回全部.第二種寫法
 	 * @param fromIndex 开始名次
 	 * @param toIndex 截止名次, 包含此名次
 	 * @return

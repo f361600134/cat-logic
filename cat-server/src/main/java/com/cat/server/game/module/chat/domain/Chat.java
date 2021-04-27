@@ -1,135 +1,132 @@
 package com.cat.server.game.module.chat.domain;
 
-import com.cat.server.game.data.proto.PBPlayer.ChatInfo;
-import com.cat.server.game.module.chat.proto.PBChatInfoBuilder;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.cat.orm.core.annotation.Column;
+import com.cat.orm.core.annotation.PO;
+import com.cat.server.core.config.ConfigManager;
+import com.cat.server.core.server.IPersistence;
+import com.cat.server.game.data.config.local.ConfigChat;
+import com.cat.server.game.module.chat.assist.ChannelType;
+import com.cat.server.game.module.chat.type.IChatType;
+import com.cat.server.utils.ConcurrentFixSizeArrayList;
+import com.cat.server.utils.Pair;
 
 /**
- * @description 聊天记录对象, 不存储
- * @author Jereme
- * @date 2020/8/21
+ * @author Jeremy
  */
-public class Chat {
+@PO(name = "chat")
+public class Chat extends ChatPo implements IPersistence {
 
-	/** 发送玩id*/
-	private long sendId;
-	/** 内容*/
-	private String content;
-	/** 渠道*/
-	private int channel;
-	
 	/**
-	 * 发送至id
-	 * channel为
-	 * 私聊,toId为玩家id
-	 * 公会,toId为工会id
-	 * 世界,跨服,系统toId为0
-	 * 同省,toId为省id
+	 * 唯一id, 由两个long类型数值生成
 	 */
-	private long targetId;
-	
+	private BigInteger uniqueId;
+
 	/**
-	 * 发言时间
+	 * 聊天记录信息
 	 */
-	private long sendTime;
+	@Column(value = PROP_DATA, clazzType = ConcurrentFixSizeArrayList.class)
+	private List<ChatDetail> chatDetails;
+	
+	
+	//	非序列化数据
+	private transient int viewLimit = 10;
 
 	public Chat() {
-	}
-	
-	public Chat(String content, int channel) {
-		this.sendId = -1;
-		this.content = content;
-		this.channel = channel;
-		this.targetId = 0;
+
 	}
 
-	public Chat(long sendId, String content, int channel, long toId) {
-		this.sendId = sendId;
-		this.content = content;
-		this.channel = channel;
-		this.targetId = toId;
-	}
-	
-	/**
-	 * 创建系统聊天
-	 * @param _content 文本
-	 * @param _channel 频道
-	 * @return Chat
-	 */
-	public static Chat createSystemChat(String content, int channel) {
-		Chat pojo = new Chat(content, channel);
-		return pojo;
+	public BigInteger getUniqueId() {
+		return uniqueId;
 	}
 
-
-	/**
-	 * 创建普通聊天
-	 * @param _sendId 发送者id
-	 * @param _content 文本
-	 * @param _channel 频道
-	 * @param _recvId 接收者id
-	 * @return Chat
-	 */
-	public static Chat create(long sendId, String content, int channel, long recvId) {
-		Chat pojo = new Chat(sendId, content, channel, recvId);
-		return pojo;
+	public void setUniqueId(BigInteger uniqueId) {
+		this.uniqueId = uniqueId;
 	}
 
-	public long getSendId() {
-		return sendId;
+	public List<ChatDetail> getChatDetails() {
+		return chatDetails;
 	}
 
-	public String getContent() {
-		return content;
+	public void setChatDetails(List<ChatDetail> chatDetails) {
+		this.chatDetails = chatDetails;
 	}
 
-	public int getChannel() {
-		return channel;
+	@Override
+	public Object key() {
+		return null;
 	}
 
-	public void setSendId(int sendId) {
-		this.sendId = sendId;
+	public String keyColumn() {
+		return null;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	@Override
+	public void beforeSave() {
+		// 存储uniqueId
+		IChatType chatType = ChannelType.getChannelType(channel).getChatType();
+		Pair<Long, Long> pair = chatType.getOriginalIds(uniqueId);
+		this.leftKey = pair.getLeft();
+		this.rightKey = pair.getRight();
+		// 存储聊天记录
+		this.data = JSON.toJSONString(chatDetails);
 	}
 
-	public void setChannel(int channel) {
-		this.channel = channel;
-	}
-	
-	public long getToId() {
-		return targetId;
-	}
-	
-	public long getTargetId() {
-		return targetId;
-	}
-
-	public void setTargetId(long targetId) {
-		this.targetId = targetId;
-	}
-
-	public long getSendTime() {
-		return sendTime;
-	}
-
-	public void setSendTime(long sendTime) {
-		this.sendTime = sendTime;
-	}
-
-	public void setSendId(long sendId) {
-		this.sendId = sendId;
+	@Override
+	public void afterLoad() {
+		// 根据channel构造uniqueId
+		IChatType chatType = ChannelType.getChannelType(channel).getChatType();
+		this.uniqueId = chatType.getUniqueId(leftKey, rightKey);
+		// 聊天信息构造
+		List<ChatDetail> ret = JSON.parseObject(this.data, new TypeReference<ArrayList<ChatDetail>>() {
+		});
+		ConfigChat config = ConfigManager.getInstance().getConfig(ConfigChat.class, channel);
+		this.chatDetails = new ConcurrentFixSizeArrayList<ChatDetail>(config.getCacheNum());
+		this.chatDetails.addAll(ret);
 	}
 
 	/**
-	 * 聊天对象转协议对象
-	 * @return ChatInfo
+	 * [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+	 * 先进后出
+	 * 取出指定数量的聊天记录,
+	 * 策划指定显示数量viewLimit, 比如5
+	 * 客户端指定获取数量num, 比如5
+	 * to = list.size - num;
+	 * from = to - viewLimit;
+	 * 
+	 * num为0,viewLimit为5, to为10,from为5, 表示6~10, 取出[6, 7, 8, 9, 10]
+	 * num为5,viewLimit为5, to为5,from为0, 表示1~5, 取出[1, 2, 3, 4, 5]
+	 * 所以只需要计算出end就能知道from
+	 * @param num
+	 * @return
 	 */
-	public ChatInfo toProto() {
-		PBChatInfoBuilder builder = PBChatInfoBuilder.newInstance();
-		builder.setInfo(this);
-		return builder.build();
+	public List<ChatDetail> getChatDetail(int num){
+		int toIndex = chatDetails.size() - num;
+		int fromIndex = toIndex - viewLimit;
+		fromIndex = fromIndex < 0 ? 0 : fromIndex;
+		List<ChatDetail> ret = new ArrayList<>(chatDetails.subList(fromIndex, toIndex));
+		return ret;
+	}
+	
+	/**
+	 * 获取最新的一条聊天记录
+	 * @return
+	 */
+	public ChatDetail getLastChatDetail() {
+		return chatDetails.get(chatDetails.size());
+	}
+	
+	/**
+	 * 添加新聊天内容
+	 * @param chatDetail
+	 */
+	public void addChatDetail(ChatDetail chatDetail) {
+		this.chatDetails.add(chatDetail);
 	}
 	
 }

@@ -43,12 +43,13 @@ public class ChatDomainGroup {
 	 * @return
 	 */
 	public ChatDomain getOrCreateDomain(long domainId) {
-		ChatDomain domain = chatDomainMap.get(domainId);
-		if (domain == null) {
-			domain = new ChatDomain(channelType, domainId);
-			chatDomainMap.put(domainId, domain);
-		}
-		return domain;
+//		ChatDomain domain = chatDomainMap.get(domainId);
+//		if (domain == null) {
+//			domain = new ChatDomain(channelType, domainId);
+//			chatDomainMap.put(domainId, domain);
+//		}
+//		return domain;
+		return null;
 	}
 	
 	public Collection<ChatDomain> getAllDomain(){

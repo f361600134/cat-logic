@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
-import com.cat.orm.core.db.process.DataProcessorAsyn;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
@@ -13,8 +12,6 @@ import com.cat.server.game.module.attribute.domain.IAttributeEntity;
 import com.cat.server.game.module.attribute.domain.IAttributeNode;
 import com.cat.server.game.module.hero.attr.HeroRootNode;
 import com.cat.server.game.module.resource.IResource;
-import org.springframework.stereotype.Repository;
-
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 

@@ -44,10 +44,10 @@ public class ChatController implements IController{
             this.commandService.gmFromClient(session, req);
         } else {
             //聊天
-            int code = this.chatServicePlus.chat(req, playerId);
-            AckTipsResp ack = AckTipsResp.newInstance().setTipsId(code);
+//            int code = this.chatServicePlus.chat(req, playerId);
+//            AckTipsResp ack = AckTipsResp.newInstance().setTipsId(code);
 //            playerService.sendMessage(playerId, ack);
-            session.send(ack);
+//            session.send(ack);
         }
     }
 
