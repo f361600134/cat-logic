@@ -1,5 +1,7 @@
 package com.cat.server.game.module.chat.domain;
 
+import com.cat.server.game.data.proto.PBPlayer.ChatInfo;
+import com.cat.server.game.module.chat.proto.PBChatInfoBuilder;
 import com.cat.server.utils.TimeUtil;
 
 /**
@@ -92,23 +94,14 @@ public class ChatDetail {
 		return new ChatDetail(-1, content, -1);
 	}
 
-//	/**
-//	 * 序列化为聊天记录
-//	 * @return
-//	 */
-//	public ChatInfoDto toProto() {
-//		ChatInfoDto chatInfoDto = new ChatInfoDto();
-//		chatInfoDto.setContent(getContent());
-//		chatInfoDto.setMessageType(getMessageType());
-//		chatInfoDto.getParams().addAll(getParams());
-//		chatInfoDto.setCreateTime((int) (getSendTime() / 1000));
-//		PlayerView playerView = PlayerManager.getInstance().getPlayerCache().getPlayerView(getSenderId());
-//		if (playerView == null) {
-//			return chatInfoDto;
-//		}
-//		chatInfoDto.setPlayerDto(PlayerHelper.buildPlayerInfoProtocol(playerView));
-//		chatInfoDto.setPersonDto(PersonalHelper.buildPersonDto(playerView));
-//		return chatInfoDto;
-//	}
+	/**
+	 * 序列化为聊天记录
+	 * @return
+	 */
+	public ChatInfo toProto() {
+		PBChatInfoBuilder buillder = new PBChatInfoBuilder();
+		buillder.setInfo(this);
+		return buillder.build();
+	}
 
 }

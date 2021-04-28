@@ -28,16 +28,14 @@ public class AckChatResp implements IProtocol {
     	this.builder.addChats(chatInfo);
     }
     
-//    @Override
-//    public int getProtocol() {
-//        return PBProtocol.AckChat_VALUE;
-//    }
-//
-//    @Override
-//    public GeneratedMessageLite getMessage() {
-//        return builder.build();
-//    }
-
+    public void setChatChannel(int channel) {
+    	this.builder.setChatChannel(channel);
+    }
+    
+    public void addChats(ChatInfo chatInfo) {
+    	this.builder.addChats(chatInfo);
+    }
+    
 	@Override
 	public short protocol() {
 		return PBProtocol.AckChat_VALUE;

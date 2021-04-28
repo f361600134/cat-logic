@@ -32,7 +32,7 @@ public enum ChannelType {
 	/**
 	 * 联盟聊天
 	 */
-	ALLIANCE(2) {
+	FAMILY(2) {
 	@Override
 		public IChatType newInstance() {
 			return  null;
@@ -42,6 +42,15 @@ public enum ChannelType {
 	 * 好友私聊
 	 */
 	FRIEND(3) {
+		@Override
+		public IChatType newInstance() {
+			return null;
+		}
+	},
+	/**
+	 * 队伍聊天
+	 */
+	TEAM(4) {
 		@Override
 		public IChatType newInstance() {
 			return null;

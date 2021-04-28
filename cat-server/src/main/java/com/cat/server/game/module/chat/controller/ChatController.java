@@ -10,6 +10,7 @@ import com.cat.net.network.base.GameSession;
 import com.cat.net.network.controller.IController;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.server.game.data.proto.PBPlayer.ReqChat;
+import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.service.ChatService;
 import com.cat.server.game.module.chat.service.CommandService;
 import com.cat.server.game.module.player.proto.AckTipsResp;
@@ -35,7 +36,7 @@ public class ChatController implements IController{
     @Autowired
     private PlayerService playerService;
 
-    @Cmd(id = PBProtocol.ReqChat_VALUE)
+    @Cmd(id = PBProtocol.ReqChat_VALUE, mustLogin = false)
     public void chat(GameSession session, ReqChat req) {
     	
         long playerId = session.getPlayerId();
@@ -44,10 +45,10 @@ public class ChatController implements IController{
             this.commandService.gmFromClient(session, req);
         } else {
             //聊天
-//            int code = this.chatServicePlus.chat(req, playerId);
-//            AckTipsResp ack = AckTipsResp.newInstance().setTipsId(code);
-//            playerService.sendMessage(playerId, ack);
-//            session.send(ack);
+            ErrorCode code = this.chatServicePlus.chat(req, playerId);
+            AckTipsResp ack = AckTipsResp.newInstance().setTipsId(code);
+            playerService.sendMessage(playerId, ack);
+            session.send(ack);
         }
     }
 

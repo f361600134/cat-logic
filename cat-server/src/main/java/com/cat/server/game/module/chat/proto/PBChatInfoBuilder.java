@@ -1,11 +1,11 @@
 package com.cat.server.game.module.chat.proto;
 
-import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.PBPlayer.ChatInfo;
-import com.cat.server.game.module.chat.domain.Chat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.cat.net.network.base.IProtocol;
+import com.cat.server.game.data.proto.PBPlayer.ChatInfo;
+import com.cat.server.game.module.chat.domain.ChatDetail;
 import com.google.protobuf.AbstractMessageLite.Builder;
 
 public class PBChatInfoBuilder implements IProtocol{
@@ -22,7 +22,7 @@ public class PBChatInfoBuilder implements IProtocol{
         this.builder = ChatInfo.newBuilder();
     }
     
-    public void setInfo(Chat chat){
+    public void setInfo(ChatDetail chatDetail){
 //    	PBPlayerProfileBuilder pBuilder = PBPlayerProfileBuilder.newInstance();
 //    	OtherPlayer otherPlayer = Context.getOtherPlayerService().getOtherPlayerById(chat.getSendId());
 //    	if (otherPlayer != null) {

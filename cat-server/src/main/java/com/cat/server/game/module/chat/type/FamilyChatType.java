@@ -2,7 +2,6 @@ package com.cat.server.game.module.chat.type;
 
 import java.math.BigInteger;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 import com.cat.server.game.helper.result.ErrorCode;
@@ -28,17 +27,17 @@ public class FamilyChatType extends AbstractChatType {
 			.build();
 
 	public FamilyChatType() {
-		super(ChannelType.ALLIANCE.getChannel());
+		super(ChannelType.FAMILY.getChannel());
 	}
 
 	@Override
 	public BigInteger getUniqueId(long senderId, long targetId) {
 //		PlayerView playerView = PlayerManager.getInstance().getPlayerView(senderId);
 //		long allianceId = playerView == null ? 0 : playerView.getAllianceId();
-//		BigInteger bigInteger = BigInteger.valueOf(getChannel()).shiftLeft(64)
-//				.add(BigInteger.valueOf(allianceId));
-//		return bigInteger;
-		return null;
+		long familyId = 0L;
+		BigInteger bigInteger = BigInteger.valueOf(getChannel()).shiftLeft(64)
+				.add(BigInteger.valueOf(familyId));
+		return bigInteger;
 	}
 
 	@Override
@@ -54,17 +53,16 @@ public class FamilyChatType extends AbstractChatType {
 	
 	@Override
 	public ErrorCode checkChat(long senderId, BigInteger uniqueId) {
-//		ErrorCode errorCode = super.checkChat(senderId, uniqueId);
-//		if (!errorCode.isSuccess()) {
-//			return errorCode;
-//		}
-//		Pair<Long, Long> pair = getOriginalIds(uniqueId);
-//		final long allianceId = pair.getRight();
-//		if (allianceId <= 0) {
-//			return ErrorCode.CHAT_ALLIANCE_NOT_EXIST;
-//		}
-//		return ErrorCode.SUCCESS;
-		return null;
+		ErrorCode errorCode = super.checkChat(senderId, uniqueId);
+		if (!errorCode.isSuccess()) {
+			return errorCode;
+		}
+		Pair<Long, Long> pair = getOriginalIds(uniqueId);
+		final long familyId = pair.getRight();
+		if (familyId <= 0) {
+			return ErrorCode.CHAT_ALLIANCE_NOT_EXIST;
+		}
+		return ErrorCode.SUCCESS;
 	}
 
 	@Override

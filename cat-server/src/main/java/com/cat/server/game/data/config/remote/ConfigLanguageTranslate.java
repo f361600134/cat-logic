@@ -11,7 +11,7 @@ import com.cat.server.core.config.container.IGameConfig;
  *
  * @author lpg 2020年12月17日
  */
-@ConfigUrl("language_translate.json")
+//@ConfigUrl("language_translate.json")
 public class ConfigLanguageTranslate implements IGameConfig {
 
 	private int id; //唯一id

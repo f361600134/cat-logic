@@ -14,6 +14,7 @@ import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.domain.Chat;
 import com.cat.server.game.module.chat.domain.ChatDetail;
+import com.cat.server.game.module.chat.proto.AckChatResp;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
 import com.cat.server.game.module.player.service.PlayerService;
@@ -32,19 +33,6 @@ public abstract class AbstractChatType implements IChatType{
 	
 	protected int channel;
 	
-//	/**
-//	 * 聊天缓存, 所有频道聊天缓存, 使用Cache替代掉Map
-//	 * key:BigInteger, uniqueId, 唯一id
-//	 * value:聊天记录实体bean
-//	 */
-//	private Cache<BigInteger, Chat> chatRecordMap = CacheBuilder.newBuilder()
-//			.expireAfterAccess(1, TimeUnit.HOURS)// 在给定时间内没有被读/写访问,则清除
-//			.maximumSize(1000)//	最大条目,超过这个聊天记录, 根据LRU特点移除
-//			.removalListener((notification)->{//移除监听,因超时被移除的聊天数据,持久化到数据库
-//				Chat bean = (Chat)notification.getValue();
-//				bean.delete();
-//			}).build();
-	
 	/**
 	 * TODO 具体的聊天记录, 由子类去根据需要实例化
 	 * @return
@@ -52,18 +40,37 @@ public abstract class AbstractChatType implements IChatType{
 	public abstract Cache<BigInteger, Chat> getChatMap();
 	
 	/**
+	 * 在发送消息前,存储
+	 * @param uniqueId
+	 * @param chatDetail
+	 */
+	public void beforeSendMsg(BigInteger uniqueId, ChatDetail chatDetail) {
+		Chat chat = getChat(uniqueId);
+		if (chat == null) {
+			return;
+		}
+		chat.addChatDetail(chatDetail);
+	}
+	
+	/**
 	 * 根据uniqueId获取聊天内容
 	 * @param uniqueId
 	 * @return
 	 */
 	public Chat getChat(BigInteger uniqueId) {
-		Chat chat = getChatMap().getIfPresent(uniqueId);
+		Cache<BigInteger, Chat> chatMap = getChatMap();
+		if (chatMap == null) {
+			return null;
+		}
+		Chat chat = chatMap.getIfPresent(uniqueId);
 		if (chat != null) {
 			return chat;
 		}
 		Pair<Long, Long> pair = getOriginalIds(uniqueId);
 		chat = getFromDb(pair.getLeft(), pair.getRight());
-		getChatMap().put(uniqueId, chat);
+		if (chat != null) {
+			chatMap.put(uniqueId, chat);
+		}
 		return chat;
 	}
 	
@@ -124,24 +131,22 @@ public abstract class AbstractChatType implements IChatType{
 		if (!errorCode.isSuccess()) {
 			return errorCode;
 		}
-		Chat chat = getChat(uniqueId);
-		chat.addChatDetail(chatDetail);
+		beforeSendMsg(uniqueId, chatDetail);
 		
-//		ChatInfoDto proto = chatDetail.toProto();
 		// FSC 新增的聊天消息即时同步, 聊天, 如果需要更新状态,可以独立一条消息
-//		ResChat res = new ResChat();
-//		res.setChatInfo(proto);
-//		res.setChannelType(getChannel());
+		AckChatResp res = new AckChatResp();
+		res.addChat(channel, chatDetail.toProto());
+		
 		Collection<Long> receiverIds = findReceiverIds(uniqueId);
 		receiverIds.forEach(playerId -> {
-			//Player receiver = PlayerManager.getInstance().getOnlinePlayer(playerId);
 			PlayerContext receiver = playerService.getPlayerContext(senderId);
 			if (receiver !=null && receiver.isOnline()) {//	在线则同步,否则不同步
-//				receiver.sendMessage(res);
+				receiver.send(res);
 			}
 		});
 		return ErrorCode.SUCCESS;
 	}
+	
 	
 	/**
 	 * 获取所有聊天记录
@@ -200,5 +205,4 @@ public abstract class AbstractChatType implements IChatType{
 		}
 		return null;
 	}
-
 }

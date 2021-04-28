@@ -11,18 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.server.core.config.ConfigManager;
+import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.game.data.config.local.ConfigChatModel;
 import com.cat.server.game.data.config.local.ConfigConstantPlus;
 import com.cat.server.game.data.proto.PBPlayer.ReqChat;
 import com.cat.server.game.helper.result.ConfigTipsMgr;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.assist.ChannelType;
-import com.cat.server.game.module.chat.domain.Chat;
 import com.cat.server.game.module.chat.domain.ChatDetail;
 import com.cat.server.game.module.chat.domain.ChatDomain;
 import com.cat.server.game.module.chat.domain.ChatRule;
 import com.cat.server.game.module.chat.magaer.ChatManager;
-import com.cat.server.game.module.chat.proto.AckChatResp;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
 import com.cat.server.game.module.player.proto.AckTipsResp;
@@ -40,44 +39,11 @@ public class ChatService {
 	@Autowired private ChatManager chatManager;
 	
 //	/**
-//	 * key: channelId
-//	 * value: ChatDomainGroup聊天组
-//	 */
-//	private Map<Integer, ChatDomainGroup> domainMap = Maps.newConcurrentMap();
-	
-//	/**
 //	 * key: playerId
 //	 * value: ChatRule聊天约束
 //	 */
 //	private Map<Long, Map<Integer, ChatRule>> playerRuleMap = Maps.newConcurrentMap();
-	
 		
-//	/**
-//	 * 获取聊天域, 对于家族聊天不同家族不同聊天域,domainId为家族id作为区分, 对于世界等只有一个聊天域,domainId可以设置为频道号
-//	 * @param channelType
-//	 * @param domainId
-//	 * @return
-//	 */
-//	public ChatDomain getOrCreateDomain(int channelType, long domainId) {
-//		ChatDomainGroup domainGroup = getOrCreateDomainGroup(channelType);
-//		return domainGroup.getOrCreateDomain(domainId);
-//	}
-	
-//	/**
-//	 * 获取聊天域组
-//	 * @param channelType
-//	 * @param domainId
-//	 * @return
-//	 */
-//	public ChatDomainGroup getOrCreateDomainGroup(int channelType) {
-//		ChatDomainGroup domainGroup = domainMap.get(channelType);
-//		if (domainGroup == null) {
-//			domainGroup = new ChatDomainGroup(channelType);
-//			domainMap.put(channelType, domainGroup);
-//		}
-//		return domainGroup;
-//	}
-	
 	/**
 	 * 获取玩家指定渠道的渠道规则
 	 * @param playerId
@@ -218,8 +184,6 @@ public class ChatService {
 		int channelId = data.getChatChannel();
 		String content = data.getContent();
 		long recvId = data.getPlayerId();
-		
-		
 		ChatDomain domain = chatManager.getDomain(channelId);
 		if (domain == null) {
 			return ErrorCode.CHAT_CHANNEL_NOT_EXISTS;
@@ -232,7 +196,6 @@ public class ChatService {
 		}
 		//使用过滤后的文本
 		content = pair.getRight();
-
 		PlayerContext context = playerService.getPlayerContext(playerId);
 		final Player player = context.getPlayer();
 		ChatRule rule = getChatRule(playerId, channelId);
@@ -287,14 +250,14 @@ public class ChatService {
 		if (content.length() > 100) {//总长度大于100超过限制
 			code = ErrorCode.CHAT_MESSAGE_TOO_LONG;
 		}
-		if (realLen > ConfigConstantPlus.chat) {//文字长度大于100超过限制
-			code = ErrorCode.CHAT_MESSAGE_TOO_LONG;
-		}
+//		if (realLen > ConfigConstantPlus.chat) {//文字长度大于100超过限制
+//			code = ErrorCode.CHAT_MESSAGE_TOO_LONG;
+//		}
 		if (tags.size() > ConfigConstantPlus.expression) {//玩家只能发送表情标签, 表情大于5, 视为失败
 			code = ErrorCode.CHAT_MESSAGE_TOO_LONG;
 		}
-		//文本过滤
-//		str = BadWordFilter.doFilter(str);
+		//TODO 文本过滤
+		//str = BadWordFilter.doFilter(str);
 		//还原文本
 		for (String tag : tags) {
 			str = str.replaceFirst("\\?", tag);
