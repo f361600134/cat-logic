@@ -1,0 +1,94 @@
+提交日志, 用于记录某个时间段的想法以及已实现的内容
+
+2021.01.27
+1. 增加redis支持, 使用的redisson客户端工具, 说实话这个工具封装的还算强大, 但是代码写的很一般
+
+2021.02.22
+1. 资源管理已经支持, 新增资源服务器端比较容易
+2. 武将管理未完全支持, 只是做了基本结构
+3. 任务处理器已经完全支持, 一套逻辑所有任务模块使用
+4. 战斗逻辑未完全支持, 没想好做什么类型的游戏, 所以只是做了属性树
+5. 聊天逻辑, 写了几套, 目前这套最不理想, 后续需要修改
+6. 2021.01.08的遗留问题项已经处理完成, 但是牺牲了部分性能, 不能对同一对象进行覆盖入库, 需要逐个入库, 这个可以想办法优化
+7. 2021.01.27的遗留项, 最后放弃使用了redisson客户端工具, 使用lettuce客户端工具.已经封装好随时可以用. 在持久层支持redis操作
+
+
+2021.02.25
+1. 完成:使用dubbo作为RPC首选项, 在网络层支持RPC调用, 新增coral-api作为抽象接口工程
+2. 完成:新增coral-test工程, 用于rpc测试客户端, 目前rpc连接测试已经调试成功
+3. 预计完成: 减负, 剔除掉服务器工程多余的第三方依赖包, 目前启动时间增加了60%, 优化项目启动速度!
+4. 预计完成: 压力测试, 查看线程量是否超过了指定数量.
+
+2021.02.26
+1. 今天发现使用springboot-dubbo依赖包,移动后对象的依赖变成了dubbo管理, spring无法代理, 提示大量如下错误,
+ Bean 'io.dubbo.springboot.DubboAutoConfiguration' of type 
+ [io.dubbo.springboot.DubboAutoConfiguration$$EnhancerBySpringCGLIB$$bb51a857] 
+ is not eligible for getting processed by all BeanPostProcessors 
+ (for example: not eligible for auto-proxying)
+在网上查阅资料得知, 业务bean在BeanPostProcessors(BPP)实例化前被实例化了。理想情况下应该让spring先实例化所有的BPP后，再实例化我们的业务bean，
+这样业务bean才能被所有BPP处理，如果有业务bean先于任何BPP实例化，那么这个业务bean就不会被还未实例化的BPP处理了，这个就是日志提示的原因。
+
+尝试了网上几种解决方法, 并不能解决实质问题, 我这里产生的原因就是, 只要集成了springboot-dubbo 并且扫描业务service就会出现此问题
+最終解決方法：springboot-dubbo改为了apache-dubbo依赖, 解决了代理问题
+
+2021.03.21
+1. 删掉了pojo上的@repository注解, pojo不让spring去做代理
+2. 增加了排行榜的实现, 增加了公共线程池的使用
+
+2021.03.25
+1. 预计增加kafka的支持, 用于流日志处理
+2. 预计在网络层增加KCP支持,
+3. 增加邮件的业务功能
+4. 整理代码接口, 使EntityPo丢进每个模块内, 不独立出来
+5. 代码生成器模板文件修改, 包含路径修改, 错误修改
+
+
+2021.03.30
+1. 干掉了服务器所有@Order相关的注解, 以@DependsOn的方式处理注入依赖顺序
+2. 整理ConfigManager类加载的代码, 废弃了老一套的ConfigManager的使用.目前ConfigManager支持本地json和远程json的读取, 
+但是使用者完全不需要特殊区分.
+
+加载顺序思考,加载流程应当如下
+1.1 系统环境级别: class文件扫描, 系统配置文件注入, spring上下文准备就绪
+1.2 游戏环境级别: 配置文件加载, mysql, redis, zk连接
+1.3 游戏业务级别: 游戏业务模块的注入
+
+2021.04.01
+Springboot的注入顺序，是先注入最外层目录的组件，依次向内扫描注入， 所以同级目录下可以使用order排序,不同目录下order无法排序
+如果业务层没有使用spring上下文去获取bean,一般来说, spring的注入是没有问题的, 可以帮我们解决依赖问题, 如果用到了spirng乡下文, 我们依旧可以
+使用dependsOn注解来解决注入的依赖问题, 也可以延时拿数据.
+
+现在项目分层中, 有大部分业务逻辑在Domain层实现, Domain非单例, 要获取某些组件的数据时, 暂时依靠Spring上下文去获取, 所以这种做法, 如果没有设定好启动顺序, 初始化项目
+会出现null异常. 这一点是让人非常老火的.
+
+解决方式如下:
+
+1.根据目录去做加载
+- App
+
+--admin //API for http 
+
+--common //SYSTEM level loading
+
+----DataComponent.java		//Datasource loading
+----RedisComponent.java 	//Datasource loading
+----ServerConfig.java   	//Properties loading
+----ServerConstant.java 	//Static constant
+----ServerStartOrdered.java //Order for Component
+----SpringContextHolder.java //Spring context
+----UniqueIdGenerater.java	//UUid
+
+--core //LOGIC_INITIALIZATION level loading
+---- config		//Json loading
+---- event		//Event loading
+---- task		//Task loading
+
+--game //LOGIC level loading
+
+--utils
+
+
+今天的项目, 会打tag, 做一个分支, 新的分支, 不再使用Springboot作为依赖框架, 仅仅是依赖Spring.
+
+
+

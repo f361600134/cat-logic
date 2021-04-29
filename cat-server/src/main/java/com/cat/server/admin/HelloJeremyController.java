@@ -10,7 +10,6 @@ import com.alibaba.fastjson.JSON;
 import com.cat.net.http.annatation.Param;
 import com.cat.net.http.annatation.RequestMapping;
 import com.cat.server.utils.HttpClientUtil;
-import com.mysql.cj.protocol.FullReadInputStream;
 
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
