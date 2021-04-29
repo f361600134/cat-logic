@@ -3,8 +3,6 @@
 
 package com.cat.server.game.data.proto;
 
-import com.cat.server.core.server.IPtoro;
-
 public final class PBBag {
   private PBBag() {}
   public static void registerAllExtensions(

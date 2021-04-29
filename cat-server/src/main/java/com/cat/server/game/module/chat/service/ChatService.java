@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.server.core.config.ConfigManager;
-import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.game.data.config.local.ConfigChatModel;
 import com.cat.server.game.data.config.local.ConfigConstantPlus;
 import com.cat.server.game.data.proto.PBPlayer.ReqChat;
@@ -37,35 +36,6 @@ public class ChatService {
 	@Autowired private PlayerService playerService;
 	
 	@Autowired private ChatManager chatManager;
-	
-//	/**
-//	 * key: playerId
-//	 * value: ChatRule聊天约束
-//	 */
-//	private Map<Long, Map<Integer, ChatRule>> playerRuleMap = Maps.newConcurrentMap();
-		
-	/**
-	 * 获取玩家指定渠道的渠道规则
-	 * @param playerId
-	 * @param channelType
-	 * @return  
-	 * @return ChatRule  
-	 * @date 2020年12月15日下午11:50:44
-	 */
-	public ChatRule getChatRule(long playerId, int channelType) {
-//		Map<Integer, ChatRule> chatRuleMap = playerRuleMap.get(playerId);
-//		if (chatRuleMap == null) {
-//			chatRuleMap  = Maps.newHashMap();
-//			playerRuleMap.put(playerId, chatRuleMap);
-//		}
-//		ChatRule rule = chatRuleMap.get(channelType);
-//		if (rule == null) {
-//			rule = ChatRule.create(channelType);
-//			chatRuleMap.put(channelType, rule);
-//		}
-//		return rule;
-		return null;
-	}
 	
 	////////////////业务/////////////////////////
 	
@@ -198,7 +168,7 @@ public class ChatService {
 		content = pair.getRight();
 		PlayerContext context = playerService.getPlayerContext(playerId);
 		final Player player = context.getPlayer();
-		ChatRule rule = getChatRule(playerId, channelId);
+		ChatRule rule = chatManager.getChatRule(playerId, channelId);
 		long curTime = System.currentTimeMillis();
 		if (curTime < rule.getNextSpeakTime() && rule.isAgainst()) { //聊天过快
 			//提示玩家剩余x秒后可以聊天, 不允许其聊天
@@ -241,8 +211,7 @@ public class ChatService {
 			firstindex = str.indexOf("<");
 			lastindex = str.indexOf(">", firstindex);
 		}
-		int realLen = str.length() - tags.size();
-		
+//		int realLen = str.length() - tags.size();
 		ErrorCode code = ErrorCode.SUCCESS;
 		if (StringUtils.isBlank(str)) {
 			code = ErrorCode.CHAT_MESSAGE_IS_EMPTY;//聊天内容为空

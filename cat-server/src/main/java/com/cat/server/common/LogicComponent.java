@@ -11,8 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.alibaba.druid.filter.Filter;
-import com.alibaba.druid.filter.stat.StatFilter;
 import com.cat.orm.core.base.BasePo;
 import com.cat.orm.core.db.process.DataProcessorAsyn;
 import com.cat.server.core.config.ConfigManager;
