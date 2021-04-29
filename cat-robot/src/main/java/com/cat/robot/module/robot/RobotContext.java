@@ -24,7 +24,6 @@ import com.cat.server.game.data.proto.PBDefine;
 import com.cat.server.game.data.proto.PBLogin;
 import com.cat.server.game.data.proto.PBPlayer.AckInitPlayerInfo;
 
-import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 
 public class RobotContext {

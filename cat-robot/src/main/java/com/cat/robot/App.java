@@ -23,18 +23,12 @@ public class App
     	long startTime = System.currentTimeMillis();
     	
 		//扫描配置环境
-//    	ClassManager.instance().loadClasses(ServerConstant.scanPath);
-//    	AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("xml/spring-context.xml");
-//		ctx.registerShutdownHook();
-//		ctx.start();
+    	ClassManager.instance().loadClasses(ServerConstant.scanPath);
+    	AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("xml/spring-context.xml");
+		ctx.registerShutdownHook();
+		ctx.start();
     	
-    	TcpClientStarter starter = new TcpClientStarter("127.0.0.1", 5001, new DefaultServerController());
-    	try {
-			starter.start();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+//    	TcpClientStarter starter = new TcpClientStarter("127.0.0.1", 5001, new DefaultServerController());
     	logger.info("Start server successful, cost time:{}ms", (System.currentTimeMillis() - startTime));
     }
 }

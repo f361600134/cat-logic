@@ -34,17 +34,17 @@ public class LoginController implements IController{
 		}
 	}
 	
-//	/**
-//	 * 返回名字列表, 创建角色
-//	 * @param robotContext
-//	 * @param ack  
-//	 * @return void  
-//	 * @date 2019年7月4日上午11:45:02
-//	 */
-//	@Cmd(id = PBDefine.PBProtocol.AckRandName_VALUE)
-//	public void ackLogin(RobotContext robotContext, PBLogin.AckRandName ack) {
-//		List<String> names = ack.getNamesList();
-//		if (!names.isEmpty()) {
+	/**
+	 * 返回名字列表, 创建角色
+	 * @param robotContext
+	 * @param ack  
+	 * @return void  
+	 * @date 2019年7月4日上午11:45:02
+	 */
+	@Cmd(id = PBDefine.PBProtocol.AckRandName_VALUE)
+	public void ackLogin(RobotContext robotContext, PBLogin.AckRandName ack) {
+		String names = ack.getNames();
+		if (!names.isEmpty()) {
 //			int cmd = PBDefine.PBProtocol.ReqCreateHost_VALUE;
 //			PBLogin.ReqCreateHost.Builder newBuilder = PBLogin.ReqCreateHost.newBuilder();
 //			newBuilder.setNickName(names.get(0));//取第一个
@@ -52,8 +52,8 @@ public class LoginController implements IController{
 //			newBuilder.setRoleType(roleType);
 //			newBuilder.setNickName(robotContext.getName());//取第一个
 //			robotContext.send(cmd, newBuilder.build());
-//		}
-//	}
+		}
+	}
 //
 //	/**
 //	 * 创建角色返回
