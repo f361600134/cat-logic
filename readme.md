@@ -1,5 +1,5 @@
 # 前言  
-此项目基于**cat**框架, 实现的服务器逻辑层框架. 名为**cat-logic**.cat-logic是基于**cat**框架实现的具体游戏服务器框架,对cat的提供的功能做到了超过90%的利用.
+此项目基于**cat**框架, 实现的服务器逻辑层框架. 名为**cat-logic**.cat-logic是基于**[cat](https://gitee.com/fatiny/cat)**框架实现的具体游戏服务器框架,对cat的提供的功能做到了超过90%的利用.
 
 ## cat-logic 工程介绍  
 **cat-api**: API工程, 对外暴露API,用于RPC远程调用.  
@@ -27,7 +27,3 @@ CORAL是一个强大的，灵活的的分布式架构，可以满足几乎所有
 请联系作者:  
 QQ: 361600134
 Wechat: huuzii   
-
-
-
-
