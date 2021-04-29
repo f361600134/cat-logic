@@ -3,9 +3,10 @@ package com.cat.robot.common.config;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 
-import com.cat.robot.util.param.ParamMapping;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 
-@ParamMapping(prefix = "config")
+@Configuration
 public class Config {
 	
 	public static String robotName = "fengsc";
@@ -24,51 +25,62 @@ public class Config {
 	public static int loginDelay = 1; //min.
 	public static int scriptDelay = 100; //ms
 	
+	@Value("${config.robotName}")
 	public void setRobotName(String robotName) {
 		Config.robotName = robotName;
-		System.out.println("=======setRobotName======");
 	}
 
+	@Value("${config.password}")
 	public void setPassword(String password) {
 		Config.password = password;
 	}
 
+	@Value("${config.loginChannel}")
 	public void setLoginChannel(int loginChannel) {
 		Config.loginChannel = loginChannel;
 	}
 
+	@Value("${config.loginUrl}")
 	public void setLoginUrl(String loginUrl) {
 		Config.loginUrl = loginUrl;
 	}
 
+	@Value("${config.serverId}")
 	public void setServerId(int serverId) {
 		Config.serverId = serverId;
 	}
 
+	@Value("${config.serverIP}")
 	public void setServerIP(String serverIP) {
 		Config.serverIP = serverIP;
 	}
 
+	@Value("${config.serverPort}")
 	public void setServerPort(int serverPort) {
 		Config.serverPort = serverPort;
 	}
 
+	@Value("${config.robotStartingIndex}")
 	public void setRobotStartingIndex(int robotStartingIndex) {
 		Config.robotStartingIndex = robotStartingIndex;
 	}
 
+	@Value("${config.robotGroupCnt}")
 	public void setRobotGroupCnt(int robotGroupCnt) {
 		Config.robotGroupCnt = robotGroupCnt;
 	}
 
+	@Value("${config.robotCountPerGroup}")
 	public void setRobotCountPerGroup(int robotCountPerGroup) {
 		Config.robotCountPerGroup = robotCountPerGroup;
 	}
 
+	@Value("${config.loginDelay}")
 	public void setLoginDelay(int loginDelay) {
 		Config.loginDelay = loginDelay;
 	}
 
+	@Value("${config.scriptDelay}")
 	public void setScriptDelay(int scriptDelay) {
 		Config.scriptDelay = scriptDelay;
 	}

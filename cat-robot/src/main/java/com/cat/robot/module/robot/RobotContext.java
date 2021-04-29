@@ -38,7 +38,7 @@ public class RobotContext {
 	
 	private Channel channel;
 	/** Netty连接管理 */
-	private Bootstrap bootstrap;
+//	private Bootstrap bootstrap;
 //	private RobotNet robotNet;
 	private GameSession gameSession;
 	
@@ -82,12 +82,12 @@ public class RobotContext {
 	public void setChannel(Channel channel) {
 		this.channel = channel;
 	}
-	public Bootstrap getBootstrap() {
-		return bootstrap;
-	}
-	public void setBootstrap(Bootstrap bootstrap) {
-		this.bootstrap = bootstrap;
-	}
+//	public Bootstrap getBootstrap() {
+//		return bootstrap;
+//	}
+//	public void setBootstrap(Bootstrap bootstrap) {
+//		this.bootstrap = bootstrap;
+//	}
 	
 	public String getGameServerIp() {
 		return robot.getRobotLogin().getIp();
@@ -274,7 +274,7 @@ public class RobotContext {
 	 */
 	public void destory() {
 		disconnect();
-		bootstrap = null;
+//		bootstrap = null;
 //		robotNet = null;
 		robotInfo = null;
 		//scriptRecords = null;
