@@ -25,6 +25,10 @@ public enum ErrorCode implements ModuleDefines {
     // ---------------账号-------------------
     INVALID_ACCOUNT_NAME(ACCOUNT, 1, "无效的账号名"),
     ACCOUNT_NOT_LOGIN(ACCOUNT, 2, "账号未登陆"),
+    ACCOUNT_ILLEGAL(ACCOUNT, 3, "账号验证失败"),
+    ACCOUNT_ERROR(ACCOUNT, 4, "验证出现异常"),
+    ACCOUNT_REPEAT(ACCOUNT, 5, "登录数据重复异常"),
+    ACCOUNT_NOT_FOUNT(ACCOUNT, 6, "无该玩家数据"),
     // ---------------登录-------------------
     
  // ---------------玩家-------------------

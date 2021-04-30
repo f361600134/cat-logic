@@ -2,14 +2,20 @@
 package com.cat.robot.module.robot;
 
 public class Robot {
-	
-	private int index; //下标
+	/*	编号*/
+	private int index;
+	/*	名字*/
 	private String name;
+	/*	密码*/
 	private String pwd;
+	/*	渠道id*/
 	private int channal;
+	/*	服务器id*/
 	private int serverId;
 	
+	/*	服务器返回的机器人玩家id*/
 	private int playerId;
+	/*	机器人登录相关信息*/
 	private RobotLogin robotLogin;
 	
 	public Robot(String name, String pwd) {
@@ -60,16 +66,20 @@ public class Robot {
 		this.index = index;
 	}
 	
-//	public static Robot create() {
+	public static Robot create() {
 //		int accountId = RobotConfig.get().getNextAccountInt();
 //		String name = RobotConfig.get().getRobotName()+accountId;
-//		Robot robot = new Robot(name, "123456");
-//		robot.setIndex(accountId);
+		int accountId = 1;
+		String name = "aa";
+		Robot robot = new Robot(name, "123456");
+		robot.setIndex(accountId);
 //		robot.setChannal(Config.channel);
 //		robot.setServerId(Config.serverId);
-//		return robot;
-//	}
-	
-	
+		robot.setChannal(1);
+		robot.setServerId(1);
+		RobotLogin robotLogin = new RobotLogin(0, 1, "127.0.0.1", "一区", 5001, "sessionKey", 1, "1", "username");
+		robot.setRobotLogin(robotLogin);
+		return robot;
+	}
 
 }

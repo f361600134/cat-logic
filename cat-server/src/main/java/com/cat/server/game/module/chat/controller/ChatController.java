@@ -36,7 +36,7 @@ public class ChatController implements IController{
     @Autowired
     private PlayerService playerService;
 
-    @Cmd(id = PBProtocol.ReqChat_VALUE, mustLogin = false)
+    @Cmd(id = PBProtocol.ReqChat_VALUE)
     public void chat(GameSession session, ReqChat req) {
     	
         long playerId = session.getPlayerId();

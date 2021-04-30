@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import com.cat.net.LocalNetService;
 import com.cat.net.http.controller.DefaultHttpController;
 import com.cat.net.http.process.RequestProcessor;
-import com.cat.net.network.process.ControllerProcessor;
+import com.cat.net.network.process.ControllerDispatcher;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.core.server.GameServerController;
@@ -65,9 +65,9 @@ public class NetworkComponent implements Lifecycle{
 	 * @return
 	 */
 	@Bean
-	public ControllerProcessor controllerProcessor() {
+	public ControllerDispatcher controllerProcessor() {
 		logger.info("注册[ControllerProcessor]服务");
-		return new ControllerProcessor();
+		return new ControllerDispatcher();
 	}
 	
 	/**

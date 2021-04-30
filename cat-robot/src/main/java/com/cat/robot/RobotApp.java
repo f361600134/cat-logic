@@ -5,8 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.cat.net.network.controller.DefaultServerController;
-import com.cat.net.network.tcp.TcpClientStarter;
 import com.cat.robot.common.config.ServerConstant;
 import com.cat.robot.util.ClassManager;
 
@@ -14,9 +12,9 @@ import com.cat.robot.util.ClassManager;
  * Hello world!
  *
  */
-public class App 
+public class RobotApp 
 {
-	private static Logger logger = LoggerFactory.getLogger(App.class);
+	private static Logger logger = LoggerFactory.getLogger(RobotApp.class);
 	
     public static void main( String[] args )
     {

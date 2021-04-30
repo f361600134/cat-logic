@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.cat.net.network.controller.DefaultServerController;
-import com.cat.net.network.process.ControllerProcessor;
+import com.cat.net.network.process.ControllerDispatcher;
 
 /**
  * 网络组件
@@ -33,9 +33,9 @@ public class NetworkComponent {
 	 * @return
 	 */
 	@Bean
-	public ControllerProcessor controllerProcessor() {
+	public ControllerDispatcher controllerProcessor() {
 		logger.info("注册[ControllerProcessor]服务");
-		return new ControllerProcessor();
+		return new ControllerDispatcher();
 	}
 	
 }

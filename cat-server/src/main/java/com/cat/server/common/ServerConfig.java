@@ -22,6 +22,9 @@ public class ServerConfig {
 	// 后台地址
 	@Value("${cat.game.server.remoteUrl}")
 	private String remoteUrl;
+	// 后台地址
+	@Value("${cat.game.server.loginUrl}")
+	private String loginUrl;
 
 	public int getServerId() {
 		return serverId;
@@ -47,4 +50,12 @@ public class ServerConfig {
 		this.remoteUrl = remoteUrl;
 	}
 
+	public String getLoginUrl() {
+		return loginUrl;
+	}
+
+	public void setLoginUrl(String loginUrl) {
+		this.loginUrl = loginUrl;
+	}
+	
 }

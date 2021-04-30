@@ -3,7 +3,7 @@ package com.cat.server.game.module.mission.process;
 import com.cat.server.core.event.IEvent;
 import com.cat.server.game.module.mission.domain.MissionEnum;
 import com.cat.server.game.module.mission.type.IMission;
-import com.cat.server.game.module.player.event.PlayerAfterLoginEvent;
+import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
 import com.cat.server.utils.TimeUtil;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +24,7 @@ public class Mission01LoginProcess extends AbstractMissionProcess{
 
 	@Override
 	public String[] focusEvents() {
-		return new String[] {PlayerAfterLoginEvent.ID};
+		return new String[] {PlayerLoginEndEvent.ID};
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class Mission01LoginProcess extends AbstractMissionProcess{
 	 */
 	@Override
 	public int getCondition(IMission mission, IEvent event) {
-		if (!(event instanceof PlayerAfterLoginEvent)) {
+		if (!(event instanceof PlayerLoginEndEvent)) {
 			return 0;
 		}
 		//	最后登录时间

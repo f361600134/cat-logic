@@ -1,30 +1,35 @@
-package com.cat.server.game.module.player.handler;
+package com.cat.server.game.module.player.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
 
 import com.cat.net.network.annotation.Cmd;
 import com.cat.net.network.base.GameSession;
 import com.cat.net.network.controller.IController;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.server.game.data.proto.PBLogin;
+import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.player.proto.AckLoginResp;
 import com.cat.server.game.module.player.service.PlayerService;
 
-@Service
+@Controller
 public class PlayerController implements IController{
 	
 	private static final Logger log = LoggerFactory.getLogger(PlayerController.class);
 	
 	@Autowired private PlayerService playerService;
 	
-	@Cmd(id = 1, mustLogin = false)
+	@Cmd(id = PBProtocol.ReqLogin_VALUE, mustLogin = false)
 	public void login(GameSession session, PBLogin.ReqLogin req) {
-		log.info("PlayerHandler login， session:{}", session);
-		playerService.login(session, req);
 		
-//		AckLoginResp ack = AckLoginResp.create();
-//		session.push(ack);
+		ErrorCode errorCode = playerService.login(session, req);
+		
+		AckLoginResp ack = AckLoginResp.create();
+		ack.setCode(errorCode.getCode());
+//		ack.setStatus(value);
+		session.push(ack);
 	}
-
+	
 }

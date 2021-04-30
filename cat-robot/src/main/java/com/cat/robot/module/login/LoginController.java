@@ -1,15 +1,21 @@
 package com.cat.robot.module.login;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
 import com.cat.net.network.annotation.Cmd;
+import com.cat.net.network.base.GameSession;
 import com.cat.net.network.controller.IController;
+import com.cat.robot.module.InitialRunner;
 import com.cat.robot.module.robot.RobotContext;
 import com.cat.server.game.data.proto.PBDefine;
 import com.cat.server.game.data.proto.PBLogin;
 
 @Controller
 public class LoginController implements IController{
+	
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	/**
 	 * 响应登录, 开始获取随机名
@@ -19,9 +25,10 @@ public class LoginController implements IController{
 	 * @date 2019年7月4日上午11:45:13
 	 */
 	@Cmd(id = PBDefine.PBProtocol.AckLogin_VALUE)
-	public void ackLogin(RobotContext context, PBLogin.AckLogin ack) {
+	public void ackLogin(GameSession gameSession, PBLogin.AckLogin ack) {
 		int code = ack.getCode();
 		int staus = ack.getStatus();
+		logger.info("ackLogin code:{}, staus:{}", code, staus);
 		// 0 表示登陆成功
 		if (code == 0) {
 //			if (staus == 0) {

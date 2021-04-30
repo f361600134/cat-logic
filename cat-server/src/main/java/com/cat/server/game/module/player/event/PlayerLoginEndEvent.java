@@ -1,0 +1,17 @@
+package com.cat.server.game.module.player.event;
+
+import com.cat.server.core.event.PlayerEventBase;
+
+public class PlayerLoginEndEvent extends PlayerEventBase {
+	
+	public static String ID = PlayerLoginEndEvent.class.getSimpleName();
+
+    public PlayerLoginEndEvent(long playerId) {
+        super(playerId);
+    }
+    
+    public static PlayerLoginEndEvent create(long playerId) {
+    	return new PlayerLoginEndEvent(playerId);
+    }
+
+}

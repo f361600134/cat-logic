@@ -13,4 +13,7 @@ public class ServerConstant {
 	//扫描的目录
 	public static String scanPath = "com.cat.server";
 	
+	//账号验证地址
+	public static String authUrl = "/coral/official/login";
+	
 }

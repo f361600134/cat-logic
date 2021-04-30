@@ -1,7 +1,7 @@
 package com.cat.server.game.module.playermail.event;
 
 import com.cat.server.core.event.IObserver;
-import com.cat.server.game.module.player.event.PlayerAfterLoginEvent;
+import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
 import com.cat.server.game.module.player.event.PlayerLeaveGameEvent;
 import com.cat.server.game.module.playermail.service.PlayerMailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class PlayerMailObserver implements IObserver{
      * @param event
      */
     @Subscribe
-    public void onPlayerAfterLoginEvent(PlayerAfterLoginEvent event) {
+    public void onPlayerAfterLoginEvent(PlayerLoginEndEvent event) {
     	playerMailService.onLogin(event.getPlayerId());
     }
     

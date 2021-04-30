@@ -32,7 +32,7 @@ public class GameServerController extends DefaultServerController {
 	}
 
 	public void onReceive(GameSession session, ByteBuf message) {
-		log.info("自定义分发器, 客户端连接游戏服:{}", session.getChannel().remoteAddress());
+		log.info("自定义分发器, 客户端请求消息:{}", session.getChannel().remoteAddress());
 		Packet packet = null;
 		try {
 			if (!serverRunning) {

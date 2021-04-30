@@ -38,5 +38,11 @@ public interface IPlayerService {
 	 * @param protocol
 	 */
 	public void sendMessage(Collection<Long> playerIds, IProtocol protocol);
+	
+	/**
+	 * 踢指定玩家下线
+	 * @param playerIds
+	 */
+	public void kickPlayer(Collection<Long> playerIds);
 
 }

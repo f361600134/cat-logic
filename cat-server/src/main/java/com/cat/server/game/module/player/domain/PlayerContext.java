@@ -66,10 +66,6 @@ public class PlayerContext {
 		return player != null;
 	}
 
-	public boolean isLogined() {
-		return session != null;
-	}
-
 	public long getPlayerId() {
 		return player == null ? 0 : player.getPlayerId();
 	}
