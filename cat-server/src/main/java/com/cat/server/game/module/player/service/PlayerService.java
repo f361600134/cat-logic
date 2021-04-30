@@ -22,6 +22,7 @@ import com.cat.server.common.ServerConfig;
 import com.cat.server.common.ServerConstant;
 import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.data.proto.PBLogin;
+import com.cat.server.game.data.proto.PBLogin.AckLogin;
 import com.cat.server.game.data.proto.PBLogin.ReqLogin;
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
@@ -32,6 +33,7 @@ import com.cat.server.game.module.player.event.PlayerLoadEndEvent;
 import com.cat.server.game.module.player.event.PlayerLoadEvent;
 import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
 import com.cat.server.game.module.player.event.PlayerLoginEvent;
+import com.cat.server.game.module.player.proto.AckLoginResp;
 import com.cat.server.game.module.player.resp.ResAuthResult;
 import com.cat.server.game.module.resource.IResourceService;
 import com.cat.server.utils.HttpClientUtil;
@@ -49,26 +51,16 @@ public class PlayerService implements IPlayerService, IResourceService {
 	
 	@Autowired
 	private GameEventBus eventBus;
-
-	/**
-	 * key: 玩家id value: 玩家上下文
-	 */
-	private Map<Long, PlayerContext> playerMap = new ConcurrentHashMap<>();
 	
 	/**
 	 * 玩家登录信息缓存
 	 */
 	private Map<String, PlayerContext> accountMap = new ConcurrentHashMap<>();
-
-//	/**
-//	 * 玩家登陆缓存信息 key: 玩家账号 username value: PlayerContext
-//	 */
-//	private Cache<String, PlayerContext> cache = CacheBuilder.newBuilder()
-//			.expireAfterAccess(10, TimeUnit.MINUTES)// 在给定时间内没有被读/写访问,则清除
-//			.maximumSize(2 << 10)// 最大容量
-//			.initialCapacity(2 << 4)// 初始容量
-//			.build();
-
+	/**
+	 * key: 玩家id value: 玩家上下文
+	 */
+	private Map<Long, PlayerContext> playerMap = new ConcurrentHashMap<>();
+	
 	/**
 	 * 添加一个新的玩家上下文对象
 	 * 
@@ -111,7 +103,6 @@ public class PlayerService implements IPlayerService, IResourceService {
 	 * @return
 	 */
 	private Player loadPlayer(String username, int initServerId) {
-//		List<Player> players = process.selectByIndex(Player.class, new String[]{Player.PROP_ACCOUNTNAME}, new String[]{userName});
 		String[] props = new String[] { Player.PROP_ACCOUNTNAME, Player.PROP_INITSERVERID };
 		Object[] objs = new Object[] { username, initServerId };
 		List<Player> players = process.selectByIndex(Player.class, props, objs);
@@ -126,7 +117,7 @@ public class PlayerService implements IPlayerService, IResourceService {
 	 * @param req
 	 * @return
 	 */
-	public ErrorCode login(GameSession session, ReqLogin req) {
+	public ErrorCode login(GameSession session, ReqLogin req, AckLoginResp ack) {
 		final String username = req.getUserName();
 		final int initServerId = req.getServerId();
 		// Http调用, 去账号服请求验证
@@ -140,6 +131,7 @@ public class PlayerService implements IPlayerService, IResourceService {
 			Player player = this.loadPlayer(username, initServerId);
 			if (player == null) {
 				//	查询的玩家为null
+				ack.setStatus(1);
 				return ErrorCode.ACCOUNT_NOT_FOUNT;
 			}
 			context.setPlayer(player);
@@ -157,7 +149,7 @@ public class PlayerService implements IPlayerService, IResourceService {
 		addContext(context);
 		//	登录事件
 //		eventBus.post(PlayerLoginEvent.create(playerId));
-//		eventBus.post(PlayerLoginEndEvent.create(context.getPlayerId()));
+		eventBus.post(PlayerLoginEndEvent.create(context.getPlayerId()));
 		return ErrorCode.SUCCESS;
 	}
 

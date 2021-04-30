@@ -50,6 +50,7 @@ public abstract class AbstractChatType implements IChatType{
 			return;
 		}
 		chat.addChatDetail(chatDetail);
+		chat.save();
 	}
 	
 	/**
@@ -76,6 +77,7 @@ public abstract class AbstractChatType implements IChatType{
 	
 	public AbstractChatType(int channel) {
 		this.channel = channel;
+		this.playerService = SpringContextHolder.getBean(PlayerService.class);
 	}
 	
 	@Override
@@ -205,4 +207,6 @@ public abstract class AbstractChatType implements IChatType{
 		}
 		return null;
 	}
+	
+	
 }

@@ -92,8 +92,10 @@ public class ChatRule{
 		long curTime = System.currentTimeMillis();
 		this.lsatTime = curTime;//最后一次发言时间
 		//ConfigChat config = ConfigChatMgr.getConfig(channel);
-		ConfigChat config = ConfigManager.getInstance().getConfig(ConfigChat.class, channel);
-		this.nextSpeakTime = lsatTime + ((config.getInterval()) * 1000);//下次发言间隔
+//		ConfigChat config = ConfigManager.getInstance().getConfig(ConfigChat.class, channel);
+//		int delay = config.getInterval();
+		int delay = 10;
+		this.nextSpeakTime = lsatTime + (delay * 1000);//下次发言间隔
 		//log.debug("onChatSuccess this.lastTime:{}, , this.nextSpeakTime:{}", TimeUtils.format(this.lsatTime), TimeUtils.format(this.nextSpeakTime));
 		checkAgainst();
 		//log.debug("onChatSuccess , this.nextSpeakTime:{}, againstQueue:{}", TimeUtils.format(this.nextSpeakTime), againstQueue);

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.cat.robot.common.lifecycle.Lifecycle;
+import com.cat.robot.module.chat.proto.ReqChat;
 import com.cat.robot.module.robot.Robot;
 import com.cat.robot.module.robot.RobotContext;
 
@@ -25,7 +26,9 @@ public class InitialRunner implements Lifecycle{
 			Robot robot = Robot.create();
 			RobotContext context = RobotContext.create(robot);
 			context.gameServerConnection();
-			context.serverChat();
+			context.serverLogin();
+			//	测试
+			context.send(ReqChat.create());
 		} catch (Exception e) {
 			log.error("服务器初始化过程出现异常, 启动失败", e);
 		}

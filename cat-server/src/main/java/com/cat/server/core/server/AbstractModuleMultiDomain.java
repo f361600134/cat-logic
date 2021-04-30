@@ -31,7 +31,7 @@ public abstract class AbstractModuleMultiDomain<I, K, T extends IBasePo> impleme
 		this.beanMap = new HashMap<>();
 		try {
 			Type superClass = getClass().getGenericSuperclass();
-			this.basePoClazz = (Class<T>)(((ParameterizedType) superClass).getActualTypeArguments()[0]);
+			this.basePoClazz = (Class<T>)(((ParameterizedType) superClass).getActualTypeArguments()[2]);
 		} catch (Exception e) {
 			logger.error("AbstractModuleDomain error", e);
 		}

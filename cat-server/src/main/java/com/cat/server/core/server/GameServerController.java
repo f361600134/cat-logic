@@ -40,30 +40,24 @@ public class GameServerController extends DefaultServerController {
 				return;
 			} 
 			packet = Packet.decode(message);
+			log.info("收到请求, cmd=[{}]",  packet.cmd());
 			Commander commander = processor.getCommander(packet.cmd());
 			if (commander == null) {
 				log.info("收到未处理协议, cmd=[{}]",  packet.cmd());
 				return;
 			}
 			if (commander.isMustLogin()) {
-//				if (session.getPlayerId() <= 0L) { // 未登录
-//					log.debug("协议[{}]需要登录成功后才能请求", packet.cmd()); 
+				if (session.getPlayerId() <= 0L) { // 未登录
+					log.debug("协议[{}]需要登录成功后才能请求", packet.cmd()); 
 //					S2CCommonReply reply = S2CCommonReply.newBuilder().setProtoCode(packet.cmd()).setSuccess(1).build();
 //					SimpleProtocol proto = SimpleProtocol.create(ProtocolCode.COMMON_S2C_REPLY, reply);
 //					session.send(Packet.encode(proto));
-//					return;
-//				}
-//				PlayerContext playerCtx = session.getUserData();
-//				IPlayerActor playerActor = playerCtx.getPlayerActor();
-//				playerActor.process(session, processor, packet);
-			} else {
-				DisruptorDispatchTask task = new DisruptorDispatchTask(processor, session, packet);
-				DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(session.getId(), task);
-//				DisruptorStrategy.get(DisruptorStrategy.SINGLE)
-//				.execute(session.getId(), new DisruptorDispatchTask(processor, session, packet));
-				//group.execute(session.getId(), new DisruptorDispatchTask(processor, session, packet));
-				log.info("====> GameServerHandler onReceive, threadName:{}", Thread.currentThread().getName());
-			}
+					return;
+				}
+			} 
+			DisruptorDispatchTask task = new DisruptorDispatchTask(processor, session, packet);
+			DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(session.getId(), task);
+			log.info("====> GameServerHandler onReceive, threadName:{}", Thread.currentThread().getName());
 		} catch (Exception e) {
 			if (packet == null) {
 				log.error("协议解析失败", e);

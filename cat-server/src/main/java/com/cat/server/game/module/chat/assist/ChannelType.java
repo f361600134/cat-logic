@@ -3,7 +3,12 @@ package com.cat.server.game.module.chat.assist;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.cat.server.game.module.chat.type.FamilyChatType;
+import com.cat.server.game.module.chat.type.FriendChatType;
 import com.cat.server.game.module.chat.type.IChatType;
+import com.cat.server.game.module.chat.type.SystemChatType;
+import com.cat.server.game.module.chat.type.TeamChatType;
+import com.cat.server.game.module.chat.type.WorldChatType;
 
 /**
  * 聊天枚举类
@@ -17,7 +22,7 @@ public enum ChannelType {
 	WORLD(0) {
 		@Override
 		public IChatType newInstance() {
-			return null;
+			return new WorldChatType();
 		}
 	},
 	/**
@@ -26,7 +31,7 @@ public enum ChannelType {
 	SYSTEM(1) {
 		@Override
 		public IChatType newInstance() {
-			return null;
+			return new SystemChatType();
 		}
 	},
 	/**
@@ -35,7 +40,7 @@ public enum ChannelType {
 	FAMILY(2) {
 	@Override
 		public IChatType newInstance() {
-			return  null;
+			return new FamilyChatType();
 		}
 	},
 	/**
@@ -44,7 +49,7 @@ public enum ChannelType {
 	FRIEND(3) {
 		@Override
 		public IChatType newInstance() {
-			return null;
+			return new FriendChatType();
 		}
 	},
 	/**
@@ -53,7 +58,7 @@ public enum ChannelType {
 	TEAM(4) {
 		@Override
 		public IChatType newInstance() {
-			return null;
+			return new TeamChatType();
 		}
 	},
 

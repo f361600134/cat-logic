@@ -48,7 +48,6 @@ public class ChatController implements IController{
             ErrorCode code = this.chatServicePlus.chat(req, playerId);
             AckTipsResp ack = AckTipsResp.newInstance().setTipsId(code);
             playerService.sendMessage(playerId, ack);
-            session.send(ack);
         }
     }
 

@@ -16,7 +16,7 @@ public class ReqChat implements IProtocol{
 	}
 	
 	public void set() {
-		builder.setChatChannel(1);
+		builder.setChatChannel(0);
 		builder.setContent("你好, 大傻逼");
 		builder.setPlayerId(-1);
 	}

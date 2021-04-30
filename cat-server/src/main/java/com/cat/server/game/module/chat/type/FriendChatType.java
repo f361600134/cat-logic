@@ -17,7 +17,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Lists;
 
 
-public class FriendChat extends AbstractChatType{
+public class FriendChatType extends AbstractChatType{
 	
 	/**
 	 * 聊天缓存, 所有频道聊天缓存, 使用Cache替代掉Map
@@ -29,7 +29,7 @@ public class FriendChat extends AbstractChatType{
 			.maximumSize(1000)//	最大条目,超过这个聊天记录, 根据LRU特点移除
 			.build();
 
-	public FriendChat() {
+	public FriendChatType() {
 		super(ChannelType.FRIEND.getChannel());
 	}
 

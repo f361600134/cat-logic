@@ -24,9 +24,11 @@ public class PlayerMailService implements IPlayerMailService {
 	
 	private static final Logger log = LoggerFactory.getLogger(PlayerMailService.class);
 	
-	@Autowired private IPlayerService playerService;
+	@Autowired 
+	private IPlayerService playerService;
 	
-	@Autowired private PlayerMailManager playerMailManager;
+	@Autowired 
+	private PlayerMailManager playerMailManager;
 	
 	/**
 	 * 登陆,  下发所有邮件
@@ -35,6 +37,7 @@ public class PlayerMailService implements IPlayerMailService {
 	public void onLogin(long playerId) {
 		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
 		Collection<PlayerMail> beans = domain.getBeans();
+		log.info("邮件内容:{}",beans);
 		//FSC todo somthing...
 		//Codes for proto
 		//playerService.sendMessage(playerId, ack);

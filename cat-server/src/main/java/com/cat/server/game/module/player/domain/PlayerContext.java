@@ -13,7 +13,7 @@ import com.cat.net.network.base.Packet;
  * @auth Jeremy
  * @date 2020年9月7日下午10:48:55
  */
-public class PlayerContext {
+public class PlayerContext{
 
 	private static final Logger log = LoggerFactory.getLogger(PlayerContext.class);
 
@@ -22,7 +22,7 @@ public class PlayerContext {
 	/** 玩家会话 */
 	private GameSession session;
 
-	public Player getPlayer() {
+	public final Player getPlayer() {
 		return player;
 	}
 
@@ -74,11 +74,11 @@ public class PlayerContext {
 	 * 被挤掉
 	 */
 	public void forceLogout() {
-		if (this.session != null && this.session.isConnect()) {
-			// TODO 推送客户端消息, 下线
-			log.info("推送客户端消息, 下线 forceLogout");
-			// AckUtility.ResponseDisconnect(56, this.channel);
+		if(isOnline()) {
+			return;
 		}
+		log.info("推送客户端消息, 下线 forceLogout");
+		// AckUtility.ResponseDisconnect(56, this.channel);
 	}
 
 	public void setData() {

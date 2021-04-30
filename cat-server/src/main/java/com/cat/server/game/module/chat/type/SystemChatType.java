@@ -14,9 +14,9 @@ import com.google.common.cache.Cache;
  * 系统聊天, 仅作转发作用,不能实质聊天.
  * 不缓存, 不持久化
  */
-public class SystemChat extends AbstractChatType {
+public class SystemChatType extends AbstractChatType {
 
-	public SystemChat() {
+	public SystemChatType() {
 		super(ChannelType.SYSTEM.getChannel());
 	}
 	

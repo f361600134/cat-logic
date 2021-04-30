@@ -163,7 +163,7 @@ public class RobotContext {
 	 * 发送测试消息
 	 * @param time
 	 */
-	public void serverChat(){
+	public void serverLogin(){
 		send(ReqLogin.create("aaa"));
 	}
 	
