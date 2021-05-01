@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.cat.orm.core.base.BasePo;
-import com.cat.orm.core.db.process.DataProcessorAsyn;
+import com.cat.orm.core.db.process.DataProcessor;
+import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.GameEventBus;
 import com.cat.server.core.task.DefaultTokenTaskQueueExecutor;
@@ -36,10 +37,10 @@ public class LogicComponent {
 	 * @return
 	 */
 	@Bean
-	public DataProcessorAsyn processor(DataSource dataSource){
+	public IDataProcess processor(DataSource dataSource){
 		Collection<Class<BasePo>> cols = ClassManager.instance().getClassByType(BasePo.class);
 		logger.info("注册[DataProcessorAsyn]服务");
-		return new DataProcessorAsyn(cols, new JdbcTemplate(dataSource));
+		return new DataProcessor(cols, new JdbcTemplate(dataSource));
 	}
 	
 	/**

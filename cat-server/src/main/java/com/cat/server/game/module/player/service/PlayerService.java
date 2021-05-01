@@ -18,6 +18,7 @@ import com.cat.net.core.executor.DisruptorStrategy;
 import com.cat.net.network.base.GameSession;
 import com.cat.net.network.base.IProtocol;
 import com.cat.orm.core.db.process.DataProcessorAsyn;
+import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.common.ServerConstant;
 import com.cat.server.core.event.GameEventBus;
@@ -47,7 +48,7 @@ public class PlayerService implements IPlayerService, IResourceService {
 	private ServerConfig config;
 
 	@Autowired
-	private DataProcessorAsyn process;
+	private IDataProcess process;
 	
 	@Autowired
 	private GameEventBus eventBus;

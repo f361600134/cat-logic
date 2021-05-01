@@ -51,4 +51,16 @@ public class WorldChatType extends AbstractChatType {
 		return chatRecordMap;
 	}
 
+	@Override
+	public Chat getChat(BigInteger uniqueId) {
+		Chat chat = super.getChat(uniqueId);
+		if (chat == null) {
+			chat = new Chat();
+			chat.setUniqueId(uniqueId);
+			chat.setChannel(channel);
+			chat.afterLoad();
+			chatRecordMap.put(uniqueId, chat);
+		}
+		return chat;
+	}
 }

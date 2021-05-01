@@ -22,7 +22,7 @@ public interface IChatType {
 	 * @param targetId 发送目标id
 	 * @return
 	 */
-	public BigInteger getUniqueId(long senderId, long targetId);
+	public BigInteger getUniqueId(final long senderId, final long targetId);
 	
 	/**
 	 * 获取接收者id列表

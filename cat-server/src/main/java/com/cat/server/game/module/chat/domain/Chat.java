@@ -85,8 +85,9 @@ public class Chat extends ChatPo implements IPersistence {
 		// 聊天信息构造
 		List<ChatDetail> ret = JSON.parseObject(this.data, new TypeReference<ArrayList<ChatDetail>>() {
 		});
-		ConfigChat config = ConfigManager.getInstance().getConfig(ConfigChat.class, channel);
-		this.chatDetails = new ConcurrentFixSizeArrayList<ChatDetail>(config.getCacheNum());
+		//ConfigChat config = ConfigManager.getInstance().getConfig(ConfigChat.class, channel);
+		//this.chatDetails = new ConcurrentFixSizeArrayList<ChatDetail>(config.getCacheNum());
+		this.chatDetails = new ConcurrentFixSizeArrayList<ChatDetail>(10);
 		this.chatDetails.addAll(ret);
 	}
 

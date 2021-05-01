@@ -1,7 +1,7 @@
 package com.cat.server.core.server;
 
 import com.cat.orm.core.base.IBasePo;
-import com.cat.orm.core.db.process.DataProcessorAsyn;
+import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.core.context.SpringContextHolder;
 
 /**
@@ -14,9 +14,9 @@ public interface IPersistence extends IBasePo{
 	 * @param po
 	 */
 	default public void save() {
-		DataProcessorAsyn processorAsyn =  SpringContextHolder.getBean(DataProcessorAsyn.class);
+		IDataProcess processor =  SpringContextHolder.getBean(IDataProcess.class);
 		this.beforeSave();
-		processorAsyn.insert(this);
+		processor.insert(this);
 	}
 	
 	/**
@@ -24,9 +24,9 @@ public interface IPersistence extends IBasePo{
 	 * @param po
 	 */
 	default public void update() {
-		DataProcessorAsyn processorAsyn =  SpringContextHolder.getBean(DataProcessorAsyn.class);
+		IDataProcess processor =  SpringContextHolder.getBean(IDataProcess.class);
 		this.beforeSave();
-		processorAsyn.update(this);
+		processor.update(this);
 	}
 	
 	/**
@@ -34,17 +34,17 @@ public interface IPersistence extends IBasePo{
 	 * @param po
 	 */
 	default public void replace() {
-		DataProcessorAsyn processorAsyn =  SpringContextHolder.getBean(DataProcessorAsyn.class);
+		IDataProcess processor =  SpringContextHolder.getBean(IDataProcess.class);
 		this.beforeSave();
-		processorAsyn.replace(this);
+		processor.replace(this);
 	}
 	
 	/**
 	 * 删除
 	 */
 	default public void delete() {
-		DataProcessorAsyn processorAsyn =  SpringContextHolder.getBean(DataProcessorAsyn.class);
-		processorAsyn.delete(this);
+		IDataProcess processor =  SpringContextHolder.getBean(IDataProcess.class);
+		processor.delete(this);
 	}
 
 }

@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cat.orm.core.base.BasePo;
-import com.cat.orm.core.db.process.DataProcessorAsyn;
+import com.cat.orm.core.db.process.IDataProcess;
 
 /**
  * 	抽象类Manager
@@ -23,7 +23,7 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 	
 	public Logger logger = LoggerFactory.getLogger(this.getClass()); 
 	
-	@Autowired protected DataProcessorAsyn process;
+	@Autowired protected IDataProcess process;
 	
 	/**域缓存*/
 	protected final Map<I, T> domains = new ConcurrentHashMap<>();

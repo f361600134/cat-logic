@@ -34,15 +34,16 @@ public class FriendChatType extends AbstractChatType{
 	}
 
 	@Override
-	public BigInteger getUniqueId(long senderId, long targetId) {
+	public BigInteger getUniqueId(final long senderId, final long targetId) {
 		// 私聊,通过发送方的玩家id,和目标玩家id,组装成唯一id
-		long tempId = targetId;
-		if (senderId < tempId) {
-			senderId ^= tempId;
-			tempId ^= senderId;
-			senderId ^= tempId;
+		long leftId = senderId;
+		long rightId = targetId;
+		if (leftId < rightId) {
+			leftId ^= rightId;
+			rightId ^= leftId;
+			leftId ^= rightId;
 		}
-		BigInteger bigInteger = BigInteger.valueOf(senderId).shiftLeft(64).add(BigInteger.valueOf(tempId));
+		BigInteger bigInteger = BigInteger.valueOf(leftId).shiftLeft(64).add(BigInteger.valueOf(rightId));
 		return bigInteger;
 	}
 	
