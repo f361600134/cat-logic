@@ -3,9 +3,6 @@ package com.cat.server.game.module.chat.domain;
 
 import java.math.BigInteger;
 import java.util.Collection;
-import java.util.List;
-
-import com.cat.server.core.server.IModuleDomain;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.assist.ChannelType;
 import com.cat.server.game.module.chat.type.IChatType;

@@ -9,7 +9,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.orm.core.db.process.DataProcessorAsyn;
 import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.helper.result.ErrorCode;
@@ -134,7 +133,6 @@ public abstract class AbstractChatType implements IChatType{
 		if (!errorCode.isSuccess()) {
 			return errorCode;
 		}
-		System.out.println();
 		beforeSendMsg(uniqueId, chatDetail);
 		
 		// FSC 新增的聊天消息即时同步, 聊天, 如果需要更新状态,可以独立一条消息
@@ -198,7 +196,7 @@ public abstract class AbstractChatType implements IChatType{
         return chat.getChatDetail(num);
 	}
 	
-	public Chat getFromDb(long leftKey, long rightKey) {
+	Chat getFromDb(long leftKey, long rightKey) {
 		try {
 			IDataProcess process = SpringContextHolder.getBean(IDataProcess.class);
 //			String[] cols = new String[] {Chat.PROP_LEFTKEY, Chat.PROP_RIGHTKEY};

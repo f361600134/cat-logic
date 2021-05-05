@@ -55,7 +55,7 @@ public class ChatManager implements IModuleManager<Integer, ChatDomain>{
 		}
 		ChatRule rule = chatRuleMap.get(channelType);
 		if (rule == null) {
-			rule = ChatRule.create(channelType);
+			rule = ChatRule.create();
 			chatRuleMap.put(channelType, rule);
 		}
 		return rule;

@@ -27,6 +27,7 @@ import com.cat.server.game.module.player.proto.AckTipsResp;
 import com.cat.server.game.module.player.service.PlayerService;
 import com.cat.server.utils.Pair;
 import com.cat.server.utils.StringUtilitys;
+import com.cat.server.utils.TimeUtil;
 
 @Service
 public class ChatService {
@@ -169,26 +170,24 @@ public class ChatService {
 		PlayerContext context = playerService.getPlayerContext(playerId);
 		final Player player = context.getPlayer();
 		ChatRule rule = chatManager.getChatRule(playerId, channelId);
-		long curTime = System.currentTimeMillis();
-		if (curTime < rule.getNextSpeakTime() && rule.isAgainst()) { //聊天过快
-			//提示玩家剩余x秒后可以聊天, 不允许其聊天
+		long curTime = TimeUtil.now();
+		if (rule.isProhibited(curTime)) {
+			//提示玩家剩余x秒后可以聊天, 不转发聊天内容
 			int lessTime = (int)((rule.getNextSpeakTime() - curTime)/1000);
 			AckTipsResp resp = AckTipsResp.newInstance();
-			resp.setTipsId(ConfigTipsMgr.Chat_417).addParams(lessTime);
+			resp.setTipsId(ErrorCode.CHAT_TIME_LIMIT).addParams(lessTime);
 			playerService.sendMessage(playerId, resp);
 			return ErrorCode.CHAT_CD;
 		}
-		//提示聊天过快, 但依旧允许其聊天
-		if (curTime < rule.getNextSpeakTime()) { 
-			//玩家频繁违法
-			rule.onTrigger();
+		else if (rule.isAgainst(curTime)) {
+			//提示聊天过快, 但依旧允许其聊天
 			AckTipsResp resp = AckTipsResp.newInstance().setTipsId(ConfigTipsMgr.Chat_411);
 			playerService.sendMessage(playerId, resp);
 		}
 		
 		ChatDetail chatDetail = ChatDetail.create(player.getPlayerId(), content, recvId);
 		code = domain.sendMsg(chatDetail);
-		rule.onChatSuccess();
+		rule.onChatSuccess(curTime);
 		return code;
 	}
 
