@@ -1,4 +1,4 @@
-package com.cat.server.game.module.chat.controller;
+package com.cat.server.game.module.chat;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -11,8 +11,7 @@ import com.cat.net.network.controller.IController;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.server.game.data.proto.PBPlayer.ReqChat;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.chat.service.ChatService;
-import com.cat.server.game.module.chat.service.CommandService;
+import com.cat.server.game.module.gm.ICommandService;
 import com.cat.server.game.module.player.proto.AckTipsResp;
 import com.cat.server.game.module.player.service.PlayerService;
 
@@ -24,28 +23,26 @@ import com.cat.server.game.module.player.service.PlayerService;
 @Controller
 public class ChatController implements IController{
 
-
     private static final Log log = LogFactory.getLog(ChatController.class);
 
     @Autowired
-    private ChatService chatServicePlus;
+    private ChatService chatService;
     
     @Autowired
-    private CommandService commandService;
+    private ICommandService commandService;
     
     @Autowired
     private PlayerService playerService;
 
-    @Cmd(id = PBProtocol.ReqChat_VALUE)
+    @Cmd(PBProtocol.ReqChat_VALUE)
     public void chat(GameSession session, ReqChat req) {
-    	
         long playerId = session.getPlayerId();
-        boolean isGm = this.commandService.isGmCommand(req.getContent());
+        boolean isGm = this.commandService.isCommand(req.getContent());
         if (isGm) {
-            this.commandService.gmFromClient(session, req);
+            this.commandService.process(session, req.getContent());
         } else {
             //聊天
-            ErrorCode code = this.chatServicePlus.chat(req, playerId);
+            ErrorCode code = this.chatService.chat(req, playerId);
             AckTipsResp ack = AckTipsResp.newInstance().setTipsId(code);
             playerService.sendMessage(playerId, ack);
         }

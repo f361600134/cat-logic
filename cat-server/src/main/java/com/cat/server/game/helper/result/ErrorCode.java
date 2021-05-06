@@ -64,12 +64,17 @@ public enum ErrorCode implements ModuleDefines {
     CHAT_TARGET_IS_SELF(CHAT, 14, "聊天目标不能是自己"),
     CHAT_CHANNEL_NOT_ALLOWED_DELETE(CHAT, 15, "聊天不允许被删除"),
     
-    
-    
     // -----------------任务---------------------
     MISSION_NOT_COMPLATE(MISSION, 1, "任务未完成"),
     MISSION_REWARDES(MISSION, 2, "任务奖励已领取"),
     MISSION_NOT_EXIST(MISSION, 3, "任务奖励已领取"),
+    
+    // -----------------邮件---------------------
+    MAIL_BOX_NOT_FOUND(MAIL, 1, "邮箱不存在"),
+    MAIL_NOT_FOUND(MAIL, 2, "邮件不存在"),
+    MAIL_ALREADY_REWARD(MAIL, 3, "邮件已领取"),
+    MAIL_ALREADY_EXPIRED(MAIL, 4, "邮件已过期"),
+    
     
     ;
 	

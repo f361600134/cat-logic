@@ -24,7 +24,7 @@ public class LoginController implements IController{
 	 * @return void  
 	 * @date 2019年7月4日上午11:45:13
 	 */
-	@Cmd(id = PBDefine.PBProtocol.AckLogin_VALUE)
+	@Cmd(PBDefine.PBProtocol.AckLogin_VALUE)
 	public void ackLogin(GameSession gameSession, PBLogin.AckLogin ack) {
 		int code = ack.getCode();
 		int staus = ack.getStatus();
@@ -48,7 +48,7 @@ public class LoginController implements IController{
 	 * @return void  
 	 * @date 2019年7月4日上午11:45:02
 	 */
-	@Cmd(id = PBDefine.PBProtocol.AckRandName_VALUE)
+	@Cmd(PBDefine.PBProtocol.AckRandName_VALUE)
 	public void ackLogin(RobotContext robotContext, PBLogin.AckRandName ack) {
 		String names = ack.getNames();
 		if (!names.isEmpty()) {

@@ -13,7 +13,7 @@ public class UserHandler implements IController{
 	
 	private static final Logger log = LoggerFactory.getLogger(UserHandler.class);
 	
-	@Cmd(id = 0, mustLogin = false)
+	@Cmd(value = 0, mustLogin = false)
 	public void login(Object obj, PBLogin.ReqReLogin req) {
 		log.info("UserHandler login");
 	}

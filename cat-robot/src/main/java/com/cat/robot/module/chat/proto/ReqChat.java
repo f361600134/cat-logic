@@ -12,15 +12,25 @@ public class ReqChat implements IProtocol{
 	
 	public ReqChat() {
 		this.builder = PBPlayer.ReqChat.newBuilder();
-		this.set();
 	}
 	
-	public void set() {
-		builder.setChatChannel(0);
-		builder.setContent("你好, 大傻逼");
-		builder.setPlayerId(-1);
+//	public void set() {
+//		builder.setChatChannel(0);
+//		builder.setContent("@resource 10001,1,10002,-10");
+//		builder.setPlayerId(-1);
+//	}
+	
+	public void setChatChannel(int value) {
+		builder.setChatChannel(value);
 	}
 	
+	public void setContent(String value) {
+		builder.setContent(value);
+	}
+	
+	public void setPlayerId(long value) {
+		builder.setPlayerId(value);
+	}
 	
 	public static ReqChat create() {
 		return new ReqChat();

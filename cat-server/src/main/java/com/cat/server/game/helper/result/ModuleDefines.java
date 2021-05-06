@@ -29,7 +29,7 @@ public interface ModuleDefines {
 //    /** 道具 */
 //    int ITEM = 122;
 //    /** 邮件 */
-//    int MAIL = 123;
+    int MAIL = 123;
 //    /** 货币 */
 //    int CURRENCY = 124;
 //    /** 资源 */

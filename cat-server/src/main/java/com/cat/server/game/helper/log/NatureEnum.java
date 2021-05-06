@@ -1,11 +1,13 @@
 package com.cat.server.game.helper.log;
 
+import com.cat.server.game.helper.result.ModuleDefines;
+
 /**
  * 资源类型, 资源描述
  * @auth Jeremy
  * @date 2019年6月28日下午3:55:10
  */
-public enum NatureEnum {
+public enum NatureEnum implements ModuleDefines {
 	
 	GM(-1, "GM"),
 	Unknown(0, "未声明来源"),
@@ -184,10 +186,10 @@ public enum NatureEnum {
 //	HorseLevelUp(12013,"马场升级"),
 //	HorseAccelerateLevelUp(12014,"马场加速升级"),
 //	VaultProduce(12015,"金库产出"),
-//	//13:邮件
-//	MailReward(13001, "邮件奖励"),
-//	MailSend(13002, "邮件发送"),
-//	MailRead(13003, "邮件查看"),
+	//13:邮件
+	MailReward(MAIL, 1, "邮件奖励"),
+	MailSend(MAIL, 2, "邮件发送"),
+	MailRead(MAIL, 3, "邮件查看"),
 //	//14:玩家登陆登出
 //	Login(14001, "角色登陆"),
 //	Logout(14002, "角色登出"),
@@ -248,6 +250,7 @@ public enum NatureEnum {
 //	MilitaryTalentReset(21003, "重置援军天赋"),
 	;
 	
+	private int moduleType;
 	private int logType;
 	private String desc;
 	private NatureEnum(int logType, String desc) {
@@ -255,33 +258,36 @@ public enum NatureEnum {
 		this.desc = desc;
 	}
 	
+	private NatureEnum(int moduleType, int logType, String desc) {
+		this.moduleType = moduleType;
+		this.logType = logType;
+		this.desc = desc;
+	}
+	
+	public int getModuleType() {
+		return moduleType;
+	}
 	public int getLogType() {
 		return logType;
-	}
-	public void setLogType(int logType) {
-		this.logType = logType;
 	}
 	public String getDesc() {
 		return desc;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
 	
-	/**
-	 * 根据日志类型, 获取日志枚举
-	 * @param logType
-	 * @return  
-	 * @return NatureEnum  
-	 * @date 2019年7月1日下午1:34:07
-	 */
-	public static NatureEnum getEnum(int logType) {
-		for (NatureEnum  nEnum : NatureEnum.values()) {
-			if (nEnum.logType == logType) {
-				return nEnum;
-			}
-		}
-		return null;
-	}
+//	/**
+//	 * 根据日志类型, 获取日志枚举
+//	 * @param logType
+//	 * @return  
+//	 * @return NatureEnum  
+//	 * @date 2019年7月1日下午1:34:07
+//	 */
+//	public static NatureEnum getEnum(int logType) {
+//		for (NatureEnum  nEnum : NatureEnum.values()) {
+//			if (nEnum.logType == logType) {
+//				return nEnum;
+//			}
+//		}
+//		return null;
+//	}
 	
 }

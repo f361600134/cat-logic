@@ -6,9 +6,8 @@ import com.cat.net.network.base.IProtocol;
 import com.cat.server.game.data.proto.PBBag;
 import com.cat.server.game.data.proto.PBDefine;
 import com.cat.server.game.module.item.domain.IItem;
-
+import com.cat.server.game.module.item.domain.Item;
 import com.google.protobuf.AbstractMessageLite.Builder;
-import com.google.protobuf.Message;
 
 public class AckUpdateBagResp implements IProtocol {
 
@@ -22,7 +21,7 @@ public class AckUpdateBagResp implements IProtocol {
 		this.builder = PBBag.AckUpdateBagList.newBuilder();
 	}
 
-	public void addItem(Collection<IItem> items) {
+	public void addItem(Collection<Item> items) {
 		for (IItem item : items) {
 			PBBag.ItemInfo itemInfo = item.toProto();
 			if (itemInfo == null) 

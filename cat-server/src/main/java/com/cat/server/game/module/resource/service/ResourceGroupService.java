@@ -48,6 +48,7 @@ public class ResourceGroupService implements IResourceGroupService, Initializing
 				value = Math.abs(value);
 			}
 			service.reward(playerId, key, value, nEnum);
+			service.notify(playerId);
 		}
 	}
 
@@ -76,6 +77,7 @@ public class ResourceGroupService implements IResourceGroupService, Initializing
 				value = Math.abs(value);
 			}
 			service.cost(playerId, key, value, nEnum);
+			service.notify(playerId);
 		}
 	}
 

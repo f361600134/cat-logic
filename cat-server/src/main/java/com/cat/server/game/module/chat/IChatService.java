@@ -1,4 +1,4 @@
-package com.cat.server.game.module.chat.service;
+package com.cat.server.game.module.chat;
 
 import com.cat.server.game.module.chat.assist.ChannelType;
 

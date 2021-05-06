@@ -12,10 +12,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 域内为一对多
- * 
  * @author Jeremy
- * @param <T>
+ * @param <I> 持有者id类型
+ * @param <K> bean的id类型
+ * @param <T> bean对象
  */
 public abstract class AbstractModuleMultiDomain<I, K, T extends IBasePo> implements IModuleDomain<I, T> {
 

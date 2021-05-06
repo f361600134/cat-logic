@@ -15,10 +15,16 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	 * key: 资源唯一id
 	 * value: 资源
 	 */
-	protected Map<K, V> beanMap;
+	protected Map<K, V> beanMap = new HashMap<>();
 	
-	protected List<V> updateList;
-	protected List<V> deleteList;
+	/**
+	 * 有变动的资源列表, 当外部获取后,清空此集合
+	 */
+	protected List<V> updateList = new ArrayList<>();
+	/**
+	 * 有删除的资源列表, 当外部获取后,清空此集合
+	 */
+	protected List<V> deleteList = new ArrayList<>();
 	
 //	AbstractResourceDomain() {
 //		this.beanMap = new HashMap<>();
@@ -28,9 +34,6 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	
 	AbstractResourceDomain(long playerId) {
 		this.playerId = playerId;
-		this.beanMap = new HashMap<>();
-		this.updateList = new ArrayList<>();
-		this.deleteList = new ArrayList<>();
 	}
 	
 	public long getPlayerId() {
@@ -45,12 +48,16 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 		return beanMap;
 	}
 
-	public List<V> getUpdateList() {
-		return updateList;
+	public List<V> getAndClearUpdateList() {
+		List<V> ret = new ArrayList<>(updateList);
+		this.updateList.clear();
+		return ret;
 	}
 
-	public List<V> getDeleteList() {
-		return deleteList;
+	public List<V> getAndClearDeleteList() {
+		List<V> ret = new ArrayList<>(deleteList);
+		this.deleteList.clear();
+		return ret;
 	}
 
 	/**

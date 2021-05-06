@@ -27,8 +27,19 @@ public class InitialRunner implements Lifecycle{
 			RobotContext context = RobotContext.create(robot);
 			context.gameServerConnection();
 			context.serverLogin();
-			//	测试
-			context.send(ReqChat.create());
+			//	测试GM命令
+//			ReqChat req = ReqChat.create();
+//			req.setChatChannel(0);
+//			req.setContent("@resource 10001,1,10002,-10");
+//			req.setPlayerId(-1);
+//			context.send(req);
+			
+			ReqChat req = ReqChat.create();
+			req.setChatChannel(0);
+			req.setContent("@mail sendMail,1");
+			req.setPlayerId(-1);
+			context.send(req);
+			
 		} catch (Exception e) {
 			log.error("服务器初始化过程出现异常, 启动失败", e);
 		}

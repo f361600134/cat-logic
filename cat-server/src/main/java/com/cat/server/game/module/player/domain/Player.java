@@ -1,5 +1,6 @@
 package com.cat.server.game.module.player.domain;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.cat.orm.core.annotation.Column;
@@ -13,7 +14,7 @@ public class Player extends PlayerPo implements IPersistence{
 	 * 属性map
 	 */
 	@Column(PROP_PROPERTIESTR)
-	private Map<Integer, Integer> propertieMap;
+	private Map<Integer, Integer> propertieMap = new HashMap<>();
 
 	/**
 	 * 检查金币是否足够
@@ -50,8 +51,9 @@ public class Player extends PlayerPo implements IPersistence{
 		if (added < 0)
 			return;
 		val += added;
+		val = val > Integer.MAX_VALUE ? Integer.MAX_VALUE : val;
 		propertieMap.put(configId, val);
-		return;
+		this.update();
 	}
 
 	/**
@@ -67,8 +69,9 @@ public class Player extends PlayerPo implements IPersistence{
 		if (added < 0)
 			return;
 		val -= added;
+		val = val < 0 ? 0 : val;
 		propertieMap.put(configId, val);
-		return;
+		this.update();
 	}
 
 }

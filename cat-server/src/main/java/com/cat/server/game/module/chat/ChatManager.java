@@ -1,4 +1,4 @@
-package com.cat.server.game.module.chat.magaer;
+package com.cat.server.game.module.chat;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import com.cat.server.game.module.chat.domain.ChatDomain;
 import com.cat.server.game.module.chat.domain.ChatRule;
 
 @Component
-public class ChatManager implements IModuleManager<Integer, ChatDomain>{
+class ChatManager implements IModuleManager<Integer, ChatDomain>{
 	
 	/**域缓存*/
 	protected final Map<Integer, ChatDomain> domains = new ConcurrentHashMap<>();

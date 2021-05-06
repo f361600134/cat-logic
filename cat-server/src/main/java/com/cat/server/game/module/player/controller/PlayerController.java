@@ -21,7 +21,7 @@ public class PlayerController implements IController{
 	
 	@Autowired private PlayerService playerService;
 	
-	@Cmd(id = PBProtocol.ReqLogin_VALUE, mustLogin = false)
+	@Cmd(value = PBProtocol.ReqLogin_VALUE, mustLogin = false)
 	public void login(GameSession session, PBLogin.ReqLogin req) {
 		
 		AckLoginResp ack = AckLoginResp.create();

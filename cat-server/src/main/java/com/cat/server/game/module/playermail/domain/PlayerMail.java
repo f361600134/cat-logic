@@ -1,10 +1,15 @@
 package com.cat.server.game.module.playermail.domain;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.server.IPersistence;
+import com.cat.server.game.data.proto.PBPlayer;
+import com.cat.server.game.data.proto.PBPlayer.EmailInfo;
+import com.cat.server.game.module.item.proto.ItemInfoBuilder;
+import com.cat.server.game.module.playermail.PlayerMailConstant;
 import com.cat.server.utils.TimeUtil;
 
 /**
@@ -19,7 +24,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 	private static final long serialVersionUID = 2942618617969545324L;
 	
 	@Column(PROP_REWARDS)
-	private Map<Integer, Integer> rewardStr;
+	private Map<Integer, Integer> rewardMap = new HashMap<>();
 
 	public PlayerMail() {
 		
@@ -39,6 +44,14 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 		return PROP_PLAYERID;
 	}
 	
+	public Map<Integer, Integer> getRewardMap() {
+		return rewardMap;
+	}
+
+	public void setRewardMap(Map<Integer, Integer> rewardMap) {
+		this.rewardMap = rewardMap;
+	}
+
 	/**
 	 * 创建邮件对象
 	 * @param playerId
@@ -57,6 +70,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 		//计算过期时间
 		long expireTime = now + TimeUtil.DAY_MILLISECONDS * expiredDays;
 		mail.setExpireTime(expireTime);
+		mail.save();
 		return mail;
 	}
 	
@@ -64,24 +78,62 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 	 * 实体对象转协议对象
 	 * @return
 	 */
-	public Object toProto() {
-//		PBPlayer.EmailInfo.Builder builder = PBPlayer.EmailInfo.newBuilder();
-//		builder.setId(this.getId());
-//		builder.setEmailTitle(this.getTitle());
-//		builder.setContent(this.getContent());
-//		int beginTime = TimeUtils.currentTimeSeconds() >= this.getCreateAt() ? TimeUtils.currentTimeSeconds() - this.getCreateAt() : 0;
-//		builder.setBeginTime(beginTime+"");
-//		int endTime = this.getEndTime() > TimeUtils.currentTimeSeconds() ? this.getEndTime() - TimeUtils.currentTimeSeconds() : 0;
-//		builder.setEndTime(endTime+"");
-//		builder.setState(this.getState());
-//		
-//		ItemInfoBuilder infoBuilder = null;
-//		for (Integer key : this.getRewardMap().keySet()) {
-//			infoBuilder = ItemInfoBuilder.newInstance();
-//			infoBuilder.addReward(key, this.getRewardMap().get(key));
-//			builder.addRewardList(infoBuilder.build());
-//		}
-		return null;
+	public EmailInfo toProto() {
+		PBPlayer.EmailInfo.Builder builder = PBPlayer.EmailInfo.newBuilder();
+		builder.setId(this.getId());
+		builder.setEmailTitle(this.getTitle());
+		builder.setContent(this.getContent());
+		builder.setBeginTime(createTime+"");
+		builder.setEndTime(expireTime+"");
+		builder.setState(this.getState());
+		
+		ItemInfoBuilder infoBuilder = null;
+		for (Integer key : this.getRewardMap().keySet()) {
+			infoBuilder = ItemInfoBuilder.newInstance();
+			infoBuilder.addReward(key, this.getRewardMap().get(key));
+			builder.addRewardList(infoBuilder.build());
+		}
+		return builder.build();
+	}
+	
+	/**
+	 * 是否已经领取
+	 * @return
+	 */
+	public boolean isRewarded() {
+		if (this.getState() == PlayerMailConstant.REWARD) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 是否过期
+	 * @return
+	 */
+	public boolean isExpired() {
+		if ((TimeUtil.now() / 1000) >= this.getExpireTime()) {//截止时间大于当前时间,表示过期
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * 是否可以删除
+	 * @return
+	 */
+	public boolean canDel() {
+		if (this.getState() == PlayerMailConstant.READ && this.getRewardMap().isEmpty()) {
+			//状态为已读,并且没有奖励配置 可以删除
+			return true;
+		}else if (this.isRewarded()) {
+			//领过奖,可以删除
+			return true;
+		}else if (this.isExpired()) {
+			//过期可以删除
+			return true;
+		}
+		return false;
 	}
 	
 }

@@ -65,21 +65,16 @@ public interface IResourceDomain<K, V>{
 	public boolean costById(K id, int count);
 	
 	/**
-	 * 获取有数据有变动的物资集合, 
+	 * 获取有数据有变动的物资集合,
 	 * @return
 	 */
-	public List<V> getUpdateList();
+	public List<V> getAndClearUpdateList();
 	
 	/**
 	 * 获取被删除的物资集合
 	 * @return
 	 */
-	/**
-	 * @return  
-	 * @return List<V>  
-	 * @date 2021年3月8日下午3:58:55
-	 */ 
-	public List<V> getDeleteList();
+	public List<V> getAndClearDeleteList();
 	
 	
 }

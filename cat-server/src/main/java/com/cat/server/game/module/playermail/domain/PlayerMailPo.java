@@ -1,8 +1,6 @@
 package com.cat.server.game.module.playermail.domain;
 
-import com.cat.orm.core.annotation.PO;
 import com.cat.orm.core.base.BasePo;
-import com.cat.orm.core.base.IBasePo;
 
 /**
 * PlayerMailPo
@@ -19,14 +17,14 @@ public abstract class PlayerMailPo extends BasePo {
 	public static final String PROP_EXPIRETIME = "expireTime";
 	public static final String PROP_STATE = "state";
 	
-	protected int id;//邮件ID
+	protected long id;//邮件ID
 	protected long playerId;//角色ID
 	protected String title;//邮件标题
 	protected String content;//邮件内容
 	protected String rewards;//奖励:{configId:num,configId:num}
-	protected long createTime;//邮件创建时间戳
-	protected long expireTime;//邮件过期时间戳
-	protected boolean state;//0=未读取;1=已读
+	protected long createTime;//邮件创建时间
+	protected long expireTime;//邮件过期时间
+	protected byte state;//0=未读取;1=已读
 	
 	public PlayerMailPo(){
 		this.title = "";
@@ -35,11 +33,11 @@ public abstract class PlayerMailPo extends BasePo {
 	}
 	
 	/** 邮件ID **/
-	public int getId(){
+	public long getId(){
 		return this.id;
 	}
 	
-	public void setId(int id){
+	public void setId(long id){
 		this.id = id;
 	}
 	
@@ -79,7 +77,7 @@ public abstract class PlayerMailPo extends BasePo {
 		this.rewards = rewards;
 	}
 	
-	/** 邮件创建时间戳 **/
+	/** 邮件创建时间 **/
 	public long getCreateTime(){
 		return this.createTime;
 	}
@@ -88,7 +86,7 @@ public abstract class PlayerMailPo extends BasePo {
 		this.createTime = createTime;
 	}
 	
-	/** 邮件过期时间戳 **/
+	/** 邮件过期时间 **/
 	public long getExpireTime(){
 		return this.expireTime;
 	}
@@ -98,11 +96,11 @@ public abstract class PlayerMailPo extends BasePo {
 	}
 	
 	/** 0=未读取;1=已读 **/
-	public boolean getState(){
+	public byte getState(){
 		return this.state;
 	}
 	
-	public void setState(boolean state){
+	public void setState(byte state){
 		this.state = state;
 	}
 	
@@ -151,11 +149,11 @@ public abstract class PlayerMailPo extends BasePo {
 	@Override
 	public Object[] indexValues() {
 		return new Object[] {
-				getPlayerId(),
+			playerId,
 		};
 	}
 	
-		@Override
+	@Override
 	public String cacheId() {
 		return getPlayerId()+":"+getId();
 	}

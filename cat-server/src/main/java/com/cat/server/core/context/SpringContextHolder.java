@@ -42,7 +42,7 @@ public class SpringContextHolder implements ApplicationContextAware{
 	 * @param classType
 	 * @return
 	 */
-	public Collection<Object> getBeansWithAnnotation(Class<? extends Annotation> classType) {
+	public static Collection<Object> getBeansWithAnnotation(Class<? extends Annotation> classType) {
 		return springContext.getBeansWithAnnotation(classType).values();
 	}
 }

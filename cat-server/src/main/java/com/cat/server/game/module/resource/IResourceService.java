@@ -63,4 +63,12 @@ public interface IResourceService {
 	 * @date 2021年1月16日下午5:43:08
 	 */
 	public void cost(long playerId, Long uniqueId, NatureEnum nEnum);
+	
+	/**
+	 * 通知客戶端数据变动
+	 * @param playerId
+	 * @param uniqueId
+	 * @param nEnum
+	 */
+	default public void notify(long playerId) {}
 }

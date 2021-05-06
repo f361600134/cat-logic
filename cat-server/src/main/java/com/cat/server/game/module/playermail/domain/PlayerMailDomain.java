@@ -6,11 +6,10 @@ import org.slf4j.LoggerFactory;
 
 
 /**
-* PlayerMailDomain
+* PlayerMailDomain, 
 * @author Jeremy
 */
-
-public class PlayerMailDomain extends AbstractModuleMultiDomain<Long, Integer, PlayerMail> {
+public class PlayerMailDomain extends AbstractModuleMultiDomain<Long, Long, PlayerMail> {
 
 	private static final Logger log = LoggerFactory.getLogger(PlayerMailDomain.class);
 	

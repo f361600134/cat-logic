@@ -1,13 +1,13 @@
 package com.cat.server.game.module.item.domain;
 
-import java.util.Collection;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.cat.server.core.server.AbstractModuleMultiDomain;
 import com.cat.server.game.module.resource.IResourceDomain;
 import com.cat.server.game.module.resource.domain.ItemResourceDomain;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 物品域
@@ -70,13 +70,13 @@ public class ItemDomain extends AbstractModuleMultiDomain<Long, Long, Item> impl
 	}
 
 	@Override
-	public List<Item> getUpdateList() {
-		return resourceDomainProxy.getUpdateList();
+	public List<Item> getAndClearUpdateList() {
+		return resourceDomainProxy.getAndClearUpdateList();
 	}
 
 	@Override
-	public List<Item> getDeleteList() {
-		return resourceDomainProxy.getDeleteList();
+	public List<Item> getAndClearDeleteList() {
+		return resourceDomainProxy.getAndClearDeleteList();
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.cat.server.game.module.chat.service;
+package com.cat.server.game.module.chat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +20,6 @@ import com.cat.server.game.module.chat.assist.ChannelType;
 import com.cat.server.game.module.chat.domain.ChatDetail;
 import com.cat.server.game.module.chat.domain.ChatDomain;
 import com.cat.server.game.module.chat.domain.ChatRule;
-import com.cat.server.game.module.chat.magaer.ChatManager;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
 import com.cat.server.game.module.player.proto.AckTipsResp;
@@ -30,7 +29,7 @@ import com.cat.server.utils.StringUtilitys;
 import com.cat.server.utils.TimeUtil;
 
 @Service
-public class ChatService {
+class ChatService {
 	
 	private static final Logger log = LoggerFactory.getLogger(ChatService.class);
 	
