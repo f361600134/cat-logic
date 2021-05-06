@@ -12,8 +12,8 @@ import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.server.game.data.proto.PBPlayer.ReqChat;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.gm.ICommandService;
+import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.player.proto.AckTipsResp;
-import com.cat.server.game.module.player.service.PlayerService;
 
 /**
  * 聊天控制器
@@ -32,7 +32,7 @@ public class ChatController implements IController{
     private ICommandService commandService;
     
     @Autowired
-    private PlayerService playerService;
+    private IPlayerService playerService;
 
     @Cmd(PBProtocol.ReqChat_VALUE)
     public void chat(GameSession session, ReqChat req) {

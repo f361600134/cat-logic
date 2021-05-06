@@ -1,4 +1,4 @@
-package com.cat.server.game.module.hero.service;
+package com.cat.server.game.module.hero;
 
 import com.cat.server.game.module.hero.domain.Hero;
 

@@ -8,7 +8,8 @@ import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mainmission.domain.MainMissionDomain;
 import com.cat.server.game.module.mainmission.manager.MainMissionManager;
 import com.cat.server.game.module.mission.type.IMission;
-import com.cat.server.game.module.player.service.PlayerService;
+import com.cat.server.game.module.player.IPlayerService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class MainMissionService implements IMainMissionService{
 	
 	private static final Logger log = LoggerFactory.getLogger(MainMissionService.class);
 	
-	@Autowired private PlayerService playerService;
+	@Autowired private IPlayerService playerService;
 	@Autowired private MainMissionManager manager;
 	
 	public void onLogin(long playerId) {

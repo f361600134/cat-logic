@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.item.proto.AckRewardsResp;
-import com.cat.server.game.module.player.service.IPlayerService;
+import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.playermail.PlayerMailConstant;
 import com.cat.server.game.module.playermail.domain.PlayerMail;
 import com.cat.server.game.module.playermail.domain.PlayerMailDomain;

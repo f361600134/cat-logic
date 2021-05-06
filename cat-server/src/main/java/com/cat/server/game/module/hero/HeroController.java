@@ -1,4 +1,4 @@
-package com.cat.server.game.module.hero.controller;
+package com.cat.server.game.module.hero;
 
 import org.springframework.stereotype.Controller;
 

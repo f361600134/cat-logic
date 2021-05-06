@@ -1,7 +1,6 @@
-package com.cat.server.game.module.item.event;
+package com.cat.server.game.module.item;
 
 import com.cat.server.core.event.IObserver;
-import com.cat.server.game.module.item.service.ItemService;
 import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.google.common.eventbus.Subscribe;
 
 @Component
-public class ItemObserver implements IObserver{
+class ItemObserver implements IObserver{
 
     @Autowired
     private ItemService itemService;

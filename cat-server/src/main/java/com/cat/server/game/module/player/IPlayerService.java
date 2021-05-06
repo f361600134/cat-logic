@@ -1,4 +1,4 @@
-package com.cat.server.game.module.player.service;
+package com.cat.server.game.module.player;
 
 import java.util.Collection;
 

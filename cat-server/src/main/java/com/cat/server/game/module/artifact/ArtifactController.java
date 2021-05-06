@@ -1,4 +1,4 @@
-package com.cat.server.game.module.artifact.controller;
+package com.cat.server.game.module.artifact;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

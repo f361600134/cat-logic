@@ -1,12 +1,12 @@
-package com.cat.server.game.module.artifact.event;
+package com.cat.server.game.module.artifact;
 
 import com.cat.server.core.event.IObserver;
-import com.cat.server.game.module.artifact.service.ArtifactService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ArtifactObserver implements IObserver{
+class ArtifactObserver implements IObserver{
 
     @Autowired private ArtifactService service;
 

@@ -1,4 +1,4 @@
-package com.cat.server.game.module.item.manager;
+package com.cat.server.game.module.item;
 
 import com.cat.server.core.server.AbstractModuleManager;
 import com.cat.server.game.module.item.domain.ItemDomain;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class ItemManager extends AbstractModuleManager<Long,ItemDomain>{
+class ItemManager extends AbstractModuleManager<Long,ItemDomain>{
 	
 	
 	

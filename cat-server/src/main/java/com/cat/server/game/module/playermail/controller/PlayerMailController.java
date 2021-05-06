@@ -10,7 +10,7 @@ import com.cat.net.network.base.GameSession;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.server.game.data.proto.PBPlayer;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.player.service.PlayerService;
+import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.playermail.proto.AckDeleteEmailResp;
 import com.cat.server.game.module.playermail.proto.AckReadEmailResp;
 import com.cat.server.game.module.playermail.proto.AckReceiveEmailResp;
@@ -28,7 +28,7 @@ public class PlayerMailController {
 	private PlayerMailService playerMailService;
 	
 	@Autowired
-	private PlayerService playerService;
+	private IPlayerService playerService;
 	
 	/**
 	 * @param session

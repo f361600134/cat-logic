@@ -1,4 +1,4 @@
-package com.cat.server.game.module.item.controller;
+package com.cat.server.game.module.item;
 
 import org.springframework.stereotype.Controller;
 

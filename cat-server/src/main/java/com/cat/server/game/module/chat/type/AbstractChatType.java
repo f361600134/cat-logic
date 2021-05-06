@@ -15,9 +15,9 @@ import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.domain.Chat;
 import com.cat.server.game.module.chat.domain.ChatDetail;
 import com.cat.server.game.module.chat.proto.AckChatResp;
+import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
-import com.cat.server.game.module.player.service.PlayerService;
 import com.cat.server.utils.Pair;
 import com.google.common.cache.Cache;
 
@@ -29,7 +29,7 @@ public abstract class AbstractChatType implements IChatType{
 	
 	private static Logger logger = LoggerFactory.getLogger(AbstractChatType.class); 
 	
-	protected PlayerService playerService;
+	protected IPlayerService playerService;
 	
 	protected int channel;
 	
@@ -77,7 +77,7 @@ public abstract class AbstractChatType implements IChatType{
 	
 	public AbstractChatType(int channel) {
 		this.channel = channel;
-		this.playerService = SpringContextHolder.getBean(PlayerService.class);
+		this.playerService = SpringContextHolder.getBean(IPlayerService.class);
 	}
 	
 	@Override

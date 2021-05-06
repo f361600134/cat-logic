@@ -1,13 +1,13 @@
-package com.cat.server.game.module.artifact.service;
+package com.cat.server.game.module.artifact;
 
 import java.util.Collection;
 
 import com.cat.server.core.event.PlayerEventBase;
 import com.cat.server.game.module.artifact.domain.Artifact;
 import com.cat.server.game.module.artifact.domain.ArtifactDomain;
-import com.cat.server.game.module.artifact.manager.ArtifactManager;
 import com.cat.server.game.module.artifact.proto.AckArtifactListResp;
-import com.cat.server.game.module.player.service.PlayerService;
+import com.cat.server.game.module.player.IPlayerService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,9 @@ import org.springframework.stereotype.Service;
  * Artifact控制器
  */
 @Service
-public class ArtifactService {
+class ArtifactService {
 	
-	@Autowired private PlayerService playerService;
+	@Autowired private IPlayerService playerService;
 	@Autowired private ArtifactManager manager;
 	
 	private static final Logger log = LoggerFactory.getLogger(ArtifactService.class);

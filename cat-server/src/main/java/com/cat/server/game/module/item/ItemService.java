@@ -1,4 +1,4 @@
-package com.cat.server.game.module.item.service;
+package com.cat.server.game.module.item;
 
 import java.util.Collection;
 import java.util.List;
@@ -8,11 +8,10 @@ import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.item.domain.IItem;
 import com.cat.server.game.module.item.domain.Item;
 import com.cat.server.game.module.item.domain.ItemDomain;
-import com.cat.server.game.module.item.manager.ItemManager;
 import com.cat.server.game.module.item.proto.AckBagListResp;
 import com.cat.server.game.module.item.proto.AckDeleteBagResp;
 import com.cat.server.game.module.item.proto.AckUpdateBagResp;
-import com.cat.server.game.module.player.service.IPlayerService;
+import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +23,7 @@ import org.springframework.stereotype.Service;
  * @author Jeremy
  */
 @Service
-public class ItemService implements IItemService, IResourceService{
+class ItemService implements IItemService, IResourceService{
 	
 	private static final Logger log = LoggerFactory.getLogger(ItemService.class);
 	

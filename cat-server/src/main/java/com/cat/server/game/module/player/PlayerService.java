@@ -1,4 +1,4 @@
-package com.cat.server.game.module.player.service;
+package com.cat.server.game.module.player;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,7 +40,7 @@ import com.cat.server.game.module.resource.IResourceService;
 import com.cat.server.utils.HttpClientUtil;
 
 @Component
-public class PlayerService implements IPlayerService, IResourceService {
+class PlayerService implements IPlayerService, IResourceService {
 
 	private static final Logger logger = LoggerFactory.getLogger(PlayerService.class);
 

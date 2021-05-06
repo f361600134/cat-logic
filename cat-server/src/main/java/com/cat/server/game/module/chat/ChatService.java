@@ -20,10 +20,10 @@ import com.cat.server.game.module.chat.assist.ChannelType;
 import com.cat.server.game.module.chat.domain.ChatDetail;
 import com.cat.server.game.module.chat.domain.ChatDomain;
 import com.cat.server.game.module.chat.domain.ChatRule;
+import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
 import com.cat.server.game.module.player.proto.AckTipsResp;
-import com.cat.server.game.module.player.service.PlayerService;
 import com.cat.server.utils.Pair;
 import com.cat.server.utils.StringUtilitys;
 import com.cat.server.utils.TimeUtil;
@@ -33,7 +33,7 @@ class ChatService {
 	
 	private static final Logger log = LoggerFactory.getLogger(ChatService.class);
 	
-	@Autowired private PlayerService playerService;
+	@Autowired private IPlayerService playerService;
 	
 	@Autowired private ChatManager chatManager;
 	

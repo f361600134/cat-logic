@@ -1,4 +1,4 @@
-package com.cat.server.game.module.player.controller;
+package com.cat.server.game.module.player;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,6 @@ import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.server.game.data.proto.PBLogin;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.player.proto.AckLoginResp;
-import com.cat.server.game.module.player.service.PlayerService;
 
 @Controller
 public class PlayerController implements IController{

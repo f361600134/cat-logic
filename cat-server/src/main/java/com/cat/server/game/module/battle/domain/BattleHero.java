@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.module.battle.assist.BattleDefine.BattleEntityType;
+import com.cat.server.game.module.hero.IHeroService;
 import com.cat.server.game.module.hero.domain.Hero;
-import com.cat.server.game.module.hero.service.IHeroService;
 
 /**
  * 英雄

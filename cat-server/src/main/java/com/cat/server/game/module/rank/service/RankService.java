@@ -1,11 +1,12 @@
 package com.cat.server.game.module.rank.service;
 
 import com.cat.server.common.ServerConfig;
+import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.rank.domain.Rank;
 import com.cat.server.game.module.rank.domain.RankDomain;
 import com.cat.server.game.module.rank.domain.RankType;
 import com.cat.server.game.module.rank.manager.RankManager;
-import com.cat.server.game.module.player.service.IPlayerService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
