@@ -17,7 +17,6 @@ import com.alibaba.fastjson.JSON;
 import com.cat.net.core.executor.DisruptorStrategy;
 import com.cat.net.network.base.GameSession;
 import com.cat.net.network.base.IProtocol;
-import com.cat.orm.core.db.process.DataProcessorAsyn;
 import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.common.ServerConstant;
@@ -91,7 +90,7 @@ class PlayerService implements IPlayerService, IResourceService {
 		return context;
 	}
 
-	private String getCacheKey(String username, int initServerId) {
+	private String getCacheKey(final String username, final int initServerId) {
 		String key = username.concat("-").concat(String.valueOf(initServerId));
 		return key;
 	}

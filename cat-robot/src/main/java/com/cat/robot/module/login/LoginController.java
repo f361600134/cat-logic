@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import com.cat.net.network.annotation.Cmd;
 import com.cat.net.network.base.GameSession;
 import com.cat.net.network.controller.IController;
-import com.cat.robot.module.InitialRunner;
 import com.cat.robot.module.robot.RobotContext;
 import com.cat.server.game.data.proto.PBDefine;
 import com.cat.server.game.data.proto.PBLogin;
@@ -31,13 +30,13 @@ public class LoginController implements IController{
 		logger.info("ackLogin code:{}, staus:{}", code, staus);
 		// 0 表示登陆成功
 		if (code == 0) {
-//			if (staus == 0) {
-//				//不创建主公, 进入游戏
-//			}else {
-//				//取随机名
-////				PBLogin.ReqRandName.Builder newBuilder = PBLogin.ReqRandName.newBuilder();
-////				context.send(PBDefine.PBProtocol.ReqRandName_VALUE, newBuilder.build());
-//			}
+			if (staus == 0) {
+				//不创建主公, 进入游戏
+			}else {
+				//取随机名
+//				PBLogin.ReqRandName.Builder newBuilder = PBLogin.ReqRandName.newBuilder();
+//				context.send(PBDefine.PBProtocol.ReqRandName_VALUE, newBuilder.build());
+			}
 		}
 	}
 	
@@ -49,7 +48,7 @@ public class LoginController implements IController{
 	 * @date 2019年7月4日上午11:45:02
 	 */
 	@Cmd(PBDefine.PBProtocol.AckRandName_VALUE)
-	public void ackLogin(RobotContext robotContext, PBLogin.AckRandName ack) {
+	public void ackLogin(GameSession gameSession, PBLogin.AckRandName ack) {
 		String names = ack.getNames();
 		if (!names.isEmpty()) {
 //			int cmd = PBDefine.PBProtocol.ReqCreateHost_VALUE;

@@ -1,6 +1,7 @@
 package com.cat.server.game.module.player.proto;
 
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
+import com.cat.server.utils.TimeUtil;
 import com.cat.net.network.base.IProtocol;
 import com.cat.server.game.data.proto.PBLogin;
 
@@ -12,7 +13,7 @@ public class AckLoginResp implements IProtocol{
 	
 	public AckLoginResp() {
 		this.builder = PBLogin.AckLogin.newBuilder();
-		this.builder.setTime(System.currentTimeMillis());
+		this.builder.setTime(TimeUtil.now());
 	}
 	
 	public static AckLoginResp create() {
