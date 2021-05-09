@@ -13,6 +13,11 @@ public class Team {
 	private long teamId;
 	
 	/**
+	 * 队长id
+	 */
+	private long leaderId;
+	
+	/**
 	 * 队伍类型
 	 */
 	private int type;
@@ -60,6 +65,14 @@ public class Team {
 
 	public void setCondition(String condition) {
 		this.condition = condition;
+	}
+
+	public long getLeaderId() {
+		return leaderId;
+	}
+
+	public void setLeaderId(long leaderId) {
+		this.leaderId = leaderId;
 	}
 	
 }

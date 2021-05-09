@@ -1,5 +1,10 @@
 package com.cat.server.game.module.team;
 
-public class TeamService {
+import org.springframework.stereotype.Service;
+
+@Service
+class TeamService implements ITeamService{
+	
+	
 
 }

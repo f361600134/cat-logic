@@ -1,5 +1,5 @@
 package com.cat.server.game.module.team;
 
-public class ITeamService {
+public interface ITeamService {
 
 }

@@ -4,11 +4,15 @@ package com.cat.server.game.module.team;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.stereotype.Component;
+
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.module.team.domain.TeamDomain;
 import com.google.common.collect.Multimap;
 
-public class TeamManager implements IModuleManager<Long, TeamDomain>{
+
+@Component
+class TeamManager implements IModuleManager<Long, TeamDomain>{
 	
 	/**
 	 * 域缓存
@@ -28,6 +32,7 @@ public class TeamManager implements IModuleManager<Long, TeamDomain>{
 	 * value: 队伍id
 	 */
 	private Map<Long, Integer> playerTeamMap;
+	
 	
 	@Override
 	public TeamDomain getDomain(Long id) {
