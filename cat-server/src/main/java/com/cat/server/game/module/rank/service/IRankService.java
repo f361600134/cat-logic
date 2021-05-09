@@ -8,7 +8,7 @@ import com.cat.server.game.module.rank.domain.RankType;
 public interface IRankService {
 	
 	/**
-	 * 获取排行榜类型
+	 * 通过排行榜类型获取指定id的排名
 	 * @param rankType 排行榜类型
 	 * @param uniqueId 唯一id
 	 * @return  

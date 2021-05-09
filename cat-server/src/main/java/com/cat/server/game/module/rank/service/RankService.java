@@ -67,6 +67,7 @@ public class RankService implements IRankService {
 				logger.info("loading rank error, domain is null");
 				return;
 			}
+//			domain.
 		} catch (Exception e) {
 			logger.error("responseRankInfo rankType:{}, error:{}", configId, e);
 		}
@@ -84,8 +85,8 @@ public class RankService implements IRankService {
 		try {
 			ret = domain.getRankByKey(uniqueId);
 		} catch (Exception e) {
-			logger.info("rankUpdateEvent rankType:{}, uniqueId:{}, rank:{}", rankType.getConfigId(), uniqueId);
-			logger.error("rankUpdateEvent error, e:{}", e);
+			logger.info("getRank error. rankType:{}, uniqueId:{}, rank:{}", rankType.getConfigId(), uniqueId, ret);
+			logger.error("getRank error, e:{}", e);
 		}
 		return ret;
 	}

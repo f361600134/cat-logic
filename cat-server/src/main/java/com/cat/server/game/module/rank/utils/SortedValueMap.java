@@ -32,7 +32,7 @@ public class SortedValueMap<K,V> implements ISortedMap<K,V>{
     
     public SortedValueMap(int maximum, Comparator<? super V> comparator){
     	if (maximum <= 0) {
-    		throw new IllegalArgumentException("the input parameter {maximum} is not allowed be zero");
+    		throw new IllegalArgumentException("the input parameter {maximum} is not allowed less than zero");
 		}
 		this.biMap = HashBiMap.create();
     	this.sortedSet = new TreeSet<V>(comparator);
