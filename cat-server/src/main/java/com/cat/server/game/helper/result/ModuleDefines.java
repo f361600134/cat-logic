@@ -51,8 +51,8 @@ public interface ModuleDefines {
     int CHAT = 135;
 //    /** 好友 */
 //    int FRIEND = 136;
-//    /** 联盟 */
-//    int ALLIANCE = 137;
+    /** 家族 */
+    int FAMILY = 137;
 //    // -----------公共模块---------------------
 //    /** 活动 */
 //    int ACTIVITY = 141;

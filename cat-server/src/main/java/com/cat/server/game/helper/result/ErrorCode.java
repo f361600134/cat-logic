@@ -22,6 +22,7 @@ public enum ErrorCode implements ModuleDefines {
     FORMULA_NOT_EXIST(COMMON, 9, "公式不存在"),
     CONTENT_EXIST_BAD_WORD(COMMON, 10, "输入的内容包含敏感字"),
     CONTENT_UNSUPPORT_OPERATION(COMMON, 11, "不支持的操作"),
+    CONTENT_INVALID_NAME(COMMON, 11, "无效名称"),
     // ---------------账号-------------------
     INVALID_ACCOUNT_NAME(ACCOUNT, 1, "无效的账号名"),
     ACCOUNT_NOT_LOGIN(ACCOUNT, 2, "账号未登陆"),
@@ -75,7 +76,9 @@ public enum ErrorCode implements ModuleDefines {
     MAIL_ALREADY_REWARD(MAIL, 3, "邮件已领取"),
     MAIL_ALREADY_EXPIRED(MAIL, 4, "邮件已过期"),
     
-    
+    // -----------------家族---------------------
+    FAMILY_NAME_EXIST(FAMILY, 1, "家族名被占用"),
+    FAMILY_ALREADY_IN_FAMILY(FAMILY, 2, "不能重复进入家族"),
     ;
 	
 	
