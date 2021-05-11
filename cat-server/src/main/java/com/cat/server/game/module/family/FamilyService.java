@@ -1,152 +1,218 @@
 package com.cat.server.game.module.family;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Collection;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Future;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cat.net.core.executor.DisruptorExecutorGroup;
-import com.cat.net.core.executor.DisruptorStrategy;
+import com.cat.orm.core.db.process.IDataProcess;
+import com.cat.server.common.ServerConfig;
+import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.task.TokenTaskQueueExecutor;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.helper.uuid.SnowflakeGenerator;
+import com.cat.server.game.module.family.assist.FamilyPosition;
 import com.cat.server.game.module.family.domain.Family;
-import com.cat.server.game.module.family.domain.FamilyDomain;
+import com.cat.server.game.module.family.domain.FamilyMember;
+import com.cat.server.game.module.rank.domain.Rank;
 
 
 /**
- * Family控制器
+ * FamilyService
+ * 家族相关的公共操作, 都是线程安全的, 丢进公共线程池去处理
  */
 @Service
-public class FamilyService implements IFamilyService {
+public class FamilyService implements Lifecycle{
 	
-	private static final Logger log = LoggerFactory.getLogger(FamilyService.class);
+	private static final Logger logger = LoggerFactory.getLogger(FamilyService.class);
 	
-//	@Autowired private IPlayerService playerService;
+	@Autowired
+	private SnowflakeGenerator generator;
 	
-	@Autowired private FamilyManager familyManager;
+	@Autowired
+	private IDataProcess dataProcess;
 	
-//	/**
-//	 * 登陆
-//	 */
-//	public void onLogin(long playerId) {
-////		FamilyDomain domain = familyManager.getDomain(playerId);
-////		Collection<Family> beans = domain.getBeans();
-//		//FSC todo somthing...
-//		//Codes for proto
-//		//playerService.sendMessage(playerId, ack);
-//	}
+	@Autowired
+	private ServerConfig serverConfig;
 	
-//	/**
-//	 * 当玩家离线,移除掉道具模块数据
-//	 * @param playerId
-//	 */
-//	public void onLogout(long playerId) {
-//		familyManager.remove(playerId);
-//	}
+	/**	公共的线程池处理器*/
+	@Autowired
+	private TokenTaskQueueExecutor defaultExecutor;
 	
 	/**
-	 * 更新信息
+	 * key: 家族id
+	 * value: 家族
 	 */
-	public void responseFamilyInfo(long playerId, Family family) {
-		try {
-			//resp.addArtifactlist(family.toProto());
-			//playerService.sendMessage(playerId, resp);
-		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("responseFamilyInfo error, familyId:{}", family.getId());
-			log.error("responseFamilyInfo error, e:", e);
-		}
+	private Map<Long, Family> familyMap = new ConcurrentHashMap<>();
+	/**
+	 * key:familyName
+	 * value: familyId
+	 */
+	private Map<String, Long> familyNameMap = new ConcurrentHashMap<>();
+	/**
+	 * 加入此Map,可以精确查询
+	 * key:familyTag
+	 * value: familyId
+	 */
+	private Map<String, Long> familyTagMap = new ConcurrentHashMap<>();
+	/**
+	 * key: 玩家id
+	 * value: 家族id
+	 */
+	private Map<Long, Long> familyPlayerIdMap = new ConcurrentHashMap<>();
+	
+	/**
+	 * 从数据库获取
+	 * @return void  
+	 * @date 2021年5月10日下午10:12:41
+	 */
+	private List<Family> loadAllFamilys() {
+		final int serverId = serverConfig.getServerId();
+		String[] cols = new String[] {Rank.PROP_CURSERVERID};
+		List<Family> list = dataProcess.selectByIndex(Family.class, cols, new Object[] {serverId});
+		return list;
 	}
 	
-	/////////////业务逻辑//////////////////
 	/**
 	 * 创建家族
-	 * @param playerId
-	 * @param name  
-	 * @return void  
-	 * @date 2021年5月10日下午11:19:24
 	 */
-	public ErrorCode createFamily(long playerId, String name) {
-		if (StringUtils.isBlank(name)) {
-			return ErrorCode.CONTENT_INVALID_NAME;
+	public Family createFamily(long playerId, String name) throws Exception{
+		Future<Family> future = defaultExecutor.submit(0, ()->{
+			//			实例化一个新的家族
+			long id = this.generator.nextId();
+			Family family = Family.create(id, name);
+			
+			//	设置创建家族的成员为族长
+			FamilyMember familymember =	new FamilyMember();
+			familymember.setPlayerId(playerId);
+			familymember.setPosition(FamilyPosition.PATRIARCH.getValue());
+			family.getMembers().add(familymember);
+			
+			//	丢进缓存
+			this.familyMap.put(id, family);
+			this.familyNameMap.put(name, id);
+			this.familyPlayerIdMap.put(playerId, id);
+			return family;
+		});
+		return future.get();
+	}
+	
+	/**
+	 * 修改家族名, 
+	 */
+	public ErrorCode editFamilyName(long playerId,String name) throws Exception{
+		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
+			final Family family = getFamilyByPlayerId(playerId);
+			if (family == null) {
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			if (this.familyNameMap.containsKey(name)) {
+				return ErrorCode.FAMILY_NAME_EXIST;
+			}
+			//	获取到家族信息
+			family.setName(name);
+			//	丢进缓存
+			this.familyNameMap.put(name, family.getId());
+			return ErrorCode.SUCCESS;
+		});
+		return future.get();
+	}
+	
+	/**
+	 * 修改家族号, 只能族长修改,并且只能修改一次
+	 * 家族号只能是字母数字,不允许有任何特殊符号
+	 */
+	public ErrorCode editFamilyTag(long playerId, String tag) throws Exception{
+		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
+			final Family family = getFamilyByPlayerId(playerId);
+			if (family == null) {
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			if (this.familyTagMap.containsKey(tag)) {
+				return ErrorCode.FAMILY_NAME_EXIST;
+			}
+			//	设置新的家族号
+			family.setTag(tag);
+			//	丢进缓存
+			this.familyTagMap.put(tag, family.getId());
+			return ErrorCode.SUCCESS;
+		});
+		return future.get();
+	}
+	
+	/**
+	 * 查找家族
+	 * @param keyword 关键字
+	 * @return
+	 */
+	public Collection<Long> searchFamily(String keyword){
+		List<Long> result = new ArrayList<>();
+		//	先精确查找
+		Long familyId = familyTagMap.get(keyword);
+		if (familyId != null) {
+			result.add(familyId);
 		}
-		//TODO 敏感字判断,特殊字符,长度判断
-		
-		//	重复名字判断
-		if (familyManager.getFamilyNameMap().containsKey(name)) {
-			return ErrorCode.FAMILY_NAME_EXIST;
+		//	再模糊查找
+		for (String familyName : familyNameMap.keySet()) {
+			//	只要包含关键字,就返回
+			if (familyName.contains(keyword)) {
+				result.add(familyNameMap.get(familyName));
+			}
 		}
-		//	重复进入家族判断
-		long familyId = familyManager.getFamilyIdByPlayerId(playerId);
-		if (familyId > 0) {
-			return ErrorCode.FAMILY_NAME_EXIST;
+		return result;
+	}
+	
+	/**
+	 * 根据玩家id获取到家族id
+	 * @param playerId
+	 * @return
+	 */
+	public long getPlayerFamilyId(long playerId){
+		return familyPlayerIdMap.getOrDefault(playerId, 0L);
+	}
+	
+	/**
+	 * 根据玩家id获取到家族id
+	 * @param playerId
+	 * @return
+	 */
+	public Family getFamilyByFamilyId(long familyId){
+		return familyMap.get(familyId);
+	}
+	
+	/**
+	 * 根据玩家id获取到家族
+	 * @param playerId
+	 * @return
+	 */
+	public Family getFamilyByPlayerId(long playerId){
+		final long familyId = getPlayerFamilyId(playerId);
+		if (familyId == 0) {
+			return null;
 		}
-		FamilyDomain domain = familyManager.getDomain();
-		Family family = domain.createFamily(name);
-		this.responseFamilyInfo(playerId, family);
-		return ErrorCode.SUCCESS;
+		return getFamilyByFamilyId(familyId);
 	}
-	
-	/**
-	 * 查询家族
-	 * @param playerId
-	 * @param name  
-	 * @return void  
-	 * @date 2021年5月10日下午11:19:24
-	 */
-	public ErrorCode searchFamily(long playerId, String name) {
-		return ErrorCode.SUCCESS;
-	}
-	
-	/**
-	 * 申请进入家族
-	 * @param playerId
-	 * @param name  
-	 * @return void  
-	 * @date 2021年5月10日下午11:19:24
-	 */
-	public ErrorCode applyJoinFamily(long playerId, String name) {
-		return ErrorCode.SUCCESS;
-	}
-	
-	/**
-	 * 退出家族
-	 * @param playerId
-	 * @param name  
-	 * @return void  
-	 * @date 2021年5月10日下午11:19:24
-	 */
-	public ErrorCode exitFamily(long playerId, String name) {
-		return ErrorCode.SUCCESS;
-	}
-	
-	/**
-	 * 查看家族申请列表
-	 * @param playerId
-	 * @param name  
-	 * @return void  
-	 * @date 2021年5月10日下午11:19:24
-	 */
-	public ErrorCode showFamilyApplyInfo(long playerId, String name) {
-		return ErrorCode.SUCCESS;
-	}
-	
-	/**
-	 * 管理家族,任命
-	 * @param playerId
-	 * @param name  
-	 * @return void  
-	 * @date 2021年5月10日下午11:19:24
-	 */
-	public ErrorCode managerFamily(long playerId, String name) {
-		return ErrorCode.SUCCESS;
-	}
-	
 	
 	/////////////接口方法////////////////////////
+	@Override
+	public void start() throws Throwable {
+		List<Family> loadAllFamilys = loadAllFamilys();
+		loadAllFamilys.forEach((family)->{
+			this.familyMap.put(family.getId(), family);
+			this.familyNameMap.put(family.getName(), family.getId());
+			this.familyTagMap.put(family.getTag(), family.getId());
+			family.getMembers().forEach((member)->{
+				this.familyPlayerIdMap.put(member.getPlayerId(), family.getId());
+			});
+		});
+	}
+	
 	
 }

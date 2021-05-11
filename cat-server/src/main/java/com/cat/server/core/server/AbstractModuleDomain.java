@@ -88,4 +88,8 @@ public abstract class AbstractModuleDomain<I, T extends IBasePo> implements IMod
 	 */
 	public void afterCreate() {}
 	
+	public T getBean() {
+		return bean;
+	}
+	
 }

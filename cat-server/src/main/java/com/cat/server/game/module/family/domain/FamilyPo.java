@@ -18,23 +18,26 @@ public abstract class FamilyPo extends BasePo {
 	public static final String PROP_NOTICE = "notice";
 	public static final String PROP_INITSERVERID = "initServerId";
 	public static final String PROP_CURSERVERID = "curServerId";
+	public static final String PROP_TAG = "tag";
 	
 	protected long id;//家族id
-	protected String name;//家族名
+	protected String name;//家族名,可修改
 	protected String applyStr;//申请列表
 	protected String memberStr;//成员列表
 	protected int exp;//经验
 	protected short level;//等级
 	protected long createTime;//创建时间戳
-	protected String notice;//公告
+	protected String notice;//公告,可修改
 	protected int initServerId;//初始服务器id
 	protected int curServerId;//当前服务器id
+	protected String tag;//家族号,可以修改.用于精确查询
 	
 	public FamilyPo(){
 		this.name = "";
 		this.applyStr = "";
 		this.memberStr = "";
 		this.notice = "";
+		this.tag = "";
 	}
 	
 	/** 家族id **/
@@ -46,7 +49,7 @@ public abstract class FamilyPo extends BasePo {
 		this.id = id;
 	}
 	
-	/** 家族名 **/
+	/** 家族名,可修改 **/
 	public String getName(){
 		return this.name;
 	}
@@ -100,7 +103,7 @@ public abstract class FamilyPo extends BasePo {
 		this.createTime = createTime;
 	}
 	
-	/** 公告 **/
+	/** 公告,可修改 **/
 	public String getNotice(){
 		return this.notice;
 	}
@@ -127,12 +130,21 @@ public abstract class FamilyPo extends BasePo {
 		this.curServerId = curServerId;
 	}
 	
+	/** 家族号,可以修改.用于精确查询 **/
+	public String getTag(){
+		return this.tag;
+	}
+	
+	public void setTag(String tag){
+		this.tag = tag;
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "Family [id= "+ id +", name= "+ name +", applyStr= "+ applyStr +", memberStr= "+ memberStr +", exp= "+ exp
 				 +", level= "+ level +", createTime= "+ createTime +", notice= "+ notice +", initServerId= "+ initServerId +", curServerId= "+ curServerId
-				+"]";
+				 +", tag= "+ tag+"]";
 	}
 	
 	@Override
@@ -148,6 +160,7 @@ public abstract class FamilyPo extends BasePo {
 		"`notice`",
 		"`initServerId`",
 		"`curServerId`",
+		"`tag`",
 		};
 	}
 
@@ -164,6 +177,7 @@ public abstract class FamilyPo extends BasePo {
 		getNotice(),
 		getInitServerId(),
 		getCurServerId(),
+		getTag(),
 		};
 	}
 

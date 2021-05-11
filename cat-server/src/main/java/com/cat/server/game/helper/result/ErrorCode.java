@@ -23,6 +23,7 @@ public enum ErrorCode implements ModuleDefines {
     CONTENT_EXIST_BAD_WORD(COMMON, 10, "输入的内容包含敏感字"),
     CONTENT_UNSUPPORT_OPERATION(COMMON, 11, "不支持的操作"),
     CONTENT_INVALID_NAME(COMMON, 11, "无效名称"),
+    DOMAIN_IS_NULL(COMMON, 12, "模块数据异常"),
     // ---------------账号-------------------
     INVALID_ACCOUNT_NAME(ACCOUNT, 1, "无效的账号名"),
     ACCOUNT_NOT_LOGIN(ACCOUNT, 2, "账号未登陆"),
@@ -79,6 +80,9 @@ public enum ErrorCode implements ModuleDefines {
     // -----------------家族---------------------
     FAMILY_NAME_EXIST(FAMILY, 1, "家族名被占用"),
     FAMILY_ALREADY_IN_FAMILY(FAMILY, 2, "不能重复进入家族"),
+    FAMILY_NO_FAMILY(FAMILY, 3, "家族不存在"),
+    FAMILY_JOIN_TIME_LIMIT(FAMILY, 4, "退出家族后1天后才可以再次加入"),
+    FAMILY_TAG_EXIST(FAMILY, 5, "家族号被占用"),
     ;
 	
 	
