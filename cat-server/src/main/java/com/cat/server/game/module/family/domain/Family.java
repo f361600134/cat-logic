@@ -9,19 +9,22 @@ import com.cat.orm.core.annotation.PO;
 import com.cat.orm.util.StateUtils;
 import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.module.family.assist.FamilyPosition;
+import com.cat.server.game.module.group.DefaultMember;
+import com.cat.server.game.module.group.IGroup;
+import com.cat.server.game.module.group.IMember;
 import com.cat.server.utils.TimeUtil;
 
 /**
 * @author Jeremy
 */
 @PO(name = "family")
-public class Family extends FamilyPo implements IPersistence{
+public class Family extends FamilyPo implements IPersistence, IGroup{
 	
 	@Column(PROP_APPLYSTR)
 	private Map<Long, FamilyApply> applys = new HashMap<>();
 	
-	@Column(PROP_MEMBERSTR)
-	private Map<Long, FamilyMember> members= new HashMap<>();
+	@Column(value = PROP_MEMBERSTR, clazzType = DefaultMember.class)
+	private Map<Long, IMember> members= new HashMap<>();
 
 	public Family() {
 
@@ -43,8 +46,8 @@ public class Family extends FamilyPo implements IPersistence{
 	public Map<Long, FamilyApply> getApplys() {
 		return applys;
 	}
-
-	public Map<Long, FamilyMember> getMembers() {
+	
+	public Map<Long, IMember> getMembers() {
 		return members;
 	}
 
@@ -61,7 +64,7 @@ public class Family extends FamilyPo implements IPersistence{
 	 * @return
 	 */
 	public int getPosition(long playerId) {
-		FamilyMember member = getMembers().get(playerId);
+		IMember member = getMembers().get(playerId);
 		return member == null? 0 : member.getPosition();//	没有职位
 	}
 	
