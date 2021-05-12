@@ -83,6 +83,9 @@ public enum ErrorCode implements ModuleDefines {
     FAMILY_NO_FAMILY(FAMILY, 3, "家族不存在"),
     FAMILY_JOIN_TIME_LIMIT(FAMILY, 4, "退出家族后1天后才可以再次加入"),
     FAMILY_TAG_EXIST(FAMILY, 5, "家族号被占用"),
+    FAMILY_NO_PRIVILEGE(FAMILY, 6, "没有该权限"),
+    FAMILY_FIRE_SELF(FAMILY, 7, "请先退位再退家族"),
+    FAMILY_PLAYER_NOT_EXIST(FAMILY, 8, "此玩家不在家族"),
     ;
 	
 	

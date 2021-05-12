@@ -19,7 +19,9 @@ import com.cat.server.core.task.TokenTaskQueueExecutor;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 import com.cat.server.game.module.family.assist.FamilyPosition;
+import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
+import com.cat.server.game.module.family.domain.FamilyApply;
 import com.cat.server.game.module.family.domain.FamilyMember;
 import com.cat.server.game.module.rank.domain.Rank;
 
@@ -29,7 +31,7 @@ import com.cat.server.game.module.rank.domain.Rank;
  * 家族相关的公共操作, 都是线程安全的, 丢进公共线程池去处理
  */
 @Service
-public class FamilyService implements Lifecycle{
+class FamilyService implements IFamilyService, Lifecycle{
 	
 	private static final Logger logger = LoggerFactory.getLogger(FamilyService.class);
 	
@@ -93,12 +95,14 @@ public class FamilyService implements Lifecycle{
 			FamilyMember familymember =	new FamilyMember();
 			familymember.setPlayerId(playerId);
 			familymember.setPosition(FamilyPosition.PATRIARCH.getValue());
-			family.getMembers().add(familymember);
+			family.getMembers().put(playerId, familymember);
 			
 			//	丢进缓存
 			this.familyMap.put(id, family);
 			this.familyNameMap.put(name, id);
 			this.familyPlayerIdMap.put(playerId, id);
+			
+			//	生成家族日志
 			return family;
 		});
 		return future.get();
@@ -113,6 +117,7 @@ public class FamilyService implements Lifecycle{
 			if (family == null) {
 				return ErrorCode.FAMILY_NO_FAMILY;
 			}
+			//	重名判断
 			if (this.familyNameMap.containsKey(name)) {
 				return ErrorCode.FAMILY_NAME_EXIST;
 			}
@@ -120,6 +125,7 @@ public class FamilyService implements Lifecycle{
 			family.setName(name);
 			//	丢进缓存
 			this.familyNameMap.put(name, family.getId());
+			//	生成家族日志
 			return ErrorCode.SUCCESS;
 		});
 		return future.get();
@@ -142,6 +148,7 @@ public class FamilyService implements Lifecycle{
 			family.setTag(tag);
 			//	丢进缓存
 			this.familyTagMap.put(tag, family.getId());
+			//	生成家族日志
 			return ErrorCode.SUCCESS;
 		});
 		return future.get();
@@ -167,6 +174,110 @@ public class FamilyService implements Lifecycle{
 			}
 		}
 		return result;
+	}
+	
+	/**
+	 * 申请进入家族
+	 * @param keyword 关键字
+	 * @return
+	 */
+	public ErrorCode applyJoinFamily(long playerId, long familyId) throws Exception{
+		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
+			final Family family = getFamilyByFamilyId(familyId);
+			if (family == null) {
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			//TODO	判断是否符合进入家族的条件
+			//	请求加入申请列表
+			FamilyApply familyApply = FamilyApply.create(playerId);
+			family.getApplys().put(familyApply.getPlayerId(), familyApply);
+			return ErrorCode.SUCCESS;
+		});
+		return future.get();
+	}
+	
+	/**
+	 * 退出家族
+	 * @param keyword 关键字
+	 * @return
+	 */
+	public ErrorCode exitFamily(long playerId) throws Exception{
+		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
+			final Family family = getFamilyByPlayerId(playerId);
+			if (family == null) {
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			//	族长判断,族长要先退位才能退出家族
+			if (family.getPosition(playerId) == FamilyPosition.PATRIARCH.getValue()) {
+				return ErrorCode.FAMILY_FIRE_SELF;
+			}
+			family.getMembers().remove(playerId);
+			familyPlayerIdMap.remove(playerId);
+			//	生成家族日志
+			return ErrorCode.SUCCESS;
+		});
+		return future.get();
+	}
+	
+	/**
+	 * 开除玩家
+	 * @param playerId
+	 * @param firePlayerId
+	 * @return
+	 * @throws Exception
+	 */
+	public ErrorCode fire(long playerId, long firePlayerId) throws Exception{
+		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
+			final Family family = getFamilyByPlayerId(playerId);
+			if (family == null) {
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			//	被开的玩家是否存在
+			if (family.getPosition(firePlayerId) <= 0) {
+				return ErrorCode.FAMILY_PLAYER_NOT_EXIST;
+			}
+			family.getMembers().remove(firePlayerId);
+			familyPlayerIdMap.remove(firePlayerId);
+			//	生成家族日志
+			return ErrorCode.SUCCESS;
+		});
+		return future.get();
+	}
+	
+	/**
+	 * 是否存在某个权限
+	 * @return true 有该权限, false 无该权限
+	 */
+	public boolean hasPrivilege(long playerId, long privilege) {
+		Family family = getFamilyByPlayerId(playerId);
+		if (family == null) {
+			return false;
+		}
+		return family.hasPrivilege(playerId, privilege);
+	}
+	
+	
+	/////////////接口方法////////////////////////
+	@Override
+	public void start() throws Throwable {
+		List<Family> loadAllFamilys = loadAllFamilys();
+		loadAllFamilys.forEach((family)->{
+			this.familyMap.put(family.getId(), family);
+			this.familyNameMap.put(family.getName(), family.getId());
+			this.familyTagMap.put(family.getTag(), family.getId());
+			family.getMembers().keySet().forEach((playerId)->{
+				this.familyPlayerIdMap.put(playerId, family.getId());
+			});
+		});
+	}
+	
+	@Override
+	public int getPlayerPosition(long playerId) {
+		Family family = getFamilyByPlayerId(playerId);
+		if (family == null) {
+			return 0;
+		}
+		return family.getPosition(playerId);
 	}
 	
 	/**
@@ -200,19 +311,9 @@ public class FamilyService implements Lifecycle{
 		return getFamilyByFamilyId(familyId);
 	}
 	
-	/////////////接口方法////////////////////////
 	@Override
-	public void start() throws Throwable {
-		List<Family> loadAllFamilys = loadAllFamilys();
-		loadAllFamilys.forEach((family)->{
-			this.familyMap.put(family.getId(), family);
-			this.familyNameMap.put(family.getName(), family.getId());
-			this.familyTagMap.put(family.getTag(), family.getId());
-			family.getMembers().forEach((member)->{
-				this.familyPlayerIdMap.put(member.getPlayerId(), family.getId());
-			});
-		});
+	public boolean hasPrivilege(long playerId, FamilyPrivilege familyPrivilege) {
+		return hasPrivilege(playerId, familyPrivilege.getPrivilege());
 	}
-	
 	
 }

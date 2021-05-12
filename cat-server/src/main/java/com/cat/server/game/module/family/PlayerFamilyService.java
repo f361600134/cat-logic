@@ -1,5 +1,7 @@
 package com.cat.server.game.module.family;
 
+import java.util.Collection;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
 import com.cat.server.game.module.family.domain.PlayerFamily;
 import com.cat.server.game.module.family.domain.PlayerFamilyDomain;
 import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.utils.TimeUtil;
 
 
 /**
@@ -109,7 +113,9 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 			return ErrorCode.FAMILY_NO_FAMILY;
 		}
 		//	权限校验
-		//	权限校验,放在FamilyService
+		if (!familyService.hasPrivilege(playerId, FamilyPrivilege.RENAME)) {
+			return ErrorCode.FAMILY_NO_PRIVILEGE;
+		}
 		try {
 			familyService.editFamilyName(playerId, name);
 		} catch (Exception e) {
@@ -126,8 +132,9 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 	 * @return void  
 	 * @date 2021年5月10日下午11:19:24
 	 */
-	public ErrorCode searchFamily(long playerId, String name) {
-//		searchFamily
+	public ErrorCode searchFamily(long playerId, String keyword) {
+		Collection<Long> familyIds = familyService.searchFamily(keyword);
+		//	TODO 组装家族信息
 		return ErrorCode.SUCCESS;
 	}
 	
@@ -138,26 +145,51 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 	 * @return void  
 	 * @date 2021年5月10日下午11:19:24
 	 */
-	public ErrorCode applyJoinFamily(long playerId, String name) {
+	public ErrorCode applyJoinFamily(long playerId, long familyId) {
 		PlayerFamilyDomain domain = playerFamilyManager.getDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.DOMAIN_IS_NULL;
 		}
+		//	是否满足再次进入加入的时间条件
 		if (!domain.isMeetTime()) {
 			return ErrorCode.FAMILY_JOIN_TIME_LIMIT;
 		}
-		
+		try {
+			familyService.applyJoinFamily(playerId, familyId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("applyJoinFamily error");
+		}
 		return ErrorCode.SUCCESS;
 	}
 	
 	/**
-	 * 退出家族
+	 * 退出家族, 自己意愿退出家族, 要有惩罚
 	 * @param playerId
-	 * @param name  
 	 * @return void  
 	 * @date 2021年5月10日下午11:19:24
 	 */
-	public ErrorCode exitFamily(long playerId, String name) {
+	public ErrorCode exitFamily(long playerId) {
+		PlayerFamilyDomain domain = playerFamilyManager.getDomain(playerId);
+		if (domain == null) {
+			return ErrorCode.DOMAIN_IS_NULL;
+		}
+		try {
+			ErrorCode errorCode = familyService.exitFamily(playerId);
+			if (!errorCode.isSuccess()) {//退出失败
+				return errorCode;
+			}
+			//	退出成功
+			PlayerFamily playerFamily =  domain.getBean();
+			playerFamily.setLeaveTime(TimeUtil.now());
+			//	威望扣除1/5
+			int oldContribute = playerFamily.getContribute();
+			playerFamily.setContribute(oldContribute/5);
+			//	记录日志
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("exitFamily error");
+		}
 		return ErrorCode.SUCCESS;
 	}
 	
@@ -180,6 +212,23 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 	 * @date 2021年5月10日下午11:19:24
 	 */
 	public ErrorCode managerFamily(long playerId, String name) {
+		return ErrorCode.SUCCESS;
+	}
+	
+	/**
+	 * 踢出家族
+	 * @param playerId
+	 * @return void  
+	 * @date 2021年5月10日下午11:19:24
+	 */
+	public ErrorCode fire(long playerId, long firePlayerId) {
+		try {
+			ErrorCode errorCode = familyService.fire(playerId, firePlayerId);
+			//	TODO 组装结果消息
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("fire error");
+		}
 		return ErrorCode.SUCCESS;
 	}
 	

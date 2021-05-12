@@ -13,7 +13,7 @@ public class FamilyMember {
 	private long playerId;
 	
 	/**
-	 * 职位
+	 * 职位, 可以根据职位获取到权限
 	 */
 	private int position;
 
