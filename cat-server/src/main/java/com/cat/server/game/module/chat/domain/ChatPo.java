@@ -116,10 +116,12 @@ public abstract class ChatPo extends BasePo {
 		return null;
 	}
 
+	@Override
 	public String[] keyAndIndexColumn() {
 		return KEY_AND_INDEX_COLUMN;
 	}
-	
+
+	@Override
 	public Object[] keyAndIndexValues() {
 		return new Object[] {
 			getLeftKey(),

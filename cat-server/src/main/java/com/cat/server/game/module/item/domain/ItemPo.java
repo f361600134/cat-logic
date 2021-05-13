@@ -127,10 +127,12 @@ public abstract class ItemPo extends BasePo {
 		return PROP_ITEMID;
 	}
 
+	@Override
 	public String[] keyAndIndexColumn() {
 		return KEY_AND_INDEX_COLUMN;
 	}
-	
+
+	@Override
 	public Object[] keyAndIndexValues() {
 		return new Object[] {
 			getItemId(),

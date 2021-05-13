@@ -83,10 +83,12 @@ public abstract class MainMissionPo extends BasePo {
 		return PROP_PLAYERID;
 	}
 
+	@Override
 	public String[] keyAndIndexColumn() {
 		return KEY_AND_INDEX_COLUMN;
 	}
-	
+
+	@Override
 	public Object[] keyAndIndexValues() {
 		return new Object[] {
 			getPlayerId(),

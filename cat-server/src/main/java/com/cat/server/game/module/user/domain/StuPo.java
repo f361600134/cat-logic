@@ -112,10 +112,12 @@ public abstract class StuPo extends BasePo {
 		return PROP_ID;
 	}
 
+	@Override
 	public String[] keyAndIndexColumn() {
 		return KEY_AND_INDEX_COLUMN;
 	}
-	
+
+	@Override
 	public Object[] keyAndIndexValues() {
 		return new Object[] {
 			getId(),
