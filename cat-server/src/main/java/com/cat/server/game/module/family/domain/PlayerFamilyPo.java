@@ -14,11 +14,35 @@ public abstract class PlayerFamilyPo extends BasePo {
 	public static final String PROP_RESETTIME = "resetTime";
 	public static final String PROP_CONTRIBUTE = "contribute";
 	
-	protected long playerId;//玩家id
-	protected long joinTime;//加入时间
-	protected long leaveTime;//退出时间,强退记录,强制退出后间隔1天才能重新进入家族
-	protected long resetTime;//重置时间
-	protected int contribute;//个人家族贡献值
+	/** 所有列字段数组*/
+	public static final String[] PROP_ALL = new String[] {
+			PROP_PLAYERID,
+			PROP_JOINTIME,
+			PROP_LEAVETIME,
+			PROP_RESETTIME,
+			PROP_CONTRIBUTE,
+			};
+			
+	/** 所有主键索引字段数组*/
+	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
+			PROP_PLAYERID,
+			};
+		
+	/** 所有索引字段数组*/
+	public static final String[] INDEX_ALL = new String[] {
+			};
+	
+	
+	/** 玩家id*/
+	protected long playerId;
+	/** 加入时间*/
+	protected long joinTime;
+	/** 退出时间,强退记录,强制退出后间隔1天才能重新进入家族*/
+	protected long leaveTime;
+	/** 重置时间*/
+	protected long resetTime;
+	/** 个人家族贡献值*/
+	protected int contribute;
 	
 	public PlayerFamilyPo(){
 	}
@@ -77,13 +101,7 @@ public abstract class PlayerFamilyPo extends BasePo {
 	
 	@Override
 	public String[] props() {
-		return new String[] {
-		"`playerId`",
-		"`joinTime`",
-		"`leaveTime`",
-		"`resetTime`",
-		"`contribute`",
-		};
+		return PROP_ALL;
 	}
 
 	@Override
@@ -96,23 +114,41 @@ public abstract class PlayerFamilyPo extends BasePo {
 		getContribute(),
 		};
 	}
+	
+	@Override
+	public Object key() {
+		return getPlayerId();
+	}
+	
+	@Override
+	public String keyColumn() {
+		return PROP_PLAYERID;
+	}
 
+	public String[] keyAndIndexColumn() {
+		return KEY_AND_INDEX_COLUMN;
+	}
+	
+	public Object[] keyAndIndexValues() {
+		return new Object[] {
+			getPlayerId(),
+		};
+	}
+	
 	@Override
 	public String[] indexColumn() {
+		return INDEX_ALL;
+	}
+	
+	@Override
+	public String[] indexValues() {
 		return new String[] {
 		};
 	}
 	
 	@Override
-	public Object[] indexValues() {
-		return new Object[] {
-		};
-	}
-	
-	@Override
 	public String cacheId() {
-		return getPlayerId()+"";
+		return String.valueOf(getPlayerId());
 	}
-	
 	
 }

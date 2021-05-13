@@ -38,7 +38,7 @@ public class Family extends FamilyPo implements IPersistence, IGroup{
 	public Object key() {
 		return getId();
 	}
-	
+	@Override
 	public String keyColumn() {
 		return PROP_ID;
 	}
@@ -58,7 +58,7 @@ public class Family extends FamilyPo implements IPersistence, IGroup{
 		return family;
 	}
 	
-	//===========一些逻辑=========
+	//====================一些逻辑==================
 	/**
 	 * 获取家族职位
 	 * @return
@@ -79,6 +79,29 @@ public class Family extends FamilyPo implements IPersistence, IGroup{
 			return true;
 		}
 		return false;
+	}
+	
+	//=====================接口实现==================
+	
+	/**
+	 * 实例化一个新成员, 加入成员列表
+	 */
+	@Override
+	public IMember newMember(long memberId) {
+		DefaultMember member = new DefaultMember(memberId);
+		this.members.put(memberId, member);
+		return member;
+	}
+	
+	/**
+	 * 实例化一个新成员, 设置为leader, 加入成员列表
+	 */
+	@Override
+	public IMember newLeader(long memberId) {
+		DefaultMember member = new DefaultMember(memberId);
+		member.setPosition(FamilyPosition.PATRIARCH.getValue());
+		this.members.put(memberId, member);
+		return member;
 	}
 	
 }

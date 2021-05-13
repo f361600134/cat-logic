@@ -1,8 +1,6 @@
 package com.cat.server.game.module.player.domain;
 
-import com.cat.orm.core.annotation.PO;
 import com.cat.orm.core.base.BasePo;
-import com.cat.server.core.server.IPersistence;
 
 /**
 * PlayerPo
@@ -26,21 +24,71 @@ public abstract class PlayerPo extends BasePo {
 	public static final String PROP_STATUS = "status";
 	public static final String PROP_PROPERTIESTR = "propertieStr";
 	
-	protected long playerId;//角色ID
-	protected String accountName;//角色账号,服务器生成的唯一账号,全服唯一
-	protected String inputName;//玩家输入账号,记录下来用于排查玩家信息,玩家输入账号
-	protected String nickName;//角色昵称,游戏内角色自定义名称,全服唯一
-	protected int channel;//渠道Id
-	protected java.util.Date regTime;//注册时间
-	protected java.util.Date lastTime;//最后登陆时间
-	protected int curServerId;//当前服务器Id
-	protected int initServerId;//玩家创角时的,最原始服务器Id
-	protected int level;//等级
-	protected int exp;//经验
-	protected int vip;//VIP等级
-	protected int vipExp;//VIP经验
-	protected int status;//角色状态,0:默认,1:禁言,2:封号,4:删号,8:其他
-	protected String propertieStr;//资源数据json格式
+	/** 所有列字段数组*/
+	public static final String[] PROP_ALL = new String[] {
+			PROP_PLAYERID,
+			PROP_ACCOUNTNAME,
+			PROP_INPUTNAME,
+			PROP_NICKNAME,
+			PROP_CHANNEL,
+			PROP_REGTIME,
+			PROP_LASTTIME,
+			PROP_CURSERVERID,
+			PROP_INITSERVERID,
+			PROP_LEVEL,
+			PROP_EXP,
+			PROP_VIP,
+			PROP_VIPEXP,
+			PROP_STATUS,
+			PROP_PROPERTIESTR,
+			};
+			
+	/** 所有主键索引字段数组*/
+	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
+			PROP_PLAYERID,
+			PROP_ACCOUNTNAME,
+			PROP_NICKNAME,
+			PROP_INITSERVERID,
+			};
+		
+	/** 所有索引字段数组*/
+	public static final String[] INDEX_ALL = new String[] {
+			PROP_ACCOUNTNAME,
+			PROP_NICKNAME,
+			PROP_INITSERVERID,
+			};
+	
+	
+	/** 角色ID*/
+	protected long playerId;
+	/** 角色账号,服务器生成的唯一账号,全服唯一*/
+	protected String accountName;
+	/** 玩家输入账号,记录下来用于排查玩家信息,玩家输入账号*/
+	protected String inputName;
+	/** 角色昵称,游戏内角色自定义名称,全服唯一*/
+	protected String nickName;
+	/** 渠道Id*/
+	protected int channel;
+	/** 注册时间*/
+	protected java.util.Date regTime;
+	/** 最后登陆时间*/
+	protected java.util.Date lastTime;
+	/** 当前服务器Id*/
+	protected int curServerId;
+	/** 玩家创角时的,最原始服务器Id*/
+	protected int initServerId;
+	/** 等级*/
+	protected short level;
+	/** 经验*/
+	protected int exp;
+	/** VIP等级*/
+	protected short vip;
+	/** VIP经验*/
+	protected int vipExp;
+	/** 角色状态,0:默认,1:禁言,2:封号,4:删号,8:其他*/
+	protected byte status;
+	/** 资源数据json格式*/
+	protected String propertieStr;
 	
 	public PlayerPo(){
 		this.accountName = "";
@@ -131,11 +179,11 @@ public abstract class PlayerPo extends BasePo {
 	}
 	
 	/** 等级 **/
-	public int getLevel(){
+	public short getLevel(){
 		return this.level;
 	}
 	
-	public void setLevel(int level){
+	public void setLevel(short level){
 		this.level = level;
 	}
 	
@@ -149,11 +197,11 @@ public abstract class PlayerPo extends BasePo {
 	}
 	
 	/** VIP等级 **/
-	public int getVip(){
+	public short getVip(){
 		return this.vip;
 	}
 	
-	public void setVip(int vip){
+	public void setVip(short vip){
 		this.vip = vip;
 	}
 	
@@ -167,11 +215,11 @@ public abstract class PlayerPo extends BasePo {
 	}
 	
 	/** 角色状态,0:默认,1:禁言,2:封号,4:删号,8:其他 **/
-	public int getStatus(){
+	public byte getStatus(){
 		return this.status;
 	}
 	
-	public void setStatus(int status){
+	public void setStatus(byte status){
 		this.status = status;
 	}
 	
@@ -195,23 +243,7 @@ public abstract class PlayerPo extends BasePo {
 	
 	@Override
 	public String[] props() {
-		return new String[] {
-		"`playerId`",
-		"`accountName`",
-		"`inputName`",
-		"`nickName`",
-		"`channel`",
-		"`regTime`",
-		"`lastTime`",
-		"`curServerId`",
-		"`initServerId`",
-		"`level`",
-		"`exp`",
-		"`vip`",
-		"`vipExp`",
-		"`status`",
-		"`propertieStr`",
-		};
+		return PROP_ALL;
 	}
 
 	@Override
@@ -234,9 +266,37 @@ public abstract class PlayerPo extends BasePo {
 		getPropertieStr(),
 		};
 	}
+	
+	@Override
+	public Object key() {
+		return getPlayerId();
+	}
+	
+	@Override
+	public String keyColumn() {
+		return PROP_PLAYERID;
+	}
 
+	public String[] keyAndIndexColumn() {
+		return KEY_AND_INDEX_COLUMN;
+	}
+	
+	public Object[] keyAndIndexValues() {
+		return new Object[] {
+			getPlayerId(),
+			getAccountName(),
+			getNickName(),
+			getInitServerId(),
+		};
+	}
+	
 	@Override
 	public String[] indexColumn() {
+		return INDEX_ALL;
+	}
+	
+	@Override
+	public String[] indexValues() {
 		return new String[] {
 			PROP_ACCOUNTNAME,
 			PROP_NICKNAME,
@@ -245,27 +305,8 @@ public abstract class PlayerPo extends BasePo {
 	}
 	
 	@Override
-	public Object[] indexValues() {
-		return new Object[] {
-			getAccountName(),
-			getNickName(),
-			getInitServerId(),
-		};
-	}
-	
-	@Override
-	public Object key() {
-		return getPlayerId();
-	}
-
-	@Override
 	public String cacheId() {
 		return String.valueOf(getPlayerId());
-	}
-
-	@Override
-	public String keyColumn() {
-		return PROP_PLAYERID;
 	}
 	
 }

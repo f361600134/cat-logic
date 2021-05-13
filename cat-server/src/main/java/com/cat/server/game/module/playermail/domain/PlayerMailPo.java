@@ -17,14 +17,45 @@ public abstract class PlayerMailPo extends BasePo {
 	public static final String PROP_EXPIRETIME = "expireTime";
 	public static final String PROP_STATE = "state";
 	
-	protected long id;//邮件ID
-	protected long playerId;//角色ID
-	protected String title;//邮件标题
-	protected String content;//邮件内容
-	protected String rewards;//奖励:{configId:num,configId:num}
-	protected long createTime;//邮件创建时间
-	protected long expireTime;//邮件过期时间
-	protected byte state;//0=未读取;1=已读
+	/** 所有列字段数组*/
+	public static final String[] PROP_ALL = new String[] {
+			PROP_ID,
+			PROP_PLAYERID,
+			PROP_TITLE,
+			PROP_CONTENT,
+			PROP_REWARDS,
+			PROP_CREATETIME,
+			PROP_EXPIRETIME,
+			PROP_STATE,
+			};
+			
+	/** 所有主键索引字段数组*/
+	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
+			PROP_PLAYERID,
+			PROP_ID,
+			};
+		
+	/** 所有索引字段数组*/
+	public static final String[] INDEX_ALL = new String[] {
+			};
+	
+	
+	/** 邮件ID*/
+	protected long id;
+	/** 角色ID*/
+	protected long playerId;
+	/** 邮件标题*/
+	protected String title;
+	/** 邮件内容*/
+	protected String content;
+	/** 奖励:{configId:num,configId:num}*/
+	protected String rewards;
+	/** 邮件创建时间*/
+	protected long createTime;
+	/** 邮件过期时间*/
+	protected long expireTime;
+	/** 0=未读取;1=已读*/
+	protected byte state;
 	
 	public PlayerMailPo(){
 		this.title = "";
@@ -113,16 +144,7 @@ public abstract class PlayerMailPo extends BasePo {
 	
 	@Override
 	public String[] props() {
-		return new String[] {
-		"`id`",
-		"`playerId`",
-		"`title`",
-		"`content`",
-		"`rewards`",
-		"`createTime`",
-		"`expireTime`",
-		"`state`",
-		};
+		return PROP_ALL;
 	}
 
 	@Override
@@ -138,18 +160,36 @@ public abstract class PlayerMailPo extends BasePo {
 		getState(),
 		};
 	}
-
+	
 	@Override
-	public String[] indexColumn() {
-		return new String[] {
-			PROP_PLAYERID,
+	public Object key() {
+		return getPlayerId();
+	}
+	
+	@Override
+	public String keyColumn() {
+		return PROP_PLAYERID;
+	}
+
+	public String[] keyAndIndexColumn() {
+		return KEY_AND_INDEX_COLUMN;
+	}
+	
+	public Object[] keyAndIndexValues() {
+		return new Object[] {
+			getPlayerId(),
+			getId(),
 		};
 	}
 	
 	@Override
-	public Object[] indexValues() {
-		return new Object[] {
-			playerId,
+	public String[] indexColumn() {
+		return INDEX_ALL;
+	}
+	
+	@Override
+	public String[] indexValues() {
+		return new String[] {
 		};
 	}
 	
@@ -157,6 +197,5 @@ public abstract class PlayerMailPo extends BasePo {
 	public String cacheId() {
 		return getPlayerId()+":"+getId();
 	}
-	
 	
 }

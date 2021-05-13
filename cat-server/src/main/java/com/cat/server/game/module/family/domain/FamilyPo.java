@@ -20,17 +20,55 @@ public abstract class FamilyPo extends BasePo {
 	public static final String PROP_CURSERVERID = "curServerId";
 	public static final String PROP_TAG = "tag";
 	
-	protected long id;//家族id
-	protected String name;//家族名,可修改
-	protected String applyStr;//申请列表
-	protected String memberStr;//成员列表
-	protected int exp;//经验
-	protected short level;//等级
-	protected long createTime;//创建时间戳
-	protected String notice;//公告,可修改
-	protected int initServerId;//初始服务器id
-	protected int curServerId;//当前服务器id
-	protected String tag;//家族号,可以修改.用于精确查询
+	/** 所有列字段数组*/
+	public static final String[] PROP_ALL = new String[] {
+			PROP_ID,
+			PROP_NAME,
+			PROP_APPLYSTR,
+			PROP_MEMBERSTR,
+			PROP_EXP,
+			PROP_LEVEL,
+			PROP_CREATETIME,
+			PROP_NOTICE,
+			PROP_INITSERVERID,
+			PROP_CURSERVERID,
+			PROP_TAG,
+			};
+			
+	/** 所有主键索引字段数组*/
+	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
+			PROP_ID,
+			PROP_NAME,
+			};
+		
+	/** 所有索引字段数组*/
+	public static final String[] INDEX_ALL = new String[] {
+			PROP_NAME,
+			};
+	
+	
+	/** 家族id*/
+	protected long id;
+	/** 家族名,可修改*/
+	protected String name;
+	/** 申请列表*/
+	protected String applyStr;
+	/** 成员列表*/
+	protected String memberStr;
+	/** 经验*/
+	protected int exp;
+	/** 等级*/
+	protected short level;
+	/** 创建时间戳*/
+	protected long createTime;
+	/** 公告,可修改*/
+	protected String notice;
+	/** 初始服务器id*/
+	protected int initServerId;
+	/** 当前服务器id*/
+	protected int curServerId;
+	/** 家族号,可以修改.用于精确查询*/
+	protected String tag;
 	
 	public FamilyPo(){
 		this.name = "";
@@ -149,19 +187,7 @@ public abstract class FamilyPo extends BasePo {
 	
 	@Override
 	public String[] props() {
-		return new String[] {
-		"`id`",
-		"`name`",
-		"`applyStr`",
-		"`memberStr`",
-		"`exp`",
-		"`level`",
-		"`createTime`",
-		"`notice`",
-		"`initServerId`",
-		"`curServerId`",
-		"`tag`",
-		};
+		return PROP_ALL;
 	}
 
 	@Override
@@ -180,23 +206,43 @@ public abstract class FamilyPo extends BasePo {
 		getTag(),
 		};
 	}
-
+	
 	@Override
-	public String[] indexColumn() {
-		return new String[] {
+	public Object key() {
+		return getId();
+	}
+	
+	@Override
+	public String keyColumn() {
+		return PROP_ID;
+	}
+
+	public String[] keyAndIndexColumn() {
+		return KEY_AND_INDEX_COLUMN;
+	}
+	
+	public Object[] keyAndIndexValues() {
+		return new Object[] {
+			getId(),
+			getName(),
 		};
 	}
 	
 	@Override
-	public Object[] indexValues() {
-		return new Object[] {
+	public String[] indexColumn() {
+		return INDEX_ALL;
+	}
+	
+	@Override
+	public String[] indexValues() {
+		return new String[] {
+			PROP_NAME,
 		};
 	}
 	
 	@Override
 	public String cacheId() {
-		return getId()+"";
+		return String.valueOf(getId());
 	}
-	
 	
 }

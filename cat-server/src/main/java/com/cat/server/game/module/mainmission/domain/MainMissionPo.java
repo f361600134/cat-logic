@@ -11,8 +11,26 @@ public abstract class MainMissionPo extends BasePo {
 	public static final String PROP_PLAYERID = "playerId";
 	public static final String PROP_MISSIONSTR = "missionStr";
 	
-	protected long playerId;//玩家id
-	protected String missionStr;//任务数据str
+	/** 所有列字段数组*/
+	public static final String[] PROP_ALL = new String[] {
+			PROP_PLAYERID,
+			PROP_MISSIONSTR,
+			};
+			
+	/** 所有主键索引字段数组*/
+	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
+			PROP_PLAYERID,
+			};
+		
+	/** 所有索引字段数组*/
+	public static final String[] INDEX_ALL = new String[] {
+			};
+	
+	
+	/** 玩家id*/
+	protected long playerId;
+	/** 任务数据str*/
+	protected String missionStr;
 	
 	public MainMissionPo(){
 		this.missionStr = "";
@@ -39,15 +57,12 @@ public abstract class MainMissionPo extends BasePo {
 	
 	@Override
 	public String toString() {
-		return "MainMission[ playerId= " +getPlayerId()+ "+, playerId= "+ playerId +", missionStr= "+ missionStr+"]";
+		return "MainMission [playerId= "+ playerId +", missionStr= "+ missionStr+"]";
 	}
 	
 	@Override
 	public String[] props() {
-		return new String[] {
-		"`playerId`",
-		"`missionStr`",
-		};
+		return PROP_ALL;
 	}
 
 	@Override
@@ -57,39 +72,41 @@ public abstract class MainMissionPo extends BasePo {
 		getMissionStr(),
 		};
 	}
-
+	
 	@Override
-	public String[] indexColumn() {
-		return new String[] {
-			PROP_PLAYERID,
-		};
+	public Object key() {
+		return getPlayerId();
 	}
 	
 	@Override
-	public Object[] indexValues() {
+	public String keyColumn() {
+		return PROP_PLAYERID;
+	}
+
+	public String[] keyAndIndexColumn() {
+		return KEY_AND_INDEX_COLUMN;
+	}
+	
+	public Object[] keyAndIndexValues() {
 		return new Object[] {
 			getPlayerId(),
 		};
 	}
 	
 	@Override
-	public Object key() {
-		// 第一主键的数据值, 例如playerId
-		//return getId();
-		return getPlayerId();
+	public String[] indexColumn() {
+		return INDEX_ALL;
 	}
-
+	
+	@Override
+	public String[] indexValues() {
+		return new String[] {
+		};
+	}
+	
 	@Override
 	public String cacheId() {
-		// 缓存的二级ID, 如果不是一对多关系的return null即可
-		//return String.valueOf(getId());
 		return String.valueOf(getPlayerId());
-	}
-
-	@Override
-	public String keyColumn() {
-		// 第一主键的数据库列名
-		return indexColumn()[0];
 	}
 	
 }

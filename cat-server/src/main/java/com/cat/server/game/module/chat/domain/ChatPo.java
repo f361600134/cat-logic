@@ -13,10 +13,35 @@ public abstract class ChatPo extends BasePo {
 	public static final String PROP_DATA = "data";
 	public static final String PROP_CHANNEL = "channel";
 	
-	protected long leftKey;//左key，与右key组合成唯一key
-	protected long rightKey;//右key，与左key组合成唯一key
-	protected String data;//玩家聊天数据
-	protected int channel;//频道
+	/** 所有列字段数组*/
+	public static final String[] PROP_ALL = new String[] {
+			PROP_LEFTKEY,
+			PROP_RIGHTKEY,
+			PROP_DATA,
+			PROP_CHANNEL,
+			};
+			
+	/** 所有主键索引字段数组*/
+	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
+			PROP_LEFTKEY,
+			PROP_RIGHTKEY,
+			};
+		
+	/** 所有索引字段数组*/
+	public static final String[] INDEX_ALL = new String[] {
+			PROP_LEFTKEY,
+			PROP_RIGHTKEY,
+			};
+	
+	
+	/** 左key，与右key组合成唯一key*/
+	protected long leftKey;
+	/** 右key，与左key组合成唯一key*/
+	protected long rightKey;
+	/** 玩家聊天数据*/
+	protected String data;
+	/** 频道*/
+	protected int channel;
 	
 	public ChatPo(){
 		this.data = "";
@@ -66,12 +91,7 @@ public abstract class ChatPo extends BasePo {
 	
 	@Override
 	public String[] props() {
-		return new String[] {
-		"`leftKey`",
-		"`rightKey`",
-		"`data`",
-		"`channel`",
-		};
+		return PROP_ALL;
 	}
 
 	@Override
@@ -83,17 +103,24 @@ public abstract class ChatPo extends BasePo {
 		getChannel(),
 		};
 	}
-
+	
 	@Override
-	public String[] indexColumn() {
-		return new String[] {
-			PROP_LEFTKEY,
-			PROP_RIGHTKEY,
-		};
+	public Object key() {
+		//主键为空,返回null
+		return null;
 	}
 	
 	@Override
-	public Object[] indexValues() {
+	public String keyColumn() {
+		//主键为空,返回null
+		return null;
+	}
+
+	public String[] keyAndIndexColumn() {
+		return KEY_AND_INDEX_COLUMN;
+	}
+	
+	public Object[] keyAndIndexValues() {
 		return new Object[] {
 			getLeftKey(),
 			getRightKey(),
@@ -101,9 +128,22 @@ public abstract class ChatPo extends BasePo {
 	}
 	
 	@Override
-	public String cacheId() {
-		return getLeftKey()+":"+getRightKey();
+	public String[] indexColumn() {
+		return INDEX_ALL;
 	}
 	
+	@Override
+	public String[] indexValues() {
+		return new String[] {
+			PROP_LEFTKEY,
+			PROP_RIGHTKEY,
+		};
+	}
+	
+	@Override
+	public String cacheId() {
+		//主键为空,返回索引组合
+		return getLeftKey()+":"+getRightKey();
+	}
 	
 }

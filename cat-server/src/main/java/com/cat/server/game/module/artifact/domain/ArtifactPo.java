@@ -20,17 +20,54 @@ public abstract class ArtifactPo extends BasePo {
 	public static final String PROP_MISSIONSTR = "missionStr";
 	public static final String PROP_USEDMATERIALSTR = "usedMaterialStr";
 	
-	protected long playerId;//玩家ID
-	protected int configId;//神器配置id
-	protected int level;//神器等级
-	protected int exp;//经验
-	protected int refineLv;//精炼等级
-	protected int skillLv;//技能等级
-	protected int state;//状态
-	protected int holySealLv;//圣印等级
-	protected int skinId;//皮肤id
-	protected int missionStr;//已完成任务列表
-	protected int usedMaterialStr;//累计使用材料
+	/** 所有列字段数组*/
+	public static final String[] PROP_ALL = new String[] {
+			PROP_PLAYERID,
+			PROP_CONFIGID,
+			PROP_LEVEL,
+			PROP_EXP,
+			PROP_REFINELV,
+			PROP_SKILLLV,
+			PROP_STATE,
+			PROP_HOLYSEALLV,
+			PROP_SKINID,
+			PROP_MISSIONSTR,
+			PROP_USEDMATERIALSTR,
+			};
+			
+	/** 所有主键索引字段数组*/
+	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
+			PROP_PLAYERID,
+			PROP_CONFIGID,
+			};
+		
+	/** 所有索引字段数组*/
+	public static final String[] INDEX_ALL = new String[] {
+			};
+	
+	
+	/** 玩家ID*/
+	protected long playerId;
+	/** 神器配置id*/
+	protected int configId;
+	/** 神器等级*/
+	protected int level;
+	/** 经验*/
+	protected int exp;
+	/** 精炼等级*/
+	protected int refineLv;
+	/** 技能等级*/
+	protected int skillLv;
+	/** 状态*/
+	protected int state;
+	/** 圣印等级*/
+	protected int holySealLv;
+	/** 皮肤id*/
+	protected int skinId;
+	/** 已完成任务列表*/
+	protected int missionStr;
+	/** 累计使用材料*/
+	protected int usedMaterialStr;
 	
 	public ArtifactPo(){
 	}
@@ -144,19 +181,7 @@ public abstract class ArtifactPo extends BasePo {
 	
 	@Override
 	public String[] props() {
-		return new String[] {
-		"`playerId`",
-		"`configId`",
-		"`level`",
-		"`exp`",
-		"`refineLv`",
-		"`skillLv`",
-		"`state`",
-		"`holySealLv`",
-		"`skinId`",
-		"`missionStr`",
-		"`usedMaterialStr`",
-		};
+		return PROP_ALL;
 	}
 
 	@Override
@@ -175,17 +200,22 @@ public abstract class ArtifactPo extends BasePo {
 		getUsedMaterialStr(),
 		};
 	}
-
+	
 	@Override
-	public String[] indexColumn() {
-		return new String[] {
-			PROP_PLAYERID,
-			PROP_CONFIGID,
-		};
+	public Object key() {
+		return getPlayerId();
 	}
 	
 	@Override
-	public Object[] indexValues() {
+	public String keyColumn() {
+		return PROP_PLAYERID;
+	}
+
+	public String[] keyAndIndexColumn() {
+		return KEY_AND_INDEX_COLUMN;
+	}
+	
+	public Object[] keyAndIndexValues() {
 		return new Object[] {
 			getPlayerId(),
 			getConfigId(),
@@ -193,23 +223,19 @@ public abstract class ArtifactPo extends BasePo {
 	}
 	
 	@Override
-	public Object key() {
-		// 第一主键的数据值, 例如playerId
-		//return getId();
-		return getPlayerId();
+	public String[] indexColumn() {
+		return INDEX_ALL;
 	}
-
+	
+	@Override
+	public String[] indexValues() {
+		return new String[] {
+		};
+	}
+	
 	@Override
 	public String cacheId() {
-		// 缓存的二级ID, 如果不是一对多关系的return null即可
-		//return String.valueOf(getId());
-		return String.valueOf(getPlayerId());
-	}
-
-	@Override
-	public String keyColumn() {
-		// 第一主键的数据库列名
-		return indexColumn()[0];
+		return getPlayerId()+":"+getConfigId();
 	}
 	
 }

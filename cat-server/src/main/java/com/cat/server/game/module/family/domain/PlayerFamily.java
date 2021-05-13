@@ -22,7 +22,8 @@ public class PlayerFamily extends PlayerFamilyPo implements IPersistence{
 	public Object key() {
 		return getPlayerId();
 	}
-	
+
+	@Override
 	public String keyColumn() {
 		return PROP_PLAYERID;
 	}

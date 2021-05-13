@@ -1,6 +1,5 @@
 package com.cat.server.game.module.rank.domain;
 
-import com.cat.orm.core.annotation.PO;
 import com.cat.orm.core.base.BasePo;
 
 /**
@@ -17,13 +16,46 @@ public abstract class RankPo extends BasePo {
 	public static final String PROP_THIRDVALUE = "thirdValue";
 	public static final String PROP_CREATETIME = "createTime";
 	
-	protected int curServerId;//当前服务器Id
-	protected int rankType;//排行榜类型
-	protected long uniqueId;//对象id
-	protected long firstValue;//第一比较值,最主要的比较值
-	protected long secondValue;//第二比较值,第一比较值相同的情况下, 比较此值
-	protected long thirdValue;//第三比较值,第二比较值相同的情况下, 比较此值
-	protected long createTime;//入榜时间
+	/** 所有列字段数组*/
+	public static final String[] PROP_ALL = new String[] {
+			PROP_CURSERVERID,
+			PROP_RANKTYPE,
+			PROP_UNIQUEID,
+			PROP_FIRSTVALUE,
+			PROP_SECONDVALUE,
+			PROP_THIRDVALUE,
+			PROP_CREATETIME,
+			};
+			
+	/** 所有主键索引字段数组*/
+	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
+			PROP_CURSERVERID,
+			PROP_RANKTYPE,
+			PROP_UNIQUEID,
+			};
+		
+	/** 所有索引字段数组*/
+	public static final String[] INDEX_ALL = new String[] {
+			PROP_CURSERVERID,
+			PROP_RANKTYPE,
+			PROP_UNIQUEID,
+			};
+	
+	
+	/** 当前服务器Id*/
+	protected int curServerId;
+	/** 排行榜类型*/
+	protected int rankType;
+	/** 对象id*/
+	protected long uniqueId;
+	/** 第一比较值,最主要的比较值*/
+	protected long firstValue;
+	/** 第二比较值,第一比较值相同的情况下, 比较此值*/
+	protected long secondValue;
+	/** 第三比较值,第二比较值相同的情况下, 比较此值*/
+	protected long thirdValue;
+	/** 入榜时间*/
+	protected long createTime;
 	
 	public RankPo(){
 	}
@@ -100,15 +132,7 @@ public abstract class RankPo extends BasePo {
 	
 	@Override
 	public String[] props() {
-		return new String[] {
-		"`curServerId`",
-		"`rankType`",
-		"`uniqueId`",
-		"`firstValue`",
-		"`secondValue`",
-		"`thirdValue`",
-		"`createTime`",
-		};
+		return PROP_ALL;
 	}
 
 	@Override
@@ -123,18 +147,24 @@ public abstract class RankPo extends BasePo {
 		getCreateTime(),
 		};
 	}
-
+	
 	@Override
-	public String[] indexColumn() {
-		return new String[] {
-			PROP_CURSERVERID,
-			PROP_RANKTYPE,
-			PROP_UNIQUEID,
-		};
+	public Object key() {
+		//主键为空,返回null
+		return null;
 	}
 	
 	@Override
-	public Object[] indexValues() {
+	public String keyColumn() {
+		//主键为空,返回null
+		return null;
+	}
+
+	public String[] keyAndIndexColumn() {
+		return KEY_AND_INDEX_COLUMN;
+	}
+	
+	public Object[] keyAndIndexValues() {
 		return new Object[] {
 			getCurServerId(),
 			getRankType(),
@@ -143,20 +173,23 @@ public abstract class RankPo extends BasePo {
 	}
 	
 	@Override
-	public Object key() {
-		//主键为空,返回null
-		return null;
+	public String[] indexColumn() {
+		return INDEX_ALL;
 	}
-
+	
+	@Override
+	public String[] indexValues() {
+		return new String[] {
+			PROP_CURSERVERID,
+			PROP_RANKTYPE,
+			PROP_UNIQUEID,
+		};
+	}
+	
 	@Override
 	public String cacheId() {
+		//主键为空,返回索引组合
 		return getCurServerId()+":"+getRankType()+":"+getUniqueId();
-	}
-
-	@Override
-	public String keyColumn() {
-		//主键为空,返回null
-		return null;
 	}
 	
 }

@@ -66,7 +66,7 @@ public class NetworkComponent implements Lifecycle{
 	 */
 	@Bean
 	public ControllerDispatcher controllerProcessor() {
-		logger.info("注册[ControllerProcessor]服务");
+		logger.info("注册[ControllerDispatcher]服务");
 		return new ControllerDispatcher();
 	}
 	

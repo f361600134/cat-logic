@@ -16,13 +16,45 @@ public abstract class HeroPo extends BasePo {
 	public static final String PROP_TALENT = "talent";
 	public static final String PROP_USEDMATERIALSTR = "usedMaterialStr";
 	
-	protected long id;//武将唯一id
-	protected long playerId;//所属玩家id
-	protected int configId;//配置id
-	protected int level;//等级
-	protected String starIdStr;//星格信息,List
-	protected int talent;//已激活天赋
-	protected String usedMaterialStr;//记录使用材料
+	/** 所有列字段数组*/
+	public static final String[] PROP_ALL = new String[] {
+			PROP_ID,
+			PROP_PLAYERID,
+			PROP_CONFIGID,
+			PROP_LEVEL,
+			PROP_STARIDSTR,
+			PROP_TALENT,
+			PROP_USEDMATERIALSTR,
+			};
+			
+	/** 所有主键索引字段数组*/
+	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
+			PROP_ID,
+			PROP_PLAYERID,
+			PROP_CONFIGID,
+			};
+		
+	/** 所有索引字段数组*/
+	public static final String[] INDEX_ALL = new String[] {
+			PROP_PLAYERID,
+			PROP_CONFIGID,
+			};
+	
+	
+	/** 武将唯一id*/
+	protected long id;
+	/** 所属玩家id*/
+	protected long playerId;
+	/** 配置id*/
+	protected int configId;
+	/** 等级*/
+	protected int level;
+	/** 星格信息,List*/
+	protected String starIdStr;
+	/** 已激活天赋*/
+	protected int talent;
+	/** 记录使用材料*/
+	protected String usedMaterialStr;
 	
 	public HeroPo(){
 		this.starIdStr = "";
@@ -101,15 +133,7 @@ public abstract class HeroPo extends BasePo {
 	
 	@Override
 	public String[] props() {
-		return new String[] {
-		"`id`",
-		"`playerId`",
-		"`configId`",
-		"`level`",
-		"`starIdStr`",
-		"`talent`",
-		"`usedMaterialStr`",
-		};
+		return PROP_ALL;
 	}
 
 	@Override
@@ -124,39 +148,45 @@ public abstract class HeroPo extends BasePo {
 		getUsedMaterialStr(),
 		};
 	}
-
-	@Override
-	public String[] indexColumn() {
-		return new String[] {
-			PROP_ID,
-		};
-	}
-	
-	@Override
-	public Object[] indexValues() {
-		return new Object[] {
-			getId(),
-		};
-	}
 	
 	@Override
 	public Object key() {
-		// 第一主键的数据值, 例如playerId
-		//return getId();
 		return getId();
 	}
-
-	@Override
-	public String cacheId() {
-		// 缓存的二级ID, 如果不是一对多关系的return null即可
-		//return String.valueOf(getId());
-		return String.valueOf(getId());
-	}
-
+	
 	@Override
 	public String keyColumn() {
-		// 第一主键的数据库列名
-		return indexColumn()[0];
+		return PROP_ID;
+	}
+
+	public String[] keyAndIndexColumn() {
+		return KEY_AND_INDEX_COLUMN;
+	}
+	
+	public Object[] keyAndIndexValues() {
+		return new Object[] {
+			getId(),
+			getPlayerId(),
+			getConfigId(),
+		};
+	}
+	
+	@Override
+	public String[] indexColumn() {
+		return INDEX_ALL;
+	}
+	
+	@Override
+	public String[] indexValues() {
+		return new String[] {
+			PROP_PLAYERID,
+			PROP_CONFIGID,
+		};
+	}
+	
+	@Override
+	public String cacheId() {
+		return String.valueOf(getId());
 	}
 	
 }

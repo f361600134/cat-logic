@@ -26,8 +26,6 @@ public interface IGroup {
 	 * @return IMember  
 	 * @date 2021年5月12日下午11:28:57
 	 */
-	default public IMember newLeader(long memberId) {
-		return new DefaultMember(memberId);
-	}
+	public IMember newLeader(long memberId);
 
 }

@@ -61,10 +61,10 @@ public class Item extends ItemPo implements IItem{
 		return expect;
 	}
 	
-	@Override
-	public Class<?> clazz() {
-		return Item.class;
-	}
+//	@Override
+//	public Class<?> clazz() {
+//		return Item.class;
+//	}
 
 	@Override
 	public long getUniqueId() {

@@ -13,17 +13,40 @@ public abstract class ItemPo extends BasePo {
 	public static final String PROP_CONFIGID = "configId";
 	public static final String PROP_COUNT = "count";
 	public static final String PROP_RECIEVETIME = "recieveTime";
-	public static final String PROP_PARAMS = "params";
 	
-	protected long playerId;//玩家ID
-	protected long itemId;//道具唯一id
-	protected int configId;//道具配置id
-	protected int count;//物品数量
-	protected int recieveTime;//获得时间
-	protected String params;//额外参数如符文的随机属性、技能,神装随机属性
+	/** 所有列字段数组*/
+	public static final String[] PROP_ALL = new String[] {
+			PROP_PLAYERID,
+			PROP_ITEMID,
+			PROP_CONFIGID,
+			PROP_COUNT,
+			PROP_RECIEVETIME,
+			};
+			
+	/** 所有主键索引字段数组*/
+	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
+			PROP_ITEMID,
+			PROP_PLAYERID,
+			};
+		
+	/** 所有索引字段数组*/
+	public static final String[] INDEX_ALL = new String[] {
+			PROP_PLAYERID,
+			};
+	
+	
+	/** 玩家ID*/
+	protected long playerId;
+	/** 道具唯一id*/
+	protected long itemId;
+	/** 道具配置id*/
+	protected int configId;
+	/** 物品数量*/
+	protected int count;
+	/** 获得时间*/
+	protected int recieveTime;
 	
 	public ItemPo(){
-		this.params = "";
 	}
 	
 	/** 玩家ID **/
@@ -71,32 +94,16 @@ public abstract class ItemPo extends BasePo {
 		this.recieveTime = recieveTime;
 	}
 	
-	/** 额外参数如符文的随机属性、技能,神装随机属性 **/
-	public String getParams(){
-		return this.params;
-	}
-	
-	public void setParams(String params){
-		this.params = params;
-	}
-	
 	
 	@Override
 	public String toString() {
-		return "Item[ playerId= " +getPlayerId()+ "+, playerId= "+ playerId +", itemId= "+ itemId +", configId= "+ configId +", count= "+ count +", recieveTime= "+ recieveTime
-				 +", params= "+ params+"]";
+		return "Item [playerId= "+ playerId +", itemId= "+ itemId +", configId= "+ configId +", count= "+ count +", recieveTime= "+ recieveTime
+				+"]";
 	}
 	
 	@Override
 	public String[] props() {
-		return new String[] {
-		"`playerId`",
-		"`itemId`",
-		"`configId`",
-		"`count`",
-		"`recieveTime`",
-		"`params`",
-		};
+		return PROP_ALL;
 	}
 
 	@Override
@@ -107,44 +114,45 @@ public abstract class ItemPo extends BasePo {
 		getConfigId(),
 		getCount(),
 		getRecieveTime(),
-		getParams(),
-		};
-	}
-
-	@Override
-	public String[] indexColumn() {
-		return new String[] {
-			PROP_PLAYERID,
-			PROP_ITEMID,
-		};
-	}
-	
-	@Override
-	public Object[] indexValues() {
-		return new Object[] {
-			getPlayerId(),
-			getItemId(),
 		};
 	}
 	
 	@Override
 	public Object key() {
-		// 第一主键的数据值, 例如playerId
-		//return getId();
 		return getItemId();
 	}
-
-	@Override
-	public String cacheId() {
-		// 缓存的二级ID, 如果不是一对多关系的return null即可
-		//return String.valueOf(getId());
-		return String.valueOf(getItemId());
-	}
-
+	
 	@Override
 	public String keyColumn() {
-		// 第一主键的数据库列名
 		return PROP_ITEMID;
+	}
+
+	public String[] keyAndIndexColumn() {
+		return KEY_AND_INDEX_COLUMN;
+	}
+	
+	public Object[] keyAndIndexValues() {
+		return new Object[] {
+			getItemId(),
+			getPlayerId(),
+		};
+	}
+	
+	@Override
+	public String[] indexColumn() {
+		return INDEX_ALL;
+	}
+	
+	@Override
+	public String[] indexValues() {
+		return new String[] {
+			PROP_PLAYERID,
+		};
+	}
+	
+	@Override
+	public String cacheId() {
+		return String.valueOf(getItemId());
 	}
 	
 }

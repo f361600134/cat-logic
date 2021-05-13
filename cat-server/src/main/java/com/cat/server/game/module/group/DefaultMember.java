@@ -1,5 +1,9 @@
 package com.cat.server.game.module.group;
 
+/**
+ * 默认团体成员
+ * @author Jeremy
+ */
 public class DefaultMember implements IMember{
 	
 	/**
@@ -9,8 +13,12 @@ public class DefaultMember implements IMember{
 	
 	/**
 	 * 职位, 可以根据职位获取到权限
+	 * 0:默认成员
 	 */
 	private int position;
+	
+	public DefaultMember() {
+	}
 	
 	public DefaultMember(long playerId) {
 		this.playerId = playerId;

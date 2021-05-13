@@ -13,17 +13,39 @@ public abstract class StuPo extends BasePo {
 	public static final String PROP_AGE = "age";
 	public static final String PROP_BIRTHDAY = "birthday";
 	
-	protected int id;//id
-	protected String name;//名字
-	protected int age;//年纪
-	protected String birthday;//生日
+	/** 所有列字段数组*/
+	public static final String[] PROP_ALL = new String[] {
+			PROP_ID,
+			PROP_NAME,
+			PROP_AGE,
+			PROP_BIRTHDAY,
+			};
+			
+	/** 所有主键索引字段数组*/
+	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
+			PROP_ID,
+			};
+		
+	/** 所有索引字段数组*/
+	public static final String[] INDEX_ALL = new String[] {
+			};
+	
+	
+	/** */
+	protected int id;
+	/** */
+	protected String name;
+	/** */
+	protected int age;
+	/** */
+	protected String birthday;
 	
 	public StuPo(){
 		this.name = "";
 		this.birthday = "";
 	}
 	
-	/** id **/
+	/**  **/
 	public int getId(){
 		return this.id;
 	}
@@ -32,7 +54,7 @@ public abstract class StuPo extends BasePo {
 		this.id = id;
 	}
 	
-	/** 名字 **/
+	/**  **/
 	public String getName(){
 		return this.name;
 	}
@@ -41,7 +63,7 @@ public abstract class StuPo extends BasePo {
 		this.name = name;
 	}
 	
-	/** 年纪 **/
+	/**  **/
 	public int getAge(){
 		return this.age;
 	}
@@ -50,7 +72,7 @@ public abstract class StuPo extends BasePo {
 		this.age = age;
 	}
 	
-	/** 生日 **/
+	/**  **/
 	public String getBirthday(){
 		return this.birthday;
 	}
@@ -67,56 +89,53 @@ public abstract class StuPo extends BasePo {
 	
 	@Override
 	public String[] props() {
-		return new String[] {
-		"`id`",
-		"`name`",
-		"`age`",
-		"`birthday`",
-		};
+		return PROP_ALL;
 	}
 
 	@Override
 	public Object[] propValues() {
 		return new Object[] { 
 		getId(),
-		poName(),
+		getName(),
 		getAge(),
 		getBirthday(),
-		};
-	}
-
-	@Override
-	public String[] indexColumn() {
-		return new String[] {
-			"`id`",
-		};
-	}
-	
-	@Override
-	public Object[] indexValues() {
-		return new Object[] {
-			id,
 		};
 	}
 	
 	@Override
 	public Object key() {
-		// 第一主键的数据值, 例如playerId
-		//return getId();
 		return getId();
 	}
-
-	@Override
-	public String cacheId() {
-		// 缓存的二级ID, 如果不是一对多关系的return null即可
-		//return String.valueOf(getId());
-		return String.valueOf(getId());
-	}
-
+	
 	@Override
 	public String keyColumn() {
-		// 第一主键的数据库列名
 		return PROP_ID;
+	}
+
+	public String[] keyAndIndexColumn() {
+		return KEY_AND_INDEX_COLUMN;
+	}
+	
+	public Object[] keyAndIndexValues() {
+		return new Object[] {
+			getId(),
+		};
+	}
+	
+	@Override
+	public String[] indexColumn() {
+		return INDEX_ALL;
+	}
+	
+	@Override
+	public String[] indexValues() {
+		return new String[] {
+		};
+	}
+	
+	@Override
+	public String cacheId() {
+		return String.valueOf(getId());
 	}
 	
 }

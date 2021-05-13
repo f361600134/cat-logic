@@ -2,7 +2,6 @@ package com.cat.server.game.module.user;
 
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.game.module.user.domain.StuPo;
-import org.springframework.stereotype.Repository;
 
 /**
 * @author Jeremy

@@ -22,10 +22,10 @@ public class Rank extends RankPo implements IPersistence, ISorter{
 		setFirstValue(firstValue);
 	}
 	
-	@Override
-	public Class<?> clazz() {
-		return Rank.class;
-	}
+//	@Override
+//	public Class<?> clazz() {
+//		return Rank.class;
+//	}
 
 	@Override
 	public Long getId() {

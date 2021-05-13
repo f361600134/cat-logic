@@ -22,7 +22,7 @@ import com.cat.server.game.module.family.assist.FamilyPosition;
 import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
 import com.cat.server.game.module.family.domain.FamilyApply;
-import com.cat.server.game.module.family.domain.FamilyMember;
+import com.cat.server.game.module.group.DefaultMember;
 import com.cat.server.game.module.rank.domain.Rank;
 
 
@@ -92,7 +92,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 			Family family = Family.create(id, name);
 			
 			//	设置创建家族的成员为族长
-			FamilyMember familymember =	new FamilyMember();
+			DefaultMember familymember = new DefaultMember();
 			familymember.setPlayerId(playerId);
 			familymember.setPosition(FamilyPosition.PATRIARCH.getValue());
 			family.getMembers().put(playerId, familymember);
