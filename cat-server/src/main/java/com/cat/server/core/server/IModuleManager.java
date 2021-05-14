@@ -23,4 +23,9 @@ public interface IModuleManager<I, T> {
 	 */
 	public void remove(I id);
 
+	/**
+	 * 初始化
+	 */
+	default public void init(){}
+
 }

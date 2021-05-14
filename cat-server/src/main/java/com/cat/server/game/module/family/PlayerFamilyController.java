@@ -1,14 +1,13 @@
 package com.cat.server.game.module.family;
 
 
+import com.cat.net.network.base.GameSession;
+import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.player.IPlayerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-import com.cat.net.network.base.GameSession;
-import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.player.IPlayerService;
 
 /**
  * PlayerFamily控制器

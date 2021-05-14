@@ -46,6 +46,7 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 	/**
 	 * 获取数据, 获取不到从数据库获取
 	 */
+	@Override
 	public T getDomain(I id) {
 		T domain = domains.get(id);
 		if (domain == null) {
@@ -61,10 +62,9 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 	}
 	
 	/**
-	 * 这里的getFromDB方法, 可以通过获取到domain反射获取pojo对象, 然后set到domain内
-	 * 所以
-	 * @param playerId
-	 * @return
+	 * 这里的getFromDB方法, 可以通过获取到domain反射获取pojo对象
+	 * @param id 持有者id
+	 * @return T domain对象
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public T getFromDb(I id) {

@@ -53,6 +53,8 @@ public interface ModuleDefines {
 //    int FRIEND = 136;
     /** 家族 */
     int FAMILY = 137;
+    /** 组队 */
+    int TEAM = 138;
 //    // -----------公共模块---------------------
 //    /** 活动 */
 //    int ACTIVITY = 141;

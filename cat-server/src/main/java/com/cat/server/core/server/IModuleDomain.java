@@ -36,7 +36,7 @@ public interface IModuleDomain<I, T> {
 	public void initData(I id);
 	
 	/**
-	 * 初始化, 创建后的操作
+	 * 不管是否有数据, 初始化数据后的操作
 	 */
 	default public void afterInit() {}
 	

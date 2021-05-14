@@ -1,17 +1,5 @@
 package com.cat.server.game.module.family;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Future;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.lifecycle.Lifecycle;
@@ -22,8 +10,15 @@ import com.cat.server.game.module.family.assist.FamilyPosition;
 import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
 import com.cat.server.game.module.family.domain.FamilyApply;
-import com.cat.server.game.module.group.DefaultMember;
-import com.cat.server.game.module.rank.domain.Rank;
+import com.cat.server.game.module.family.domain.FamilyDomain;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.concurrent.Future;
 
 
 /**
@@ -43,89 +38,48 @@ class FamilyService implements IFamilyService, Lifecycle{
 	
 	@Autowired
 	private ServerConfig serverConfig;
+
+	@Autowired
+	private FamilyManager familyManager;
 	
 	/**	公共的线程池处理器*/
 	@Autowired
 	private TokenTaskQueueExecutor defaultExecutor;
 	
 	/**
-	 * key: 家族id
-	 * value: 家族
-	 */
-	private Map<Long, Family> familyMap = new ConcurrentHashMap<>();
-	/**
-	 * key:familyName
-	 * value: familyId
-	 */
-	private Map<String, Long> familyNameMap = new ConcurrentHashMap<>();
-	/**
-	 * 加入此Map,可以精确查询
-	 * key:familyTag
-	 * value: familyId
-	 */
-	private Map<String, Long> familyTagMap = new ConcurrentHashMap<>();
-	/**
-	 * key: 玩家id
-	 * value: 家族id
-	 */
-	private Map<Long, Long> familyPlayerIdMap = new ConcurrentHashMap<>();
-	
-	/**
-	 * 从数据库获取
-	 * @return void  
-	 * @date 2021年5月10日下午10:12:41
-	 */
-	private List<Family> loadAllFamilys() {
-		final int serverId = serverConfig.getServerId();
-		String[] cols = new String[] {Rank.PROP_CURSERVERID};
-		List<Family> list = dataProcess.selectByIndex(Family.class, cols, new Object[] {serverId});
-		return list;
-	}
-	
-	/**
 	 * 创建家族
 	 */
-	public Family createFamily(long playerId, String name) throws Exception{
-		Future<Family> future = defaultExecutor.submit(0, ()->{
-			//			实例化一个新的家族
-			long id = this.generator.nextId();
-			Family family = Family.create(id, name);
-			
-			//	设置创建家族的成员为族长
-			DefaultMember familymember = new DefaultMember();
-			familymember.setPlayerId(playerId);
-			familymember.setPosition(FamilyPosition.PATRIARCH.getValue());
-			family.getMembers().put(playerId, familymember);
-			
-			//	丢进缓存
-			this.familyMap.put(id, family);
-			this.familyNameMap.put(name, id);
-			this.familyPlayerIdMap.put(playerId, id);
-			
+	public ErrorCode createFamily(long playerId, String name) throws Exception{
+		FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
+		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
+			if (domain.containsName(name)){
+				return ErrorCode.FAMILY_NAME_EXIST;
+			}
+			domain.create(playerId, name);
 			//	生成家族日志
-			return family;
+			return ErrorCode.SUCCESS;
 		});
 		return future.get();
 	}
 	
 	/**
-	 * 修改家族名, 
+	 * 修改家族名
 	 */
-	public ErrorCode editFamilyName(long playerId,String name) throws Exception{
+	public ErrorCode editFamilyName(long playerId, String name) throws Exception{
 		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
-			final Family family = getFamilyByPlayerId(playerId);
+			FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
+			if (domain == null){
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			final Family family = domain.getGroupByPlayerId(playerId);
 			if (family == null) {
 				return ErrorCode.FAMILY_NO_FAMILY;
 			}
-			//	重名判断
-			if (this.familyNameMap.containsKey(name)) {
+			if (domain.containsName(name)) {
 				return ErrorCode.FAMILY_NAME_EXIST;
 			}
-			//	获取到家族信息
-			family.setName(name);
-			//	丢进缓存
-			this.familyNameMap.put(name, family.getId());
-			//	生成家族日志
+			domain.rename(family.getId(), name);
+			//TODO	生成家族日志
 			return ErrorCode.SUCCESS;
 		});
 		return future.get();
@@ -137,18 +91,19 @@ class FamilyService implements IFamilyService, Lifecycle{
 	 */
 	public ErrorCode editFamilyTag(long playerId, String tag) throws Exception{
 		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
-			final Family family = getFamilyByPlayerId(playerId);
+			FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
+			if (domain == null){
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			final Family family = domain.getGroupByPlayerId(playerId);
 			if (family == null) {
 				return ErrorCode.FAMILY_NO_FAMILY;
 			}
-			if (this.familyTagMap.containsKey(tag)) {
-				return ErrorCode.FAMILY_NAME_EXIST;
+			if (domain.containsTag(tag)) {
+				return ErrorCode.FAMILY_TAG_EXIST;
 			}
-			//	设置新的家族号
-			family.setTag(tag);
-			//	丢进缓存
-			this.familyTagMap.put(tag, family.getId());
-			//	生成家族日志
+			domain.changeTag(family.getId(), tag);
+			//TODO	生成家族日志
 			return ErrorCode.SUCCESS;
 		});
 		return future.get();
@@ -159,31 +114,26 @@ class FamilyService implements IFamilyService, Lifecycle{
 	 * @param keyword 关键字
 	 * @return
 	 */
-	public Collection<Long> searchFamily(String keyword){
-		List<Long> result = new ArrayList<>();
-		//	先精确查找
-		Long familyId = familyTagMap.get(keyword);
-		if (familyId != null) {
-			result.add(familyId);
+	public Collection<Family> searchFamily(String keyword){
+		FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
+		if (domain == null){
+			return Collections.EMPTY_LIST;
 		}
-		//	再模糊查找
-		for (String familyName : familyNameMap.keySet()) {
-			//	只要包含关键字,就返回
-			if (familyName.contains(keyword)) {
-				result.add(familyNameMap.get(familyName));
-			}
-		}
-		return result;
+		return domain.searchGroup(keyword);
 	}
 	
 	/**
 	 * 申请进入家族
-	 * @param keyword 关键字
-	 * @return
+	 * @param playerId 申请玩家id
+	 * @return familyId 申请家族id
 	 */
 	public ErrorCode applyJoinFamily(long playerId, long familyId) throws Exception{
 		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
-			final Family family = getFamilyByFamilyId(familyId);
+			FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
+			if (domain == null){
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			final Family family = domain.get(familyId);
 			if (family == null) {
 				return ErrorCode.FAMILY_NO_FAMILY;
 			}
@@ -198,12 +148,16 @@ class FamilyService implements IFamilyService, Lifecycle{
 	
 	/**
 	 * 退出家族
-	 * @param keyword 关键字
+	 * @param playerId 退出家族的玩家id
 	 * @return
 	 */
 	public ErrorCode exitFamily(long playerId) throws Exception{
 		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
-			final Family family = getFamilyByPlayerId(playerId);
+			FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
+			if (domain == null){
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			final Family family = domain.getGroupByPlayerId(playerId);
 			if (family == null) {
 				return ErrorCode.FAMILY_NO_FAMILY;
 			}
@@ -211,8 +165,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 			if (family.getPosition(playerId) == FamilyPosition.PATRIARCH.getValue()) {
 				return ErrorCode.FAMILY_FIRE_SELF;
 			}
-			family.getMembers().remove(playerId);
-			familyPlayerIdMap.remove(playerId);
+			domain.exit(playerId, family.getId());
 			//	生成家族日志
 			return ErrorCode.SUCCESS;
 		});
@@ -228,7 +181,11 @@ class FamilyService implements IFamilyService, Lifecycle{
 	 */
 	public ErrorCode fire(long playerId, long firePlayerId) throws Exception{
 		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
-			final Family family = getFamilyByPlayerId(playerId);
+			FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
+			if (domain == null){
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			final Family family = domain.getGroupByPlayerId(playerId);
 			if (family == null) {
 				return ErrorCode.FAMILY_NO_FAMILY;
 			}
@@ -236,8 +193,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 			if (family.getPosition(firePlayerId) <= 0) {
 				return ErrorCode.FAMILY_PLAYER_NOT_EXIST;
 			}
-			family.getMembers().remove(firePlayerId);
-			familyPlayerIdMap.remove(firePlayerId);
+			domain.exit(firePlayerId, family.getId());
 			//	生成家族日志
 			return ErrorCode.SUCCESS;
 		});
@@ -260,15 +216,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 	/////////////接口方法////////////////////////
 	@Override
 	public void start() throws Throwable {
-		List<Family> loadAllFamilys = loadAllFamilys();
-		loadAllFamilys.forEach((family)->{
-			this.familyMap.put(family.getId(), family);
-			this.familyNameMap.put(family.getName(), family.getId());
-			this.familyTagMap.put(family.getTag(), family.getId());
-			family.getMembers().keySet().forEach((playerId)->{
-				this.familyPlayerIdMap.put(playerId, family.getId());
-			});
-		});
+		familyManager.init();
 	}
 	
 	@Override
@@ -285,17 +233,27 @@ class FamilyService implements IFamilyService, Lifecycle{
 	 * @param playerId
 	 * @return
 	 */
+	@Override
 	public long getPlayerFamilyId(long playerId){
-		return familyPlayerIdMap.getOrDefault(playerId, 0L);
+		FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
+		if (domain == null){
+			return 0;
+		}
+		return domain.getGroupIdByPlayerId(playerId);
 	}
 	
 	/**
 	 * 根据玩家id获取到家族id
-	 * @param playerId
+	 * @param familyId
 	 * @return
 	 */
+	@Override
 	public Family getFamilyByFamilyId(long familyId){
-		return familyMap.get(familyId);
+		FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
+		if (domain == null){
+			return null;
+		}
+		return domain.get(familyId);
 	}
 	
 	/**
@@ -303,6 +261,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 	 * @param playerId
 	 * @return
 	 */
+	@Override
 	public Family getFamilyByPlayerId(long playerId){
 		final long familyId = getPlayerFamilyId(playerId);
 		if (familyId == 0) {

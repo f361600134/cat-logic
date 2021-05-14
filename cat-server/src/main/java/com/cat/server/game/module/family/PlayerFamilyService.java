@@ -1,13 +1,5 @@
 package com.cat.server.game.module.family;
 
-import java.util.Collection;
-
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
@@ -15,6 +7,13 @@ import com.cat.server.game.module.family.domain.PlayerFamily;
 import com.cat.server.game.module.family.domain.PlayerFamilyDomain;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.utils.TimeUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 
 /**
@@ -81,7 +80,11 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 		}
 		//TODO 敏感字判断,特殊字符,长度判断
 		try {
-			Family family = familyService.createFamily(playerId, name);
+			ErrorCode errorCode = familyService.createFamily(playerId, name);
+			if (!errorCode.isSuccess()){
+				return errorCode;
+			}
+			Family family = familyService.getFamilyByPlayerId(playerId);
 			//	下发家族信息
 			this.responsePlayerFamilyInfo(playerId, family);
 			//	返回创建家族成功信息
@@ -127,21 +130,21 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 	
 	/**
 	 * 查询家族
-	 * @param playerId
-	 * @param name  
+	 * @param playerId 查询的玩家id
+	 * @param keyword 查询关键字
 	 * @return void  
 	 * @date 2021年5月10日下午11:19:24
 	 */
 	public ErrorCode searchFamily(long playerId, String keyword) {
-		Collection<Long> familyIds = familyService.searchFamily(keyword);
+		Collection<Family> familyIds = familyService.searchFamily(keyword);
 		//	TODO 组装家族信息
 		return ErrorCode.SUCCESS;
 	}
 	
 	/**
 	 * 申请进入家族
-	 * @param playerId
-	 * @param name  
+	 * @param playerId 申请的玩家id
+	 * @param familyId 家族id
 	 * @return void  
 	 * @date 2021年5月10日下午11:19:24
 	 */
@@ -176,7 +179,8 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 		}
 		try {
 			ErrorCode errorCode = familyService.exitFamily(playerId);
-			if (!errorCode.isSuccess()) {//退出失败
+			//退出失败
+			if (!errorCode.isSuccess()) {
 				return errorCode;
 			}
 			//	退出成功

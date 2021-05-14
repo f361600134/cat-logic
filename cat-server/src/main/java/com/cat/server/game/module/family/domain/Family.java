@@ -1,9 +1,6 @@
 package com.cat.server.game.module.family.domain;
 
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
 import com.cat.orm.util.StateUtils;
@@ -13,6 +10,9 @@ import com.cat.server.game.module.group.DefaultMember;
 import com.cat.server.game.module.group.IGroup;
 import com.cat.server.game.module.group.IMember;
 import com.cat.server.utils.TimeUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
 * @author Jeremy
@@ -46,7 +46,8 @@ public class Family extends FamilyPo implements IPersistence, IGroup{
 	public Map<Long, FamilyApply> getApplys() {
 		return applys;
 	}
-	
+
+	@Override
 	public Map<Long, IMember> getMembers() {
 		return members;
 	}
@@ -63,9 +64,11 @@ public class Family extends FamilyPo implements IPersistence, IGroup{
 	 * 获取家族职位
 	 * @return
 	 */
+	@Override
 	public int getPosition(long playerId) {
 		IMember member = getMembers().get(playerId);
-		return member == null? 0 : member.getPosition();//	没有职位
+		//	0:没有职位
+		return member == null? 0 : member.getPosition();
 	}
 	
 	/**
@@ -89,6 +92,7 @@ public class Family extends FamilyPo implements IPersistence, IGroup{
 	@Override
 	public IMember newMember(long memberId) {
 		DefaultMember member = new DefaultMember(memberId);
+		member.setPosition(FamilyPosition.NOMAL.getValue());
 		this.members.put(memberId, member);
 		return member;
 	}
@@ -103,5 +107,5 @@ public class Family extends FamilyPo implements IPersistence, IGroup{
 		this.members.put(memberId, member);
 		return member;
 	}
-	
+
 }

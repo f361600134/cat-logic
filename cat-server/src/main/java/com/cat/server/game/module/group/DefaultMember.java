@@ -7,43 +7,42 @@ package com.cat.server.game.module.group;
 public class DefaultMember implements IMember{
 	
 	/**
-	 * 玩家id
+	 * 成员id,即玩家id
 	 */
-	private long playerId;
+	private long memberId;
 	
 	/**
 	 * 职位, 可以根据职位获取到权限
-	 * 0:默认成员
+	 * 0:默认成员,无职位
 	 */
 	private int position;
 	
 	public DefaultMember() {
 	}
 	
-	public DefaultMember(long playerId) {
-		this.playerId = playerId;
-		this.position = 0;//表示默认职位
+	public DefaultMember(long memberId) {
+		this.memberId = memberId;
+		//0表示默认职位,无职位
+		this.position = 0;
 	}
 
-	public long getPlayerId() {
-		return playerId;
+	public void setMemberId(long memberId) {
+		this.memberId = memberId;
 	}
 
-	public void setPlayerId(long playerId) {
-		this.playerId = playerId;
-	}
-
-	public int getPosition() {
-		return position;
-	}
-
+	@Override
 	public void setPosition(int position) {
 		this.position = position;
 	}
 
 	@Override
-	public long getId() {
-		return playerId;
+	public long getMemberId() {
+		return memberId;
 	}
-	
+
+	@Override
+	public int getPosition() {
+		return position;
+	}
+
 }

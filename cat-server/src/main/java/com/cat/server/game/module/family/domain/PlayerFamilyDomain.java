@@ -1,10 +1,9 @@
 package com.cat.server.game.module.family.domain;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.cat.server.core.server.AbstractModuleDomain;
 import com.cat.server.utils.TimeUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**

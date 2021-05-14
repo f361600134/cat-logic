@@ -13,7 +13,7 @@ public class FamilyApply {
 	private long playerId;
 	
 	/**
-	 * 请求创建时间
+	 * 申请时间
 	 */
 	private long createTime;
 	

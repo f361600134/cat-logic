@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 排行榜管理器
+ * TODO 优化内容, 排行榜初始化时全部加载, 应直接通过服务器id去获取
 * @author Jeremy
 */
 @Component
@@ -17,7 +18,8 @@ public class RankManager extends AbstractModuleManager<Integer, RankDomain>{
 	/**
 	 * 获取数据, 获取不到从数据库获取
 	 */
-	public synchronized RankDomain getDomain(Integer id) {
+	@Override
+    public synchronized RankDomain getDomain(Integer id) {
 		RankDomain domain = domains.get(id);
 		if (domain == null) {
 			domain = getFromDb(id);

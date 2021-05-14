@@ -1,22 +1,18 @@
 package com.cat.server.game.module.team.domain;
 
+import com.cat.server.game.module.group.AbstractGroupContainer;
+
 /**
  * 队伍域
- * @auth Jeremy
+ * @author Jeremy
  * @date 2021年5月6日下午10:28:48
  */
-public class TeamDomain {
-	
-	//队伍id->玩家id列表
-	//玩家id->队伍id
-	private Team team;
+public class TeamDomain extends AbstractGroupContainer<Team> {
 
-	public Team getTeam() {
-		return team;
+	@Override
+	public Team newGroup(long groupId, String groupName) {
+		return Team.create(groupId, groupName);
 	}
 
-	public void setTeam(Team team) {
-		this.team = team;
-	}
-	
+
 }

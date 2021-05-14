@@ -86,6 +86,14 @@ public enum ErrorCode implements ModuleDefines {
     FAMILY_NO_PRIVILEGE(FAMILY, 6, "没有该权限"),
     FAMILY_FIRE_SELF(FAMILY, 7, "请先退位再退家族"),
     FAMILY_PLAYER_NOT_EXIST(FAMILY, 8, "此玩家不在家族"),
+
+    // -----------------组队---------------------
+    TEAM_NAME_EXIST(TEAM, 1, "队伍名被占用"),
+    TEAM_MEMBER_NOT_EXIST(TEAM, 2, "此队员不存在"),
+    TEAM_FIRE_SELF(TEAM, 3, "被操作对象不能是自己"),
+    TEAM_NOT_EXIST(TEAM, 4, "队伍不存在"),
+    TEAM_ALREADY_IN_TEAM(TEAM, 5, "已处在队伍中不能创建队伍"),
+    TEAM_NOT_LEADER(TEAM, 6, "不是队长无权限操作"),
     ;
 	
 	

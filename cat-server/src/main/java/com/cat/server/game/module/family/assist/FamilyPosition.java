@@ -8,10 +8,6 @@ import com.cat.orm.util.StateUtils;
 public enum FamilyPosition {
 	
 	/**
-	 * 普通成员
-	 */
-	NOMAL(0),
-	/**
 	 * 族长
 	 */
 	PATRIARCH(1),
@@ -27,6 +23,10 @@ public enum FamilyPosition {
 	 * 自定义职位
 	 */
 	DEFINE(7),
+	/**
+	 * 普通成员
+	 */
+	NOMAL(9),
 	;
 	
 	private final int value;
