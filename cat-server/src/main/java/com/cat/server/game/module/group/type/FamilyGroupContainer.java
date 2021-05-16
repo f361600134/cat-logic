@@ -3,6 +3,9 @@ package com.cat.server.game.module.group.type;
 import com.cat.server.game.module.family.domain.Family;
 import com.cat.server.game.module.group.AbstractGroupContainer;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -43,5 +46,17 @@ public class FamilyGroupContainer extends AbstractGroupContainer<Family> impleme
     @Override
     public boolean containsTag(String tag) {
         return familyTagMap.containsKey(tag);
+    }
+    
+    @Override
+    public Collection<Family> searchGroup(String keyword) {
+    	List<Family> result = new ArrayList<>();
+    	long familyId = this.familyTagMap.getOrDefault(keyword, 0L);
+    	Family family = this.get(familyId);
+    	if (family != null) {
+    		result.add(family);
+		}
+    	result.addAll(super.searchGroup(keyword));
+    	return result;
     }
 }

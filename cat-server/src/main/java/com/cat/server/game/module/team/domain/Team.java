@@ -1,11 +1,14 @@
 package com.cat.server.game.module.team.domain;
 
+import com.cat.server.game.module.group.DefaultApply;
 import com.cat.server.game.module.group.DefaultMember;
 import com.cat.server.game.module.group.IGroup;
 import com.cat.server.game.module.group.IMember;
 import com.cat.server.game.module.team.assist.TeamPosition;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -47,6 +50,11 @@ public class Team implements IGroup {
 	 * 成员map
 	 */
 	private Map<Long, IMember> memberMap = new LinkedHashMap<>();
+	
+	/**
+	 * 申请列表
+	 */
+	private Map<Long, DefaultApply> applys =  new LinkedHashMap<>();
 
 	public Team(){
 	}
@@ -122,7 +130,7 @@ public class Team implements IGroup {
 		member.setPosition(TeamPosition.NOMAL.getValue());
 		return member;
 	}
-
+	
 	/**
 	 * 创建一个队伍
 	 * @param id
@@ -147,5 +155,15 @@ public class Team implements IGroup {
 		}
 		return 0L;
 	}
-
+	
+	/**
+	 * 获取申请列表, 超时删除
+	 * @return  
+	 * @return List<DefaultApply>  
+	 * @date 2021年5月15日下午6:03:54
+	 */
+	public Map<Long, DefaultApply> getApplys() {
+		return applys;
+	}
+	
 }

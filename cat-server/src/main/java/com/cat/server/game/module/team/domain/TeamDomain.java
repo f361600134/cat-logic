@@ -14,5 +14,4 @@ public class TeamDomain extends AbstractGroupContainer<Team> {
 		return Team.create(groupId, groupName);
 	}
 
-
 }

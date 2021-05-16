@@ -94,6 +94,7 @@ public enum ErrorCode implements ModuleDefines {
     TEAM_NOT_EXIST(TEAM, 4, "队伍不存在"),
     TEAM_ALREADY_IN_TEAM(TEAM, 5, "已处在队伍中不能创建队伍"),
     TEAM_NOT_LEADER(TEAM, 6, "不是队长无权限操作"),
+    TEAM_APPLY_EXPIRE(TEAM, 7, "该申请已过期"),
     ;
 	
 	

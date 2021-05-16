@@ -31,12 +31,6 @@ class FamilyService implements IFamilyService, Lifecycle{
 	private static final Logger logger = LoggerFactory.getLogger(FamilyService.class);
 	
 	@Autowired
-	private SnowflakeGenerator generator;
-	
-	@Autowired
-	private IDataProcess dataProcess;
-	
-	@Autowired
 	private ServerConfig serverConfig;
 
 	@Autowired
@@ -138,7 +132,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 				return ErrorCode.FAMILY_NO_FAMILY;
 			}
 			//TODO	判断是否符合进入家族的条件
-			//	请求加入申请列表
+			//	请求加入申请列表,有权限的人审批后, 把指定玩家加入到家族内, 并通知该玩家.
 			FamilyApply familyApply = FamilyApply.create(playerId);
 			family.getApplys().put(familyApply.getPlayerId(), familyApply);
 			return ErrorCode.SUCCESS;
