@@ -1,15 +1,13 @@
 package com.cat.server.game.module.team.domain;
 
-import com.cat.server.game.module.group.DefaultApply;
-import com.cat.server.game.module.group.DefaultMember;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import com.cat.server.game.module.group.domain.DefaultApply;
+import com.cat.server.game.module.group.domain.DefaultMember;
 import com.cat.server.game.module.group.IGroup;
 import com.cat.server.game.module.group.IMember;
 import com.cat.server.game.module.team.assist.TeamPosition;
-
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 队伍类型

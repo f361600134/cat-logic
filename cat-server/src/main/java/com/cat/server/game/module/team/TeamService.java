@@ -2,7 +2,7 @@ package com.cat.server.game.module.team;
 
 import com.cat.server.core.task.TokenTaskQueueExecutor;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.group.DefaultApply;
+import com.cat.server.game.module.group.domain.DefaultApply;
 import com.cat.server.game.module.group.IMember;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.team.assist.TeamConstant;
@@ -20,8 +20,7 @@ import java.util.concurrent.Future;
  * TeamService 队伍service处理队伍玩法的业务逻辑
  * 组队逻辑公共处理
  * 考虑优化点:
- * 队伍信息第一次下发给客户端, 新成员的加入, 旧成员的退出是否需要单独推送给客户端由客户端处理?
- *
+ * 队伍信息第一次下发给客户端, 新成员的加入, 旧成员的退出是否需要单独推送给客户端由客户端处理? 需要
  *
  */
 @Service

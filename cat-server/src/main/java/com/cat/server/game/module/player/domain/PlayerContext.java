@@ -71,6 +71,22 @@ public class PlayerContext{
 	}
 
 	/**
+	 * 获取账号
+	 * @return 账号
+	 */
+	public String getAccountName() {
+		return player == null ? "" : player.getAccountName();
+	}
+
+	/**
+	 * 获取初始服务器id
+	 * @return 服务器id
+	 */
+	public int getInitServerId() {
+		return player == null ? 0 : player.getInitServerId();
+	}
+
+	/**
 	 * 被挤掉
 	 */
 	public void forceLogout() {

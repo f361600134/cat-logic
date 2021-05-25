@@ -19,7 +19,7 @@ public class App
     {
     	long startTime = System.currentTimeMillis();
     	//扫描配置环境
-    	ClassManager.instance().loadClasses(ServerConstant.scanPath);
+//    	ClassManager.instance().loadClasses(ServerConstant.scanPath);
     	AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("xml/spring-context.xml");
 		ctx.registerShutdownHook();
 		ctx.start();

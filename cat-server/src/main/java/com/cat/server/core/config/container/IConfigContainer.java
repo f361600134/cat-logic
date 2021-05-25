@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * 游戏配置容器<br>
  * 保存一种配置的容器
- * 
+ *  @aothor Jeremy
  */
 public interface IConfigContainer<T extends IGameConfig> {
     /**

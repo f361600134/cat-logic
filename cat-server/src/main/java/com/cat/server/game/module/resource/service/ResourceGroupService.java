@@ -3,6 +3,8 @@ package com.cat.server.game.module.resource.service;
 import java.util.List;
 import java.util.Map;
 
+import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.resource.IResourceService;
@@ -15,7 +17,7 @@ import org.springframework.stereotype.Service;
 import com.google.common.collect.Maps;
 
 @Service
-public class ResourceGroupService implements IResourceGroupService, InitializingBean {
+public class ResourceGroupService implements IResourceGroupService, Lifecycle {
 
 	private static final Logger log = LoggerFactory.getLogger(ResourceGroupService.class);
 
@@ -35,6 +37,7 @@ public class ResourceGroupService implements IResourceGroupService, Initializing
 	 * @param desc
 	 *            其他描述
 	 */
+	@Override
 	public void reward(long playerId, Map<Integer, Integer> rewardMap, NatureEnum nEnum) {
 		for (Integer key : rewardMap.keySet()) {
 			int perp = key / 10000;
@@ -64,6 +67,7 @@ public class ResourceGroupService implements IResourceGroupService, Initializing
 	 * @param desc
 	 *            其他描述
 	 */
+	@Override
 	public void cost(long playerId, Map<Integer, Integer> costMap, NatureEnum nEnum) {
 		for (Integer key : costMap.keySet()) {
 			int perp = key / 10000;
@@ -89,7 +93,8 @@ public class ResourceGroupService implements IResourceGroupService, Initializing
 	 * @param costMap
 	 *            消耗map, value值为正整数. 逐个判断, 全部满足返回true, 否则返回false
 	 */
-	public boolean check(long playerId, Map<Integer, Integer> costMap) {
+	@Override
+    public boolean check(long playerId, Map<Integer, Integer> costMap) {
 		for (Integer key : costMap.keySet()) {
 			int perp = key / 10000;
 			IResourceService service = serviceMap.get(perp);
@@ -108,11 +113,15 @@ public class ResourceGroupService implements IResourceGroupService, Initializing
 	}
 
 	@Override
-	public void afterPropertiesSet() throws Exception {
+	public void start() throws Exception {
 		this.serviceMap = Maps.newConcurrentMap();
 		for (IResourceService service : resourceServices) {
 			this.serviceMap.put(service.resType(), service);
 		}
 	}
 
+	@Override
+	public int priority() {
+		return Priority.LOGIC.getPriority();
+	}
 }

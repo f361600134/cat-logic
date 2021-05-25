@@ -1,16 +1,14 @@
 package com.cat.server.game.module.family;
 
-import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.task.TokenTaskQueueExecutor;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 import com.cat.server.game.module.family.assist.FamilyPosition;
 import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
-import com.cat.server.game.module.family.domain.FamilyApply;
 import com.cat.server.game.module.family.domain.FamilyDomain;
+import com.cat.server.game.module.group.domain.DefaultApply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,7 +131,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 			}
 			//TODO	判断是否符合进入家族的条件
 			//	请求加入申请列表,有权限的人审批后, 把指定玩家加入到家族内, 并通知该玩家.
-			FamilyApply familyApply = FamilyApply.create(playerId);
+			DefaultApply familyApply = DefaultApply.create(playerId);
 			family.getApplys().put(familyApply.getPlayerId(), familyApply);
 			return ErrorCode.SUCCESS;
 		});

@@ -48,12 +48,14 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 		return beanMap;
 	}
 
+	@Override
 	public List<V> getAndClearUpdateList() {
 		List<V> ret = new ArrayList<>(updateList);
 		this.updateList.clear();
 		return ret;
 	}
 
+	@Override
 	public List<V> getAndClearDeleteList() {
 		List<V> ret = new ArrayList<>(deleteList);
 		this.deleteList.clear();
@@ -64,6 +66,7 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	 * 通过配置id获取到实体, 返回找到的第一个实体
 	 * @return IItem 道具实体, 无则返回null
 	 */
+	@Override
 	public V getBeanByConfigId(int configId) {
 		for (V v: beanMap.values()) {
 			if (v.getConfigId() == configId) {
@@ -116,7 +119,8 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	 * @param count	数量
 	 * @return
 	 */
-	public boolean costByConfigId(int configId, int count) {
+	@Override
+    public boolean costByConfigId(int configId, int count) {
 		//背包减少普通道具
 		V v = getBeanByConfigId(configId);
 		if (v == null) {
@@ -132,6 +136,7 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	 * @param count 物资数量
 	 * @return
 	 */
+	@Override
 	public boolean costById(K id, int count) {
 		//背包减少普通道具
 		V v = beanMap.get(id);

@@ -1,5 +1,6 @@
 package com.cat.server.game.module.gm.type.define;
 
+import com.cat.server.game.module.gm.type.AbstractModuleCommand;
 import org.springframework.stereotype.Component;
 
 import com.cat.server.game.module.gm.annotation.Command;
@@ -11,11 +12,8 @@ import com.cat.server.game.module.gm.type.AbstractResourceCommand;
  */
 @Component
 @Command("@test")
-public class CommandTest extends AbstractResourceCommand{
+public class CommandTest extends AbstractModuleCommand {
 
-	@Override
-	public boolean doProcess(long playerId, String params) {
-		return true;
-	}
+
 
 }

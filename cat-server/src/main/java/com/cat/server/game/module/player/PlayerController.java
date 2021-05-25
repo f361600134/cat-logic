@@ -22,7 +22,6 @@ public class PlayerController implements IController{
 	
 	@Cmd(value = PBProtocol.ReqLogin_VALUE, mustLogin = false)
 	public void login(GameSession session, PBLogin.ReqLogin req) {
-		
 		AckLoginResp ack = AckLoginResp.create();
 		ErrorCode errorCode = playerService.login(session, req, ack);
 		ack.setCode(errorCode.getCode());

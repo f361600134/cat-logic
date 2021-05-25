@@ -27,12 +27,12 @@ import com.cat.server.game.helper.uuid.SnowflakeGenerator;
  */
 @Configuration
 public class LogicComponent {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(LogicComponent.class);
-	
+
 	@Autowired
 	private ServerConfig serverConfig;
-	
+
 	/**
 	 * 注册指定的数据处理器
 	 * @return
@@ -43,7 +43,7 @@ public class LogicComponent {
 		logger.info("注册[DataProcessorAsyn]服务");
 		return new DataProcessor(cols, new JdbcTemplate(dataSource));
 	}
-	
+
 	/**
 	 * 注册默认的公共线程池
 	 * @return
@@ -53,7 +53,7 @@ public class LogicComponent {
 		logger.info("注册[DefaultTokenTaskQueueExecutor]服务");
 		return new DefaultTokenTaskQueueExecutor("default-common",1);
 	}
-	
+
 	/**
 	 * 注册UUID Generater
 	 * @return
@@ -63,7 +63,7 @@ public class LogicComponent {
 		logger.info("注册[SnowflakeGenerator]服务");
 		return new SnowflakeGenerator(serverConfig.getServerId());
 	}
-	
+
 	/**
 	 * 注册json管理器
 	 * @return
@@ -73,7 +73,7 @@ public class LogicComponent {
 		logger.info("注册[ConfigManager]服务");
 		return new ConfigManager();
 	}
-	
+
 	/**
 	 * 注册事件机制
 	 * @return
@@ -83,5 +83,4 @@ public class LogicComponent {
 		logger.info("注册[GameEventBus]服务");
 		return new GameEventBus();
 	}
-	
 }

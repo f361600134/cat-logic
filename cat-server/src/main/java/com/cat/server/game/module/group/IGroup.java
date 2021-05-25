@@ -1,5 +1,7 @@
 package com.cat.server.game.module.group;
 
+import com.cat.server.game.module.group.domain.DefaultMember;
+
 import java.util.Map;
 
 /**
