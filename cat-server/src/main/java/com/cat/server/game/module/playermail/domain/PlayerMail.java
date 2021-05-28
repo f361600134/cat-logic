@@ -6,9 +6,8 @@ import java.util.Map;
 import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.server.IPersistence;
-import com.cat.server.game.data.proto.PBPlayer;
-import com.cat.server.game.data.proto.PBPlayer.EmailInfo;
-import com.cat.server.game.module.item.proto.ItemInfoBuilder;
+import com.cat.server.game.data.proto.PBMail;
+import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
 import com.cat.server.game.module.playermail.PlayerMailConstant;
 import com.cat.server.utils.TimeUtil;
 
@@ -78,20 +77,18 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 	 * 实体对象转协议对象
 	 * @return
 	 */
-	public EmailInfo toProto() {
-		PBPlayer.EmailInfo.Builder builder = PBPlayer.EmailInfo.newBuilder();
-		builder.setId(this.getId());
-		builder.setEmailTitle(this.getTitle());
+	public PBMail.PBMailInfo toProto() {
+		PBMail.PBMailInfo.Builder builder = PBMail.PBMailInfo.newBuilder();
+		builder.setMailId(this.getId());
+		builder.setTitle(this.getTitle());
 		builder.setContent(this.getContent());
-		builder.setBeginTime(createTime+"");
-		builder.setEndTime(expireTime+"");
 		builder.setState(this.getState());
 		
-		ItemInfoBuilder infoBuilder = null;
 		for (Integer key : this.getRewardMap().keySet()) {
-			infoBuilder = ItemInfoBuilder.newInstance();
-			infoBuilder.addReward(key, this.getRewardMap().get(key));
-			builder.addRewardList(infoBuilder.build());
+			PBRewardInfoBuilder infoBuilder = PBRewardInfoBuilder.newInstance();
+			infoBuilder.setConfigId(key);
+			infoBuilder.setCount(this.getRewardMap().get(key));
+			builder.addRewards(infoBuilder.build());
 		}
 		return builder.build();
 	}

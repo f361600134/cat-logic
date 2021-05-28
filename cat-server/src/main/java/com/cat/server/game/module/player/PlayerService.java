@@ -21,19 +21,14 @@ import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.common.ServerConstant;
 import com.cat.server.core.event.GameEventBus;
-import com.cat.server.game.data.proto.PBLogin;
-import com.cat.server.game.data.proto.PBLogin.AckLogin;
-import com.cat.server.game.data.proto.PBLogin.ReqLogin;
+import com.cat.server.game.data.proto.PBPlayer.*;
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
-import com.cat.server.game.module.player.event.PlayerLoadEndEvent;
-import com.cat.server.game.module.player.event.PlayerLoadEvent;
 import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
-import com.cat.server.game.module.player.event.PlayerLoginEvent;
-import com.cat.server.game.module.player.proto.AckLoginResp;
+import com.cat.server.game.module.player.proto.*;
 import com.cat.server.game.module.player.resp.ResAuthResult;
 import com.cat.server.game.module.resource.IResourceService;
 import com.cat.server.utils.HttpClientUtil;
@@ -137,18 +132,18 @@ class PlayerService implements IPlayerService, IResourceService {
 	 * @param req 登录请求消息体
 	 * @return 错误码
 	 */
-	public ErrorCode login(GameSession session, ReqLogin req, AckLoginResp ack) {
-		final String username = req.getUserName();
+	public ErrorCode login(GameSession session, ReqPlayerLogin req, AckPlayerLoginResp ack) {
+		final String accountName = req.getAccountName();
 		final int initServerId = req.getServerId();
 		// Http调用, 去账号服请求验证
 //		ErrorCode errorCode = checkLogin(req);
 //		if (!errorCode.isSuccess()) {
 //			return errorCode;
 //		}
-		PlayerContext context = getOrCreatePlayer(username, initServerId);
+		PlayerContext context = getOrCreatePlayer(accountName, initServerId);
 		//	是否加载过角色,若不为true表示未加载过角色, 加载新角色
 		if (!context.isLoaded()) {
-			Player player = this.loadPlayer(username, initServerId);
+			Player player = this.loadPlayer(accountName, initServerId);
 			if (player == null) {
 				//	查询的玩家为null
 				ack.setStatus(1);
@@ -178,9 +173,8 @@ class PlayerService implements IPlayerService, IResourceService {
 	 * @param data 请求协议
 	 * @return 错误码
 	 */
-	private ErrorCode checkLogin(PBLogin.ReqLogin data) {
-
-		String userName = data.getUserName();
+	private ErrorCode checkLogin(ReqPlayerLogin data) {
+		String account = data.getAccountName();
 		int channel = data.getChannel();
 		String sessionKey = data.getSessionKey();
 		int serverId = data.getServerId();
@@ -189,7 +183,7 @@ class PlayerService implements IPlayerService, IResourceService {
 
 		String url = config.getLoginUrl() + ServerConstant.authUrl;
 		List<NameValuePair> params = new ArrayList<>();
-		params.add(new BasicNameValuePair("userName", userName));
+		params.add(new BasicNameValuePair("account", account));
 		params.add(new BasicNameValuePair("channel", String.valueOf(channel)));
 		params.add(new BasicNameValuePair("sessionKey", sessionKey));
 		params.add(new BasicNameValuePair("serverId", String.valueOf(serverId)));
@@ -207,6 +201,114 @@ class PlayerService implements IPlayerService, IResourceService {
 			return ErrorCode.ACCOUNT_ERROR;
 		}
 		return ErrorCode.SUCCESS;
+	}
+	
+	/**
+	* 请求获取随机名
+	* @param long playerId
+	* @param ReqPlayerRandName req
+	* @param Resp ack
+	*/
+	public ErrorCode reqPlayerRandName(long playerId, ReqPlayerRandName req, AckPlayerRandNameResp ack){
+		try {
+//			PlayerDomain domain = getDomain(playerId);
+//			if (domain == null) {
+//				return ErrorCode.DOMAIN_IS_NULL;
+//			}
+//			//TODO Somthing.
+//			this.responsePlayerInfo(domain);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.info("reqPlayerRandName error, playerId:{}", playerId);
+			logger.error("reqPlayerRandName error, e:", e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
+	}
+	/**
+	* 请求断线重连
+	* @param long playerId
+	* @param ReqPlayerReLogin req
+	* @param Resp ack
+	*/
+	public ErrorCode reqPlayerReLogin(long playerId, ReqPlayerReLogin req, AckPlayerReLoginResp ack){
+		try {
+//			PlayerDomain domain = getDomain(playerId);
+//			if (domain == null) {
+//				return ErrorCode.DOMAIN_IS_NULL;
+//			}
+//			//TODO Somthing.
+//			this.responsePlayerInfo(domain);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.info("reqPlayerReLogin error, playerId:{}", playerId);
+			logger.error("reqPlayerReLogin error, e:", e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
+	}
+	/**
+	* 请求心跳
+	* @param long playerId
+	* @param ReqPlayerHeart req
+	* @param Resp ack
+	*/
+	public ErrorCode reqPlayerHeart(long playerId, ReqPlayerHeart req, AckPlayerHeartResp ack){
+		try {
+//			PlayerDomain domain = getDomain(playerId);
+//			if (domain == null) {
+//				return ErrorCode.DOMAIN_IS_NULL;
+//			}
+//			//TODO Somthing.
+//			this.responsePlayerInfo(domain);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			logger.info("reqPlayerHeart error, playerId:{}", playerId);
+			logger.error("reqPlayerHeart error, e:", e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
+	}
+	/**
+	* 请求创建角色
+	* @param long playerId
+	* @param ReqPlayerCreateRole req
+	* @param Resp ack
+	*/
+	public ErrorCode reqPlayerCreateRole(long playerId, ReqPlayerCreateRole req, AckPlayerCreateRoleResp ack){
+		try {
+//			PlayerDomain domain = getDomain(playerId);
+//			if (domain == null) {
+//				return ErrorCode.DOMAIN_IS_NULL;
+//			}
+//			//TODO Somthing.
+//			this.responsePlayerInfo(domain);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			logger.info("reqPlayerCreateRole error, playerId:{}", playerId);
+			logger.error("reqPlayerCreateRole error, e:", e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
+	}
+	/**
+	* 请求连接游戏服
+	* @param long playerId
+	* @param ReqPlayerLogin req
+	* @param Resp ack
+	*/
+	public ErrorCode reqPlayerLogin(long playerId, ReqPlayerLogin req, AckPlayerLoginResp ack){
+		try {
+//			PlayerDomain domain = getDomain(playerId);
+//			if (domain == null) {
+//				return ErrorCode.DOMAIN_IS_NULL;
+//			}
+//			//TODO Somthing.
+//			this.responsePlayerInfo(domain);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			logger.info("reqPlayerLogin error, playerId:{}", playerId);
+			logger.error("reqPlayerLogin error, e:", e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
 	}
 	
 	/**

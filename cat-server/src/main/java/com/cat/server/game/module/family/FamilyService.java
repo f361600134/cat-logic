@@ -104,7 +104,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 	/**
 	 * 查找家族
 	 * @param keyword 关键字
-	 * @return
+	 * @return 家族集合
 	 */
 	public Collection<Family> searchFamily(String keyword){
 		FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
@@ -141,7 +141,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 	/**
 	 * 退出家族
 	 * @param playerId 退出家族的玩家id
-	 * @return
+	 * @return 错误码
 	 */
 	public ErrorCode exitFamily(long playerId) throws Exception{
 		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
@@ -166,10 +166,9 @@ class FamilyService implements IFamilyService, Lifecycle{
 	
 	/**
 	 * 开除玩家
-	 * @param playerId
-	 * @param firePlayerId
-	 * @return
-	 * @throws Exception
+	 * @param playerId 操作的玩家id
+	 * @param firePlayerId  被开除的玩家id
+	 * @return 错误码
 	 */
 	public ErrorCode fire(long playerId, long firePlayerId) throws Exception{
 		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
@@ -222,8 +221,8 @@ class FamilyService implements IFamilyService, Lifecycle{
 	
 	/**
 	 * 根据玩家id获取到家族id
-	 * @param playerId
-	 * @return
+	 * @param playerId 玩家id
+	 * @return 家族id
 	 */
 	@Override
 	public long getPlayerFamilyId(long playerId){
@@ -236,8 +235,8 @@ class FamilyService implements IFamilyService, Lifecycle{
 	
 	/**
 	 * 根据玩家id获取到家族id
-	 * @param familyId
-	 * @return
+	 * @param familyId 家族id
+	 * @return 家族对象
 	 */
 	@Override
 	public Family getFamilyByFamilyId(long familyId){
@@ -250,8 +249,8 @@ class FamilyService implements IFamilyService, Lifecycle{
 	
 	/**
 	 * 根据玩家id获取到家族
-	 * @param playerId
-	 * @return
+	 * @param playerId 玩家id
+	 * @return 家族对象
 	 */
 	@Override
 	public Family getFamilyByPlayerId(long playerId){

@@ -8,7 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import com.cat.server.core.event.IEvent;
 import com.cat.server.core.server.AbstractModuleMultiDomain;
-import com.cat.server.game.data.proto.PBBag.PBMissionInfo;
+import com.cat.server.game.data.proto.PBMission;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mission.handler.ArtifactMissionHandler;
@@ -82,8 +82,8 @@ public class ArtifactDomain extends AbstractModuleMultiDomain<Long, Integer, Art
 	}
 
 	@Override
-	public Collection<PBMissionInfo> toProto() {
-		Collection<PBMissionInfo> ret = new ArrayList<>();
+	public Collection<PBMission.PBMissionInfo> toProto() {
+		Collection<PBMission.PBMissionInfo> ret = new ArrayList<>();
 		for (IMissionHandler handler : missionHandlerMap.values()) {
 			ret.addAll(handler.toProto());
 		}

@@ -1,72 +1,50 @@
 package com.cat.server.game.module.item.proto;
 
-import java.util.List;
-import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.cat.server.game.data.proto.PBDefine.*;
 import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.PBBag;
-import com.cat.server.game.data.proto.PBDefine;
-import com.cat.server.game.module.item.domain.IItem;
-
 import com.google.protobuf.AbstractMessageLite.Builder;
-import com.google.protobuf.Message;
+import com.cat.server.game.data.proto.PBCommon.*;
+import com.cat.server.game.data.proto.PBItem.*;
 
+/**
+* AckRewardsResp
+* @author Jeremy
+*/
 public class AckRewardsResp implements IProtocol {
 
-	private PBBag.AckRewards.Builder builder;
-
+	private static final Logger log = LoggerFactory.getLogger(AckRewardsResp.class);
+	
+	private final AckRewards.Builder builder = AckRewards.newBuilder();
+	
+	public AckRewardsResp() {}
+	
 	public static AckRewardsResp newInstance() {
 		return new AckRewardsResp();
 	}
-
-	public AckRewardsResp() {
-		this.builder = PBBag.AckRewards.newBuilder();
-		this.setType(1);// 默认弹窗
-	}
-
-	/*
-	 * 弹窗类型, 1:弹窗,2:条状飘窗
-	 */
-	public AckRewardsResp setType(int value) {
-		this.builder.setType(value);
-		return this;
-	}
-
-	/**
-	 * 获取奖励详细信息
-	 * @param items
-	 */
-	public AckRewardsResp addAllRewards(List<IItem> items) {
-		for (IItem item : items) {
-			this.builder.addRewards(item.toProto());
-		}
-		return this;
+	
+	public AckRewards build() {
+		return builder.build();
 	}
 	
-	/**
-	 * 封装奖励简单信息
-	 * 属性值只包含configId, number
-	 * @param rewardMap
-	 */
-	public AckRewardsResp addAllRewards(Map<Integer, Integer> rewardMap) {
-		PBBag.ItemInfo.Builder builder = null;
-		for (Integer configId : rewardMap.keySet()) {
-			builder = PBBag.ItemInfo.newBuilder();
-			builder.setNum(rewardMap.get(configId));
-			builder.setConfigId(configId);
-			this.builder.addRewards(builder);
-		}
-		return this;
+	/** 分解后奖励**/
+	public void addRewards(PBRewardInfo value){
+		this.builder.addRewards(value);
 	}
-
+	/** 弹窗类型, 1:弹窗,2:条状飘窗**/
+	public void setType(int value){
+		this.builder.setType(value);
+	}
+	
 	@Override
-	public short protocol() {
-		return PBDefine.PBProtocol.AckRewards_VALUE;
+	public int protocol() {
+		return PBProtocol.AckRewards_VALUE;
 	}
 
 	@Override
 	public Builder<?, ?> getBuilder() {
 		return builder;
 	}
-
 }

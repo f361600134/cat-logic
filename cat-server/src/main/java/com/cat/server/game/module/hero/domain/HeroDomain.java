@@ -27,10 +27,8 @@ public class HeroDomain extends AbstractModuleMultiDomain<Long, Long, Hero> impl
 		
 	}
 
-	
 	////////////业务代码////////////////////
-	
-	
+
 	@Override
 	public void afterInit() {
 		this.resourceDomainProxy = HeroResourceDomain.create(getId(), getBeanMap());

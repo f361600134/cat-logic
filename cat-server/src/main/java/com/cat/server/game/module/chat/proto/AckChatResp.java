@@ -1,43 +1,45 @@
 package com.cat.server.game.module.chat.proto;
 
-import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.PBDefine.PBProtocol;
-import com.cat.server.game.data.proto.PBPlayer.AckChat;
-import com.cat.server.game.data.proto.PBPlayer.ChatInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.cat.server.game.data.proto.PBDefine.*;
+import com.cat.net.network.base.IProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
+import com.cat.server.game.data.proto.PBPlayer.*;
+import com.cat.server.game.data.proto.PBChat.*;
 
+/**
+* AckChatResp
+* @author Jeremy
+*/
 public class AckChatResp implements IProtocol {
 
 	private static final Logger log = LoggerFactory.getLogger(AckChatResp.class);
 	
-	private AckChat.Builder builder;
-
-	public static AckChatResp newInstance(){
+	private final AckChat.Builder builder = AckChat.newBuilder();
+	
+	public AckChatResp() {}
+	
+	public static AckChatResp newInstance() {
 		return new AckChatResp();
 	}
 	
-    public AckChatResp() {
-        this.builder = AckChat.newBuilder();
-    }
-    
-    public void addChat(int channel, ChatInfo chatInfo){
-    	this.builder.setChatChannel(channel);
-    	this.builder.addChats(chatInfo);
-    }
-    
-    public void setChatChannel(int channel) {
-    	this.builder.setChatChannel(channel);
-    }
-    
-    public void addChats(ChatInfo chatInfo) {
-    	this.builder.addChats(chatInfo);
-    }
-    
+	public AckChat build() {
+		return builder.build();
+	}
+	
+	/** 频道： 0=世界, 1=系统；2=家族；3=好友；4=队伍**/
+	public void setChannel(int value){
+		this.builder.setChannel(value);
+	}
+	/** **/
+	public void addChats(PBChatInfo value){
+		this.builder.addChats(value);
+	}
+	
 	@Override
-	public short protocol() {
+	public int protocol() {
 		return PBProtocol.AckChat_VALUE;
 	}
 
@@ -45,5 +47,4 @@ public class AckChatResp implements IProtocol {
 	public Builder<?, ?> getBuilder() {
 		return builder;
 	}
-	
 }

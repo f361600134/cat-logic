@@ -1,7 +1,6 @@
 package com.cat.server.game.module.artifact.proto;
 
 import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.PBDefine;
 
 import com.google.protobuf.AbstractMessageLite.Builder;
 
@@ -33,8 +32,9 @@ public class AckArtifactHolySealResp implements IProtocol {
 //	}
 //	
 	@Override
-	public short protocol() {
-		return PBDefine.PBProtocol.AckArtifactHolySeal_VALUE;
+	public int protocol() {
+//		return PBDefine.PBProtocol.AckArtifactHolySeal_VALUE;
+		return 0;
 	}
 
 	@Override

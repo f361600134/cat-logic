@@ -1,31 +1,92 @@
 package com.cat.server.game.module.player;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.cat.net.network.annotation.Cmd;
 import com.cat.net.network.base.GameSession;
-import com.cat.net.network.controller.IController;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
-import com.cat.server.game.data.proto.PBLogin;
-import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.player.proto.AckLoginResp;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.player.proto.*;
+import com.cat.server.game.data.proto.PBItem.*;
+import com.cat.server.game.data.proto.PBPlayer.*;
+
+/**
+ * Player控制器
+ */
 @Controller
-public class PlayerController implements IController{
+public class PlayerController {
 	
 	private static final Logger log = LoggerFactory.getLogger(PlayerController.class);
 	
-	@Autowired private PlayerService playerService;
+	@Autowired
+	private PlayerService playerService;
 	
-	@Cmd(value = PBProtocol.ReqLogin_VALUE, mustLogin = false)
-	public void login(GameSession session, PBLogin.ReqLogin req) {
-		AckLoginResp ack = AckLoginResp.create();
-		ErrorCode errorCode = playerService.login(session, req, ack);
-		ack.setCode(errorCode.getCode());
-		session.push(ack);
+	
+	/*
+	*请求获取随机名
+	*/
+	@Cmd(value = PBProtocol.ReqPlayerRandName_VALUE)
+	public void ReqPlayerRandName(GameSession session, ReqPlayerRandName req) {
+		long playerId = session.getPlayerId();
+		AckPlayerRandNameResp ack = AckPlayerRandNameResp.newInstance();
+		playerService.reqPlayerRandName(playerId, req, ack);
+		playerService.sendMessage(playerId, ack);
 	}
 	
+	/*
+	*请求断线重连
+	*/
+	@Cmd(value = PBProtocol.ReqPlayerReLogin_VALUE)
+	public void ReqPlayerReLogin(GameSession session, ReqPlayerReLogin req) {
+		long playerId = session.getPlayerId();
+		AckPlayerReLoginResp ack = AckPlayerReLoginResp.newInstance();
+		ErrorCode code = playerService.reqPlayerReLogin(playerId, req, ack);
+		ack.setCode(code.getCode());
+		playerService.sendMessage(playerId, ack);
+	}
+	
+	/*
+	*请求心跳
+	*/
+	@Cmd(value = PBProtocol.ReqPlayerHeart_VALUE)
+	public void ReqPlayerHeart(GameSession session, ReqPlayerHeart req) {
+		long playerId = session.getPlayerId();
+		AckPlayerHeartResp ack = AckPlayerHeartResp.newInstance();
+		playerService.reqPlayerHeart(playerId, req, ack);
+		playerService.sendMessage(playerId, ack);
+	}
+	
+	/*
+	*请求创建角色
+	*/
+	@Cmd(value = PBProtocol.ReqPlayerCreateRole_VALUE)
+	public void ReqPlayerCreateRole(GameSession session, ReqPlayerCreateRole req) {
+		long playerId = session.getPlayerId();
+		AckPlayerCreateRoleResp ack = AckPlayerCreateRoleResp.newInstance();
+		ErrorCode code = playerService.reqPlayerCreateRole(playerId, req, ack);
+		ack.setCode(code.getCode());
+		playerService.sendMessage(playerId, ack);
+	}
+	
+	/*
+	*请求连接游戏服
+	*/
+	@Cmd(value = PBProtocol.ReqPlayerLogin_VALUE)
+	public void ReqPlayerLogin(GameSession session, ReqPlayerLogin req) {
+		long playerId = session.getPlayerId();
+		AckPlayerLoginResp ack = AckPlayerLoginResp.newInstance();
+		ErrorCode code = playerService.reqPlayerLogin(playerId, req, ack);
+		ack.setCode(code.getCode());
+		playerService.sendMessage(playerId, ack);
+	}
+	
+
 }

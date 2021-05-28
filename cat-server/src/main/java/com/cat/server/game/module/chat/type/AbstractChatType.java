@@ -137,7 +137,8 @@ public abstract class AbstractChatType implements IChatType{
 		
 		// FSC 新增的聊天消息即时同步, 聊天, 如果需要更新状态,可以独立一条消息
 		AckChatResp res = new AckChatResp();
-		res.addChat(channel, chatDetail.toProto());
+		res.setChannel(channel);
+		res.addChats(chatDetail.toProto());
 		
 		Collection<Long> receiverIds = findReceiverIds(uniqueId);
 		receiverIds.forEach(playerId -> {

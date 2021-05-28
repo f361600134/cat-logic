@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.cat.server.core.event.IEvent;
-import com.cat.server.game.data.proto.PBBag;
+import com.cat.server.game.data.proto.PBMission;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mission.type.IMission;
@@ -24,29 +24,28 @@ public interface IMissionHandler {
 	
 	/**
 	 * 	当处理任务
-	 * @param event
-	 * @param value
-	 * @return
+	 * @param event 事件id
+	 * @return 错误码
 	 */
 	public ErrorCode onProcess(IEvent event);
 	
 	/**
 	 * 	当领取任务奖励
-	 * @param event
-	 * @param value
-	 * @return
+	 * @param configId 任务id
+	 * @param nenum 消耗原由
+	 * @return 错误码
 	 */
 	public ErrorCode onReward(int configId, NatureEnum nenum);
 	
 	/**
 	 * 	任务序列化
-	 * @return
+	 * @return 任务消息对象列表
 	 */
-	public Collection<PBBag.PBMissionInfo> toProto();
+	public Collection<PBMission.PBMissionInfo> toProto();
 	
 	/**
 	 * 获取更新的任务信息
-	 * @return
+	 * @return 任务对象列表
 	 */
 	public List<IMission> getUpdateList();
 	

@@ -13,14 +13,15 @@ import org.springframework.stereotype.Service;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.item.proto.AckRewardsResp;
+import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.playermail.PlayerMailConstant;
 import com.cat.server.game.module.playermail.domain.PlayerMail;
 import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
 import com.cat.server.game.module.playermail.manager.PlayerMailManager;
-import com.cat.server.game.module.playermail.proto.AckDeleteEmailResp;
-import com.cat.server.game.module.playermail.proto.AckEmailListResp;
-import com.cat.server.game.module.playermail.proto.AckReadEmailResp;
+import com.cat.server.game.module.playermail.proto.AckMailDeleteResp;
+import com.cat.server.game.module.playermail.proto.AckMailListResp;
+import com.cat.server.game.module.playermail.proto.AckMailReadResp;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.utils.CollectionUtil;
 import com.google.common.collect.Lists;
@@ -69,11 +70,11 @@ public class PlayerMailService implements IPlayerMailService {
 	 * 更新信息
 	 */
 	public void responsePlayerMailInfos(PlayerMailDomain domain) {
-		AckEmailListResp resp = AckEmailListResp.newInstance(); 
+		AckMailListResp resp = AckMailListResp.newInstance(); 
 		Collection<PlayerMail> beans = domain.getBeans();
 		try {
 			for (PlayerMail playerMail : beans) {
-				resp.addEmailInfo(playerMail);
+				resp.addMails(playerMail.toProto());
 			}
 			playerService.sendMessage(domain.getId(), resp);
 		} catch (Exception e) {
@@ -87,11 +88,11 @@ public class PlayerMailService implements IPlayerMailService {
 	 * 更新信息, 通知客户端新邮件
 	 */
 	public void responsePlayerMailInfo(PlayerMailDomain domain, List<Long> mailIds) {
-		AckEmailListResp resp = AckEmailListResp.newInstance(); 
+		AckMailListResp resp = AckMailListResp.newInstance(); 
 		try {
 			for (Long mailId : mailIds) {
 				PlayerMail playerMail = domain.getBean(mailId);
-				resp.addEmailInfo(playerMail);
+				resp.addMails(playerMail.toProto());
 			}
 			playerService.sendMessage(domain.getId(), resp);
 		} catch (Exception e) {
@@ -118,7 +119,7 @@ public class PlayerMailService implements IPlayerMailService {
 	 * 请求阅读邮件
 	 * @param playerId
 	 */
-	public ErrorCode read(long playerId, long mailId, AckReadEmailResp resp) {
+	public ErrorCode read(long playerId, long mailId, AckMailReadResp resp) {
 		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
@@ -128,7 +129,6 @@ public class PlayerMailService implements IPlayerMailService {
 			return ErrorCode.MAIL_NOT_FOUND;
 		}
 		if (playerMail.getState() == PlayerMailConstant.NONE) {
-			resp.setId(mailId);
 			playerMail.setState(PlayerMailConstant.READ);
 			playerMail.update();
 		}
@@ -176,7 +176,13 @@ public class PlayerMailService implements IPlayerMailService {
 		//更新状态
 		this.responsePlayerMailInfo(domain, Lists.newArrayList(mailId));
 		//更新奖励
-		AckRewardsResp reweardResp = AckRewardsResp.newInstance().addAllRewards(playerMail.getRewardMap());
+		AckRewardsResp reweardResp = AckRewardsResp.newInstance();
+		playerMail.getRewardMap().forEach((key, val)->{
+			PBRewardInfoBuilder builder = new PBRewardInfoBuilder();
+			builder.setConfigId(key);
+			builder.setCount(val);
+			reweardResp.addRewards(builder.build());
+		});
 		playerService.sendMessage(playerId, reweardResp);
 		return ErrorCode.SUCCESS;
 	}
@@ -210,8 +216,14 @@ public class PlayerMailService implements IPlayerMailService {
 		//更新状态
 		this.responsePlayerMailInfo(domain, mailIds);
 		//更新奖励
-		AckRewardsResp resp = AckRewardsResp.newInstance().addAllRewards(rewardMap);
-		playerService.sendMessage(playerId, resp);
+		AckRewardsResp reweardResp = AckRewardsResp.newInstance();
+		rewardMap.forEach((key, val)->{
+			PBRewardInfoBuilder builder = new PBRewardInfoBuilder();
+			builder.setConfigId(key);
+			builder.setCount(val);
+			reweardResp.addRewards(builder.build());
+		});
+		playerService.sendMessage(playerId, reweardResp);
 		return ErrorCode.SUCCESS;
 	}
 	
@@ -219,7 +231,7 @@ public class PlayerMailService implements IPlayerMailService {
 	 * 请求删除邮件
 	 * @param playerId
 	 */
-	public ErrorCode delete(long playerId, long mailId, AckDeleteEmailResp resp) {
+	public ErrorCode delete(long playerId, long mailId, AckMailDeleteResp resp) {
 		if (mailId < 0) {
 			return deleteAll(playerId, mailId, resp);
 		}else {
@@ -233,7 +245,7 @@ public class PlayerMailService implements IPlayerMailService {
 	 * @param mailId
 	 * @return
 	 */
-	private ErrorCode deleteOne(long playerId, long mailId, AckDeleteEmailResp resp) {
+	private ErrorCode deleteOne(long playerId, long mailId, AckMailDeleteResp resp) {
 		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
@@ -243,7 +255,7 @@ public class PlayerMailService implements IPlayerMailService {
 			return ErrorCode.MAIL_NOT_FOUND;
 		}
 		if (mail.canDel()) {
-			resp.addMailId(mailId);
+			resp.addMailIds(mailId);
 			mail.delete();
 		}
 		return ErrorCode.SUCCESS;
@@ -255,7 +267,7 @@ public class PlayerMailService implements IPlayerMailService {
 	 * @param mailId
 	 * @return
 	 */
-	private ErrorCode deleteAll(long playerId, long mailId, AckDeleteEmailResp resp) {
+	private ErrorCode deleteAll(long playerId, long mailId, AckMailDeleteResp resp) {
 		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
@@ -263,7 +275,7 @@ public class PlayerMailService implements IPlayerMailService {
 		List<Long> dels = new ArrayList<>();
 		for (PlayerMail mail : domain.getBeanMap().values()) {
 			if (mail.canDel()) {
-				resp.addMailId(mail.getId());
+				resp.addMailIds(mail.getId());
 				dels.add(mail.getId());
 				mail.delete();
 			}

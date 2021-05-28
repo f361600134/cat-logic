@@ -15,7 +15,7 @@ public class AckArtifactListResp implements IProtocol{
 	private static final Logger log = LoggerFactory.getLogger(AckArtifactListResp.class);
 
 	@Override
-	public short protocol() {
+	public int protocol() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

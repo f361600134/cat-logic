@@ -107,7 +107,7 @@ public class PBArtifactInfoBuilder implements IProtocol {
 //	}
 
 	@Override
-	public short protocol() {
+	public int protocol() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
