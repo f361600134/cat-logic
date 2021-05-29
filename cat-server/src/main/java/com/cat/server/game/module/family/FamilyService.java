@@ -1,16 +1,14 @@
 package com.cat.server.game.module.family;
 
-import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.task.TokenTaskQueueExecutor;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 import com.cat.server.game.module.family.assist.FamilyPosition;
 import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
-import com.cat.server.game.module.family.domain.FamilyApply;
 import com.cat.server.game.module.family.domain.FamilyDomain;
+import com.cat.server.game.module.group.domain.DefaultApply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,7 +104,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 	/**
 	 * 查找家族
 	 * @param keyword 关键字
-	 * @return
+	 * @return 家族集合
 	 */
 	public Collection<Family> searchFamily(String keyword){
 		FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
@@ -133,7 +131,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 			}
 			//TODO	判断是否符合进入家族的条件
 			//	请求加入申请列表,有权限的人审批后, 把指定玩家加入到家族内, 并通知该玩家.
-			FamilyApply familyApply = FamilyApply.create(playerId);
+			DefaultApply familyApply = DefaultApply.create(playerId);
 			family.getApplys().put(familyApply.getPlayerId(), familyApply);
 			return ErrorCode.SUCCESS;
 		});
@@ -143,7 +141,7 @@ class FamilyService implements IFamilyService, Lifecycle{
 	/**
 	 * 退出家族
 	 * @param playerId 退出家族的玩家id
-	 * @return
+	 * @return 错误码
 	 */
 	public ErrorCode exitFamily(long playerId) throws Exception{
 		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
@@ -168,10 +166,9 @@ class FamilyService implements IFamilyService, Lifecycle{
 	
 	/**
 	 * 开除玩家
-	 * @param playerId
-	 * @param firePlayerId
-	 * @return
-	 * @throws Exception
+	 * @param playerId 操作的玩家id
+	 * @param firePlayerId  被开除的玩家id
+	 * @return 错误码
 	 */
 	public ErrorCode fire(long playerId, long firePlayerId) throws Exception{
 		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
@@ -224,8 +221,8 @@ class FamilyService implements IFamilyService, Lifecycle{
 	
 	/**
 	 * 根据玩家id获取到家族id
-	 * @param playerId
-	 * @return
+	 * @param playerId 玩家id
+	 * @return 家族id
 	 */
 	@Override
 	public long getPlayerFamilyId(long playerId){
@@ -238,8 +235,8 @@ class FamilyService implements IFamilyService, Lifecycle{
 	
 	/**
 	 * 根据玩家id获取到家族id
-	 * @param familyId
-	 * @return
+	 * @param familyId 家族id
+	 * @return 家族对象
 	 */
 	@Override
 	public Family getFamilyByFamilyId(long familyId){
@@ -252,8 +249,8 @@ class FamilyService implements IFamilyService, Lifecycle{
 	
 	/**
 	 * 根据玩家id获取到家族
-	 * @param playerId
-	 * @return
+	 * @param playerId 玩家id
+	 * @return 家族对象
 	 */
 	@Override
 	public Family getFamilyByPlayerId(long playerId){

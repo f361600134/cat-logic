@@ -21,23 +21,22 @@ import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.common.ServerConstant;
 import com.cat.server.core.event.GameEventBus;
-import com.cat.server.game.data.proto.PBLogin;
-import com.cat.server.game.data.proto.PBLogin.AckLogin;
-import com.cat.server.game.data.proto.PBLogin.ReqLogin;
+import com.cat.server.game.data.proto.PBPlayer.*;
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
-import com.cat.server.game.module.player.event.PlayerLoadEndEvent;
-import com.cat.server.game.module.player.event.PlayerLoadEvent;
 import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
-import com.cat.server.game.module.player.event.PlayerLoginEvent;
-import com.cat.server.game.module.player.proto.AckLoginResp;
+import com.cat.server.game.module.player.proto.*;
 import com.cat.server.game.module.player.resp.ResAuthResult;
 import com.cat.server.game.module.resource.IResourceService;
 import com.cat.server.utils.HttpClientUtil;
 
+/**
+ * 玩家service
+ * @author Jeremy
+ */
 @Component
 class PlayerService implements IPlayerService, IResourceService {
 
@@ -53,19 +52,21 @@ class PlayerService implements IPlayerService, IResourceService {
 	private GameEventBus eventBus;
 	
 	/**
-	 * 玩家登录信息缓存
+	 * 玩家登录信息缓存<P>
+	 * key:玩家账号+初始服务器id<P>
+	 * value:玩家上下文对象<P>
 	 */
-	private Map<String, PlayerContext> accountMap = new ConcurrentHashMap<>();
+	private final Map<String, PlayerContext> accountMap = new ConcurrentHashMap<>();
 	/**
-	 * key: 玩家id value: 玩家上下文
+	 * 在线玩家缓存
+	 * key: 玩家id<P>
+	 * value: 玩家上下文<P>
 	 */
-	private Map<Long, PlayerContext> playerMap = new ConcurrentHashMap<>();
+	private final Map<Long, PlayerContext> playerMap = new ConcurrentHashMap<>();
 	
 	/**
 	 * 添加一个新的玩家上下文对象
-	 * 
-	 * @param context
-	 * @return void
+	 * @param context 玩家上下文对象
 	 * @date 2020年9月8日下午6:42:11
 	 */
 	public void addContext(PlayerContext context) {
@@ -73,15 +74,24 @@ class PlayerService implements IPlayerService, IResourceService {
 	}
 
 	/**
+	 * 移除一个玩家上下文对象
+	 * 玩家离线后, 移除上下文对象, 一般来说玩家断线不会立刻释放资源(有可能因为网络波动造成的断线)，立刻断线的玩家加入定时线程池
+	 * 指定时间后调用此方法从缓存中移除， 如果在指定时间内上线的话，从定时线程池内移除掉此玩家
+	 */
+	public void removeContext(PlayerContext context){
+		this.playerMap.remove(context.getPlayerId());
+		String key = getCacheKey(context.getAccountName(), context.getInitServerId());
+		this.accountMap.remove(key);
+	}
+
+	/**
 	 * 通过玩家账号获取一个玩家对象
-	 * 
-	 * @param username
-	 * @return
-	 * @return PlayerContext
+	 * @param accountName 玩家唯一账号, 由账号服生成
+	 * @return PlayerContext 玩家上下文对象
 	 * @date 2020年9月7日下午5:37:16
 	 */
-	public PlayerContext getOrCreatePlayer(String username, int initServerId) {
-		String key = getCacheKey(username, initServerId);
+	public PlayerContext getOrCreatePlayer(String accountName, int initServerId) {
+		String key = getCacheKey(accountName, initServerId);
 		PlayerContext context = accountMap.get(key);
 		if (context == null) {
 			context = new PlayerContext();
@@ -90,21 +100,26 @@ class PlayerService implements IPlayerService, IResourceService {
 		return context;
 	}
 
-	private String getCacheKey(final String username, final int initServerId) {
-		String key = username.concat("-").concat(String.valueOf(initServerId));
-		return key;
+	/**
+	 * 通过账号, 初始服务器id生成唯一的缓存主键
+	 * @param accountName 账号名
+	 * @param initServerId 初始服务器id
+	 * @return 缓存唯一主键
+	 */
+	private String getCacheKey(final String accountName, final int initServerId) {
+		return accountName.concat("-").concat(String.valueOf(initServerId));
 	}
 
 	/**
-	 * 查询一个玩家
-	 * 
+	 * 根据账号, 初始服务器id 查询一个玩家
 	 * @date 2020年7月17日
-	 * @param playerId
-	 * @return
+	 * @param accountName 账号
+	 * @param initServerId 初始服务器id
+	 * @return 玩家对象
 	 */
-	private Player loadPlayer(String username, int initServerId) {
+	private Player loadPlayer(String accountName, int initServerId) {
 		String[] props = new String[] { Player.PROP_ACCOUNTNAME, Player.PROP_INITSERVERID };
-		Object[] objs = new Object[] { username, initServerId };
+		Object[] objs = new Object[] { accountName, initServerId };
 		List<Player> players = process.selectByIndex(Player.class, props, objs);
 		return players.isEmpty() ? null : players.get(0);
 	}
@@ -113,22 +128,22 @@ class PlayerService implements IPlayerService, IResourceService {
 
 	/**
 	 * 登陆
-	 * @param session
-	 * @param req
-	 * @return
+	 * @param session 游戏session
+	 * @param req 登录请求消息体
+	 * @return 错误码
 	 */
-	public ErrorCode login(GameSession session, ReqLogin req, AckLoginResp ack) {
-		final String username = req.getUserName();
+	public ErrorCode login(GameSession session, ReqPlayerLogin req, AckPlayerLoginResp ack) {
+		final String accountName = req.getAccountName();
 		final int initServerId = req.getServerId();
 		// Http调用, 去账号服请求验证
 //		ErrorCode errorCode = checkLogin(req);
 //		if (!errorCode.isSuccess()) {
 //			return errorCode;
 //		}
-		PlayerContext context = getOrCreatePlayer(username, initServerId);
+		PlayerContext context = getOrCreatePlayer(accountName, initServerId);
 		//	是否加载过角色,若不为true表示未加载过角色, 加载新角色
 		if (!context.isLoaded()) {
-			Player player = this.loadPlayer(username, initServerId);
+			Player player = this.loadPlayer(accountName, initServerId);
 			if (player == null) {
 				//	查询的玩家为null
 				ack.setStatus(1);
@@ -155,13 +170,11 @@ class PlayerService implements IPlayerService, IResourceService {
 
 	/**
 	 * 账号服进行玩家数据校验
-	 * 
-	 * @param data
-	 * @return
+	 * @param data 请求协议
+	 * @return 错误码
 	 */
-	private ErrorCode checkLogin(PBLogin.ReqLogin data) {
-
-		String userName = data.getUserName();
+	private ErrorCode checkLogin(ReqPlayerLogin data) {
+		String account = data.getAccountName();
 		int channel = data.getChannel();
 		String sessionKey = data.getSessionKey();
 		int serverId = data.getServerId();
@@ -170,7 +183,7 @@ class PlayerService implements IPlayerService, IResourceService {
 
 		String url = config.getLoginUrl() + ServerConstant.authUrl;
 		List<NameValuePair> params = new ArrayList<>();
-		params.add(new BasicNameValuePair("userName", userName));
+		params.add(new BasicNameValuePair("account", account));
 		params.add(new BasicNameValuePair("channel", String.valueOf(channel)));
 		params.add(new BasicNameValuePair("sessionKey", sessionKey));
 		params.add(new BasicNameValuePair("serverId", String.valueOf(serverId)));
@@ -191,8 +204,116 @@ class PlayerService implements IPlayerService, IResourceService {
 	}
 	
 	/**
+	* 请求获取随机名
+	* @param long playerId
+	* @param ReqPlayerRandName req
+	* @param Resp ack
+	*/
+	public ErrorCode reqPlayerRandName(long playerId, ReqPlayerRandName req, AckPlayerRandNameResp ack){
+		try {
+//			PlayerDomain domain = getDomain(playerId);
+//			if (domain == null) {
+//				return ErrorCode.DOMAIN_IS_NULL;
+//			}
+//			//TODO Somthing.
+//			this.responsePlayerInfo(domain);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.info("reqPlayerRandName error, playerId:{}", playerId);
+			logger.error("reqPlayerRandName error, e:", e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
+	}
+	/**
+	* 请求断线重连
+	* @param long playerId
+	* @param ReqPlayerReLogin req
+	* @param Resp ack
+	*/
+	public ErrorCode reqPlayerReLogin(long playerId, ReqPlayerReLogin req, AckPlayerReLoginResp ack){
+		try {
+//			PlayerDomain domain = getDomain(playerId);
+//			if (domain == null) {
+//				return ErrorCode.DOMAIN_IS_NULL;
+//			}
+//			//TODO Somthing.
+//			this.responsePlayerInfo(domain);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.info("reqPlayerReLogin error, playerId:{}", playerId);
+			logger.error("reqPlayerReLogin error, e:", e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
+	}
+	/**
+	* 请求心跳
+	* @param long playerId
+	* @param ReqPlayerHeart req
+	* @param Resp ack
+	*/
+	public ErrorCode reqPlayerHeart(long playerId, ReqPlayerHeart req, AckPlayerHeartResp ack){
+		try {
+//			PlayerDomain domain = getDomain(playerId);
+//			if (domain == null) {
+//				return ErrorCode.DOMAIN_IS_NULL;
+//			}
+//			//TODO Somthing.
+//			this.responsePlayerInfo(domain);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			logger.info("reqPlayerHeart error, playerId:{}", playerId);
+			logger.error("reqPlayerHeart error, e:", e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
+	}
+	/**
+	* 请求创建角色
+	* @param long playerId
+	* @param ReqPlayerCreateRole req
+	* @param Resp ack
+	*/
+	public ErrorCode reqPlayerCreateRole(long playerId, ReqPlayerCreateRole req, AckPlayerCreateRoleResp ack){
+		try {
+//			PlayerDomain domain = getDomain(playerId);
+//			if (domain == null) {
+//				return ErrorCode.DOMAIN_IS_NULL;
+//			}
+//			//TODO Somthing.
+//			this.responsePlayerInfo(domain);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			logger.info("reqPlayerCreateRole error, playerId:{}", playerId);
+			logger.error("reqPlayerCreateRole error, e:", e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
+	}
+	/**
+	* 请求连接游戏服
+	* @param long playerId
+	* @param ReqPlayerLogin req
+	* @param Resp ack
+	*/
+	public ErrorCode reqPlayerLogin(long playerId, ReqPlayerLogin req, AckPlayerLoginResp ack){
+		try {
+//			PlayerDomain domain = getDomain(playerId);
+//			if (domain == null) {
+//				return ErrorCode.DOMAIN_IS_NULL;
+//			}
+//			//TODO Somthing.
+//			this.responsePlayerInfo(domain);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			logger.info("reqPlayerLogin error, playerId:{}", playerId);
+			logger.error("reqPlayerLogin error, e:", e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
+	}
+	
+	/**
 	 * 踢玩家下线
-	 * @param playerId
+	 * @param playerId 玩家id
 	 */
 	public void kickPlayer(long playerId) {
 		PlayerContext context = getPlayerContext(playerId);
@@ -200,9 +321,7 @@ class PlayerService implements IPlayerService, IResourceService {
 			return;
 		}
 		final int sessionId = context.getSession().getId();
-		DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(sessionId, ()->{
-			context.forceLogout();
-		});
+		DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(sessionId, context::forceLogout);
 	}
 	
 ///////////////////////////以下是接口//////////////////////////////////
@@ -211,8 +330,8 @@ class PlayerService implements IPlayerService, IResourceService {
 	 * 通过玩家id获取一个玩家上下文
 	 * 
 	 * @date 2020年7月17日
-	 * @param playerId
-	 * @return
+	 * @param playerId 玩家id
+	 * @return 玩家上下文
 	 */
 	@Override
 	public PlayerContext getPlayerContext(Long playerId) {
@@ -232,7 +351,6 @@ class PlayerService implements IPlayerService, IResourceService {
 
 	/**
 	 * 获取所有在线玩家id
-	 * 
 	 * @return void
 	 * @date 2020年8月24日下午2:57:19
 	 */
@@ -243,10 +361,9 @@ class PlayerService implements IPlayerService, IResourceService {
 
 	/**
 	 * 发送消息
-	 * 
-	 * @return void
 	 * @date 2020年8月24日下午2:57:19
 	 */
+	@Override
 	public void sendMessage(long playerId, IProtocol protocol) {
 		final PlayerContext context = getPlayerContext(playerId);
 		if (context != null) {
@@ -254,6 +371,11 @@ class PlayerService implements IPlayerService, IResourceService {
 		}
 	}
 
+	/**
+	 * 发送消息
+	 * @param playerIds 玩家列表
+	 * @param protocol 协议体
+	 */
 	@Override
 	public void sendMessage(Collection<Long> playerIds, IProtocol protocol) {
 		playerIds.forEach(playerId -> sendMessage(playerId, protocol));
@@ -261,10 +383,11 @@ class PlayerService implements IPlayerService, IResourceService {
 
 	/**
 	 * 玩家下线, 玩家丢进线程池中,执行踢下线操作
+	 *
 	 */
 	@Override
 	public void kickPlayer(Collection<Long> playerIds) {
-		playerIds.forEach((playerId) -> kickPlayer(playerId));
+		playerIds.forEach(this::kickPlayer);
 	}
 
 	@Override
@@ -274,7 +397,8 @@ class PlayerService implements IPlayerService, IResourceService {
 
 	@Override
 	public boolean checkAdd(long playerId, Integer configId, Integer value) {
-		return true;// 属性默认不限制
+		// 属性默认不限制
+		return true;
 	}
 
 	@Override

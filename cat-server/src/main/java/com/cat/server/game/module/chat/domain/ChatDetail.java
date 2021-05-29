@@ -1,6 +1,6 @@
 package com.cat.server.game.module.chat.domain;
 
-import com.cat.server.game.data.proto.PBPlayer.ChatInfo;
+import com.cat.server.game.data.proto.PBChat;
 import com.cat.server.game.module.chat.proto.PBChatInfoBuilder;
 import com.cat.server.utils.TimeUtil;
 
@@ -74,9 +74,8 @@ public class ChatDetail {
 	/**
 	 * 创建一条玩家聊天实体信息, 携带发送者id,用于玩家发送的聊天
 	 * 
-	 * @param sendId   发送者id
+	 * @param senderId   发送者id
 	 * @param content  发送内容
-	 * @param channel  频道
 	 * @param targetId 目标id,不同频道目标id不一致
 	 * @return 聊天实体
 	 */
@@ -87,7 +86,6 @@ public class ChatDetail {
 	/**
 	 * 创建一条聊天实体信息, 不携带发送者,
 	 * @param content 发送内容
-	 * @param channel 频道
 	 * @return 聊天实体
 	 */
 	public static ChatDetail create(String content) {
@@ -98,10 +96,15 @@ public class ChatDetail {
 	 * 序列化为聊天记录
 	 * @return
 	 */
-	public ChatInfo toProto() {
-		PBChatInfoBuilder buillder = new PBChatInfoBuilder();
-		buillder.setInfo(this);
-		return buillder.build();
+	public PBChat.PBChatInfo toProto() {
+		PBChatInfoBuilder builder = new PBChatInfoBuilder();
+		builder.setContent(this.content);
+		builder.setSendTime(this.sendTime);
+		//TODO
+//		otherplayerinfo.
+//		builder.setProfile(value);
+		
+		return builder.build();
 	}
 
 }

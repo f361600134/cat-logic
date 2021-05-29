@@ -6,7 +6,8 @@ import com.cat.orm.core.annotation.PO;
 import com.cat.orm.util.StateUtils;
 import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.module.family.assist.FamilyPosition;
-import com.cat.server.game.module.group.DefaultMember;
+import com.cat.server.game.module.group.domain.DefaultApply;
+import com.cat.server.game.module.group.domain.DefaultMember;
 import com.cat.server.game.module.group.IGroup;
 import com.cat.server.game.module.group.IMember;
 import com.cat.server.utils.TimeUtil;
@@ -21,7 +22,7 @@ import java.util.Map;
 public class Family extends FamilyPo implements IPersistence, IGroup{
 	
 	@Column(PROP_APPLYSTR)
-	private Map<Long, FamilyApply> applys = new HashMap<>();
+	private Map<Long, DefaultApply> applys = new HashMap<>();
 	
 	@Column(value = PROP_MEMBERSTR, clazzType = DefaultMember.class)
 	private Map<Long, IMember> members= new HashMap<>();
@@ -43,7 +44,7 @@ public class Family extends FamilyPo implements IPersistence, IGroup{
 		return PROP_ID;
 	}
 
-	public Map<Long, FamilyApply> getApplys() {
+	public Map<Long, DefaultApply> getApplys() {
 		return applys;
 	}
 

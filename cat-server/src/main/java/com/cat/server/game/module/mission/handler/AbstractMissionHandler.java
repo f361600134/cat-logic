@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.event.IEvent;
-import com.cat.server.game.data.proto.PBBag;
+import com.cat.server.game.data.proto.PBMission;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mission.domain.MissionState;
@@ -98,8 +98,8 @@ public abstract class AbstractMissionHandler<T extends IMission> implements IMis
 		return this;
 	}
 
-	public Collection<PBBag.PBMissionInfo> toProto() {
-		List<PBBag.PBMissionInfo> colls = new ArrayList<PBBag.PBMissionInfo>();
+	public Collection<PBMission.PBMissionInfo> toProto() {
+		List<PBMission.PBMissionInfo> colls = new ArrayList<PBMission.PBMissionInfo>();
 		for (IMission mission : getMissions()) {
 			colls.add(mission.toProto());
 		}

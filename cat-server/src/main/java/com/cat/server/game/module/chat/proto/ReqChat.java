@@ -1,24 +1,23 @@
 package com.cat.server.game.module.chat.proto;
 
-import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.PBPlayer;
-
+import com.cat.server.game.data.proto.PBChat;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
 
 public class ReqChat implements IProtocol{
 	
-	private PBPlayer.ReqChat.Builder builder;
+	private PBChat.ReqChat.Builder builder;
 	
 	public ReqChat() {
-		this.builder = PBPlayer.ReqChat.newBuilder();
+		this.builder = PBChat.ReqChat.newBuilder();
 		this.set();
 	}
 	
 	public void set() {
-		builder.setChatChannel(1);
+		builder.setChannel(1);
 		builder.setContent("你好, 大傻逼");
-		builder.setPlayerId(-1);
+		builder.setRecvId(-1);
 	}
 	
 	
@@ -27,7 +26,7 @@ public class ReqChat implements IProtocol{
 	}
 	
 	@Override
-	public short protocol() {
+	public int protocol() {
 		return PBProtocol.ReqChat_VALUE;
 	}
 

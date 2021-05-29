@@ -1,7 +1,7 @@
 package com.cat.server.game.module.item.domain;
 
 import com.cat.server.core.server.IPersistence;
-import com.cat.server.game.data.proto.PBBag;
+import com.cat.server.game.data.proto.PBItem;
 import com.cat.server.game.module.resource.IResource;
 
 /**
@@ -65,11 +65,11 @@ public interface IItem extends IPersistence, IResource{
 	 * 转proto对象
 	 * @return 数量为0. 不下发
 	 */
-	default public PBBag.ItemInfo toProto() {
+	default public PBItem.PBItemInfo toProto() {
 		if(getCount() <= 0) return null;
-		PBBag.ItemInfo.Builder builder = PBBag.ItemInfo.newBuilder();
-		builder.setGuid(getUniqueId());
-		builder.setNum(getCount());
+		PBItem.PBItemInfo.Builder builder = PBItem.PBItemInfo.newBuilder();
+		builder.setId(getUniqueId());
+		builder.setCount(getCount());
 		builder.setConfigId(getConfigId());
 		return builder.build();
 	}

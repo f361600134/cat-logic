@@ -1,23 +1,23 @@
-package com.cat.server.game.module.family.domain;
+package com.cat.server.game.module.group.domain;
 
 /**
  * 进入家族申请信息
  * @auth Jeremy
  * @date 2021年5月10日下午10:16:24
  */
-public class FamilyApply {
+public class DefaultApply {
 
 	/**
 	 * 申请玩家id
 	 */
 	private long playerId;
-	
+
 	/**
 	 * 申请时间
 	 */
 	private long createTime;
-	
-	public FamilyApply(long playerId) {
+
+	public DefaultApply(long playerId) {
 		this.playerId = playerId;
 	}
 	
@@ -42,8 +42,8 @@ public class FamilyApply {
 	 * @param playerId
 	 * @return
 	 */
-	public static FamilyApply create(long playerId) {
-		return new FamilyApply(playerId);
+	public static DefaultApply create(long playerId) {
+		return new DefaultApply(playerId);
 	}
 
 }

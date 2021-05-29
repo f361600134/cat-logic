@@ -1,10 +1,12 @@
-package com.cat.server.game.module.group;
+package com.cat.server.game.module.group.domain;
+
+import com.cat.server.game.module.group.IMember;
 
 /**
  * 默认团体成员
  * @author Jeremy
  */
-public class DefaultMember implements IMember{
+public class DefaultMember implements IMember {
 	
 	/**
 	 * 成员id,即玩家id

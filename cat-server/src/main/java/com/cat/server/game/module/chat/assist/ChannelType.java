@@ -35,7 +35,7 @@ public enum ChannelType {
 		}
 	},
 	/**
-	 * 联盟聊天
+	 * 家族聊天
 	 */
 	FAMILY(2) {
 	@Override

@@ -11,7 +11,6 @@ import com.cat.server.core.config.annotation.ConfigPath;
 
 /**
  * 本地配置容器
- * 
  * @author Jeremy
  *
  */

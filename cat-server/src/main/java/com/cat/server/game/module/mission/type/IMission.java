@@ -2,7 +2,7 @@ package com.cat.server.game.module.mission.type;
 
 import java.util.Map;
 
-import com.cat.server.game.data.proto.PBBag;
+import com.cat.server.game.data.proto.PBMission;
 import com.cat.server.game.module.mission.domain.MissionState;
 
 import com.alibaba.fastjson.annotation.JSONField;
@@ -73,11 +73,12 @@ public interface IMission {
 	 * 转协议
 	 * @return
 	 */
-	default public PBBag.PBMissionInfo toProto() {
-		PBBag.PBMissionInfo.Builder builder = PBBag.PBMissionInfo.newBuilder();
-		builder.setConfigId(getConfigId());
+	default public PBMission.PBMissionInfo toProto() {
+		PBMission.PBMissionInfo.Builder builder = PBMission.PBMissionInfo.newBuilder();
+		builder.setId(getConfigId());
 		builder.setProgress(getProgress());
-		builder.setState(getState());
+		builder.setStatus(getState());
+		//builder.setType(value);
 		return builder.build();
 	}
 	

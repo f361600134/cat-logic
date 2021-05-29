@@ -15,6 +15,7 @@ public interface IResourceGroupService {
 	 * 检查数量是否足够
 	 * @param playerId 玩家id
 	 * @param costMap  消耗map, value值为正整数. 逐个判断, 全部满足返回true, 否则返回false
+	 * @return true 表示满足, 否则不满足
 	 */
 	public boolean check(long playerId, Map<Integer, Integer> costMap);
 	

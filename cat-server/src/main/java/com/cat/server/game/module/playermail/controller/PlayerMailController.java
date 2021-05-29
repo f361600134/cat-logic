@@ -8,12 +8,12 @@ import org.springframework.stereotype.Controller;
 import com.cat.net.network.annotation.Cmd;
 import com.cat.net.network.base.GameSession;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
-import com.cat.server.game.data.proto.PBPlayer;
+import com.cat.server.game.data.proto.PBMail;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.player.IPlayerService;
-import com.cat.server.game.module.playermail.proto.AckDeleteEmailResp;
-import com.cat.server.game.module.playermail.proto.AckReadEmailResp;
-import com.cat.server.game.module.playermail.proto.AckReceiveEmailResp;
+import com.cat.server.game.module.playermail.proto.AckMailDeleteResp;
+import com.cat.server.game.module.playermail.proto.AckMailReadResp;
+import com.cat.server.game.module.playermail.proto.AckMailRewardResp;
 import com.cat.server.game.module.playermail.service.PlayerMailService;
 
 /**
@@ -35,8 +35,8 @@ public class PlayerMailController {
 	 * @return
 	 */
 	/**获取邮件列表*/
-	@Cmd(PBProtocol.ReqEmailList_VALUE)
-	public void reqEmailList(GameSession session, PBPlayer.ReqEmailList req) {
+	@Cmd(PBProtocol.ReqMailList_VALUE)
+	public void reqEmailList(GameSession session, PBMail.ReqMailList req) {
 		playerMailService.responsePlayerMailInfo(session.getPlayerId());
 	}
 
@@ -45,11 +45,11 @@ public class PlayerMailController {
 	 * @return
 	 */
 	/**阅读邮件*/
-	@Cmd(PBProtocol.ReqReadEmail_VALUE)
-	public void reqReadEmail(GameSession session, PBPlayer.ReqReadEmail req) {
+	@Cmd(PBProtocol.ReqMailRead_VALUE)
+	public void reqMailRead(GameSession session, PBMail.ReqMailRead req) {
 		final long playerId = session.getPlayerId();
-		AckReadEmailResp resp = AckReadEmailResp.newInstance();
-		ErrorCode errorCode = playerMailService.read(playerId, req.getId(), resp);
+		AckMailReadResp resp = AckMailReadResp.newInstance();
+		ErrorCode errorCode = playerMailService.read(playerId, req.getMailId(), resp);
 		resp.setCode(errorCode.getCode());
 		playerService.sendMessage(playerId, resp);
 	}
@@ -59,11 +59,11 @@ public class PlayerMailController {
 	 * @return
 	 */
 	/**领取邮件*/
-	@Cmd(PBProtocol.ReqReceiveEmail_VALUE)
-	public void reqReceiveEmail(GameSession session, PBPlayer.ReqReceiveEmail req) {
+	@Cmd(PBProtocol.ReqMailReward_VALUE)
+	public void reqMailReward(GameSession session, PBMail.ReqMailReward req) {
 		final long playerId = session.getPlayerId();
-		AckReceiveEmailResp resp = AckReceiveEmailResp.newInstance();
-		ErrorCode errorCode = playerMailService.receive(playerId, req.getId());
+		AckMailRewardResp resp = AckMailRewardResp.newInstance();
+		ErrorCode errorCode = playerMailService.receive(playerId, req.getMailId());
 		resp.setCode(errorCode.getCode());
 		playerService.sendMessage(playerId, resp);
 	}
@@ -74,11 +74,11 @@ public class PlayerMailController {
 	 * @return
 	 */
 	/**删除邮件*/
-	@Cmd(PBProtocol.ReqDeleteEmail_VALUE)
-	public void reqDeleteEmail(GameSession session, PBPlayer.ReqDeleteEmail req) {
+	@Cmd(PBProtocol.ReqMailDelete_VALUE)
+	public void reqEmailDelete(GameSession session, PBMail.ReqMailDelete req) {
 		final long playerId = session.getPlayerId();
-		AckDeleteEmailResp resp = AckDeleteEmailResp.newInstance();
-		ErrorCode errorCode = playerMailService.delete(playerId, req.getId(), resp);
+		AckMailDeleteResp resp = AckMailDeleteResp.newInstance();
+		ErrorCode errorCode = playerMailService.delete(playerId, req.getMailId(), resp);
 		resp.setCode(errorCode.getCode());
 		playerService.sendMessage(playerId, resp);
 	}

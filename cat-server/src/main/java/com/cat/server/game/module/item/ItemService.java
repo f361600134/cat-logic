@@ -3,20 +3,20 @@ package com.cat.server.game.module.item;
 import java.util.Collection;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.item.domain.IItem;
 import com.cat.server.game.module.item.domain.Item;
 import com.cat.server.game.module.item.domain.ItemDomain;
-import com.cat.server.game.module.item.proto.AckBagListResp;
-import com.cat.server.game.module.item.proto.AckDeleteBagResp;
-import com.cat.server.game.module.item.proto.AckUpdateBagResp;
+import com.cat.server.game.module.item.proto.AckItemDeleteResp;
+import com.cat.server.game.module.item.proto.AckItemUpdateResp;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * 资源服务
@@ -38,8 +38,10 @@ class ItemService implements IItemService, IResourceService{
 		ItemDomain domain = itemManager.getDomain(playerId);
 		Collection<Item> items = domain.getBeans();
 		//登陆成功,下发背包信息
-		AckBagListResp ack = AckBagListResp.newInstance();
-		ack.addItem(items);
+		AckItemUpdateResp ack = AckItemUpdateResp.newInstance();
+		items.forEach((item)->{
+			ack.addItems(item.toProto());
+		});
 		playerService.sendMessage(playerId, ack);
 	}
 	
@@ -55,8 +57,10 @@ class ItemService implements IItemService, IResourceService{
 	public void responseUpdateItemList(long playerId, List<Item> itemList) {
 		// 更新物品
 		if (!itemList.isEmpty()) {
-			AckUpdateBagResp ack = AckUpdateBagResp.newInstance();
-			ack.addItem(itemList);
+			AckItemUpdateResp ack = AckItemUpdateResp.newInstance();
+			itemList.forEach((item)->{
+				ack.addItems(item.toProto());
+			});
 			playerService.sendMessage(playerId, ack);
 		}
 	}
@@ -64,9 +68,9 @@ class ItemService implements IItemService, IResourceService{
 	public void responseDeleteItemList(long playerId, List<Item> itemList){
 		//更新物品
 		if (!itemList.isEmpty()) {
-			AckDeleteBagResp ack = AckDeleteBagResp.newInstance();
+			AckItemDeleteResp ack = AckItemDeleteResp.newInstance();
 			for (IItem item : itemList) {
-				ack.addItemId(item.getUniqueId());
+				ack.addIds(item.getUniqueId());
 			}
 			playerService.sendMessage(playerId, ack);
 		}

@@ -9,11 +9,26 @@ import com.cat.server.game.module.mission.domain.MissionState;
  */
 public abstract class AbstractMission implements IMission {
 
-	protected int configId;		//	任务ID
-	protected int state;		//	任务状态:0=未完成;1=已完成;2=已領取;
-	protected int progress;		//	任务进度
-	protected long recvTime;	//	任务接取时间
-	protected long additional; 	//	额外参数,部分任务会用上
+	/**
+	 * 任务ID
+	 */
+	protected int configId;
+	/**
+	 * 任务状态:0=未完成;1=已完成;2=已領取;
+	 */
+	protected int state;
+	/**
+	 * 任务进度
+	 */
+	protected int progress;
+	/**
+	 * 任务接取时间
+	 */
+	protected long recvTime;
+	/**
+	 * 额外参数,部分任务会用上
+	 */
+	protected long additional;
 	
 	public AbstractMission(int configId) {
 		this.configId = configId;
@@ -22,6 +37,7 @@ public abstract class AbstractMission implements IMission {
 	}
 	
 	/** 任务ID **/
+	@Override
 	public int getConfigId(){
 		return this.configId;
 	}
@@ -31,19 +47,23 @@ public abstract class AbstractMission implements IMission {
 	}
 	
 	/** 任务状态:0=未完成;1=已完成;2=已領取; **/
+	@Override
 	public int getState(){
 		return this.state;
 	}
 	
+	@Override
 	public void setState(int state){
 		this.state = state;
 	}
 	
 	/** 任务进度 **/
+	@Override
 	public int getProgress(){
 		return this.progress;
 	}
 	
+	@Override
 	public void setProgress(int progress){
 		this.progress = progress;
 	}
@@ -75,6 +95,7 @@ public abstract class AbstractMission implements IMission {
 	/**
 	 * 任务进度
 	 */
+	@Override
 	public boolean progressMission(int progressDelta) {
 		int progress = getProgress();
 		progress += progressDelta;

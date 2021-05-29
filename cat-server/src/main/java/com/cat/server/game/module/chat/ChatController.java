@@ -8,12 +8,12 @@ import org.springframework.stereotype.Controller;
 import com.cat.net.network.annotation.Cmd;
 import com.cat.net.network.base.GameSession;
 import com.cat.net.network.controller.IController;
-import com.cat.server.game.data.proto.PBDefine.PBProtocol;
-import com.cat.server.game.data.proto.PBPlayer.ReqChat;
+import com.cat.server.game.data.proto.PBChat.ReqChat;
+import com.cat.server.game.data.proto.PBDefine;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.common.proto.AckTipsResp;
 import com.cat.server.game.module.gm.ICommandService;
 import com.cat.server.game.module.player.IPlayerService;
-import com.cat.server.game.module.player.proto.AckTipsResp;
 
 /**
  * 聊天控制器
@@ -34,7 +34,7 @@ public class ChatController implements IController{
     @Autowired
     private IPlayerService playerService;
 
-    @Cmd(PBProtocol.ReqChat_VALUE)
+    @Cmd(PBDefine.PBProtocol.ReqChat_VALUE)
     public void chat(GameSession session, ReqChat req) {
         long playerId = session.getPlayerId();
         boolean isGm = this.commandService.isCommand(req.getContent());
@@ -43,7 +43,8 @@ public class ChatController implements IController{
         } else {
             //聊天
             ErrorCode code = this.chatService.chat(req, playerId);
-            AckTipsResp ack = AckTipsResp.newInstance().setTipsId(code);
+            AckTipsResp ack = AckTipsResp.newInstance();
+            ack.setTipsId(code.getCode());
             playerService.sendMessage(playerId, ack);
         }
     }
