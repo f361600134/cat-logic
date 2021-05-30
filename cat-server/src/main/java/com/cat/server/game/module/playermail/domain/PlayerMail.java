@@ -9,6 +9,7 @@ import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.data.proto.PBMail;
 import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
 import com.cat.server.game.module.playermail.PlayerMailConstant;
+import com.cat.server.game.module.playermail.proto.PBMailInfoBuilder;
 import com.cat.server.utils.TimeUtil;
 
 /**
@@ -53,12 +54,12 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 
 	/**
 	 * 创建邮件对象
-	 * @param playerId
-	 * @param title
-	 * @param content
-	 * @param expiredDays
-	 * @param rewards
-	 * @return
+	 * @param playerId 玩家id
+	 * @param title 标题
+	 * @param content 内容
+	 * @param expiredDays 过期天数
+	 * @param rewards 奖励内容
+	 * @return 邮件对象
 	 */
 	public static PlayerMail create(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
 		PlayerMail mail = new PlayerMail(playerId);
@@ -75,21 +76,16 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 	
 	/**
 	 * 实体对象转协议对象
-	 * @return
+	 * @return 邮件序列化成消息对象
 	 */
 	public PBMail.PBMailInfo toProto() {
-		PBMail.PBMailInfo.Builder builder = PBMail.PBMailInfo.newBuilder();
+		PBMailInfoBuilder builder = PBMailInfoBuilder.newInstance();
 		builder.setMailId(this.getId());
-		builder.setTitle(this.getTitle());
-		builder.setContent(this.getContent());
 		builder.setState(this.getState());
-		
-		for (Integer key : this.getRewardMap().keySet()) {
-			PBRewardInfoBuilder infoBuilder = PBRewardInfoBuilder.newInstance();
-			infoBuilder.setConfigId(key);
-			infoBuilder.setCount(this.getRewardMap().get(key));
-			builder.addRewards(infoBuilder.build());
-		}
+		builder.setContent(this.getContent());
+		builder.setTitle(this.getTitle());
+		//builder.setDate();
+//		builder.addRewards(this.rewardMap.to);
 		return builder.build();
 	}
 	

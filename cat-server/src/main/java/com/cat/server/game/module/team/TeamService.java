@@ -133,7 +133,7 @@ class TeamService implements ITeamService{
     /**
      * 查找队伍
      * @param keyword 关键字
-     * @return
+     * @return 查询到的队伍列表
      */
     public Collection<Team> searchTeam(String keyword){
         return domain.searchGroup(keyword);
@@ -193,10 +193,13 @@ class TeamService implements ITeamService{
 				//同意,通知玩家进入队伍成功,推送最新的队伍信息
 				IMember member = team.newMember(playerId);
 				domain.enter(member, team.getId());
+				//TODO 1.2更新队伍其他成员信息至新加入成员
+                //TODO 1.2.更新新加入成员至队伍其他成员
+                //TODO 2. 更新队伍所有人的信息之所有成员
 				//更新最新的队伍信息给所有成员
 				this.responseInfoToMembers(team);
 			}else if (type == 2) {//忽略,不做任何处理
-				//TODO nothing...
+				//DO nothing...
 			}
             team.getApplys().remove(applyPlayerId);
             return ErrorCode.SUCCESS;
@@ -206,8 +209,6 @@ class TeamService implements ITeamService{
     
     /**
      * 审批同意
-     *   
-     * @return void  
      * @date 2021年5月15日下午11:34:27
      */
     private void approvalAgree() {
@@ -234,7 +235,6 @@ class TeamService implements ITeamService{
     
     /**
      * 更新队伍信息至所有成员
-     * @return void  
      * @date 2021年5月15日下午11:42:43
      */
     public void responseInfoToMembers(Team team) {

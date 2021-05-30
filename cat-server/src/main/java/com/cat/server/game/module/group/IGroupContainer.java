@@ -52,30 +52,30 @@ public interface IGroupContainer<T> {
 
     /**
      * 团体改名
-     * @param groupId
-     * @param newName
-     * @return
+     * @param groupId 团体iid
+     * @param newName 团体名字
+     * @return true表示改名成功
      */
     public boolean rename(long groupId, String newName);
 
     /**
      * 根据玩家id获取到团体id
-     * @param playerId
-     * @return
+     * @param playerId 玩家id
+     * @return 团体id
      */
     public long getGroupIdByPlayerId(long playerId);
 
     /**
      * 根据玩家id获取到团体id
-     * @param playerId
-     * @return
+     * @param playerId 玩家id
+     * @return 团体对象
      */
     public T getGroupByPlayerId(long playerId);
 
     /**
      * 按照关键字查询匹配的团体信息
-     * @param keyword
-     * @return
+     * @param keyword 关键字
+     * @return 符合关键字的团体对象
      */
     public Collection<T> searchGroup(String keyword);
 

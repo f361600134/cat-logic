@@ -20,7 +20,7 @@ public class FamilyGroupContainer extends AbstractGroupContainer<Family> impleme
      * key:familyTag
      * value: familyId
      */
-    private Map<String, Long> familyTagMap = new ConcurrentHashMap<>();
+    private final Map<String, Long> familyTagMap = new ConcurrentHashMap<>();
 
     @Override
     public Family newGroup(long groupId, String groupName) {
@@ -52,10 +52,12 @@ public class FamilyGroupContainer extends AbstractGroupContainer<Family> impleme
     public Collection<Family> searchGroup(String keyword) {
     	List<Family> result = new ArrayList<>();
     	long familyId = this.familyTagMap.getOrDefault(keyword, 0L);
-    	Family family = this.get(familyId);
-    	if (family != null) {
-    		result.add(family);
-		}
+    	if(familyId != 0L){
+            Family family = this.get(familyId);
+            if (family != null) {
+                result.add(family);
+            }
+        }
     	result.addAll(super.searchGroup(keyword));
     	return result;
     }

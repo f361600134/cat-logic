@@ -13,7 +13,7 @@ import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 /**
  * 团队容器, 多人模块玩法都可以视为团队
  * @warning 此操作非线程安全，多线程环境下, 需要在逻辑层确保线程安全
- * @auth Jeremy
+ * @author Jeremy
  * @date 2021年5月12日下午10:35:10
  */
 public abstract class AbstractGroupContainer <T extends IGroup> implements IGroupContainer<T>{
