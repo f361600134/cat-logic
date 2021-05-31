@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * 奖励对象字典
  */
-public class RewardMap {
+public class ResourceMap {
 
     /**
      * key:资源id，可以是属性，道具
@@ -17,11 +17,11 @@ public class RewardMap {
      */
     private final Map<Integer, Integer> dictionary;
 
-    public RewardMap() {
+    public ResourceMap() {
         this.dictionary = new HashMap<>();
     }
 
-    public RewardMap(Map<Integer, Integer> dictionary) {
+    public ResourceMap(Map<Integer, Integer> dictionary) {
         if (dictionary == null) {
             throw new NullPointerException();
         }
@@ -70,7 +70,7 @@ public class RewardMap {
      * 	其他字典合并到此字典
      * @param otherReward 其他奖励字典
      */
-    public void merge(RewardMap otherReward) {
+    public void merge(ResourceMap otherReward) {
         if (otherReward == null || otherReward.isEmpty()) {
             return;
         }

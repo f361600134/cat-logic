@@ -23,7 +23,7 @@ public class LoginController implements IController{
 	 * @return void  
 	 * @date 2019年7月4日上午11:45:13
 	 */
-	@Cmd(PBDefine.PBProtocol.AckLogin_VALUE)
+	@Cmd(PBDefine.PBProtocol.AckPlayerLogin_VALUE)
 	public void ackLogin(GameSession gameSession, PBLogin.AckLogin ack) {
 		int code = ack.getCode();
 		int staus = ack.getStatus();
@@ -47,10 +47,10 @@ public class LoginController implements IController{
 	 * @return void  
 	 * @date 2019年7月4日上午11:45:02
 	 */
-	@Cmd(PBDefine.PBProtocol.AckRandName_VALUE)
+	@Cmd(PBDefine.PBProtocol.AckPlayerRandName_VALUE)
 	public void ackLogin(GameSession gameSession, PBLogin.AckRandName ack) {
-		String names = ack.getNames();
-		if (!names.isEmpty()) {
+//		String names = ack.getNames();
+//		if (!names.isEmpty()) {
 //			int cmd = PBDefine.PBProtocol.ReqCreateHost_VALUE;
 //			PBLogin.ReqCreateHost.Builder newBuilder = PBLogin.ReqCreateHost.newBuilder();
 //			newBuilder.setNickName(names.get(0));//取第一个
@@ -58,7 +58,7 @@ public class LoginController implements IController{
 //			newBuilder.setRoleType(roleType);
 //			newBuilder.setNickName(robotContext.getName());//取第一个
 //			robotContext.send(cmd, newBuilder.build());
-		}
+//		}
 	}
 //
 //	/**

@@ -41,8 +41,8 @@ public class ReqLogin implements IProtocol{
 	}
 	
 	@Override
-	public short protocol() {
-		return PBProtocol.ReqLogin_VALUE;
+	public int protocol() {
+		return PBProtocol.ReqPlayerLogin_VALUE;
 	}
 
 	@Override

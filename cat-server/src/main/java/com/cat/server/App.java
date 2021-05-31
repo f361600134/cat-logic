@@ -9,8 +9,7 @@ import com.cat.server.common.ClassManager;
 import com.cat.server.common.ServerConstant;
 
 /**
- * Hello world!
- *
+ * Hello, game world!
  */
 public class App 
 {

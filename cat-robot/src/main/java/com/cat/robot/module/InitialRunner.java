@@ -35,9 +35,9 @@ public class InitialRunner implements Lifecycle{
 //			context.send(req);
 			
 			ReqChat req = ReqChat.create();
-			req.setChatChannel(0);
+			req.setChannel(0);
 			req.setContent("@mail sendMail,1");
-			req.setPlayerId(-1);
+			req.setRecvId(-1);
 			context.send(req);
 			
 		} catch (Exception e) {
