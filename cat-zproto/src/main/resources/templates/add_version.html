@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>协议生成管理</title>
+    <script src="../static/jquery/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+    <script src="../static/layui/layui.js"></script>
+    <style>
+        body{margin: 10px;}
+        .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+    </style>
+</head>
+
+<body>
+<form id='version_form' class="layui-form"  method="post" lay-filter="example">
+    <div class="layui-form-item">
+        <label class="layui-form-label">版本号:</label>
+        <div class="layui-input-block">
+            <input type="text" name="version" lay-verify="title" autocomplete="off" placeholder="请输入版本号" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务端代码路径:</label>
+        <div class="layui-input-block">
+            <input type="text" name="serverRootDir" lay-verify="title" autocomplete="off" placeholder="请输入服务端代码路径" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">message路径:</label>
+        <div class="layui-input-block">
+            <input type="text" name="messageDir" lay-verify="title" autocomplete="off" placeholder="请输入服务端协议文件路径" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button  id="submit" class="layui-btn"  lay-submit lay-filter="addVersion">立即提交</button>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use('form', function(){
+        var form = layui.form;
+        form.on('submit(addVersion)', function (data) {
+            var d = {};
+            d.version=$("input[name='version']").val();
+            d.serverRootDir=$("input[name='serverRootDir']").val();
+            d.messageDir=$("input[name='messageDir']").val();
+            $.ajax({
+                type: 'POST',
+                url: '/version/add',
+                data: JSON.stringify(d),
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                success: function(data){
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    layer.confirm('添加成功！', {
+                        btn: ['ok'] //按钮
+                    }, function(){
+                        parent.layer.close(index); //再执行关闭
+                        parent.window.location.reload();
+                    });
+                },
+                error: function(jqXHR){console.log(jqXHR)},
+            });
+            return false;
+    });});
+    layui.use('layer', function(){
+        var layer = layui.layer;
+    });
+</script>
+
+</body>
+</html>

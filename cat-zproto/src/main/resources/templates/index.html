@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="head :: htmlhead" th:with="title='协议生成管理'">
+</head>
+
+<body>
+<input id="version" th:value="${version}"  hidden="true">
+<h1 align="center" style="color:#FF5722"  th:text="'当前使用的版本为'+${version}"> </h1>
+
+<table id="modules" lay-filter="test"></table>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="editModule">编辑模块</a>
+    <a class="layui-btn layui-btn-xs" lay-event="view">预览协议</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑协议</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createFile">生成协议</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="aa">生成代码</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script type="text/javascript"  th:inline="none">
+    layui.use('table', function(){
+        var table = layui.table;
+        var version=$("#version").val();
+        //第一个实例
+        table.render({
+            elem: '#modules',
+            height: 800,
+            url: '/zproto/module/moduleList?version='+version, //数据接口
+            page: true ,//开启分页
+            toolbar: 'default',
+            cols: [[ //表头
+                {field: 'id', title: '模块id', width:80, sort: true, fixed: 'left'}
+                ,{field: 'name', title: '模块名', width:120}
+                ,{field: 'endPoints', title: '终端', width:80}
+                ,{field: 'comment', title: '注释', width:80, sort: true}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:500}
+            ]]
+        });
+
+        //监听工具条
+        table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+            if(layEvent === 'del'){ //删除
+                layer.confirm('真的删除行么', function(index){
+                    layer.close(index);
+                    $.ajax({
+                        type: 'GET',
+                        url: '/module/delete',
+                        dataType:"json", //返回格式为json
+                        data:{"id":data.id,"version":version}, //参数值
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function(data){
+                            if(data.code==0){
+                                obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                                layer.alert("删除成功！");
+                            }else{
+                                layer.alert("删除失败！");
+                            }
+                        },
+                        error: function(jqXHR){console.log(jqXHR)},
+                    });
+                    //向服务端发送删除指令
+                });
+            } else if(layEvent === 'edit'){ //编辑协议
+                //同步更新缓存对应的值
+                window.location.href = "/module/edit?id="+data.id+"&version="+version;
+            }  else if(layEvent === 'view'){ //编辑协议
+                //同步更新缓存对应的值
+                window.location.href = "/module/view?id="+data.id+"&version="+version;
+            }else if(layEvent === 'editModule'){ //编辑模块
+                //同步更新缓存对应的值
+                layer.open({
+                    type: 2 //此处以iframe举例
+                    ,title: '编辑模块'
+                    ,area: ['1000px', '500px']
+                    ,shade: 0
+                    ,maxmin: true
+                    ,offset: [ //为了演示，随机坐标
+                        300
+                        ,390
+                    ]
+                    ,content:"/module/editModuleView?id="+data.id+"&version="+version
+                    ,zIndex: layer.zIndex //重点1
+                    ,success: function(layero){
+                        layer.setTop(layero); //重点2
+                    }
+                });
+            }else if(layEvent === 'createFile'){ //生成文件
+                //同步更新缓存对应的值
+                $.ajax({
+                    type: 'GET',
+                    url: '/createFile',
+                    dataType:"json", //返回格式为json
+                    data:{"id":data.id,"version":version}, //参数值
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function(data){
+                        if(data.code==0){
+                            layer.alert("生成成功！");
+                        }else{
+                            layer.alert("生成失败!");
+                        }
+                    },
+                    error: function(jqXHR){console.log(jqXHR)},
+                });
+            }
+        });
+
+        //监听头工具栏事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id)
+                ,data = checkStatus.data; //获取选中的数据
+            switch(obj.event){
+                case 'add':
+                    layer.open({
+                        type: 2 //此处以iframe举例
+                        ,title: '新增模块'
+                        ,area: ['1000px', '500px']
+                        ,shade: 0
+                        ,maxmin: true
+                        ,offset: [ //为了演示，随机坐标
+                            300
+                            ,390
+                        ]
+                        ,content: '/zproto/module/addView?version='+version
+                        ,zIndex: layer.zIndex //重点1
+                        ,success: function(layero){
+                            layer.setTop(layero); //重点2
+                        }
+                    });
+                    break;
+            };
+        });
+    });
+
+
+    layui.use('form', function(){
+        var form = layui.form;
+        var version=$("#version").val();
+        //监听提交
+        form.on('submit(createEndPointFile)', function (data) {
+            // var endPoints = new Array();
+            // $("input[name='endPoints']:checked").each(function(i){//把所有被选中的複选框的值存入数组
+            //     endPoints[i] =Number($(this).val());
+            // });
+            // $.ajax({
+            //     url:"/createEndPointFile?version="+version,
+            //     data:JSON.stringify(endPoints),
+            //     type:"POST",
+            //     dataType:"json",
+            //     contentType: "application/json",
+            //     success:function(msg){
+            //         if(msg.code==0){
+            //             layer.alert("生成成功！");
+            //         }else{
+            //             layer.alert("生成失败！");
+            //         }
+            //     },
+            //     error:function(error){
+            //         layer.alert("生成失败！");
+            //     }
+            // });
+            layer.alert("暂时禁用！");
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

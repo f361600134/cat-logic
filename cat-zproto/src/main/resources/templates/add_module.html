@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>协议生成管理</title>
+    <script src="../jquery/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script src="../layui/layui.js"></script>
+    <style>
+        body{margin: 10px;}
+        .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+    </style>
+</head>
+
+<body>
+<input id="version" th:value="${version}"  hidden="true">
+<form id='module_form' class="layui-form"  method="post" lay-filter="example">
+    <div class="layui-form-item">
+        <label class="layui-form-label">模块id:</label>
+        <div class="layui-input-block">
+            <input type="text" name="id" lay-verify="title" autocomplete="off" placeholder="请输入模块id" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">模块名:</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入模块名" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">描述:</label>
+        <div class="layui-input-block">
+            <input type="text" name="comment" lay-verify="title" autocomplete="off" placeholder="请输入模块描述" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" pane="">
+        <label class="layui-form-label">终端：</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="endPoint" lay-skin="primary" title="CLIENT"  value="1">
+            <input type="checkbox" name="endPoint" lay-skin="primary" title="GAME" checked="" value="2">
+            <input type="checkbox" name="endPoint" lay-skin="primary" title="GATE"  value="3">
+            <input type="checkbox" name="endPoint" lay-skin="primary" title="GATE_CACHE"  value="4">
+            <input type="checkbox" name="endPoint" lay-skin="primary" title="CROSS"  value="5">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button  id="submit" class="layui-btn"  lay-submit lay-filter="addModule">立即提交</button>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use('form', function(){
+        var form = layui.form;
+        form.on('submit(addModule)', function (data) {
+            var d = {};
+            var arr=[];
+            $("input:checkbox[name='endPoint']:checked").each(function(i){
+                arr.push(Number($(this).val()));
+            });
+            d.id=Number($("input[name='id']").val());
+            d.name=$("input[name='name']").val();
+            d.comment=$("input[name='comment']").val();
+            d.endPoints=arr;
+            var version=$("#version").val();
+            $.ajax({
+                type: 'POST',
+                url: '/module/addModule?version='+version,
+                data: JSON.stringify(d),
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                success: function(data){
+                    var str = data.code == 0 ? '添加成功！' : '添加失败！';
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    layer.confirm(str, {
+                        btn: ['ok'] //按钮
+                    }, function () {
+                        parent.layer.close(index); //再执行关闭
+                        parent.window.location.reload();
+                    });
+                },
+                error: function(jqXHR){console.log(jqXHR)},
+            });
+            return false;
+    });});
+    layui.use('layer', function(){
+        var layer = layui.layer;
+    });
+</script>
+
+</body>
+</html>

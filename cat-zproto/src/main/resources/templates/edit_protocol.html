@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>协议生成管理</title>
+<script src="../static/jquery/jquery-3.4.1.js"></script>
+<link rel="stylesheet" href="../static/layui/css/layui.css">
+<script src="../static/layui/layui.js"></script>
+</head>
+
+<style>
+</style>
+<br>
+<input id="version" th:value="${version}"  hidden="true">
+<input id="id" th:value="${data.id}"  hidden="true">
+<h1 align="center" style="color: red"  th:text="'当前使用的版本为'+${version}"> </h1>
+<a href="/index"><p align="center">回到主页</p></a>
+<protocolTmp id="protocolTmp" hidden="true">
+<HR class="layui-bg-blue">
+<div class="layui-form-item">
+	<div class="layui-inline">
+		<label class="layui-form-label">内部序号：</label>
+		<div class="layui-input-inline">
+			<input type="tel" name="protocol_insideId" autocomplete="off"
+				class="layui-input">
+		</div>
+	</div>
+	<div class="layui-inline">
+		<label class="layui-form-label">协议类名：</label>
+		<div class="layui-input-inline">
+			<input type="text" name="protocol_name" autocomplete="off"
+				class="layui-input">
+		</div>
+	</div>
+	<div class="layui-inline">
+		<label class="layui-form-label">协议注释</label>
+		<div class="layui-input-inline">
+			<input type="text" name="protocol_comment" autocomplete="off"
+				class="layui-input">
+		</div>
+	</div>
+	<button onclick="$(this).parent().parent().remove();" class="layui-btn">删除协议</button>
+	</br>
+	<div class="layui-form-item layui-form" pane="">
+		<label class="layui-form-label">发送端：</label>
+		<div class="layui-input-block">
+			<input type="checkbox" name="protocol_senderTypes" lay-skin="primary"
+				title="CLIENT" value="1"> <input type="checkbox"
+				name="protocol_senderTypes" lay-skin="primary" title="GAME"
+				value="2"> <input type="checkbox"
+				name="protocol_senderTypes" lay-skin="primary" title="GATE"
+				value="3"> <input type="checkbox"
+				name="protocol_senderTypes" lay-skin="primary" title="GATE_CACHE"
+				value="4"> <input type="checkbox"
+				name="protocol_senderTypes" lay-skin="primary" title="CROSS"
+				value="5">
+		</div>
+	</div>
+
+	<div class="layui-form-item layui-form" pane="">
+		<label class="layui-form-label">接收端：</label>
+		<div class="layui-input-block">
+			<input type="checkbox" name="protocol_receiverTypes"
+				lay-skin="primary" title="CLIENT" value="1"> <input
+				type="checkbox" name="protocol_receiverTypes" lay-skin="primary"
+				title="GAME" value="2"> <input type="checkbox"
+				name="protocol_receiverTypes" lay-skin="primary" title="GATE"
+				value="3"> <input type="checkbox"
+				name="protocol_receiverTypes" lay-skin="primary" title="GATE_CACHE"
+				value="4"> <input type="checkbox"
+				name="protocol_receiverTypes" lay-skin="primary" title="CROSS"
+				value="5">
+		</div>
+	</div>
+
+	<div name="fields"></div>
+	<button name="addField" class="layui-btn">添加字段</button>
+</div>
+
+</protocolTmp>
+
+<fieldTmp id="fieldTmp" hidden="true">
+<div class="layui-form-item">
+	<div class="layui-inline">
+		<label class="layui-form-label">列表:</label>
+		<div class="layui-input-block">
+			<select name="field_repeated" lay-search="">
+				<option value="false">false</option>
+				<option value="true">true</option>
+			</select>
+		</div>
+	</div>
+	<div class="layui-inline">
+		<label class="layui-form-label">字段类型：</label>
+		<div class="layui-input-inline">
+			<input type="text" name="field_type" autocomplete="off"
+				class="layui-input">
+		</div>
+	</div>
+	<div class="layui-inline">
+		<label class="layui-form-label">字段名：</label>
+		<div class="layui-input-inline">
+			<input type="text" name="field_name" autocomplete="off"
+				class="layui-input">
+		</div>
+	</div>
+	<div class="layui-inline">
+		<label class="layui-form-label">注释：</label>
+		<div class="layui-input-inline">
+			<input type="text" name="field_comment" autocomplete="off"
+				class="layui-input">
+		</div>
+	</div>
+	<button onclick="$(this).parent().parent().remove();" class="layui-btn">删除字段</button>
+</div>
+</fieldTmp>
+
+<div class="layui-form-item" hidden="true">
+	<label class="layui-form-label">当前模块id:</label>
+	<div class="layui-input-inline">
+		<input type="text" readonly id="moduleId" th:value="${data.id}"
+			autocomplete="off" class="layui-input">
+	</div>
+</div>
+<div class="layui-form-item">
+	<label class="layui-form-label">当前模块名:</label>
+	<div class="layui-input-inline">
+		<input type="text" readonly id="moduleName" th:value="${data.name}"
+			autocomplete="off" class="layui-input">
+	</div>
+</div>
+<div class="layui-form-item" hidden="true">
+	<label class="layui-form-label">描述:</label>
+	<div class="layui-input-inline">
+		<input type="text" readonly id="moduleComment"
+			th:value="${data.comment}" autocomplete="off" class="layui-input">
+	</div>
+</div>
+<br>
+<div id="content"></div>
+<HR>
+<button id="addProtocol" class="layui-btn">添加协议</button>
+<br>
+<button id='submit' class="layui-btn">提交</button>
+<button id='createFile' class="layui-btn">生成协议文件</button>
+</body>
+<script type="text/javascript">
+
+    layui.use('layer', function(){
+        var layer = layui.layer;
+    });
+
+    $("#addProtocol").click(function(){
+        var clone = $("#protocolTmp").clone(true);
+        clone.attr("hidden",false);
+        clone.attr("name","protocol");
+        $("#content").append(clone);
+        layui.use('form', function(){
+            form = layui.form;
+            form.render('checkbox');
+        });
+    });
+    $("button[name='addField']").click(function(){
+        var clone = $("#fieldTmp").clone(true);
+        clone.attr("hidden",false)
+        $(this).parent().find("div[name='fields']").append(clone);
+    });
+    $("#submit").click(function(){
+        var moduleId=$("#moduleId").val();
+        var moduleName=$("#moduleName").val();
+        var moduleComment=$("#moduleComment").val();
+        var protocolIndex=0;
+        var jsonObj = {};
+        var protocolArray = [];
+        $("protocolTmp[name='protocol']").each(function(){
+            var protocol_obj={};
+            var fieldIndex=0;
+            var fieldArray=[];
+            protocol_obj.insideId=$(this).find("input[name='protocol_insideId']").val();
+            protocol_obj.name=$(this).find("input[name='protocol_name']").val();
+            protocol_obj.comment=$(this).find("input[name='protocol_comment']").val();
+
+            var senderTypes = [];
+            $(this).find("input:checkbox[name='protocol_senderTypes']:checked").each(function(i){
+                senderTypes.push(Number($(this).val()));
+            });
+
+            var receiverTypes = [];
+            $(this).find("input:checkbox[name='protocol_receiverTypes']:checked").each(function(i){
+                receiverTypes.push(Number($(this).val()));
+            });
+
+            protocol_obj.senderTypes = senderTypes;
+            protocol_obj.receiverTypes = receiverTypes;
+
+
+            $(this).find("#fieldTmp").each(function(){
+                var field_obj={};
+                var index=fieldIndex+1;
+                field_obj.index=index;
+                field_obj.repeated=$(this).find("select[name='field_repeated'] option:selected").val();
+                field_obj.type=$(this).find("input[name='field_type']").val();
+                field_obj.name=$(this).find("input[name='field_name']").val();
+                field_obj.comment=$(this).find("input[name='field_comment']").val();
+                fieldArray[fieldIndex]=field_obj;
+                fieldIndex++;
+            });
+            protocol_obj.fields=fieldArray;
+            protocolArray[protocolIndex]=protocol_obj;
+            protocolIndex++;
+        });
+        jsonObj.id=moduleId;
+        jsonObj.name=moduleName;
+        jsonObj.commont=moduleComment;
+        jsonObj.protocols=protocolArray;
+		var version=$("#version").val();
+        $.ajax({
+            type: 'POST',
+            url: '/create?version='+version,
+            data: JSON.stringify(jsonObj),
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function(data){
+                layer.alert("生成成功！")
+            },
+            error: function(jqXHR){console.log(jqXHR)},
+        });
+    });
+
+
+	$("#createFile").click(function(){
+		var version=$("#version").val();
+		var id=$("#id").val();
+		$.ajax({
+			type: 'GET',
+			url: '/createFile',
+			dataType:"json", //返回格式为json
+			data:{"id":id,"version":version}, //参数值
+			contentType: 'application/x-www-form-urlencoded',
+			success: function(data){
+				if(data.code==0){
+					layer.alert("生成成功！");
+				}else{
+					layer.alert("生成失败!");
+				}
+			},
+			error: function(jqXHR){console.log(jqXHR)},
+		});
+	});
+</script>
+
+
+<script th:inline="javascript">
+    $(document).ready(function(){
+        var protocols = /*[[${data.protocols}]]*/ ;
+        for(var i in protocols){
+            var protocol=protocols[i];
+            var clone = $("#protocolTmp").clone(true);
+            clone.attr("hidden",false);
+            clone.attr("name","protocol");
+            clone.find("input[name='protocol_insideId']").val(protocol.insideId);
+            clone.find("input[name='protocol_name']").val(protocol.name);
+            clone.find("input[name='protocol_comment']").val(protocol.comment);
+            var senderTypes = protocol.senderTypes;
+            for(var j = 0; j < senderTypes.length; j++) {
+                var value = senderTypes[j];
+                clone.find("input[name='protocol_senderTypes']")[value-1].checked = true;
+            }
+            var receiverTypes = protocol.receiverTypes;
+            for(var j = 0; j < receiverTypes.length; j++) {
+                var value = receiverTypes[j];
+                clone.find("input[name='protocol_receiverTypes']")[value-1].checked = true;
+            }
+
+
+            var fields=protocol.fields;
+            for(var j in fields){
+                var fieldClone = $("#fieldTmp").clone(true);
+                fieldClone.attr("hidden",false);
+                var field=fields[j];
+                fieldClone.find("select[name='field_repeated']").val(field.repeated+"");
+                fieldClone.find("input[name='field_type']").val(field.type);
+                fieldClone.find("input[name='field_name']").val(field.name);
+                fieldClone.find("input[name='field_comment']").val(field.comment);
+                clone.find("div[name='fields']").append(fieldClone);
+            }
+            $("#content").append(clone);
+        }
+        layui.use('form', function(){
+            form = layui.form;
+            form.render('checkbox');
+        });
+    });
+
+</script>
+
+</html>
