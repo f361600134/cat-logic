@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package Protocol;
+//option optimize_for = LITE_RUNTIME;
+option java_package = "com.cat.server.game.data.proto";
+option java_outer_classname = "PBCommon";
+
+
+//tips信息
+message AckTips
+{
+    int32 tipsId=1;
+    repeated int32 params = 2;
+}
+
+
+///////////////////一下放入公共协议/////////////////////
