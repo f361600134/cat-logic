@@ -15,7 +15,7 @@
     <a class="layui-btn layui-btn-xs" lay-event="view">预览协议</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑协议</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createFile">生成协议</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="aa">生成代码</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createCode">生成代码</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 
@@ -34,7 +34,7 @@
                 {field: 'id', title: '模块id', width:80, sort: true, fixed: 'left'}
                 ,{field: 'name', title: '模块名', width:120}
                 ,{field: 'endPoints', title: '终端', width:80}
-                ,{field: 'comment', title: '注释', width:80, sort: true}
+                ,{field: 'comment', title: '注释', width:80}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:500}
             ]]
         });
@@ -49,7 +49,7 @@
                     layer.close(index);
                     $.ajax({
                         type: 'GET',
-                        url: '/module/delete',
+                        url: '/zproto/module/deleteModule',
                         dataType:"json", //返回格式为json
                         data:{"id":data.id,"version":version}, //参数值
                         contentType: 'application/x-www-form-urlencoded',
@@ -59,6 +59,7 @@
                                 layer.alert("删除成功！");
                             }else{
                                 layer.alert("删除失败！");
+                                //layer.alert(data.tips);
                             }
                         },
                         error: function(jqXHR){console.log(jqXHR)},
@@ -76,14 +77,14 @@
                 layer.open({
                     type: 2 //此处以iframe举例
                     ,title: '编辑模块'
-                    ,area: ['1000px', '500px']
+                    ,area: ['600px', '500px']
                     ,shade: 0
                     ,maxmin: true
                     ,offset: [ //为了演示，随机坐标
-                        300
-                        ,390
+                        0
+                        ,0
                     ]
-                    ,content:"/module/editModuleView?id="+data.id+"&version="+version
+                    ,content:"/zproto/module/editModuleView?id="+data.id+"&version="+version
                     ,zIndex: layer.zIndex //重点1
                     ,success: function(layero){
                         layer.setTop(layero); //重点2
@@ -118,14 +119,14 @@
                     layer.open({
                         type: 2 //此处以iframe举例
                         ,title: '新增模块'
-                        ,area: ['1000px', '500px']
+                        ,area: ['500px', '500px']
                         ,shade: 0
                         ,maxmin: true
                         ,offset: [ //为了演示，随机坐标
-                            300
-                            ,390
+                            0
+                            ,0
                         ]
-                        ,content: '/zproto/module/addView?version='+version
+                        ,content: '/zproto/module/addModuleView?version='+version
                         ,zIndex: layer.zIndex //重点1
                         ,success: function(layero){
                             layer.setTop(layero); //重点2

@@ -19,6 +19,16 @@ public class ModuleEntity {
      * 该模块的注释
      */
     private String comment;
+    
+    /**
+     * 是否一对一
+     */
+    private boolean one2one;
+    
+    /**
+     * 附加信息,1:任务,2:资源,3:一对多
+     */
+    private List<Integer> extendInfo =new ArrayList<>();
 
     /**
      * 所属终端
@@ -84,4 +94,20 @@ public class ModuleEntity {
     public void setJavaPackage(String javaPackage) {
         this.javaPackage = javaPackage;
     }
+
+	public List<Integer> getExtendInfo() {
+		return extendInfo;
+	}
+
+	public void setExtendInfo(List<Integer> extendInfo) {
+		this.extendInfo = extendInfo;
+	}
+
+	public boolean isOne2one() {
+		return one2one;
+	}
+
+	public void setOne2one(boolean one2one) {
+		this.one2one = one2one;
+	}
 }

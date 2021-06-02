@@ -2,8 +2,9 @@ package com.cat.zproto.core.result;
 
 public enum SystemCodeEnum implements CodeEnum{
 	
-	SUCCESS(1, "success"),
-	ERROR_RELOAD(2, "刷新服务器列表异常"),
+	SUCCESS(0, "success"),
+	ERROR_PARAM(1, "参数为空"),
+	ERROR_ADD_REPEAT(2, "模块id重复"),
 	;
 	
 	private int status;

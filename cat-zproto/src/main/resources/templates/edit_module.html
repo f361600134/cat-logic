@@ -5,14 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>协议生成管理</title>
-    <script src="../static/jquery/jquery-3.4.1.js"></script>
-    <link rel="stylesheet" href="../static/layui/css/layui.css">
-    <script src="../static/layui/layui.js"></script>
+    <script src="../jquery/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <script src="../layui/layui.js"></script>
     <style>
-        body{margin: 10px;}
-        .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+         body{margin: 10px;}
+         .demo-carousel{height: 200px; line-height: 200px; text-align: center;} 
     </style>
 </head>
+
 
 <body>
 <input id="version" th:value="${version}"  hidden="true">
@@ -30,19 +31,31 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">描述:</label>
+        <label class="layui-form-label">模块描述:</label>
         <div class="layui-input-block">
             <input type="text" name="comment" lay-verify="title" autocomplete="off" placeholder="请输入模块描述" class="layui-input" th:value="${data.comment}">
         </div>
     </div>
+    
+    <div class="layui-form-item">
+      <label class="layui-form-label">模块关系:</label>
+      <input type="radio" name="one2one" value="false" title="一对多" th:checked="${data.one2one==true}">
+      <input type="radio" name="one2one" value="true" title="一对一" th:checked="${data.one2one==false}">
+    </div>
+    
+    <div class="layui-form-item" pane="">
+        <label class="layui-form-label">附加信息：</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="extendInfo" title="任务" th:checked="${data.extendInfo.contains(1)}" value="1">
+            <input type="checkbox" name="extendInfo" title="资源" th:checked="${data.extendInfo.contains(2)}" value="2">
+        </div>
+   </div>
+    
     <div class="layui-form-item" pane="">
         <label class="layui-form-label">终端：</label>
         <div class="layui-input-block">
             <input type="checkbox" name="endPoint" lay-skin="primary" title="CLIENT" th:checked="${data.endPoints.contains(1)}" value="1">
             <input type="checkbox" name="endPoint" lay-skin="primary" title="GAME" th:checked="${data.endPoints.contains(2)}" value="2">
-            <input type="checkbox" name="endPoint" lay-skin="primary" title="GATE"  th:checked="${data.endPoints.contains(3)}" value="3">
-            <input type="checkbox" name="endPoint" lay-skin="primary" title="GATE_CACHE" th:checked="${data.endPoints.contains(4)}"  value="4">
-            <input type="checkbox" name="endPoint" lay-skin="primary" title="CROSS" th:checked="${data.endPoints.contains(5)}"  value="5">
         </div>
     </div>
 
@@ -61,14 +74,23 @@
             $("input:checkbox[name='endPoint']:checked").each(function(i){
                 arr.push(Number($(this).val()));
             });
+            d.endPoints=arr;
+            
+            var ext=[];
+            $("input:checkbox[name='extendInfo']:checked").each(function(i){
+            	ext.push(Number($(this).val()));
+            });
+            d.extendInfo=ext;
+            
             d.id=Number($("input[name='id']").val());
             d.name=$("input[name='name']").val();
             d.comment=$("input[name='comment']").val();
-            d.endPoints=arr;
+            d.one2one = $('#danxuan input[name="state"]:checked ').val(); 
+            
             var version=$("#version").val();
             $.ajax({
                 type: 'POST',
-                url: '/module/editModule?version='+version,
+                url: '/zproto/module/editModule?version='+version,
                 data: JSON.stringify(d),
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",

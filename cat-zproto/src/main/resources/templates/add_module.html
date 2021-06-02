@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="../layui/css/layui.css">
     <script src="../layui/layui.js"></script>
     <style>
-        body{margin: 10px;}
-        .demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+         body{margin: 10px;}
+         .demo-carousel{height: 200px; line-height: 200px; text-align: center;} 
     </style>
 </head>
 
@@ -30,19 +30,31 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">描述:</label>
+        <label class="layui-form-label">模块描述:</label>
         <div class="layui-input-block">
             <input type="text" name="comment" lay-verify="title" autocomplete="off" placeholder="请输入模块描述" class="layui-input">
         </div>
     </div>
+    
+    <div class="layui-form-item">
+      <label class="layui-form-label">模块关系:</label>
+      <input type="radio" name="one2one" value="true" title="一对一" checked="">
+      <input type="radio" name="one2one" value="false" title="一对多">
+    </div>
+    
+    <div class="layui-form-item" pane="">
+        <label class="layui-form-label">附加信息：</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="extendInfo" title="任务"  value="1">
+            <input type="checkbox" name="extendInfo" title="资源"  value="2">
+        </div>
+   </div>
+    
     <div class="layui-form-item" pane="">
         <label class="layui-form-label">终端：</label>
         <div class="layui-input-block">
-            <input type="checkbox" name="endPoint" lay-skin="primary" title="CLIENT"  value="1">
+            <input type="checkbox" name="endPoint" lay-skin="primary" title="CLIENT" checked="" value="1">
             <input type="checkbox" name="endPoint" lay-skin="primary" title="GAME" checked="" value="2">
-            <input type="checkbox" name="endPoint" lay-skin="primary" title="GATE"  value="3">
-            <input type="checkbox" name="endPoint" lay-skin="primary" title="GATE_CACHE"  value="4">
-            <input type="checkbox" name="endPoint" lay-skin="primary" title="CROSS"  value="5">
         </div>
     </div>
 
@@ -57,23 +69,34 @@
         var form = layui.form;
         form.on('submit(addModule)', function (data) {
             var d = {};
+            
             var arr=[];
             $("input:checkbox[name='endPoint']:checked").each(function(i){
                 arr.push(Number($(this).val()));
             });
+            d.endPoints=arr;
+            
+            var ext=[];
+            $("input:checkbox[name='extendInfo']:checked").each(function(i){
+            	ext.push(Number($(this).val()));
+            });
+            d.extendInfo=ext;
+            
             d.id=Number($("input[name='id']").val());
             d.name=$("input[name='name']").val();
             d.comment=$("input[name='comment']").val();
-            d.endPoints=arr;
+            d.one2one = $('#danxuan input[name="state"]:checked ').val();         
+            
             var version=$("#version").val();
             $.ajax({
                 type: 'POST',
-                url: '/module/addModule?version='+version,
+                url: '/zproto/module/addModule?version='+version,
                 data: JSON.stringify(d),
                 dataType: 'json',
                 contentType: "application/json; charset=utf-8",
                 success: function(data){
-                    var str = data.code == 0 ? '添加成功！' : '添加失败！';
+                    //var str = data.code == 0 ? '添加成功！' : '添加失败！';
+                    var str = data.tips;
                     var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                     layer.confirm(str, {
                         btn: ['ok'] //按钮

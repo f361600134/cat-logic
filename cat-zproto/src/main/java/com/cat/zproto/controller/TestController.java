@@ -39,7 +39,7 @@ public class TestController {
 	@ResponseBody
 	@RequestMapping("/getModules")
 	public String getModules(String version) {
-        Collection<ModuleEntity> moduleEntities = moduleService.getModuleentitymap().values();
+        Collection<ModuleEntity> moduleEntities = moduleService.getAllModuleEntity();
         Map<String, Object> result = new HashMap<>();
         result.put("code", 0);
         result.put("msg", "");

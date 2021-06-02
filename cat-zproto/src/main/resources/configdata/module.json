@@ -1,0 +1,67 @@
+[{
+	"comment":"1",
+	"endPoints":[
+		1,
+		2
+	],
+	"extendInfo":[
+		1,
+		2
+	],
+	"id":1,
+	"name":"1",
+	"one2one":false
+},{
+	"comment":"登录",
+	"endPoints":[
+		1,
+		2
+	],
+	"extendInfo":[],
+	"id":100,
+	"name":"login",
+	"one2one":true
+},{
+	"comment":"玩家",
+	"endPoints":[
+		1,
+		2
+	],
+	"extendInfo":[
+		1,
+		2
+	],
+	"id":101,
+	"name":"player",
+	"one2one":false
+},{
+	"comment":"商店",
+	"endPoints":[
+		1,
+		2
+	],
+	"extendInfo":[],
+	"id":128,
+	"name":"shop",
+	"one2one":false
+},{
+	"comment":"聊天",
+	"endPoints":[
+		1,
+		2
+	],
+	"extendInfo":[],
+	"id":129,
+	"name":"chat",
+	"one2one":true
+},{
+	"comment":"将领",
+	"endPoints":[
+		1,
+		2
+	],
+	"extendInfo":[],
+	"id":153,
+	"name":"hero",
+	"one2one":false
+}]
