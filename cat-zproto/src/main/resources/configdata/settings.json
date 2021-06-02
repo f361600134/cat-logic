@@ -1,0 +1,18 @@
+{
+	"codePath":"./temps/po",
+	"dbInfo":{
+		"dbName":"coral",
+		"dbUrl":"jdbc:mysql://139.9.44.104:3306/coral?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true",
+		"password":"Jeremy2oe5.",
+		"username":"root"
+	},
+	"generatorPath":{
+		"c#":"./proto3/csharp",
+		"java":"./proto3/server"
+	},
+	"protoPath":"./proto3/proto",
+	"versionControllPath":{
+		"key":"svn",
+		"value":"svn://139.9.44.104/rabbit/"
+	}
+}

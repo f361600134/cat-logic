@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
+import com.cat.zproto.core.result.IResult;
 import com.cat.zproto.core.result.SystemCodeEnum;
 import com.cat.zproto.core.result.SystemResult;
 import com.cat.zproto.domain.ModuleEntity;
@@ -116,18 +117,16 @@ public class ModuleController {
     }
 	
 	/**
-	 * 模块列表
+	 * 模块列表 
+	 * /data/server/build/trunk
+	 * /data/server/common/trunk/message
 	 * @param version
 	 */
 	@ResponseBody
 	@RequestMapping("/moduleList")
-	public String getModules(String version) {
+	public Object getModules(String version) {
         Collection<ModuleEntity> moduleEntities = moduleService.getAllModuleEntity();
-        Map<String, Object> result = new HashMap<>();
-        result.put("code", 0);
-        result.put("msg", "");
-        result.put("data", moduleEntities);
-        return JSON.toJSONString(result);
+        return SystemResult.build(SystemCodeEnum.SUCCESS, moduleEntities);
     }
 	
 }
