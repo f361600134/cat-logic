@@ -2,15 +2,19 @@
 	"codePath":"./temps/po",
 	"dbInfo":{
 		"dbName":"coral",
-		"dbUrl":"jdbc:mysql://139.9.44.104:3306/coral?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true",
+		"initialSize":1,
 		"password":"Jeremy2oe5.",
+		"url":"jdbc:mysql://139.9.44.104:3306/coral?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true",
 		"username":"root"
 	},
-	"generatorPath":{
-		"c#":"./proto3/csharp",
-		"java":"./proto3/server"
+	"proto":{
+		"generatorPath":{
+			"c#":"./proto3/csharp",
+			"java":"./proto3/server"
+		},
+		"javaPackagePath":"com.cat.server.game.data.proto",
+		"protoPath":"./proto3/proto"
 	},
-	"protoPath":"./proto3/proto",
 	"versionControllPath":{
 		"key":"svn",
 		"value":"svn://139.9.44.104/rabbit/"

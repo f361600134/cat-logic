@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.cat.generator.core.proto;
+package com.cat.zproto.domain.proto;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,9 +16,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.generator.core.proto.domain.ProtocolField;
-import com.cat.generator.core.proto.domain.ProtocolObject;
-import com.cat.generator.core.proto.domain.ProtocolStructure;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Maps;
 
@@ -40,10 +37,6 @@ public class ProtocolParser {
 	 * value: 协议号
 	 */
 	public static HashBiMap<String, Integer> protoIdMap = HashBiMap.create();
-	
-	/**
-	 * 模块名, 协议对象
-	 */
 	public static Map<String, ProtocolObject> protoMap = Maps.newHashMap();
 	
 	public static void parse(String path) {

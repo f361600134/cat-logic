@@ -1,4 +1,4 @@
-package com.cat.zproto.domain;
+package com.cat.zproto.domain.module;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

@@ -1,22 +1,29 @@
 package com.cat.zproto.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
-import com.cat.zproto.core.result.IResult;
 import com.cat.zproto.core.result.SystemCodeEnum;
 import com.cat.zproto.core.result.SystemResult;
-import com.cat.zproto.domain.ModuleEntity;
+import com.cat.zproto.domain.module.ModuleEntity;
+import com.cat.zproto.domain.proto.ProtocolObject;
+import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.service.ModuleService;
+import com.cat.zproto.service.ProtoService;
+import com.google.common.collect.BiMap;
 
 /**
  * 用于处理模块相关操作
@@ -41,6 +48,8 @@ import com.cat.zproto.service.ModuleService;
 public class ModuleController {
 
 	@Autowired private ModuleService moduleService;
+	
+	@Autowired private ProtoService protoService;
 	
 	/**
 	 * 主页面
@@ -78,6 +87,173 @@ public class ModuleController {
     }
 	
 	/**
+	 * 协议修改界面
+	 * 1.req协议
+	 * 2.ack协议
+	 * 3.dto协议对象
+	 * @param version 版本
+	 * @param id 模块id
+	 */
+	@RequestMapping("/protoEditView")
+    public ModelAndView protoEditView(String version, int id){
+		ModelAndView mv = new ModelAndView();
+		ModuleEntity entity = moduleService.getModuleEntity(id);
+		if (entity == null) {
+			//TODO 重定向页面
+		}
+		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
+//		if (protoObject == null) {
+//			//TODO 重定向页面
+//		}
+		BiMap<String, Integer> protoNameIdMap = protoService.getProtoIds();
+		Collection<ProtocolStructure> structures = protoObject.getStructures().values();
+//		List<ProtocolStructure> requests = structures.stream().filter(e ->
+//        e.getName().toLowerCase().startsWith("req")).collect(Collectors.toList());
+//		
+//		List<ProtocolStructure> responses = structures.stream().filter(e ->
+//        e.getName().toLowerCase().startsWith("ack")).collect(Collectors.toList());
+//		
+//		List<ProtocolStructure> pbs = structures.stream().filter(e ->
+//        e.getName().toLowerCase().startsWith("PB")).collect(Collectors.toList());
+//		
+    	mv.setViewName("edit_protocol");
+    	mv.addObject("version", "1.0.0");
+    	mv.addObject("id", id);
+    	mv.addObject("data", structures);
+//    	mv.addObject("responses", responses);
+//    	mv.addObject("pbs", pbs);
+//    	mv.addObject("protoNameIdMap", protoNameIdMap);
+    	return mv;
+    }
+	
+	/**
+	 * 协议修改界面
+	 * 1.req协议
+	 * 2.ack协议
+	 * 3.dto协议对象
+	 * @param version 版本
+	 * @param id 模块id
+	 */
+	@RequestMapping("/protoInfoList")
+    public Object protoInfoList(String version, int id){
+		ModuleEntity entity = moduleService.getModuleEntity(id);
+		if (entity == null) {
+			//TODO 重定向页面
+			SystemResult.build(SystemCodeEnum.UNKNOW);
+		}
+//		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
+//		Collection<ProtocolStructure> structures = protoObject.getStructures().values();
+//		System.out.println(SystemResult.build(SystemCodeEnum.SUCCESS, structures).result());
+//		Map<String, Object> ret = new HashMap<>();
+//		ret.put("code", 0);
+//		ret.put("count", 1);
+//		ret.put("msg", "msg");
+//		
+//		List<Info> list = new ArrayList<>();
+//		list.add(Info.create());
+//		ret.put("data", list);
+//		
+//		String json = JSON.toJSONString(ret);
+//		System.out.println(json);
+		
+//        return json;
+		return null;
+    }
+	
+//	public static class Info{
+//		private String name;
+//		private String comment;
+//		public String getName() {
+//			return name;
+//		}
+//		public void setName(String name) {
+//			this.name = name;
+//		}
+//		public String getComment() {
+//			return comment;
+//		}
+//		public void setComment(String comment) {
+//			this.comment = comment;
+//		}
+//		public static Info create() {
+//			Info info = new Info();
+//			info.setName("name1");
+//			info.setComment("coment1");
+//			return info;
+//		}
+//	}
+	
+	
+	/**
+	 * 预览协议界面
+	 * 1.req协议
+	 * 2.ack协议
+	 * 3.dto协议对象
+	 * @param version 版本
+	 * @param id 模块id
+	 */
+	@RequestMapping("/protoListView")
+    public ModelAndView protoListView(String version, int id){
+		ModelAndView mv = new ModelAndView();
+		ModuleEntity entity = moduleService.getModuleEntity(id);
+		if (entity == null) {
+			//TODO 重定向页面
+		}
+		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
+		if (protoObject == null) {
+			//TODO 重定向页面
+		}
+		BiMap<String, Integer> protoNameIdMap = protoService.getProtoIds();
+		Collection<ProtocolStructure> structures = protoObject.getStructures().values();
+		List<ProtocolStructure> requests = structures.stream().filter(e ->
+        e.getName().toLowerCase().startsWith("req")).collect(Collectors.toList());
+		
+		List<ProtocolStructure> responses = structures.stream().filter(e ->
+        e.getName().toLowerCase().startsWith("ack")).collect(Collectors.toList());
+		
+		List<ProtocolStructure> pbs = structures.stream().filter(e ->
+        e.getName().toLowerCase().startsWith("PB")).collect(Collectors.toList());
+		
+    	mv.setViewName("view_protpcol");
+    	mv.addObject("version", "1.0.0");
+    	mv.addObject("requests", requests);
+    	mv.addObject("responses", responses);
+    	mv.addObject("pbs", pbs);
+    	mv.addObject("protoNameIdMap", protoNameIdMap);
+		return mv;
+    }
+	
+	/**
+	 * 预览协议界面
+	 * 1.req协议
+	 * 2.ack协议
+	 * 3.dto协议对象
+	 * @param version 版本
+	 * @param id 模块id
+	 */
+	@RequestMapping("/protoList")
+    public Object protoList(String version, int id, int type){
+		ModuleEntity entity = moduleService.getModuleEntity(id);
+		if (entity == null) {
+			//TODO 重定向页面
+		}
+		String typeStr = "req";
+		if (type == 1) {
+			typeStr = "req";
+		}else if (type == 2) {
+			typeStr = "ack";
+		}else if (type == 3) {
+			typeStr = "PB";
+		}
+		final String typeString = typeStr;
+		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
+		Collection<ProtocolStructure> structures = protoObject.getStructures().values();
+		List<ProtocolStructure> data = structures.stream().filter(e ->
+        e.getName().toLowerCase().startsWith(typeString)).collect(Collectors.toList());
+        return SystemResult.build(SystemCodeEnum.SUCCESS, data);
+    }
+	
+	/**
 	 * 新增模块
 	 */
 	@ResponseBody
@@ -111,8 +287,13 @@ public class ModuleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/deleteModule")
-	public Object deleteModule(String version, int id) {
-		moduleService.removeModuleEntity(id);
+	public Object deleteModule(String version, @RequestParam(value = "ids[]") int[] ids) {
+		if (ids.length > 2) {
+			return SystemResult.build(SystemCodeEnum.ERROR_DELETE_LIMIT);
+		}
+		for (Integer id : ids) {
+			moduleService.removeModuleEntity(id);
+		}
         return SystemResult.build(SystemCodeEnum.SUCCESS);
     }
 	
@@ -124,8 +305,9 @@ public class ModuleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/moduleList")
-	public Object getModules(String version) {
+	public Object moduleList(String version) {
         Collection<ModuleEntity> moduleEntities = moduleService.getAllModuleEntity();
+        System.out.println(moduleEntities);
         return SystemResult.build(SystemCodeEnum.SUCCESS, moduleEntities);
     }
 	

@@ -78,7 +78,20 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.52</version>
 		</dependency>
-				
+		
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>27.0-jre</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+			<version>3.12.0</version>
+		</dependency>
 		
 	</dependencies>
 

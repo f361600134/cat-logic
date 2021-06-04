@@ -1,17 +1,4 @@
 [{
-	"comment":"1",
-	"endPoints":[
-		1,
-		2
-	],
-	"extendInfo":[
-		1,
-		2
-	],
-	"id":1,
-	"name":"1",
-	"one2one":false
-},{
 	"comment":"登录",
 	"endPoints":[
 		1,
@@ -20,7 +7,7 @@
 	"extendInfo":[],
 	"id":100,
 	"name":"login",
-	"one2one":true
+	"one2one":false
 },{
 	"comment":"玩家",
 	"endPoints":[

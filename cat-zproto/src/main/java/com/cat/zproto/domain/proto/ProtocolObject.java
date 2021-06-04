@@ -1,15 +1,13 @@
-package com.cat.generator.core.proto.domain;
+package com.cat.zproto.domain.proto;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.collections4.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * 一个协议对象
- * 
- * @author Administrator
+ *协议对象信息
+ * @author Jeremy
  */
 public class ProtocolObject {
 	
@@ -18,6 +16,7 @@ public class ProtocolObject {
 	 * 比如PBChat, 模块名字就是chat
 	 */
 	private String moduleName;
+	
 	/**
 	 * 所在路径
 	 */
@@ -32,7 +31,7 @@ public class ProtocolObject {
 	private String dependenceObj = "";
 
 	/**
-	 * 一个协议对象
+	 * 协议对象对应的所有协议结构
 	 */
 	private Map<String, ProtocolStructure> structures = new HashMap<>();
 
@@ -98,7 +97,7 @@ public class ProtocolObject {
 		ret = ret.concat(".").concat("*");
 		return ret;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "ProtocolObject [javaPath=" + javaPath + ", outClass=" + outClass + ", dependenceObj=" + dependenceObj

@@ -1,0 +1,70 @@
+syntax = "proto3"; // proto3 必须加此注解
+
+package Protocol;
+//option optimize_for = LITE_RUNTIME;
+option java_package = "com.cat.server.game.data.proto";
+option java_outer_classname = "PBDefine";
+
+/*
+*生成规则
+请求协议号=模块id*100+请求协议号
+返回协议号=模块id*100+100+返回协议号
+*/
+enum PBProtocol {
+	UNIVERSAL = 0;
+	//system
+
+	//common-1
+	AckTips = 1101;
+	
+	//login-100
+	ReqLogin = 100001;
+	AckLogin = 100101;
+	ReqRandName = 100002;
+	AckRandName = 100102;
+	ReqCreateRole = 100003;
+	AckCreateRole = 100103;
+
+	//player-101
+
+	ReqPlayerLogin = 101001;
+	AckPlayerLogin = 101101;
+	ReqPlayerRandName = 101002;
+	AckPlayerRandName = 101102;
+	ReqPlayerCreateRole = 101003;
+	AckPlayerCreateRole = 101103;
+
+	AckPlayerEnterGame = 101104;
+	ReqPlayerReLogin = 101005;
+	AckPlayerReLogin = 101105;
+	ReqPlayerHeart = 101006;
+	AckPlayerHeart = 101106;
+	AckPlayerDisconnect = 101107;
+	AckInitPlayerInfo = 101108;
+	AckUpdatePlayerInfo = 101109;
+
+	//item-102
+	ReqItemUse = 102001;
+	AckItemUse = 102101;
+	ReqItemSell = 102002;
+	AckItemSell = 102102;
+	AckRewards = 102103;
+	AckItemUpdate = 102104;
+	AckItemDelete = 102105;
+
+	//mail-103
+	ReqMailRead = 103001;
+	AckMailRead = 103101;
+	ReqMailReward = 103002;
+	AckMailReward = 103102;
+	ReqMailDelete = 103003;
+	AckMailDelete = 103103;
+	ReqMailList = 103004;
+	AckMailList = 103104;
+
+
+	//chat-104
+	ReqChat = 104001;
+	AckChat = 104101;
+	
+}

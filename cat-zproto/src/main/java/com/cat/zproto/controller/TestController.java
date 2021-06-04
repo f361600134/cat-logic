@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
-import com.cat.zproto.domain.ModuleEntity;
+import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.service.ModuleService;
 
 @Controller

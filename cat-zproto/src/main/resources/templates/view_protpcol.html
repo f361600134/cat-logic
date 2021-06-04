@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="head :: htmlhead" th:with="title='协议生成管理'">
+</head>
+
+<input id="version" th:value="${version}"  hidden="true">
+<h1 align="center" style="color: red"  th:text="'当前使用的版本为'+${version}"> </h1>
+<body>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  <legend>请求消息</legend>
+</fieldset>
+ 
+<div class="layui-form">
+  <table class="layui-table">
+    <colgroup>
+      <col width="150">
+      <col width="150">
+      <col width="200">
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>协议号</th>
+        <th>协议名</th>
+        <th>协议注释</th>
+        <th>协议详情</th>
+      </tr> 
+    </thead>
+    <tbody>
+       <tr th:each="request:${requests}" >
+       		<td th:text="${protoNameIdMap.get(request.name)}"></td>
+       		<td th:text="${request.name}"></td>
+       		<td th:text="${request.comment}"></td>
+       		
+       		<td>
+	       		<p th:if="${request.fields.size()==0}">无</p>
+	            <table border="1" th:if="${request.fields.size()>0}">
+	                <tr>
+	                    <th>关键字</th>
+	                    <th>类型</th>
+	                    <th>名字</th>
+	                    <th>注释</th>
+	                </tr>
+	                <tr th:each="field:${request.fields}">
+	                    <td th:text="${field.identifier}"></td>
+	                    <td th:text="${field.type}"></td>
+	                    <td th:text="${field.name}"></td>
+	                    <td th:text="${field.comment}"></td>
+	                </tr>
+	            </table>
+       		</td>
+       </tr>
+    </tbody>
+  </table>
+</div>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  <legend>返回消息</legend>
+</fieldset>
+ 
+<div class="layui-form">
+  <table class="layui-table">
+    <colgroup>
+      <col width="150">
+      <col width="150">
+      <col width="200">
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>协议号</th>
+        <th>协议名</th>
+        <th>协议注释</th>
+        <th>协议详情</th>
+      </tr> 
+    </thead>
+    <tbody>
+       <tr th:each="response:${responses}" >
+       		<td th:text="${protoNameIdMap.get(response.name)}"></td>
+       		<td th:text="${response.name}"></td>
+       		<td th:text="${response.comment}"></td>
+       		
+       		<td>
+	       		<p th:if="${response.fields.size()==0}">无</p>
+	            <table border="1" th:if="${response.fields.size()>0}">
+	                <tr>
+	                    <th>关键字</th>
+	                    <th>类型</th>
+	                    <th>名字</th>
+	                    <th>注释</th>
+	                </tr>
+	                <tr th:each="field:${response.fields}">
+	                    <td th:text="${field.identifier}"></td>
+	                    <td th:text="${field.type}"></td>
+	                    <td th:text="${field.name}"></td>
+	                    <td th:text="${field.comment}"></td>
+	                </tr>
+	            </table>
+       		</td>
+       </tr>
+    </tbody>
+  </table>
+</div>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  <legend>协议对象</legend>
+</fieldset>
+ 
+<div class="layui-form">
+  <table class="layui-table">
+    <colgroup>
+      <col width="150">
+      <col width="150">
+      <col width="200">
+      <col>
+    </colgroup>
+    <thead>
+      <tr>
+        <th>协议号</th>
+        <th>协议名</th>
+        <th>协议注释</th>
+        <th>协议详情</th>
+      </tr> 
+    </thead>
+    <tbody>
+       <tr th:each="pb:${pbs}" >
+       		<td th:text="${protoNameIdMap.get(pb.name)}"></td>
+       		<td th:text="${pb.name}"></td>
+       		<td th:text="${pb.comment}"></td>
+       		
+       		<td>
+	       		<p th:if="${pb.fields.size()==0}">无</p>
+	            <table th:if="${pb.fields.size()>0}">
+	                <tr>
+	                    <th>关键字</th>
+	                    <th>类型</th>
+	                    <th>名字</th>
+	                    <th>注释</th>
+	                </tr>
+	                <tr th:each="field:${pb.fields}">
+	                    <td th:text="${field.identifier}"></td>
+	                    <td th:text="${field.type}"></td>
+	                    <td th:text="${field.name}"></td>
+	                    <td th:text="${field.comment}"></td>
+	                </tr>
+	            </table>
+       		</td>
+       </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

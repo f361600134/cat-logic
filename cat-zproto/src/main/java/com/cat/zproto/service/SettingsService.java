@@ -15,14 +15,17 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.domain.module.ModuleEntity;
 import com.fasterxml.jackson.annotation.JsonAlias;
 
-@Service
-public class ModuleService implements InitializingBean{
+/**
+ * 配置服务, 初始化时生成配置相关信息
+ * @author Administrator
+ *
+ */
+public class SettingsService implements InitializingBean{
 	
-//	public static final String FILENAME = "src/main/resources/configdata/module.json";
+	public static final String FILENAME = "src/main/resources/configdata/module.json";
 	
 	 /**
      * 模块id,模块
@@ -30,10 +33,6 @@ public class ModuleService implements InitializingBean{
      */
     private final Map<Integer, ModuleEntity> moduleEntityMap = new TreeMap<>();
     
-//	public Map<Integer, ModuleEntity> getModuleentitymap() {
-//		return moduleEntityMap;
-//	}
-	
     /**
      * 获取指定entity
      * @param id
@@ -83,7 +82,7 @@ public class ModuleService implements InitializingBean{
 	private void save() {
 		String data = JSON.toJSONString(moduleEntityMap.values(), SerializerFeature.PrettyFormat);
 		try {
-			FileUtils.writeStringToFile(new File(CommonConstant.MODULE_INFO_PATH), data, StandardCharsets.UTF_8, false);
+			FileUtils.writeStringToFile(new File(FILENAME), data, StandardCharsets.UTF_8, false);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -92,7 +91,7 @@ public class ModuleService implements InitializingBean{
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		String content = FileUtils.readFileToString(new File(CommonConstant.MODULE_INFO_PATH), StandardCharsets.UTF_8);
+		String content = FileUtils.readFileToString(new File(FILENAME), StandardCharsets.UTF_8);
 		List<ModuleEntity> entitys = JSON.parseArray(content, ModuleEntity.class);
 		entitys.forEach((entity) ->{
 			moduleEntityMap.put(entity.getId(), entity);
