@@ -100,7 +100,7 @@ public class ProtocolParser {
 				//解析依赖项
 				int startIndex = line.indexOf(quo)+1;
 				int lastIndex = line.lastIndexOf(spot);
-				object.setDependenceObj(line.substring(startIndex, lastIndex));
+//				object.setDependenceObj(line.substring(startIndex, lastIndex));
 			}
 			} catch (Exception e) {
 				logger.error("parseObject error");

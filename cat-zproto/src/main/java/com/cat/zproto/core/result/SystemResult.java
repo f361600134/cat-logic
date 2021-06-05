@@ -40,7 +40,7 @@ public class SystemResult extends AbstractResult {
 	 * 构造消息
 	 * @return
 	 */
-	public static IResult build(SystemCodeEnum codeEnum) {
+	public static SystemResult build(SystemCodeEnum codeEnum) {
 		return new SystemResult(codeEnum);
 	}
 	
@@ -48,7 +48,7 @@ public class SystemResult extends AbstractResult {
 	 * 构造消息
 	 * @return
 	 */
-	public static IResult build(SystemCodeEnum codeEnum, Object data) {
+	public static SystemResult build(SystemCodeEnum codeEnum, Object data) {
 		SystemResult result = new SystemResult(codeEnum);
 		result.setData(data);
 		return result;

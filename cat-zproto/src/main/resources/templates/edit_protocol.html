@@ -12,17 +12,10 @@
 <input id="version" th:value="${version}"  hidden="true">
 <input id="id" th:value="${id}"  hidden="true">
 <h1 align="center" style="color: red"  th:text="'当前使用的版本为'+${version}"> </h1>
-<a href="/index"><p align="center">回到主页</p></a>
+<a href="/zproto/module/index"><p align="center">回到主页</p></a>
 <protocolTmp id="protocolTmp" hidden="true">
 <HR class="layui-bg-blue">
 <div class="layui-form-item">
-<!-- 	<div class="layui-inline"> -->
-<!-- 		<label class="layui-form-label">内部序号：</label> -->
-<!-- 		<div class="layui-input-inline"> -->
-<!-- 			<input type="tel" name="protocol_insideId" autocomplete="off" -->
-<!-- 				class="layui-input"> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
 	<div class="layui-inline">
 		<label class="layui-form-label">协议类名：</label>
 		<div class="layui-input-inline">
@@ -38,27 +31,9 @@
 		</div>
 	</div>
 	<button onclick="$(this).parent().parent().remove();" class="layui-btn">删除协议</button>
-	</br>
-	<div class="layui-form-item layui-form" pane="">
-		<label class="layui-form-label">发送端：</label>
-		<div class="layui-input-block">
-			<input type="checkbox" name="protocol_senderTypes" lay-skin="primary"
-				title="CLIENT" value="1"> <input type="checkbox"
-				name="protocol_senderTypes" lay-skin="primary" title="GAME"
-				value="2"> 
-		</div>
-	</div>
-
-	<div class="layui-form-item layui-form" pane="">
-		<label class="layui-form-label">接收端：</label>
-		<div class="layui-input-block">
-			<input type="checkbox" name="protocol_receiverTypes"
-				lay-skin="primary" title="CLIENT" value="1"> <input
-				type="checkbox" name="protocol_receiverTypes" lay-skin="primary"
-				title="GAME" value="2">
-		</div>
-	</div>
-
+	<br>
+	<br>
+	<br>
 	<div name="fields"></div>
 	<button name="addField" class="layui-btn">添加字段</button>
 </div>
@@ -101,29 +76,6 @@
 </div>
 </fieldTmp>
 
-<!-- <div class="layui-form-item" hidden="true"> -->
-<!-- 	<label class="layui-form-label">当前模块id:</label> -->
-<!-- 	<div class="layui-input-inline"> -->
-<!-- 		<input type="text" readonly id="moduleId" th:value="${id}" -->
-<!-- 			autocomplete="off" class="layui-input"> -->
-<!-- 	</div> -->
-<!-- </div> -->
-<!-- <div class="layui-form-item"> -->
-<!-- 	<label class="layui-form-label">当前模块名:</label> -->
-<!-- 	<div class="layui-input-inline"> -->
-<!-- 		<input type="text" readonly id="moduleName" th:value="${data.name}" -->
-<!-- 			autocomplete="off" class="layui-input"> -->
-<!-- 	</div> -->
-<!-- </div> -->
-
-<!-- <div class="layui-form-item" hidden="true"> -->
-<!-- 	<label class="layui-form-label">描述:</label> -->
-<!-- 	<div class="layui-input-inline"> -->
-<!-- 		<input type="text" readonly id="moduleComment" -->
-<!-- 			th:value="${data.comment}" autocomplete="off" class="layui-input"> -->
-<!-- 	</div> -->
-<!-- </div> -->
-
 <br>
 <div id="content"></div>
 <HR>
@@ -153,34 +105,21 @@
         clone.attr("hidden",false)
         $(this).parent().find("div[name='fields']").append(clone);
     });
+    
     $("#submit").click(function(){
         var moduleId=$("#moduleId").val();
         var moduleName=$("#moduleName").val();
         var moduleComment=$("#moduleComment").val();
         var protocolIndex=0;
-        var jsonObj = {};
+        
         var protocolArray = [];
         $("protocolTmp[name='protocol']").each(function(){
             var protocol_obj={};
             var fieldIndex=0;
             var fieldArray=[];
-            protocol_obj.insideId=$(this).find("input[name='protocol_insideId']").val();
+
             protocol_obj.name=$(this).find("input[name='protocol_name']").val();
             protocol_obj.comment=$(this).find("input[name='protocol_comment']").val();
-
-            var senderTypes = [];
-            $(this).find("input:checkbox[name='protocol_senderTypes']:checked").each(function(i){
-                senderTypes.push(Number($(this).val()));
-            });
-
-            var receiverTypes = [];
-            $(this).find("input:checkbox[name='protocol_receiverTypes']:checked").each(function(i){
-                receiverTypes.push(Number($(this).val()));
-            });
-
-            protocol_obj.senderTypes = senderTypes;
-            protocol_obj.receiverTypes = receiverTypes;
-
 
             $(this).find("#fieldTmp").each(function(){
                 var field_obj={};
@@ -197,19 +136,20 @@
             protocolArray[protocolIndex]=protocol_obj;
             protocolIndex++;
         });
-        jsonObj.id=moduleId;
-        jsonObj.name=moduleName;
-        jsonObj.commont=moduleComment;
-        jsonObj.protocols=protocolArray;
 		var version=$("#version").val();
+		var id=$("#id").val();
         $.ajax({
             type: 'POST',
-            url: '/create?version='+version,
-            data: JSON.stringify(jsonObj),
+            url: '/zproto/module/protoCommit?version='+version+'&id='+id,
+            data: JSON.stringify(protocolArray),
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
             success: function(data){
-                layer.alert("生成成功！")
+            	if(data.code == 0){
+            		 layer.alert("提交成功！")
+            	}else{
+            		layer.alert(data.tips)
+            	}
             },
             error: function(jqXHR){console.log(jqXHR)},
         });

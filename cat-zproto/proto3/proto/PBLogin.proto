@@ -25,7 +25,7 @@ message ReqRandName{}
 
 //响应获取随机名结果
 message AckRandName{
-	repeated string names = 1;
+	repeated string names = 1;  //随机名
 }
 
 //请求创建角色
@@ -33,10 +33,12 @@ message ReqCreateRole{
 	int32 roleType = 1;	    //角色类型(策划表里的ID,不是男女)
 	string nickName = 2;    //昵称
 	string inputName = 3;	//玩家输入账号
+	repeated string names = 1;  //随机名
 }
 //响应创建角色结果
 message AckCreateRole{
 	int32 code = 1; //错误码
+	repeated string names = 1;  //随机名
 }
 
 //响应进入游戏消息

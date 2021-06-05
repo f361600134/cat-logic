@@ -7,7 +7,7 @@ import com.cat.zproto.util.StringUtils;
  */
 public class ProtocolField {
 	/**
-	 * 标识符，repeated、optional
+	 * 标识符，repeated
 	 */
 	private String identifier;
 	/**
@@ -30,8 +30,23 @@ public class ProtocolField {
 	 * proto对应的Java类型
 	 */
 	private String javaType;
+	/**
+	 * 下标
+	 */
+	private int index;
+	
+	public ProtocolField() {
+		this.identifier = "";
+		this.type = "";
+		this.name = "";
+		this.comment = "";
+		this.javaType = "";
+	}
 	
 	public String getIdentifier() {
+		if (repeated) {
+			return "repeated";
+		}
 		return identifier;
 	}
 	public void setIdentifier(String identifier) {
@@ -75,6 +90,13 @@ public class ProtocolField {
 	}
 	public void setRepeated(boolean repeated) {
 		this.repeated = repeated;
+	}
+	
+	public int getIndex() {
+		return index;
+	}
+	public void setIndex(int index) {
+		this.index = index;
 	}
 	@Override
 	public String toString() {

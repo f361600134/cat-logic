@@ -93,6 +93,18 @@
 			<version>3.12.0</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.freemarker</groupId> -->
+<!-- 			<artifactId>freemarker</artifactId> -->
+<!-- 			<version>2.3.29</version> -->
+<!-- 		</dependency> -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

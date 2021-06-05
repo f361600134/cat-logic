@@ -36,7 +36,6 @@ public class ProtocolStructure {
 	public List<ProtocolField> getFields() {
 		return fields;
 	}
-	
 	@Override
 	public String toString() {
 		return "ProtocolStructure [name=" + name + ", comment=" + comment + ", fields=" + fields + "]";

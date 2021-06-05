@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang3.RegExUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cat.zproto.core.result.SystemCodeEnum;
+import com.cat.zproto.core.result.SystemResult;
 import com.cat.zproto.domain.proto.ProtocolConstant;
 import com.cat.zproto.domain.proto.ProtocolField;
 import com.cat.zproto.domain.proto.ProtocolObject;
@@ -33,7 +36,8 @@ public class ProtoService implements InitializingBean{
 	
 	public static final Logger logger = LoggerFactory.getLogger(ProtocolParser.class.getName());
 	
-	@Autowired private SettingConfig config;
+	@Autowired private SettingConfig setting;
+	
 	
 	/**
 	 * key:方法名
@@ -42,7 +46,7 @@ public class ProtoService implements InitializingBean{
 	public HashBiMap<String, Integer> protoIdMap = HashBiMap.create();
 	
 	/**
-	 * key: 方法名
+	 * key: 模块名
 	 * value: 协议信息
 	 */
 	public Map<String, ProtocolObject> protoMap = Maps.newHashMap();
@@ -88,7 +92,6 @@ public class ProtoService implements InitializingBean{
 		final String javaOuterClassname = ProtocolConstant.JAVA_OUTER_CLASSNAME;
 		final String javaImport = ProtocolConstant.IMPORT;
 		final String spot = ProtocolConstant.SPOT;
-		final String moduleId = ProtocolConstant.MODULE_ID;
 		
 		ProtocolObject object = new ProtocolObject();
 		for(String line : headList) {
@@ -103,19 +106,17 @@ public class ProtoService implements InitializingBean{
 				//解析类名
 				int startIndex = line.indexOf(quo)+1;
 				int lastIndex = line.lastIndexOf(quo);
-				object.setOutClass(line.substring(startIndex, lastIndex));
+				String name = line.substring(startIndex, lastIndex);
+				object.setOutClass(name);
+				name = name.replaceAll(ProtocolConstant.PB_PREFIX, "");
+				object.setModuleName(name);
 			}
 			else if (line.contains(javaImport)) {
 				//解析依赖项
 				int startIndex = line.indexOf(quo)+1;
 				int lastIndex = line.lastIndexOf(spot);
-				object.setDependenceObj(line.substring(startIndex, lastIndex));
-			}
-			else if (line.contains(moduleId)) {
-				//解析模块id
-				int startIndex = line.indexOf(quo)+1;
-				int lastIndex = line.lastIndexOf(spot);
-				object.setDependenceObj(line.substring(startIndex, lastIndex));
+				String name = line.substring(startIndex, lastIndex);
+				object.addDependenceObj(name);
 			}
 			} catch (Exception e) {
 				logger.error("parseObject error");
@@ -311,6 +312,63 @@ public class ProtoService implements InitializingBean{
 	}
 	
 	/**
+	 * 获取对外依赖的对象<br>
+	 * 根据依赖的DTO对象, 判断如果匹配, 表示依赖了此对象,返回给调用层
+	 * @return
+	 */
+	public List<String> getDependanceObj(String moduleName, List<String> dtoNames){
+		List<String> ret = new ArrayList<>();
+		if (dtoNames == null || dtoNames.isEmpty()) {
+			return ret;
+		}
+		for (ProtocolObject ptoto : protoMap.values()) {
+			if (StringUtils.equals(ptoto.getModuleName(), moduleName)) {
+				continue;
+			}
+			for (ProtocolStructure struct : ptoto.getStructures().values()) {
+				if (!StringUtils.startsWith(struct.getName(), ProtocolConstant.PB_PREFIX) ) {
+					continue;
+				}
+				if(dtoNames.contains(struct.getName())) {
+					ret.add(ptoto.getModuleName());
+					break;
+				}
+			}
+		}
+		return ret;
+	}
+	
+	/**
+	 * proto对象修改
+	 * 1. 读取配置重新设置,
+	 * 2. 修改协议列表,直接替换成新的
+	 * @return 返回被修改的最新的协议对象
+	 */
+	public ProtocolObject protoObjectUpdate(String moduleName, List<ProtocolStructure> protoStructure) {
+		ProtocolObject protoObject = getProtoObject(moduleName);
+		if (protoObject == null) {
+			return null;
+		}
+		//		替换掉协议信息
+		protoObject.replaceStructures(protoStructure);
+		//	根据配置重新设置
+		String javaPackage = setting.getProto().getJavaPackagePath();
+		protoObject.setJavaPath(javaPackage);
+		String PbObj = ProtocolConstant.PB_PREFIX.concat(com.cat.zproto.util.StringUtils.firstCharUpper(moduleName));
+		protoObject.setOutClass(PbObj);
+		//查询所有引用类
+		List<String> dtoNames = new ArrayList<>();
+		for (ProtocolStructure protocolStructure : protoStructure) {
+			if (StringUtils.startsWith(protocolStructure.getName(), ProtocolConstant.PB_PREFIX)) {
+				dtoNames.add(protocolStructure.getName());
+			}
+		}
+		List<String> dependans = getDependanceObj(moduleName, dtoNames);
+		protoObject.setDependenceObjs(dependans);
+		return protoObject;
+	}
+	
+	/**
 	 * 根据模块id获取协议对象集合
 	 * @deprecated
 	 * @return
@@ -331,7 +389,7 @@ public class ProtoService implements InitializingBean{
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		String protoPath = config.getProto().getProtoPath();
+		String protoPath = setting.getProto().getProtoPath();
 		this.parse(protoPath);
 	}
     

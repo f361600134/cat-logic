@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>协议生成管理</title>
-<script src="../static/jquery/jquery-3.4.1.js"></script>
-<link rel="stylesheet" href="../static/layui/css/layui.css">
-<script src="../static/layui/layui.js"></script>
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="head :: htmlhead" th:with="title='协议生成管理'">
 </head>
 
+<body>
 <style>
 </style>
 <br>
 <input id="version" th:value="${version}"  hidden="true">
-<input id="id" th:value="${data.id}"  hidden="true">
+<input id="id" th:value="${id}"  hidden="true">
 <h1 align="center" style="color: red"  th:text="'当前使用的版本为'+${version}"> </h1>
 <a href="/index"><p align="center">回到主页</p></a>
 <protocolTmp id="protocolTmp" hidden="true">
 <HR class="layui-bg-blue">
 <div class="layui-form-item">
-	<div class="layui-inline">
-		<label class="layui-form-label">内部序号：</label>
-		<div class="layui-input-inline">
-			<input type="tel" name="protocol_insideId" autocomplete="off"
-				class="layui-input">
-		</div>
-	</div>
+<!-- 	<div class="layui-inline"> -->
+<!-- 		<label class="layui-form-label">内部序号：</label> -->
+<!-- 		<div class="layui-input-inline"> -->
+<!-- 			<input type="tel" name="protocol_insideId" autocomplete="off" -->
+<!-- 				class="layui-input"> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	<div class="layui-inline">
 		<label class="layui-form-label">协议类名：</label>
 		<div class="layui-input-inline">
@@ -48,13 +45,7 @@
 			<input type="checkbox" name="protocol_senderTypes" lay-skin="primary"
 				title="CLIENT" value="1"> <input type="checkbox"
 				name="protocol_senderTypes" lay-skin="primary" title="GAME"
-				value="2"> <input type="checkbox"
-				name="protocol_senderTypes" lay-skin="primary" title="GATE"
-				value="3"> <input type="checkbox"
-				name="protocol_senderTypes" lay-skin="primary" title="GATE_CACHE"
-				value="4"> <input type="checkbox"
-				name="protocol_senderTypes" lay-skin="primary" title="CROSS"
-				value="5">
+				value="2"> 
 		</div>
 	</div>
 
@@ -64,13 +55,7 @@
 			<input type="checkbox" name="protocol_receiverTypes"
 				lay-skin="primary" title="CLIENT" value="1"> <input
 				type="checkbox" name="protocol_receiverTypes" lay-skin="primary"
-				title="GAME" value="2"> <input type="checkbox"
-				name="protocol_receiverTypes" lay-skin="primary" title="GATE"
-				value="3"> <input type="checkbox"
-				name="protocol_receiverTypes" lay-skin="primary" title="GATE_CACHE"
-				value="4"> <input type="checkbox"
-				name="protocol_receiverTypes" lay-skin="primary" title="CROSS"
-				value="5">
+				title="GAME" value="2">
 		</div>
 	</div>
 
@@ -116,27 +101,29 @@
 </div>
 </fieldTmp>
 
-<div class="layui-form-item" hidden="true">
-	<label class="layui-form-label">当前模块id:</label>
-	<div class="layui-input-inline">
-		<input type="text" readonly id="moduleId" th:value="${data.id}"
-			autocomplete="off" class="layui-input">
-	</div>
-</div>
-<div class="layui-form-item">
-	<label class="layui-form-label">当前模块名:</label>
-	<div class="layui-input-inline">
-		<input type="text" readonly id="moduleName" th:value="${data.name}"
-			autocomplete="off" class="layui-input">
-	</div>
-</div>
-<div class="layui-form-item" hidden="true">
-	<label class="layui-form-label">描述:</label>
-	<div class="layui-input-inline">
-		<input type="text" readonly id="moduleComment"
-			th:value="${data.comment}" autocomplete="off" class="layui-input">
-	</div>
-</div>
+<!-- <div class="layui-form-item" hidden="true"> -->
+<!-- 	<label class="layui-form-label">当前模块id:</label> -->
+<!-- 	<div class="layui-input-inline"> -->
+<!-- 		<input type="text" readonly id="moduleId" th:value="${id}" -->
+<!-- 			autocomplete="off" class="layui-input"> -->
+<!-- 	</div> -->
+<!-- </div> -->
+<!-- <div class="layui-form-item"> -->
+<!-- 	<label class="layui-form-label">当前模块名:</label> -->
+<!-- 	<div class="layui-input-inline"> -->
+<!-- 		<input type="text" readonly id="moduleName" th:value="${data.name}" -->
+<!-- 			autocomplete="off" class="layui-input"> -->
+<!-- 	</div> -->
+<!-- </div> -->
+
+<!-- <div class="layui-form-item" hidden="true"> -->
+<!-- 	<label class="layui-form-label">描述:</label> -->
+<!-- 	<div class="layui-input-inline"> -->
+<!-- 		<input type="text" readonly id="moduleComment" -->
+<!-- 			th:value="${data.comment}" autocomplete="off" class="layui-input"> -->
+<!-- 	</div> -->
+<!-- </div> -->
+
 <br>
 <div id="content"></div>
 <HR>
@@ -253,26 +240,14 @@
 
 <script th:inline="javascript">
     $(document).ready(function(){
-        var protocols = /*[[${data.protocols}]]*/ ;
+ 		var protocols = /*[[${data}]]*/ ;
         for(var i in protocols){
             var protocol=protocols[i];
             var clone = $("#protocolTmp").clone(true);
             clone.attr("hidden",false);
             clone.attr("name","protocol");
-            clone.find("input[name='protocol_insideId']").val(protocol.insideId);
             clone.find("input[name='protocol_name']").val(protocol.name);
             clone.find("input[name='protocol_comment']").val(protocol.comment);
-            var senderTypes = protocol.senderTypes;
-            for(var j = 0; j < senderTypes.length; j++) {
-                var value = senderTypes[j];
-                clone.find("input[name='protocol_senderTypes']")[value-1].checked = true;
-            }
-            var receiverTypes = protocol.receiverTypes;
-            for(var j = 0; j < receiverTypes.length; j++) {
-                var value = receiverTypes[j];
-                clone.find("input[name='protocol_receiverTypes']")[value-1].checked = true;
-            }
-
 
             var fields=protocol.fields;
             for(var j in fields){

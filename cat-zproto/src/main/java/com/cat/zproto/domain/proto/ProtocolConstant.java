@@ -13,7 +13,10 @@ public class ProtocolConstant {
 	public static String JAVA_OUTER_CLASSNAME = "java_outer_classname";
 	public static String IMPORT = "import";
 	public static String SPOT = ".";
-	public static String MODULE_ID = "module_id";
 	
-
+	/**可以丢在配置里*/
+	public static String REQ_PREFIX = "Req";
+	public static String RESP_PREFIX = "Ack";
+	public static String PB_PREFIX = "PB";
+	public static String PROTO_SUBFIX = ".proto";
 }
