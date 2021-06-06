@@ -9,18 +9,22 @@
 <input id="version" th:value="${version}"  hidden="true">
 <h1 align="center" style="color:#FF5722"  th:text="'当前使用的版本为'+${version}"> </h1>
 
-<table id="modules" lay-filter="test"></table> 
+<a href="/zproto/module/protoReverseLoad"><p align="center">尝试反向加载</p></a>
 
+<table id="modules" lay-filter="test"></table> 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="view">预览协议</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑协议</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createFile">生成协议</a>
+    <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createMessage">生成协议</a>-->
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createCode">生成代码</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createMessage">生成协议<i class="layui-icon layui-icon-down"></i></a>
 </script>
 
 <script type="text/javascript"  th:inline="none">
-    layui.use('table', function(){
-        var table = layui.table;
+    layui.use(['table'], function(){
+        var table = layui.table
+        ,dropdown = layui.dropdown//下拉菜单
+        
         var version=$("#version").val();
         //第一个实例
         table.render({
@@ -92,23 +96,81 @@
                         layer.setTop(layero); //重点2
                     }
                 });
-            }else if(layEvent === 'createFile'){ //生成文件
-                //同步更新缓存对应的值
-                $.ajax({
-                    type: 'GET',
-                    url: '/createFile',
-                    dataType:"json", //返回格式为json
-                    data:{"id":data.id,"version":version}, //参数值
-                    contentType: 'application/x-www-form-urlencoded',
-                    success: function(data){
-                        if(data.code==0){
-                            layer.alert("生成成功！");
-                        }else{
-                            layer.alert("生成失败!");
-                        }
-                    },
-                    error: function(jqXHR){console.log(jqXHR)},
-                });
+            }
+//             else if(layEvent === 'createMessage'){ //生成协议
+//                 //同步更新缓存对应的值
+//                 $.ajax({
+//                     type: 'GET',
+//                     url: '/zproto/module/createMessage',
+//                     dataType:"json", //返回格式为json
+//                     data:{"id":data.id,"version":version,"langType":"java"}, //参数值
+//                     contentType: 'application/x-www-form-urlencoded',
+//                     success: function(data){
+//                         if(data.code==0){
+//                             layer.alert("生成成功！");
+//                         }else{
+//                             layer.alert("生成失败!");
+//                         }
+//                     },
+//                     error: function(jqXHR){console.log(jqXHR)},
+//                 });
+//             }
+		else if(layEvent === 'createCode'){ //生成协议
+	         //同步更新缓存对应的值
+	         $.ajax({
+	             type: 'GET',
+	             url: '/zproto/module/createCode',
+	             dataType:"json", //返回格式为json
+	             data:{"id":data.id,"version":version}, //参数值
+	             contentType: 'application/x-www-form-urlencoded',
+	             success: function(data){
+	                 if(data.code==0){
+	                     layer.alert("生成成功！");
+	                 }else{
+	                     layer.alert(data.tips);
+	                 }
+	             },
+	             error: function(jqXHR){console.log(jqXHR)},
+	         });
+	     }
+            else if(layEvent === 'createMessage'){
+            	//下拉菜单
+                dropdown.render({
+                  elem: this //触发事件的 DOM 对象
+                  ,show: true //外部事件触发即显示
+                  ,data: [{
+                	  title: 'All'
+                     ,id: 'all'
+                 },{
+                	  title: 'C#'
+                      ,id: 'csharp'
+                  },{
+                	  title: 'Java'
+                      ,id: 'java'
+                  }]
+                  ,click: function(menudata){
+                  	//同步更新缓存对应的值
+                    $.ajax({
+                        type: 'GET',
+                        url: '/zproto/module/createMessage',
+                        dataType:"json", //返回格式为json
+                        data:{"id":data.id,"version":version,"langType":menudata.id}, //参数值
+                        contentType: 'application/x-www-form-urlencoded',
+                        success: function(ret){
+                            if(ret.code==0){
+                            	layer.alert(ret.tips);
+//                                 layer.alert("生成成功！");
+                            }else{
+                                layer.alert("生成失败!");
+                            }
+                           
+                        },
+                        error: function(jqXHR){console.log(jqXHR)},
+                    });
+                  }
+                  ,align: 'right' //右对齐弹出（v2.6.8 新增）
+                  ,style: 'box-shadow: 1px 1px 10px rgb(0 0 0 / 12%);' //设置额外样式
+                })
             }
         });
 

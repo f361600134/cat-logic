@@ -1,9 +1,9 @@
 package com.cat.zproto.domain.module;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.cat.zproto.util.StringUtils;
 
 public class ModuleEntity {
     /**
@@ -30,22 +30,21 @@ public class ModuleEntity {
      */
     private List<Integer> extendInfo =new ArrayList<>();
 
-    /**
-     * 所属终端
-     */
-    private List<Integer> endPoints=new ArrayList<>();
-    
-    /**
-     * proto中的包名<br>
-     * 也是前端使用的包名
-     */
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String protoPackage;
-    /**
-     * java中的包名
-     */
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String javaPackage;
+//    /**
+//     * 所属终端
+//     */
+//    private List<Integer> endPoints=new ArrayList<>();
+//    /**
+//     * proto中的包名<br>
+//     * 也是前端使用的包名
+//     */
+//    @JsonInclude(JsonInclude.Include.NON_NULL)
+//    private String protoPackage;
+//    /**
+//     * java中的包名
+//     */
+//    @JsonInclude(JsonInclude.Include.NON_NULL)
+//    private String javaPackage;
 
     public int getId() {
         return id;
@@ -60,7 +59,7 @@ public class ModuleEntity {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = StringUtils.firstCharUpper(name);
     }
 
     public String getComment() {
@@ -71,29 +70,28 @@ public class ModuleEntity {
         this.comment = comment;
     }
 
-    public List<Integer> getEndPoints() {
-        return endPoints;
-    }
+//    public List<Integer> getEndPoints() {
+//        return endPoints;
+//    }
+//
+//    public void setEndPoints(List<Integer> endPoints) {
+//        this.endPoints = endPoints;
+//    }
+//    public String getProtoPackage() {
+//        return protoPackage;
+//    }
+//
+//    public void setProtoPackage(String protoPackage) {
+//        this.protoPackage = protoPackage;
+//    }
 
-    public void setEndPoints(List<Integer> endPoints) {
-        this.endPoints = endPoints;
-    }
-
-    public String getProtoPackage() {
-        return protoPackage;
-    }
-
-    public void setProtoPackage(String protoPackage) {
-        this.protoPackage = protoPackage;
-    }
-
-    public String getJavaPackage() {
-        return javaPackage;
-    }
-
-    public void setJavaPackage(String javaPackage) {
-        this.javaPackage = javaPackage;
-    }
+//    public String getJavaPackage() {
+//        return javaPackage;
+//    }
+//
+//    public void setJavaPackage(String javaPackage) {
+//        this.javaPackage = javaPackage;
+//    }
 
 	public List<Integer> getExtendInfo() {
 		return extendInfo;

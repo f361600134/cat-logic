@@ -14,7 +14,7 @@
 <h1 align="center" style="color: red"  th:text="'当前使用的版本为'+${version}"> </h1>
 <a href="/zproto/module/index"><p align="center">回到主页</p></a>
 <protocolTmp id="protocolTmp" hidden="true">
-<HR class="layui-bg-blue">
+<hr class="layui-border-black">
 <div class="layui-form-item">
 	<div class="layui-inline">
 		<label class="layui-form-label">协议类名：</label>
@@ -78,11 +78,12 @@
 
 <br>
 <div id="content"></div>
-<HR>
+<hr class="layui-border-red">
+
 <button id="addProtocol" class="layui-btn">添加协议</button>
-<br>
+
 <button id='submit' class="layui-btn">提交</button>
-<button id='createFile' class="layui-btn">生成协议文件</button>
+<button id='createMessage' class="layui-btn">生成csharp协议</button>
 </body>
 <script type="text/javascript">
 
@@ -156,12 +157,12 @@
     });
 
 
-	$("#createFile").click(function(){
+	$("#createMessage").click(function(){
 		var version=$("#version").val();
 		var id=$("#id").val();
 		$.ajax({
 			type: 'GET',
-			url: '/createFile',
+			url: '/zproto/module/createMessage',
 			dataType:"json", //返回格式为json
 			data:{"id":id,"version":version}, //参数值
 			contentType: 'application/x-www-form-urlencoded',

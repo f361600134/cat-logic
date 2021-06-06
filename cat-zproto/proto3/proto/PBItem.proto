@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package Protocol;
+//option optimize_for = LITE_RUNTIME;
+option java_package = "com.cat.server.game.data.proto";
+option java_outer_classname = "PBItem";
+
+//import "PBCommon.proto";
+
+
+//道具协议对象
+message PBItemInfo
+{
+    int64 id = 1;               //唯一id
+	int32 configId = 2;         //道具配置id
+	int32 count = 3;            //数量
+}
+
+
+//更新道具列表
+message AckItemUpdate{
+	repeated PBItemInfo items = 1;        //道具列表
+}
+
+//请求使用道具
+message ReqItemUse{
+	int64 id=1;                //道具唯一id
+	int32 count=2;             //使用数量
+}
+
+//响应使用到具
+message AckItemUse
+{
+    int32 code = 1;
+	repeated PBRewardInfo rewards = 2;			//奖励
+}
+
+
+//请求出售道具
+message ReqItemSell
+{
+	int64 id=1;                //道具唯一id
+	int32 count=2;             //使用数量
+}
+
+//响应出售道具
+message AckItemSell
+{
+    int32 code = 1;
+}
+
+//获得奖励信息
+message AckRewards
+{
+	repeated PBRewardInfo rewards = 1;  //分解后奖励
+	int32 type = 2; 					//弹窗类型, 1:弹窗,2:条状飘窗
+}
+
+//奖励信息
+message PBRewardInfo
+{
+    int32 configId = 1;
+	int32 count = 2;
+}
+
+//成对的结构,key-value结构,可用于资源, 属性等kv格式的数据
+message PBPairInfo
+{
+    int32 configId = 1;
+	int32 value = 2;
+}
+
+//推送道具删除
+message AckItemDelete
+{
+	repeated int64 ids = 1;			//奖励
+}

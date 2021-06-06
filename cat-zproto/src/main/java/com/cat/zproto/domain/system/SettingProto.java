@@ -9,6 +9,11 @@ import java.util.Map;
 public class SettingProto {
 	
 	/**
+	 * proto.exe的路径
+	 */
+	private String protoExePath;
+	
+	/**
 	 * protp文件路径
 	 */
 	private String protoPath;
@@ -49,6 +54,14 @@ public class SettingProto {
 
 	public void setJavaPackagePath(String javaPackagePath) {
 		this.javaPackagePath = javaPackagePath;
+	}
+
+	public String getProtoExePath() {
+		return protoExePath;
+	}
+
+	public void setProtoExePath(String protoExePath) {
+		this.protoExePath = protoExePath;
 	}
 	
 }

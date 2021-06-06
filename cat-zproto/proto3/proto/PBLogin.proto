@@ -1,46 +1,48 @@
 syntax = "proto3";
 package Protocol;
-//option optimize_for = LITE_RUNTIME;
 option java_package = "com.cat.server.game.data.proto";
 option java_outer_classname = "PBLogin";
 
-//请求连接游戏服
-message ReqLogin{
-    string userName=1;		//游戏唯一账号
-	int32 channel = 2;		//渠道
-	string sessionKey=3;	//密匙
-	int32 serverId = 4;		//游戏服id
-	string version = 5;		//版本号
-	int32 loginSid = 6;		//登录服id
-	string device = 7;		//设备码
-}
-//响应连接游戏服结果
-message AckLogin{
-    int32 code = 1;		//错误码
-	int32 status = 2;	//是否进入创建角色环节, 0=否,1=是
-}
 
-//请求获取随机名
-message ReqRandName{}
-
-//响应获取随机名结果
-message AckRandName{
-	repeated string names = 1;  //随机名
-}
-
-//请求创建角色
-message ReqCreateRole{
-	int32 roleType = 1;	    //角色类型(策划表里的ID,不是男女)
-	string nickName = 2;    //昵称
-	string inputName = 3;	//玩家输入账号
-	repeated string names = 1;  //随机名
-}
-//响应创建角色结果
+// 响应创建角色结果
 message AckCreateRole{
-	int32 code = 1; //错误码
-	repeated string names = 1;  //随机名
+    int32 code = 1;  //
 }
 
-//响应进入游戏消息
-message AckEnterGame{}
+// 响应获取随机名结果
+message AckRandName{
+    repeated string names = 1;  //
+}
+
+// 请求连接游戏服
+message ReqLogin{
+    string userName = 1;  //游戏唯一账号
+    int32 channel = 2;  //渠道
+    string sessionKey = 3;  //密匙
+    int32 serverId = 4;  //游戏服id
+    string version = 5;  //版本号
+    int32 loginSid = 6;  //登录服id
+    string device = 7;  //设备码
+}
+
+// 响应进入游戏消息
+message AckEnterGame{
+}
+
+// 请求获取随机名
+message ReqRandName{
+}
+
+// 响应连接游戏服结果
+message AckLogin{
+    int32 code = 1;  //
+    int32 status = 2;  //是否进入创建角色环节, 0=否,1=是
+}
+
+// 请求创建角色
+message ReqCreateRole{
+    int32 roleType = 1;  //角色类型(策划表里的ID,不是男女)
+    string nickName = 2;  //昵称
+    string inputName = 3;  //玩家输入账号
+}
 

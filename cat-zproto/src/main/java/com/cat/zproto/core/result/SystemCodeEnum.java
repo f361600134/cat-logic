@@ -10,7 +10,11 @@ public enum SystemCodeEnum implements CodeEnum{
 	ERROR_NO_CHANGE(4, "没有任何修改"),
 	ERROR_ILLEGAL_PARAM(5, "参数出错"),
 	ERROR_CANNOT_DOUND_MODULE(6, "找不到指定模块"),
-	ERROR_EXECUTE_COMMAND_FAIL(7, "执行命令行失败")
+	ERROR_EXECUTE_COMMAND_FAIL(7, "执行命令行失败"),
+	ERROR_NOT_SUPPORT_REVERSE_LOAD(8, "无数据时才能反向加载"),
+	ERROR_NOT_FOUND_TABLE(9, "未找到对应表信息,请检查模块名与表命是否保持一致"),
+	ERROR_SELECT_EXCPTION(10, "数据查询出现异常"),
+	ERROR_CANNOT_FOUND_PROTOOBJECT(11, "找不到协议对象"),
 	;
 	
 	private int status;

@@ -2,10 +2,13 @@ package com.cat.zproto.domain.proto;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import com.alibaba.fastjson.annotation.JSONField;
 
 /**
  *协议对象信息
@@ -34,7 +37,7 @@ public class ProtocolObject {
 	 * 对于其他类,表示引用类名<br>
 	 * 如果被其他类引用, 则java_outer_classname视为引入包名
 	 */
-	private List<String> dependenceObjs = new ArrayList<>();
+	private Set<String> dependenceObjs = new HashSet<>();
 
 	/**
 	 * key: 名字
@@ -66,11 +69,11 @@ public class ProtocolObject {
 	}
 
 
-	public List<String> getDependenceObjs() {
+	public Set<String> getDependenceObjs() {
 		return dependenceObjs;
 	}
 
-	public void setDependenceObjs(List<String> dependenceObjs) {
+	public void setDependenceObjs(Set<String> dependenceObjs) {
 		this.dependenceObjs = dependenceObjs;
 	}
 
@@ -99,6 +102,7 @@ public class ProtocolObject {
 	 * 
 	 * @return
 	 */
+	@JSONField(serialize = false)
 	public String getJavaImport() {
 		return getJavaPath().concat(".").concat(getOutClass()).concat(".").concat("*");
 	}
@@ -107,6 +111,7 @@ public class ProtocolObject {
 	 * 获取结构列表<br>
 	 * @return
 	 */
+	@JSONField(serialize = false)
 	public Collection<ProtocolStructure> getStructureList() {
 		return structures.values();
 	}

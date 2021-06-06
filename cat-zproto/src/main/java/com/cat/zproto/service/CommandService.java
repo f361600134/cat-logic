@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import com.cat.zproto.core.result.SystemCodeEnum;
 import com.cat.zproto.core.result.SystemResult;
 
+/**
+ * 命令服务, 执行指定的命令
+ * @auth Jeremy
+ * @date 2021年6月6日下午6:13:07
+ */
 @Service
 public class CommandService {
 

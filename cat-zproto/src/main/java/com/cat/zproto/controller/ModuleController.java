@@ -1,10 +1,15 @@
 package com.cat.zproto.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +20,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.cat.zproto.assist.generator.IGenerator;
+import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.core.result.SystemCodeEnum;
 import com.cat.zproto.core.result.SystemResult;
 import com.cat.zproto.domain.module.ModuleEntity;
+import com.cat.zproto.domain.proto.ProtocolConstant;
 import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
+import com.cat.zproto.domain.system.SettingMysql;
+import com.cat.zproto.domain.table.TableEntity;
+import com.cat.zproto.domain.table.TableFreemarkerDto;
+import com.cat.zproto.service.CommandService;
+import com.cat.zproto.service.DbService;
 import com.cat.zproto.service.ModuleService;
 import com.cat.zproto.service.ProtoService;
 import com.cat.zproto.service.TemplateService;
@@ -57,6 +71,12 @@ public class ModuleController {
 	@Autowired private SettingConfig setting;
 	
 	@Autowired private TemplateService templateService;
+	
+	@Autowired private CommandService commandService;
+	
+	@Autowired private DbService dbService;
+	
+	@Autowired private List<IGenerator> generatorList;
 	
 	/**
 	 * 主页面
@@ -131,15 +151,18 @@ public class ModuleController {
 	 * @param id 模块id
 	 */
 	@RequestMapping("/protoListView")
-    public ModelAndView protoListView(String version, int id){
+    public Object protoListView(String version, int id){
 		ModelAndView mv = new ModelAndView();
 		ModuleEntity entity = moduleService.getModuleEntity(id);
 		if (entity == null) {
 			//TODO 重定向页面
+			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
 		}
 		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
 		if (protoObject == null) {
 			//TODO 重定向页面
+			mv.setViewName("no_proto");
+			return mv;
 		}
 		BiMap<String, Integer> protoNameIdMap = protoService.getProtoIds();
 		Collection<ProtocolStructure> structures = protoObject.getStructures().values();
@@ -162,7 +185,7 @@ public class ModuleController {
     }
 	
 	/**
-	 * 协议提交, 替换掉协议信息, 生成proto文件, 不生成proto协议
+	 * 协议提交, 替换掉协议信息, 保存至结构, 不生成proto文件, 不生成proto协议
 	 * @param version 版本
 	 * @param id 模块id
 	 * @param 所有协议信息
@@ -187,10 +210,41 @@ public class ModuleController {
 		}
 		//	生成proto文件
 		String protoPath = setting.getProto().getProtoPath();
-		String fileName = protoPath.concat(File.separator).concat(protoObject.getOutClass());
+		String fileName = protoPath.concat(File.separator).concat(protoObject.getOutClass()).concat(ProtocolConstant.PROTO_SUBFIX);
 		templateService.printer(protoObject, fileName, "proto.ftl");
+		 /*
+		  * 生成protoId文件,这里处理的有点不优雅,没想到如何配置.
+		  */
+		Map<String, Object> map = new HashMap<String, Object>();
+//		Map<String, Integer> protoIdMap = protoService.getSortProtoIdMap(moduleService.getAllModuleEntity());
+		Map<String, Integer> protoIdMap = protoService.getProtoIds();
+		map.put("javaPath", setting.getProto().getJavaPackagePath());
+		map.put("outClass", "PBDefine");
+		map.put("protoIdMap", protoIdMap);
+        fileName = protoPath.concat(File.separator).concat("PBProtocol").concat(ProtocolConstant.PROTO_SUBFIX);
+        templateService.printer(map, fileName, "protoId.ftl");
         return SystemResult.build(SystemCodeEnum.SUCCESS);
     }
+	
+	/**
+	 * 协议反向加载<br>
+	 * 从*.proto文件内,加载结构到protoObject, 存储为本地结构.
+	 * @return void  
+	 * @date 2021年6月5日下午10:49:16
+	 */
+	@RequestMapping("/protoReverseLoad")
+	public Object protoReverseLoad(String version) {
+		ModelAndView mv = new ModelAndView();
+		boolean result = protoService.reverseLoad();
+		result = result & moduleService.reverseLoad(protoService.getAllProtoObject(), protoService.getProtoIds());
+		if (result) {
+			mv.setViewName("index");
+			mv.addObject("version", "1.0.0");
+		}else {
+			mv.setViewName("error");
+		}
+		return mv;
+	}
 	
 	/**
 	 * 生成协议文件<br>
@@ -198,13 +252,97 @@ public class ModuleController {
 	 * CALL "bin/protoc.exe" --csharp_out=%csharp_out% --proto_path=%proto_path% %%i	<br>
 	 * {protoc} -I={protoPath} --java_out={javaPath} {moduleName}.proto		<br>
 	 * %s -I=%s --java_out=%s %s.proto
+	 * @param version 版本
+	 * @param id 模块id
+	 * @param langType 语言类型,all表示所有
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("/createMessage")
-	public Object createMessage() {
-		
-		return null;
+	public Object createMessage(String version, int id, String langType) {
+		ModuleEntity entity = moduleService.getModuleEntity(id);
+		if (entity == null) {
+			//TODO 重定向页面
+			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
+		}
+		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
+		if (protoObject == null) {
+			//TODO 重定向页面
+			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
+		}
+		//返回信息,包含成功和失败的
+		String ret = ""; 
+		SystemResult result = null;
+		if (langType.equals("all")) {
+			Map<String, String> pathMap = setting.getProto().getGeneratorPath();
+			for (String languegeType : pathMap.keySet()) {
+				result = createMessage(protoObject, languegeType);
+				ret = ret.concat(String.format(CommonConstant.GENERATE_RESULT, languegeType, result.tips())).concat("<br>");
+			}
+		}else {
+			result = createMessage(protoObject, langType);
+			ret = String.format(CommonConstant.GENERATE_RESULT, langType, result.tips());
+		}
+		result.setTips(ret);
+		return result;
+	}
+	
+	private SystemResult createMessage(ProtocolObject protoObject, String langType) {
+		String protoFormat = CommonConstant.PROTOC_EXECUTE_FORMAT;
+		String protoExePath = setting.getProto().getProtoExePath();
+		String protoPath = setting.getProto().getProtoPath();
+		String languageType = langType;
+		String genPath = setting.getProto().getGeneratorPath().get(langType);
+		String outClassName = protoObject.getOutClass();
+		try {
+			//TODO 这段代码丢初始化调用里面
+			FileUtils.forceMkdir(new File(genPath));
+		} catch (IOException e) {
+			e.printStackTrace();
+			logger.info("forceMkdir error, e", e);
+		}
+		String command = String.format(protoFormat, protoExePath, protoPath, languageType, genPath, outClassName);
+		SystemResult result = commandService.execCommand(command);
+		logger.info("command:{}, result:{}", command, result);
+		return result;
+	}
+	
+	/**
+	 * 生成代码<br>
+	 *   根据定义的module信息, 找到数据库中的table, 最终根据table结构生成代码.<br>
+	 *   数据库表命名会奇奇怪怪的, 比如加前后缀. 此处要兼容各种奇怪的命名<br>
+	 * @note 硬性要求--moduleName必须要跟表命名一致  <br>
+	 * 表命通常小写, 模块名这里定义必须要写, 所以判断查询时需要忽略大小写.
+	 * @return void  
+	 * @date 2021年6月6日下午3:38:25
+	 */
+	@ResponseBody
+	@RequestMapping("/createCode")
+	public Object createCode(String version, int id) {
+		ModuleEntity entity = moduleService.getModuleEntity(id);
+		if (entity == null) {
+			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_FOUND_PROTOOBJECT);
+		}
+		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
+		if (protoObject == null) {
+			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
+		}
+		List<TableEntity> entitys = dbService.readDb();
+		TableEntity tableEntity = null;
+		for (TableEntity te : entitys) {
+			if (StringUtils.equals(te.getEntityName(), entity.getName())) {
+				tableEntity = te;
+				break;
+			}
+		}
+		if (tableEntity == null) {
+			return SystemResult.build(SystemCodeEnum.ERROR_NOT_FOUND_TABLE);
+		}
+		TableFreemarkerDto dto = new TableFreemarkerDto(tableEntity, protoObject);
+		for (IGenerator generator : generatorList) {
+			generator.generate(dto);
+		}
+		return SystemResult.build(SystemCodeEnum.SUCCESS);
 	}
 	
 	/**
@@ -259,7 +397,6 @@ public class ModuleController {
 	@RequestMapping("/moduleList")
 	public Object moduleList(String version) {
         Collection<ModuleEntity> moduleEntities = moduleService.getAllModuleEntity();
-        System.out.println(moduleEntities);
         return SystemResult.build(SystemCodeEnum.SUCCESS, moduleEntities);
     }
 	

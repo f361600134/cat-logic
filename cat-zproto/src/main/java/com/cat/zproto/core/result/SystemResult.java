@@ -1,5 +1,7 @@
 package com.cat.zproto.core.result;
 
+import java.util.Map;
+
 /**
  * 系统集父类
  * @auth Jeremy

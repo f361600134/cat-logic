@@ -1,4 +1,7 @@
 package com.cat.zproto.domain.system;
+
+import com.alibaba.druid.pool.DruidDataSource;
+
 /**
  * 数据源是mysql数据库<br>
  * 如果数据源是excel表/nosql怎么办<br>
@@ -51,5 +54,14 @@ public class SettingMysql {
 	public void setInitialSize(int initialSize) {
 		this.initialSize = initialSize;
 	}
-
+	
+	public DruidDataSource newDruidDataSource() {
+		DruidDataSource dataSource = new DruidDataSource();
+		dataSource.setUrl(this.getUrl());
+		dataSource.setUsername(this.getUsername());
+		dataSource.setPassword(this.getPassword());
+		dataSource.setInitialSize(this.getInitialSize());
+		return dataSource;
+	}
+	
 }

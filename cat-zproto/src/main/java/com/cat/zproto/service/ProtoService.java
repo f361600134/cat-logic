@@ -3,13 +3,16 @@ package com.cat.zproto.service;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -19,8 +22,14 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.core.result.SystemCodeEnum;
 import com.cat.zproto.core.result.SystemResult;
+import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.domain.proto.ProtocolConstant;
 import com.cat.zproto.domain.proto.ProtocolField;
 import com.cat.zproto.domain.proto.ProtocolObject;
@@ -40,16 +49,16 @@ public class ProtoService implements InitializingBean{
 	
 	
 	/**
-	 * key:方法名
+	 * key:协议名
 	 * value: 协议号
 	 */
-	public HashBiMap<String, Integer> protoIdMap = HashBiMap.create();
+	public final HashBiMap<String, Integer> protoIdMap = HashBiMap.create();
 	
 	/**
 	 * key: 模块名
 	 * value: 协议信息
 	 */
-	public Map<String, ProtocolObject> protoMap = Maps.newHashMap();
+	public final Map<String, ProtocolObject> protoMap = Maps.newHashMap();
 	
 	public void parse(String path) {
 		File folder = new File(path);
@@ -73,7 +82,7 @@ public class ProtoService implements InitializingBean{
 					e.printStackTrace();
 				}
 			}
-			protoMap.put(object.getModuleName().toLowerCase(), object);
+			protoMap.put(object.getModuleName(), object);
 		}
 //		for(ProtocolObject ps:protoMap.values()) {
 //			System.out.println(ps);
@@ -229,6 +238,7 @@ public class ProtoService implements InitializingBean{
 	 * @param protocolFile
 	 * @return
 	 */
+	@JSONField(serialize =  false)
 	private Pair<List<String>, List<List<String>>> getProtocolScopeList(File protocolFile) {
 		//协议头结构
 		List<String> headList = new ArrayList<>();
@@ -280,6 +290,7 @@ public class ProtoService implements InitializingBean{
 	 * @param protoMethodName
 	 * @return
 	 */
+	@JSONField(serialize =  false)
 	public ProtocolObject getProtoObject(String protoMethodName) {
 		return protoMap.get(protoMethodName);
 	}
@@ -289,6 +300,7 @@ public class ProtoService implements InitializingBean{
 	 * @param protoMethodName
 	 * @return
 	 */
+	@JSONField(serialize =  false)
 	public Collection<ProtocolObject> getAllProtoObject() {
 		return protoMap.values();
 	}
@@ -364,33 +376,76 @@ public class ProtoService implements InitializingBean{
 			}
 		}
 		List<String> dependans = getDependanceObj(moduleName, dtoNames);
-		protoObject.setDependenceObjs(dependans);
+		protoObject.getDependenceObjs().addAll(dependans);
+		save();
 		return protoObject;
 	}
 	
 	/**
-	 * 根据模块id获取协议对象集合
-	 * @deprecated
-	 * @return
+	 * 反向加载协议结构, 从proto文件内加载
+	 *   只有本地缓存内无数据时, 才支持反向加载
+	 * @return void  
+	 * @date 2021年6月5日下午10:51:15
 	 */
-	public Collection<ProtocolObject> getProtoObjectsByModuleId(int moduleId){
-		List<ProtocolObject> ret = new ArrayList<>();
-		Map<Integer, String> inverseMap = protoIdMap.inverse();
-		Set<Integer> set = inverseMap.keySet();
-		set.forEach((protId) -> {
-			if (protId / 1000 == moduleId) {
-				String protoName = inverseMap.get(protId);
-				ProtocolObject protoObject = protoMap.get(protoName);
-				ret.add(protoObject);
+	public boolean reverseLoad() {
+		if (!protoMap.isEmpty() || !protoIdMap.isEmpty()) {
+			return false;
+		}
+		String protoPath = setting.getProto().getProtoPath();
+		this.parse(protoPath);
+		save();
+		return true;
+	}
+	
+	private void save() {
+		//先存储协议
+		String data = JSON.toJSONString(protoMap.values(), SerializerFeature.PrettyFormat);
+		try {
+			FileUtils.writeStringToFile(new File(CommonConstant.PROTO_INFO_PATH), data, StandardCharsets.UTF_8, false);
+		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error("save protoMap error, e", e);
+		}
+		//再存储协议id
+		data = JSON.toJSONString(protoIdMap, SerializerFeature.PrettyFormat);
+		try {
+			FileUtils.writeStringToFile(new File(CommonConstant.PROTO_ID_PATH), data, StandardCharsets.UTF_8, false);
+		} catch (IOException e) {
+			logger.error("save protoIdMap error, e", e);
+		}
+	}
+	
+	@JSONField(serialize = false)
+	public Map<String, Integer> getSortProtoIdMap(Collection<ModuleEntity> moduleEntitys){
+		Map<String, Integer> linkedMap = new LinkedHashMap<>();
+		for (ModuleEntity moduleEntity : moduleEntitys) {
+			ProtocolObject protocolObject = this.protoMap.get(moduleEntity.getName());
+			for (ProtocolStructure struct : protocolObject.getStructureList()) {
+				int protoId = this.protoIdMap.getOrDefault(struct.getName(), 0);
+				if (protoId == 0) {
+					continue;
+				}
+				linkedMap.put(struct.getName(), protoId);
 			}
-		});
-		return ret;
+		}
+		return linkedMap;
 	}
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		String protoPath = setting.getProto().getProtoPath();
-		this.parse(protoPath);
+		//加载proto信息
+		File file = new File(CommonConstant.PROTO_INFO_PATH);
+		String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+		List<ProtocolObject> protoData = JSON.parseArray(content, ProtocolObject.class);
+		protoData.forEach((p) ->{
+			protoMap.put(p.getModuleName(), p);
+		});
+		//加载协议文件
+		file = new File(CommonConstant.PROTO_ID_PATH);
+		content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+		Map<String, Integer> tempMap = JSON.parseObject(content, new TypeReference<Map<String, Integer>>(){});
+		protoIdMap.putAll(tempMap);
+		logger.info("protoMap:{}, protoIdMap:{}",protoMap.size(), protoIdMap.size());
 	}
-    
+	
 }

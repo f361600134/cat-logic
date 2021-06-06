@@ -19,4 +19,5 @@ public class ProtocolConstant {
 	public static String RESP_PREFIX = "Ack";
 	public static String PB_PREFIX = "PB";
 	public static String PROTO_SUBFIX = ".proto";
+	public static int PTORO_COEFFICIENT = 1000;
 }

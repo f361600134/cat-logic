@@ -9,10 +9,11 @@
 	},
 	"proto":{
 		"generatorPath":{
-			"c#":"./proto3/csharp",
+			"csharp":"./proto3/csharp",
 			"java":"./proto3/server"
 		},
 		"javaPackagePath":"com.cat.server.game.data.proto",
+		"protoExePath":"./proto3/exec/protoc.exe",
 		"protoPath":"./proto3/proto"
 	},
 	"versionControllPath":{

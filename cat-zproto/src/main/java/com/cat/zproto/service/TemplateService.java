@@ -32,7 +32,7 @@ public class TemplateService {
 	public void printer(Object module, String fileName, String protoName) {
 		try {
 			File file = new File(fileName);
-			Template template = configuration.getTemplate("proto.ftl");
+			Template template = configuration.getTemplate(protoName);
 			FileOutputStream fos = new FileOutputStream(file);
 	        Writer out = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"), 10240);
 			template.process(module, out);

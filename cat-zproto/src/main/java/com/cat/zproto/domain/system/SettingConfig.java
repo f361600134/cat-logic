@@ -1,5 +1,7 @@
 package com.cat.zproto.domain.system;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.util.DruidDataSourceUtils;
 import com.alibaba.fastjson.JSON;
 import com.cat.zproto.util.Pair;
 
@@ -69,7 +71,7 @@ public class SettingConfig {
 	public void setProto(SettingProto proto) {
 		this.proto = proto;
 	}
-
+	
 	public static void main(String[] args) {
 		Pair<String, String> pair = Pair.of("svn", "svn://139.9.44.104/rabbit/");
 		SettingConfig setting = new SettingConfig(pair);
@@ -77,8 +79,9 @@ public class SettingConfig {
 		SettingProto proto = new SettingProto();
 		proto.setProtoPath("./proto3/proto");
 		proto.getGeneratorPath().put("java", "./proto3/server");
-		proto.getGeneratorPath().put("c#", "./proto3/csharp");
+		proto.getGeneratorPath().put("csharp", "./proto3/csharp");
 		proto.setJavaPackagePath("com.cat.server.game.data.proto");
+		proto.setProtoExePath("./proto3/exec/protoc.exe");
 		setting.setProto(proto);
 		
 		setting.setCodePath("./temps/po");
@@ -96,6 +99,5 @@ public class SettingConfig {
 		System.out.println(json);
 		
 	}
-
 
 }

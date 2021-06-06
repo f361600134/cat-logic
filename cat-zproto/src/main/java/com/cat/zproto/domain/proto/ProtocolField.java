@@ -1,5 +1,6 @@
 package com.cat.zproto.domain.proto;
 
+import com.alibaba.fastjson.annotation.JSONField;
 import com.cat.zproto.util.StringUtils;
 
 /**
@@ -74,6 +75,7 @@ public class ProtocolField {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	@JSONField(serialize = false)
 	public String getJavaType() {
 		return javaType;
 	}
@@ -81,6 +83,7 @@ public class ProtocolField {
 		this.javaType = javaType;
 	}
 	
+	@JSONField(serialize = false)
 	public boolean getPrimitive() {
 		return StringUtils.isJavaType(javaType);
 	}
