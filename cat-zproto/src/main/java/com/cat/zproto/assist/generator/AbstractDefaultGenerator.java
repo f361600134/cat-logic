@@ -16,7 +16,7 @@ import com.cat.zproto.service.TemplateService;
  * @auth Jeremy
  * @date 2021年6月6日下午9:29:12
  */
-public abstract class AbstractGenerator implements IGenerator{
+public abstract class AbstractDefaultGenerator implements IGenerator{
 	
 	public Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -50,7 +50,7 @@ public abstract class AbstractGenerator implements IGenerator{
 		String fileName = path.concat(File.separator).concat(getFileNameFrontPart())
 				.concat(entityName).concat(getFileNameLatterPart())
 				.concat(getFileNameSuffix());
-		templateService.printer(dto, fileName, getProtoName());
+		templateService.printer(dto, fileName, getProtoName(dto));
 		logger.info("成功生成文件{}", fileName);
 	}
 	

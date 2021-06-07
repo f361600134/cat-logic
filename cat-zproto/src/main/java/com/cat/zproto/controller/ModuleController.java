@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.cat.zproto.assist.generator.IGenerator;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.core.result.SystemCodeEnum;
@@ -30,7 +29,6 @@ import com.cat.zproto.domain.proto.ProtocolConstant;
 import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
-import com.cat.zproto.domain.system.SettingMysql;
 import com.cat.zproto.domain.table.TableEntity;
 import com.cat.zproto.domain.table.TableFreemarkerDto;
 import com.cat.zproto.service.CommandService;
@@ -39,6 +37,8 @@ import com.cat.zproto.service.ModuleService;
 import com.cat.zproto.service.ProtoService;
 import com.cat.zproto.service.TemplateService;
 import com.google.common.collect.BiMap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * 用于处理模块相关操作
@@ -214,9 +214,9 @@ public class ModuleController {
 		templateService.printer(protoObject, fileName, "proto.ftl");
 		 /*
 		  * 生成protoId文件,这里处理的有点不优雅,没想到如何配置.
+		  *TODO 协议id 应该重新生成
 		  */
 		Map<String, Object> map = new HashMap<String, Object>();
-//		Map<String, Integer> protoIdMap = protoService.getSortProtoIdMap(moduleService.getAllModuleEntity());
 		Map<String, Integer> protoIdMap = protoService.getProtoIds();
 		map.put("javaPath", setting.getProto().getJavaPackagePath());
 		map.put("outClass", "PBDefine");
@@ -338,7 +338,27 @@ public class ModuleController {
 		if (tableEntity == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_NOT_FOUND_TABLE);
 		}
-		TableFreemarkerDto dto = new TableFreemarkerDto(tableEntity, protoObject);
+		TableFreemarkerDto dto = new TableFreemarkerDto(tableEntity, protoObject, entity);
+//		//协议层方法获取
+		List<ProtocolStructure> protoPBStructList = Lists.newArrayList();
+		List<ProtocolStructure> protoReqStructList = Lists.newArrayList();
+		Map<String, ProtocolStructure> protoAckStructMap = Maps.newHashMap();
+		Map<String, ProtocolStructure> structureMap = protoObject.getStructures();
+		
+		for (String key : structureMap.keySet()) {
+			if (key.startsWith(ProtocolConstant.RESP_PREFIX)) {
+				String newKey = key.replace(ProtocolConstant.RESP_PREFIX, ProtocolConstant.REQ_PREFIX);
+				protoAckStructMap.put(newKey, structureMap.get(key));
+			}else if (key.startsWith(ProtocolConstant.REQ_PREFIX)) {
+				protoReqStructList.add(structureMap.get(key));
+			}else if (key.startsWith(ProtocolConstant.PB_PREFIX)) {
+				protoPBStructList.add(structureMap.get(key));
+			}
+		}
+		dto.getProtoAckStructMap().putAll(protoAckStructMap);
+		dto.getProtoReqStructList().addAll(protoReqStructList);
+		dto.getProtoPBStructList().addAll(protoPBStructList);
+		
 		for (IGenerator generator : generatorList) {
 			generator.generate(dto);
 		}

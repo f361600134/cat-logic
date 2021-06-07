@@ -26,7 +26,7 @@ public class ModuleEntity {
     private boolean one2one;
     
     /**
-     * 附加信息,1:任务,2:资源,3:一对多
+     * 附加信息,1:任务,2:资源, 3:个人模块(通常伴有事件机制,消息返回)
      */
     private List<Integer> extendInfo =new ArrayList<>();
 
@@ -108,4 +108,5 @@ public class ModuleEntity {
 	public void setOne2one(boolean one2one) {
 		this.one2one = one2one;
 	}
+	
 }

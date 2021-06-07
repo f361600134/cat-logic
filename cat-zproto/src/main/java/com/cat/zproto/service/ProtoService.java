@@ -27,13 +27,10 @@ import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.cat.zproto.constant.CommonConstant;
-import com.cat.zproto.core.result.SystemCodeEnum;
-import com.cat.zproto.core.result.SystemResult;
 import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.domain.proto.ProtocolConstant;
 import com.cat.zproto.domain.proto.ProtocolField;
 import com.cat.zproto.domain.proto.ProtocolObject;
-import com.cat.zproto.domain.proto.ProtocolParser;
 import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.google.common.collect.BiMap;
@@ -43,7 +40,7 @@ import com.google.common.collect.Maps;
 @Service
 public class ProtoService implements InitializingBean{
 	
-	public static final Logger logger = LoggerFactory.getLogger(ProtocolParser.class.getName());
+	public static final Logger logger = LoggerFactory.getLogger(ProtoService.class.getName());
 	
 	@Autowired private SettingConfig setting;
 	
@@ -445,7 +442,6 @@ public class ProtoService implements InitializingBean{
 		content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 		Map<String, Integer> tempMap = JSON.parseObject(content, new TypeReference<Map<String, Integer>>(){});
 		protoIdMap.putAll(tempMap);
-		logger.info("protoMap:{}, protoIdMap:{}",protoMap.size(), protoIdMap.size());
 	}
 	
 }

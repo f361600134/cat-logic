@@ -47,7 +47,7 @@ public interface IGenerator {
 	 * @return String  
 	 * @date 2021年6月6日下午9:09:41
 	 */
-	String getProtoName();
+	String getProtoName(TableFreemarkerDto dto);
 	
 	/**
 	 * 生成

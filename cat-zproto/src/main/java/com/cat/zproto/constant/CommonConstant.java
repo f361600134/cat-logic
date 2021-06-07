@@ -5,8 +5,7 @@ public class CommonConstant {
 	/**
 	 * 系统设置存储
 	 */
-	public static final String SYSTEM_SETTING = "src/main/resources/configdata/settings.json";
-	
+	public static final String SYSTEM_SETTING = "src/main/resources/setting/settings.json";
 	/**
 	 * 模块信息
 	 */

@@ -1,6 +1,5 @@
 package com.cat.zproto.domain.proto;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -116,18 +115,18 @@ public class ProtocolObject {
 		return structures.values();
 	}
 
-//	/**
-//	 * 获取依赖对象路径
-//	 * @return
-//	 */
-//	public String getDependenceImport() {
-//		String ret = getJavaPath();
-//		if (!StringUtils.isBlank(dependenceObj)) {
-//			ret = ret.concat(".").concat(getDependenceObj());
-//		}
-//		ret = ret.concat(".").concat("*");
-//		return ret;
-//	}
+	/**
+	 * 获取依赖对象路径
+	 * @return
+	 */
+	@JSONField(serialize = false)
+	public String getDependenceImport() {
+		String ret = getJavaPath();
+		if (!dependenceObjs.isEmpty()) {
+			ret = ret.concat(".").concat("*");
+		}
+		return ret;
+	}
 	
 //	/**
 //	 * 获取依赖对象路径
@@ -168,11 +167,55 @@ public class ProtocolObject {
 		});
 	}
 	
+	
+//	List<ProtocolStructure> protoPBStructList = Lists.newArrayList();
+//	List<ProtocolStructure> protoReqStructList = Lists.newArrayList();
+//	Map<String, ProtocolStructure> protoAckStructMap = Maps.newHashMap();
+//	Map<String, ProtocolStructure> structureMap = protoObject.getStructures();
+//	
+//	for (String key : structureMap.keySet()) {
+//		if (key.startsWith(ProtocolConstant.RESP_PREFIX)) {
+//			String newKey = key.replace(ProtocolConstant.RESP_PREFIX, ProtocolConstant.REQ_PREFIX);
+//			protoAckStructMap.put(newKey, structureMap.get(key));
+//		}else if (key.startsWith(ProtocolConstant.REQ_PREFIX)) {
+//			protoReqStructList.add(structureMap.get(key));
+//		}else if (key.startsWith(ProtocolConstant.PB_PREFIX)) {
+//			protoPBStructList.add(structureMap.get(key));
+//		}
+//	}
+	
+//	@JSONField(serialize = false)
+//	public List<ProtocolStructure> getProtoReqStructList() {
+//		List<ProtocolStructure> protoReqStructList = new ArrayList<>();
+//		for (String key : structures.keySet()) {
+//			if (key.startsWith(ProtocolConstant.REQ_PREFIX)) {
+//				protoReqStructList.add(structures.get(key));
+//			}
+//		}
+//		return protoReqStructList;
+//	}
+//	
+//	@JSONField(serialize = false)
+//	public Map<String, ProtocolStructure> getProtoAckStructMap() {
+//		return protoAckStructMap;
+//	}
+//	
+//	@JSONField(serialize = false)
+//	public List<ProtocolStructure> getProtoPBStructList() {
+//		List<ProtocolStructure> protoPBStructList = new ArrayList<>();
+//		for (String key : structures.keySet()) {
+//			if (key.startsWith(ProtocolConstant.PB_PREFIX)) {
+//				protoPBStructList.add(structures.get(key));
+//			}
+//		}
+//		return protoPBStructList;
+//	}
+	
 	@Override
 	public String toString() {
 		return "ProtocolObject [javaPath=" + javaPath + ", outClass=" + outClass 
 				+ ", javaImport=" + getJavaImport() + ", structures="
 				+ structures.keySet() + "]";
 	}
-
+	
 }

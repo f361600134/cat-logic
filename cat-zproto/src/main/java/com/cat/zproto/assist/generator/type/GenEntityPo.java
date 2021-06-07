@@ -2,10 +2,11 @@ package com.cat.zproto.assist.generator.type;
 
 import org.springframework.stereotype.Component;
 
-import com.cat.zproto.assist.generator.AbstractGenerator;
+import com.cat.zproto.assist.generator.AbstractDefaultGenerator;
+import com.cat.zproto.domain.table.TableFreemarkerDto;
 
 @Component
-public class EntityPoGen extends AbstractGenerator{
+public class GenEntityPo extends AbstractDefaultGenerator{
 
 	@Override
 	public String getChildDir() {
@@ -18,7 +19,7 @@ public class EntityPoGen extends AbstractGenerator{
 	}
 
 	@Override
-	public String getProtoName() {
+	public String getProtoName(TableFreemarkerDto dto) {
 		return "EntityPo.ftl";
 	}
 

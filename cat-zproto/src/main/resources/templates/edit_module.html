@@ -51,13 +51,13 @@
         </div>
    </div>
     
-    <div class="layui-form-item" pane="">
-        <label class="layui-form-label">终端：</label>
-        <div class="layui-input-block">
-            <input type="checkbox" name="endPoint" lay-skin="primary" title="CLIENT" th:checked="${data.endPoints.contains(1)}" value="1">
-            <input type="checkbox" name="endPoint" lay-skin="primary" title="GAME" th:checked="${data.endPoints.contains(2)}" value="2">
-        </div>
-    </div>
+<!--     <div class="layui-form-item" pane=""> -->
+<!--         <label class="layui-form-label">终端：</label> -->
+<!--         <div class="layui-input-block"> -->
+<!--             <input type="checkbox" name="endPoint" lay-skin="primary" title="CLIENT" th:checked="${data.endPoints.contains(1)}" value="1"> -->
+<!--             <input type="checkbox" name="endPoint" lay-skin="primary" title="GAME" th:checked="${data.endPoints.contains(2)}" value="2"> -->
+<!--         </div> -->
+<!--     </div> -->
 
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -70,11 +70,11 @@
         var form = layui.form;
         form.on('submit(editModule)', function (data) {
             var d = {};
-            var arr=[];
-            $("input:checkbox[name='endPoint']:checked").each(function(i){
-                arr.push(Number($(this).val()));
-            });
-            d.endPoints=arr;
+//             var arr=[];
+//             $("input:checkbox[name='endPoint']:checked").each(function(i){
+//                 arr.push(Number($(this).val()));
+//             });
+//             d.endPoints=arr;
             
             var ext=[];
             $("input:checkbox[name='extendInfo']:checked").each(function(i){

@@ -11,8 +11,10 @@
 	"name":"Login",
 	"one2one":false
 },{
-	"comment":"",
-	"extendInfo":[],
+	"comment":"玩家",
+	"extendInfo":[
+		1
+	],
 	"id":101,
 	"name":"Player",
 	"one2one":false

@@ -30,11 +30,11 @@ public class TemplateService {
 	 * 输出文件
 	 */
 	public void printer(Object module, String fileName, String protoName) {
-		try {
-			File file = new File(fileName);
+		File file = new File(fileName);
+		try (FileOutputStream fos = new FileOutputStream(file);
+				Writer out = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"), 10240);
+				){
 			Template template = configuration.getTemplate(protoName);
-			FileOutputStream fos = new FileOutputStream(file);
-	        Writer out = new BufferedWriter(new OutputStreamWriter(fos, "utf-8"), 10240);
 			template.process(module, out);
 		} catch (Exception e) {
 			e.printStackTrace();

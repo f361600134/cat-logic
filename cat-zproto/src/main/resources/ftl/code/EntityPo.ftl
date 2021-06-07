@@ -174,7 +174,7 @@ public abstract class ${entity.getEntityName()}Po extends BasePo {
 	
 	@Override
 	public String cacheId() {
-		<#--<#if entity.keysEmpty() >
+		<#if entity.keysEmpty() >
 		<#assign text="" />
 		//主键为空,返回索引组合
 		<#if entity.getIndexsWithoutKey() ? exists>
@@ -194,7 +194,7 @@ public abstract class ${entity.getEntityName()}Po extends BasePo {
 		<#else>
 		return String.valueOf(${text?substring(0, text?length-5)});
 		</#if>
-		</#if>-->
+		</#if>
 	}
 	
 }

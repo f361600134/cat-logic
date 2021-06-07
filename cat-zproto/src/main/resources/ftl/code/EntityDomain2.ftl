@@ -1,70 +1,70 @@
-package com.cat.server.game.module.${entityName?lower_case}.domain;
+package com.cat.server.game.module.${entity.getEntityName()?lower_case}.domain;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.cat.server.core.server.AbstractModuleMultiDomain;
 
-<#if config.isResource()>
+<#if module.getExtendInfo()?seq_contains(2)>
 import com.cat.server.game.module.resource.IResourceDomain;
 import com.cat.server.game.module.resource.domain.ItemResourceDomain;
 </#if>
-<#if !config.isO2o() && config.isMission()>
+<#if !module.isOne2one() && module.getExtendInfo()?seq_contains(1)>
 import com.cat.server.core.event.IEvent;
 import com.cat.server.core.server.AbstractModuleMultiDomain;
 import com.cat.server.game.data.proto.PBBag.PBMissionInfo;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.mission.handler.${entityName}MissionHandler;
+import com.cat.server.game.module.mission.handler.${entity.getEntityName()}MissionHandler;
 import com.cat.server.game.module.mission.handler.IMissionHandler;
 import com.cat.server.game.module.mission.type.IMission;
 </#if>
 
 /**
-* ${entityName}Domain
+* ${entity.getEntityName()}Domain
 * @author Jeremy
 */
-<#assign interf =""/>
-<#if config.isMission()>
+<#if module.getExtendInfo()?seq_contains(1)>
 <#assign mission=" IMissionHandler" />
 </#if>
-<#if config.isResource()>
-<#assign resource=" IResourceDomain<Long, "+ entityName+">" />
+<#if module.getExtendInfo()?seq_contains(2)>
+<#assign resource=" IResourceDomain<Long, "+ entity.getEntityName()+">" />
 </#if>
+<#assign interf =""/>
+
 <#if mission??>
-	<#if interf??>
-	<#assign interf = "implements"/>
-	</#if>
-	<#assign interf =interf + mission +","/>
+	<#assign interf = "implements" + mission/>
 </#if>
+
 <#if resource??>
-	<#if interf??>
-	<#assign interf = "implements"/>
+	<#if interf?contains("implements")>
+	<#assign interf = interf +","+ resource/>
+	<#else>
+	<#assign interf = "implements" + resource/>
 	</#if>
-	<#assign interf =interf + resource/>
 </#if>
+public class ${entity.getEntityName()}Domain extends AbstractModuleMultiDomain<Long, Long, ${entity.getEntityName()}> ${interf}{
 
-public class ${entityName}Domain extends AbstractModuleMultiDomain<Long, Long, ${entityName}> ${interf}{
-
-	private static final Logger log = LoggerFactory.getLogger(${entityName}Domain.class);
+	private static final Logger log = LoggerFactory.getLogger(${entity.getEntityName()}Domain.class);
 	
-	<#if config.isResource()>
+	<#if module.getExtendInfo()?seq_contains(2)>
 	private static final int LIMIT = 999; 
-	
 	/**
 	 * 资源代理对象
 	 */
-	private IResourceDomain<Long, ${entityName}> resourceDomainProxy;
-	</#if>
+	private IResourceDomain<Long, ${entity.getEntityName()}> resourceDomainProxy;
 	
-	<#if !config.isO2o() && config.isMission()>
+	</#if>
+	<#if !module.isOne2one() && module.getExtendInfo()?seq_contains(1)>
+	/**
+	 * 任务代理对象
+	 */
 	private Map<Integer, IMissionHandler> missionHandlerMap;
-	<#--<#elseif config.iso2o() && config.isMission()>
-	private IMissionHandler missionHandler;-->
-	public ${entityName}Domain(){
+	
+	public ${entity.getEntityName()}Domain(){
 		this.missionHandlerMap = new ConcurrentHashMap<>();
 	}
 	<#else>
-	public ${entityName}Domain(){
+	public ${entity.getEntityName()}Domain(){
 		
 	}
 	</#if>
@@ -72,15 +72,15 @@ public class ${entityName}Domain extends AbstractModuleMultiDomain<Long, Long, $
 	
 	////////////业务代码////////////////////
 	
-	<#if !config.isO2o() && config.isMission()>
+	<#if !module.isOne2one() && module.getExtendInfo()?seq_contains(1)>
 	<#--任务相关的业务代码-->
 	@Override
 	public void afterInit() {
-		beanMap.forEach((configId, ${entityName}) -> {
+		beanMap.forEach((configId, ${entity.getEntityName()}) -> {
 			//	伪代码,初始化任务处理器,不同的任务处理器代理的不同神器内的任务
-			IMissionHandler handler = ${entityName}MissionHandler.Builder.newBuilder()
+			IMissionHandler handler = ${entity.getEntityName()}MissionHandler.Builder.newBuilder()
 					.playerId(playerId)
-					.missionData(${entityName}.getMissionData())
+					.missionData(${entity.getEntityName()}.getMissionData())
 					.build();
 			missionHandlerMap.put(configId, handler);
 		});
@@ -126,20 +126,20 @@ public class ${entityName}Domain extends AbstractModuleMultiDomain<Long, Long, $
 	}
 	</#if>
 	
-	<#if config.isResource()>
+	<#if module.getExtendInfo()?seq_contains(2)>
 	<#--资源相关的业务代码-->
 	@Override
 	public void afterInit() {
-		this.resourceDomainProxy = ${entityName}ResourceDomain.create(playerId, getBeanMap());
+		this.resourceDomainProxy = ${entity.getEntityName()}ResourceDomain.create(playerId, getBeanMap());
 	}
 	
 	@Override
-	public ${entityName} getBeanByConfigId(int configId) {
+	public ${entity.getEntityName()} getBeanByConfigId(int configId) {
 		return resourceDomainProxy.getBeanByConfigId(configId);
 	}
 
 	//@Override
-	//public Collection<${entityName}> getBeansByConfigId(int configId) {
+	//public Collection<${entity.getEntityName()}> getBeansByConfigId(int configId) {
 	//	return resourceDomainProxy.getBeansByConfigId(configId);
 	//}
 
@@ -149,7 +149,7 @@ public class ${entityName}Domain extends AbstractModuleMultiDomain<Long, Long, $
 	}
 
 	@Override
-	public List<${entityName}> add(int configId, int count) {
+	public List<${entity.getEntityName()}> add(int configId, int count) {
 		return resourceDomainProxy.add(configId, count);
 	}
 
@@ -169,12 +169,12 @@ public class ${entityName}Domain extends AbstractModuleMultiDomain<Long, Long, $
 	}
 
 	@Override
-	public List<${entityName}> getUpdateItemList() {
+	public List<${entity.getEntityName()}> getUpdateItemList() {
 		return resourceDomainProxy.getUpdateItemList();
 	}
 
 	@Override
-	public List<${entityName}> getDeleteItemList() {
+	public List<${entity.getEntityName()}> getDeleteItemList() {
 		return resourceDomainProxy.getDeleteItemList();
 	}
 	</#if>

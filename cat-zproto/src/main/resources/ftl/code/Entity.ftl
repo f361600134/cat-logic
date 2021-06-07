@@ -1,4 +1,4 @@
-package com.cat.server.game.module.${entityName?lower_case}.domain;
+package com.cat.server.game.module.${entity.getEntityName()?lower_case}.domain;
 
 import com.cat.server.core.server.IPersistence;
 
