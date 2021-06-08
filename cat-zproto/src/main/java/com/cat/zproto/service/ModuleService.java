@@ -75,6 +75,9 @@ public class ModuleService implements InitializingBean{
 		save();
 	}
 	
+	/**
+	 * 存储结构信息
+	 */
 	private void save() {
 		String data = JSON.toJSONString(moduleEntityMap.values(), SerializerFeature.PrettyFormat);
 		try {

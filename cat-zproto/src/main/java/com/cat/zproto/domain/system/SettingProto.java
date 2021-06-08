@@ -31,7 +31,19 @@ public class SettingProto {
 	 * 生成的Java所在路径
 	 */
 	private String javaPackagePath;
-
+	
+	/**
+	 * 协议id生成排序方式<br>
+	 * 1.成对排序, 请求/响应的方式有序生成协议号, <br>
+	 * 	ReqXXX 1001  AckXXX 1002<br>
+	 *  ReqYYY 1003  AckYYY 1004<br>
+	 * 2.先请求, 后响应, <br>
+	 *  ReqXXX 1001 ReqYYY 1002<br>
+	 *  AckXXX 1003 AckYYY 1004<br>
+	 */
+	private int protoIdSortBy;
+	
+	
 	public String getProtoPath() {
 		return protoPath;
 	}
@@ -62,6 +74,14 @@ public class SettingProto {
 
 	public void setProtoExePath(String protoExePath) {
 		this.protoExePath = protoExePath;
+	}
+
+	public int getProtoIdSortBy() {
+		return protoIdSortBy;
+	}
+
+	public void setProtoIdSortBy(int protoIdSortBy) {
+		this.protoIdSortBy = protoIdSortBy;
 	}
 	
 }

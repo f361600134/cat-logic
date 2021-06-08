@@ -39,7 +39,7 @@ public class ProtocolObject {
 	private Set<String> dependenceObjs = new HashSet<>();
 
 	/**
-	 * key: 名字
+	 * key: 协议名字
 	 * value: 协议结构
 	 * 协议对象对应的所有协议结构
 	 */

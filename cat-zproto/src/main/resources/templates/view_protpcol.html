@@ -120,7 +120,6 @@
     </colgroup>
     <thead>
       <tr>
-        <th>协议号</th>
         <th>协议名</th>
         <th>协议注释</th>
         <th>协议详情</th>
@@ -128,7 +127,6 @@
     </thead>
     <tbody>
        <tr th:each="pb:${pbs}" >
-       		<td th:text="${protoNameIdMap.get(pb.name)}"></td>
        		<td th:text="${pb.name}"></td>
        		<td th:text="${pb.comment}"></td>
        		

@@ -123,7 +123,6 @@ public class StringUtils {
 		else if (type.contains("boolean")) {
 			return true;
 		}
-		log.info("isJavaType error, unsupported type = {}", type);
 		return false;
 	}
 	

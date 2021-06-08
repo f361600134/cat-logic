@@ -221,7 +221,7 @@
 				{
 					"comment":"提示信息",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"code",
 					"repeated":false,
 					"type":"int32"
@@ -235,7 +235,7 @@
 				{
 					"comment":"角色类型(策划表里的ID,不是男女)",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"roleType",
 					"repeated":false,
 					"type":"int32"
@@ -243,7 +243,7 @@
 				{
 					"comment":"昵称",
 					"identifier":"",
-					"index":0,
+					"index":2,
 					"name":"nickName",
 					"repeated":false,
 					"type":"string"
@@ -251,7 +251,7 @@
 				{
 					"comment":"玩家输入账号",
 					"identifier":"",
-					"index":0,
+					"index":3,
 					"name":"inputName",
 					"repeated":false,
 					"type":"string"
@@ -265,7 +265,7 @@
 				{
 					"comment":"",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"userName",
 					"repeated":false,
 					"type":"string"
@@ -273,7 +273,7 @@
 				{
 					"comment":"",
 					"identifier":"",
-					"index":0,
+					"index":2,
 					"name":"channel",
 					"repeated":false,
 					"type":"int32"
@@ -281,7 +281,7 @@
 				{
 					"comment":"",
 					"identifier":"",
-					"index":0,
+					"index":3,
 					"name":"sessionKey",
 					"repeated":false,
 					"type":"string"
@@ -289,7 +289,7 @@
 				{
 					"comment":"客户端收到的服务器流水号",
 					"identifier":"",
-					"index":0,
+					"index":4,
 					"name":"recvSequenceNo",
 					"repeated":false,
 					"type":"int32"
@@ -297,7 +297,7 @@
 				{
 					"comment":"登陆时所选游戏服id",
 					"identifier":"",
-					"index":0,
+					"index":5,
 					"name":"serverId",
 					"repeated":false,
 					"type":"int32"
@@ -305,7 +305,7 @@
 				{
 					"comment":"版本号",
 					"identifier":"",
-					"index":0,
+					"index":6,
 					"name":"version",
 					"repeated":false,
 					"type":"string"
@@ -324,7 +324,7 @@
 				{
 					"comment":"",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"playerInfo",
 					"repeated":false,
 					"type":"PBPlayerInfo"
@@ -338,7 +338,7 @@
 				{
 					"comment":"",
 					"identifier":"repeated",
-					"index":0,
+					"index":1,
 					"name":"names",
 					"repeated":true,
 					"type":"string"
@@ -352,7 +352,7 @@
 				{
 					"comment":"账号",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"accountName",
 					"repeated":false,
 					"type":"string"
@@ -360,7 +360,7 @@
 				{
 					"comment":"角色id",
 					"identifier":"",
-					"index":0,
+					"index":2,
 					"name":"playerId",
 					"repeated":false,
 					"type":"int64"
@@ -368,7 +368,7 @@
 				{
 					"comment":"角色昵称",
 					"identifier":"",
-					"index":0,
+					"index":3,
 					"name":"nickName",
 					"repeated":false,
 					"type":"string"
@@ -376,7 +376,7 @@
 				{
 					"comment":"战力",
 					"identifier":"",
-					"index":0,
+					"index":4,
 					"name":"power",
 					"repeated":false,
 					"type":"int32"
@@ -384,7 +384,7 @@
 				{
 					"comment":"渠道",
 					"identifier":"",
-					"index":0,
+					"index":5,
 					"name":"channel",
 					"repeated":false,
 					"type":"int32"
@@ -392,7 +392,7 @@
 				{
 					"comment":"等级",
 					"identifier":"",
-					"index":0,
+					"index":6,
 					"name":"level",
 					"repeated":false,
 					"type":"int32"
@@ -400,7 +400,7 @@
 				{
 					"comment":"经验",
 					"identifier":"",
-					"index":0,
+					"index":7,
 					"name":"exp",
 					"repeated":false,
 					"type":"int32"
@@ -408,7 +408,7 @@
 				{
 					"comment":"vip等级",
 					"identifier":"",
-					"index":0,
+					"index":8,
 					"name":"vip",
 					"repeated":false,
 					"type":"int32"
@@ -416,7 +416,7 @@
 				{
 					"comment":"VIP经验",
 					"identifier":"",
-					"index":0,
+					"index":9,
 					"name":"vipExp",
 					"repeated":false,
 					"type":"int32"
@@ -424,7 +424,7 @@
 				{
 					"comment":"玩家资源信息",
 					"identifier":"repeated",
-					"index":0,
+					"index":10,
 					"name":"properties",
 					"repeated":true,
 					"type":"PBPairInfo"
@@ -432,7 +432,7 @@
 				{
 					"comment":"玩家属性信息",
 					"identifier":"repeated",
-					"index":0,
+					"index":11,
 					"name":"attrs",
 					"repeated":true,
 					"type":"PBPairInfo"
@@ -446,7 +446,7 @@
 				{
 					"comment":"",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"code",
 					"repeated":false,
 					"type":"int32"
@@ -454,7 +454,7 @@
 				{
 					"comment":"是否进入创建角色环节, 0=否,1=是",
 					"identifier":"",
-					"index":0,
+					"index":2,
 					"name":"status",
 					"repeated":false,
 					"type":"int32"
@@ -468,7 +468,7 @@
 				{
 					"comment":"服务器收到的客户端流水号",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"recvSequenceNo",
 					"repeated":false,
 					"type":"int32"
@@ -482,7 +482,7 @@
 				{
 					"comment":"",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"code",
 					"repeated":false,
 					"type":"int32"
@@ -490,7 +490,7 @@
 				{
 					"comment":"服务器收到的客户端流水号",
 					"identifier":"",
-					"index":0,
+					"index":2,
 					"name":"recvSequenceNo",
 					"repeated":false,
 					"type":"int32"
@@ -504,7 +504,7 @@
 				{
 					"comment":"",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"playinfo",
 					"repeated":false,
 					"type":"PBPlayerInfo"
@@ -518,12 +518,12 @@
 			"name":"ReqPlayerRandName"
 		},
 		"PBPlayerProfile":{
-			"comment":"}",
+			"comment":"",
 			"fields":[
 				{
 					"comment":"角色id",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"playerId",
 					"repeated":false,
 					"type":"int32"
@@ -531,7 +531,7 @@
 				{
 					"comment":"角色昵称",
 					"identifier":"",
-					"index":0,
+					"index":2,
 					"name":"nickName",
 					"repeated":false,
 					"type":"string"
@@ -539,7 +539,7 @@
 				{
 					"comment":"等级",
 					"identifier":"",
-					"index":0,
+					"index":3,
 					"name":"level",
 					"repeated":false,
 					"type":"int32"
@@ -547,7 +547,7 @@
 				{
 					"comment":"战力",
 					"identifier":"",
-					"index":0,
+					"index":4,
 					"name":"power",
 					"repeated":false,
 					"type":"int32"
@@ -555,7 +555,7 @@
 				{
 					"comment":"家族名称",
 					"identifier":"",
-					"index":0,
+					"index":5,
 					"name":"familyName",
 					"repeated":false,
 					"type":"string"
@@ -563,7 +563,7 @@
 				{
 					"comment":"vip等级",
 					"identifier":"",
-					"index":0,
+					"index":6,
 					"name":"vip",
 					"repeated":false,
 					"type":"int32"
@@ -577,7 +577,7 @@
 				{
 					"comment":"",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"code",
 					"repeated":false,
 					"type":"int32"
@@ -591,7 +591,7 @@
 				{
 					"comment":"游戏账号",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"accountName",
 					"repeated":false,
 					"type":"string"
@@ -599,7 +599,7 @@
 				{
 					"comment":"渠道",
 					"identifier":"",
-					"index":0,
+					"index":2,
 					"name":"channel",
 					"repeated":false,
 					"type":"int32"
@@ -607,7 +607,7 @@
 				{
 					"comment":"密匙",
 					"identifier":"",
-					"index":0,
+					"index":3,
 					"name":"sessionKey",
 					"repeated":false,
 					"type":"string"
@@ -615,7 +615,7 @@
 				{
 					"comment":"游戏服id",
 					"identifier":"",
-					"index":0,
+					"index":4,
 					"name":"serverId",
 					"repeated":false,
 					"type":"int32"
@@ -623,7 +623,7 @@
 				{
 					"comment":"版本号",
 					"identifier":"",
-					"index":0,
+					"index":5,
 					"name":"version",
 					"repeated":false,
 					"type":"string"
@@ -631,7 +631,7 @@
 				{
 					"comment":"登录服id",
 					"identifier":"",
-					"index":0,
+					"index":6,
 					"name":"loginSid",
 					"repeated":false,
 					"type":"int32"
@@ -639,7 +639,7 @@
 				{
 					"comment":"设备码",
 					"identifier":"",
-					"index":0,
+					"index":7,
 					"name":"device",
 					"repeated":false,
 					"type":"string"
@@ -653,7 +653,7 @@
 				{
 					"comment":"客户端收到的服务器流水号",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"recvSequenceNo",
 					"repeated":false,
 					"type":"int32"

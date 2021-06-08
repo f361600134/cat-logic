@@ -1,65 +1,53 @@
 syntax = "proto3";
 package Protocol;
-//option optimize_for = LITE_RUNTIME;
 option java_package = "com.cat.server.game.data.proto";
 option java_outer_classname = "PBMail";
 
 import "PBItem.proto";
 
-
-//邮件
-message PBMailInfo
-{
-   int64 mailId = 1;			//Mail id
-   string title = 2;		//标题
-   string content = 3;		//聊天内容
-   repeated PBRewardInfo rewards = 4;	//附件
-   int32 state = 5;		//0=未读取;1=已读取
-   string date = 6;		//yyyy-MM-dd
+// 请求删除邮件
+message AckMailDelete{
+    int32 code = 1;  //错误码
+    repeated int64 mailIds = 2;  //mail ids
 }
 
-//请求邮件列表
-message ReqMailList
-{
+// 获取邮件附件
+message ReqMailReward{
+    int64 mailId = 1;  //mailId,-1表示所有
 }
 
-//邮件列表
-message AckMailList
-{
-	repeated PBMailInfo mails = 1;
+// 邮件列表
+message AckMailList{
+    repeated PBMailInfo mails = 1;  //
 }
 
-//请求读取邮件
-message ReqMailRead
-{
-	int64 mailId = 1;		//Mail id
-}
-//响应读取邮件
-message AckMailRead
-{
-	int32 code = 1;		//错误码,非0表示弹提示
+// 请求读取邮件
+message ReqMailRead{
+    int64 mailId = 1;  //Mail id
 }
 
-//获取邮件附件
-message ReqMailReward
-{
-	int64 mailId = 1;		//mailId,-1表示所有
-}
-//响应领取附件 
-message AckMailReward
-{
-	int32 code = 1;					//错误码,非0表示弹提示
-	repeated PBPairInfo rewards = 2;	//奖励
+// 邮件对象
+message PBMailInfo{
+    int32 mailId = 1;  //邮件id
 }
 
-//请求删除邮件
-message ReqMailDelete
-{
-	int64 mailId = 1;		//mail ids
+// 响应读取邮件
+message AckMailRead{
+    int32 code = 1;  //错误码,非0表示弹提示
 }
-//请求删除邮件
-message AckMailDelete
-{
-	int32 code = 1;					//错误码
-	repeated int64 mailIds = 2;		//mail ids
+
+// 请求邮件列表
+message ReqMailList{
 }
+
+// 响应领取附件
+message AckMailReward{
+    int32 code = 1;  //错误码,非0表示弹提示
+    repeated PBPairInfo rewards = 2;  //奖励
+}
+
+// 请求删除邮件
+message ReqMailDelete{
+    int64 mailId = 1;  //mail ids
+}
+

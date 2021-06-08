@@ -1,5 +1,5 @@
 {
-	"codePath":"./temps/po",
+	"codePath":"./temps/code",
 	"dbInfo":{
 		"dbName":"coral",
 		"initialSize":1,
@@ -9,11 +9,12 @@
 	},
 	"proto":{
 		"generatorPath":{
-			"csharp":"./proto3/csharp",
-			"java":"./proto3/server"
+			"csharp":"./temps/csharp",
+			"java":"./temps/server"
 		},
 		"javaPackagePath":"com.cat.server.game.data.proto",
 		"protoExePath":"./proto3/exec/protoc.exe",
+		"protoIdSortBy":1,
 		"protoPath":"./proto3/proto"
 	},
 	"versionControllPath":{

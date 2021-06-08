@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.cat.zproto.assist.serial.IGenProtoId;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.domain.proto.ProtocolConstant;
@@ -44,6 +46,13 @@ public class ProtoService implements InitializingBean{
 	
 	@Autowired private SettingConfig setting;
 	
+	@Autowired private List<IGenProtoId> genProtoIds;
+	
+	/**
+	 * 生成类型<br>
+	 * 协议生成器
+	 */
+	public final Map<Integer, IGenProtoId> genProtoIdMap = new HashMap<>();
 	
 	/**
 	 * key:协议名
@@ -348,17 +357,17 @@ public class ProtoService implements InitializingBean{
 	}
 	
 	/**
-	 * proto对象修改
+	 * proto修改, 修改proto后, 会伴随着协议号的修改
 	 * 1. 读取配置重新设置,
 	 * 2. 修改协议列表,直接替换成新的
 	 * @return 返回被修改的最新的协议对象
 	 */
 	public ProtocolObject protoObjectUpdate(String moduleName, List<ProtocolStructure> protoStructure) {
 		ProtocolObject protoObject = getProtoObject(moduleName);
-		if (protoObject == null) {
-			return null;
+		if (protoObject == null) {//null表示无此模块, 实例化一个新的
+			protoObject = new ProtocolObject();
 		}
-		//		替换掉协议信息
+		//	替换掉协议信息
 		protoObject.replaceStructures(protoStructure);
 		//	根据配置重新设置
 		String javaPackage = setting.getProto().getJavaPackagePath();
@@ -374,8 +383,24 @@ public class ProtoService implements InitializingBean{
 		}
 		List<String> dependans = getDependanceObj(moduleName, dtoNames);
 		protoObject.getDependenceObjs().addAll(dependans);
-		save();
+		//存储
+		saveProtoData();
 		return protoObject;
+	}
+	
+	/**
+	 * 重新生成所有的协议id<br>
+	 */
+	public HashBiMap<String, Integer> genProtoIds(Collection<ModuleEntity> moduleEntitys) {
+		this.protoIdMap.clear();
+		IGenProtoId genProtoId = genProtoIdMap.get(setting.getProto().getProtoIdSortBy());
+		moduleEntitys.forEach(module->{
+			ProtocolObject protoObject = protoMap.get(module.getName());
+			Map<String, Integer> tempMap = genProtoId.genProtoIds(module.getId(), protoObject);
+			protoIdMap.putAll(tempMap);
+		});
+		saveProtoId();
+		return protoIdMap;
 	}
 	
 	/**
@@ -390,11 +415,14 @@ public class ProtoService implements InitializingBean{
 		}
 		String protoPath = setting.getProto().getProtoPath();
 		this.parse(protoPath);
-		save();
+		saveProtoData();
 		return true;
 	}
 	
-	private void save() {
+	/**
+	 * 存储协议对象
+	 */
+	private void saveProtoData() {
 		//先存储协议
 		String data = JSON.toJSONString(protoMap.values(), SerializerFeature.PrettyFormat);
 		try {
@@ -403,14 +431,21 @@ public class ProtoService implements InitializingBean{
 			e.printStackTrace();
 			logger.error("save protoMap error, e", e);
 		}
+	}
+	
+	/**
+	 * 存储协议号
+	 */
+	private void saveProtoId() {
 		//再存储协议id
-		data = JSON.toJSONString(protoIdMap, SerializerFeature.PrettyFormat);
+		String data = JSON.toJSONString(protoIdMap, SerializerFeature.PrettyFormat);
 		try {
 			FileUtils.writeStringToFile(new File(CommonConstant.PROTO_ID_PATH), data, StandardCharsets.UTF_8, false);
 		} catch (IOException e) {
 			logger.error("save protoIdMap error, e", e);
 		}
 	}
+	
 	
 	@JSONField(serialize = false)
 	public Map<String, Integer> getSortProtoIdMap(Collection<ModuleEntity> moduleEntitys){
@@ -430,6 +465,10 @@ public class ProtoService implements InitializingBean{
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		//初始化协议生成器
+		for (IGenProtoId iGenProtoId : genProtoIds) {
+			genProtoIdMap.put(iGenProtoId.type(), iGenProtoId);
+		}
 		//加载proto信息
 		File file = new File(CommonConstant.PROTO_INFO_PATH);
 		String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);

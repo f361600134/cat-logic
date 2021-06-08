@@ -2,10 +2,12 @@ package com.cat.zproto.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
@@ -122,22 +124,39 @@ public class ModuleController {
 	 * @param id 模块id
 	 */
 	@RequestMapping("/protoEditView")
-    public ModelAndView protoEditView(String version, int id){
+    public Object protoEditView(String version, int id){
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("version", "1.0.0");
+		mv.addObject("id", id);
+		
 		ModuleEntity entity = moduleService.getModuleEntity(id);
 		if (entity == null) {
 			//TODO 重定向页面
+			mv.setViewName("error");
+			return mv;
 		}
+		mv.setViewName("edit_protocol");
 		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
 		if (protoObject == null) {
-			//TODO 重定向页面
-			return null;
+			return mv;
 		}
-		Collection<ProtocolStructure> structures = protoObject.getStructures().values();
-		
-    	mv.setViewName("edit_protocol");
-    	mv.addObject("version", "1.0.0");
-    	mv.addObject("id", id);
+		/*
+		 * TODO 也只是为了做一个排序, 写这么多代码,这里的数据结构没有设计好
+		 * 工具完成后要想办法重构代码
+		 */
+		BiMap<String, Integer> protoIdMap = protoService.getProtoIds();
+		TreeMap<Integer, ProtocolStructure> structureMap = new TreeMap<>();
+		List<ProtocolStructure> structures = new ArrayList<ProtocolStructure>();
+		for (ProtocolStructure struct : protoObject.getStructures().values()) {
+			String name = struct.getName();
+			int protoId = protoIdMap.getOrDefault(name, 0);
+			if (protoId == 0) {
+				structures.add(struct);
+			}else {
+				structureMap.put(protoId, struct);
+			}
+		}
+		structures.addAll(structureMap.values());
     	mv.addObject("data", structures);
     	return mv;
     }
@@ -165,20 +184,36 @@ public class ModuleController {
 			return mv;
 		}
 		BiMap<String, Integer> protoNameIdMap = protoService.getProtoIds();
+		BiMap<String, Integer> protoIdMap = protoService.getProtoIds();
 		Collection<ProtocolStructure> structures = protoObject.getStructures().values();
-		List<ProtocolStructure> requests = structures.stream().filter(e ->
-        e.getName().toLowerCase().startsWith("req")).collect(Collectors.toList());
 		
-		List<ProtocolStructure> responses = structures.stream().filter(e ->
-        e.getName().toLowerCase().startsWith("ack")).collect(Collectors.toList());
+		//使用treeMap是为了根据协议号进行排序
+		TreeMap<Integer, ProtocolStructure> requests = new TreeMap<>();
+		TreeMap<Integer, ProtocolStructure> responses = new TreeMap<>();
+		List<ProtocolStructure> pbs = new ArrayList<>();
 		
-		List<ProtocolStructure> pbs = structures.stream().filter(e ->
-        e.getName().toLowerCase().startsWith("PB")).collect(Collectors.toList());
+		String reqPrefix = ProtocolConstant.REQ_PREFIX;
+		String respPrefix = ProtocolConstant.RESP_PREFIX;
+		String pbPrefix = ProtocolConstant.PB_PREFIX;
 		
+		for (ProtocolStructure struct : structures) {
+			String name = struct.getName();
+			int protoId = protoIdMap.getOrDefault(name, 0);
+			if (protoId == 0) {
+				if (name.startsWith(pbPrefix)) {
+					pbs.add(struct);
+				}
+			}
+			else if (name.startsWith(reqPrefix)) {
+				requests.put(protoId, struct);
+			}else if (name.startsWith(respPrefix)) {
+				responses.put(protoId, struct);
+			}
+		}
     	mv.setViewName("view_protpcol");
     	mv.addObject("version", "1.0.0");
-    	mv.addObject("requests", requests);
-    	mv.addObject("responses", responses);
+    	mv.addObject("requests", requests.values());
+    	mv.addObject("responses", responses.values());
     	mv.addObject("pbs", pbs);
     	mv.addObject("protoNameIdMap", protoNameIdMap);
 		return mv;
@@ -188,7 +223,7 @@ public class ModuleController {
 	 * 协议提交, 替换掉协议信息, 保存至结构, 不生成proto文件, 不生成proto协议
 	 * @param version 版本
 	 * @param id 模块id
-	 * @param 所有协议信息
+	 * @param 本模块对应的所有协议信息
 	 */
 	@ResponseBody
 	@RequestMapping("/protoCommit")
@@ -204,20 +239,20 @@ public class ModuleController {
 			return SystemResult.build(SystemCodeEnum.UNKNOW);
 		}
 		String entityName = entity.getName();
+		
+		//生成协议对象
 		ProtocolObject protoObject = protoService.protoObjectUpdate(entityName, protoStructure);
 		if(protoObject == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
 		}
+		//生成协议id
+		Map<String, Integer> protoIdMap =protoService.genProtoIds(moduleService.getAllModuleEntity());
 		//	生成proto文件
 		String protoPath = setting.getProto().getProtoPath();
 		String fileName = protoPath.concat(File.separator).concat(protoObject.getOutClass()).concat(ProtocolConstant.PROTO_SUBFIX);
 		templateService.printer(protoObject, fileName, "proto.ftl");
-		 /*
-		  * 生成protoId文件,这里处理的有点不优雅,没想到如何配置.
-		  *TODO 协议id 应该重新生成
-		  */
+		//TODO 这段代码不优雅
 		Map<String, Object> map = new HashMap<String, Object>();
-		Map<String, Integer> protoIdMap = protoService.getProtoIds();
 		map.put("javaPath", setting.getProto().getJavaPackagePath());
 		map.put("outClass", "PBDefine");
 		map.put("protoIdMap", protoIdMap);

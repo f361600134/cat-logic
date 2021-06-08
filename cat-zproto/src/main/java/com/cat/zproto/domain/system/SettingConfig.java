@@ -1,7 +1,5 @@
 package com.cat.zproto.domain.system;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import com.alibaba.druid.util.DruidDataSourceUtils;
 import com.alibaba.fastjson.JSON;
 import com.cat.zproto.util.Pair;
 
@@ -30,6 +28,9 @@ public class SettingConfig {
 	 */
 	private String codePath;
 	
+	/**
+	 * proto相关的设置
+	 */
 	private SettingProto proto;
 
 	
@@ -78,13 +79,14 @@ public class SettingConfig {
 		
 		SettingProto proto = new SettingProto();
 		proto.setProtoPath("./proto3/proto");
-		proto.getGeneratorPath().put("java", "./proto3/server");
-		proto.getGeneratorPath().put("csharp", "./proto3/csharp");
+		proto.getGeneratorPath().put("java", "./temps/server");
+		proto.getGeneratorPath().put("csharp", "./temps/csharp");
 		proto.setJavaPackagePath("com.cat.server.game.data.proto");
 		proto.setProtoExePath("./proto3/exec/protoc.exe");
+		proto.setProtoIdSortBy(1);
 		setting.setProto(proto);
 		
-		setting.setCodePath("./temps/po");
+		setting.setCodePath("./temps/code");
 
 		SettingMysql info = new SettingMysql();
 		info.setUrl(
