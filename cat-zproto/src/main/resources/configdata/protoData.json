@@ -1219,7 +1219,7 @@
 				{
 					"comment":"",
 					"identifier":"",
-					"index":0,
+					"index":1,
 					"name":"tipsId",
 					"repeated":false,
 					"type":"int32"
@@ -1227,7 +1227,7 @@
 				{
 					"comment":"",
 					"identifier":"repeated",
-					"index":0,
+					"index":2,
 					"name":"params",
 					"repeated":true,
 					"type":"int32"

@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.cat.net.network.base.IProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
-import com.cat.server.game.data.proto.PBItem.*;
+import com.cat.server.game.data.proto.*;
 import com.cat.server.game.data.proto.PBPlayer.*;
 
 /**
@@ -14,8 +14,6 @@ import com.cat.server.game.data.proto.PBPlayer.*;
 */
 public class PBPlayerProfileBuilder implements IProtocol {
 
-	private static final Logger log = LoggerFactory.getLogger(PBPlayerProfileBuilder.class);
-	
 	private final PBPlayerProfile.Builder builder = PBPlayerProfile.newBuilder();
 	
 	public PBPlayerProfileBuilder() {

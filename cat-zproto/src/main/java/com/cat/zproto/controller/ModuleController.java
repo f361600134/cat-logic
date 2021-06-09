@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cat.zproto.assist.generator.ICodeGenerator;
 import com.cat.zproto.assist.generator.IGenerator;
+import com.cat.zproto.assist.generator.IProtoGenerator;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.core.result.SystemCodeEnum;
 import com.cat.zproto.core.result.SystemResult;
@@ -32,7 +34,7 @@ import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.table.TableEntity;
-import com.cat.zproto.domain.table.TableFreemarkerDto;
+import com.cat.zproto.dto.TableFreemarkerDto;
 import com.cat.zproto.service.CommandService;
 import com.cat.zproto.service.DbService;
 import com.cat.zproto.service.ModuleService;
@@ -78,7 +80,9 @@ public class ModuleController {
 	
 	@Autowired private DbService dbService;
 	
-	@Autowired private List<IGenerator> generatorList;
+	@Autowired private List<IProtoGenerator> generatorProtoList;
+	
+	@Autowired private List<ICodeGenerator> generatorCodeList;
 	
 	/**
 	 * 主页面
@@ -240,13 +244,12 @@ public class ModuleController {
 		}
 		String entityName = entity.getName();
 		
-		//生成协议对象
 		ProtocolObject protoObject = protoService.protoObjectUpdate(entityName, protoStructure);
 		if(protoObject == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
 		}
 		//生成协议id
-		Map<String, Integer> protoIdMap =protoService.genProtoIds(moduleService.getAllModuleEntity());
+		Map<String, Integer> protoIdMap = protoService.genProtoIds(moduleService.getAllModuleEntity());
 		//	生成proto文件
 		String protoPath = setting.getProto().getProtoPath();
 		String fileName = protoPath.concat(File.separator).concat(protoObject.getOutClass()).concat(ProtocolConstant.PROTO_SUBFIX);
@@ -258,6 +261,7 @@ public class ModuleController {
 		map.put("protoIdMap", protoIdMap);
         fileName = protoPath.concat(File.separator).concat("PBProtocol").concat(ProtocolConstant.PROTO_SUBFIX);
         templateService.printer(map, fileName, "protoId.ftl");
+       
         return SystemResult.build(SystemCodeEnum.SUCCESS);
     }
 	
@@ -339,6 +343,11 @@ public class ModuleController {
 		String command = String.format(protoFormat, protoExePath, protoPath, languageType, genPath, outClassName);
 		SystemResult result = commandService.execCommand(command);
 		logger.info("command:{}, result:{}", command, result);
+		
+		 //生成协议文件
+        for (IProtoGenerator generator : generatorProtoList) {
+        	generator.generate(protoObject);
+		}
 		return result;
 	}
 	
@@ -394,7 +403,7 @@ public class ModuleController {
 		dto.getProtoReqStructList().addAll(protoReqStructList);
 		dto.getProtoPBStructList().addAll(protoPBStructList);
 		
-		for (IGenerator generator : generatorList) {
+		for (ICodeGenerator generator : generatorCodeList) {
 			generator.generate(dto);
 		}
 		return SystemResult.build(SystemCodeEnum.SUCCESS);

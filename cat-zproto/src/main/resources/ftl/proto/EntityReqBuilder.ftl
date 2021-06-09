@@ -1,4 +1,4 @@
-package com.cat.server.game.module.${entity.getEntityName() ? lower_case}.proto;
+package com.cat.server.game.module.${moduleName ? lower_case}.proto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,20 +41,6 @@ public class ${clazzName} implements IProtocol {
 		this.builder.set${field.name ? cap_first}(value);
 	}
 	</#if>
-	<#--
-	<#if field.getPrimitive()>
-	public void set${field.name ? cap_first}(${field.javaType} value){
-		this.builder.set${field.name ? cap_first}(value);
-	}
-	<#else>
-	public void add${field.name ? cap_first}(${field.javaType} value){
-		<#if field.identifier?contains('repeated')>
-		this.builder.add${field.name ? cap_first}(value);
-		<#else>
-		this.builder.set${field.name ? cap_first}(value);
-		</#if>
-	}
-	</#if>-->
 	</#list>
 	</#if>
 	

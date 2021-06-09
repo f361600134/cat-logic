@@ -1,14 +1,11 @@
 package com.cat.zproto.assist.generator;
 
-import java.io.File;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cat.zproto.domain.system.SettingConfig;
-import com.cat.zproto.domain.table.TableFreemarkerDto;
 import com.cat.zproto.service.TemplateService;
 
 /**
@@ -16,7 +13,7 @@ import com.cat.zproto.service.TemplateService;
  * @auth Jeremy
  * @date 2021年6月6日下午9:29:12
  */
-public abstract class AbstractDefaultGenerator implements IGenerator{
+public abstract class AbstractProtoGenerator implements IProtoGenerator{
 	
 	public Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -37,21 +34,8 @@ public abstract class AbstractDefaultGenerator implements IGenerator{
 	}
 	
 	@Override
-	public void generate(TableFreemarkerDto dto) {
-		String codePath = setting.getCodePath();
-		String entityName = dto.getEntity().getEntityName();
-		//生成路径
-		String path = codePath.concat(File.separator)
-				.concat(entityName.toLowerCase()).concat(File.separator)
-				.concat(getChildDir());
-		File file = new File(path);
-		file.mkdirs();
-		//实例化文件
-		String fileName = path.concat(File.separator).concat(getFileNameFrontPart())
-				.concat(entityName).concat(getFileNameLatterPart())
-				.concat(getFileNameSuffix());
-		templateService.printer(dto, fileName, getProtoName(dto));
-		logger.info("成功生成文件{}", fileName);
+	public int type() {
+		return PROTO;
 	}
 	
 }

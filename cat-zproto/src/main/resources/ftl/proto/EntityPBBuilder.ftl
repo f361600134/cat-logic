@@ -1,9 +1,8 @@
-package com.cat.server.game.module.${entity.getEntityName() ? lower_case}.proto;
+package com.cat.server.game.module.${moduleName ? lower_case}.proto;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.server.game.data.proto.PBDefine.*;
 import com.cat.net.network.base.IProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
 import ${protocolObj.getDependenceImport()};
@@ -19,7 +18,8 @@ public class ${clazzName} implements IProtocol {
 	
 	private final ${struct.name}.Builder builder = ${struct.name}.newBuilder();
 	
-	public ${clazzName}() {}
+	public ${clazzName}() {
+	}
 	
 	public static ${clazzName} newInstance() {
 		return new ${clazzName}();
@@ -46,7 +46,7 @@ public class ${clazzName} implements IProtocol {
 	
 	@Override
 	public int protocol() {
-		return PBProtocol.${struct.name}_VALUE;
+		return 0;
 	}
 
 	@Override

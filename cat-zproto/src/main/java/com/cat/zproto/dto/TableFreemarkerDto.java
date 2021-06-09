@@ -1,4 +1,4 @@
-package com.cat.zproto.domain.table;
+package com.cat.zproto.dto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +8,7 @@ import java.util.Map;
 import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
+import com.cat.zproto.domain.table.TableEntity;
 
 /**
  * 协议

@@ -1,8 +1,18 @@
 package com.cat.zproto.assist.generator;
 
-import com.cat.zproto.domain.table.TableFreemarkerDto;
+import com.cat.zproto.dto.TableFreemarkerDto;
 
 public interface IGenerator {
+	
+	int CODE =1;
+	int PROTO=2;
+	
+	/**
+	 * 生成类型, 1:代码, 2:协议
+	 * @return
+	 */
+	int type();
+	
 	
 	/**
 	 * 生成文件所在子目录
@@ -41,20 +51,20 @@ public interface IGenerator {
 	 */
 	String getFileNameSuffix();
 	
-	/**
-	 * 获取proto名字,freemarker根据此名字获得模板
-	 * @return  
-	 * @return String  
-	 * @date 2021年6月6日下午9:09:41
-	 */
-	String getProtoName(TableFreemarkerDto dto);
-	
-	/**
-	 * 生成
-	 * @param dto  
-	 * @return void  
-	 * @date 2021年6月6日下午9:18:14
-	 */
-	void generate(TableFreemarkerDto dto);
+//	/**
+//	 * 获取proto名字,freemarker根据此名字获得模板
+//	 * @return  
+//	 * @return String  
+//	 * @date 2021年6月6日下午9:09:41
+//	 */
+//	String getProtoName(TableFreemarkerDto dto);
+//	
+//	/**
+//	 * 生成
+//	 * @param dto  
+//	 * @return void  
+//	 * @date 2021年6月6日下午9:18:14
+//	 */
+//	void generate(TableFreemarkerDto dto);
 	
 }
