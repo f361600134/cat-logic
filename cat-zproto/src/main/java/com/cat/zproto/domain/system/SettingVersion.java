@@ -24,31 +24,37 @@ public class SettingVersion {
 	 * 分别用于git合svn的版本控制
 	 */
 	private Pair<String, String> versionControllPath;
+	
 	/**
 	 * 初始化日期
 	 */
 	private String initDate;
-	/**
-	 * 登录账号
-	 */
-	private String account;
-	/**
-	 * 密码
-	 */
-	private String password;
+	
 	
 	/**
-	 * module结构存储的地址
+	 * module结构存储的路径
 	 */
 	private String modulePath;
 	/**
-	 * proto结构地址
+	 * proto结构路径
 	 */
 	private String protoDataPath;
 	/**
-	 * proto协议号地址
+	 * proto协议号路径
 	 */
 	private String protoIdPath;
+	/**
+	 * 生成的代码路径
+	 */
+	private String codePath;
+	/**
+	 * 生成的协议路径
+	 */
+	private String protoMessagePath;
+	/**
+	 * 生成的目录
+	 */
+	private String genDir;
 	
 	/**
 	 * @param versionControllPath
@@ -58,6 +64,7 @@ public class SettingVersion {
 		this.versionControllPath = versionControllPath;
 		this.initDate = FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss").format(new Date());
 		
+		//版本模块,消息结构文件
 		String versionDir = CommonConstant.RESOURCE_CONFIGDATA_PATH.concat(version);
 		File file = new File(versionDir);
 		file.mkdirs();
@@ -65,20 +72,16 @@ public class SettingVersion {
 		this.modulePath = versionDir.concat(CommonConstant.MODULE_FILE_NAME);
 		this.protoDataPath = versionDir.concat(CommonConstant.PROTO_FILE_NAME);
 		this.protoIdPath = versionDir.concat(CommonConstant.PROTO_ID_FILE_NAME);
+		
+		//生成路径
+		this.genDir = CommonConstant.GENERATOR_PATH.concat(version);
+		file = new File(versionDir);
+		file.mkdirs();
+		
+		this.codePath = genDir.concat(CommonConstant.CODE_PACKAGE);
+		this.protoMessagePath =  genDir.concat(CommonConstant.PROTO_PACKAGE);
 	}
 	
-	public String getAccount() {
-		return account;
-	}
-	public void setAccount(String account) {
-		this.account = account;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public String getVersion() {
 		return version;
 	}
@@ -104,4 +107,20 @@ public class SettingVersion {
 		return protoIdPath;
 	}
 
+	public String codePath() {
+		return codePath;
+	}
+	
+	public String protoMessagePath() {
+		return protoMessagePath;
+	}
+	/**
+	 * 生成目录
+	 * @return
+	 */
+	public String genDir() {
+		return genDir;
+	}
+	
+	
 }

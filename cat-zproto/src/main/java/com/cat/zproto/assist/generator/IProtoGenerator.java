@@ -18,6 +18,6 @@ public interface IProtoGenerator extends IGenerator{
 	 * @return void  
 	 * @date 2021年6月6日下午9:18:14
 	 */
-	void generate(ProtocolObject protocolObj);
+	void generate(String version, ProtocolObject protocolObj);
 	
 }

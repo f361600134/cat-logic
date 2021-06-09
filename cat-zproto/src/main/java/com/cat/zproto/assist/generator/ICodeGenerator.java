@@ -18,5 +18,5 @@ public interface ICodeGenerator extends IGenerator{
 	 * @return void  
 	 * @date 2021年6月6日下午9:18:14
 	 */
-	void generate(TableFreemarkerDto dto);
+	void generate(String version, TableFreemarkerDto dto);
 }

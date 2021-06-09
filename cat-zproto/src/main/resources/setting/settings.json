@@ -1,5 +1,5 @@
 {
-	"codePath":"./temps/code",
+	"account":"jeremy",
 	"dbInfo":{
 		"dbName":"coral",
 		"initialSize":1,
@@ -7,6 +7,7 @@
 		"url":"jdbc:mysql://139.9.44.104:3306/coral?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true",
 		"username":"root"
 	},
+	"password":"jeremy",
 	"proto":{
 		"generatorPath":{
 			"csharp":"./temps/csharp",
@@ -19,9 +20,7 @@
 	},
 	"versionInfo":{
 		"1.0.0":{
-			"account":"jeremy",
-			"initDate":"2021-06-09 20:44:41",
-			"password":"jeremy",
+			"initDate":"2021-06-09 22:36:49",
 			"version":"1.0.0",
 			"versionControllPath":{
 				"key":"svn",
@@ -29,11 +28,12 @@
 			}
 		},
 		"1.1.0":{
-			"account":"jeremy",
-			"initDate":"2021-06-09 20:44:41",
-			"password":"jeremy",
+			"initDate":"2021-06-09 22:36:49",
 			"version":"1.1.0",
-			"versionControllPath":{"$ref":"$.versionInfo.1\\.0\\.0.versionControllPath"}
+			"versionControllPath":{
+				"key":"svn",
+				"value":"svn://139.9.44.104/rabbit2/"
+			}
 		}
 	}
 }

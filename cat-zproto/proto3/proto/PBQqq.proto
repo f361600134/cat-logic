@@ -1,0 +1,14 @@
+syntax = "proto3";
+package Protocol;
+option java_package = "com.cat.server.game.data.proto";
+option java_outer_classname = "PBQqq";
+
+
+// 测试
+message ReqAAAA{
+}
+
+// 测试
+message ACKBBBB{
+}
+

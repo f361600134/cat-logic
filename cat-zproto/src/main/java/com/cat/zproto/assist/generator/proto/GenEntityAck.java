@@ -9,6 +9,7 @@ import com.cat.zproto.assist.generator.AbstractProtoGenerator;
 import com.cat.zproto.domain.proto.ProtocolConstant;
 import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
+import com.cat.zproto.domain.system.SettingVersion;
 import com.cat.zproto.dto.ProtoDto;
 import com.cat.zproto.dto.TableFreemarkerDto;
 
@@ -31,11 +32,11 @@ public class GenEntityAck extends AbstractProtoGenerator{
 	}
 	
 	@Override
-	public void generate(ProtocolObject protocolObj) {
+	public void generate(String version, ProtocolObject protocolObj) {
 		//生成路径
-		String codePath = setting.getCodePath();
+		SettingVersion versionInfo = setting.getVersionInfo().get(version);
 		String entityName = protocolObj.getModuleName();
-		String path = codePath.concat(File.separator)
+		String path = versionInfo.codePath().concat(File.separator)
 				.concat(entityName.toLowerCase()).concat(File.separator)
 				.concat(getChildDir());
 		File file = new File(path);

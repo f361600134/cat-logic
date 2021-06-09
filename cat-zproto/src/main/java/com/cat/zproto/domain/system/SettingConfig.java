@@ -1,8 +1,6 @@
 package com.cat.zproto.domain.system;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
@@ -22,14 +20,18 @@ public class SettingConfig {
 	private SettingMysql dbInfo;
 
 	/**
-	 * 生成的代码路径
-	 */
-	private String codePath;
-	
-	/**
 	 * proto相关的设置
 	 */
 	private SettingProto proto;
+	
+	/**
+	 * 登录账号
+	 */
+	private String account;
+	/**
+	 * 密码
+	 */
+	private String password;
 
 	/**
 	 * 版本控制相关配置
@@ -47,14 +49,6 @@ public class SettingConfig {
 		this.dbInfo = dbInfo;
 	}
 
-	public String getCodePath() {
-		return codePath;
-	}
-
-	public void setCodePath(String codePath) {
-		this.codePath = codePath;
-	}
-	
 	public SettingProto getProto() {
 		return proto;
 	}
@@ -71,33 +65,40 @@ public class SettingConfig {
 		versionInfo.put(version.getVersion(), version);
 	}
 	
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public static void main(String[] args) {
 		SettingConfig setting = new SettingConfig();
 		//版本控制相关信息
-		Pair<String, String> pair = Pair.of("svn", "svn://139.9.44.104/rabbit/");
-		SettingVersion version = new SettingVersion("1.0.0", pair);
-		version.setAccount("jeremy");
-		version.setPassword("jeremy");
-		
-		SettingVersion version2 = new SettingVersion("1.1.0", pair);
-		version2.setAccount("jeremy");
-		version2.setPassword("jeremy");
-		
+		SettingVersion version = new SettingVersion("1.0.0", Pair.of("svn", "svn://139.9.44.104/rabbit/"));
+		SettingVersion version2 = new SettingVersion("1.1.0", Pair.of("svn", "svn://139.9.44.104/rabbit2/"));
 		setting.addVersionInfo(version);
 		setting.addVersionInfo(version2);
+		
+		setting.setAccount("jeremy");
+		setting.setPassword("jeremy");
 		
 		//proto相关信息
 		SettingProto proto = new SettingProto();
 		proto.setProtoPath("./proto3/proto");
-		proto.getGeneratorPath().put("java", "./temps/server");
-		proto.getGeneratorPath().put("csharp", "./temps/csharp");
+//		proto.getGeneratorPath().put("java", "./temps/server");
+//		proto.getGeneratorPath().put("csharp", "./temps/csharp");
 		proto.setJavaPackagePath("com.cat.server.game.data.proto");
 		proto.setProtoExePath("./proto3/exec/protoc.exe");
 		proto.setProtoIdSortBy(1);
 		setting.setProto(proto);
 		
-		setting.setCodePath("./temps/code");
-
 		//数据源相关信息
 		SettingMysql info = new SettingMysql();
 		info.setUrl("jdbc:mysql://139.9.44.104:3306/coral?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true");

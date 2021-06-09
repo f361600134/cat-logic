@@ -6,20 +6,10 @@ public class CommonConstant {
 	 * 系统设置存储
 	 */
 	public static final String SYSTEM_SETTING = "src/main/resources/setting/settings.json";
-//	/**
-//	 * 模块信息
-//	 */
-//	public static final String MODULE_INFO_PATH = "src/main/resources/configdata/module.json";
-//	/**
-//	 * 协议结构信息
-//	 */
-//	public static final String PROTO_INFO_PATH = "src/main/resources/configdata/protoData.json";
-//	/**
-//	 * 协议id信息
-//	 */
-//	public static final String PROTO_ID_PATH = "src/main/resources/configdata/protoId.json";
 	
-	
+	/**
+	 * 结构存储路径
+	 */
 	public static final String RESOURCE_CONFIGDATA_PATH = "src/main/resources/configdata/";
 	/**
 	 * 模块信息
@@ -37,10 +27,19 @@ public class CommonConstant {
 	public static final String PROTO_ID_FILE_NAME = "/protoId.json";
 	
 	/**
-     * protoc的执行语句格式<br>
-     * {protoc} -I={protoPath} --java_out={javaPath} {moduleName}.proto
-     */
-	public final static String PROTOC_EXECUTE_COMMAND_FORMAT = "%s -I=%s --java_out=%s %s.proto";
+	 * 生成路径
+	 */
+	public static final String GENERATOR_PATH = "./temps/";
+	
+	/**
+	 * 生成代码文件夹
+	 */
+	public static final String CODE_PACKAGE= "/code";
+	
+	/**
+	 * 生成协议文件夹
+	 */
+	public static final String PROTO_PACKAGE= "/proto";
 	
 	/**
      * protoc的执行语句格式<br>

@@ -31,6 +31,7 @@ import com.cat.zproto.domain.proto.ProtocolConstant;
 import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
+import com.cat.zproto.domain.system.SettingVersion;
 import com.cat.zproto.domain.table.TableEntity;
 import com.cat.zproto.dto.TableFreemarkerDto;
 import com.cat.zproto.service.CommandService;
@@ -310,25 +311,27 @@ public class ModuleController {
 		String ret = ""; 
 		SystemResult result = null;
 		if (langType.equals("all")) {
-			Map<String, String> pathMap = setting.getProto().getGeneratorPath();
-			for (String languegeType : pathMap.keySet()) {
-				result = createMessage(protoObject, languegeType);
-				ret = ret.concat(String.format(CommonConstant.GENERATE_RESULT, languegeType, result.tips())).concat("<br>");
-			}
+//			Map<String, String> pathMap = setting.getProto().getGeneratorPath();
+//			for (String languegeType : pathMap.keySet()) {
+//				result = createMessage(version, protoObject, languegeType);
+//				ret = ret.concat(String.format(CommonConstant.GENERATE_RESULT, languegeType, result.tips())).concat("<br>");
+//			}
+			return SystemResult.build(SystemCodeEnum.ERROR_NOT_SUPPORT);
 		}else {
-			result = createMessage(protoObject, langType);
+			result = createMessage(version, protoObject, langType);
 			ret = String.format(CommonConstant.GENERATE_RESULT, langType, result.tips());
 		}
 		result.setTips(ret);
 		return result;
 	}
 	
-	private SystemResult createMessage(ProtocolObject protoObject, String langType) {
+	private SystemResult createMessage(String version, ProtocolObject protoObject, String langType) {
 		String protoFormat = CommonConstant.PROTOC_EXECUTE_FORMAT;
 		String protoExePath = setting.getProto().getProtoExePath();
 		String protoPath = setting.getProto().getProtoPath();
 		String languageType = langType;
-		String genPath = setting.getProto().getGeneratorPath().get(langType);
+		SettingVersion versionInfo = setting.getVersionInfo().get(version);
+		String genPath = versionInfo.genDir().concat(File.separator).concat(langType);
 		String outClassName = protoObject.getOutClass();
 		try {
 			//TODO 这段代码丢初始化调用里面
@@ -343,7 +346,7 @@ public class ModuleController {
 		
 		 //生成协议文件
         for (IProtoGenerator generator : generatorProtoList) {
-        	generator.generate(protoObject);
+        	generator.generate(version, protoObject);
 		}
 		return result;
 	}
@@ -401,7 +404,7 @@ public class ModuleController {
 		dto.getProtoPBStructList().addAll(protoPBStructList);
 		
 		for (ICodeGenerator generator : generatorCodeList) {
-			generator.generate(dto);
+			generator.generate(version, dto);
 		}
 		return SystemResult.build(SystemCodeEnum.SUCCESS);
 	}

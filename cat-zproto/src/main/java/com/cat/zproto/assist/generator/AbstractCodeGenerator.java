@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cat.zproto.domain.system.SettingConfig;
+import com.cat.zproto.domain.system.SettingVersion;
 import com.cat.zproto.dto.TableFreemarkerDto;
 import com.cat.zproto.service.TemplateService;
 
@@ -42,11 +43,11 @@ public abstract class AbstractCodeGenerator implements ICodeGenerator{
 	}
 	
 	@Override
-	public void generate(TableFreemarkerDto dto) {
-		String codePath = setting.getCodePath();
+	public void generate(String version, TableFreemarkerDto dto) {
+		SettingVersion versionInfo = setting.getVersionInfo().get(version);
 		String entityName = dto.getEntity().getEntityName();
 		//生成路径
-		String path = codePath.concat(File.separator)
+		String path = versionInfo.codePath().concat(File.separator)
 				.concat(entityName.toLowerCase()).concat(File.separator)
 				.concat(getChildDir());
 		File file = new File(path);
