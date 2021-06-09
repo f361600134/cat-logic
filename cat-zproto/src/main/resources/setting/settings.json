@@ -17,8 +17,23 @@
 		"protoIdSortBy":1,
 		"protoPath":"./proto3/proto"
 	},
-	"versionControllPath":{
-		"key":"svn",
-		"value":"svn://139.9.44.104/rabbit/"
+	"versionInfo":{
+		"1.0.0":{
+			"account":"jeremy",
+			"initDate":"2021-06-09 20:44:41",
+			"password":"jeremy",
+			"version":"1.0.0",
+			"versionControllPath":{
+				"key":"svn",
+				"value":"svn://139.9.44.104/rabbit/"
+			}
+		},
+		"1.1.0":{
+			"account":"jeremy",
+			"initDate":"2021-06-09 20:44:41",
+			"password":"jeremy",
+			"version":"1.1.0",
+			"versionControllPath":{"$ref":"$.versionInfo.1\\.0\\.0.versionControllPath"}
+		}
 	}
 }

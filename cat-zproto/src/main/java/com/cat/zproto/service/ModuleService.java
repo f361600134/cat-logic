@@ -1,34 +1,34 @@
 package com.cat.zproto.service;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.cat.zproto.constant.CommonConstant;
+import com.cat.zproto.domain.module.ModuleDomain;
 import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.domain.proto.ProtocolConstant;
 import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
+import com.cat.zproto.domain.system.SettingConfig;
+import com.cat.zproto.domain.system.SettingVersion;
+import com.cat.zproto.manager.ModuleManager;
 
 @Service
 public class ModuleService implements InitializingBean{
 	
-	 /**
-     * 模块id,模块
-     * 只能本模块操作 不提供接口开放给外部调用
-     */
-    private final Map<Integer, ModuleEntity> moduleEntityMap = new TreeMap<>();
-    
+	@Autowired private SettingConfig setting;
+	
+	@Autowired private ModuleManager moduleManager;
+	
     /**
      * 获取指定entity
      * @param id
@@ -36,8 +36,12 @@ public class ModuleService implements InitializingBean{
      * @return ModuleEntity  
      * @date 2021年6月2日下午1:38:10
      */
-	public ModuleEntity getModuleEntity(int id) {
-		return moduleEntityMap.get(id);
+	public ModuleEntity getModuleEntity(String version, int id) {
+		ModuleDomain moduDomain = moduleManager.getDomain(version);
+		if (moduDomain == null) {
+			return null;
+		}
+		return moduDomain.getModuleEntity(id);
 	}
 	
 	/**
@@ -47,8 +51,13 @@ public class ModuleService implements InitializingBean{
      * @return ModuleEntity  
      * @date 2021年6月2日下午1:38:10
      */
-	public Collection<ModuleEntity> getAllModuleEntity() {
-		return moduleEntityMap.values();
+	@SuppressWarnings("unchecked")
+	public Collection<ModuleEntity> getAllModuleEntity(String version) {
+		ModuleDomain moduDomain = moduleManager.getDomain(version);
+		if (moduDomain == null) {
+			return Collections.EMPTY_LIST;
+		}
+		return moduDomain.getAllModuleEntity();
 	}
 	
 	  /**
@@ -58,9 +67,12 @@ public class ModuleService implements InitializingBean{
      * @return ModuleEntity  
      * @date 2021年6月2日下午1:38:10
      */
-	public void replacModuleEntity(ModuleEntity entity) {
-		moduleEntityMap.put(entity.getId(), entity);
-		save();
+	public void replacModuleEntity(String version, ModuleEntity entity) {
+		ModuleDomain moduDomain = moduleManager.getDomain(version);
+		if (moduDomain == null) {
+			return;
+		}
+		moduDomain.replacModuleEntity(entity);
 	}
 	
 	/**
@@ -70,21 +82,12 @@ public class ModuleService implements InitializingBean{
      * @return ModuleEntity  
      * @date 2021年6月2日下午1:38:10
      */
-	public void removeModuleEntity(int entityId) {
-		moduleEntityMap.remove(entityId);
-		save();
-	}
-	
-	/**
-	 * 存储结构信息
-	 */
-	private void save() {
-		String data = JSON.toJSONString(moduleEntityMap.values(), SerializerFeature.PrettyFormat);
-		try {
-			FileUtils.writeStringToFile(new File(CommonConstant.MODULE_INFO_PATH), data, StandardCharsets.UTF_8, false);
-		} catch (IOException e) {
-			e.printStackTrace();
+	public void removeModuleEntity(String version, int entityId) {
+		ModuleDomain moduDomain = moduleManager.getDomain(version);
+		if (moduDomain == null) {
+			return;
 		}
+		moduDomain.removeModuleEntity(entityId);
 	}
 	
 	/**
@@ -92,7 +95,12 @@ public class ModuleService implements InitializingBean{
 	 * @return void  
 	 * @date 2021年6月5日下午10:51:15
 	 */
-	public boolean reverseLoad(Collection<ProtocolObject> protoMap, Map<String, Integer> protoIdMap) {
+	public boolean reverseLoad(String version, Collection<ProtocolObject> protoMap, Map<String, Integer> protoIdMap) {
+		ModuleDomain domain = moduleManager.getOrCreateDomain(version);
+		if (domain == null) {
+			return false;
+		}
+		
 		for (ProtocolObject protocolObject : protoMap) {
 			for (ProtocolStructure struct : protocolObject.getStructureList()) {
 				ModuleEntity entity = new ModuleEntity();
@@ -104,20 +112,25 @@ public class ModuleService implements InitializingBean{
 				entity.setId(moduleId);
 				entity.setName(protocolObject.getModuleName());
 				entity.setComment("");
-				this.moduleEntityMap.put(entity.getId(), entity);
+				domain.replacModuleEntity(entity);
 			}
 		}
-		save();
 		return true;
 	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		String content = FileUtils.readFileToString(new File(CommonConstant.MODULE_INFO_PATH), StandardCharsets.UTF_8);
-		List<ModuleEntity> entitys = JSON.parseArray(content, ModuleEntity.class);
-		entitys.forEach((entity) ->{
-			moduleEntityMap.put(entity.getId(), entity);
-		});
+		Collection<SettingVersion> versions = setting.getVersionInfo().values();
+		for (SettingVersion settingVersion : versions) {
+			String version = settingVersion.getVersion();
+			ModuleDomain domain = moduleManager.getOrCreateDomain(version);
+			String moduleInfoPath = settingVersion.modulePath();
+			String content = FileUtils.readFileToString(new File(moduleInfoPath), StandardCharsets.UTF_8);
+			List<ModuleEntity> entitys = JSON.parseArray(content, ModuleEntity.class);
+			entitys.forEach((entity) ->{
+				domain.replacModuleEntity(entity);
+			});
+		}
 	}
     
 }

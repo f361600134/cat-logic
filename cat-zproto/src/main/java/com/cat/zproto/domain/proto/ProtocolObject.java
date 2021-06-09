@@ -10,24 +10,23 @@ import java.util.Set;
 import com.alibaba.fastjson.annotation.JSONField;
 
 /**
- *协议对象信息
+ * 协议对象信息
+ * 
  * @author Jeremy
  */
 public class ProtocolObject {
-	
+
 	/**
-	 * 模块名字,协议文件的名字都会加上PB
-	 * 比如PBChat, 模块名字就是chat
+	 * 模块名字,协议文件的名字都会加上PB 比如PBChat, 模块名字就是chat
 	 */
 	private String moduleName;
-	
+
 	/**
 	 * 所在路径,需要生成到的java路径
 	 */
 	private String javaPath;
 	/**
-	 * 输出对象名字
-	 * 比如:PBChat
+	 * 输出对象名字 比如:PBChat
 	 */
 	private String outClass;
 	/**
@@ -39,12 +38,10 @@ public class ProtocolObject {
 	private Set<String> dependenceObjs = new HashSet<>();
 
 	/**
-	 * key: 协议名字
-	 * value: 协议结构
-	 * 协议对象对应的所有协议结构
+	 * key: 协议名字 value: 协议结构 协议对象对应的所有协议结构
 	 */
 	private Map<String, ProtocolStructure> structures = new LinkedHashMap<>();
-	
+
 	public ProtocolObject() {
 		this.moduleName = "";
 		this.javaPath = "";
@@ -67,7 +64,6 @@ public class ProtocolObject {
 		this.outClass = outClass;
 	}
 
-
 	public Set<String> getDependenceObjs() {
 		return dependenceObjs;
 	}
@@ -83,7 +79,7 @@ public class ProtocolObject {
 	public void setStructures(Map<String, ProtocolStructure> structures) {
 		this.structures = structures;
 	}
-	
+
 	public String getModuleName() {
 		return moduleName;
 	}
@@ -91,11 +87,11 @@ public class ProtocolObject {
 	public void setModuleName(String moduleName) {
 		this.moduleName = moduleName;
 	}
-	
+
 	public void addDependenceObj(String dependenceName) {
 		this.dependenceObjs.add(dependenceName);
 	}
-	
+
 	/**
 	 * 获取导入路径
 	 * 
@@ -105,9 +101,10 @@ public class ProtocolObject {
 	public String getJavaImport() {
 		return getJavaPath().concat(".").concat(getOutClass()).concat(".").concat("*");
 	}
-	
+
 	/**
 	 * 获取结构列表<br>
+	 * 
 	 * @return
 	 */
 	@JSONField(serialize = false)
@@ -117,6 +114,7 @@ public class ProtocolObject {
 
 	/**
 	 * 获取依赖对象路径
+	 * 
 	 * @return
 	 */
 	@JSONField(serialize = false)
@@ -127,7 +125,7 @@ public class ProtocolObject {
 		}
 		return ret;
 	}
-	
+
 //	/**
 //	 * 获取依赖对象路径
 //	 * @return
@@ -148,7 +146,7 @@ public class ProtocolObject {
 //		ret = ret.concat(".").concat("*");
 //		return ret;
 //	}
-	
+
 	/**
 	 * 替换协议结构
 	 */
@@ -156,18 +154,17 @@ public class ProtocolObject {
 		this.structures.clear();
 		this.structures.putAll(protocolStructureMap);
 	}
-	
+
 	/**
 	 * 替换协议结构
 	 */
 	public void replaceStructures(List<ProtocolStructure> protocolStructures) {
 		this.structures.clear();
-		protocolStructures.forEach((p)->{
+		protocolStructures.forEach((p) -> {
 			this.structures.put(p.getName(), p);
 		});
 	}
-	
-	
+
 //	List<ProtocolStructure> protoPBStructList = Lists.newArrayList();
 //	List<ProtocolStructure> protoReqStructList = Lists.newArrayList();
 //	Map<String, ProtocolStructure> protoAckStructMap = Maps.newHashMap();
@@ -183,7 +180,7 @@ public class ProtocolObject {
 //			protoPBStructList.add(structureMap.get(key));
 //		}
 //	}
-	
+
 //	@JSONField(serialize = false)
 //	public List<ProtocolStructure> getProtoReqStructList() {
 //		List<ProtocolStructure> protoReqStructList = new ArrayList<>();
@@ -210,12 +207,11 @@ public class ProtocolObject {
 //		}
 //		return protoPBStructList;
 //	}
-	
+
 	@Override
 	public String toString() {
-		return "ProtocolObject [javaPath=" + javaPath + ", outClass=" + outClass 
-				+ ", javaImport=" + getJavaImport() + ", structures="
-				+ structures.keySet() + "]";
+		return "ProtocolObject [javaPath=" + javaPath + ", outClass=" + outClass + ", javaImport=" + getJavaImport()
+				+ ", structures=" + structures.keySet() + "]";
 	}
-	
+
 }

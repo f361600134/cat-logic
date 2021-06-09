@@ -37,18 +37,18 @@ public class TestController {
         return mv;
     }
 	
-	@ResponseBody
-	@RequestMapping("/getModules")
-	public String getModules(String version) {
-        Collection<ModuleEntity> moduleEntities = moduleService.getAllModuleEntity();
-        Map<String, Object> result = new HashMap<>();
-        result.put("code", 0);
-        result.put("msg", "");
-//        Collections.sort(moduleEntities, Comparator.comparingInt(ModuleEntity::getId));
-        result.put("data", moduleEntities);
-        return JSON.toJSONString(result);
-//        return JsonUtil.toString(result);
-    }
+//	@ResponseBody
+//	@RequestMapping("/getModules")
+//	public String getModules(String version) {
+//        Collection<ModuleEntity> moduleEntities = moduleService.getAllModuleEntity();
+//        Map<String, Object> result = new HashMap<>();
+//        result.put("code", 0);
+//        result.put("msg", "");
+////        Collections.sort(moduleEntities, Comparator.comparingInt(ModuleEntity::getId));
+//        result.put("data", moduleEntities);
+//        return JSON.toJSONString(result);
+////        return JsonUtil.toString(result);
+//    }
 	
 	@RequestMapping("/select")
     public String select(){

@@ -3,17 +3,14 @@ package com.cat.zproto.service;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -23,18 +20,16 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
-import com.alibaba.fastjson.annotation.JSONField;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.cat.zproto.assist.serial.IGenProtoId;
-import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.domain.proto.ProtocolConstant;
+import com.cat.zproto.domain.proto.ProtocolDomain;
 import com.cat.zproto.domain.proto.ProtocolField;
 import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
+import com.cat.zproto.domain.system.SettingVersion;
+import com.cat.zproto.manager.ProtocolManager;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Maps;
@@ -48,25 +43,19 @@ public class ProtoService implements InitializingBean{
 	
 	@Autowired private List<IGenProtoId> genProtoIds;
 	
+	@Autowired private ProtocolManager protocolManager;
+	
+	
 	/**
 	 * 生成类型<br>
 	 * 协议生成器
 	 */
 	public final Map<Integer, IGenProtoId> genProtoIdMap = new HashMap<>();
 	
-	/**
-	 * key:协议名
-	 * value: 协议号
-	 */
-	public final HashBiMap<String, Integer> protoIdMap = HashBiMap.create();
-	
-	/**
-	 * key: 模块名
-	 * value: 协议信息
-	 */
-	public final Map<String, ProtocolObject> protoMap = Maps.newHashMap();
-	
-	public void parse(String path) {
+	public Pair<Map<String, ProtocolObject>, HashBiMap<String, Integer>> parse(String path) {
+//		Pair<Map<String, ProtocolObject>, HashBiMap<String, Integer>> pair 
+		HashBiMap<String, Integer> biMap = null;
+		Map<String, ProtocolObject> ret = new HashMap<>();
 		File folder = new File(path);
 		for(File file : folder.listFiles()) {
 			if(!file.getName().endsWith(".proto")) {
@@ -74,7 +63,7 @@ public class ProtoService implements InitializingBean{
 			}
 			if (file.getName().equals("PBProtocol.proto")) {
 				//解析协议号对应的方法名
-				parseProtoId(file);
+				biMap = parseProtoId(file);
 				continue;
 			}
 			Pair<List<String>, List<List<String>>> pair = getProtocolScopeList(file);
@@ -88,13 +77,9 @@ public class ProtoService implements InitializingBean{
 					e.printStackTrace();
 				}
 			}
-			protoMap.put(object.getModuleName(), object);
+			ret.put(object.getModuleName(), object);
 		}
-//		for(ProtocolObject ps:protoMap.values()) {
-//			System.out.println(ps);
-//		}
-//		logger.info("protoId:{}", protoIdMap.keySet());
-//		logger.info("groupList:{}", protoMap.keySet());
+		return Pair.of(ret, biMap);
 	}
 	
 	/**
@@ -214,6 +199,7 @@ public class ProtoService implements InitializingBean{
 	 * @return
 	 */
 	private HashBiMap<String, Integer> parseProtoId(File protocolFile) {
+		HashBiMap<String, Integer> ret = HashBiMap.create();
 		//协议结构列表
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(protocolFile)));
@@ -227,7 +213,7 @@ public class ProtoService implements InitializingBean{
 					String arr[] = line.split("=");
 					String key = RegExUtils.replaceAll(arr[0], " ", "").replaceAll("	", "");
 					String value = RegExUtils.replaceAll(arr[1], " ", "").replaceAll(";", "");
-					protoIdMap.putIfAbsent(key, Integer.valueOf(value));
+					ret.putIfAbsent(key, Integer.valueOf(value));
 				}
 				line = reader.readLine();
 			}
@@ -236,7 +222,7 @@ public class ProtoService implements InitializingBean{
 			logger.error("protocolFile:{}", protocolFile.getName());
 			e.printStackTrace();
 		}
-		return protoIdMap;
+		return ret;
 	}
 	
 	/**
@@ -244,7 +230,6 @@ public class ProtoService implements InitializingBean{
 	 * @param protocolFile
 	 * @return
 	 */
-	@JSONField(serialize =  false)
 	private Pair<List<String>, List<List<String>>> getProtocolScopeList(File protocolFile) {
 		//协议头结构
 		List<String> headList = new ArrayList<>();
@@ -292,68 +277,20 @@ public class ProtoService implements InitializingBean{
 	}
 	
 	/**
-	 * 通过协议方法名, 获取协议对象信息
-	 * @param protoMethodName
-	 * @return
-	 */
-	@JSONField(serialize =  false)
-	public ProtocolObject getProtoObject(String protoMethodName) {
-		return protoMap.get(protoMethodName);
-	}
-	
-	/**
-	 * 通过协议方法名, 获取协议所有对象信息
-	 * @param protoMethodName
-	 * @return
-	 */
-	@JSONField(serialize =  false)
-	public Collection<ProtocolObject> getAllProtoObject() {
-		return protoMap.values();
-	}
-	
-	/**
-	 * 通过协议方法名, 获取协议id
-	 * @param protoMethodName
-	 * @return
-	 */
-	public int getProtoId(String protoMethodName) {
-		return protoIdMap.get(protoMethodName);
-	}
-	
-	/**
-	 * 通过协议方法名, 获取协议id
-	 * @param protoMethodName
-	 * @return
-	 */
-	public BiMap<String, Integer> getProtoIds() {
-		return protoIdMap;
-	}
-	
-	/**
 	 * 获取对外依赖的对象<br>
 	 * 根据依赖的DTO对象, 判断如果匹配, 表示依赖了此对象,返回给调用层
 	 * @return
 	 */
-	public List<String> getDependanceObj(String moduleName, List<String> dtoNames){
-		List<String> ret = new ArrayList<>();
+	@SuppressWarnings("unchecked")
+	public List<String> getDependanceObj(String version, String moduleName, List<String> dtoNames){
+		ProtocolDomain protocolDomain = protocolManager.getDomain(version);
+		if (protocolDomain == null) {
+			return Collections.EMPTY_LIST;
+		}
 		if (dtoNames == null || dtoNames.isEmpty()) {
-			return ret;
+			return Collections.EMPTY_LIST;
 		}
-		for (ProtocolObject ptoto : protoMap.values()) {
-			if (StringUtils.equals(ptoto.getModuleName(), moduleName)) {
-				continue;
-			}
-			for (ProtocolStructure struct : ptoto.getStructures().values()) {
-				if (!StringUtils.startsWith(struct.getName(), ProtocolConstant.PB_PREFIX) ) {
-					continue;
-				}
-				if(dtoNames.contains(struct.getName())) {
-					ret.add(ptoto.getModuleName());
-					break;
-				}
-			}
-		}
-		return ret;
+		return protocolDomain.getDependanceObj(moduleName, dtoNames);
 	}
 	
 	/**
@@ -362,11 +299,9 @@ public class ProtoService implements InitializingBean{
 	 * 2. 修改协议列表,直接替换成新的
 	 * @return 返回被修改的最新的协议对象
 	 */
-	public ProtocolObject protoObjectUpdate(String moduleName, List<ProtocolStructure> protoStructure) {
-		ProtocolObject protoObject = getProtoObject(moduleName);
-		if (protoObject == null) {//null表示无此模块, 实例化一个新的
-			protoObject = new ProtocolObject();
-		}
+	public ProtocolObject protoObjectUpdate(String version, String moduleName, List<ProtocolStructure> protoStructure) {
+		ProtocolDomain protocolDomain =  protocolManager.getOrCreateDomain(version);
+		ProtocolObject protoObject = protocolDomain.getOrCreateProtoObject(moduleName);
 		//	替换掉协议信息
 		protoObject.replaceStructures(protoStructure);
 		//	根据配置重新设置
@@ -381,26 +316,31 @@ public class ProtoService implements InitializingBean{
 				dtoNames.add(protocolStructure.getName());
 			}
 		}
-		List<String> dependans = getDependanceObj(moduleName, dtoNames);
+		List<String> dependans = protocolDomain.getDependanceObj(moduleName, dtoNames);
 		protoObject.getDependenceObjs().addAll(dependans);
 		//存储
-		saveProtoData();
+		protocolDomain.save();
 		return protoObject;
 	}
 	
 	/**
 	 * 重新生成所有的协议id<br>
 	 */
-	public HashBiMap<String, Integer> genProtoIds(Collection<ModuleEntity> moduleEntitys) {
-		this.protoIdMap.clear();
+	public BiMap<String, Integer> genProtoIds(String version, Collection<ModuleEntity> moduleEntitys) {
+		ProtocolDomain protocolDomain = protocolManager.getDomain(version);
+		if (protocolDomain == null) {
+			return null;
+		}
+		protocolDomain.getProtoIdMap().clear();
+		//根据使用者定义的排序方式生成协议号
 		IGenProtoId genProtoId = genProtoIdMap.get(setting.getProto().getProtoIdSortBy());
 		moduleEntitys.forEach(module->{
-			ProtocolObject protoObject = protoMap.get(module.getName());
+			ProtocolObject protoObject = protocolDomain.getProtoObject(module.getName());
 			Map<String, Integer> tempMap = genProtoId.genProtoIds(module.getId(), protoObject);
-			protoIdMap.putAll(tempMap);
+			protocolDomain.putProtoId(tempMap);
 		});
-		saveProtoId();
-		return protoIdMap;
+		protocolDomain.save();
+		return protocolDomain.getProtoIdMap();
 	}
 	
 	/**
@@ -409,59 +349,79 @@ public class ProtoService implements InitializingBean{
 	 * @return void  
 	 * @date 2021年6月5日下午10:51:15
 	 */
-	public boolean reverseLoad() {
-		if (!protoMap.isEmpty() || !protoIdMap.isEmpty()) {
+	public boolean reverseLoad(String version) {
+		ProtocolDomain protocolDomain = protocolManager.getDomain(version);
+		if (protocolDomain == null) {
+			return false;
+		}
+		if (!protocolDomain.getProtoMap().isEmpty() || !protocolDomain.getProtoIdMap().isEmpty()) {
 			return false;
 		}
 		String protoPath = setting.getProto().getProtoPath();
-		this.parse(protoPath);
-		saveProtoData();
+		Pair<Map<String, ProtocolObject>, HashBiMap<String, Integer>> pair = this.parse(protoPath);
+		protocolDomain.init(pair.getLeft(), pair.getRight());
+		protocolDomain.save();
 		return true;
 	}
 	
 	/**
-	 * 存储协议对象
+	 * 通过协议方法名, 获取协议对象信息
+	 * @param protoMethodName
+	 * @return
 	 */
-	private void saveProtoData() {
-		//先存储协议
-		String data = JSON.toJSONString(protoMap.values(), SerializerFeature.PrettyFormat);
-		try {
-			FileUtils.writeStringToFile(new File(CommonConstant.PROTO_INFO_PATH), data, StandardCharsets.UTF_8, false);
-		} catch (IOException e) {
-			e.printStackTrace();
-			logger.error("save protoMap error, e", e);
+	public ProtocolObject getProtoObject(String version, String protoMethodName) {
+		ProtocolDomain protocolDomain = protocolManager.getDomain(version);
+		if (protocolDomain == null) {
+			return null;
 		}
+		return protocolDomain.getProtoObject(protoMethodName);
 	}
 	
 	/**
-	 * 存储协议号
+	 * @param protoMethodName
+	 * @return
 	 */
-	private void saveProtoId() {
-		//再存储协议id
-		String data = JSON.toJSONString(protoIdMap, SerializerFeature.PrettyFormat);
-		try {
-			FileUtils.writeStringToFile(new File(CommonConstant.PROTO_ID_PATH), data, StandardCharsets.UTF_8, false);
-		} catch (IOException e) {
-			logger.error("save protoIdMap error, e", e);
+	public BiMap<String, Integer> getProtoIdMap(String version) {
+		ProtocolDomain protocolDomain = protocolManager.getDomain(version);
+		if (protocolDomain == null) {
+			return null;
 		}
+		return protocolDomain.getProtoIdMap();
+	}
+	
+	/**
+	 * 通过协议方法名, 获取协议所有对象信息
+	 * @param protoMethodName
+	 * @return
+	 */
+	public Collection<ProtocolObject> getAllProtoObject(String version) {
+		ProtocolDomain protocolDomain = protocolManager.getDomain(version);
+		if (protocolDomain == null) {
+			return null;
+		}
+		return protocolDomain.getAllProtoObject();
 	}
 	
 	
-	@JSONField(serialize = false)
-	public Map<String, Integer> getSortProtoIdMap(Collection<ModuleEntity> moduleEntitys){
-		Map<String, Integer> linkedMap = new LinkedHashMap<>();
-		for (ModuleEntity moduleEntity : moduleEntitys) {
-			ProtocolObject protocolObject = this.protoMap.get(moduleEntity.getName());
-			for (ProtocolStructure struct : protocolObject.getStructureList()) {
-				int protoId = this.protoIdMap.getOrDefault(struct.getName(), 0);
-				if (protoId == 0) {
-					continue;
-				}
-				linkedMap.put(struct.getName(), protoId);
-			}
-		}
-		return linkedMap;
-	}
+//	@SuppressWarnings("unchecked")
+//	public Map<String, Integer> getSortProtoIdMap(String version, Collection<ModuleEntity> moduleEntitys){
+//		ProtocolDomain protocolDomain = protocolManager.getDomain(version);
+//		if (protocolDomain == null) {
+//			return Collections.EMPTY_MAP;
+//		}
+//		Map<String, Integer> linkedMap = new LinkedHashMap<>();
+//		for (ModuleEntity moduleEntity : moduleEntitys) {
+//			ProtocolObject protocolObject = this.protoMap.get(moduleEntity.getName());
+//			for (ProtocolStructure struct : protocolObject.getStructureList()) {
+//				int protoId = this.protoIdMap.getOrDefault(struct.getName(), 0);
+//				if (protoId == 0) {
+//					continue;
+//				}
+//				linkedMap.put(struct.getName(), protoId);
+//			}
+//		}
+//		return linkedMap;
+//	}
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -470,17 +430,14 @@ public class ProtoService implements InitializingBean{
 			genProtoIdMap.put(iGenProtoId.type(), iGenProtoId);
 		}
 		//加载proto信息
-		File file = new File(CommonConstant.PROTO_INFO_PATH);
-		String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-		List<ProtocolObject> protoData = JSON.parseArray(content, ProtocolObject.class);
-		protoData.forEach((p) ->{
-			protoMap.put(p.getModuleName(), p);
-		});
-		//加载协议文件
-		file = new File(CommonConstant.PROTO_ID_PATH);
-		content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-		Map<String, Integer> tempMap = JSON.parseObject(content, new TypeReference<Map<String, Integer>>(){});
-		protoIdMap.putAll(tempMap);
+		Collection<SettingVersion> versions = setting.getVersionInfo().values();
+		for (SettingVersion settingVersion : versions) {
+			String version = settingVersion.getVersion();
+			ProtocolDomain domain = protocolManager.getOrCreateDomain(version);
+			String protoPath = settingVersion.protoDataPath();
+			String protoIdPath = settingVersion.protoIdPath();
+			domain.init(protoPath, protoIdPath);
+		}
 	}
 	
 }

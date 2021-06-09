@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cat.zproto.assist.generator.ICodeGenerator;
-import com.cat.zproto.assist.generator.IGenerator;
 import com.cat.zproto.assist.generator.IProtoGenerator;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.core.result.SystemCodeEnum;
@@ -111,7 +109,7 @@ public class ModuleController {
 	 */
 	@RequestMapping("/editModuleView")
     public ModelAndView editModuleView(String version, int id){
-		ModuleEntity moduleEntitie = moduleService.getModuleEntity(id);
+		ModuleEntity moduleEntitie = moduleService.getModuleEntity(version, id);
     	ModelAndView mv = new ModelAndView();
     	mv.setViewName("edit_module");
         mv.addObject("version", "1.0.0");
@@ -133,14 +131,14 @@ public class ModuleController {
 		mv.addObject("version", "1.0.0");
 		mv.addObject("id", id);
 		
-		ModuleEntity entity = moduleService.getModuleEntity(id);
+		ModuleEntity entity = moduleService.getModuleEntity(version, id);
 		if (entity == null) {
 			//TODO 重定向页面
 			mv.setViewName("error");
 			return mv;
 		}
 		mv.setViewName("edit_protocol");
-		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
+		ProtocolObject protoObject = protoService.getProtoObject(version, entity.getName());
 		if (protoObject == null) {
 			return mv;
 		}
@@ -148,7 +146,7 @@ public class ModuleController {
 		 * TODO 也只是为了做一个排序, 写这么多代码,这里的数据结构没有设计好
 		 * 工具完成后要想办法重构代码
 		 */
-		BiMap<String, Integer> protoIdMap = protoService.getProtoIds();
+		BiMap<String, Integer> protoIdMap = protoService.getProtoIdMap(version);
 		TreeMap<Integer, ProtocolStructure> structureMap = new TreeMap<>();
 		List<ProtocolStructure> structures = new ArrayList<ProtocolStructure>();
 		for (ProtocolStructure struct : protoObject.getStructures().values()) {
@@ -176,19 +174,18 @@ public class ModuleController {
 	@RequestMapping("/protoListView")
     public Object protoListView(String version, int id){
 		ModelAndView mv = new ModelAndView();
-		ModuleEntity entity = moduleService.getModuleEntity(id);
+		ModuleEntity entity = moduleService.getModuleEntity(version, id);
 		if (entity == null) {
 			//TODO 重定向页面
 			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
 		}
-		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
+		ProtocolObject protoObject = protoService.getProtoObject(version, entity.getName());
 		if (protoObject == null) {
 			//TODO 重定向页面
 			mv.setViewName("no_proto");
 			return mv;
 		}
-		BiMap<String, Integer> protoNameIdMap = protoService.getProtoIds();
-		BiMap<String, Integer> protoIdMap = protoService.getProtoIds();
+		BiMap<String, Integer> protoNameIdMap = protoService.getProtoIdMap(version);
 		Collection<ProtocolStructure> structures = protoObject.getStructures().values();
 		
 		//使用treeMap是为了根据协议号进行排序
@@ -202,7 +199,7 @@ public class ModuleController {
 		
 		for (ProtocolStructure struct : structures) {
 			String name = struct.getName();
-			int protoId = protoIdMap.getOrDefault(name, 0);
+			int protoId = protoNameIdMap.getOrDefault(name, 0);
 			if (protoId == 0) {
 				if (name.startsWith(pbPrefix)) {
 					pbs.add(struct);
@@ -238,18 +235,18 @@ public class ModuleController {
 		if (protoStructure.isEmpty()) {
 			return SystemResult.build(SystemCodeEnum.ERROR_NO_CHANGE);
 		}
-		ModuleEntity entity = moduleService.getModuleEntity(id);
+		ModuleEntity entity = moduleService.getModuleEntity(version,id);
 		if (entity == null) {
 			return SystemResult.build(SystemCodeEnum.UNKNOW);
 		}
 		String entityName = entity.getName();
 		
-		ProtocolObject protoObject = protoService.protoObjectUpdate(entityName, protoStructure);
+		ProtocolObject protoObject = protoService.protoObjectUpdate(version, entityName, protoStructure);
 		if(protoObject == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
 		}
 		//生成协议id
-		Map<String, Integer> protoIdMap = protoService.genProtoIds(moduleService.getAllModuleEntity());
+		Map<String, Integer> protoIdMap = protoService.genProtoIds(version, moduleService.getAllModuleEntity(version));
 		//	生成proto文件
 		String protoPath = setting.getProto().getProtoPath();
 		String fileName = protoPath.concat(File.separator).concat(protoObject.getOutClass()).concat(ProtocolConstant.PROTO_SUBFIX);
@@ -274,8 +271,8 @@ public class ModuleController {
 	@RequestMapping("/protoReverseLoad")
 	public Object protoReverseLoad(String version) {
 		ModelAndView mv = new ModelAndView();
-		boolean result = protoService.reverseLoad();
-		result = result & moduleService.reverseLoad(protoService.getAllProtoObject(), protoService.getProtoIds());
+		boolean result = protoService.reverseLoad(version);
+		result = result & moduleService.reverseLoad(version, protoService.getAllProtoObject(version), protoService.getProtoIdMap(version));
 		if (result) {
 			mv.setViewName("index");
 			mv.addObject("version", "1.0.0");
@@ -299,12 +296,12 @@ public class ModuleController {
 	@ResponseBody
 	@RequestMapping("/createMessage")
 	public Object createMessage(String version, int id, String langType) {
-		ModuleEntity entity = moduleService.getModuleEntity(id);
+		ModuleEntity entity = moduleService.getModuleEntity(version, id);
 		if (entity == null) {
 			//TODO 重定向页面
 			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
 		}
-		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
+		ProtocolObject protoObject = protoService.getProtoObject(version, entity.getName());
 		if (protoObject == null) {
 			//TODO 重定向页面
 			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
@@ -363,11 +360,11 @@ public class ModuleController {
 	@ResponseBody
 	@RequestMapping("/createCode")
 	public Object createCode(String version, int id) {
-		ModuleEntity entity = moduleService.getModuleEntity(id);
+		ModuleEntity entity = moduleService.getModuleEntity(version, id);
 		if (entity == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_FOUND_PROTOOBJECT);
 		}
-		ProtocolObject protoObject = protoService.getProtoObject(entity.getName());
+		ProtocolObject protoObject = protoService.getProtoObject(version, entity.getName());
 		if (protoObject == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
 		}
@@ -418,10 +415,10 @@ public class ModuleController {
 		if (entity == null || entity.getId() == 0 || entity.getName() == "") {
 			return  SystemResult.build(SystemCodeEnum.ERROR_PARAM).result();
 		}
-		if (moduleService.getModuleEntity(entity.getId()) != null) {
+		if (moduleService.getModuleEntity(version, entity.getId()) != null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_ADD_REPEAT).result();
 		}
-		moduleService.replacModuleEntity(entity);
+		moduleService.replacModuleEntity(version, entity);
         return SystemResult.build(SystemCodeEnum.SUCCESS);
     }
 	
@@ -434,7 +431,7 @@ public class ModuleController {
 		if (entity == null || entity.getId() == 0 || entity.getName() == "") {
 			return  SystemResult.build(SystemCodeEnum.ERROR_PARAM).result();
 		}
-		moduleService.replacModuleEntity(entity);
+		moduleService.replacModuleEntity(version, entity);
 		return SystemResult.build(SystemCodeEnum.SUCCESS);
     }
 	
@@ -448,7 +445,7 @@ public class ModuleController {
 			return SystemResult.build(SystemCodeEnum.ERROR_DELETE_LIMIT);
 		}
 		for (Integer id : ids) {
-			moduleService.removeModuleEntity(id);
+			moduleService.removeModuleEntity(version, id);
 		}
         return SystemResult.build(SystemCodeEnum.SUCCESS);
     }
@@ -460,7 +457,7 @@ public class ModuleController {
 	@ResponseBody
 	@RequestMapping("/moduleList")
 	public Object moduleList(String version) {
-        Collection<ModuleEntity> moduleEntities = moduleService.getAllModuleEntity();
+        Collection<ModuleEntity> moduleEntities = moduleService.getAllModuleEntity(version);
         return SystemResult.build(SystemCodeEnum.SUCCESS, moduleEntities);
     }
 	

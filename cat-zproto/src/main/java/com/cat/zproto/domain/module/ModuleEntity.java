@@ -5,6 +5,12 @@ import java.util.List;
 
 import com.cat.zproto.util.StringUtils;
 
+/**
+ * module信息, <br>
+ * 可以把module基本信息跟协议信息封装成一个对象.<br>
+ * 新建模块时, 对象只有基本信息, 添加协议时, 区分开来
+ * @author Jeremy
+ */
 public class ModuleEntity {
     /**
      * 模块id<br>
@@ -30,22 +36,6 @@ public class ModuleEntity {
      */
     private List<Integer> extendInfo =new ArrayList<>();
 
-//    /**
-//     * 所属终端
-//     */
-//    private List<Integer> endPoints=new ArrayList<>();
-//    /**
-//     * proto中的包名<br>
-//     * 也是前端使用的包名
-//     */
-//    @JsonInclude(JsonInclude.Include.NON_NULL)
-//    private String protoPackage;
-//    /**
-//     * java中的包名
-//     */
-//    @JsonInclude(JsonInclude.Include.NON_NULL)
-//    private String javaPackage;
-
     public int getId() {
         return id;
     }
@@ -69,29 +59,6 @@ public class ModuleEntity {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
-//    public List<Integer> getEndPoints() {
-//        return endPoints;
-//    }
-//
-//    public void setEndPoints(List<Integer> endPoints) {
-//        this.endPoints = endPoints;
-//    }
-//    public String getProtoPackage() {
-//        return protoPackage;
-//    }
-//
-//    public void setProtoPackage(String protoPackage) {
-//        this.protoPackage = protoPackage;
-//    }
-
-//    public String getJavaPackage() {
-//        return javaPackage;
-//    }
-//
-//    public void setJavaPackage(String javaPackage) {
-//        this.javaPackage = javaPackage;
-//    }
 
 	public List<Integer> getExtendInfo() {
 		return extendInfo;
