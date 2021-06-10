@@ -1,13 +1,20 @@
 package com.cat.zproto.controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -39,9 +46,12 @@ import com.cat.zproto.service.DbService;
 import com.cat.zproto.service.ModuleService;
 import com.cat.zproto.service.ProtoService;
 import com.cat.zproto.service.TemplateService;
+import com.cat.zproto.util.ZipUtil;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+
+import ch.qos.logback.core.util.ContentTypeUtil;
 
 /**
  * 用于处理模块相关操作
@@ -351,6 +361,67 @@ public class ModuleController {
 		return result;
 	}
 	
+	@ResponseBody
+	@RequestMapping("/downloadCode")
+	public String downloadCode(String version,  int id, HttpServletResponse response) {
+		ModuleEntity entity = moduleService.getModuleEntity(version, id);
+		if (entity == null) {
+			return "下载失败";
+		}
+		String fileName = entity.getName().toLowerCase().concat(".zip");
+		String path = CommonConstant.DOWNLOAD_PACKAGE.concat(File.separator).concat(fileName);
+		try (InputStream inStream = new FileInputStream(path); 
+				BufferedInputStream bis = new BufferedInputStream(inStream);){
+			OutputStream os = response.getOutputStream();
+			// 设置输出的格式
+//            response.reset();
+			 response.setContentType("application/force-download");// 设置强制下载不打开
+             response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名
+            byte[] b = new byte[1024];
+            int len;
+            while ((len = inStream.read(b)) > 0) {
+            	os.write(b, 0, len);
+            }
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "下载成功";
+	}
+	
+//	/**
+//	 * 下载代码
+//	 * @param version
+//	 * @param id
+//	 * @return
+//	 */
+//	public Object downloadCode(String version, int id, HttpServletResponse response) {
+//		ModuleEntity entity = moduleService.getModuleEntity(version, id);
+//		if (entity == null) {
+//			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
+//		}
+//		String fileName = entity.getName().toLowerCase().concat(".zip");
+//		String path = CommonConstant.DOWNLOAD_PACKAGE.concat(File.separator).concat(fileName);
+//		File file = new File(path);
+//		System.out.println(file.isFile());
+//		System.out.println(file.getName());
+//		try (InputStream inStream = new FileInputStream(path); 
+//				BufferedInputStream bis = new BufferedInputStream(inStream);){
+//			OutputStream os = response.getOutputStream();
+//			// 设置输出的格式
+////            response.reset();
+//			 response.setContentType("application/force-download");// 设置强制下载不打开
+//             response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名
+//            byte[] b = new byte[1024];
+//            int len;
+//            while ((len = inStream.read(b)) > 0) {
+//            	os.write(b, 0, len);
+//            }
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return SystemResult.build(SystemCodeEnum.SUCCESS);
+//	}
+	
 	/**
 	 * 生成代码<br>
 	 *   根据定义的module信息, 找到数据库中的table, 最终根据table结构生成代码.<br>
@@ -402,11 +473,31 @@ public class ModuleController {
 		dto.getProtoAckStructMap().putAll(protoAckStructMap);
 		dto.getProtoReqStructList().addAll(protoReqStructList);
 		dto.getProtoPBStructList().addAll(protoPBStructList);
-		
+		//生成代码
 		for (ICodeGenerator generator : generatorCodeList) {
 			generator.generate(version, dto);
 		}
+		//压缩代码
+		zipCode(version, entity);
 		return SystemResult.build(SystemCodeEnum.SUCCESS);
+	}
+	
+	/**
+	 * 压缩代码
+	 * @param version
+	 * @param entity
+	 */
+	private void zipCode(String version, ModuleEntity entity) {
+		//生成路径
+		String entityName = entity.getName().toLowerCase();
+		SettingVersion versionInfo = setting.getVersionInfo().get(version);
+		String srcPath = versionInfo.codePath().concat(File.separator).concat(entityName);
+		String zipPath = CommonConstant.DOWNLOAD_PACKAGE;
+		try {
+			ZipUtil.zip(srcPath, zipPath, entityName);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

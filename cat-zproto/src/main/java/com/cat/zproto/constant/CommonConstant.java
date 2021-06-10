@@ -42,6 +42,11 @@ public class CommonConstant {
 	public static final String PROTO_PACKAGE= "/proto";
 	
 	/**
+	 * 下载目录, 也是压缩代码的目录
+	 */
+	public static final String DOWNLOAD_PACKAGE= GENERATOR_PATH.concat("/download");
+	
+	/**
      * protoc的执行语句格式<br>
      * {protoc} -I={protoPath} --{java}_out={javaPath} {moduleName}.proto
      */
