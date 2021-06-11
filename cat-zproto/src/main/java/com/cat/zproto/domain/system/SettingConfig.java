@@ -32,6 +32,10 @@ public class SettingConfig {
 	 * 密码
 	 */
 	private String password;
+	/**
+	 * 资源checkout路径
+	 */
+	private String sourceCheckOutUrl;
 
 	/**
 	 * 版本控制相关配置
@@ -77,17 +81,25 @@ public class SettingConfig {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+	public String getSourceCheckOutUrl() {
+		return sourceCheckOutUrl;
+	}
+
+	public void setSourceCheckOutUrl(String sourceCheckOutUrl) {
+		this.sourceCheckOutUrl = sourceCheckOutUrl;
+	}
+
 	public static void main(String[] args) {
 		SettingConfig setting = new SettingConfig();
 		//版本控制相关信息
-		SettingVersion version = new SettingVersion("1.0.0", Pair.of("svn", "svn://139.9.44.104/rabbit/"));
-		SettingVersion version2 = new SettingVersion("1.1.0", Pair.of("svn", "svn://139.9.44.104/rabbit2/"));
+		SettingVersion version = new SettingVersion("1.0.0", Pair.of("svn", "aaa"));
+		SettingVersion version2 = new SettingVersion("1.1.0", Pair.of("svn", "bbb"));
 		setting.addVersionInfo(version);
 		setting.addVersionInfo(version2);
 		
 		setting.setAccount("jeremy");
 		setting.setPassword("jeremy");
+		setting.setSourceCheckOutUrl("svn://139.9.44.104/rabbit/");
 		
 		//proto相关信息
 		SettingProto proto = new SettingProto();

@@ -18,6 +18,7 @@
     <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createMessage">生成协议</a>-->
     <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createCode">生成代码</a>-->
 	<!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="downloadCode">下载代码</a>-->
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="svn">svn<i class="layui-icon layui-icon-down"></i></a>
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="codeOpt">代码<i class="layui-icon layui-icon-down"></i></a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createMessage">生成协议<i class="layui-icon layui-icon-down"></i></a>
 </script>
@@ -136,6 +137,44 @@
 	             error: function(jqXHR){console.log(jqXHR)},
 	         });
 	     }
+		else if(layEvent === 'svn'){
+         	//下拉菜单
+             dropdown.render({
+               elem: this //触发事件的 DOM 对象
+               ,show: true //外部事件触发即显示
+               ,data: [{
+             	  title: 'check out'
+                   ,id: 'checkOut'
+               },{
+             	  title: 'update'
+                   ,id: 'update'
+               },{
+              	  title: 'commit'
+                      ,id: 'commit'
+                  }]
+               ,click: function(menudata){
+            	 //同步更新缓存对应的值
+                   $.ajax({
+                       type: 'GET',
+                       url: '/zproto/module/svn',
+                       dataType:"json", //返回格式为json
+                       data:{"id":data.id,"version":version,"opt":menudata.id}, //参数值
+                       contentType: 'application/x-www-form-urlencoded',
+                       success: function(ret){
+                           if(ret.code==0){
+                           	layer.alert(ret.tips);
+                           }else{
+                           	layer.alert(ret.tips);
+                           }
+                          
+                       },
+                       error: function(jqXHR){console.log(jqXHR)},
+                   });
+               }
+               ,align: 'right' //右对齐弹出（v2.6.8 新增）
+               ,style: 'box-shadow: 1px 1px 10px rgb(0 0 0 / 12%);' //设置额外样式
+             })
+         }
 		 else if(layEvent === 'codeOpt'){
          	//下拉菜单
              dropdown.render({

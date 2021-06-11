@@ -3,16 +3,21 @@ package com.cat.zproto.common;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.zip.ZipFile;
 
 import javax.sql.DataSource;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.h2.H2ConsoleProperties.Settings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
+import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
+import org.tmatesoft.svn.core.internal.io.svn.SVNRepositoryFactoryImpl;
+import org.tmatesoft.svn.core.wc.ISVNOptions;
 import org.tmatesoft.svn.core.wc.SVNClientManager;
+import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.fastjson.JSON;
@@ -58,28 +63,22 @@ public class SystemComponent {
 	@Bean
 	public DataSource database(SettingConfig setting) {
 		SettingMysql mysqlInfo = setting.getDbInfo();
-		
 		DruidDataSource dataSource = mysqlInfo.newDruidDataSource();
 		logger.info("注册[DataSource]服务, url:{}", dataSource.getUrl());
 		return dataSource;
 	}
 
-//	@Bean
-//	public SVNClientManager clientManager() {
-//		final String user = config.getSourceSvnUser();
-//		final String password = config.getSourceSvnPassword();
-//		final String sourceSvn = config.getSourceSvn() + config.getSourceProject();
-//		// 初始化支持svn://协议的库。 必须先执行此操作。
-//		SVNRepositoryFactoryImpl.setup();
-//
-//		// 相关变量赋值
-//		SVNURL repositoryURL = SVNURL.parseURIEncoded(sourceSvn);
-//
-//		ISVNOptions options = SVNWCUtil.createDefaultOptions(true);
-//
-//		// 实例化客户端管理类
-//		this.clientManager = SVNClientManager.newInstance((DefaultSVNOptions) options, user, password);
-//
-//	}
+	@Bean
+	public SVNClientManager svnClientManager(SettingConfig setting) {
+		DAVRepositoryFactory.setup();
+        SVNRepositoryFactoryImpl.setup();
+        ISVNOptions options = SVNWCUtil.createDefaultOptions(true);
+        String username = setting.getAccount();
+        String password = setting.getPassword();
+        ISVNAuthenticationManager authManager = SVNWCUtil.createDefaultAuthenticationManager(null, username, password.toCharArray(), false);
+        SVNClientManager svnClientManager = SVNClientManager.newInstance(options, authManager);
+        logger.info("注册[svn]服务, username:{}, password:{}", username, password);
+		return svnClientManager;
+	}
 
 }

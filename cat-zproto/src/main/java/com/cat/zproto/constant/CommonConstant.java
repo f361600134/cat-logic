@@ -44,7 +44,7 @@ public class CommonConstant {
 	/**
 	 * 下载目录, 也是压缩代码的目录
 	 */
-	public static final String DOWNLOAD_PACKAGE= GENERATOR_PATH.concat("/download");
+	public static final String DOWNLOAD_PACKAGE= "./download";
 	
 	/**
      * protoc的执行语句格式<br>
