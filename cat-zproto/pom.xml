@@ -193,6 +193,7 @@
 						<exclude>**/*.properties</exclude>
 						<exclude>**/*.xml</exclude>
 						<exclude>**/*.sh</exclude>
+						<exclude>**/*.bat</exclude>
 						<exclude>/config</exclude>
 					</excludes>
 					<outputDirectory>${project.build.directory}/release</outputDirectory>
@@ -200,7 +201,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>com.cat.zproto.Application.java</mainClass>
+							<mainClass>com.cat.zproto.Application</mainClass>
 						</manifest>
 						<manifestEntries>
 							<Class-Path>.</Class-Path>
