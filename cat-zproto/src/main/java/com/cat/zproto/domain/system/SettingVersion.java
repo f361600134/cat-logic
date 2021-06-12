@@ -2,9 +2,7 @@ package com.cat.zproto.domain.system;
 
 import java.io.File;
 import java.util.Date;
-
 import org.apache.commons.lang3.time.FastDateFormat;
-
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.util.Pair;
 
@@ -64,22 +62,37 @@ public class SettingVersion {
 		this.versionControllPath = versionControllPath;
 		this.initDate = FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss").format(new Date());
 		
-		//版本模块,消息结构文件
-		String versionDir = CommonConstant.RESOURCE_CONFIGDATA_PATH.concat(version);
-		File file = new File(versionDir);
-		file.mkdirs();
-		
-		this.modulePath = versionDir.concat(CommonConstant.MODULE_FILE_NAME);
-		this.protoDataPath = versionDir.concat(CommonConstant.PROTO_FILE_NAME);
-		this.protoIdPath = versionDir.concat(CommonConstant.PROTO_ID_FILE_NAME);
-		
-		//生成路径
-		this.genDir = CommonConstant.GENERATOR_PATH.concat(version);
-		file = new File(versionDir);
-		file.mkdirs();
-		
-		this.codePath = genDir.concat(CommonConstant.CODE_PACKAGE);
-		this.protoMessagePath =  genDir.concat(CommonConstant.PROTO_PACKAGE);
+		try {
+//			File dir = ResourceUtils.getFile(CommonConstant.RESOURCE_CONFIGDATA_PATH);
+//			ClassPathResource resource = new ClassPathResource(CommonConstant.SYSTEM_SETTING);
+//			ClassPathResource resource = new ClassPathResource();
+//			InputStream inputStream= resource.getInputStream();
+//			String content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
+//			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+			
+//			String path = Thread.currentThread().getContextClassLoader().getResource("").getPath()+"/configdata";
+			String path = CommonConstant.RESOURCE_CONFIGDATA_PATH;
+			String versionDir = path.concat(File.separator).concat(version);
+			
+			File file = new File(versionDir);
+			file.mkdirs();
+			
+			this.modulePath = versionDir.concat(CommonConstant.MODULE_FILE_NAME);
+			this.protoDataPath = versionDir.concat(CommonConstant.PROTO_FILE_NAME);
+			this.protoIdPath = versionDir.concat(CommonConstant.PROTO_ID_FILE_NAME);
+			
+			//生成路径
+			this.genDir = CommonConstant.GENERATOR_PATH.concat(version);
+			file = new File(versionDir);
+			file.mkdirs();
+			
+			this.codePath = genDir.concat(CommonConstant.CODE_PACKAGE);
+			this.protoMessagePath =  genDir.concat(CommonConstant.PROTO_PACKAGE);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public String getVersion() {

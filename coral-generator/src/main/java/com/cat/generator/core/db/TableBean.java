@@ -26,7 +26,6 @@ public class TableBean {
 	}
 
 	public void setType(String type) {
-		// this.wrapper = StringUtils.getWrapper(type);
 		this.type = type;
 	}
 
@@ -54,12 +53,6 @@ public class TableBean {
 		this.tbField = tbField;
 	}
 
-	// public String getWrapper() {
-//		return wrapper;
-//	}
-//	public void setWrapper(String wrapper) {
-//		this.wrapper = wrapper;
-//	}
 	public TableBean() {
 		this.primary = "";
 	}

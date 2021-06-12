@@ -465,6 +465,7 @@ public class ModuleController {
 			svnService.update(CommonConstant.GENERATOR_PATH);
 		}
 		if (opt.equals("commit")) {
+			svnService.doCleanup(CommonConstant.GENERATOR_PATH);
 			svnService.doCommit(CommonConstant.GENERATOR_PATH);
 		}
 		return SystemResult.build(SystemCodeEnum.SUCCESS);

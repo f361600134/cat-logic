@@ -175,14 +175,10 @@ public class Printer {
 		file = new File(filename);
 
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		dataMap.put("entity", entity);
 		
-		//dataMap.put("entityName", entity.getEntityName());
+		dataMap.put("entity", entity);
 		dataMap.put("entityBeans", entity.getEntityBeans());
-		//dataMap.put("primary", entity.getPrimary());
-		//dataMap.put("toStr", entity.genToStr());
 		dataMap.put("primarys", entity.getPrimaryKeys());
-		//dataMap.put("tableName", entity.getTablName());
 		dataMap.put("keyAndIndexs", entity.getKeyAndIndexs());
 		dataMap.put("indexsWithoutKey", entity.getIndexsWithoutKey());
 		

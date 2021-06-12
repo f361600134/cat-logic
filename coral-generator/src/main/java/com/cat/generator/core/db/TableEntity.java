@@ -2,13 +2,10 @@ package com.cat.generator.core.db;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * 表对象信息, 解析后的表信息存储于此对象

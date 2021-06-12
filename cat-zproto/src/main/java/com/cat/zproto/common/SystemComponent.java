@@ -2,18 +2,18 @@ package com.cat.zproto.common;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 import javax.sql.DataSource;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.h2.H2ConsoleProperties.Settings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.ClassUtils;
-import org.springframework.util.ResourceUtils;
+import org.springframework.core.io.ClassPathResource;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
 import org.tmatesoft.svn.core.internal.io.svn.SVNRepositoryFactoryImpl;
@@ -46,6 +46,9 @@ public class SystemComponent {
 	public SettingConfig setting() {
 		SettingConfig setting = null;
 		try {
+//			ClassPathResource resource = new ClassPathResource(CommonConstant.SYSTEM_SETTING);
+//			InputStream inputStream= resource.getInputStream();
+//			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 			String content = FileUtils.readFileToString(new File(CommonConstant.SYSTEM_SETTING),
 					StandardCharsets.UTF_8);
 			setting = JSON.parseObject(content, SettingConfig.class);

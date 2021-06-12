@@ -1,16 +1,30 @@
 package com.cat.zproto.constant;
 
-public class CommonConstant {
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 
-	/**
-	 * 系统设置存储
-	 */
-	public static final String SYSTEM_SETTING = "src/main/resources/setting/settings.json";
+/**
+ * 全局静态常量
+ * 因为依赖配置的相对路径,所以通过spring从配置中获取文件
+ * @auth Jeremy
+ * @date 2021年6月12日下午4:10:58
+ */
+
+public class CommonConstant {
+//	/**
+//	 * 系统设置存储
+//	 */
+	public static String SYSTEM_SETTING = "src/main/resources/setting/settings.json";
+//	@Value("${systemSetting}")
+//	private String systemSetting;
+//	public static final String SYSTEM_SETTING = "setting/settings.json";
+//	
+//	/**
+//	 * 结构存储路径
+//	 */
+	public static String RESOURCE_CONFIGDATA_PATH = "src/main/resources/configdata/";
+//	public static final String RESOURCE_CONFIGDATA_PATH = "classpath:configdata";
 	
-	/**
-	 * 结构存储路径
-	 */
-	public static final String RESOURCE_CONFIGDATA_PATH = "src/main/resources/configdata/";
 	/**
 	 * 模块信息
 	 */

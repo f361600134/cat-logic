@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,8 @@ public class ModuleService implements InitializingBean{
 	@Autowired private SettingConfig setting;
 	
 	@Autowired private ModuleManager moduleManager;
+	
+	public static Logger logger = LoggerFactory.getLogger(ModuleService.class);
 	
     /**
      * 获取指定entity
@@ -125,6 +129,7 @@ public class ModuleService implements InitializingBean{
 			String version = settingVersion.getVersion();
 			ModuleDomain domain = moduleManager.getOrCreateDomain(version);
 			String moduleInfoPath = settingVersion.modulePath();
+			logger.info("moduleInfoPath:"+moduleInfoPath);
 			String content = FileUtils.readFileToString(new File(moduleInfoPath), StandardCharsets.UTF_8);
 			List<ModuleEntity> entitys = JSON.parseArray(content, ModuleEntity.class);
 			entitys.forEach((entity) ->{
