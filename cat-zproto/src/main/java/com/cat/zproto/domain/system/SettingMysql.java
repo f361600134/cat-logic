@@ -12,7 +12,9 @@ public class SettingMysql {
 	private String url;
 	private String username;
 	private String password;
+	//库名,不配置了,直接通url截取
 	private String dbName;
+	//初始连接, 不配置了, 直接写死1条连接
 	private int initialSize;
 
 	public String getUrl() {

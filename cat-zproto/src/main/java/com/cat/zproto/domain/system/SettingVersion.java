@@ -29,30 +29,31 @@ public class SettingVersion {
 	private String initDate;
 	
 	
+	//=====================无需存储字段======================
 	/**
 	 * module结构存储的路径
 	 */
-	private String modulePath;
+	private transient String modulePath;
 	/**
 	 * proto结构路径
 	 */
-	private String protoDataPath;
+	private transient String protoDataPath;
 	/**
 	 * proto协议号路径
 	 */
-	private String protoIdPath;
+	private transient String protoIdPath;
 	/**
 	 * 生成的代码路径
 	 */
-	private String codePath;
+	private transient String codePath;
 	/**
 	 * 生成的协议路径
 	 */
-	private String protoMessagePath;
+	private transient String protoMessagePath;
 	/**
 	 * 生成的目录
 	 */
-	private String genDir;
+	private transient String genDir;
 	
 	/**
 	 * @param versionControllPath

@@ -132,7 +132,6 @@
 				</configuration>
 			</plugin>
 			
-			<!--resource process -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -149,7 +148,6 @@
 						<configuration>
 							<outputDirectory>${basedir}/target/release</outputDirectory>
 							<resources>
-								<!-- 过滤config并输出到target目录下 -->
 								<resource>
 									<directory>src/main/resources</directory>
 									<filtering>true</filtering>
@@ -160,11 +158,9 @@
 								</resource>
 							</resources>
 						</configuration>
-						
 					</execution>
 				</executions>
 			</plugin>
-			<!-- 输出依赖的jar包 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -184,7 +180,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<!-- 打成可运行jar包 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
