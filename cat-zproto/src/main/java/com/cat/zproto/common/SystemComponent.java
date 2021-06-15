@@ -46,11 +46,19 @@ public class SystemComponent {
 	public SettingConfig setting() {
 		SettingConfig setting = null;
 		try {
-//			ClassPathResource resource = new ClassPathResource(CommonConstant.SYSTEM_SETTING);
+			ClassPathResource resource = new ClassPathResource(CommonConstant.SYSTEM_SETTING);
+			//way1
+//			File file = resource.getFile();
+//			String content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
+			//way2
 //			InputStream inputStream= resource.getInputStream();
 //			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-			String content = FileUtils.readFileToString(new File(CommonConstant.SYSTEM_SETTING),
-					StandardCharsets.UTF_8);
+			//way3
+//			String content = FileUtils.readFileToString(new File(CommonConstant.SYSTEM_SETTING),
+//					StandardCharsets.UTF_8);
+			//way4
+			InputStream inputStream = resource.getInputStream();
+			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 			setting = JSON.parseObject(content, SettingConfig.class);
 		} catch (IOException e) {
 			e.printStackTrace();

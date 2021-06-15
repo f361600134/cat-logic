@@ -1,6 +1,8 @@
 package com.cat.zproto.service;
 
 import java.io.File;
+import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Collections;
@@ -8,13 +10,18 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
+import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.domain.module.ModuleDomain;
 import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.domain.proto.ProtocolConstant;
@@ -30,6 +37,9 @@ public class ModuleService implements InitializingBean{
 	@Autowired private SettingConfig setting;
 	
 	@Autowired private ModuleManager moduleManager;
+	
+	@Autowired
+	private ResourceLoader resourceLoader;
 	
 	public static Logger logger = LoggerFactory.getLogger(ModuleService.class);
 	
@@ -130,11 +140,26 @@ public class ModuleService implements InitializingBean{
 			ModuleDomain domain = moduleManager.getOrCreateDomain(version);
 			String moduleInfoPath = settingVersion.modulePath();
 			logger.info("moduleInfoPath:"+moduleInfoPath);
-			String content = FileUtils.readFileToString(new File(moduleInfoPath), StandardCharsets.UTF_8);
+			//way1
+			//String content = FileUtils.readFileToString(new File(moduleInfoPath), StandardCharsets.UTF_8);
+			
+			//way2
+			ClassPathResource resource = new ClassPathResource(moduleInfoPath);
+//			File file = resource.getFile();
+//			String content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
+			InputStream inputStream = resource.getInputStream();
+			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+			
+//			//way3
+//			Resource resource = resourceLoader.getResource("classpath:resource.properties");
+//			InputStream is = resource.getInputStream();
+//			String content = IOUtils.toString(is, Charset.defaultCharset());
+			
 			List<ModuleEntity> entitys = JSON.parseArray(content, ModuleEntity.class);
-			entitys.forEach((entity) ->{
-				domain.replacModuleEntity(entity);
-			});
+			domain.initModuleEntity(entitys);
+//			entitys.forEach((entity) ->{
+//				domain.replacModuleEntity(entity);
+//			});
 		}
 	}
     

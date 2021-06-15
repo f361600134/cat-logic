@@ -2,6 +2,7 @@ package com.cat.zproto.domain.proto;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,7 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.core.io.ClassPathResource;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -172,17 +175,27 @@ public class ProtocolDomain {
 	 * @throws IOException 
 	 */
 	public void init(String protoPath, String protoIdPath) throws IOException {
-		File file = new File(protoPath);
+//		File file = new File(protoPath);
 		//初始化协议
-		String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+//		String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+		ClassPathResource resource = new ClassPathResource(protoPath);
+//		File file = resource.getFile();
+//		String content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
+		InputStream inputStream = resource.getInputStream();
+		String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 		List<ProtocolObject> protoData = JSON.parseArray(content, ProtocolObject.class);
 		protoData.forEach((p) ->{
 			protoMap.put(p.getModuleName(), p);
 		});
 		
 		//初始化协议号
-		file = new File(protoIdPath);
-		content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+//		file = new File(protoIdPath);
+//		content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+		resource = new ClassPathResource(protoIdPath);
+//		file = resource.getFile();
+//		content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
+		inputStream = resource.getInputStream();
+		content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 		Map<String, Integer> tempMap = JSON.parseObject(content, new TypeReference<Map<String, Integer>>(){});
 		protoIdMap.putAll(tempMap);
 	}

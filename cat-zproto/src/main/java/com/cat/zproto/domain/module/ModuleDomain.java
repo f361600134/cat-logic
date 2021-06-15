@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -73,6 +74,23 @@ public class ModuleDomain {
 	public void replacModuleEntity(ModuleEntity entity) {
 		moduleEntityMap.put(entity.getId(), entity);
 		this.save();
+	}
+	
+	/**
+	 * 覆盖指定entity
+	 * 
+	 * @param id
+	 * @return
+	 * @return ModuleEntity
+	 * @date 2021年6月2日下午1:38:10
+	 */
+	public void initModuleEntity(List<ModuleEntity> entitys) {
+		if (entitys == null || entitys.isEmpty()) {
+			return;
+		}
+		entitys.forEach((e)->{
+			moduleEntityMap.put(e.getId(), e);
+		});
 	}
 
 	/**

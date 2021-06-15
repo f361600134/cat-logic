@@ -14,16 +14,17 @@ public class CommonConstant {
 //	/**
 //	 * 系统设置存储
 //	 */
-	public static String SYSTEM_SETTING = "src/main/resources/setting/settings.json";
+//	public static String SYSTEM_SETTING = "src/main/resources/setting/settings.json";
 //	@Value("${systemSetting}")
 //	private String systemSetting;
-//	public static final String SYSTEM_SETTING = "setting/settings.json";
+	public static final String SYSTEM_SETTING = "setting/settings.json";
 //	
 //	/**
 //	 * 结构存储路径
 //	 */
-	public static String RESOURCE_CONFIGDATA_PATH = "src/main/resources/configdata/";
+//	public static String RESOURCE_CONFIGDATA_PATH = "src/main/resources/configdata/";
 //	public static final String RESOURCE_CONFIGDATA_PATH = "classpath:configdata";
+	public static String RESOURCE_CONFIGDATA_PATH = "configdata";
 	
 	/**
 	 * 模块信息
