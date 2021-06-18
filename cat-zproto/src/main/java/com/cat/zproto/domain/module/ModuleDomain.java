@@ -114,7 +114,7 @@ public class ModuleDomain {
 		try {
 			SettingConfig config = SpringContextHolder.getBean(SettingConfig.class);
 			SettingVersion settingVersion = config.getVersionInfo().get(version);
-			String moduleInfoPath = settingVersion.modulePath();
+			String moduleInfoPath = settingVersion.getModulePath();
 			FileUtils.writeStringToFile(new File(moduleInfoPath), data, StandardCharsets.UTF_8, false);
 		} catch (IOException e) {
 			e.printStackTrace();

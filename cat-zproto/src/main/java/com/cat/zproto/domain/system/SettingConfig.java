@@ -25,17 +25,9 @@ public class SettingConfig {
 	private SettingProto proto;
 	
 	/**
-	 * 登录账号
+	 * svn相关配置
 	 */
-	private String account;
-	/**
-	 * 密码
-	 */
-	private String password;
-	/**
-	 * 资源checkout路径
-	 */
-	private String sourceCheckOutUrl;
+	private SettingSvn svn;
 
 	/**
 	 * 版本控制相关配置
@@ -69,24 +61,18 @@ public class SettingConfig {
 		versionInfo.put(version.getVersion(), version);
 	}
 	
-	public String getAccount() {
-		return account;
-	}
-	public void setAccount(String account) {
-		this.account = account;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getSourceCheckOutUrl() {
-		return sourceCheckOutUrl;
+	public SettingSvn getSvn() {
+		return svn;
 	}
 
-	public void setSourceCheckOutUrl(String sourceCheckOutUrl) {
-		this.sourceCheckOutUrl = sourceCheckOutUrl;
+	public void setSvn(SettingSvn svn) {
+		this.svn = svn;
+	}
+	
+	public void init() {
+		versionInfo.forEach((key, val)->{
+			val.init();
+		});
 	}
 
 	public static void main(String[] args) {
@@ -97,9 +83,12 @@ public class SettingConfig {
 		setting.addVersionInfo(version);
 		setting.addVersionInfo(version2);
 		
-		setting.setAccount("jeremy");
-		setting.setPassword("jeremy");
-		setting.setSourceCheckOutUrl("svn://139.9.44.104/rabbit/");
+		
+		SettingSvn svn = new SettingSvn();
+		svn.setAccount("fsc");
+		svn.setPassword("Jeremy2oe5");
+		svn.setSourceCheckOutUrl("svn://139.9.44.104/rabbit/");
+		setting.setSvn(svn);
 		
 		//proto相关信息
 		SettingProto proto = new SettingProto();
@@ -107,7 +96,7 @@ public class SettingConfig {
 //		proto.getGeneratorPath().put("java", "./temps/server");
 //		proto.getGeneratorPath().put("csharp", "./temps/csharp");
 		proto.setJavaPackagePath("com.cat.server.game.data.proto");
-		proto.setProtoExePath("./proto3/exec/protoc.exe");
+//		proto.setProtoExePath("./proto3/exec/protoc.exe");
 		proto.setProtoIdSortBy(1);
 		setting.setProto(proto);
 		
@@ -116,7 +105,8 @@ public class SettingConfig {
 		info.setUrl("jdbc:mysql://139.9.44.104:3306/coral?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true");
 		info.setUsername("root");
 		info.setPassword("Jeremy2oe5.");
-		info.setDbName("coral");
+//		info.setDbName("coral");
+		
 		info.setInitialSize(1);
 		setting.setDbInfo(info);
 

@@ -36,7 +36,7 @@ public class GenEntityAck extends AbstractProtoGenerator{
 		//生成路径
 		SettingVersion versionInfo = setting.getVersionInfo().get(version);
 		String entityName = protocolObj.getModuleName();
-		String path = versionInfo.codePath().concat(File.separator)
+		String path = versionInfo.getCodePath().concat(File.separator)
 				.concat(entityName.toLowerCase()).concat(File.separator)
 				.concat(getChildDir());
 		File file = new File(path);

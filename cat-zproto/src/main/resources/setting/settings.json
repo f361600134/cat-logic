@@ -1,5 +1,4 @@
 {
-	"account":"fsc",
 	"dbInfo":{
 		"dbName":"coral",
 		"initialSize":1,
@@ -7,17 +6,19 @@
 		"url":"jdbc:mysql://139.9.44.104:3306/coral?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true",
 		"username":"root"
 	},
-	"password":"Jeremy2oe5",
 	"proto":{
 		"javaPackagePath":"com.cat.server.game.data.proto",
-		"protoExePath":"./proto3/exec/protoc.exe",
 		"protoIdSortBy":1,
 		"protoPath":"./proto3/proto"
 	},
-	"sourceCheckOutUrl":"svn://139.9.44.104/lscard/tag",
+	"svn":{
+		"account":"fsc",
+		"password":"Jeremy2oe5",
+		"sourceCheckOutUrl":"svn://139.9.44.104/rabbit/"
+	},
 	"versionInfo":{
 		"1.0.0":{
-			"initDate":"2021-06-10 17:52:55",
+			"initDate":"2021-06-17 18:35:32",
 			"version":"1.0.0",
 			"versionControllPath":{
 				"key":"svn",
@@ -25,7 +26,7 @@
 			}
 		},
 		"1.1.0":{
-			"initDate":"2021-06-10 17:52:55",
+			"initDate":"2021-06-17 18:35:32",
 			"version":"1.1.0",
 			"versionControllPath":{
 				"key":"svn",

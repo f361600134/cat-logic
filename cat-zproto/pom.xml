@@ -159,6 +159,20 @@
 							</resources>
 						</configuration>
 					</execution>
+					
+					<execution>
+						<id>copy-proto</id>
+						<phase>validate</phase>
+						<configuration>
+							<outputDirectory>${basedir}/target/release/proto3</outputDirectory>
+							<resources>
+								<resource>
+									<directory>proto3</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>

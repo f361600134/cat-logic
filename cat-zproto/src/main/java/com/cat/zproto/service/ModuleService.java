@@ -1,27 +1,21 @@
 package com.cat.zproto.service;
 
-import java.io.File;
 import java.io.InputStream;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
-import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.domain.module.ModuleDomain;
 import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.domain.proto.ProtocolConstant;
@@ -37,9 +31,6 @@ public class ModuleService implements InitializingBean{
 	@Autowired private SettingConfig setting;
 	
 	@Autowired private ModuleManager moduleManager;
-	
-	@Autowired
-	private ResourceLoader resourceLoader;
 	
 	public static Logger logger = LoggerFactory.getLogger(ModuleService.class);
 	
@@ -138,8 +129,7 @@ public class ModuleService implements InitializingBean{
 		for (SettingVersion settingVersion : versions) {
 			String version = settingVersion.getVersion();
 			ModuleDomain domain = moduleManager.getOrCreateDomain(version);
-			String moduleInfoPath = settingVersion.modulePath();
-			logger.info("moduleInfoPath:"+moduleInfoPath);
+			String moduleInfoPath = settingVersion.getModulePath();
 			//way1
 			//String content = FileUtils.readFileToString(new File(moduleInfoPath), StandardCharsets.UTF_8);
 			

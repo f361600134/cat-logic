@@ -60,6 +60,7 @@ public class SystemComponent {
 			InputStream inputStream = resource.getInputStream();
 			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 			setting = JSON.parseObject(content, SettingConfig.class);
+			setting.init();
 		} catch (IOException e) {
 			e.printStackTrace();
 			logger.error("setting error");
@@ -86,8 +87,8 @@ public class SystemComponent {
 		DAVRepositoryFactory.setup();
         SVNRepositoryFactoryImpl.setup();
         ISVNOptions options = SVNWCUtil.createDefaultOptions(true);
-        String username = setting.getAccount();
-        String password = setting.getPassword();
+        String username = setting.getSvn().getAccount();
+        String password = setting.getSvn().getPassword();
         ISVNAuthenticationManager authManager = SVNWCUtil.createDefaultAuthenticationManager(null, username, password.toCharArray(), false);
         SVNClientManager svnClientManager = SVNClientManager.newInstance(options, authManager);
         logger.info("注册[svn]服务, username:{}, password:{}", username, password);

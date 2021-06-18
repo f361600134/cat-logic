@@ -42,7 +42,7 @@ public class SvnService {
 	public void checkOut() {
 		try {
 			// svn://协议的库。 必须先执行此操作
-			SVNURL repositoryURL = SVNURL.parseURIEncoded(setting.getSourceCheckOutUrl());
+			SVNURL repositoryURL = SVNURL.parseURIEncoded(setting.getSvn().getSourceCheckOutUrl());
 			// 要把版本库的内容check out到的目录
 			File checkOutDir = new File(CommonConstant.GENERATOR_PATH);
 			// 通过客户端管理类获得updateClient类的实例。
@@ -65,7 +65,7 @@ public class SvnService {
 	public void update1() {
 		try {
 			// 相关变量赋值
-			SVNURL.parseURIEncoded(setting.getSourceCheckOutUrl());
+			SVNURL.parseURIEncoded(setting.getSvn().getSourceCheckOutUrl());
 			// 要更新的文件
 			File updateFile = new File(CommonConstant.GENERATOR_PATH);
 			// 获得updateClient的实例

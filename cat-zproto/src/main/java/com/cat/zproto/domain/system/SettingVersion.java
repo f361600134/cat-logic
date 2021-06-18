@@ -3,6 +3,10 @@ package com.cat.zproto.domain.system;
 import java.io.File;
 import java.util.Date;
 import org.apache.commons.lang3.time.FastDateFormat;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.alibaba.fastjson.annotation.JSONField;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.util.Pair;
 
@@ -11,6 +15,8 @@ import com.cat.zproto.util.Pair;
  * @author Jeremy
  */
 public class SettingVersion {
+
+	private static Logger logger = LoggerFactory.getLogger(SettingVersion.class);
 	
 	/**
 	 * 版本号,对内版本号
@@ -25,7 +31,7 @@ public class SettingVersion {
 	
 	/**
 	 * 初始化日期
-	 */
+	 */ 
 	private String initDate;
 	
 	
@@ -55,45 +61,13 @@ public class SettingVersion {
 	 */
 	private transient String genDir;
 	
+	public SettingVersion() {}
 	/**
 	 * @param versionControllPath
 	 */
 	public SettingVersion(String version, Pair<String, String> versionControllPath) {
 		this.version = version;
 		this.versionControllPath = versionControllPath;
-		this.initDate = FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss").format(new Date());
-		
-		try {
-//			File dir = ResourceUtils.getFile(CommonConstant.RESOURCE_CONFIGDATA_PATH);
-//			ClassPathResource resource = new ClassPathResource(CommonConstant.SYSTEM_SETTING);
-//			ClassPathResource resource = new ClassPathResource();
-//			InputStream inputStream= resource.getInputStream();
-//			String content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
-//			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-			
-//			String path = Thread.currentThread().getContextClassLoader().getResource("").getPath()+"/configdata";
-			String path = CommonConstant.RESOURCE_CONFIGDATA_PATH;
-			String versionDir = path.concat(File.separator).concat(version);
-			
-			File file = new File(versionDir);
-			file.mkdirs();
-			
-			this.modulePath = versionDir.concat(CommonConstant.MODULE_FILE_NAME);
-			this.protoDataPath = versionDir.concat(CommonConstant.PROTO_FILE_NAME);
-			this.protoIdPath = versionDir.concat(CommonConstant.PROTO_ID_FILE_NAME);
-			
-			//生成路径
-			this.genDir = CommonConstant.GENERATOR_PATH.concat(version);
-			file = new File(versionDir);
-			file.mkdirs();
-			
-			this.codePath = genDir.concat(CommonConstant.CODE_PACKAGE);
-			this.protoMessagePath =  genDir.concat(CommonConstant.PROTO_PACKAGE);
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 	
 	public String getVersion() {
@@ -108,33 +82,108 @@ public class SettingVersion {
 	public String getInitDate() {
 		return initDate;
 	}
-
-	public String modulePath() {
+	
+	public void setInitDate(String initDate) {
+		this.initDate = initDate;
+	}
+	@JSONField(serialize = false)
+	public String getModulePath() {
 		return modulePath;
 	}
 
-	public String protoDataPath() {
+	@JSONField(serialize = false)
+	public String getProtoDataPath() {
 		return protoDataPath;
 	}
 
-	public String protoIdPath() {
+	@JSONField(serialize = false)
+	public String getProtoIdPath() {
 		return protoIdPath;
 	}
 
-	public String codePath() {
+	@JSONField(serialize = false)
+	public String getCodePath() {
 		return codePath;
 	}
-	
-	public String protoMessagePath() {
+
+	@JSONField(serialize = false)
+	public String getProtoMessagePath() {
 		return protoMessagePath;
 	}
-	/**
-	 * 生成目录
-	 * @return
-	 */
-	public String genDir() {
+
+	@JSONField(serialize = false)
+	public String getGenDir() {
 		return genDir;
 	}
 	
+//	public String modulePath() {
+//		return modulePath;
+//	}
+//
+//	public String protoDataPath() {
+//		return protoDataPath;
+//	}
+//
+//	public String protoIdPath() {
+//		return protoIdPath;
+//	}
+//
+//	public String codePath() {
+//		return codePath;
+//	}
+//	
+//	public String protoMessagePath() {
+//		return protoMessagePath;
+//	}
+//	/**
+//	 * 生成目录
+//	 * @return
+//	 */
+//	public String genDir() {
+//		return genDir;
+//	}
 	
+	public void setVersion(String version) {
+		this.version = version;
+	}
+	/**
+	 * 初始化信息
+	 */
+	public void init() {
+		try {
+//			File dir = ResourceUtils.getFile(CommonConstant.RESOURCE_CONFIGDATA_PATH);
+//			ClassPathResource resource = new ClassPathResource(CommonConstant.SYSTEM_SETTING);
+//			ClassPathResource resource = new ClassPathResource();
+//			InputStream inputStream= resource.getInputStream();
+//			String content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
+//			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+//			String path = Thread.currentThread().getContextClassLoader().getResource("").getPath()+"/configdata";
+			String path = CommonConstant.RESOURCE_CONFIGDATA_PATH;
+			String versionDir = path.concat(File.separator).concat(version);
+			File file = new File(versionDir);
+			file.mkdirs();
+			this.modulePath = versionDir.concat(CommonConstant.MODULE_FILE_NAME);
+			this.protoDataPath = versionDir.concat(CommonConstant.PROTO_FILE_NAME);
+			this.protoIdPath = versionDir.concat(CommonConstant.PROTO_ID_FILE_NAME);
+			
+			//生成路径
+			this.genDir = CommonConstant.GENERATOR_PATH.concat(version);
+			file = new File(versionDir);
+			file.mkdirs();
+			
+			this.codePath = genDir.concat(CommonConstant.CODE_PACKAGE);
+			this.protoMessagePath =  genDir.concat(CommonConstant.PROTO_PACKAGE);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.info("init error, version:{}", version);
+			logger.error("init error.", e);
+		}
+	}
+	
+	public static SettingVersion create(String version, Pair<String, String> versionControllPath) {
+		SettingVersion ver = new SettingVersion(version, versionControllPath);
+		String initDate = FastDateFormat.getInstance("yyyy-MM-dd HH:mm:ss").format(new Date());
+		ver.setInitDate(initDate);
+		return ver;
+	}
 }

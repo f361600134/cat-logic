@@ -27,6 +27,11 @@ public class CommonConstant {
 	public static String RESOURCE_CONFIGDATA_PATH = "configdata";
 	
 	/**
+	 * 编译器的路径
+	 */
+//	public static final String PROTO_EXE_PATH = "proto3/exec";
+	
+	/**
 	 * 模块信息
 	 */
 	public static final String MODULE_FILE_NAME = "/module.json";

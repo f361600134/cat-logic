@@ -47,7 +47,7 @@ public abstract class AbstractCodeGenerator implements ICodeGenerator{
 		SettingVersion versionInfo = setting.getVersionInfo().get(version);
 		String entityName = dto.getEntity().getEntityName();
 		//生成路径
-		String path = versionInfo.codePath().concat(File.separator)
+		String path = versionInfo.getCodePath().concat(File.separator)
 				.concat(entityName.toLowerCase()).concat(File.separator)
 				.concat(getChildDir());
 		File file = new File(path);

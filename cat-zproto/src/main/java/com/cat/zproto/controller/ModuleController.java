@@ -20,6 +20,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -339,11 +341,31 @@ public class ModuleController {
 
 	private SystemResult createMessage(String version, ProtocolObject protoObject, String langType) {
 		String protoFormat = CommonConstant.PROTOC_EXECUTE_FORMAT;
+		
+//		ClassPathResource resource = new ClassPathResource(CommonConstant.PROTO_EXE_PATH);
 		String protoExePath = setting.getProto().getProtoExePath();
+		Resource resource = new ClassPathResource("");
+		try {
+			protoExePath = resource.getFile().getAbsolutePath()+protoExePath;
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		String os = System.getProperty("os.name");
+		if (os.toLowerCase().startsWith("win")) {
+			protoExePath = protoExePath.concat("/").concat("protoc.exe");
+		}else {
+			protoExePath = protoExePath.concat(File.separator).concat("protoc");
+		}
+		File exePath = new File(protoExePath);
+		protoExePath = exePath.getPath();
+		System.out.println("===========================");
+		System.out.println("==========================="+protoExePath);
+		System.out.println("==========================="+exePath.getAbsolutePath());
+		
 		String protoPath = setting.getProto().getProtoPath();
 		String languageType = langType;
 		SettingVersion versionInfo = setting.getVersionInfo().get(version);
-		String genPath = versionInfo.genDir().concat(File.separator).concat(langType);
+		String genPath = versionInfo.getGenDir().concat(File.separator).concat(langType);
 		String outClassName = protoObject.getOutClass();
 		try {
 			// TODO 这段代码丢初始化调用里面
@@ -362,7 +384,7 @@ public class ModuleController {
 		}
 		return result;
 	}
-
+	
 	@ResponseBody
 	@RequestMapping("/downloadCode")
 	public String downloadCode(String version, int id, HttpServletResponse response) {
@@ -481,7 +503,7 @@ public class ModuleController {
 		// 生成路径
 		String entityName = entity.getName().toLowerCase();
 		SettingVersion versionInfo = setting.getVersionInfo().get(version);
-		String srcPath = versionInfo.codePath().concat(File.separator).concat(entityName);
+		String srcPath = versionInfo.getCodePath().concat(File.separator).concat(entityName);
 		String zipPath = CommonConstant.DOWNLOAD_PACKAGE;
 		try {
 			ZipUtil.zip(srcPath, zipPath, entityName);

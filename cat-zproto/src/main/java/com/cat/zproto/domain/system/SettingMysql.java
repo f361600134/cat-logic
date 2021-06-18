@@ -23,6 +23,10 @@ public class SettingMysql {
 
 	public void setUrl(String url) {
 		this.url = url;
+		//截取dbName
+		int end = url.indexOf("?");
+		int start = url.lastIndexOf("/", end)+1;
+		this.dbName = url.substring(start, end);
 	}
 
 	public String getUsername() {

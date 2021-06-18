@@ -48,7 +48,7 @@ public class VersionController {
 	 * @return ModelAndView  
 	 * @date 2021年6月12日下午9:50:55
 	 */
-	@RequestMapping("/settingSave")
+	@RequestMapping("/versionSave")
     public ModelAndView settingSave(){
     	ModelAndView mv = new ModelAndView();
         return mv;

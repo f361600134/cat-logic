@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      
+<head th:include="head :: htmlhead" th:with="title='协议生成管理'">
+</head>
+  
+<body>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+  <ul class="layui-tab-title">
+    <li class="layui-this">数据源设置</li>
+    <li>Proto设置</li>
+    <li>SVN设置</li>
+    <li>版本管理</li>
+  </ul>
+  <div class="layui-tab-content" style="height: 100px;">
+    <div class="layui-tab-item layui-show">
+		<!-- 数据源设置 -->
+		<form class="layui-form" action="" lay-filter="example">
+		  <div class="layui-form-item layui-inline">
+		    <label class="layui-form-label">数据库账号</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="输入数据库账号" class="layui-input">
+		    </div>
+		  </div>
+		  <div class="layui-form-item layui-inline">
+		    <label class="layui-form-label">数据库密码</label>
+		    <div class="layui-input-block">
+		      <input type="password" name="password" placeholder="输入数据库密码" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+		   <div class="layui-form-item">
+		    <label class="layui-form-label">数据库连接
+		    </label>
+		    <div class="layui-input-block">
+		      <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="数据库url" class="layui-input">
+		    </div>
+		  </div>
+		  
+		   <div class="layui-form-item">
+	        <div class="layui-input-block">
+	            <button  id="submit" class="layui-btn"  lay-submit lay-filter="editDb">提交</button>
+	        </div>
+		   </div>
+		</form>
+		<!-- end -->
+    </div>
+    <div class="layui-tab-item">
+	   	<!-- Proto设置 -->
+	   	<form class="layui-form" action="" lay-filter="example">
+		  <div class="layui-form-item ">
+		    <label class="layui-form-label" >执行器路径
+		    </label>
+		    <div class="layui-input-block">
+		      <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="proto执行文件的路径" class="layui-input">
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label" style="white-space:nowrap!important;">文件生成路径</label>
+		    <div class="layui-input-block">
+		      <input type="password" name="password" placeholder="生成的proto路径" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+		   <div class="layui-form-item">
+		    <label class="layui-form-label" style="white-space:nowrap!important;">Java引用路径
+		    </label>
+		    <div class="layui-input-block">
+		      <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="生成所在的Java包路径" class="layui-input">
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">协议号排序</label>
+		    <div class="layui-input-block">
+		      <input type="radio" name="sex" value="男" title="成对出现" checked="">
+		      <input type="radio" name="sex" value="女" title="先请求后响应">
+		    </div>
+		  </div>
+		</form>
+		<!-- end -->
+    </div>
+     <div class="layui-tab-item">
+   	 	<!-- svn设置 -->
+   	 	<form class="layui-form" action="" lay-filter="example">
+		  <div class="layui-form-item layui-inline">
+		    <label class="layui-form-label">账号
+		    </label>
+		    <div class="layui-input-block">
+		      <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="SVN账号" class="layui-input">
+		    </div>
+		  </div>
+		  <div class="layui-form-item layui-inline">
+		    <label class="layui-form-label">密码</label>
+		    <div class="layui-input-block">
+		      <input type="password" name="password" placeholder="SVN密码" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+		   <div class="layui-form-item">
+		    <label class="layui-form-label" style="white-space:nowrap!important;">check out路径
+		    </label>
+		    <div class="layui-input-block">
+		      <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="checkout路径" class="layui-input">
+		    </div>
+		  </div>
+		</form>
+		<!-- end -->
+     </div>
+      <div class="layui-tab-item">
+      <!-- 版本控制version control -->
+      <table class="layui-hide" id="test" lay-filter="test"></table>
+		<script type="text/html" id="barDemo">
+  			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		</script>
+      <!-- end -->
+      </div>
+  </div>
+</div> 
+
+<script type="text/javascript"  th:inline="none">
+layui.use('table', function(){
+  var table = layui.table;
+  
+  table.render({
+    elem: '#test'
+    ,url:'/zproto/setting/versionList'
+    ,toolbar: 'default' //开启头部工具栏，并为其绑定左侧模板
+    ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+      title: '提示'
+      ,layEvent: 'LAYTABLE_TIPS'
+      ,icon: 'layui-icon-tips'
+    }]
+    ,title: '用户数据表'
+    ,cols: [
+    	[
+	      {type: 'checkbox', fixed: 'left'}
+	      ,{field:'version', title:'版本', width:80, edit: 'text'}
+	      ,{field:'initDate', title:'创建日期', width:160}
+	      ,{field:'modulePath', title:'模块路径'}
+	      ,{field:'protoDataPath', title:'协议对象路径'}
+	      ,{field:'protoIdPath', title:'协议id路径'}
+	      ,{field:'codePath', title:'代码路径'}
+	      ,{field:'protoMessagePath', title:'协议消息路径'}
+	      ,{field:'genDir', title:'生成路径'}
+	      ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}
+    	]
+    ]
+  });
+  
+  //监听头工具栏事件
+  table.on('toolbar(test)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id)
+    ,data = checkStatus.data; //获取选中的数据
+    switch(obj.event){
+      case 'add':
+        layer.open({
+            type: 2 //此处以iframe举例
+            ,title: '新增版本'
+            ,area: ['500px', '300px']
+            ,shade: 0
+            ,maxmin: true
+            ,offset: [ //为了演示，随机坐标
+                0
+                ,0
+            ]
+            ,content: '/zproto/setting/addVersionView'
+            ,zIndex: layer.zIndex //重点1
+            ,success: function(layero){
+                layer.setTop(layero); //重点2
+            }
+        });
+      break;
+      case 'update':
+        if(data.length === 0){
+          layer.msg('请选择一行');
+        } else if(data.length > 1){
+          layer.msg('只能同时编辑一个');
+        } else {
+          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+        }
+      break;
+      case 'delete':
+        if(data.length === 0){
+          layer.msg('请选择一行');
+        } else {
+          layer.msg('删除');
+        }
+      break;
+    };
+  });
+  
+  //监听行工具事件
+  table.on('tool(test)', function(obj){
+    var data = obj.data;
+    //console.log(obj)
+    if(obj.event === 'del'){
+      layer.confirm('真的删除行么', function(index){
+        obj.del();
+        layer.close(index);
+      });
+    } else if(obj.event === 'edit'){
+      layer.prompt({
+        formType: 2
+        ,value: data.email
+      }, function(value, index){
+        obj.update({
+          email: value
+        });
+        layer.close(index);
+      });
+    }
+  });
+});
+
+//表单操作
+layui.use('form', function(){
+    var form = layui.form;
+    form.on('submit(editDb)', function (data) {
+        var d = {};
+        d.username=$("input[name='username']").val();
+        d.password=$("input[name='password']").val();
+        d.url=$("input[name='url']").val();
+        $.ajax({
+            type: 'POST',
+            url: '/zproto/module/addSettingDb?version='+version,
+            data: JSON.stringify(d),
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data){
+                //var str = data.code == 0 ? '添加成功！' : '添加失败！';
+                var str = data.tips;
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                layer.confirm(str, {
+                    btn: ['ok'] //按钮
+                }, function () {
+                    parent.layer.close(index); //再执行关闭
+                    parent.window.location.reload();
+                });
+            },
+            error: function(jqXHR){console.log(jqXHR)},
+        });
+        return false;
+});});
+layui.use('layer', function(){
+    var layer = layui.layer;
+});
+</script>
+
+</body>
+</html>

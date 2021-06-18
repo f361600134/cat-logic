@@ -434,8 +434,8 @@ public class ProtoService implements InitializingBean{
 		for (SettingVersion settingVersion : versions) {
 			String version = settingVersion.getVersion();
 			ProtocolDomain domain = protocolManager.getOrCreateDomain(version);
-			String protoPath = settingVersion.protoDataPath();
-			String protoIdPath = settingVersion.protoIdPath();
+			String protoPath = settingVersion.getProtoDataPath();
+			String protoIdPath = settingVersion.getProtoIdPath();
 			domain.init(protoPath, protoIdPath);
 		}
 	}

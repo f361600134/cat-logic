@@ -14,7 +14,7 @@ JAVA_OPTS_N="-Xms256m -Xmx256m -Xmn128m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC
 #JAVA_OPTS_N="-Xms3360m -Xmx3360m -Xmn1248m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+DisableExplicitGC"
 #JAVA_OPTS_N="-Xms2048m -Xmx2048m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+DisableExplicitGC"
 #command="java -server ${JAVA_OPTS_N} -XX:PermSize=300M -XX:MaxPermSize=512M -cp $CP newbee.morningGlory.GameApp $2"
-command="java -jar ${JAVA_OPTS_N} -XX:PermSize=64M -XX:MaxPermSize=128M /data/game/release/cat-zproto.jar $2"
+command="java -jar ${JAVA_OPTS_N} -XX:PermSize=64M -XX:MaxPermSize=128M /data/game/zproto/release/cat-zproto.jar $2"
 ${command} > start.log 2>&1 &
 
 COUNTER=0

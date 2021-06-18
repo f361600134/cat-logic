@@ -1,95 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+      
 <head th:include="head :: htmlhead" th:with="title='协议生成管理'">
 </head>
   
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-  <legend>数据源设置</legend>
-</fieldset>
- 
+<body>
 <form class="layui-form" action="" lay-filter="example">
-  <div class="layui-form-item">`
-    <label class="layui-form-label">数据库账号
-    </label>
+  <div class="layui-form-item layui-inline" style="margin-top: 10px;">
+    <label class="layui-form-label">版本号</label>
     <div class="layui-input-block">
-      <input type="text" name="username" lay-verify="请输入数据库账号" autocomplete="off" placeholder="请输入标题" class="layui-input">
+      <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="版本号" class="layui-input">
     </div>
-  </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">数据库密码</label>
-    <div class="layui-input-block">
-      <input type="password" name="password" placeholder="请输入数据库密码" autocomplete="off" class="layui-input">
-    </div>
-  </div>
-   <div class="layui-form-item">`
-    <label class="layui-form-label">数据库连接
-    </label>
-    <div class="layui-input-block">
-      <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="数据库url" class="layui-input">
+    
+    <div class="layui-form-item" style="margin-top:  20px;">
+        <div class="layui-input-block">
+            <button  id="submit" class="layui-btn"  lay-submit lay-filter="addModule">立即提交</button>
+        </div>
     </div>
   </div>
 </form>
-
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-  <legend>Proto设置</legend>
-</fieldset>
- 
-<form class="layui-form" action="" lay-filter="example">
-  <div class="layui-form-item">`
-    <label class="layui-form-label">执行文件路径
-    </label>
-    <div class="layui-input-block">
-      <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="proto执行文件的路径" class="layui-input">
-    </div>
-  </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">proto文件路径</label>
-    <div class="layui-input-block">
-      <input type="password" name="password" placeholder="生成的proto路径" autocomplete="off" class="layui-input">
-    </div>
-  </div>
-   <div class="layui-form-item">`
-    <label class="layui-form-label">Java Package
-    </label>
-    <div class="layui-input-block">
-      <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="生成所在的Java包路径" class="layui-input">
-    </div>
-  </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">协议号排序</label>
-    <div class="layui-input-block">
-      <input type="radio" name="sex" value="男" title="成对出现" checked="">
-      <input type="radio" name="sex" value="女" title="先请求后响应">
-    </div>
-  </div>
-</form>
-
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
-  <legend>版本控制SVN</legend>
-</fieldset>
- 
-<form class="layui-form" action="" lay-filter="example">
-  <div class="layui-form-item">`
-    <label class="layui-form-label">账号
-    </label>
-    <div class="layui-input-block">
-      <input type="text" name="username" lay-verify="SVN账号" autocomplete="off" placeholder="请输入标题" class="layui-input">
-    </div>
-  </div>
-  <div class="layui-form-item">
-    <label class="layui-form-label">密码</label>
-    <div class="layui-input-block">
-      <input type="password" name="password" placeholder="SVN密码" autocomplete="off" class="layui-input">
-    </div>
-  </div>
-   <div class="layui-form-item">`
-    <label class="layui-form-label">check out路径
-    </label>
-    <div class="layui-input-block">
-      <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="checkout路径" class="layui-input">
-    </div>
-  </div>
-</form>
-
+</body>
 </html>

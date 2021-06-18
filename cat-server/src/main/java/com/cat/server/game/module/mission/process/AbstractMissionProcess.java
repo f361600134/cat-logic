@@ -6,6 +6,20 @@ import com.cat.server.game.module.mission.type.IMission;
 public abstract class AbstractMissionProcess implements IMissionProcess{
 	
 	/**
+	 * 是否响应事件, 如果有监听此事件, 返回true
+	 * @param event
+	 * @return
+	 */
+	public boolean isFocusEvent(IEvent event) {
+		for (String eventId : focusEvents()) {
+			if (event.getEventId().equals(eventId)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
 	 * 任务处理器
 	 * return true, 任务正确处理完流程, false如果无次任务, 或者任务不是未达成状态, 则表示未完成
 	 */
