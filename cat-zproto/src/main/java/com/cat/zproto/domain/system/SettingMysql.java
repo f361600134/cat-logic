@@ -17,6 +17,10 @@ public class SettingMysql {
 	//初始连接, 不配置了, 直接写死1条连接
 	private int initialSize;
 
+	public SettingMysql() {
+		super();
+	}
+
 	public String getUrl() {
 		return url;
 	}
@@ -26,7 +30,9 @@ public class SettingMysql {
 		//截取dbName
 		int end = url.indexOf("?");
 		int start = url.lastIndexOf("/", end)+1;
-		this.dbName = url.substring(start, end);
+		if (start > 0 && end > 0) {
+			this.dbName = url.substring(start, end);
+		}
 	}
 
 	public String getUsername() {

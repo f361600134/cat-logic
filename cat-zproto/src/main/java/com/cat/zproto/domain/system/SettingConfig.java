@@ -1,9 +1,17 @@
 package com.cat.zproto.domain.system;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
+import org.springframework.core.io.ClassPathResource;
+
 import com.alibaba.fastjson.JSON;
+import com.cat.zproto.constant.CommonConstant;
+import com.cat.zproto.core.result.SystemCodeEnum;
+import com.cat.zproto.core.result.SystemResult;
 import com.cat.zproto.util.Pair;
 
 /**
@@ -96,7 +104,7 @@ public class SettingConfig {
 //		proto.getGeneratorPath().put("java", "./temps/server");
 //		proto.getGeneratorPath().put("csharp", "./temps/csharp");
 		proto.setJavaPackagePath("com.cat.server.game.data.proto");
-//		proto.setProtoExePath("./proto3/exec/protoc.exe");
+		proto.setProtoExePath("./proto3/exec/");
 		proto.setProtoIdSortBy(1);
 		setting.setProto(proto);
 		
@@ -113,6 +121,18 @@ public class SettingConfig {
 		String json = JSON.toJSONString(setting, true);
 		System.out.println(json);
 		
+	}
+	
+	public SystemResult save() {
+		ClassPathResource resource = new ClassPathResource(CommonConstant.SYSTEM_SETTING);
+		String json = JSON.toJSONString(this);
+		try {
+			FileUtils.write(resource.getFile(), json, StandardCharsets.UTF_8);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return SystemResult.build(SystemCodeEnum.ERROR_NOT_WRITE_FAILED);
+		}
+		return SystemResult.build(SystemCodeEnum.SUCCESS);
 	}
 
 }

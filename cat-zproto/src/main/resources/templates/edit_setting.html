@@ -16,24 +16,24 @@
   <div class="layui-tab-content" style="height: 100px;">
     <div class="layui-tab-item layui-show">
 		<!-- 数据源设置 -->
-		<form class="layui-form" action="" lay-filter="example">
+		<form class="layui-form" action="">
 		  <div class="layui-form-item layui-inline">
 		    <label class="layui-form-label">数据库账号</label>
 		    <div class="layui-input-block">
-		      <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="输入数据库账号" class="layui-input">
+		      <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="输入数据库账号" class="layui-input" th:value="${data.dbInfo.username}">
 		    </div>
 		  </div>
 		  <div class="layui-form-item layui-inline">
 		    <label class="layui-form-label">数据库密码</label>
 		    <div class="layui-input-block">
-		      <input type="password" name="password" placeholder="输入数据库密码" autocomplete="off" class="layui-input">
+		      <input type="text" name="password" placeholder="输入数据库密码" autocomplete="off" class="layui-input" th:value="${data.dbInfo.password}">
 		    </div>
 		  </div>
 		   <div class="layui-form-item">
 		    <label class="layui-form-label">数据库连接
 		    </label>
 		    <div class="layui-input-block">
-		      <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="数据库url" class="layui-input">
+		      <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="数据库url" class="layui-input" th:value="${data.dbInfo.url}">
 		    </div>
 		  </div>
 		  
@@ -52,29 +52,34 @@
 		    <label class="layui-form-label" >执行器路径
 		    </label>
 		    <div class="layui-input-block">
-		      <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="proto执行文件的路径" class="layui-input">
+		      <input type="text" name="protoExePath" lay-verify="title" autocomplete="off" placeholder="proto执行文件的路径" class="layui-input" th:value="${data.proto.protoExePath}">
 		    </div>
 		  </div>
 		  <div class="layui-form-item">
 		    <label class="layui-form-label" style="white-space:nowrap!important;">文件生成路径</label>
 		    <div class="layui-input-block">
-		      <input type="password" name="password" placeholder="生成的proto路径" autocomplete="off" class="layui-input">
+		      <input type="text" name="protoPath" placeholder="生成的proto路径" autocomplete="off" class="layui-input" th:value="${data.proto.protoPath}">
 		    </div>
 		  </div>
 		   <div class="layui-form-item">
 		    <label class="layui-form-label" style="white-space:nowrap!important;">Java引用路径
 		    </label>
 		    <div class="layui-input-block">
-		      <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="生成所在的Java包路径" class="layui-input">
+		      <input type="text" name="javaPackagePath" lay-verify="title" autocomplete="off" placeholder="生成所在的Java包路径" class="layui-input" th:value="${data.proto.javaPackagePath}">
 		    </div>
 		  </div>
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">协议号排序</label>
 		    <div class="layui-input-block">
-		      <input type="radio" name="sex" value="男" title="成对出现" checked="">
-		      <input type="radio" name="sex" value="女" title="先请求后响应">
+		      <input type="radio" name="protoIdSortBy" value="1" title="成对出现" checked="">
+		      <input type="radio" name="protoIdSortBy" value="2" title="先请求后响应">
 		    </div>
 		  </div>
+		  <div class="layui-form-item">
+	        <div class="layui-input-block">
+	            <button  id="submit" class="layui-btn"  lay-submit lay-filter="editProto">提交</button>
+	        </div>
+		   </div>
 		</form>
 		<!-- end -->
     </div>
@@ -85,22 +90,27 @@
 		    <label class="layui-form-label">账号
 		    </label>
 		    <div class="layui-input-block">
-		      <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="SVN账号" class="layui-input">
+		      <input type="text" name="svnAccount" lay-verify="title" autocomplete="off" placeholder="SVN账号" class="layui-input" th:value="${data.svn.account}">
 		    </div>
 		  </div>
 		  <div class="layui-form-item layui-inline">
 		    <label class="layui-form-label">密码</label>
 		    <div class="layui-input-block">
-		      <input type="password" name="password" placeholder="SVN密码" autocomplete="off" class="layui-input">
+		      <input type="text" name="svnPassword" placeholder="SVN密码" autocomplete="off" class="layui-input" th:value="${data.svn.password}">
 		    </div>
 		  </div>
 		   <div class="layui-form-item">
 		    <label class="layui-form-label" style="white-space:nowrap!important;">check out路径
 		    </label>
 		    <div class="layui-input-block">
-		      <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="checkout路径" class="layui-input">
+		      <input type="text" name="sourceCheckOutUrl" lay-verify="title" autocomplete="off" placeholder="checkout路径" class="layui-input" th:value="${data.svn.sourceCheckOutUrl}">
 		    </div>
 		  </div>
+		   <div class="layui-form-item">
+	        <div class="layui-input-block">
+	            <button  id="submit" class="layui-btn"  lay-submit lay-filter="editSvn">提交</button>
+	        </div>
+		   </div>
 		</form>
 		<!-- end -->
      </div>
@@ -191,7 +201,6 @@ layui.use('table', function(){
   //监听行工具事件
   table.on('tool(test)', function(obj){
     var data = obj.data;
-    //console.log(obj)
     if(obj.event === 'del'){
       layer.confirm('真的删除行么', function(index){
         obj.del();
@@ -212,37 +221,86 @@ layui.use('table', function(){
 });
 
 //表单操作
-layui.use('form', function(){
+layui.use(function(){
     var form = layui.form;
     form.on('submit(editDb)', function (data) {
         var d = {};
-        d.username=$("input[name='username']").val();
-        d.password=$("input[name='password']").val();
-        d.url=$("input[name='url']").val();
+		d.username=data.field.username;
+		d.password=data.field.password;
+		d.url=data.field.url;
         $.ajax({
             type: 'POST',
-            url: '/zproto/module/addSettingDb?version='+version,
+            url: '/zproto/setting/addSettingDb',
             data: JSON.stringify(d),
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function(data){
-                //var str = data.code == 0 ? '添加成功！' : '添加失败！';
                 var str = data.tips;
-                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-                layer.confirm(str, {
-                    btn: ['ok'] //按钮
-                }, function () {
-                    parent.layer.close(index); //再执行关闭
-                    parent.window.location.reload();
-                });
+                if(data.code == 0){
+                	layer.msg(str, {icon: 1});
+                }else{
+                	layer.msg(str, {icon: 2});
+                }
             },
             error: function(jqXHR){console.log(jqXHR)},
         });
         return false;
 });});
-layui.use('layer', function(){
-    var layer = layui.layer;
-});
+
+layui.use('form', function(){
+    var form = layui.form;
+    form.on('submit(editProto)', function (data) {
+        var d = {};
+		d.protoExePath=$("input[name='protoExePath']").val();
+        d.protoPath=$("input[name='protoPath']").val();
+        d.javaPackagePath=$("input[name='javaPackagePath']").val();
+        d.protoIdSortBy=$("input[name='protoIdSortBy']").val();
+        
+        $.ajax({
+            type: 'POST',
+            url: '/zproto/setting/addSettingProto',
+            data: JSON.stringify(d),
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data){
+                var str = data.tips;
+                if(data.code == 0){
+                	layer.msg(str, {icon: 1});
+                }else{
+                	layer.msg(str, {icon: 2});
+                }
+            },
+            error: function(jqXHR){console.log(jqXHR)},
+        });
+        return false;
+});});
+
+layui.use('form', function(){
+    var form = layui.form;
+    form.on('submit(editSvn)', function (data) {
+        var d = {};
+		d.account=data.field.svnAccount;
+        d.password=data.field.svnPassword;
+        d.sourceCheckOutUrl=data.field.sourceCheckOutUrl;
+        
+        $.ajax({
+            type: 'POST',
+            url: '/zproto/setting/addSettingSvn',
+            data: JSON.stringify(d),
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function(data){
+                var str = data.tips;
+                if(data.code == 0){
+                	layer.msg(str, {icon: 1});
+                }else{
+                	layer.msg(str, {icon: 2});
+                }
+            },
+            error: function(jqXHR){console.log(jqXHR)},
+        });
+        return false;
+});});
 </script>
 
 </body>
