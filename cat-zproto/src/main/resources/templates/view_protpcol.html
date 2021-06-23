@@ -35,7 +35,6 @@
        		<td th:text="${protoNameIdMap.get(request.name)}"></td>
        		<td th:text="${request.name}"></td>
        		<td th:text="${request.comment}"></td>
-       		
        		<td>
 	       		<p th:if="${request.fields.size()==0}">无</p>
 	            <table border="1" th:if="${request.fields.size()>0}">

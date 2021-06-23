@@ -1,8 +1,11 @@
 package com.cat.zproto.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.cat.zproto.domain.system.SettingConfig;
 
 /**
  * 版本设置， 设置信息保存值setting.json文件
@@ -15,6 +18,24 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/version")
 public class VersionController {
+	
+	@Autowired private SettingConfig setting;
+	
+	/**
+	 * 版本选择
+	 * @return  
+	 * @return ModelAndView  
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@RequestMapping("/versionSelect")
+    public ModelAndView versionSelect(){
+    	ModelAndView mv = new ModelAndView();
+    	mv.setViewName("version_select");
+    	//固定第一个是主干版本
+    	mv.addObject("trunk", "trunk");
+    	mv.addObject("versions", setting.getVersionInfo().keySet());
+        return mv;
+    } 
 
 	/**
 	 * 版本页显示

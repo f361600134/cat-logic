@@ -18,18 +18,20 @@
 		"sourceCheckOutUrl":"svn://139.9.44.104/rabbit/"
 	},
 	"versionInfo":{
+		"trunk":{
+			"initDate":"2021-06-23 17:52:29",
+			"version":"trunk",
+			"versionControllPath":{
+				"key":"svn",
+				"value":"bbb"
+			}
+		},
 		"1.0.0":{
+			"initDate":"2021-06-20 17:52:29",
 			"version":"1.0.0",
 			"versionControllPath":{
 				"key":"svn",
 				"value":"aaa"
-			}
-		},
-		"1.1.0":{
-			"version":"1.1.0",
-			"versionControllPath":{
-				"key":"svn",
-				"value":"bbb"
 			}
 		}
 	}

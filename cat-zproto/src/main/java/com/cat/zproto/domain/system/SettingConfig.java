@@ -3,6 +3,7 @@ package com.cat.zproto.domain.system;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
@@ -38,9 +39,10 @@ public class SettingConfig {
 	private SettingSvn svn;
 
 	/**
-	 * 版本控制相关配置
+	 * 版本控制相关配置<br>
+	 * 默认第一个是主干
 	 */
-	private final Map<String, SettingVersion> versionInfo = new HashMap<String, SettingVersion>();
+	private final Map<String, SettingVersion> versionInfo = new LinkedHashMap<String, SettingVersion>();
 	
 	public SettingConfig() {
 	}
@@ -123,10 +125,15 @@ public class SettingConfig {
 		
 	}
 	
+	/**
+	 * 保存setting的配置
+	 * @return
+	 */
 	public SystemResult save() {
 		ClassPathResource resource = new ClassPathResource(CommonConstant.SYSTEM_SETTING);
-		String json = JSON.toJSONString(this);
+		String json = JSON.toJSONString(this, true);
 		try {
+			//TODO 这里写入文件在linux环境可能存在问题
 			FileUtils.write(resource.getFile(), json, StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			e.printStackTrace();

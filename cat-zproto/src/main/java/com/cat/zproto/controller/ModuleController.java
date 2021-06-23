@@ -97,12 +97,28 @@ public class ModuleController {
 
 	/**
 	 * 主页面
+	 * @deprecated
 	 */
 	@RequestMapping("/index")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
 		mv.addObject("version", "1.0.0");
+		return mv;
+	}
+	
+	/**
+	 * 主页面
+	 */
+	@RequestMapping("/viewModule")
+	public ModelAndView viewModule(String version) {
+		ModelAndView mv = new ModelAndView();
+		if (!setting.getVersionInfo().containsKey(version)) {
+			mv.setViewName("error");
+		}else {
+			mv.setViewName("view_module");
+			mv.addObject("version", version);
+		}
 		return mv;
 	}
 
@@ -358,9 +374,9 @@ public class ModuleController {
 		}
 		File exePath = new File(protoExePath);
 		protoExePath = exePath.getPath();
-		System.out.println("===========================");
-		System.out.println("==========================="+protoExePath);
-		System.out.println("==========================="+exePath.getAbsolutePath());
+//		System.out.println("===========================");
+//		System.out.println("==========================="+protoExePath);
+//		System.out.println("==========================="+exePath.getAbsolutePath());
 		
 		String protoPath = setting.getProto().getProtoPath();
 		String languageType = langType;

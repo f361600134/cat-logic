@@ -17,6 +17,8 @@ public enum SystemCodeEnum implements CodeEnum{
 	ERROR_CANNOT_FOUND_PROTOOBJECT(11, "找不到协议对象"),
 	ERROR_NOT_SUPPORT(12, "不支持的操作"),
 	ERROR_NOT_WRITE_FAILED(13, "修改成功但是持久化失败"),
+	ERROR_VERSION_EXIST(14, "已存在此版本"),
+	ERROR_COPIED_TRUNK_DIR(16, "复制主干目录出错"),
 	;
 	
 	private int status;
