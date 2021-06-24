@@ -42,9 +42,10 @@ public class SettingConfig {
 	 * 版本控制相关配置<br>
 	 * 默认第一个是主干
 	 */
-	private final Map<String, SettingVersion> versionInfo = new LinkedHashMap<String, SettingVersion>();
+	private LinkedHashMap<String, SettingVersion> versionInfo;
 	
 	public SettingConfig() {
+		this.versionInfo = new LinkedHashMap<String, SettingVersion>();
 	}
 	
 	public SettingMysql getDbInfo() {
@@ -63,7 +64,7 @@ public class SettingConfig {
 		this.proto = proto;
 	}
 	
-	public Map<String, SettingVersion> getVersionInfo() {
+	public LinkedHashMap<String, SettingVersion> getVersionInfo() {
 		return versionInfo;
 	}
 

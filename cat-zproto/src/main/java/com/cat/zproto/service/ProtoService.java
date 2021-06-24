@@ -3,6 +3,7 @@ package com.cat.zproto.service;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -444,12 +445,20 @@ public class ProtoService implements InitializingBean{
 		//加载proto信息
 		Collection<SettingVersion> versions = setting.getVersionInfo().values();
 		for (SettingVersion settingVersion : versions) {
-			String version = settingVersion.getVersion();
-			ProtocolDomain domain = protocolManager.getOrCreateDomain(version);
-			String protoPath = settingVersion.getProtoDataPath();
-			String protoIdPath = settingVersion.getProtoIdPath();
-			domain.init(protoPath, protoIdPath);
+			this.loadProtoProperties(settingVersion);
 		}
+	}
+	
+	/**
+	 * 加载模块配置
+	 * @throws IOException 
+	 */
+	public void loadProtoProperties(SettingVersion settingVersion) throws IOException{
+		String version = settingVersion.getVersion();
+		ProtocolDomain domain = protocolManager.getOrCreateDomain(version);
+		String protoPath = settingVersion.getProtoDataPath();
+		String protoIdPath = settingVersion.getProtoIdPath();
+		domain.init(protoPath, protoIdPath);
 	}
 	
 }

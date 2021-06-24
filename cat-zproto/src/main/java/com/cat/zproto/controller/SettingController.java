@@ -28,6 +28,7 @@ import com.cat.zproto.domain.system.SettingProto;
 import com.cat.zproto.domain.system.SettingSvn;
 import com.cat.zproto.domain.system.SettingVersion;
 import com.cat.zproto.service.ModuleService;
+import com.cat.zproto.service.ProtoService;
 import com.cat.zproto.util.Pair;
 
 /**
@@ -46,7 +47,10 @@ public class SettingController {
 	private SettingConfig setting;
 	
 	@Autowired
-	private ModuleService service;
+	private ModuleService moduleService;
+	
+	@Autowired
+	private ProtoService protoService;
 
 //	/**
 //	 *设置信息
@@ -149,7 +153,8 @@ public class SettingController {
 				destDir.mkdirs();
 				FileUtils.copyDirectory(srcDir, destDir);
 				//加载新分支配置
-				service.loadModuleProperties(settingVersion);
+				moduleService.loadModuleProperties(settingVersion);
+				protoService.loadProtoProperties(settingVersion);
 			} catch (IOException e) {
 				e.printStackTrace();
 				logger.error("addVersionSave error, 复制主干文件出错", e);

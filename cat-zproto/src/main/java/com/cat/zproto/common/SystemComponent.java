@@ -3,6 +3,7 @@ package com.cat.zproto.common;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
 
 import javax.sql.DataSource;
 
@@ -21,6 +22,7 @@ import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.parser.Feature;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingMysql;
@@ -57,8 +59,9 @@ public class SystemComponent {
 			//way4
 			InputStream inputStream = resource.getInputStream();
 			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-			setting = JSON.parseObject(content, SettingConfig.class);
+			setting = JSON.parseObject(content, SettingConfig.class, Feature.CustomMapDeserializer);
 			setting.init();
+			System.out.println(content);
 		} catch (IOException e) {
 			e.printStackTrace();
 			logger.error("setting error");
@@ -66,6 +69,33 @@ public class SystemComponent {
 		logger.info("注册[SettingConfig]服务:{}", setting);
 		return setting;
 	}
+	
+	
+//	public static class stu{
+//		LinkedHashMap<String, String> map = new LinkedHashMap<>();
+//		public stu() {}
+//		public LinkedHashMap<String, String> getMap() {
+//			return map;
+//		}
+//		public void setMap(LinkedHashMap<String, String> map) {
+//			this.map = map;
+//		}
+//	}
+//	
+//	public static void main(String[] args) {
+//		
+//		map.put("trunk", "trunk");
+//		map.put("1.0.0", "1.0.0");
+//		map.put("1.1.0", "1.1.0");
+//		map.put("1.2.0", "1.2.0");
+//		map.put("1.3.0", "1.3.0");
+//		map.put("1.4.0", "1.4.0");
+//		String txt = JSON.toJSONString(map);
+//		System.out.println(txt);
+//		map = JSON.parseObject(txt, LinkedHashMap.class);
+//		System.out.println(map);
+//		
+//	}
 
 	/**
 	 * 注册数据库连接池, 固定一条连接

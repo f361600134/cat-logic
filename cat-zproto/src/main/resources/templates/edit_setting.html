@@ -52,14 +52,14 @@
 		    <label class="layui-form-label" >执行器路径
 		    </label>
 		    <div class="layui-input-block">
-		      <input type="text" name="protoExePath" lay-verify="title" autocomplete="off" placeholder="proto执行文件的路径" class="layui-input" th:value="${data.proto.protoExePath}">
+		      <input type="text" name="protoExePath" disabled lay-verify="title" autocomplete="off" placeholder="proto执行文件的路径" class="layui-input" th:value="${data.proto.protoExePath}">
 		    </div>
 		  </div>
 		  
 		  <div class="layui-form-item">
 		    <label class="layui-form-label" style="white-space:nowrap!important;">文件生成路径</label>
 		    <div class="layui-input-block">
-		      <input type="text" name="protoPath" placeholder="生成的proto路径" autocomplete="off" class="layui-input" th:value="${data.proto.protoPath}">
+		      <input type="text" name="protoPath" disabled placeholder="生成的proto路径" autocomplete="off" class="layui-input" th:value="${data.proto.protoPath}">
 		    </div>
 		  </div>
 		  
