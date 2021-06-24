@@ -1226,10 +1226,10 @@
 				},
 				{
 					"comment":"",
-					"identifier":"repeated",
+					"identifier":"",
 					"index":2,
 					"name":"params",
-					"repeated":true,
+					"repeated":false,
 					"type":"int32"
 				}
 			],

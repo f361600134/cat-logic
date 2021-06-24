@@ -2,7 +2,6 @@ package com.cat.zproto.domain.proto;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,15 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.core.io.ClassPathResource;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.cat.zproto.common.SpringContextHolder;
-import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingVersion;
 import com.google.common.collect.BiMap;
@@ -125,7 +121,7 @@ public class ProtocolDomain {
 	 * @return
 	 */
 	public void putProtoId(String protoMethodName, int protoId) {
-		protoIdMap.putIfAbsent(protoMethodName, protoId);
+		this.protoIdMap.putIfAbsent(protoMethodName, protoId);
 	}
 	
 	/**
@@ -134,7 +130,7 @@ public class ProtocolDomain {
 	 * @return
 	 */
 	public void putProtoId(Map<String, Integer> protoIdMap) {
-		protoIdMap.putAll(protoIdMap);
+		this.protoIdMap.putAll(protoIdMap);
 	}
 	
 	/**
@@ -142,7 +138,7 @@ public class ProtocolDomain {
 	 * @return
 	 */
 	public BiMap<String, Integer> getProtoIdMap() {
-		return protoIdMap;
+		return this.protoIdMap;
 	}
 
 	/**
@@ -165,6 +161,23 @@ public class ProtocolDomain {
 					ret.add(ptoto.getModuleName());
 					break;
 				}
+			}
+		}
+		return ret;
+	}
+	
+	/**
+	 * 获取所有PB对象
+	 * @return
+	 */
+	public List<String> getAllPbProtoName(String prefix){
+		List<String> ret = new ArrayList<>();
+		for (ProtocolObject ptoto : protoMap.values()) {
+			for (ProtocolStructure struct : ptoto.getStructures().values()) {
+				if (!StringUtils.startsWith(struct.getName(), prefix) ) {
+					continue;
+				}
+				ret.add(struct.getName());
 			}
 		}
 		return ret;
@@ -194,7 +207,7 @@ public class ProtocolDomain {
 //		inputStream = resource.getInputStream();
 //		content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 		Map<String, Integer> tempMap = JSON.parseObject(content, new TypeReference<Map<String, Integer>>(){});
-		protoIdMap.putAll(tempMap);
+		this.protoIdMap.putAll(tempMap);
 	}
 	
 	/**
@@ -228,7 +241,7 @@ public class ProtocolDomain {
 	 */
 	public void saveProtoId() {
 		//再存储协议id
-		String data = JSON.toJSONString(protoIdMap, SerializerFeature.PrettyFormat);
+		String data = JSON.toJSONString(this.protoIdMap, SerializerFeature.PrettyFormat);
 		SettingConfig config = SpringContextHolder.getBean(SettingConfig.class);
 		SettingVersion settingVersion = config.getVersionInfo().get(version);
 		String path = settingVersion.getProtoDataPath();

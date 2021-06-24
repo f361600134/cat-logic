@@ -4,9 +4,9 @@ option java_package = "com.cat.server.game.data.proto";
 option java_outer_classname = "PBCommon";
 
 
-// tips信息
-message AckTips{
-    int32 tipsId = 1;  //
-    repeated int32 params = 2;  //
+// 测试协议
+message AckTest{
+    int32 id = 1;  //id
+    repeated int32 ids = 2;  //ids
 }
 

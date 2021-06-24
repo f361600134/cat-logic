@@ -181,10 +181,12 @@ public class ModuleController {
 			return mv;
 		}
 		/*
-		 * 获取到proto基础数据类型,以及引用类型
+		 *下拉列表 
+		 *1. 基础类型
+		 *2.其他自定义类型
 		 */
-//		ProtoTypeEnum.values();
-		
+		List<String> allTypes = new ArrayList<>(ProtoTypeEnum.enumMap.values());
+		allTypes.addAll(protoService.getAllPbProtoName(version, ProtocolConstant.PB_PREFIX));
 		/*
 		 * 也只是为了做一个排序, 写这么多代码,这里的数据结构没有设计好 工具完成后要想办法重构代码 20210603
 		 * 工具基本完成, 已经懒得重构了 20210611
@@ -195,7 +197,7 @@ public class ModuleController {
 		for (ProtocolStructure struct : protoObject.getStructures().values()) {
 			String name = struct.getName();
 			int protoId = protoIdMap.getOrDefault(name, 0);
-			if (protoId == 0) {
+			if (protoId == 0) {//表示协议对象
 				structures.add(struct);
 			} else {
 				structureMap.put(protoId, struct);
@@ -203,6 +205,7 @@ public class ModuleController {
 		}
 		structures.addAll(structureMap.values());
 		mv.addObject("data", structures);
+		mv.addObject("allTypes", allTypes);
 		return mv;
 	}
 

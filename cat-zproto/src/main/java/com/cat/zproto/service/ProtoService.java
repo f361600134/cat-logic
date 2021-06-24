@@ -45,7 +45,6 @@ public class ProtoService implements InitializingBean{
 	
 	@Autowired private ProtocolManager protocolManager;
 	
-	
 	/**
 	 * 生成类型<br>
 	 * 协议生成器
@@ -334,11 +333,11 @@ public class ProtoService implements InitializingBean{
 		protocolDomain.getProtoIdMap().clear();
 		//根据使用者定义的排序方式生成协议号
 		IGenProtoId genProtoId = genProtoIdMap.get(setting.getProto().getProtoIdSortBy());
-		moduleEntitys.forEach(module->{
+		for (ModuleEntity module : moduleEntitys) {
 			ProtocolObject protoObject = protocolDomain.getProtoObject(module.getName());
 			Map<String, Integer> tempMap = genProtoId.genProtoIds(module.getId(), protoObject);
 			protocolDomain.putProtoId(tempMap);
-		});
+		}
 		protocolDomain.save();
 		return protocolDomain.getProtoIdMap();
 	}
@@ -400,6 +399,19 @@ public class ProtoService implements InitializingBean{
 			return null;
 		}
 		return protocolDomain.getAllProtoObject();
+	}
+	
+	/**
+	 * 通过协议方法名, 获取协议对象信息
+	 * @param protoMethodName
+	 * @return
+	 */
+	public List<String> getAllPbProtoName(String version, String prefix) {
+		ProtocolDomain protocolDomain = protocolManager.getDomain(version);
+		if (protocolDomain == null) {
+			return null;
+		}
+		return protocolDomain.getAllPbProtoName(prefix);
 	}
 	
 	

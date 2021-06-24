@@ -1,5 +1,8 @@
 package com.cat.zproto.enums;
 
+import java.util.EnumMap;
+import java.util.Map;
+
 /**
  * proto类型枚举类
  * @author Jeremy
@@ -79,5 +82,11 @@ public enum ProtoTypeEnum {
 		return csharpType;
 	}
 	
+	public static Map<ProtoTypeEnum, String> enumMap = new EnumMap<>(ProtoTypeEnum.class);
+	static{
+		for (ProtoTypeEnum protoType : values()) {
+			enumMap.put(protoType, protoType.getProtoType());
+		}
+	}
 	
 }

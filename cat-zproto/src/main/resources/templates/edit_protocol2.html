@@ -252,7 +252,7 @@
             var fields=protocol.fields;
             for(var j in fields){
                 var fieldClone = $("#fieldTmp").clone(true);
-                fieldClone.attr("hidden",false);
+                fieldClone.attr("hidden", false);
                 var field=fields[j];
                 fieldClone.find("select[name='field_repeated']").val(field.repeated+"");
                 fieldClone.find("input[name='field_type']").val(field.type);

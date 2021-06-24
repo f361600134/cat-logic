@@ -35,9 +35,9 @@ enum PBProtocol {
    ReqLogin=100001;
    ReqMailRead=103003;
    AckInitPlayerInfo=101013;
+   AckTest=1001;
    AckLogin=100002;
    ReqMailDelete=103007;
-   AckTips=1001;
    AckPlayerRandName=101006;
    AckMailList=103006;
    AckPlayerHeart=101010;

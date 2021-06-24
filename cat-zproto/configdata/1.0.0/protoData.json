@@ -1213,27 +1213,27 @@
 	"moduleName":"Common",
 	"outClass":"PBCommon",
 	"structures":{
-		"AckTips":{
-			"comment":"tips信息",
+		"AckTest":{
+			"comment":"测试协议",
 			"fields":[
 				{
-					"comment":"",
+					"comment":"id",
 					"identifier":"",
 					"index":1,
-					"name":"tipsId",
+					"name":"id",
 					"repeated":false,
 					"type":"int32"
 				},
 				{
-					"comment":"",
+					"comment":"ids",
 					"identifier":"repeated",
 					"index":2,
-					"name":"params",
+					"name":"ids",
 					"repeated":true,
 					"type":"int32"
 				}
 			],
-			"name":"AckTips"
+			"name":"AckTest"
 		}
 	}
 }]
