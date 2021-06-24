@@ -6,62 +6,23 @@
 
 <body>
 	<div class="layui-row layui-col-space15">
-<!-- 			<div style="display: inline-block;" th:each="version:${versions}"> -->
-<!-- <!-- 		        <a th:text="${version}" th:href="'/zproto/module/viewModule?version='+${version}"></a> --> 
-<!-- 		        <div class="layui-col-md2"> -->
-<!-- 				<div class="layui-panel"> -->
-<!-- 					<div style="padding: 30px;"> -->
-<!-- <!-- 						<a th:text="${version}" th:href="'/zproto/module/viewModule?version='+${version}"><i class="layui-icon layui-icon-fire" style="color: #FF5722;"></i> </a> --> 
-<!-- 						<a href=""> <b> <i class="layui-icon layui-icon-fire" style="color: #FF5722;"> trunk </i></b></a> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				</div> -->
-<!-- 		    </div> -->
-
 		<!-- 其他版本区分icon -->
-		<div class="layui-col-md2" th:each="version:${versions}">
-			<div class="layui-panel">
-				<div style="padding: 30px;">
-<!-- 					<a href=""> <b> <i class="layui-icon layui-icon-fire" style="color: #FF5722;"> trunk </i></b></a> -->
+		<div class="layui-col-md2" th:each="version, stat:${versions}">
+			<div class="layui-panel" >
+				<div style="padding: 30px;" th:if="${stat.index} == 0">
 				<a th:href="'/zproto/module/viewModule?version='+${version}">
-				<b><i class="layui-icon layui-icon-fire" style="color: #FF5722;" th:text="${version}"> </i> </b>
+				<b><i class="layui-icon layui-icon-fire" style="color: #FF5722;" th:text="' '+${version}"> </i> </b>
+				</a>
+				</div>
+				<!-- 其他版本区分icon -->
+				<div style="padding: 30px;" th:unless="${stat.index} == 0">
+				<a th:href="'/zproto/module/viewModule?version='+${version}">
+				<b><i class="layui-icon layui-icon-cols" style="color: #009688;" th:text="' '+${version}"> </i> </b>
 				</a>
 				</div>
 			</div>
 		</div>
-
-			<!-- 主干版本在第一个 --> 
-<!-- 			<div class="layui-col-md2"> -->
-<!-- 				<div class="layui-panel"> -->
-<!-- 					<div style="padding: 30px;"> -->
-<!-- 						<a href=""> <b> <i class="layui-icon layui-icon-fire" -->
-<!-- 								style="color: #FF5722;"> trunk </i> -->
-<!-- 						</b> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-			<!-- 其他版本区分icon -->
-<!-- 			<div class="layui-col-md2"> -->
-<!-- 				<div class="layui-panel"> -->
-<!-- 					<div style="padding: 30px;"> -->
-<!-- 						<a href=""> <b> <i class="layui-icon layui-icon-cols" -->
-<!-- 								style="color: #009688;"> 1.0.0 </i> -->
-<!-- 						</b> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="layui-col-md2"> -->
-<!-- 				<div class="layui-panel"> -->
-<!-- 					<div style="padding: 30px;"> -->
-<!-- 						<a href=""> <i class="layui-icon layui-icon-cols" -->
-<!-- 							style="color: #009688;"> 1.1.0 </i> -->
-<!-- 						</a> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-		</div>
+	</div>
 </body>
 <script>
 	

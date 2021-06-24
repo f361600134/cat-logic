@@ -32,7 +32,6 @@ public class VersionController {
     	ModelAndView mv = new ModelAndView();
     	mv.setViewName("version_select");
     	//固定第一个是主干版本
-    	mv.addObject("trunk", "trunk");
     	mv.addObject("versions", setting.getVersionInfo().keySet());
         return mv;
     } 

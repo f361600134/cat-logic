@@ -106,6 +106,18 @@ public class ModuleController {
 //		mv.addObject("version", version);
 //		return mv;
 //	}
+	/**
+	 * home页面信息
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@RequestMapping("/index")
+	public ModelAndView settingUpdateSave() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index");
+		return mv;
+	}
 	
 	/**
 	 * 主页面

@@ -6,8 +6,8 @@
 </head>
 
 <input id="version" th:value="${version}"  hidden="true">
-<h1 align="center" style="color: red"  th:text="'当前使用的版本为'+${version}"> </h1>
-<a href="/zproto/module/index"+><p align="center">回到主页</p></a>
+<h1 align="center" style="color:#FF5722"  th:text="'当前使用的版本为'+${version}"> </h1>
+<a th:href="'/zproto/module/viewModule?version='+${version}"><p align="center">回到模块页</p></a>
 <body>
 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">

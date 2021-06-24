@@ -6,13 +6,14 @@
 </head>
 
 <body>
-<style>
-</style>
-<br>
 <input id="version" th:value="${version}"  hidden="true">
 <input id="id" th:value="${id}"  hidden="true">
-<h1 align="center" style="color: red"  th:text="'当前使用的版本为'+${version}"> </h1>
-<a href="/zproto/module/index"><p align="center">回到主页</p></a>
+	<h1 align="center" style="color:#FF5722"  th:text="'当前使用的版本为'+${version}"> </h1>
+<a th:href="'/zproto/module/viewModule?version='+${version}"><p align="center">回到模块页</p>
+</a>
+
+
+
 <protocolTmp id="protocolTmp" hidden="true">
 <hr class="layui-border-black">
 <div class="layui-form-item">

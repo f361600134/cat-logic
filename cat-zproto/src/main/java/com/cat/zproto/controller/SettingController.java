@@ -27,6 +27,7 @@ import com.cat.zproto.domain.system.SettingMysql;
 import com.cat.zproto.domain.system.SettingProto;
 import com.cat.zproto.domain.system.SettingSvn;
 import com.cat.zproto.domain.system.SettingVersion;
+import com.cat.zproto.service.ModuleService;
 import com.cat.zproto.util.Pair;
 
 /**
@@ -43,6 +44,9 @@ public class SettingController {
 
 	@Autowired
 	private SettingConfig setting;
+	
+	@Autowired
+	private ModuleService service;
 
 //	/**
 //	 *设置信息
@@ -71,19 +75,6 @@ public class SettingController {
 		return SystemResult.build(SystemCodeEnum.SUCCESS, versions);
 	}
 
-	/**
-	 * 框架信息
-	 * @return
-	 * @return ModelAndView
-	 * @date 2021年6月12日下午9:50:40
-	 */
-	@RequestMapping("/frame")
-	public ModelAndView settingUpdateSave() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("frame");
-		return mv;
-	}
-	
 	/**
 	 * 设置
 	 * @return
@@ -157,6 +148,8 @@ public class SettingController {
 			try {
 				destDir.mkdirs();
 				FileUtils.copyDirectory(srcDir, destDir);
+				//加载新分支配置
+				service.loadModuleProperties(settingVersion);
 			} catch (IOException e) {
 				e.printStackTrace();
 				logger.error("addVersionSave error, 复制主干文件出错", e);
@@ -267,54 +260,5 @@ public class SettingController {
 		svn.setSourceCheckOutUrl(info.getSourceCheckOutUrl());
 		return setting.save();
 	}
-
-//	/**
-//	 * 版本添加页面
-//	 * @return  
-//	 * @return ModelAndView  
-//	 * @date 2021年6月12日下午9:50:55
-//	 */
-//	@RequestMapping("/versionAddView")
-//    public ModelAndView versionAddView(){
-//    	ModelAndView mv = new ModelAndView();
-//    	mv.setViewName("add_version");
-//        return mv;
-//    } 
-//	
-//	/**
-//	 * 版本设置保存
-//	 * @return  
-//	 * @return ModelAndView  
-//	 * @date 2021年6月12日下午9:50:55
-//	 */
-//	@RequestMapping("/versionSave")
-//    public ModelAndView settingSave(){
-//    	ModelAndView mv = new ModelAndView();
-//        return mv;
-//    } 
-//	
-//	/**
-//	 * 设置编辑显示
-//	 * @return  
-//	 * @return ModelAndView  
-//	 * @date 2021年6月12日下午9:51:13
-//	 */
-//	@RequestMapping("/settingEditView")
-//    public ModelAndView settingEditView(){
-//    	ModelAndView mv = new ModelAndView();
-//        return mv;
-//    } 
-//	
-//	/**
-//	 * 设置编辑保存
-//	 * @return  
-//	 * @return ModelAndView  
-//	 * @date 2021年6月12日下午9:51:30
-//	 */
-//	@RequestMapping("/settingEditSave")
-//    public ModelAndView settingEditSave(){
-//    	ModelAndView mv = new ModelAndView();
-//        return mv;
-//    } 
 
 }

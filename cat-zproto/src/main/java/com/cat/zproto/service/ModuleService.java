@@ -1,7 +1,7 @@
 package com.cat.zproto.service;
 
 import java.io.File;
-import java.io.InputStream;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Collections;
@@ -9,12 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
@@ -129,31 +127,22 @@ public class ModuleService implements InitializingBean{
 	public void afterPropertiesSet() throws Exception {
 		Collection<SettingVersion> versions = setting.getVersionInfo().values();
 		for (SettingVersion settingVersion : versions) {
-			String version = settingVersion.getVersion();
-			ModuleDomain domain = moduleManager.getOrCreateDomain(version);
-			String moduleInfoPath = settingVersion.getModulePath();
-			//way1.
-			String content = FileUtils.readFileToString(new File(moduleInfoPath), StandardCharsets.UTF_8);
-			
-			//way2, 基于resource下读取配置
-//			ClassPathResource resource = new ClassPathResource(moduleInfoPath);
-//			InputStream inputStream = resource.getInputStream();
-//			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-			//way2.5
-//			File file = resource.getFile();
-//			String content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
-			
-//			//way3,基于resource下读取配置
-//			Resource resource = resourceLoader.getResource("classpath:resource.properties");
-//			InputStream is = resource.getInputStream();
-//			String content = IOUtils.toString(is, Charset.defaultCharset());
-			
-			List<ModuleEntity> entitys = JSON.parseArray(content, ModuleEntity.class);
-			domain.initModuleEntity(entitys);
-//			entitys.forEach((entity) ->{
-//				domain.replacModuleEntity(entity);
-//			});
+			loadModuleProperties(settingVersion);
 		}
+	}
+	
+	/**
+	 * 加载模块配置
+	 * @throws IOException 
+	 */
+	public void loadModuleProperties(SettingVersion settingVersion) throws IOException{
+		String version = settingVersion.getVersion();
+		ModuleDomain domain = moduleManager.getOrCreateDomain(version);
+		String moduleInfoPath = settingVersion.getModulePath();
+		//way1.
+		String content = FileUtils.readFileToString(new File(moduleInfoPath), StandardCharsets.UTF_8);
+		List<ModuleEntity> entitys = JSON.parseArray(content, ModuleEntity.class);
+		domain.initModuleEntity(entitys);
 	}
     
 }
