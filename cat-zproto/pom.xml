@@ -161,18 +161,22 @@
 					</execution>
 					
 					<execution>
-						<id>copy-proto</id>
+						<id>copy-configdata</id>
 						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
 						<configuration>
-							<outputDirectory>${basedir}/target/release/proto3</outputDirectory>
+							<outputDirectory>${basedir}/target/release/configdata</outputDirectory>
 							<resources>
 								<resource>
-									<directory>proto3</directory>
+									<directory>configdata</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
 						</configuration>
 					</execution>
+					
 				</executions>
 			</plugin>
 			<plugin>
@@ -204,7 +208,7 @@
 						<exclude>**/*.sh</exclude>
 						<exclude>**/*.bat</exclude>
 						<exclude>**/*.json</exclude>
-						<exclude>/config</exclude>
+						<exclude>/configdata</exclude>
 					</excludes>
 					<outputDirectory>${project.build.directory}/release</outputDirectory>
 					<archive>

@@ -1,5 +1,6 @@
 package com.cat.zproto.service;
 
+import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
@@ -7,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,17 +132,18 @@ public class ModuleService implements InitializingBean{
 			String version = settingVersion.getVersion();
 			ModuleDomain domain = moduleManager.getOrCreateDomain(version);
 			String moduleInfoPath = settingVersion.getModulePath();
-			//way1
-			//String content = FileUtils.readFileToString(new File(moduleInfoPath), StandardCharsets.UTF_8);
+			//way1.
+			String content = FileUtils.readFileToString(new File(moduleInfoPath), StandardCharsets.UTF_8);
 			
-			//way2
-			ClassPathResource resource = new ClassPathResource(moduleInfoPath);
+			//way2, 基于resource下读取配置
+//			ClassPathResource resource = new ClassPathResource(moduleInfoPath);
+//			InputStream inputStream = resource.getInputStream();
+//			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+			//way2.5
 //			File file = resource.getFile();
 //			String content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
-			InputStream inputStream = resource.getInputStream();
-			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 			
-//			//way3
+//			//way3,基于resource下读取配置
 //			Resource resource = resourceLoader.getResource("classpath:resource.properties");
 //			InputStream is = resource.getInputStream();
 //			String content = IOUtils.toString(is, Charset.defaultCharset());

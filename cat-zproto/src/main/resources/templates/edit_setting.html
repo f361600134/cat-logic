@@ -191,8 +191,34 @@ layui.use('table', function(){
       case 'delete':
         if(data.length === 0){
           layer.msg('请选择一行');
-        } else {
-          layer.msg('删除');
+        }else if(data.length >= 2){
+          layer.msg('防误删,每次最多删除1条数据');
+        } 
+        else {
+        	var dels = [];
+        	data.forEach(function(n,i){
+        		dels.push(n.version);
+        	});
+        	layer.confirm('真的删除么?', function(index){
+                layer.close(index);
+                $.ajax({
+                    type: 'get',
+                    url: '/zproto/setting/deleteVersion',
+                    dataType:"json", //返回格式为json
+                    data:{versions:dels}, //参数值
+                    contentType: 'application/x-www-form-urlencoded',
+                    success: function(ret){
+                        if(ret.code==0){
+                            layer.alert("删除成功！");
+                            location.reload();//重新加载页面表格
+                        }else{
+                            layer.alert(ret.tips);
+                        }
+                    },
+                    error: function(jqXHR){console.log(jqXHR)},
+                });
+                //向服务端发送删除指令
+            });
         }
       break;
     };

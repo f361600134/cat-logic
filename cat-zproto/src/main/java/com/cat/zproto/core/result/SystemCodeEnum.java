@@ -6,7 +6,7 @@ public enum SystemCodeEnum implements CodeEnum{
 	SUCCESS(0, "SUCCESS"),
 	ERROR_PARAM(1, "参数为空"),
 	ERROR_ADD_REPEAT(2, "模块id重复"),
-	ERROR_DELETE_LIMIT(3, "防误删,每次最多删除2条数据"),
+	ERROR_DELETE_LIMIT_TWO(3, "防误删,每次最多删除2条数据"),
 	ERROR_NO_CHANGE(4, "没有任何修改"),
 	ERROR_ILLEGAL_PARAM(5, "参数出错"),
 	ERROR_CANNOT_DOUND_MODULE(6, "找不到指定模块"),
@@ -19,6 +19,8 @@ public enum SystemCodeEnum implements CodeEnum{
 	ERROR_NOT_WRITE_FAILED(13, "修改成功但是持久化失败"),
 	ERROR_VERSION_EXIST(14, "已存在此版本"),
 	ERROR_COPIED_TRUNK_DIR(16, "复制主干目录出错"),
+	ERROR_DELETE_LIMIT_ONE(17, "防误删,每次最多删除1条数据"),
+	ERROR_DELETE_BRANCH(18, "删除分支配置出错"),
 	;
 	
 	private int status;

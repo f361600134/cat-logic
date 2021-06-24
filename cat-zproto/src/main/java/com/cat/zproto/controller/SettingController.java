@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 
 import org.apache.commons.io.FileUtils;
@@ -15,6 +16,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -81,6 +83,19 @@ public class SettingController {
 		mv.setViewName("frame");
 		return mv;
 	}
+	
+	/**
+	 * 设置
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@RequestMapping("/setting")
+	public ModelAndView setting() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("setting");
+		return mv;
+	}
 
 	/**
 	 * 设置修改页
@@ -137,16 +152,9 @@ public class SettingController {
 		SettingVersion first = iter.hasNext() ? iter.next().getValue() : null;
 		if (first != null) {
 			//有主干,拷贝主干的配置到新目录
-			ClassPathResource srcDirRes = new ClassPathResource(first.getConfigDataDirPath());
-			ClassPathResource destDirRes = new ClassPathResource(settingVersion.getConfigDataDirPath());
-//			File srcDir = new File(first.getConfigDataDirPath());
-//			File destDir = new File(settingVersion.getConfigDataDirPath());
+			File srcDir = new File(first.getConfigDataDirPath());
+			File destDir = new File(settingVersion.getConfigDataDirPath());
 			try {
-				System.out.println("====>"+srcDirRes.getPath());
-				System.out.println("====>"+srcDirRes.getURI());
-				System.out.println("====>"+srcDirRes.getURL());
-				File srcDir = new File(srcDirRes.getURI().getPath());
-				File destDir = new File(destDirRes.getURI().getPath());
 				destDir.mkdirs();
 				FileUtils.copyDirectory(srcDir, destDir);
 			} catch (IOException e) {
@@ -157,8 +165,48 @@ public class SettingController {
 		}else {
 			//无主干,do nothing.
 		}
-//		setting.addVersionInfo(settingVersion);
-		//setting.save();
+		setting.addVersionInfo(settingVersion);
+		setting.save();
+		return SystemResult.build(SystemCodeEnum.SUCCESS);
+	}
+	
+	/**
+	 * 添加版本, 从最新版本中复制所有信息内容, 作为分支信息
+	 * 1. 新建目录
+	 * 2.执行check out导出分支信息
+	 * 3.从主干拷贝文件到新目录
+	 * 4.提交目录到svn
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:51:13
+	 */
+	@ResponseBody
+	@RequestMapping("/deleteVersion")
+	public Object deleteVersion(@RequestParam(value = "versions[]") List<String> versions) {
+		if (versions == null) {
+			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
+		}
+		final int size = versions.size();
+		if (size == 0) {
+			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
+		}
+		else if (size >= 2) {
+			return SystemResult.build(SystemCodeEnum.ERROR_DELETE_LIMIT_ONE);
+		}
+		//	删除目录, 实际上只能删除一个
+		for (String version : versions) {
+			SettingVersion settingInfo = setting.getVersionInfo().remove(version);
+			if (settingInfo != null) {
+				try {
+					FileUtils.deleteDirectory(new File(settingInfo.getConfigDataDirPath()));
+				} catch (IOException e) {
+					logger.error("deleteVersion error, 删除版本错误", e);
+					return SystemResult.build(SystemCodeEnum.ERROR_DELETE_BRANCH);
+				}
+			}
+		}
+		//	保存配置信息
+		setting.save();
 		return SystemResult.build(SystemCodeEnum.SUCCESS);
 	}
 

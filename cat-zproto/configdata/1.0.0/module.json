@@ -1,0 +1,39 @@
+[{
+	"comment":"公共协议",
+	"extendInfo":[],
+	"id":1,
+	"name":"Common",
+	"one2one":false
+},{
+	"comment":"登录",
+	"extendInfo":[],
+	"id":100,
+	"name":"Login",
+	"one2one":false
+},{
+	"comment":"玩家",
+	"extendInfo":[],
+	"id":101,
+	"name":"Player",
+	"one2one":false
+},{
+	"comment":"物品",
+	"extendInfo":[
+		2
+	],
+	"id":102,
+	"name":"Item",
+	"one2one":false
+},{
+	"comment":"邮件",
+	"extendInfo":[],
+	"id":103,
+	"name":"Mail",
+	"one2one":false
+},{
+	"comment":"聊天",
+	"extendInfo":[],
+	"id":104,
+	"name":"Chat",
+	"one2one":false
+}]

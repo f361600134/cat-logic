@@ -7,31 +7,8 @@
 <body>
 <input id="version" th:value="${version}"  hidden="true">
 
-<div class="layui-row" style="margin: 5px auto;">
-	<div class="layui-row">
-	    <div class="layui-col-md4">
-	      <div class="grid-demo grid-demo-bg1">
-	      		.
-	      </div>
-	    </div>
-	    <div class="layui-col-md4">
-	      <div class="grid-demo">
-	      	<h1 align="center" style="color:#FF5722"  th:text="'当前使用的版本为'+${version}"> </h1>
-	      </div>
-	    </div>
-	    <div class="layui-col-md4">
-	      <div class="grid-demo grid-demo-bg1" style="text-align: right; margin: 5px">
-<!-- 				<div class="layui-btn-container"> -->
-<!-- 					<button type="button"  class="layui-btn layui-btn-primary">Settings</button> -->
-<!-- 				</div> -->
-					<a href="/zproto/setting/settingUpdateView">
-						<i class="layui-icon layui-icon-set">
-						<cite>设置</cite>
-						</i>
-					</a>
-	      </div>
-	    </div>
-	</div>
+<div class="grid-demo">
+	<h1 align="center" style="color:#FF5722"  th:text="'当前使用的版本为'+${version}"> </h1>
 </div>
 
 <!-- <a href="/zproto/module/protoReverseLoad"><p align="center">尝试反向加载</p></a> -->

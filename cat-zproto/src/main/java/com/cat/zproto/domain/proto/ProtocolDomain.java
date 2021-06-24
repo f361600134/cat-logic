@@ -175,27 +175,24 @@ public class ProtocolDomain {
 	 * @throws IOException 
 	 */
 	public void init(String protoPath, String protoIdPath) throws IOException {
-//		File file = new File(protoPath);
-		//初始化协议
-//		String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-		ClassPathResource resource = new ClassPathResource(protoPath);
-//		File file = resource.getFile();
-//		String content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
-		InputStream inputStream = resource.getInputStream();
-		String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+		//基于项目根目录初始化协议
+		String content = FileUtils.readFileToString(new File(protoPath), StandardCharsets.UTF_8);
+		
+		//way2. 基于resources目录的读取配置
+//		ClassPathResource resource = new ClassPathResource(protoPath);
+//		InputStream inputStream = resource.getInputStream();
+//		String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+		
 		List<ProtocolObject> protoData = JSON.parseArray(content, ProtocolObject.class);
 		protoData.forEach((p) ->{
 			protoMap.put(p.getModuleName(), p);
 		});
 		
-		//初始化协议号
-//		file = new File(protoIdPath);
-//		content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-		resource = new ClassPathResource(protoIdPath);
-//		file = resource.getFile();
-//		content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
-		inputStream = resource.getInputStream();
-		content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+		content = FileUtils.readFileToString(new File(protoIdPath), StandardCharsets.UTF_8);
+		//初始化协议号, 基于resources目录的读取配置
+//		resource = new ClassPathResource(protoIdPath);
+//		inputStream = resource.getInputStream();
+//		content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 		Map<String, Integer> tempMap = JSON.parseObject(content, new TypeReference<Map<String, Integer>>(){});
 		protoIdMap.putAll(tempMap);
 	}

@@ -24,7 +24,7 @@ public class CommonConstant {
 //	 */
 //	public static String RESOURCE_CONFIGDATA_PATH = "src/main/resources/configdata/";
 //	public static final String RESOURCE_CONFIGDATA_PATH = "classpath:configdata";
-	public static String RESOURCE_CONFIGDATA_PATH = "configdata";
+	public static String RESOURCE_CONFIGDATA_PATH = "./configdata";
 	
 	/**
 	 * 编译器的路径

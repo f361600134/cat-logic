@@ -95,17 +95,17 @@ public class ModuleController {
 	@Autowired
 	private SvnService svnService;
 
-	/**
-	 * 主页面
-	 * @deprecated
-	 */
-	@RequestMapping("/index")
-	public ModelAndView index() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("index");
-		mv.addObject("version", "1.0.0");
-		return mv;
-	}
+//	/**
+//	 * 主页面
+//	 * @deprecated
+//	 */
+//	@RequestMapping("/index")
+//	public ModelAndView index() {
+//		ModelAndView mv = new ModelAndView();
+//		mv.setViewName("index");
+//		mv.addObject("version", version);
+//		return mv;
+//	}
 	
 	/**
 	 * 主页面
@@ -126,10 +126,10 @@ public class ModuleController {
 	 * 添加模块界面
 	 */
 	@RequestMapping("/addModuleView")
-	public ModelAndView addModuleView() {
+	public ModelAndView addModuleView(String version) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("add_module");
-		mv.addObject("version", "1.0.0");
+		mv.addObject("version", version);
 		return mv;
 	}
 
@@ -141,7 +141,7 @@ public class ModuleController {
 		ModuleEntity moduleEntitie = moduleService.getModuleEntity(version, id);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("edit_module");
-		mv.addObject("version", "1.0.0");
+		mv.addObject("version", version);
 		mv.addObject("data", moduleEntitie);
 		return mv;
 	}
@@ -155,7 +155,7 @@ public class ModuleController {
 	@RequestMapping("/protoEditView")
 	public Object protoEditView(String version, int id) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("version", "1.0.0");
+		mv.addObject("version", version);
 		mv.addObject("id", id);
 
 		ModuleEntity entity = moduleService.getModuleEntity(version, id);
@@ -236,7 +236,7 @@ public class ModuleController {
 			}
 		}
 		mv.setViewName("view_protpcol");
-		mv.addObject("version", "1.0.0");
+		mv.addObject("version", version);
 		mv.addObject("requests", requests.values());
 		mv.addObject("responses", responses.values());
 		mv.addObject("pbs", pbs);
@@ -303,7 +303,7 @@ public class ModuleController {
 				protoService.getProtoIdMap(version));
 		if (result) {
 			mv.setViewName("index");
-			mv.addObject("version", "1.0.0");
+			mv.addObject("version", version);
 		} else {
 			mv.setViewName("error");
 		}
@@ -360,12 +360,12 @@ public class ModuleController {
 		
 //		ClassPathResource resource = new ClassPathResource(CommonConstant.PROTO_EXE_PATH);
 		String protoExePath = setting.getProto().getProtoExePath();
-		Resource resource = new ClassPathResource("");
-		try {
-			protoExePath = resource.getFile().getAbsolutePath()+protoExePath;
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+//		Resource resource = new ClassPathResource("");
+//		try {
+//			protoExePath = resource.getFile().getAbsolutePath()+protoExePath;
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
 		String os = System.getProperty("os.name");
 		if (os.toLowerCase().startsWith("win")) {
 			protoExePath = protoExePath.concat("/").concat("protoc.exe");
@@ -564,7 +564,7 @@ public class ModuleController {
 	@RequestMapping("/deleteModule")
 	public Object deleteModule(String version, @RequestParam(value = "ids[]") int[] ids) {
 		if (ids.length > 2) {
-			return SystemResult.build(SystemCodeEnum.ERROR_DELETE_LIMIT);
+			return SystemResult.build(SystemCodeEnum.ERROR_DELETE_LIMIT_TWO);
 		}
 		for (Integer id : ids) {
 			moduleService.removeModuleEntity(version, id);
