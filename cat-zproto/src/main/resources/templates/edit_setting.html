@@ -55,19 +55,50 @@
 		      <input type="text" name="protoExePath" lay-verify="title" autocomplete="off" placeholder="proto执行文件的路径" class="layui-input" th:value="${data.proto.protoExePath}">
 		    </div>
 		  </div>
+		  
 		  <div class="layui-form-item">
 		    <label class="layui-form-label" style="white-space:nowrap!important;">文件生成路径</label>
 		    <div class="layui-input-block">
 		      <input type="text" name="protoPath" placeholder="生成的proto路径" autocomplete="off" class="layui-input" th:value="${data.proto.protoPath}">
 		    </div>
 		  </div>
-		   <div class="layui-form-item">
+		  
+		  <div class="layui-form-item">
 		    <label class="layui-form-label" style="white-space:nowrap!important;">Java引用路径
 		    </label>
 		    <div class="layui-input-block">
 		      <input type="text" name="javaPackagePath" lay-verify="title" autocomplete="off" placeholder="生成所在的Java包路径" class="layui-input" th:value="${data.proto.javaPackagePath}">
 		    </div>
 		  </div>
+		  
+		   <div class="layui-form-item layui-inline">
+		    <label class="layui-form-label" style="white-space:nowrap!important;">请求协议前缀</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="reqPrefix" lay-verify="title" autocomplete="off" placeholder="建议Req作为请求前缀" class="layui-input" th:value="${data.proto.reqPrefix}">
+		    </div>
+		  </div>
+		 
+		  <div class="layui-form-item layui-inline">
+		    <label class="layui-form-label" style="white-space:nowrap!important;">响应协议前缀</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="respPrefix" lay-verify="title" autocomplete="off" placeholder="建议Resp作为响应前缀" class="layui-input" th:value="${data.proto.respPrefix}">
+		    </div>
+		  </div>
+		  
+		  <div class="layui-form-item layui-inline">
+		    <label class="layui-form-label" style="white-space:nowrap!important;">协议对象前缀</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="pbPrefix" lay-verify="title" autocomplete="off" placeholder="建议PB作为对象前缀" class="layui-input" th:value="${data.proto.pbPrefix}">
+		    </div>
+		  </div>
+		  
+		  <div class="layui-form-item layui-inline">
+		    <label class="layui-form-label" style="white-space:nowrap!important;">协议号系数</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="ptoroCoefficient" lay-verify="title" autocomplete="off" placeholder="建议PB作为对象前缀" class="layui-input" th:value="${data.proto.ptoroCoefficient}">
+		    </div>
+		  </div>
+		  
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">协议号排序</label>
 		    <div class="layui-input-block">
@@ -75,6 +106,7 @@
 		      <input type="radio" name="protoIdSortBy" value="2" title="先请求后响应">
 		    </div>
 		  </div>
+		  
 		  <div class="layui-form-item">
 	        <div class="layui-input-block">
 	            <button  id="submit" class="layui-btn"  lay-submit lay-filter="editProto">提交</button>
@@ -281,7 +313,11 @@ layui.use('form', function(){
         d.protoPath=$("input[name='protoPath']").val();
         d.javaPackagePath=$("input[name='javaPackagePath']").val();
         d.protoIdSortBy=$("input[name='protoIdSortBy']").val();
-        
+        d.reqPrefix=$("input[name='reqPrefix']").val();
+        d.respPrefix=$("input[name='respPrefix']").val();
+        d.pbPrefix=$("input[name='pbPrefix']").val();
+        d.ptoroCoefficient=$("input[name='ptoroCoefficient']").val();
+                      
         $.ajax({
             type: 'POST',
             url: '/zproto/setting/addSettingProto',

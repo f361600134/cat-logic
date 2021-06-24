@@ -40,6 +40,23 @@ public class SettingProto {
 	 */
 	private int protoIdSortBy;
 	
+	/**
+	 * 默认消息体请求前缀, 可修改
+	 */
+	public String reqPrefix = "Req";
+	/**
+	 * 默认消息体响应前缀, 可修改
+	 */
+	public String respPrefix = "Ack";
+	/**
+	 * 默认消息体对象前缀, 可修改
+	 */
+	public String pbPrefix = "PB";
+	/**
+	 * 默认消息体协议号系数, 可修改
+	 */
+	public int ptoroCoefficient = 1000;
+	
 	
 	public String getProtoPath() {
 		return protoPath;
@@ -79,6 +96,38 @@ public class SettingProto {
 
 	public void setProtoIdSortBy(int protoIdSortBy) {
 		this.protoIdSortBy = protoIdSortBy;
+	}
+
+	public String getReqPrefix() {
+		return reqPrefix;
+	}
+
+	public void setReqPrefix(String reqPrefix) {
+		this.reqPrefix = reqPrefix;
+	}
+
+	public String getRespPrefix() {
+		return respPrefix;
+	}
+
+	public void setRespPrefix(String respPrefix) {
+		this.respPrefix = respPrefix;
+	}
+
+	public String getPbPrefix() {
+		return pbPrefix;
+	}
+
+	public void setPbPrefix(String pbPrefix) {
+		this.pbPrefix = pbPrefix;
+	}
+
+	public int getPtoroCoefficient() {
+		return ptoroCoefficient;
+	}
+
+	public void setPtoroCoefficient(int ptoroCoefficient) {
+		this.ptoroCoefficient = ptoroCoefficient;
 	}
 	
 }

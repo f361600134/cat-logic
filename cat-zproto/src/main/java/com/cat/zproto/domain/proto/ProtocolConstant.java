@@ -2,6 +2,7 @@ package com.cat.zproto.domain.proto;
 
 public class ProtocolConstant {
 	
+	//==========一下是分解proto协议相关信息
 	public static String MESSAGE = "message";
 	public static String DOUBLE_SLASH = "//";
 	public static String LEFT_BRACKET = "{";

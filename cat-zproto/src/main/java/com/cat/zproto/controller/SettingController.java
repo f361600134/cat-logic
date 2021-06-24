@@ -215,10 +215,11 @@ public class SettingController {
 		if (info == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
 		}
-		SettingMysql dbInfo = setting.getDbInfo();
-		dbInfo.setUrl(info.getUrl());
-		dbInfo.setUsername(info.getUsername());
-		dbInfo.setPassword(info.getPassword());
+//		SettingMysql dbInfo = setting.getDbInfo();
+//		dbInfo.setUrl(info.getUrl());
+//		dbInfo.setUsername(info.getUsername());
+//		dbInfo.setPassword(info.getPassword());
+		setting.setDbInfo(info);
 		return setting.save();
 	}
 
@@ -234,11 +235,16 @@ public class SettingController {
 		if (info == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
 		}
-		SettingProto proto = setting.getProto();
-		proto.setProtoExePath(info.getProtoExePath());
-		proto.setProtoPath(info.getProtoPath());
-		proto.setJavaPackagePath(info.getJavaPackagePath());
-		proto.setProtoIdSortBy(info.getProtoIdSortBy());
+//		SettingProto proto = setting.getProto();
+//		proto.setProtoExePath(info.getProtoExePath());
+//		proto.setProtoPath(info.getProtoPath());
+//		proto.setJavaPackagePath(info.getJavaPackagePath());
+//		proto.setProtoIdSortBy(info.getProtoIdSortBy());
+//		proto.setReqPrefix(info.getReqPrefix());
+//		proto.setRespPrefix(info.getRespPrefix());
+//		proto.setPbPrefix(info.getPbPrefix());
+//		proto.setPtoroCoefficient(info.getPtoroCoefficient());
+		setting.setProto(info);
 		return setting.save();
 	}
 
@@ -254,10 +260,11 @@ public class SettingController {
 		if (info == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
 		}
-		SettingSvn svn = setting.getSvn();
-		svn.setAccount(info.getAccount());
-		svn.setPassword(info.getPassword());
-		svn.setSourceCheckOutUrl(info.getSourceCheckOutUrl());
+//		SettingSvn svn = setting.getSvn();
+//		svn.setAccount(info.getAccount());
+//		svn.setPassword(info.getPassword());
+//		svn.setSourceCheckOutUrl(info.getSourceCheckOutUrl());
+		setting.setSvn(info);
 		return setting.save();
 	}
 

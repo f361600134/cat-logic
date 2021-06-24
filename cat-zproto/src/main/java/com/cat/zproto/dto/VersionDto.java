@@ -1,5 +1,6 @@
 package com.cat.zproto.dto;
 
+@Deprecated
 public class VersionDto {
 	
 	/**

@@ -42,6 +42,7 @@ import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingVersion;
 import com.cat.zproto.domain.table.TableEntity;
 import com.cat.zproto.dto.TableFreemarkerDto;
+import com.cat.zproto.enums.ProtoTypeEnum;
 import com.cat.zproto.service.CommandService;
 import com.cat.zproto.service.DbService;
 import com.cat.zproto.service.ModuleService;
@@ -169,10 +170,8 @@ public class ModuleController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("version", version);
 		mv.addObject("id", id);
-
 		ModuleEntity entity = moduleService.getModuleEntity(version, id);
 		if (entity == null) {
-			// TODO 重定向页面
 			mv.setViewName("error");
 			return mv;
 		}
@@ -182,7 +181,12 @@ public class ModuleController {
 			return mv;
 		}
 		/*
-		 * TODO 也只是为了做一个排序, 写这么多代码,这里的数据结构没有设计好 工具完成后要想办法重构代码 20210603
+		 * 获取到proto基础数据类型,以及引用类型
+		 */
+//		ProtoTypeEnum.values();
+		
+		/*
+		 * 也只是为了做一个排序, 写这么多代码,这里的数据结构没有设计好 工具完成后要想办法重构代码 20210603
 		 * 工具基本完成, 已经懒得重构了 20210611
 		 */
 		BiMap<String, Integer> protoIdMap = protoService.getProtoIdMap(version);

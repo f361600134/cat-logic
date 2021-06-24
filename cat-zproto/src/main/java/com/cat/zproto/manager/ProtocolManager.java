@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.cat.zproto.domain.module.ModuleDomain;
 import com.cat.zproto.domain.proto.ProtocolDomain;
 
 @Component

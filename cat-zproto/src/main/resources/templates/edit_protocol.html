@@ -12,8 +12,6 @@
 <a th:href="'/zproto/module/viewModule?version='+${version}"><p align="center">回到模块页</p>
 </a>
 
-
-
 <protocolTmp id="protocolTmp" hidden="true">
 <hr class="layui-border-black">
 <div class="layui-form-item">
@@ -38,39 +36,54 @@
 	<div name="fields"></div>
 	<button name="addField" class="layui-btn">添加字段</button>
 </div>
-
 </protocolTmp>
 
 <fieldTmp id="fieldTmp" hidden="true">
 <div class="layui-form-item">
-	<div class="layui-inline">
+	<div class="layui-inline layui-form">
 		<label class="layui-form-label">列表:</label>
 		<div class="layui-input-block">
-			<select name="field_repeated" lay-search="">
-				<option value="false">false</option>
-				<option value="true">true</option>
-			</select>
+<!-- 			<select name="field_repeated" lay-search> -->
+<!-- 				<option value="false">false</option> -->
+<!-- 				<option value="true">true</option> -->
+<!-- 			</select> -->
+		<input type="checkbox" name="field_repeated" lay-skin="switch" lay-text="true|false">
 		</div>
 	</div>
+<!-- 	<div class="layui-inline"> -->
+<!-- 		<label class="layui-form-label">字段类型：</label> -->
+<!-- 		<div class="layui-input-inline"> -->
+<!-- 			<input type="text" name="field_type" autocomplete="off" class="layui-input"> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	
 	<div class="layui-inline">
 		<label class="layui-form-label">字段类型：</label>
-		<div class="layui-input-inline">
-			<input type="text" name="field_type" autocomplete="off"
-				class="layui-input">
+		<div class="layui-input-inline layui-form">
+		<select name="field_type" lay-search >
+			<option value=""></option>
+			<option value="int32">int32</option>
+			<option value="int64">int64</option>
+			<option value="string">string</option>
+			<option value="bool">bool</option>
+			<option value="ChatDto">ChatDto</option>
+			<option value="ItemDto">ItemDto</option>
+			<option value="PlayerDto">PlayerDto</option>
+		</select>
 		</div>
 	</div>
+	
+	
 	<div class="layui-inline">
 		<label class="layui-form-label">字段名：</label>
 		<div class="layui-input-inline">
-			<input type="text" name="field_name" autocomplete="off"
-				class="layui-input">
+			<input type="text" name="field_name" autocomplete="off" class="layui-input">
 		</div>
 	</div>
 	<div class="layui-inline">
 		<label class="layui-form-label">注释：</label>
 		<div class="layui-input-inline">
-			<input type="text" name="field_comment" autocomplete="off"
-				class="layui-input">
+			<input type="text" name="field_comment" autocomplete="off" class="layui-input">
 		</div>
 	</div>
 	<button onclick="$(this).parent().parent().remove();" class="layui-btn">删除字段</button>
@@ -82,9 +95,15 @@
 <hr class="layui-border-red">
 
 <button id="addProtocol" class="layui-btn">添加协议</button>
-
 <button id='submit' class="layui-btn">提交</button>
-<button id='createMessage' class="layui-btn">生成csharp协议</button>
+<button id="createMessage1" name="csharp" class="layui-btn" value="csharp" >生成csharp协议</button>
+<button id="createMessage2" name="java" class="layui-btn" value="java" >生成Java协议</button>
+
+<br>
+<br>
+<br>
+<br>
+
 </body>
 <script type="text/javascript">
 
@@ -127,7 +146,7 @@
                 var field_obj={};
                 var index=fieldIndex+1;
                 field_obj.index=index;
-                field_obj.repeated=$(this).find("select[name='field_repeated'] option:selected").val();
+                field_obj.repeated=$(this).find("input[name='field_repeated']:checked").val()==="on";
                 field_obj.type=$(this).find("input[name='field_type']").val();
                 field_obj.name=$(this).find("input[name='field_name']").val();
                 field_obj.comment=$(this).find("input[name='field_comment']").val();
@@ -158,14 +177,36 @@
     });
 
 
-	$("#createMessage").click(function(){
+	$("#createMessage1").click(function(){
 		var version=$("#version").val();
 		var id=$("#id").val();
+		var langType=$("#createMessage1").val();
 		$.ajax({
 			type: 'GET',
 			url: '/zproto/module/createMessage',
 			dataType:"json", //返回格式为json
-			data:{"id":id,"version":version}, //参数值
+			data:{"id":id,"version":version,"langType":langType}, //参数值
+			contentType: 'application/x-www-form-urlencoded',
+			success: function(data){
+				if(data.code==0){
+					layer.alert("生成成功！");
+				}else{
+					layer.alert("生成失败!");
+				}
+			},
+			error: function(jqXHR){console.log(jqXHR)},
+		});
+	});
+	
+	$("#createMessage2").click(function(){
+		var version=$("#version").val();
+		var id=$("#id").val();
+		var langType=$("#createMessage2").val();
+		$.ajax({
+			type: 'GET',
+			url: '/zproto/module/createMessage',
+			dataType:"json", //返回格式为json
+			data:{"id":id,"version":version,"langType":langType}, //参数值
 			contentType: 'application/x-www-form-urlencoded',
 			success: function(data){
 				if(data.code==0){
@@ -196,7 +237,7 @@
                 var fieldClone = $("#fieldTmp").clone(true);
                 fieldClone.attr("hidden",false);
                 var field=fields[j];
-                fieldClone.find("select[name='field_repeated']").val(field.repeated+"");
+                fieldClone.find("input[name='field_repeated']").prop("checked",field.repeated);
                 fieldClone.find("input[name='field_type']").val(field.type);
                 fieldClone.find("input[name='field_name']").val(field.name);
                 fieldClone.find("input[name='field_comment']").val(field.comment);
@@ -207,6 +248,7 @@
         layui.use('form', function(){
             form = layui.form;
             form.render('checkbox');
+            form.render('select');
         });
     });
 

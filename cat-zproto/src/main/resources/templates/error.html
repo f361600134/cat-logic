@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>协议生成管理</title>
-    <link rel="stylesheet" href="../static/layui/css/layui.css">
-    <script src="../static/jquery/jquery-3.4.1.js"></script>
-    <script src="../static/layui/layui.js"></script>
-</head>
+      
+<head th:include="head :: htmlhead" th:with="title='协议生成管理'"></head>
 
 <body>
 <h1 style="text-align: center">当前版本没有该协议</h1>
-<a th:href="'/zproto/module/viewModule?version='+${version}"><p align="center">回到主页</p></a>
+<a href="/zproto/module/index"><p align="center">回到主页</p></a>
 </body>
-<script>
-</script>
 </html>

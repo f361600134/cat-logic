@@ -1,8 +1,5 @@
 package com.cat.zproto.constant;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-
 /**
  * 全局静态常量
  * 因为依赖配置的相对路径,所以通过spring从配置中获取文件
