@@ -16,9 +16,9 @@ public class ProtocolConstant {
 	public static String SPOT = ".";
 	
 	/**可以丢在配置里*/
-	public static String REQ_PREFIX = "Req";
-	public static String RESP_PREFIX = "Ack";
-	public static String PB_PREFIX = "PB";
+//	public static String REQ_PREFIX = "Req";
+//	public static String RESP_PREFIX = "Ack";
+//	public static String PB_PREFIX = "PB";
 	public static String PROTO_SUBFIX = ".proto";
-	public static int PTORO_COEFFICIENT = 1000;
+//	public static int PTORO_COEFFICIENT = 1000;
 }

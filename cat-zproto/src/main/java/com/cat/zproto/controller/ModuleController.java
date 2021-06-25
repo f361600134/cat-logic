@@ -6,12 +6,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,6 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,6 +57,9 @@ import com.cat.zproto.util.ZipUtil;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+
+import freemarker.cache.StringTemplateLoader;
+import freemarker.template.Template;
 
 /**
  * 用于处理模块相关操作 1. 模块详细 2. 新增模块 3. 修改模块 4. 删除模块 5. 模块列表
@@ -186,7 +193,8 @@ public class ModuleController {
 		 *2.其他自定义类型
 		 */
 		List<String> allTypes = new ArrayList<>(ProtoTypeEnum.enumMap.values());
-		allTypes.addAll(protoService.getAllPbProtoName(version, ProtocolConstant.PB_PREFIX));
+//		allTypes.addAll(protoService.getAllPbProtoName(version, ProtocolConstant.PB_PREFIX));
+		allTypes.addAll(protoService.getAllPbProtoName(version, setting.getProto().getPbPrefix()));
 		/*
 		 * 也只是为了做一个排序, 写这么多代码,这里的数据结构没有设计好 工具完成后要想办法重构代码 20210603
 		 * 工具基本完成, 已经懒得重构了 20210611
@@ -237,9 +245,12 @@ public class ModuleController {
 		TreeMap<Integer, ProtocolStructure> responses = new TreeMap<>();
 		List<ProtocolStructure> pbs = new ArrayList<>();
 
-		String reqPrefix = ProtocolConstant.REQ_PREFIX;
-		String respPrefix = ProtocolConstant.RESP_PREFIX;
-		String pbPrefix = ProtocolConstant.PB_PREFIX;
+//		String reqPrefix = ProtocolConstant.REQ_PREFIX;
+//		String respPrefix = ProtocolConstant.RESP_PREFIX;
+//		String pbPrefix = ProtocolConstant.PB_PREFIX;
+		String reqPrefix = setting.getProto().getReqPrefix();
+		String respPrefix = setting.getProto().getRespPrefix();
+		String pbPrefix = setting.getProto().getPbPrefix();
 
 		for (ProtocolStructure struct : structures) {
 			String name = struct.getName();
@@ -450,7 +461,90 @@ public class ModuleController {
 		}
 		return "下载成功";
 	}
+	
+	/**
+	 * 编辑模板页面
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@ResponseBody
+	@RequestMapping("/runCode")
+	public Object runCode(@RequestBody String str) {
+		freemarker.template.Configuration configuration = new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_29);
+		StringTemplateLoader templateLoader = new StringTemplateLoader();
+		configuration.setTemplateLoader(templateLoader);
+		configuration.setDefaultEncoding("UTF-8");
+		
+		Iterator<Entry<String, SettingVersion>> iter = setting.getVersionInfo().entrySet().iterator();
+		SettingVersion first = iter.hasNext() ? iter.next().getValue() : null;
+		//使用默认的数据, 生成dto
+		TableFreemarkerDto dto = createDto(first.getVersion(), 101);
+		
+//		StringTemplateLoader templateLoader = new StringTemplateLoader();
+		// template = 虚拟名称, 用来当作获取静态文件的key
+		templateLoader.putTemplate("template", str); 
+//		configuration.setTemplateLoader(templateLoader);
+		
+//		classic_compatible
+		configuration.setClassicCompatible(true);
+		
+		String ret = "";
+		try (StringWriter stringWriter = new StringWriter();){
+			Template template = configuration.getTemplate("template", "utf-8");
+			template.process(dto, stringWriter);
+			ret = stringWriter.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		
+		return SystemResult.build(SystemCodeEnum.SUCCESS, ret);
+	}
+	
+	private TableFreemarkerDto createDto(String version, int moduleId){
+		ModuleEntity entity = moduleService.getModuleEntity(version, moduleId);
+		if (entity == null) {
+			return null;
+		}
+		ProtocolObject protoObject = protoService.getProtoObject(version, entity.getName());
+		if (protoObject == null) {
+			return null;
+		}
+		List<TableEntity> entitys = dbService.readDb();
+		TableEntity tableEntity = null;
+		for (TableEntity te : entitys) {
+			if (StringUtils.equals(te.getEntityName(), entity.getName())) {
+				tableEntity = te;
+				break;
+			}
+		}
+		TableFreemarkerDto dto = new TableFreemarkerDto(tableEntity, protoObject, entity);
+//		//协议层方法获取
+		List<ProtocolStructure> protoPBStructList = Lists.newArrayList();
+		List<ProtocolStructure> protoReqStructList = Lists.newArrayList();
+		Map<String, ProtocolStructure> protoAckStructMap = Maps.newHashMap();
+		Map<String, ProtocolStructure> structureMap = protoObject.getStructures();
 
+		String reqPrefix = setting.getProto().getReqPrefix();
+		String respPrefix = setting.getProto().getRespPrefix();
+		String pbPrefix = setting.getProto().getPbPrefix();
+		
+		for (String key : structureMap.keySet()) {
+			if (key.startsWith(respPrefix)) {
+				String newKey = key.replace(respPrefix, reqPrefix);
+				protoAckStructMap.put(newKey, structureMap.get(key));
+			} else if (key.startsWith(reqPrefix)) {
+				protoReqStructList.add(structureMap.get(key));
+			} else if (key.startsWith(pbPrefix)) {
+				protoPBStructList.add(structureMap.get(key));
+			}
+		}
+		dto.getProtoAckStructMap().putAll(protoAckStructMap);
+		dto.getProtoReqStructList().addAll(protoReqStructList);
+		dto.getProtoPBStructList().addAll(protoPBStructList);
+		return dto;
+	}
+	
 	/**
 	 * 生成代码<br>
 	 * 根据定义的module信息, 找到数据库中的table, 最终根据table结构生成代码.<br>
@@ -490,13 +584,17 @@ public class ModuleController {
 		Map<String, ProtocolStructure> protoAckStructMap = Maps.newHashMap();
 		Map<String, ProtocolStructure> structureMap = protoObject.getStructures();
 
+		String reqPrefix = setting.getProto().getReqPrefix();
+		String respPrefix = setting.getProto().getRespPrefix();
+		String pbPrefix = setting.getProto().getPbPrefix();
+		
 		for (String key : structureMap.keySet()) {
-			if (key.startsWith(ProtocolConstant.RESP_PREFIX)) {
-				String newKey = key.replace(ProtocolConstant.RESP_PREFIX, ProtocolConstant.REQ_PREFIX);
+			if (key.startsWith(respPrefix)) {
+				String newKey = key.replace(respPrefix, reqPrefix);
 				protoAckStructMap.put(newKey, structureMap.get(key));
-			} else if (key.startsWith(ProtocolConstant.REQ_PREFIX)) {
+			} else if (key.startsWith(reqPrefix)) {
 				protoReqStructList.add(structureMap.get(key));
-			} else if (key.startsWith(ProtocolConstant.PB_PREFIX)) {
+			} else if (key.startsWith(pbPrefix)) {
 				protoPBStructList.add(structureMap.get(key));
 			}
 		}

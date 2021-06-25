@@ -2,6 +2,7 @@ package com.cat.zproto.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +30,9 @@ import com.cat.zproto.domain.system.SettingVersion;
 import com.cat.zproto.service.ModuleService;
 import com.cat.zproto.service.ProtoService;
 import com.cat.zproto.util.Pair;
+
+import freemarker.cache.StringTemplateLoader;
+import freemarker.template.Template;
 
 /**
  * 版本设置， 设置信息保存值setting.json文件 1. 系统设置 2.
@@ -51,7 +54,8 @@ public class SettingController {
 	
 	@Autowired
 	private ProtoService protoService;
-
+	
+	
 //	/**
 //	 *设置信息
 //	 * @return  
@@ -92,6 +96,19 @@ public class SettingController {
 		return mv;
 	}
 
+	/**
+	 * 编辑模板页面
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@RequestMapping("/editTemplate")
+	public ModelAndView editTemplate() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("edit_template");
+		return mv;
+	}
+	
 	/**
 	 * 设置修改页
 	 * 

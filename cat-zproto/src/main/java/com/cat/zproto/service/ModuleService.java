@@ -113,7 +113,8 @@ public class ModuleService implements InitializingBean{
 				if (moduleId <= 0) {
 					continue;
 				}
-				moduleId = moduleId / ProtocolConstant.PTORO_COEFFICIENT;
+//				moduleId = moduleId / ProtocolConstant.PTORO_COEFFICIENT;
+				moduleId = moduleId / setting.getProto().getPtoroCoefficient();
 				entity.setId(moduleId);
 				entity.setName(protocolObject.getModuleName());
 				entity.setComment("");

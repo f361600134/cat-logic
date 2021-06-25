@@ -43,19 +43,19 @@ public class SettingProto {
 	/**
 	 * 默认消息体请求前缀, 可修改
 	 */
-	public String reqPrefix = "Req";
+	private String reqPrefix = "Req";
 	/**
 	 * 默认消息体响应前缀, 可修改
 	 */
-	public String respPrefix = "Ack";
+	private String respPrefix = "Ack";
 	/**
 	 * 默认消息体对象前缀, 可修改
 	 */
-	public String pbPrefix = "PB";
+	private String pbPrefix = "PB";
 	/**
 	 * 默认消息体协议号系数, 可修改
 	 */
-	public int ptoroCoefficient = 1000;
+	private int ptoroCoefficient = 1000;
 	
 	
 	public String getProtoPath() {

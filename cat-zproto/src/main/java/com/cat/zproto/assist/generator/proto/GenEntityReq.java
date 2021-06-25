@@ -43,12 +43,16 @@ public class GenEntityReq extends AbstractProtoGenerator{
 		File file = new File(path);
 		file.mkdirs();
 		
+		String reqPrefix = setting.getProto().getReqPrefix();
+//		String respPrefix = setting.getProto().getRespPrefix();
+//		String pbPrefix = setting.getProto().getPbPrefix();
+		
 		ProtoDto dto = new ProtoDto();
 		dto.setProtocolObj(protocolObj);
 		dto.setModuleName(entityName);
 		Collection<ProtocolStructure> protoStructList = protocolObj.getStructures().values();
 		for (ProtocolStructure struct : protoStructList) {
-			if (struct.getName().startsWith(ProtocolConstant.REQ_PREFIX)) {
+			if (struct.getName().startsWith(reqPrefix)) {
 				String clazzName = getFileNameFrontPart().concat(struct.getName()).concat(getFileNameLatterPart());
 				//赋值享元对象
 				dto.setStruct(struct);

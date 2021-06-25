@@ -108,7 +108,8 @@ public class ProtoService implements InitializingBean{
 				int lastIndex = line.lastIndexOf(quo);
 				String name = line.substring(startIndex, lastIndex);
 				object.setOutClass(name);
-				name = name.replaceAll(ProtocolConstant.PB_PREFIX, "");
+//				name = name.replaceAll(ProtocolConstant.PB_PREFIX, "");
+				name = name.replaceAll(setting.getProto().getPbPrefix(), "");
 				object.setModuleName(name);
 			}
 			else if (line.contains(javaImport)) {
@@ -307,12 +308,13 @@ public class ProtoService implements InitializingBean{
 		//	根据配置重新设置
 		String javaPackage = setting.getProto().getJavaPackagePath();
 		protoObject.setJavaPath(javaPackage);
-		String PbObj = ProtocolConstant.PB_PREFIX.concat(com.cat.zproto.util.StringUtils.firstCharUpper(moduleName));
+//		String PbObj = ProtocolConstant.PB_PREFIX.concat(com.cat.zproto.util.StringUtils.firstCharUpper(moduleName));
+		String PbObj = setting.getProto().getPbPrefix().concat(com.cat.zproto.util.StringUtils.firstCharUpper(moduleName));
 		protoObject.setOutClass(PbObj);
 		//查询所有引用类
 		List<String> dtoNames = new ArrayList<>();
 		for (ProtocolStructure protocolStructure : protoStructure) {
-			if (StringUtils.startsWith(protocolStructure.getName(), ProtocolConstant.PB_PREFIX)) {
+			if (StringUtils.startsWith(protocolStructure.getName(), setting.getProto().getPbPrefix())) {
 				dtoNames.add(protocolStructure.getName());
 			}
 		}

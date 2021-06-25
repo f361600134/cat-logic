@@ -148,13 +148,15 @@ public class ProtocolDomain {
 	 * @return
 	 */
 	public List<String> getDependanceObj(String moduleName, List<String> dtoNames){
+		SettingConfig config = SpringContextHolder.getBean(SettingConfig.class);
 		List<String> ret = new ArrayList<>();
 		for (ProtocolObject ptoto : protoMap.values()) {
 			if (StringUtils.equals(ptoto.getModuleName(), moduleName)) {
 				continue;
 			}
 			for (ProtocolStructure struct : ptoto.getStructures().values()) {
-				if (!StringUtils.startsWith(struct.getName(), ProtocolConstant.PB_PREFIX) ) {
+//				if (!StringUtils.startsWith(struct.getName(), ProtocolConstant.PB_PREFIX) ) {
+				if (!StringUtils.startsWith(struct.getName(), config.getProto().getPbPrefix()) ) {
 					continue;
 				}
 				if(dtoNames.contains(struct.getName())) {

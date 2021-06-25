@@ -57,6 +57,7 @@ public abstract class AbstractCodeGenerator implements ICodeGenerator{
 				.concat(entityName).concat(getFileNameLatterPart())
 				.concat(getFileNameSuffix());
 		templateService.printer(dto, fileName, getProtoName(dto));
+		
 		logger.info("成功生成文件{}", fileName);
 	}
 	

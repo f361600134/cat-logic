@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="head :: htmlhead" th:with="title='协议生成管理'"></head>
+
+<link rel=stylesheet href="../codemirror/doc/docs.css">
+<link rel="stylesheet" href="../codemirror/lib/codemirror.css">
+<link rel="stylesheet" href="../codemirror/addon/fold/foldgutter.css">
+<link rel="stylesheet" href="../codemirror/addon/dialog/dialog.css">
+<link rel="stylesheet" href="../codemirror/theme/monokai.css">
+<script src="../codemirror/lib/codemirror.js"></script>
+<script src="../codemirror/addon/search/searchcursor.js"></script>
+<script src="../codemirror/addon/search/search.js"></script>
+<script src="../codemirror/addon/dialog/dialog.js"></script>
+<script src="../codemirror/addon/edit/matchbrackets.js"></script>
+<script src="../codemirror/addon/edit/closebrackets.js"></script>
+<script src="../codemirror/addon/comment/comment.js"></script>
+<script src="../codemirror/addon/wrap/hardwrap.js"></script>
+<script src="../codemirror/addon/fold/foldcode.js"></script>
+<script src="../codemirror/addon/fold/brace-fold.js"></script>
+<script src="../codemirror/mode/javascript/javascript.js"></script>
+<script src="../codemirror/keymap/sublime.js"></script>
+
+<!-- 编辑模板页 -->
+<body>
+
+<textarea class="form-control" id="code" name="code"></textarea>
+<script>
+<script>
+//根据DOM元素的id构造出一个编辑器
+var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+    mode: "text/groovy",    //实现groovy代码高亮
+    mode: "text/x-java", //实现Java代码高亮
+    lineNumbers: true,	//显示行号
+    theme: "dracula",	//设置主题
+    lineWrapping: true,	//代码折叠
+    foldGutter: true,
+    gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+    matchBrackets: true,	//括号匹配
+    //readOnly: true,        //只读
+});
+editor.setSize('800px', '950px');     //设置代码框的长宽
+
+editor.setValue("");    //先代码框的值清空
+editor.setValue(obj.scriptCode);    //给代码框赋值
+</script> 
+
+<!-- <article> -->
+<!-- <h2>Sublime Text bindings demo</h2> -->
+
+<!-- <p>The <code>sublime</code> keymap defines many Sublime Text-specific -->
+<!-- bindings for CodeMirror. See the code below for an overview.</p> -->
+
+<!-- <p>Enable the keymap by -->
+<!-- loading <a href="../keymap/sublime.js"><code>keymap/sublime.js</code></a> -->
+<!-- and setting -->
+<!-- the <a href="../doc/manual.html#option_keyMap"><code>keyMap</code></a> -->
+<!-- option to <code>"sublime"</code>.</p> -->
+
+<!-- <p>(A lot of the search functionality is still missing.) -->
+
+<!-- <script> -->
+//   var value = "// The bindings defined specifically in the Sublime Text mode\nvar bindings = {\n";
+//   var map = CodeMirror.keyMap.sublime;
+//   for (var key in map) {
+//     var val = map[key];
+//     if (key != "fallthrough" && val != "..." && (!/find/.test(val) || /findUnder/.test(val)))
+//       value += "  \"" + key + "\": \"" + val + "\",\n";
+//   }
+//   value += "}\n\n// The implementation of joinLines\n";
+//   value += CodeMirror.commands.joinLines.toString().replace(/^function\s*\(/, "function joinLines(").replace(/\n  /g, "\n") + "\n";
+//   var editor = CodeMirror(document.body.getElementsByTagName("article")[0], {
+//     value: value,
+//     lineNumbers: true,
+//     mode: "javascript",
+//     keyMap: "sublime",
+//     autoCloseBrackets: true,
+//     matchBrackets: true,
+//     showCursorWhenSelecting: true,
+//     theme: "monokai",
+//     tabSize: 2
+//   });
+<!-- </script> -->
+
+<!-- </article> -->
+	
+</body>
+</html>

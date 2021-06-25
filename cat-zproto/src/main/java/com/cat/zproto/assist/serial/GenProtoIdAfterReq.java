@@ -5,11 +5,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cat.zproto.domain.proto.ProtocolConstant;
 import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
+import com.cat.zproto.domain.system.SettingConfig;
 
 /**
  * 协议id生成排序方式<br>
@@ -22,7 +24,9 @@ import com.cat.zproto.domain.proto.ProtocolStructure;
  */
 @Component
 public class GenProtoIdAfterReq implements IGenProtoId{
-
+	
+	@Autowired private SettingConfig setting;
+	
 	@Override
 	public int type() {
 		return AFTER_REQ;
@@ -34,8 +38,10 @@ public class GenProtoIdAfterReq implements IGenProtoId{
 		Map<String, ProtocolStructure> resps = new LinkedHashMap<>();
 		Map<String, Integer> result = new LinkedHashMap<>();
 		
-		String reqPrefix = ProtocolConstant.REQ_PREFIX;
-		String respPrefix = ProtocolConstant.RESP_PREFIX; 
+//		String reqPrefix = ProtocolConstant.REQ_PREFIX;
+//		String respPrefix = ProtocolConstant.RESP_PREFIX; 
+		String reqPrefix = setting.getProto().getReqPrefix();
+		String respPrefix = setting.getProto().getRespPrefix();
 		
 		//筛选请求响应协议
 		protoObj.getStructures().forEach((protoName, struct)->{
