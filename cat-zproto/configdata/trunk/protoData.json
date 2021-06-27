@@ -843,6 +843,18 @@
 		}
 	}
 },{
+	"dependenceObjs":[""],
+	"javaPath":"com.cat.server.game.data.proto",
+	"moduleName":"",
+	"outClass":"PBLora",
+	"structures":{
+		"PBtest":{
+			"comment":"test",
+			"fields":[],
+			"name":"PBtest"
+		}
+	}
+},{
 	"dependenceObjs":["PBPlayer"],
 	"javaPath":"com.cat.server.game.data.proto",
 	"moduleName":"Chat",

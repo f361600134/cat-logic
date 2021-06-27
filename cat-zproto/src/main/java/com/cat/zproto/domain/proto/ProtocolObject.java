@@ -211,7 +211,7 @@ public class ProtocolObject {
 	@Override
 	public String toString() {
 		return "ProtocolObject [javaPath=" + javaPath + ", outClass=" + outClass + ", javaImport=" + getJavaImport()
-				+ ", structures=" + structures.keySet() + "]";
+				+ ", structures=" + structures + "]";
 	}
 
 }

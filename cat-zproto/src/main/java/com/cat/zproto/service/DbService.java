@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -33,7 +35,25 @@ public class DbService {
 	
 	private static final Logger log = LoggerFactory.getLogger(DbService.class);
 	
-	public List<TableEntity> readDb() {
+//	private final List<TableEntity> tableEntities = new ArrayList<>();
+	private final Map<String, TableEntity> tableEntitieMap = new HashMap<>();
+	
+	/**
+	 * 获取所有tableEntity, 先从本地缓存获取, 没有再查库
+	 */
+	public TableEntity getTableEntity(String tableEntityName){
+		TableEntity tableEntity = tableEntitieMap.get(tableEntityName);
+		if (tableEntity == null) {
+			List<TableEntity> tableEntities = this.readDb();
+			tableEntities.forEach((entity)->{
+				this.tableEntitieMap.put(entity.getEntityName(), entity);
+			});
+			tableEntity = tableEntitieMap.get(tableEntityName);
+		}
+		return tableEntity;
+	}
+	
+	private List<TableEntity> readDb() {
 		try (Connection conn = database.getConnection()){
 			//Connection conn = database.getConnection();
 			ResultSet tbRs = conn.getMetaData().getTables(setting.getDbInfo().getDbName(), null, "%", new String[] { "TABLE" });

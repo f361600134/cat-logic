@@ -21,6 +21,7 @@ public enum SystemCodeEnum implements CodeEnum{
 	ERROR_COPIED_TRUNK_DIR(16, "复制主干目录出错"),
 	ERROR_DELETE_LIMIT_ONE(17, "防误删,每次最多删除1条数据"),
 	ERROR_DELETE_BRANCH(18, "删除分支配置出错"),
+	ERROR_GENERATE_FREEMAKER(19, "生成模板出错"),
 	;
 	
 	private int status;

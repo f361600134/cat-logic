@@ -67,6 +67,7 @@ public class TableBean {
 
 	@Override
 	public String toString() {
-		return "ExcelBean [field=" + field + ", type=" + type + ", desc=" + desc + ", primary=" + primary + "]";
+		return "TableBean [field=" + field + ", desc=" + desc + ", primary=" + primary + ", type=" + type + ", tbField=" + tbField + "]";
 	}
+
 }

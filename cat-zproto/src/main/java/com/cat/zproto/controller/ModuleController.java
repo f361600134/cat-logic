@@ -121,7 +121,7 @@ public class ModuleController {
 	 * @date 2021年6月12日下午9:50:40
 	 */
 	@RequestMapping("/index")
-	public ModelAndView settingUpdateSave() {
+	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
 		return mv;
@@ -404,9 +404,6 @@ public class ModuleController {
 		}
 		File exePath = new File(protoExePath);
 		protoExePath = exePath.getPath();
-//		System.out.println("===========================");
-//		System.out.println("==========================="+protoExePath);
-//		System.out.println("==========================="+exePath.getAbsolutePath());
 		
 		String protoPath = setting.getProto().getProtoPath();
 		String languageType = langType;
@@ -440,11 +437,17 @@ public class ModuleController {
 		}
 		String fileName = entity.getName().toLowerCase().concat(".zip");
 		String path = CommonConstant.DOWNLOAD_PACKAGE.concat(File.separator).concat(fileName);
+		
 		File file = new File(path);
 		if (!file.isFile()) {
 			return "下载失败, 请先生成此文件";
 		}
-		try (InputStream inStream = new FileInputStream(path);
+		
+		System.out.println("==========================="+file.getPath());
+		System.out.println("==========================="+path);
+		System.out.println("==========================="+file.getAbsolutePath());
+		
+		try (InputStream inStream = new FileInputStream(file.getAbsolutePath());
 				BufferedInputStream bis = new BufferedInputStream(inStream);) {
 			OutputStream os = response.getOutputStream();
 			// 设置输出的格式
@@ -458,6 +461,7 @@ public class ModuleController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			return "未知异常";
 		}
 		return "下载成功";
 	}
@@ -475,12 +479,10 @@ public class ModuleController {
 		StringTemplateLoader templateLoader = new StringTemplateLoader();
 		configuration.setTemplateLoader(templateLoader);
 		configuration.setDefaultEncoding("UTF-8");
-		
 		Iterator<Entry<String, SettingVersion>> iter = setting.getVersionInfo().entrySet().iterator();
 		SettingVersion first = iter.hasNext() ? iter.next().getValue() : null;
 		//使用默认的数据, 生成dto
 		TableFreemarkerDto dto = createDto(first.getVersion(), 101);
-		
 //		StringTemplateLoader templateLoader = new StringTemplateLoader();
 		// template = 虚拟名称, 用来当作获取静态文件的key
 		templateLoader.putTemplate("template", str); 
@@ -495,9 +497,9 @@ public class ModuleController {
 			template.process(dto, stringWriter);
 			ret = stringWriter.toString();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("runCode error", e);
+			return SystemResult.build(SystemCodeEnum.ERROR_GENERATE_FREEMAKER, e.getMessage());
 		}		
-		
 		return SystemResult.build(SystemCodeEnum.SUCCESS, ret);
 	}
 	
@@ -510,13 +512,21 @@ public class ModuleController {
 		if (protoObject == null) {
 			return null;
 		}
-		List<TableEntity> entitys = dbService.readDb();
-		TableEntity tableEntity = null;
-		for (TableEntity te : entitys) {
-			if (StringUtils.equals(te.getEntityName(), entity.getName())) {
-				tableEntity = te;
-				break;
-			}
+		//TODO 优化点, 这里是读取数据库信息, 匹配模块
+		// 每次重新读取数据库所有表, 进行匹配.
+		//加入缓存, 先从缓存获取数据, 没有数据再去拉库
+//		List<TableEntity> entitys = dbService.readDb();
+//		TableEntity tableEntity = null;
+//		for (TableEntity te : entitys) {
+//			if (StringUtils.equals(te.getEntityName(), entity.getName())) {
+//				tableEntity = te;
+//				break;
+//			}
+//		}
+		//TODO 优化点，在无数据库时，根据模块信息生成代码。
+		TableEntity tableEntity = dbService.getTableEntity(entity.getName());
+		if (tableEntity == null) {
+			return null;
 		}
 		TableFreemarkerDto dto = new TableFreemarkerDto(tableEntity, protoObject, entity);
 //		//协议层方法获取
@@ -566,14 +576,15 @@ public class ModuleController {
 		if (protoObject == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
 		}
-		List<TableEntity> entitys = dbService.readDb();
-		TableEntity tableEntity = null;
-		for (TableEntity te : entitys) {
-			if (StringUtils.equals(te.getEntityName(), entity.getName())) {
-				tableEntity = te;
-				break;
-			}
-		}
+//		List<TableEntity> entitys = dbService.readDb();
+//		TableEntity tableEntity = null;
+//		for (TableEntity te : entitys) {
+//			if (StringUtils.equals(te.getEntityName(), entity.getName())) {
+//				tableEntity = te;
+//				break;
+//			}
+//		}
+		TableEntity tableEntity = dbService.getTableEntity(entity.getName());
 		if (tableEntity == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_NOT_FOUND_TABLE);
 		}

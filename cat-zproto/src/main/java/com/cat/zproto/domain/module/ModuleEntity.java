@@ -75,5 +75,10 @@ public class ModuleEntity {
 	public void setOne2one(boolean one2one) {
 		this.one2one = one2one;
 	}
+
+	@Override
+	public String toString() {
+		return "ModuleEntity [id=" + id + ", name=" + name + ", comment=" + comment + ", one2one=" + one2one + ", extendInfo=" + extendInfo + "]";
+	}
 	
 }
