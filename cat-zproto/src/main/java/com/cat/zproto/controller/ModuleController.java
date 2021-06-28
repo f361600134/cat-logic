@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import java.util.Map.Entry;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -473,8 +475,8 @@ public class ModuleController {
 	 * @date 2021年6月12日下午9:50:40
 	 */
 	@ResponseBody
-	@RequestMapping("/runCode")
-	public Object runCode(@RequestBody String str) {
+	@RequestMapping("/runTemplate")
+	public Object runTemplate(@RequestBody String str) {
 		freemarker.template.Configuration configuration = new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_29);
 		StringTemplateLoader templateLoader = new StringTemplateLoader();
 		configuration.setTemplateLoader(templateLoader);
@@ -497,22 +499,52 @@ public class ModuleController {
 			template.process(dto, stringWriter);
 			ret = stringWriter.toString();
 		} catch (Exception e) {
-			logger.error("runCode error", e);
+			logger.error("runTemplate error", e);
 			return SystemResult.build(SystemCodeEnum.ERROR_GENERATE_FREEMAKER, e.getMessage());
 		}		
 		return SystemResult.build(SystemCodeEnum.SUCCESS, ret);
 	}
 	
 	/**
-	 *  显示模板内容
+	 * 显示模板详细信息
 	 * @return
 	 * @return ModelAndView
 	 * @date 2021年6月12日下午9:50:40
 	 */
 	@ResponseBody
-	@RequestMapping("/showCode")
-	public Object showTemplate(@RequestBody String str) {
-		return null;
+	@RequestMapping("/showTemplateDetail")
+	public Object showTemplateDetail(@RequestBody String fileName) {
+		//获取到模板文件内容
+		try {
+			ClassPathResource resource = new ClassPathResource("ftl/code/"+fileName);
+			InputStream inputStream = resource.getInputStream();
+			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+			return SystemResult.build(SystemCodeEnum.SUCCESS, content);
+		} catch (Exception e) {
+			logger.error("showTemplate error, {}",e);
+			return SystemResult.build(SystemCodeEnum.SUCCESS, e.getMessage());
+		}
+	}
+	
+	/**
+	 * 提交的内容,生成最新的模板信息
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@ResponseBody
+	@RequestMapping("/saveTemplateDetail")
+	public Object saveTemplateDetail(@RequestBody String fileName, @RequestBody String content) {
+		//获取到模板文件内容
+		try {
+//			ClassPathResource resource = new ClassPathResource("ftl/code/"+fileName);
+//			InputStream inputStream = resource.getInputStream();
+//			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+			return SystemResult.build(SystemCodeEnum.SUCCESS, content);
+		} catch (Exception e) {
+			logger.error("showTemplate error, {}",e);
+			return SystemResult.build(SystemCodeEnum.SUCCESS, e.getMessage());
+		}
 	}
 	
 	private TableFreemarkerDto createDto(String version, int moduleId){

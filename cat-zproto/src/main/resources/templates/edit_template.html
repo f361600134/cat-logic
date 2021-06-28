@@ -35,6 +35,14 @@
 <div style="margin: 0 auto;">
  <div class="layui-row">
     <div class="layui-col-md1">
+	  <div class="layui-form-item">
+	  	 <div class="layui-inline">
+	     <button id="submit" class="layui-btn" lay-submit lay-filter="runTemplate">Run</button>
+	     </div>
+	     <div class="layui-inline">
+	     <button id="submit" class="layui-btn" lay-submit lay-filter="saveTemplate">Save</button>
+	     </div>
+	  </div>
       <div class="grid-demo">
       	<div id="test9" class="demo-tree demo-tree-box" ></div>
       </div>
@@ -69,8 +77,8 @@ var shower = CodeMirror.fromTextArea(document.getElementById("show"), {
     tabSize: 2, 				//tab空格数量
     readOnly: true       //只读
 });
-shower.setSize('700px', '850px');     //设置代码框的长宽
-shower.setValue("");    //先代码框的值清空
+shower.setSize('auto', '650');     //设置代码框的长宽
+// shower.setValue("");    //先代码框的值清空
 
 //根据DOM元素的id构造出一个编辑器
 var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
@@ -97,7 +105,7 @@ editor.on('keypress', () => {
 	//编译器内容更改事件
     editor.showHint();
 });
-editor.setSize('700px', '850px');     //设置代码框的长宽
+editor.setSize('auto', '650px');     //设置代码框的长宽
 //操作系统判断
 var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
 CodeMirror.keyMap.default[(mac ? "Cmd" : "Ctrl")] = "autocomplete";
@@ -138,11 +146,11 @@ layui.use(function(){
             }]
           }];
     
-    form.on('submit(runCode)', function (data) {
+    form.on('submit(runTemplate)', function (data) {
         var e = data.field.code;
         $.ajax({
             type: 'POST',
-            url: '/zproto/module/runCode',
+            url: '/zproto/module/runTemplate',
             data: e,
             dataType: 'JSON',
             contentType: "application/json; charset=utf-8",
@@ -158,7 +166,28 @@ layui.use(function(){
 //             error: function(jqXHR){console.log(jqXHR)},
         });
         return false;
-});
+	});
+    form.on('submit(saveTemplate)', function (data) {
+        var e = data.field.code;
+        $.ajax({
+            type: 'POST',
+            url: '/zproto/module/runTemplate',
+            data: e,
+            dataType: 'JSON',
+            contentType: "application/json; charset=utf-8",
+            success: function(data){
+                var str = data.tips;
+                shower.setValue(data.data);
+                if(data.code == 0){
+                	layer.msg(str, {icon: 1});
+                }else{
+                	layer.msg(str, {icon: 2});
+                }
+            },
+//             error: function(jqXHR){console.log(jqXHR)},
+        });
+        return false;
+	});
   //开启节点操作图标
     tree.render({
       elem: '#test9'
@@ -169,8 +198,35 @@ layui.use(function(){
       ,edit: ['add', 'update', 'del'] //操作节点的图标
       ,click: function(obj){
     	//点击节点,显示内容
-        layer.msg(JSON.stringify(obj.data));
-        
+        //layer.msg(JSON.stringify(obj.data));
+    	var e = obj.data.title;
+        $.ajax({
+            type: 'POST',
+            url: '/zproto/module/showTemplateDetail',
+            data: e,
+            dataType: 'JSON',
+            contentType: "application/json; charset=utf-8",
+            success: function(data){
+                editor.setValue(data.data);
+            },
+        });
+      }
+    ,operate: function(obj){
+        var type = obj.type; //得到操作类型：add、edit、del
+        var data = obj.data; //得到当前节点的数据
+        var elem = obj.elem; //得到当前节点元素
+        //Ajax 操作
+        var id = data.id; //得到节点索引
+        layer.msg("====>"+type);
+        if(type === 'add'){ //增加节点
+          //返回 key 值
+          return 123;
+        } else if(type === 'update'){ //修改节点
+          console.log(elem.find('.layui-tree-txt').html()); //得到修改后的内容
+          layer.msg("====>"+data);
+        } else if(type === 'del'){ //删除节点
+        	  layer.msg("====>"+elem);
+        };
       }
     });
 });
