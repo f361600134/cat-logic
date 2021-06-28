@@ -32,24 +32,21 @@
 <!-- 编辑模板页 -->
 <body>
 <form class="layui-form" action="">
-<div style="margin: 0 auto;">
- <div class="layui-row">
-    <div class="layui-col-md1">
-      <div class="grid-demo">
-      	<div id="test9" class="demo-tree demo-tree-box" ></div>
-      </div>
-    </div>
-    <div class="layui-col-md5 layui-col-md-offset1">
-      <div class="grid-demo grid-demo-bg1">
-      		<textarea class="form-control" id="code" name="code"></textarea>
-      </div>
-    </div>
-    <div class="layui-col-md5">
-      <div class="grid-demo grid-demo-bg1">
-      		<textarea class="form-control" id="show" name="show"></textarea>
-      </div>
-    </div>
-  </div>
+<div class="layui-form-item">
+<div class="layui-input-block">
+    <button  id="submit" class="layui-btn" lay-submit lay-filter="runCode">Run</button>
+</div>
+</div>
+<div class="layui-form-item">
+<div class="layui-inline">
+<div id="test9" class="demo-tree demo-tree-box" ></div>
+</div>
+<div class="layui-inline">
+	<textarea class="form-control" id="code" name="code"></textarea>
+</div>
+<div class="layui-inline">
+	<textarea class="form-control" id="show" name="show"></textarea>
+</div>
 </div>
 </form>
 
@@ -69,7 +66,7 @@ var shower = CodeMirror.fromTextArea(document.getElementById("show"), {
     tabSize: 2, 				//tab空格数量
     readOnly: true       //只读
 });
-shower.setSize('700px', '850px');     //设置代码框的长宽
+shower.setSize('460px', '850px');     //设置代码框的长宽
 shower.setValue("");    //先代码框的值清空
 
 //根据DOM元素的id构造出一个编辑器
@@ -97,7 +94,7 @@ editor.on('keypress', () => {
 	//编译器内容更改事件
     editor.showHint();
 });
-editor.setSize('700px', '850px');     //设置代码框的长宽
+editor.setSize('460px', '850px');     //设置代码框的长宽
 //操作系统判断
 var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
 CodeMirror.keyMap.default[(mac ? "Cmd" : "Ctrl")] = "autocomplete";
@@ -116,10 +113,8 @@ layui.use(function(){
     var tree = layui.tree;
     
     var data1 = [{
-        	title: '代码'
-        	,disabled: true
+        title: '代码'
             ,id: 1
-            ,spread: true
             ,children: [{
               title: 'Entity.ftl'
             },{
@@ -129,7 +124,6 @@ layui.use(function(){
             }]
           },{
             title: '协议'
-           	,disabled: true
             ,id: 2
             ,children: [{
               title: 'proto.ftl'
@@ -155,7 +149,7 @@ layui.use(function(){
                 	layer.msg(str, {icon: 2});
                 }
             },
-//             error: function(jqXHR){console.log(jqXHR)},
+            //error: function(jqXHR){console.log(jqXHR)},
         });
         return false;
 });
@@ -163,18 +157,16 @@ layui.use(function(){
     tree.render({
       elem: '#test9'
       ,data: data1
-      ,accordion: true//开启手风琴模式
-      ,showLine:false
-      ,onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩
       ,edit: ['add', 'update', 'del'] //操作节点的图标
       ,click: function(obj){
-    	//点击节点,显示内容
         layer.msg(JSON.stringify(obj.data));
-        
       }
     });
 });
-</script>
 
+
+
+</script> 
+	
 </body>
 </html>

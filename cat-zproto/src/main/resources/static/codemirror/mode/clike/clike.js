@@ -477,6 +477,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     modeProps: {fold: ["brace", "include"]}
   });
 
+  
   def("text/x-java", {
     name: "clike",
     keywords: words("abstract assert break case catch class const continue default " +
@@ -486,7 +487,9 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
                     "try volatile while @interface"),
     types: words("byte short int long float double boolean char void Boolean Byte Character Double Float " +
                  "Integer Long Number Object Short String StringBuffer StringBuilder Void"),
+                 
     blockKeywords: words("catch class do else finally for if switch try while"),
+    
     defKeywords: words("class interface enum @interface"),
     typeFirstDefinitions: true,
     atoms: words("true false null"),
@@ -502,6 +505,50 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     },
     modeProps: {fold: ["brace", "import"]}
   });
+  
+  //define by Jeremy
+  def("text/x-custom", {
+	    name: "clike",
+	    keywords: words("abstract assert break case catch class const continue default " +
+	                    "do else enum extends final finally for goto if implements import " +
+	                    "instanceof interface native new package private protected public " +
+	                    "return static strictfp super switch synchronized this throw throws transient " +
+	                    "try volatile while @interface main args"),
+	                    
+	    types: words("byte short int long float double boolean char void Boolean Byte Character Double Float " +
+	                 "Integer Long Number Object Short String StringBuffer StringBuilder Void Iterator List Map" +
+	                 ""+
+	                 /* package java.lang */
+	                 "CharSequence Class ClassLoader Cloneable Comparable Compiler Exception Math Runtime Runnable " +
+	                 "StringBuffer System out print printf println Thread ThreadGroup ThreadLocal Throwable " +
+	                 /*proto*/
+	                 "message option syntax "+
+	                 /*freemaker*/
+	                 "list if lower_case cap_first upper_case substring length seq_contains size c"+
+	                 /* define api */
+	                 "entity tablName entityName primaryKeys entityBeans TableBean field type desc primary tbField "+
+	                 "module id name comment one2one extendInfo protocolObj moduleName javaPath outClass dependenceObjs "+
+	                 "structures protoReqStructList protoAckStructMap protoPBStructList struct ProtocolStructure fields "+
+	                 "ProtocolField identifier repeated javaType index clazzName fileName "
+	                 ),
+	                 
+	    blockKeywords: words("catch class do else finally for if switch try while"),
+	    
+	    defKeywords: words("class interface enum @interface"),
+	    typeFirstDefinitions: true,
+	    atoms: words("true false null"),
+	    number: /^(?:0x[a-f\d_]+|0b[01_]+|(?:[\d_]+\.?\d*|\.\d+)(?:e[-+]?[\d_]+)?)(u|ll?|l|f)?/i,
+	    hooks: {
+	      "@": function(stream) {
+	        // Don't match the @interface keyword.
+	        if (stream.match('interface', false)) return false;
+
+	        stream.eatWhile(/[\w\$_]/);
+	        return "meta";
+	      }
+	    },
+	    modeProps: {fold: ["brace", "import"]}
+	  });
 
   def("text/x-csharp", {
     name: "clike",

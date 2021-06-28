@@ -503,6 +503,18 @@ public class ModuleController {
 		return SystemResult.build(SystemCodeEnum.SUCCESS, ret);
 	}
 	
+	/**
+	 *  显示模板内容
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@ResponseBody
+	@RequestMapping("/showCode")
+	public Object showTemplate(@RequestBody String str) {
+		return null;
+	}
+	
 	private TableFreemarkerDto createDto(String version, int moduleId){
 		ModuleEntity entity = moduleService.getModuleEntity(version, moduleId);
 		if (entity == null) {
