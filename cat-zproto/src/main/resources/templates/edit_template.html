@@ -105,6 +105,7 @@ editor.on('keypress', () => {
 	//编译器内容更改事件
     editor.showHint();
 });
+editor.setValue("");
 editor.setSize('auto', '650px');     //设置代码框的长宽
 //操作系统判断
 var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
@@ -197,19 +198,37 @@ layui.use(function(){
       ,onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩
       ,edit: ['add', 'update', 'del'] //操作节点的图标
       ,click: function(obj){
-    	//点击节点,显示内容
-        //layer.msg(JSON.stringify(obj.data));
-    	var e = obj.data.title;
-        $.ajax({
-            type: 'POST',
-            url: '/zproto/module/showTemplateDetail',
-            data: e,
-            dataType: 'JSON',
-            contentType: "application/json; charset=utf-8",
-            success: function(data){
-                editor.setValue(data.data);
-            },
-        });
+    	//如果数据为空, 直接获取后台数据
+    	//如果数据不为空, 询问后获取后台数据
+    	var val = editor.getValue();
+    	if (val !=""){
+    		layer.confirm('检测已存在编辑内容, 确定要覆盖为新内容吗?', function(index){
+                layer.close(index);
+                var e = obj.data.title;
+                $.ajax({
+                    type: 'POST',
+                    url: '/zproto/module/showTemplateDetail',
+                    data: e,
+                    dataType: 'JSON',
+                    contentType: "application/json; charset=utf-8",
+                    success: function(data){
+                        editor.setValue(data.data);
+                    },
+                });
+            });
+    	}else{
+    		 var e = obj.data.title;
+             $.ajax({
+                 type: 'POST',
+                 url: '/zproto/module/showTemplateDetail',
+                 data: e,
+                 dataType: 'JSON',
+                 contentType: "application/json; charset=utf-8",
+                 success: function(data){
+                     editor.setValue(data.data);
+                 },
+             });
+    	}
       }
     ,operate: function(obj){
         var type = obj.type; //得到操作类型：add、edit、del
@@ -217,15 +236,12 @@ layui.use(function(){
         var elem = obj.elem; //得到当前节点元素
         //Ajax 操作
         var id = data.id; //得到节点索引
-        layer.msg("====>"+type);
         if(type === 'add'){ //增加节点
           //返回 key 值
           return 123;
         } else if(type === 'update'){ //修改节点
-          console.log(elem.find('.layui-tree-txt').html()); //得到修改后的内容
-          layer.msg("====>"+data);
+          console.log("====>"+elem.find('.layui-tree-txt').html()); //得到修改后的内容
         } else if(type === 'del'){ //删除节点
-        	  layer.msg("====>"+elem);
         };
       }
     });
