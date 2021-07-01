@@ -512,9 +512,12 @@ public class ModuleController {
 	public Object showTemplateDetail(@RequestBody String fileName) {
 		//获取到模板文件内容
 		try {
-			ClassPathResource resource = new ClassPathResource("ftl/code/"+fileName);
-			InputStream inputStream = resource.getInputStream();
-			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+			String path = CommonConstant.FTL_CODE_PATH.concat(File.separator).concat(fileName);
+			File file = new File(path);
+//			ClassPathResource resource = new ClassPathResource("ftl/code/"+fileName);
+//			InputStream inputStream = resource.getInputStream();
+//			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+			String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 			return SystemResult.build(SystemCodeEnum.SUCCESS, content);
 		} catch (Exception e) {
 			logger.error("showTemplate error, {}",e);
