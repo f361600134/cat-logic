@@ -1,5 +1,6 @@
 package com.cat.zproto.common;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -11,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
 import org.tmatesoft.svn.core.internal.io.dav.DAVRepositoryFactory;
@@ -25,6 +27,11 @@ import com.alibaba.fastjson.parser.Feature;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingMysql;
+
+import freemarker.cache.FileTemplateLoader;
+import freemarker.cache.MultiTemplateLoader;
+import freemarker.cache.TemplateLoader;
+import freemarker.template.TemplateException;
 
 /**
  * 业务组件注册
@@ -106,5 +113,31 @@ public class SystemComponent {
 //		configuration.setDefaultEncoding("UTF-8");
 //		return configuration;
 //	}
+	
+	/**
+	 * freemaker放在resource目录下不能编辑保存
+	 * 所以放在项目根目录作为使用者用户配置存在.
+	 * @return
+	 * @throws IOException
+	 * @throws TemplateException
+	 */
+	@Primary
+	@Bean
+    public freemarker.template.Configuration freemarkerConfig() throws IOException, TemplateException {
+		freemarker.template.Configuration configuration = new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_29);
+		//way1
+		FileTemplateLoader loader1=new FileTemplateLoader(new File(CommonConstant.FTL_CODE_PATH));
+		FileTemplateLoader loader2=new FileTemplateLoader(new File(CommonConstant.FTL_PROTO_PATH));
+		TemplateLoader[] fileloadders={loader1,loader2};
+		MultiTemplateLoader fmtl=new MultiTemplateLoader(fileloadders);
+		configuration.setTemplateLoader(fmtl);
+        //way2
+//		configuration.setDirectoryForTemplateLoading(new File(CommonConstant.FTL_CODE_PATH));
+		
+		configuration.setClassicCompatible(true);
+		configuration.setDefaultEncoding(StandardCharsets.UTF_8.name());
+        return configuration;
+    }
+
 
 }

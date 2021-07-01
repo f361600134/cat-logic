@@ -487,7 +487,6 @@ public class ModuleController {
 		templateLoader.putTemplate("template", str); 
 //		configuration.setTemplateLoader(templateLoader);
 		
-//		classic_compatible
 		configuration.setClassicCompatible(true);
 		
 		String ret = "";

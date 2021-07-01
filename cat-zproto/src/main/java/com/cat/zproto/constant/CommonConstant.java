@@ -24,6 +24,15 @@ public class CommonConstant {
 	public static String RESOURCE_CONFIGDATA_PATH = "./configdata";
 	
 	/**
+	 * ftl模板存储路径
+	 */
+	public static String FTL_CODE_PATH = "./ftl/code/";
+	
+	/**
+	 * ftl模板存储路径
+	 */
+	public static String FTL_PROTO_PATH = "./ftl/proto";
+	/**
 	 * 编译器的路径
 	 */
 //	public static final String PROTO_EXE_PATH = "proto3/exec";
