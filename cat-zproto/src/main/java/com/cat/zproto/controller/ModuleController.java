@@ -28,6 +28,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -45,6 +46,7 @@ import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingVersion;
 import com.cat.zproto.domain.table.TableEntity;
 import com.cat.zproto.dto.TableFreemarkerDto;
+import com.cat.zproto.dto.TemplateDto;
 import com.cat.zproto.enums.ProtoTypeEnum;
 import com.cat.zproto.service.CommandService;
 import com.cat.zproto.service.DbService;
@@ -532,13 +534,21 @@ public class ModuleController {
 	 * @date 2021年6月12日下午9:50:40
 	 */
 	@ResponseBody
-	@RequestMapping("/saveTemplateDetail")
-	public Object saveTemplateDetail(@RequestBody String fileName, @RequestBody String content) {
+	@RequestMapping(value = "/saveTemplateDetail", method = {RequestMethod.POST})
+	public Object saveTemplateDetail(@RequestBody TemplateDto templateDto) {
 		//获取到模板文件内容
+		String fileName = templateDto.getFileName();
+		String content = templateDto.getContent();
 		try {
-//			ClassPathResource resource = new ClassPathResource("ftl/code/"+fileName);
-//			InputStream inputStream = resource.getInputStream();
-//			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+			String path = CommonConstant.FTL_CODE_PATH.concat(File.separator).concat(fileName);
+			File file = new File(path);
+			
+			//如果文件不存在
+			if (!file.exists()) {
+				file.createNewFile();//创建文件
+			}
+			//写入内容到文件
+			FileUtils.write(file, content, StandardCharsets.UTF_8);
 			return SystemResult.build(SystemCodeEnum.SUCCESS, content);
 		} catch (Exception e) {
 			logger.error("showTemplate error, {}",e);

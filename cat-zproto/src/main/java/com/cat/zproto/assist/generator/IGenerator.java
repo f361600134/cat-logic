@@ -1,11 +1,9 @@
 package com.cat.zproto.assist.generator;
 
-import com.cat.zproto.dto.TableFreemarkerDto;
-
 public interface IGenerator {
 	
-	int CODE =1;
-	int PROTO=2;
+//	int CODE =1;
+//	int PROTO=2;
 	
 	/**
 	 * 生成类型, 1:代码, 2:协议

@@ -32,17 +32,25 @@
 <!-- 编辑模板页 -->
 <body>
 <form class="layui-form" action="">
+
+<div class="layui-form-item">
+  	<div class="layui-inline">
+  	<input type="text" name="fileName" lay-verify="title" autocomplete="off" placeholder="输入数据库文件名" class="layui-input">
+  	</div>
+  	 <div class="layui-inline">
+     <button id="submit" class="layui-btn" lay-submit lay-filter="runTemplate">Run</button>
+     </div>
+     <div class="layui-inline">
+     <button id="submit" class="layui-btn" lay-submit lay-filter="saveTemplate">Save</button>
+     </div>
+     <div class="layui-inline">
+     <button id="button" type="button" class="layui-btn" >Clear</button>
+     </div>
+  </div>
+
 <div style="margin: 0 auto;">
  <div class="layui-row">
     <div class="layui-col-md1">
-	  <div class="layui-form-item">
-	  	 <div class="layui-inline">
-	     <button id="submit" class="layui-btn" lay-submit lay-filter="runTemplate">Run</button>
-	     </div>
-	     <div class="layui-inline">
-	     <button id="submit" class="layui-btn" lay-submit lay-filter="saveTemplate">Save</button>
-	     </div>
-	  </div>
       <div class="grid-demo">
       	<div id="test9" class="demo-tree demo-tree-box" ></div>
       </div>
@@ -169,16 +177,21 @@ layui.use(function(){
         return false;
 	});
     form.on('submit(saveTemplate)', function (data) {
-        var e = data.field.code;
+    	var d = {};
+//         d.fileName = data.field.code;
+//         d.content = editor.getValue();
+        d.fileName = data.field.fileName;
+        d.content = data.field.code;
+
+        console.log("====>"+JSON.stringify(d)); //得到修改后的内容
         $.ajax({
             type: 'POST',
-            url: '/zproto/module/runTemplate',
-            data: e,
+            url: '/zproto/module/saveTemplateDetail',
+            data: JSON.stringify(d),
             dataType: 'JSON',
             contentType: "application/json; charset=utf-8",
             success: function(data){
                 var str = data.tips;
-                shower.setValue(data.data);
                 if(data.code == 0){
                 	layer.msg(str, {icon: 1});
                 }else{
@@ -193,6 +206,7 @@ layui.use(function(){
     tree.render({
       elem: '#test9'
       ,data: data1
+//       ,data: '/zproto/module/templateFileList'
       ,accordion: true//开启手风琴模式
       ,showLine:false
       ,onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩
@@ -201,33 +215,14 @@ layui.use(function(){
     	//如果数据为空, 直接获取后台数据
     	//如果数据不为空, 询问后获取后台数据
     	var val = editor.getValue();
+    	var e = obj.data.title;
     	if (val !=""){
     		layer.confirm('检测已存在编辑内容, 确定要覆盖为新内容吗?', function(index){
                 layer.close(index);
-                var e = obj.data.title;
-                $.ajax({
-                    type: 'POST',
-                    url: '/zproto/module/showTemplateDetail',
-                    data: e,
-                    dataType: 'JSON',
-                    contentType: "application/json; charset=utf-8",
-                    success: function(data){
-                        editor.setValue(data.data);
-                    },
-                });
+                showTemplateDetail(e);
             });
     	}else{
-    		 var e = obj.data.title;
-             $.ajax({
-                 type: 'POST',
-                 url: '/zproto/module/showTemplateDetail',
-                 data: e,
-                 dataType: 'JSON',
-                 contentType: "application/json; charset=utf-8",
-                 success: function(data){
-                     editor.setValue(data.data);
-                 },
-             });
+    		showTemplateDetail(e);
     	}
       }
     ,operate: function(obj){
@@ -245,6 +240,33 @@ layui.use(function(){
         };
       }
     });
+});
+
+//抽出通用方法
+function showTemplateDetail(title){
+     $.ajax({
+         type: 'POST',
+         url: '/zproto/module/showTemplateDetail',
+         data: title,
+         dataType: 'JSON',
+         contentType: "application/json; charset=utf-8",
+         success: function(data){
+             editor.setValue(data.data);
+             if(data.code == 0){
+            	 $("input[name='fileName']").val(title);
+             }
+         },
+         error : function(data) {
+             alert("访问出错！");
+             return false;
+         }
+     });
+}
+
+//清空功能
+$("#button").click(function(){
+	 editor.setValue("");
+	 $("input[name='fileName']").val("");
 });
 </script>
 

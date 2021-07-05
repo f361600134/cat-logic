@@ -2,7 +2,7 @@ package com.cat.zproto.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -22,17 +22,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cat.zproto.core.result.SystemCodeEnum;
 import com.cat.zproto.core.result.SystemResult;
+import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingMysql;
 import com.cat.zproto.domain.system.SettingProto;
 import com.cat.zproto.domain.system.SettingSvn;
 import com.cat.zproto.domain.system.SettingVersion;
+import com.cat.zproto.dto.TableFreemarkerDto;
+import com.cat.zproto.dto.TemplateTreeDto;
+import com.cat.zproto.enums.TemplateEnum;
 import com.cat.zproto.service.ModuleService;
 import com.cat.zproto.service.ProtoService;
 import com.cat.zproto.util.Pair;
-
-import freemarker.cache.StringTemplateLoader;
-import freemarker.template.Template;
 
 /**
  * 版本设置， 设置信息保存值setting.json文件 1. 系统设置 2.
@@ -54,7 +55,6 @@ public class SettingController {
 	
 	@Autowired
 	private ProtoService protoService;
-	
 	
 //	/**
 //	 *设置信息
@@ -109,6 +109,21 @@ public class SettingController {
 		return mv;
 	}
 	
+	/**
+	 * 模块列表
+	 * 
+	 * @param version
+	 */
+	@ResponseBody
+	@RequestMapping("/templateFileList")
+	public Object templateFileList() {
+		List<TemplateTreeDto> dtos = new ArrayList<>();
+		for (TemplateEnum tenum : TemplateEnum.values()) {
+			TemplateTreeDto dto = tenum.newTreeDto();
+			dtos.add(dto);
+		}
+		return SystemResult.build(SystemCodeEnum.SUCCESS, dtos);
+	}
 	/**
 	 * 设置修改页
 	 * 

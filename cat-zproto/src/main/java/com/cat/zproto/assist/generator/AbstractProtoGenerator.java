@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cat.zproto.domain.system.SettingConfig;
+import com.cat.zproto.enums.TemplateEnum;
 import com.cat.zproto.service.TemplateService;
 
 /**
@@ -35,7 +36,7 @@ public abstract class AbstractProtoGenerator implements IProtoGenerator{
 	
 	@Override
 	public int type() {
-		return PROTO;
+		return TemplateEnum.PROTO.getType();
 	}
 	
 }

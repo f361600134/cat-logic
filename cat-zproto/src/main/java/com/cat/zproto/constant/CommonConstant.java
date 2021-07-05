@@ -31,7 +31,7 @@ public class CommonConstant {
 	/**
 	 * ftl模板存储路径
 	 */
-	public static String FTL_PROTO_PATH = "./ftl/proto";
+	public static String FTL_PROTO_PATH = "./ftl/proto/";
 	/**
 	 * 编译器的路径
 	 */

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingVersion;
 import com.cat.zproto.dto.TableFreemarkerDto;
+import com.cat.zproto.enums.TemplateEnum;
 import com.cat.zproto.service.TemplateService;
 
 /**
@@ -27,7 +28,7 @@ public abstract class AbstractCodeGenerator implements ICodeGenerator{
 	
 	@Override
 	public int type() {
-		return CODE;
+		return TemplateEnum.CODE.getType();
 	}
 	/**
 	 * 默认返回无前部分补充
