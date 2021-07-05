@@ -7,6 +7,7 @@ package com.cat.zproto.dto;
  */
 public class TemplateDto {
 	
+	private int curNode;
 	private String fileName;
 	private String content;
 	
@@ -23,6 +24,14 @@ public class TemplateDto {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public int getCurNode() {
+		return curNode;
+	}
+
+	public void setCurNode(int curNode) {
+		this.curNode = curNode;
 	}
 	
 }

@@ -18,25 +18,18 @@ public enum TemplateEnum {
 		}
 		
 		@Override
-		public List<String> getAllFileName() {
-			File file = new File(CommonConstant.FTL_CODE_PATH);
-			List<String> ret = new ArrayList<>();
-			for (File f : file.listFiles()) {
-				ret.add(f.getName());
-			}
-			return ret;
+		public String getPath() {
+			return CommonConstant.FTL_CODE_PATH;
 		}
+
 	},
 	PROTO(2, "协议"){
+		
 		@Override
-		public List<String> getAllFileName() {
-			File file = new File(CommonConstant.FTL_PROTO_PATH);
-			List<String> ret = new ArrayList<>();
-			for (File f : file.listFiles()) {
-				ret.add(f.getName());
-			}
-			return ret;
+		public String getPath() {
+			return CommonConstant.FTL_PROTO_PATH;
 		}
+		
 	},
 	;
 	
@@ -58,7 +51,7 @@ public enum TemplateEnum {
 
 	public TemplateTreeDto newTreeDto() {
 		TemplateTreeDto dto = TemplateTreeDto.newTree(getType(), getName());
-		dto.setDisabled(true);
+//		dto.setDisabled(true);
 		
 		List<String> names = getAllFileName();
 		for (int i = 0; i < names.size(); i++) {
@@ -69,8 +62,26 @@ public enum TemplateEnum {
 	}
 	
 	/**
+	 * 根据类型返回对应的路径
 	 * @return
 	 */
-	public abstract List<String> getAllFileName();
+	public abstract String getPath();
 	
+	public List<String> getAllFileName() {
+		File file = new File(getPath());
+		List<String> ret = new ArrayList<>();
+		for (File f : file.listFiles()) {
+			ret.add(f.getName());
+		}
+		return ret;
+	}
+	
+	public static TemplateEnum getEnum(int type) {
+		for (TemplateEnum tenum : values()) {
+			if (tenum.getType() == type) {
+				return tenum;
+			}
+		}
+		return null;
+	} 
 }

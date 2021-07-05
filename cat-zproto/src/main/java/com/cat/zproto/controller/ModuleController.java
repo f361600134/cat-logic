@@ -48,6 +48,7 @@ import com.cat.zproto.domain.table.TableEntity;
 import com.cat.zproto.dto.TableFreemarkerDto;
 import com.cat.zproto.dto.TemplateDto;
 import com.cat.zproto.enums.ProtoTypeEnum;
+import com.cat.zproto.enums.TemplateEnum;
 import com.cat.zproto.service.CommandService;
 import com.cat.zproto.service.DbService;
 import com.cat.zproto.service.ModuleService;
@@ -511,10 +512,12 @@ public class ModuleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/showTemplateDetail")
-	public Object showTemplateDetail(@RequestBody String fileName) {
+	public Object showTemplateDetail(@RequestBody TemplateDto templateDto) {
 		//获取到模板文件内容
 		try {
-			String path = CommonConstant.FTL_CODE_PATH.concat(File.separator).concat(fileName);
+			//String path = CommonConstant.FTL_CODE_PATH.concat(File.separator).concat(fileName);
+			TemplateEnum tEnum = TemplateEnum.getEnum(templateDto.getCurNode());
+			String path = tEnum.getPath().concat(File.separator).concat(templateDto.getFileName());
 			File file = new File(path);
 //			ClassPathResource resource = new ClassPathResource("ftl/code/"+fileName);
 //			InputStream inputStream = resource.getInputStream();
@@ -540,7 +543,8 @@ public class ModuleController {
 		String fileName = templateDto.getFileName();
 		String content = templateDto.getContent();
 		try {
-			String path = CommonConstant.FTL_CODE_PATH.concat(File.separator).concat(fileName);
+			TemplateEnum tEnum = TemplateEnum.getEnum(templateDto.getCurNode());
+			String path = tEnum.getPath().concat(File.separator).concat(fileName);
 			File file = new File(path);
 			
 			//如果文件不存在

@@ -35,7 +35,7 @@
 
 <div class="layui-form-item">
   	<div class="layui-inline">
-  	<input type="text" name="fileName" lay-verify="title" autocomplete="off" placeholder="输入协议文件名" class="layui-input">
+  	<input type="text" name="fileName" lay-verify="title" autocomplete="off" placeholder="输入数据库文件名" class="layui-input">
   	</div>
   	 <div class="layui-inline">
      <button id="submit" class="layui-btn" lay-submit lay-filter="runTemplate">Run</button>
@@ -125,14 +125,37 @@ CodeMirror.commands.autocomplete = function(cm) {
 setTimeout(() => {
    this.editor.refresh();
    this.shower.refresh();
+   showTemplateList();
 },100);//让编辑器每次在调用的时候进行自动刷新
 
 //表单操作
-var curNode = 1;//当前节点
 layui.use(function(){
     var form = layui.form;
     var tree = layui.tree;
-   
+    
+    var data1 = [{
+        	title: '代码'
+        	,disabled: true
+            ,id: 1
+            ,spread: true
+            ,children: [{
+              title: 'Entity.ftl'
+            },{
+              title: 'EntityPo.ftl'
+            },{
+              title: 'EntityService.ftl'
+            }]
+          },{
+            title: '协议'
+           	,disabled: true
+            ,id: 2
+            ,children: [{
+              title: 'proto.ftl'
+            },{
+              title: 'protoId.ftl'
+            }]
+          }];
+    
     form.on('submit(runTemplate)', function (data) {
         var e = data.field.code;
         $.ajax({
@@ -156,9 +179,12 @@ layui.use(function(){
 	});
     form.on('submit(saveTemplate)', function (data) {
     	var d = {};
-    	d.curNode = curNode;
+//         d.fileName = data.field.code;
+//         d.content = editor.getValue();
         d.fileName = data.field.fileName;
         d.content = data.field.code;
+
+        console.log("====>"+JSON.stringify(d)); //得到修改后的内容
         $.ajax({
             type: 'POST',
             url: '/zproto/module/saveTemplateDetail',
@@ -177,70 +203,26 @@ layui.use(function(){
         });
         return false;
 	});
-    $.ajax({
-        type: "post",
-        url: "/zproto/setting/templateFileList",
-        dataType: 'json',
-        contentType: "application/json; charset=utf-8",
-        async: true,//是否异步请求
-        success: function (data) {
-            layui.use('tree', function () {
-                var tree = layui.tree;
-                templateTreeRender(tree, data.data);
-            })
-        }
-    })
-});
-
-//抽出通用方法
-function showTemplateDetail(dto){
-     $.ajax({
-         type: 'POST',
-         url: '/zproto/module/showTemplateDetail',
-         data: JSON.stringify(dto),
-         dataType: 'JSON',
-         contentType: "application/json; charset=utf-8",
-         success: function(data){
-             editor.setValue(data.data);
-             if(data.code == 0){
-            	 $("input[name='fileName']").val(dto.fileName);
-             }
-         },
-         error : function(data) {
-             alert("访问出错！");
-             return false;
-         }
-     });
-}
-
-function templateTreeRender(tree, data1){
-	//开启节点操作图标
+  //开启节点操作图标
     tree.render({
       elem: '#test9'
       ,data: data1
       ,accordion: true//开启手风琴模式
       ,showLine:false
-      //,onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩
+      ,onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩
       ,edit: ['add', 'update', 'del'] //操作节点的图标
       ,click: function(obj){
     	//如果数据为空, 直接获取后台数据
     	//如果数据不为空, 询问后获取后台数据
     	var val = editor.getValue();
-    	var d = {};
-    	d.curNode = curNode;
-        d.fileName = obj.data.title;
-    	if(obj.data.id > 100){
-	    	if (val !=""){
-	    		layer.confirm('检测已存在编辑内容, 确定要覆盖为新内容吗?', function(index){
-	                layer.close(index);
-	                showTemplateDetail(d);
-	            });
-	    	}else{
-	    		showTemplateDetail(d);
-	    	}
+    	var e = obj.data.title;
+    	if (val !=""){
+    		layer.confirm('检测已存在编辑内容, 确定要覆盖为新内容吗?', function(index){
+                layer.close(index);
+                showTemplateDetail(e);
+            });
     	}else{
-    		curNode = obj.data.id;
-    		console.log("====>"+JSON.stringify(d)); //得到修改后的内容
+    		showTemplateDetail(e);
     	}
       }
     ,operate: function(obj){
@@ -258,6 +240,27 @@ function templateTreeRender(tree, data1){
         };
       }
     });
+});
+
+//抽出通用方法
+function showTemplateDetail(title){
+     $.ajax({
+         type: 'POST',
+         url: '/zproto/module/showTemplateDetail',
+         data: title,
+         dataType: 'JSON',
+         contentType: "application/json; charset=utf-8",
+         success: function(data){
+             editor.setValue(data.data);
+             if(data.code == 0){
+            	 $("input[name='fileName']").val(title);
+             }
+         },
+         error : function(data) {
+             alert("访问出错！");
+             return false;
+         }
+     });
 }
 
 //清空功能

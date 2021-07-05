@@ -1,5 +1,6 @@
 package com.cat.zproto.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public class TemplateTreeDto {
 	private String title;
 	private boolean disabled;
 	private boolean spread;//节点是否初始展开，默认 false
-	private List<TemplateTreeDto> children;
+	private List<TemplateTreeDto> children = new ArrayList<>();
 	
 	public int getId() {
 		return id;
