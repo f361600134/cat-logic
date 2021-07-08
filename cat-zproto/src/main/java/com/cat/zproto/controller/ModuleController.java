@@ -171,6 +171,19 @@ public class ModuleController {
 		mv.addObject("data", moduleEntitie);
 		return mv;
 	}
+	
+	/**
+	 * 编辑数据源
+	 */
+	@RequestMapping("/editBeanInfoView")
+	public Object editBeanInfoView(String version, int id) {
+		ModuleEntity moduleEntitie = moduleService.getModuleEntity(version, id);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("edit_beanInfo");
+		mv.addObject("version", version);
+		mv.addObject("data", moduleEntitie);
+		return mv;
+	}
 
 	/**
 	 * 协议修改界面 1.req协议 2.ack协议 3.dto协议对象

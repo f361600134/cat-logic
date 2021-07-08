@@ -21,7 +21,7 @@
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="svn">svn<i class="layui-icon layui-icon-down"></i></a>
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="codeOpt">代码<i class="layui-icon layui-icon-down"></i></a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createMessage">生成协议<i class="layui-icon layui-icon-down"></i></a>
-	<a th:if="${dbType==2}" class="layui-btn layui-btn-xs" lay-event="view">编辑数据源</a>
+	<a th:if="${dbType==2}" class="layui-btn layui-btn-xs" lay-event="editBeanInfo">编辑数据源</a>
 </script>
 
 <script type="text/javascript"  th:inline="none">
@@ -252,6 +252,25 @@
                   ,style: 'box-shadow: 1px 1px 10px rgb(0 0 0 / 12%);' //设置额外样式
                 })
             }
+         else if(layEvent === 'editBeanInfo'){
+         	//编辑数据源
+        	 layer.open({
+                 type: 2 //此处以iframe举例
+                 ,title: '编辑数据源'
+                 ,area: ['800px', '500px']
+                 ,shade: 0
+                 ,maxmin: true
+                 ,offset: [ //为了演示，随机坐标
+                     0
+                     ,0
+                 ]
+                 ,content: '/zproto/module/editBeanInfoView?version='+version+'&id='+data.id
+                 ,zIndex: layer.zIndex //重点1
+                 ,success: function(layero){
+                     layer.setTop(layero); //重点2
+                 }
+             });
+         	}
         });
 
         //监听头工具栏事件
