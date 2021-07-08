@@ -22,6 +22,10 @@ public enum SystemCodeEnum implements CodeEnum{
 	ERROR_DELETE_LIMIT_ONE(17, "防误删,每次最多删除1条数据"),
 	ERROR_DELETE_BRANCH(18, "删除分支配置出错"),
 	ERROR_GENERATE_FREEMAKER(19, "生成模板出错"),
+	ERROR_NOT_FOUND_FREEMAKER(20, "找不到对应模板"),
+	ERROR_ALREADY_EXITS_FREEMAKER(21, "已存在该模板"),
+	ERROR_NOT_FOUND_DOMAIN(22, "域不存在"),
+	ERROR_SUBFIX_NOT_RIGHT(23, "模板名字不能带有特殊字符,数字以及下划线"),
 	;
 	
 	private int status;

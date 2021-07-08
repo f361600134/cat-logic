@@ -39,8 +39,8 @@
     
     <div class="layui-form-item">
       <label class="layui-form-label">模块关系:</label>
-      <input type="radio" name="one2one" value="false" title="一对多" th:checked="${data.one2one==true}">
-      <input type="radio" name="one2one" value="true" title="一对一" th:checked="${data.one2one==false}">
+      <input type="radio" name="one2one" value="true" title="一对一"  th:checked="${data.one2one==true}">
+      <input type="radio" name="one2one" value="false" title="一对多" th:checked="${data.one2one==false}">
     </div>
     
     <div class="layui-form-item" pane="">
@@ -85,7 +85,7 @@
             d.id=Number($("input[name='id']").val());
             d.name=$("input[name='name']").val();
             d.comment=$("input[name='comment']").val();
-            d.one2one = $('#danxuan input[name="state"]:checked ').val(); 
+            d.one2one = $("input[name='one2one']:checked").val(); 
             
             var version=$("#version").val();
             $.ajax({

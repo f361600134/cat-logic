@@ -33,29 +33,32 @@
 <body>
 <form class="layui-form" action="">
 
-<div class="layui-form-item">
+  <div class="layui-form-item">
   	<div class="layui-inline">
-  	<input type="text" name="fileName" lay-verify="title" autocomplete="off" placeholder="输入协议文件名" class="layui-input">
+  	<input type="text" id="fileName" name="fileName" lay-verify="title" autocomplete="off" placeholder="输入协议文件名" class="layui-input">
   	</div>
   	 <div class="layui-inline">
      <button id="submit" class="layui-btn" lay-submit lay-filter="runTemplate">Run</button>
      </div>
-     <div class="layui-inline">
-     <button id="submit" class="layui-btn" lay-submit lay-filter="saveTemplate">Save</button>
+<!--      <div class="layui-inline"> -->
+<!--      <button id="submit" class="layui-btn" lay-submit lay-filter="saveTemplate">Save</button> -->
+<!--      </div> -->
+	<div class="layui-inline">
+     <button id="saveButton" type="button" class="layui-btn">Save</button>
      </div>
      <div class="layui-inline">
      <button id="button" type="button" class="layui-btn" >Clear</button>
      </div>
   </div>
-
+  
 <div style="margin: 0 auto;">
  <div class="layui-row">
-    <div class="layui-col-md1">
+    <div class="layui-col-md2">
       <div class="grid-demo">
       	<div id="test9" class="demo-tree demo-tree-box" ></div>
       </div>
     </div>
-    <div class="layui-col-md5 layui-col-md-offset1">
+    <div class="layui-col-md5 ">
       <div class="grid-demo grid-demo-bg1">
       		<textarea class="form-control" id="code" name="code"></textarea>
       </div>
@@ -128,11 +131,10 @@ setTimeout(() => {
 },100);//让编辑器每次在调用的时候进行自动刷新
 
 //表单操作
-var curNode = 1;//当前节点
+var curNode = 0;
 layui.use(function(){
     var form = layui.form;
     var tree = layui.tree;
-   
     form.on('submit(runTemplate)', function (data) {
         var e = data.field.code;
         $.ajax({
@@ -154,29 +156,29 @@ layui.use(function(){
         });
         return false;
 	});
-    form.on('submit(saveTemplate)', function (data) {
-    	var d = {};
-    	d.curNode = curNode;
-        d.fileName = data.field.fileName;
-        d.content = data.field.code;
-        $.ajax({
-            type: 'POST',
-            url: '/zproto/module/saveTemplateDetail',
-            data: JSON.stringify(d),
-            dataType: 'JSON',
-            contentType: "application/json; charset=utf-8",
-            success: function(data){
-                var str = data.tips;
-                if(data.code == 0){
-                	layer.msg(str, {icon: 1});
-                }else{
-                	layer.msg(str, {icon: 2});
-                }
-            },
-//             error: function(jqXHR){console.log(jqXHR)},
-        });
-        return false;
-	});
+//     form.on('submit(saveTemplate)', function (data) {
+//     	var d = {};
+//     	d.curNode = curNode;
+//         d.fileName = data.field.fileName;
+//         d.content = data.field.code;
+//         $.ajax({
+//             type: 'POST',
+//             url: '/zproto/module/updateTemplateDetail',
+//             data: JSON.stringify(d),
+//             dataType: 'JSON',
+//             contentType: "application/json; charset=utf-8",
+//             success: function(data){
+//                 var str = data.tips;
+//                 if(data.code == 0){
+//                 	layer.msg(str, {icon: 1});
+//                 }else{
+//                 	layer.msg(str, {icon: 2});
+//                 }
+//             },
+// //             error: function(jqXHR){console.log(jqXHR)},
+//         });
+//         return false;
+// 	});
     $.ajax({
         type: "post",
         url: "/zproto/setting/templateFileList",
@@ -186,7 +188,59 @@ layui.use(function(){
         success: function (data) {
             layui.use('tree', function () {
                 var tree = layui.tree;
-                templateTreeRender(tree, data.data);
+                var data1 = data.data;
+                //templateTreeRender(tree, data.data);
+              //开启节点操作图标
+                tree.render({
+                  elem: '#test9'
+                  ,data: data1
+                  ,accordion: true//开启手风琴模式
+                  ,showLine:false
+                  //,onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩
+                  ,edit: ['update', 'del'] //操作节点的图标
+                  ,click: function(obj){
+                	//如果数据为空, 直接获取后台数据
+                	//如果数据不为空, 询问后获取后台数据
+                	if(curNode == obj.data.id){
+                		return;
+                	}
+                	if(obj.data.id < 1000){
+                		return;
+                	}
+           	    	var val = editor.getValue();
+           	    	var d = {};
+           	    	d.curNode = obj.data.id;
+           	        d.fileName = obj.data.title;
+           	    	if (val !=""){
+           	    		layer.confirm('检测已存在编辑内容, 确定要覆盖为新内容吗?', function(index){
+           	                layer.close(index);
+           	                showTemplateDetail(d);
+           	             	curNode = obj.data.id;
+           	            });
+           	    	}else{
+           	    		showTemplateDetail(d);
+           	    		curNode = obj.data.id;
+           	    	}
+           	      }
+                ,operate: function(obj){
+                    var type = obj.type; //得到操作类型：add、edit、del
+                    var data = obj.data; //得到当前节点的数据
+                    var elem = obj.elem; //得到当前节点元素
+                    if(type === 'update'){ //修改节点
+                      var dto = {}
+                      dto.curNode = data.id;
+                      dto.fileName = data.title;
+                      renameTemplateFile(dto);
+                    } else if(type === 'del'){ //删除节点
+                    	console.log("====>删除文件"+data.id+", "+data.title); //得到修改后的内容
+                    	var dto = {}
+                        dto.curNode = data.id;
+                        dto.fileName = data.title;
+                        deleteTemplateFile(dto)
+                    };
+                  }
+                });
+              	//tree end
             })
         }
     })
@@ -213,59 +267,114 @@ function showTemplateDetail(dto){
      });
 }
 
-function templateTreeRender(tree, data1){
-	//开启节点操作图标
-    tree.render({
-      elem: '#test9'
-      ,data: data1
-      ,accordion: true//开启手风琴模式
-      ,showLine:false
-      //,onlyIconControl: true  //是否仅允许节点左侧图标控制展开收缩
-      ,edit: ['add', 'update', 'del'] //操作节点的图标
-      ,click: function(obj){
-    	//如果数据为空, 直接获取后台数据
-    	//如果数据不为空, 询问后获取后台数据
-    	var val = editor.getValue();
-    	var d = {};
-    	d.curNode = curNode;
-        d.fileName = obj.data.title;
-    	if(obj.data.id > 100){
-	    	if (val !=""){
-	    		layer.confirm('检测已存在编辑内容, 确定要覆盖为新内容吗?', function(index){
-	                layer.close(index);
-	                showTemplateDetail(d);
-	            });
-	    	}else{
-	    		showTemplateDetail(d);
-	    	}
-    	}else{
-    		curNode = obj.data.id;
-    		console.log("====>"+JSON.stringify(d)); //得到修改后的内容
-    	}
-      }
-    ,operate: function(obj){
-        var type = obj.type; //得到操作类型：add、edit、del
-        var data = obj.data; //得到当前节点的数据
-        var elem = obj.elem; //得到当前节点元素
-        //Ajax 操作
-        var id = data.id; //得到节点索引
-        if(type === 'add'){ //增加节点
-          //返回 key 值
-          return 123;
-        } else if(type === 'update'){ //修改节点
-          console.log("====>"+elem.find('.layui-tree-txt').html()); //得到修改后的内容
-        } else if(type === 'del'){ //删除节点
-        };
-      }
-    });
-}
-
 //清空功能
 $("#button").click(function(){
 	 editor.setValue("");
 	 shower.setValue("");
 	 $("input[name='fileName']").val("");
 });
+
+$("#saveButton").click(function(){
+	 var fileName = $("#fileName").val();
+	 var content = $("#code").val();
+	 //文件名或文件编号无数据, 表示新增文件
+	 if(fileName == "" || curNode == 0){
+		 //同步更新缓存对应的值
+         layer.open({
+             type: 2 //此处以iframe举例
+             ,title: '新增模板'
+             ,area: ['450px', '300px']
+             ,shade: 0
+             ,maxmin: true
+             ,offset: [ //为了演示，随机坐标
+                 0
+                 ,0
+             ]
+             ,content:"/zproto/setting/addTemplateView"
+             ,zIndex: layer.zIndex //重点1
+             ,success: function(layero, index){
+                 layer.setTop(layero); //重点2
+                 var body = layer.getChildFrame('body', index);
+                 var iframeWin = window[layero.find('iframe')[0]['name']]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
+                 //console.log(body.html()); //得到iframe页的body内容
+                 body.find("textarea[name='content']").val(content);
+             }
+         });
+	 }else{
+		 $("form").submit();
+	 }
+  }); 
+
+$("form").submit(function(e){
+	var d = {};
+	d.curNode = curNode;
+    d.fileName = $("#fileName").val();
+    d.content = $("#code").val();
+    $.ajax({
+        type: 'POST',
+        url: '/zproto/module/updateTemplateDetail',
+        data: JSON.stringify(d),
+        dataType: 'JSON',
+        contentType: "application/json; charset=utf-8",
+        success: function(data){
+            var str = data.tips;
+            if(data.code == 0){
+            	layer.msg(str, {icon: 1});
+            }else{
+            	layer.msg(str, {icon: 2});
+            }
+        },
+        error: function(jqXHR){console.log(jqXHR)},
+    });
+    return false;
+});
+
+//删除模板文件
+function deleteTemplateFile(dto){
+     $.ajax({
+         type: 'POST',
+         url: '/zproto/module/deleteTemplateFile',
+         data: JSON.stringify(dto),
+         dataType: 'JSON',
+         contentType: "application/json; charset=utf-8",
+         success: function(data){
+        	 var str = data.tips;
+        	 if(data.code == 0){
+             	layer.msg(str, {icon: 1});
+             }else{
+             	layer.msg(str, {icon: 2});
+             }
+         },
+         error : function(data) {
+             alert("访问出错！");
+             return false;
+         }
+     });
+}
+
+//改名模板文件
+function renameTemplateFile(dto){
+     $.ajax({
+         type: 'POST',
+         url: '/zproto/module/renameTemplateFile',
+         data: JSON.stringify(dto),
+         dataType: 'JSON',
+         contentType: "application/json; charset=utf-8",
+         success: function(data){
+        	 var str = data.tips;
+        	 if(data.code == 0){
+             	layer.msg(str, {icon: 1});
+             }else{
+             	layer.msg(str, {icon: 2});
+             }
+         },
+         error : function(data) {
+             alert("访问出错！");
+             return false;
+         }
+     });
+}
+
 </script>
 
 </body>

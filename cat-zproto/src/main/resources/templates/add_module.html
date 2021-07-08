@@ -85,9 +85,9 @@
             d.id=Number($("input[name='id']").val());
             d.name=$("input[name='name']").val();
             d.comment=$("input[name='comment']").val();
-            d.one2one = $('#danxuan input[name="state"]:checked ').val();         
+            d.one2one = $('#input[name="one2one"]:checked').val()==="on";    
             
-            var version=$("#version").val();
+            var version=$("#version").val();  
             $.ajax({
                 type: 'POST',
                 url: '/zproto/module/addModule?version='+version,

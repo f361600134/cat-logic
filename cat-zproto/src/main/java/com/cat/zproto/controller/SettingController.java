@@ -22,17 +22,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cat.zproto.core.result.SystemCodeEnum;
 import com.cat.zproto.core.result.SystemResult;
-import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingMysql;
 import com.cat.zproto.domain.system.SettingProto;
 import com.cat.zproto.domain.system.SettingSvn;
 import com.cat.zproto.domain.system.SettingVersion;
-import com.cat.zproto.dto.TableFreemarkerDto;
+import com.cat.zproto.domain.template.TemplateStruct;
 import com.cat.zproto.dto.TemplateTreeDto;
 import com.cat.zproto.enums.TemplateEnum;
 import com.cat.zproto.service.ModuleService;
 import com.cat.zproto.service.ProtoService;
+import com.cat.zproto.service.TemplateService;
 import com.cat.zproto.util.Pair;
 
 /**
@@ -55,6 +55,9 @@ public class SettingController {
 	
 	@Autowired
 	private ProtoService protoService;
+	
+	@Autowired
+	private TemplateService templateService;
 	
 //	/**
 //	 *设置信息
@@ -120,6 +123,10 @@ public class SettingController {
 		List<TemplateTreeDto> dtos = new ArrayList<>();
 		for (TemplateEnum tenum : TemplateEnum.values()) {
 			TemplateTreeDto dto = tenum.newTreeDto();
+			Collection<TemplateStruct> structs = templateService.getAllStruct(tenum.getType());
+			for (TemplateStruct struct : structs) {
+				dto.addChildren(struct.toTemplateDto());
+			}
 			dtos.add(dto);
 		}
 		return SystemResult.build(SystemCodeEnum.SUCCESS, dtos);
@@ -150,6 +157,17 @@ public class SettingController {
 	public ModelAndView addVersionView() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("add_version");
+		return mv;
+	}
+	
+	/**
+	 * 请求添加模板的页面
+	 * @return
+	 */
+	@RequestMapping("/addTemplateView")
+	public ModelAndView addTemplateView() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("add_template");
 		return mv;
 	}
 	

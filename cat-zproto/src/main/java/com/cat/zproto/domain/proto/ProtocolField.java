@@ -1,7 +1,7 @@
 package com.cat.zproto.domain.proto;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import com.cat.zproto.util.StringUtils;
+import com.cat.zproto.util.StringUtil;
 
 /**
  * 协议字段
@@ -61,7 +61,7 @@ public class ProtocolField {
 	}
 	public void setType(String type) {
 		this.type = type;
-		this.javaType = StringUtils.protoTypeToJavaType(type);
+		this.javaType = StringUtil.protoTypeToJavaType(type);
 	}
 	public String getName() {
 		return name;
@@ -85,7 +85,7 @@ public class ProtocolField {
 	
 	@JSONField(serialize = false)
 	public boolean getPrimitive() {
-		return StringUtils.isJavaType(javaType);
+		return StringUtil.isJavaType(javaType);
 	}
 	
 	public boolean isRepeated() {

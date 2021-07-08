@@ -3,11 +3,9 @@ package com.cat.zproto.controller;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.StringWriter;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -20,11 +18,10 @@ import java.util.TreeMap;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +31,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cat.zproto.assist.generator.ICodeGenerator;
+import com.cat.zproto.assist.generator.IDefineGenerator;
 import com.cat.zproto.assist.generator.IProtoGenerator;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.core.result.SystemCodeEnum;
@@ -45,6 +43,7 @@ import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingVersion;
 import com.cat.zproto.domain.table.TableEntity;
+import com.cat.zproto.domain.template.TemplateStruct;
 import com.cat.zproto.dto.TableFreemarkerDto;
 import com.cat.zproto.dto.TemplateDto;
 import com.cat.zproto.enums.ProtoTypeEnum;
@@ -55,6 +54,7 @@ import com.cat.zproto.service.ModuleService;
 import com.cat.zproto.service.ProtoService;
 import com.cat.zproto.service.SvnService;
 import com.cat.zproto.service.TemplateService;
+import com.cat.zproto.util.StringUtil;
 import com.cat.zproto.util.ZipUtil;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.Lists;
@@ -101,6 +101,9 @@ public class ModuleController {
 
 	@Autowired
 	private List<ICodeGenerator> generatorCodeList;
+	
+	@Autowired
+	private IDefineGenerator defineGenerator;
 
 	@Autowired
 	private SvnService svnService;
@@ -390,14 +393,7 @@ public class ModuleController {
 	private SystemResult createMessage(String version, ProtocolObject protoObject, String langType) {
 		String protoFormat = CommonConstant.PROTOC_EXECUTE_FORMAT;
 		
-//		ClassPathResource resource = new ClassPathResource(CommonConstant.PROTO_EXE_PATH);
 		String protoExePath = setting.getProto().getProtoExePath();
-//		Resource resource = new ClassPathResource("");
-//		try {
-//			protoExePath = resource.getFile().getAbsolutePath()+protoExePath;
-//		} catch (IOException e1) {
-//			e1.printStackTrace();
-//		}
 		String os = System.getProperty("os.name");
 		if (os.toLowerCase().startsWith("win")) {
 			protoExePath = protoExePath.concat("/").concat("protoc.exe");
@@ -412,13 +408,7 @@ public class ModuleController {
 		SettingVersion versionInfo = setting.getVersionInfo().get(version);
 		String genPath = versionInfo.getGenDir().concat(File.separator).concat(langType);
 		String outClassName = protoObject.getOutClass();
-		try {
-			// TODO 这段代码丢初始化调用里面
-			FileUtils.forceMkdir(new File(genPath));
-		} catch (IOException e) {
-			e.printStackTrace();
-			logger.info("forceMkdir error, e", e);
-		}
+		
 		String command = String.format(protoFormat, protoExePath, protoPath, languageType, genPath, outClassName);
 		SystemResult result = commandService.execCommand(command);
 		logger.info("command:{}, result:{}", command, result);
@@ -515,18 +505,41 @@ public class ModuleController {
 	public Object showTemplateDetail(@RequestBody TemplateDto templateDto) {
 		//获取到模板文件内容
 		try {
-			//String path = CommonConstant.FTL_CODE_PATH.concat(File.separator).concat(fileName);
-			TemplateEnum tEnum = TemplateEnum.getEnum(templateDto.getCurNode());
-			String path = tEnum.getPath().concat(File.separator).concat(templateDto.getFileName());
-			File file = new File(path);
-//			ClassPathResource resource = new ClassPathResource("ftl/code/"+fileName);
-//			InputStream inputStream = resource.getInputStream();
-//			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-			String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-			return SystemResult.build(SystemCodeEnum.SUCCESS, content);
+			int nodeId = templateDto.getCurNode();
+			String name = templateDto.getFileName();
+			TemplateStruct struct = templateService.getStruct(nodeId, name);
+			if (struct == null) {
+				return SystemResult.build(SystemCodeEnum.ERROR_NOT_FOUND_FREEMAKER);
+			}
+			return SystemResult.build(SystemCodeEnum.SUCCESS, struct.getContent());
 		} catch (Exception e) {
 			logger.error("showTemplate error, {}",e);
 			return SystemResult.build(SystemCodeEnum.SUCCESS, e.getMessage());
+		}
+	}
+	
+	/**
+	 * 更新模板内容,文件一定要存在,否则不能更新
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/updateTemplateDetail", method = {RequestMethod.POST})
+	public Object updateTemplateDetail(@RequestBody TemplateDto templateDto) {
+		//获取到模板文件内容
+		int id = templateDto.getCurNode();
+		String fileName = templateDto.getFileName();
+		String content = templateDto.getContent();
+		try {
+			SystemCodeEnum code = templateService.updateStruct(id, fileName, content);
+			if (code != SystemCodeEnum.SUCCESS) {
+				return SystemResult.build(code);
+			}
+			return SystemResult.build(SystemCodeEnum.SUCCESS, content);
+		} catch (Exception e) {
+			logger.error("showTemplate error, {}",e);
+			return SystemResult.build(SystemCodeEnum.UNKNOW, e.getMessage());
 		}
 	}
 	
@@ -543,20 +556,71 @@ public class ModuleController {
 		String fileName = templateDto.getFileName();
 		String content = templateDto.getContent();
 		try {
-			TemplateEnum tEnum = TemplateEnum.getEnum(templateDto.getCurNode());
-			String path = tEnum.getPath().concat(File.separator).concat(fileName);
-			File file = new File(path);
-			
-			//如果文件不存在
-			if (!file.exists()) {
-				file.createNewFile();//创建文件
+			//如果不是纯字母,返回错误码
+			if (!StringUtil.isEnglish(fileName)) {
+				return SystemResult.build(SystemCodeEnum.ERROR_SUBFIX_NOT_RIGHT);
 			}
-			//写入内容到文件
-			FileUtils.write(file, content, StandardCharsets.UTF_8);
+			SystemCodeEnum code = templateService.saveStruct(templateDto.getCurNode(), fileName, content);
+			if (code != SystemCodeEnum.SUCCESS) {
+				return SystemResult.build(code);
+			}
 			return SystemResult.build(SystemCodeEnum.SUCCESS, content);
 		} catch (Exception e) {
 			logger.error("showTemplate error, {}",e);
 			return SystemResult.build(SystemCodeEnum.SUCCESS, e.getMessage());
+		}
+	}
+	
+	/**
+	 * 更新模板内容,文件一定要存在,否则不能更新
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/deleteTemplateFile")
+	public Object deleteTemplateFile(@RequestBody TemplateDto templateDto) {
+		//获取到模板文件内容
+		int id = templateDto.getCurNode();
+		String fileName = templateDto.getFileName();
+		try {
+			SystemCodeEnum code = templateService.deleteStruct(id, fileName);
+			if (code != SystemCodeEnum.SUCCESS) {
+				return SystemResult.build(code);
+			}
+			return SystemResult.build(SystemCodeEnum.SUCCESS);
+		} catch (Exception e) {
+			logger.error("showTemplate error, {}",e);
+			return SystemResult.build(SystemCodeEnum.UNKNOW, e.getMessage());
+		}
+	}
+	
+	/**
+	 * 模板改名
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/renameTemplateFile")
+	public Object renameTemplateFile(@RequestBody TemplateDto dto) {
+		//获取到模板文件内容
+		try {
+			String fileName = dto.getFileName();
+			if (fileName.endsWith(CommonConstant.TEMPLATE_SUBFIX)) {
+				fileName = fileName.replaceAll(CommonConstant.TEMPLATE_SUBFIX, "");
+			}
+			if (!StringUtil.isEnglish(fileName)) {
+				return SystemResult.build(SystemCodeEnum.ERROR_SUBFIX_NOT_RIGHT);
+			}
+			SystemCodeEnum code = templateService.renameStruct(dto.getCurNode(), dto.getFileName());
+			if (code != SystemCodeEnum.SUCCESS) {
+				return SystemResult.build(code);
+			}
+			return SystemResult.build(SystemCodeEnum.SUCCESS);
+		} catch (Exception e) {
+			logger.error("showTemplate error, {}",e);
+			return SystemResult.build(SystemCodeEnum.UNKNOW, e.getMessage());
 		}
 	}
 	
@@ -670,8 +734,12 @@ public class ModuleController {
 		dto.getProtoReqStructList().addAll(protoReqStructList);
 		dto.getProtoPBStructList().addAll(protoPBStructList);
 		// 生成代码
-		for (ICodeGenerator generator : generatorCodeList) {
-			generator.generate(version, dto);
+//		for (ICodeGenerator generator : generatorCodeList) {
+//			generator.generate(version, dto);
+//		}
+		Collection<TemplateStruct> struts = templateService.getAllStruct(TemplateEnum.CODE.getType());
+		for (TemplateStruct struct : struts) {
+			defineGenerator.generate(version, struct, dto);
 		}
 		// 压缩代码
 		zipCode(version, entity);

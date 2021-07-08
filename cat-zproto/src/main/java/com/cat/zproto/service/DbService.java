@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.table.TableBean;
 import com.cat.zproto.domain.table.TableEntity;
-import com.cat.zproto.util.StringUtils;
+import com.cat.zproto.util.StringUtil;
 
 /**
  * 读取数据库信息, 读取指定表的表结构
@@ -68,7 +68,7 @@ public class DbService {
 				//组装表信息
 				TableEntity tableEntity = new TableEntity();
 				tableEntity.setTablName(tbName);
-				tableEntity.setEntityName(StringUtils.underlineToUpperCamal(tbName));
+				tableEntity.setEntityName(StringUtil.underlineToUpperCamal(tbName));
 				//	读取列数据
 				readColumns(conn, tbName, tableEntity);
 				// 主键
@@ -118,7 +118,7 @@ public class DbService {
 		List<String> primarys = new ArrayList<String>();
 		while (keys.next()) {
 			String keyColName = keys.getString("COLUMN_NAME");
-			primarys.add(StringUtils.underlineToLowerCamal(keyColName));
+			primarys.add(StringUtil.underlineToLowerCamal(keyColName));
 		}
 		excelEntity.setPrimarys(primarys);
 		result.add(excelEntity);
@@ -139,13 +139,13 @@ public class DbService {
 		while (rs.next()) {
 			String ctype = rs.getString("TYPE_NAME");
 			try {
-				ctype = StringUtils.sqlTypeToJavaType(ctype);
+				ctype = StringUtil.sqlTypeToJavaType(ctype);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			excelBean = new TableBean();
-			excelBean.setField(StringUtils.firstCharLower(rs.getString("COLUMN_NAME")));
-			excelBean.setTbField(StringUtils.firstCharUpper(rs.getString("COLUMN_NAME")));
+			excelBean.setField(StringUtil.firstCharLower(rs.getString("COLUMN_NAME")));
+			excelBean.setTbField(StringUtil.firstCharUpper(rs.getString("COLUMN_NAME")));
 			excelBean.setType(ctype);
 			excelBean.setDesc(rs.getString("REMARKS"));
 			excelEntity.addEntityBeans(excelBean);

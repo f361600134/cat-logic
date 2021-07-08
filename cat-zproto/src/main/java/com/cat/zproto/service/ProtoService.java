@@ -309,7 +309,7 @@ public class ProtoService implements InitializingBean{
 		String javaPackage = setting.getProto().getJavaPackagePath();
 		protoObject.setJavaPath(javaPackage);
 //		String PbObj = ProtocolConstant.PB_PREFIX.concat(com.cat.zproto.util.StringUtils.firstCharUpper(moduleName));
-		String PbObj = setting.getProto().getPbPrefix().concat(com.cat.zproto.util.StringUtils.firstCharUpper(moduleName));
+		String PbObj = setting.getProto().getPbPrefix().concat(com.cat.zproto.util.StringUtil.firstCharUpper(moduleName));
 		protoObject.setOutClass(PbObj);
 		//查询所有引用类
 		List<String> dtoNames = new ArrayList<>();

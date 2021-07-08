@@ -3,7 +3,7 @@ package com.cat.zproto.domain.module;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cat.zproto.util.StringUtils;
+import com.cat.zproto.util.StringUtil;
 
 /**
  * module信息, <br>
@@ -49,7 +49,7 @@ public class ModuleEntity {
     }
 
     public void setName(String name) {
-        this.name = StringUtils.firstCharUpper(name);
+        this.name = StringUtil.firstCharUpper(name);
     }
 
     public String getComment() {

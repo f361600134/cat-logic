@@ -1,5 +1,6 @@
 package com.cat.zproto.assist.generator.code;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import com.cat.zproto.assist.generator.AbstractCodeGenerator;
@@ -10,7 +11,7 @@ public class GenEntityController extends AbstractCodeGenerator{
 
 	@Override
 	public String getChildDir() {
-		return "";
+		return StringUtils.EMPTY;
 	}
 	
 	@Override

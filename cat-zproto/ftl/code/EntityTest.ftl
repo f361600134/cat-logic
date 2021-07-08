@@ -11,20 +11,10 @@ public class ${entity.getEntityName()} extends ${entity.getEntityName()}Po imple
 	public ${entity.getEntityName()}() {
 
 	}
+
 	
-	public ${entity.getEntityName()}(long playerId) {
-		this.playerId = playerId;
-	}
-	
-	@Override
-	public Object key() {
-		//TODO
-		//return getPlayerId();
-	}
-	
-	public String keyColumn() {
-		//TODO 
-		//return PROP_PLAYERID;
+	public String aaa() {
+		return "bbb";
 	}
 
 }

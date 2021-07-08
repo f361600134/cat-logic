@@ -1,0 +1,6 @@
+{
+	"content":"package com.cat.server.game.module.mission.type;\n\n\nimport java.util.Map;\nimport com.cat.server.game.data.config.ConfigMissionMgr;\n\n/**\n * AbstractMission的派生类${entity.getEntityName()}MissionType\n * @author Jeremy\n */\npublic class ${entity.getEntityName()}MissionType extends AbstractMission{\n\n\tpublic ${entity.getEntityName()}MissionType(int configId) {\n\t\tsuper(configId);\n\t}\n\n\t@Override\n\tpublic int getCompleteType() {\n\t\t//TODO ConfigXXXMgr.getConfig(configId).getCompleteType()\n\t\treturn 0;\n\t}\n\n\t@Override\n\tpublic int getCompleteCondition() {\n\t\t//TODO ConfigXXXMgr.getConfig(configId).getCompleteValue()\n\t\treturn 0;\n\t}\n\n\t@Override\n\tpublic int getCompleteValue() { \n\t\t//TODO ConfigXXXMgr.getConfig(configId).getCompleteTotal()\n\t\treturn 0;\n\t}\t\n\t\n\t@Override\n\tpublic Map<Integer, Integer> getReward() {\n\t\t//TODO return ConfigXXXMgr.getConfig(configId).getRewardMap();\n\t\treturn null;\n\t}\n\n\tpublic static ${entity.getEntityName()}MissionType create(int configId) {\n\t\treturn new ${entity.getEntityName()}MissionType(configId);\n\t}\n\t\n\t@Override\n\tpublic String toString() {\n\t\treturn \"${entity.getEntityName()}MissionType [configId=\" + configId + \", state=\" + state + \"]\";\n\t}\n\t\n}\n",
+	"id":1006,
+	"name":"EntityMissionType",
+	"type":1
+}

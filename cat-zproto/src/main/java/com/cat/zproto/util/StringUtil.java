@@ -1,8 +1,11 @@
 package com.cat.zproto.util;
 
-public class StringUtils {
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(StringUtils.class);
+public class StringUtil {
+
+	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(StringUtil.class);
 	
 	private final static String UNDERLINE = "_";
 	
@@ -368,4 +371,167 @@ public class StringUtils {
 	// return sb.toString().toLowerCase();
 	// }
 
+//	/**
+//     * 检验手机号
+//     * @param phone
+//     * @return
+//     */
+//    public static boolean isPhone(String phone){
+//        phone = isNull(phone);
+//        Pattern regex = Pattern
+////                .compile("^((13[0-9])|(15[^4,\\D])|(18[0-9]))\\d{8}$");
+//                .compile("^((1[34578]{1}[0-9]))\\d{8}$");
+//        Matcher matcher = regex.matcher(phone);
+//        boolean isMatched = matcher.matches();
+//        return isMatched;
+//    }
+//    
+//    /**
+//     * 检查是否全中文，返回true 表示是 反之为否
+//     * @param realname
+//     * @return
+//     */
+//    public static boolean isChinese(String realname){
+//        realname = isNull(realname);
+//        Pattern regex = Pattern.compile("[\\u4e00-\\u9fa5]{2,25}");
+//        Matcher matcher = regex.matcher(realname);
+//        boolean isMatched = matcher.matches();
+//        return isMatched;
+//    }
+//    
+//    /**
+//     * 检查email是否是邮箱格式，返回true表示是，反之为否
+//     * @param email
+//     * @return
+//     */
+//    public static boolean isEmail(String email) {
+//        email = isNull(email);
+//        Pattern regex = Pattern
+//                .compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
+//        Matcher matcher = regex.matcher(email);
+//        boolean isMatched = matcher.matches();
+//        return isMatched;
+//    }
+    
+    
+//    /**
+//     * 检查身份证的格式，返回true表示是，反之为否
+//     * @param email
+//     * @return
+//     */
+//    public static boolean isCard(String cardId) {
+//        cardId = isNull(cardId);
+//        //身份证正则表达式(15位) 
+//        Pattern isIDCard1=Pattern.compile("^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$"); 
+//        //身份证正则表达式(18位) 
+//        Pattern isIDCard2=Pattern.compile("^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$"); 
+//        Matcher matcher1= isIDCard1.matcher(cardId);
+//        Matcher matcher2= isIDCard2.matcher(cardId);
+//        boolean isMatched = matcher1.matches()||matcher2.matches();
+//        return isMatched;
+//    }
+    
+
+//    /**
+//     * 判断字符串是否为整数
+//     * @param str
+//     * @return
+//     */
+//    public static boolean isInteger(String str) {
+//        if (isEmpty(str)) {
+//            return false;
+//        }
+//        Pattern regex = Pattern.compile("\\d*");
+//        Matcher matcher = regex.matcher(str);
+//        boolean isMatched = matcher.matches();
+//        return isMatched;
+//    }
+    
+
+//    /**
+//     * 判断字符串是否为数字
+//     * @param str
+//     * @return
+//     */
+//    public static boolean isNumber(String str) {
+//        if (isEmpty(str)) {
+//            return false;
+//        }
+//        Pattern regex = Pattern.compile("(-)?\\d*(.\\d*)?");
+//        Matcher matcher = regex.matcher(str);
+//        boolean isMatched = matcher.matches();
+//        return isMatched;
+//    }
+    
+    
+    /**
+     * 判断字符串是否为纯字母
+     * @param str
+     * @return
+     */
+    public static boolean isEnglish(String str) {
+        if (org.apache.commons.lang3.StringUtils.isBlank(str)) {
+            return false;
+        }
+        Pattern regex = Pattern.compile("[a-zA-Z]{1,}(.\\d*)");
+        Matcher matcher = regex.matcher(str);
+        boolean isMatched = matcher.matches();
+        return isMatched;
+    }
+
+//    /**
+//     * 根据身份证计算性别
+//     * @param cardId
+//     * @return
+//     */
+//    public static int getSexByCardid(String cardId) {
+//        /*String sexNum = "";
+//        if (cardId.length() == 15) {
+//            sexNum = cardId.substring(13, 14);
+//        } else {
+//            sexNum = cardId.substring(16, 17);
+//        }
+//        
+//        if (Integer.parseInt(sexNum) % 2 == 1) {
+//            return 1;
+//        } else {
+//            return 0;
+//        }*/
+//        int sexNum = 0;
+//        if (cardId.length() == 15) {
+//            sexNum = cardId.charAt(13);
+//        } else {
+//            sexNum = cardId.charAt(16);
+//        }
+//        if (sexNum % 2 == 1) {
+//            return 1;
+//        } else {
+//            return 0;
+//        }
+//    }
+
+
+//    /**
+//     * 根据身份证计算生日
+//     * @param cardId
+//     * @return
+//     */
+//    public static String getBirthdayByCardid(String cardId) {
+//        String birth = null;
+//        if (cardId.length() == 15) {
+//            birth = cardId.substring(6, 12);
+//        } else {
+//            birth = cardId.substring(6, 14);
+//        }
+//        SimpleDateFormat sf1 = new SimpleDateFormat("yyyyMMdd");
+//        SimpleDateFormat sf2 = new SimpleDateFormat("yyyy-MM-dd");
+//        String birthday = null;
+//        try {
+//            birthday = sf2.format(sf1.parse(birth));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        return birthday;
+//    }
+	
 }

@@ -32,6 +32,21 @@ public class CommonConstant {
 	 * ftl模板存储路径
 	 */
 	public static String FTL_PROTO_PATH = "./ftl/proto/";
+	
+	/**
+	 * ftl 协议结构存储路径
+	 */
+	public static String FTL_STRUCT_CODE_PATH = "./ftl/struct/code/";
+	
+	/**
+	 * ftl 协议结构存储路径
+	 */
+	public static String FTL_STRUCT_PROTO_PATH = "./ftl/struct/proto/";
+	
+	/**
+	 * 删除文件备份
+	 */
+	public static String FTL_BACKUP_PATH = "./ftl/backup/";
 	/**
 	 * 编译器的路径
 	 */
@@ -82,5 +97,15 @@ public class CommonConstant {
 	 * 生成协议结果返回
 	 */
 	public final static String GENERATE_RESULT = "[ %s ] 结果:%S";
+	
+	/**
+	 * 模板后缀
+	 */
+	public static String TEMPLATE_SUBFIX = ".ftl";
+	
+	/**
+	 * json后缀
+	 */
+	public static String JSON_SUBFIX = ".json";
 	
 }
