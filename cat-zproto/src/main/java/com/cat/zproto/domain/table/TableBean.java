@@ -9,7 +9,6 @@ public class TableBean {
 
 	private String field; // Java字段
 	private String desc; // 描述
-	private String primary; // 是否主键,第一个主键为1,第二个为2,依次累加,程序根据从小到大顺序组装mongo_id
 	private String type; // 类型
 	private String tbField; // 表字段
 
@@ -37,14 +36,6 @@ public class TableBean {
 		this.desc = desc;
 	}
 
-	public String getPrimary() {
-		return primary;
-	}
-
-	public void setPrimary(String primary) {
-		this.primary = primary;
-	}
-
 	public String getTbField() {
 		return tbField;
 	}
@@ -54,20 +45,18 @@ public class TableBean {
 	}
 
 	public TableBean() {
-		this.primary = "";
 	}
 
-	public TableBean(String field, String type, String desc, String primary) {
+	public TableBean(String field, String type, String desc) {
 		super();
 		this.field = field;
 		this.type = type;
 		this.desc = desc;
-		this.primary = primary;
 	}
 
 	@Override
 	public String toString() {
-		return "TableBean [field=" + field + ", desc=" + desc + ", primary=" + primary + ", type=" + type + ", tbField=" + tbField + "]";
+		return "TableBean [field=" + field + ", desc=" + desc + ", type=" + type + ", tbField=" + tbField + "]";
 	}
 
 }

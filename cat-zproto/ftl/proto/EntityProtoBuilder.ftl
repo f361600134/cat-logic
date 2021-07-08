@@ -46,7 +46,11 @@ public class ${clazzName} implements IProtocol {
 	
 	@Override
 	public int protocol() {
+		<#if struct.name?contains('PB')>
+		return 0;
+		<#else>
 		return PBProtocol.${struct.name}_VALUE;
+		</#if>
 	}
 
 	@Override

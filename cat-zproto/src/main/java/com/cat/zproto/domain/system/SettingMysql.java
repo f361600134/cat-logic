@@ -9,6 +9,11 @@ import com.alibaba.druid.pool.DruidDataSource;
  * 目前先实现mysql版本
  */
 public class SettingMysql {
+	
+	/**
+	 * 数据源类型 1:mysql, 2:excel
+	 */
+	private int dbType;
 	private String url;
 	private String username;
 	private String password;
@@ -67,6 +72,14 @@ public class SettingMysql {
 		this.initialSize = initialSize;
 	}
 	
+	public int getDbType() {
+		return dbType;
+	}
+
+	public void setDbType(int dbType) {
+		this.dbType = dbType;
+	}
+
 	public DruidDataSource newDruidDataSource() {
 		DruidDataSource dataSource = new DruidDataSource();
 		dataSource.setUrl(this.getUrl());

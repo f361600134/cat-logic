@@ -14,15 +14,14 @@
 <!-- <a href="/zproto/module/protoReverseLoad"><p align="center">尝试反向加载</p></a> -->
 
 <table id="modules" lay-filter="test"></table> 
+<!-- <lable th:text="${dbType}"></lable> -->
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="view">预览协议</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑协议</a>
-    <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createMessage">生成协议</a>-->
-    <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createCode">生成代码</a>-->
-	<!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="downloadCode">下载代码</a>-->
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="svn">svn<i class="layui-icon layui-icon-down"></i></a>
 	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="codeOpt">代码<i class="layui-icon layui-icon-down"></i></a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="createMessage">生成协议<i class="layui-icon layui-icon-down"></i></a>
+	<a th:if="${dbType==2}" class="layui-btn layui-btn-xs" lay-event="view">编辑数据源</a>
 </script>
 
 <script type="text/javascript"  th:inline="none">
@@ -45,7 +44,7 @@
                 ,{field: 'name', title: '模块名', width:120}
                 ,{field: 'endPoints', title: '终端', width:80}
                 ,{field: 'comment', title: '注释', width:120}
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:500}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:800}
             ]]
         });
 

@@ -151,15 +151,6 @@ public class TableEntity {
 	 * 设置主键
 	 */
 	public void setPrimarys(List<String> primarys) {
-		int index = 0;
-		for (String primary : primarys) {
-			for (TableBean excelBean : entityBeans) {
-				if (excelBean.getField().equals(primary)) {
-					++index;
-					excelBean.setPrimary(String.valueOf(index));
-				}
-			}
-		}
 		this.primaryKeys = primarys;
 	}
 

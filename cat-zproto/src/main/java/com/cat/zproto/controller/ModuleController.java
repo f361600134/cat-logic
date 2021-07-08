@@ -17,8 +17,6 @@ import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.cat.zproto.assist.generator.ICodeGenerator;
 import com.cat.zproto.assist.generator.IDefineCodeGenerator;
 import com.cat.zproto.assist.generator.IDefineProtoGenerator;
-import com.cat.zproto.assist.generator.IProtoGenerator;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.core.result.SystemCodeEnum;
 import com.cat.zproto.core.result.SystemResult;
@@ -147,6 +143,7 @@ public class ModuleController {
 		}else {
 			mv.setViewName("view_module");
 			mv.addObject("version", version);
+			mv.addObject("dbType", setting.getDbInfo().getDbType());
 		}
 		return mv;
 	}

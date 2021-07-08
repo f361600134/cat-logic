@@ -1,4 +1,16 @@
 [{
+	"dependenceObjs":[""],
+	"javaPath":"com.cat.server.game.data.proto",
+	"moduleName":"",
+	"outClass":"PBLora",
+	"structures":{
+		"PBtest":{
+			"comment":"test",
+			"fields":[],
+			"name":"PBtest"
+		}
+	}
+},{
 	"dependenceObjs":["PBCommon"],
 	"javaPath":"com.cat.server.game.data.proto",
 	"moduleName":"Item",
@@ -263,7 +275,7 @@
 			"comment":"请求断线重连",
 			"fields":[
 				{
-					"comment":"",
+					"comment":"账号",
 					"identifier":"",
 					"index":1,
 					"name":"userName",
@@ -271,7 +283,7 @@
 					"type":"string"
 				},
 				{
-					"comment":"",
+					"comment":"渠道",
 					"identifier":"",
 					"index":2,
 					"name":"channel",
@@ -279,7 +291,7 @@
 					"type":"int32"
 				},
 				{
-					"comment":"",
+					"comment":"秘钥",
 					"identifier":"",
 					"index":3,
 					"name":"sessionKey",
@@ -322,7 +334,7 @@
 			"comment":"响应主公基本信息",
 			"fields":[
 				{
-					"comment":"",
+					"comment":"玩家协议对象",
 					"identifier":"",
 					"index":1,
 					"name":"playerInfo",
@@ -336,7 +348,7 @@
 			"comment":"响应获取随机名结果",
 			"fields":[
 				{
-					"comment":"",
+					"comment":"名字列表,有5个",
 					"identifier":"repeated",
 					"index":1,
 					"name":"names",
@@ -444,7 +456,7 @@
 			"comment":"响应连接游戏服结果",
 			"fields":[
 				{
-					"comment":"",
+					"comment":"错误码",
 					"identifier":"",
 					"index":1,
 					"name":"code",
@@ -480,7 +492,7 @@
 			"comment":"响应重连结果",
 			"fields":[
 				{
-					"comment":"",
+					"comment":"错误码",
 					"identifier":"",
 					"index":1,
 					"name":"code",
@@ -502,7 +514,7 @@
 			"comment":"更新主公基本信息",
 			"fields":[
 				{
-					"comment":"",
+					"comment":"玩家协议对象",
 					"identifier":"",
 					"index":1,
 					"name":"playinfo",
@@ -575,7 +587,7 @@
 			"comment":"响应创建角色结果",
 			"fields":[
 				{
-					"comment":"",
+					"comment":"错误码",
 					"identifier":"",
 					"index":1,
 					"name":"code",
@@ -840,18 +852,6 @@
 				}
 			],
 			"name":"ReqMailDelete"
-		}
-	}
-},{
-	"dependenceObjs":[""],
-	"javaPath":"com.cat.server.game.data.proto",
-	"moduleName":"",
-	"outClass":"PBLora",
-	"structures":{
-		"PBtest":{
-			"comment":"test",
-			"fields":[],
-			"name":"PBtest"
 		}
 	}
 },{

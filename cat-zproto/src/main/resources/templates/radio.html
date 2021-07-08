@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:include="head :: htmlhead" th:with="title='协议生成管理'">
+</head>
+
+<body>
+<form class="layui-form" action="">
+	<!-- 单选按钮 -->
+	<div class="layui-form-item">
+	    <label class="layui-form-label layui-form">单选框</label>
+	    <div class="layui-input-block">
+	      <input type="radio" name="db" lay-filter="db" value="mysql" title="mysql" checked="" >
+	      <input type="radio" name="db" lay-filter="db" value="excel" title="excel">
+	    </div>
+	</div>
+	
+	<!-- Mysql数据源内容 -->
+	<div class="layui-form-item">
+	<div id="mysqlDiv" style="display: true;">
+	<div class="layui-form-item layui-inline">
+	  <label class="layui-form-label">数据库账号</label>
+	  <div class="layui-input-block">
+	    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="输入数据库账号" class="layui-input" th:value="${data.dbInfo.username}">
+	  </div>
+	</div>
+	<div class="layui-form-item layui-inline">
+	  <label class="layui-form-label">数据库密码</label>
+	  <div class="layui-input-block">
+	    <input type="text" name="password" placeholder="输入数据库密码" autocomplete="off" class="layui-input" th:value="${data.dbInfo.password}">
+	  </div>
+	</div>
+	 <div class="layui-form-item">
+	  <label class="layui-form-label">数据库连接
+	  </label>
+	  <div class="layui-input-block">
+	    <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="数据库url" class="layui-input" th:value="${data.dbInfo.url}">
+	  </div>
+	</div>
+	 <div class="layui-form-item">
+	     <div class="layui-input-block">
+	         <button  id="submit" class="layui-btn" name="editDb" lay-submit lay-filter="editDb">提交</button>
+	     </div>
+	 </div>
+	</div>
+	
+	<!-- Excel表格内容 -->
+	<div id="excelDiv" style="display: none;">
+	<p><font size="5" color="red">回到主页面, 设置模块数据源</font></p>
+	</div>
+	</div>
+  </form>
+</body>
+
+<script type="text/javascript">
+layui.use('form', function(){
+    var form = layui.form;
+    form.on('radio(db)', function(data){
+        if(data.value == 'mysql'){
+            $("#mysqlDiv").css("display", "block");
+            $("#excelDiv").css("display", "none");
+        } else {
+            $("#excelDiv").css("display", "block");
+            $("#mysqlDiv").css("display", "none");
+        }
+    });
+});
+</script>
+</html>

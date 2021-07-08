@@ -88,7 +88,7 @@ var shower = CodeMirror.fromTextArea(document.getElementById("show"), {
     tabSize: 2, 				//tab空格数量
     readOnly: true       //只读
 });
-shower.setSize('auto', '650');     //设置代码框的长宽
+shower.setSize('auto', '710');     //设置代码框的长宽
 // shower.setValue("");    //先代码框的值清空
 
 //根据DOM元素的id构造出一个编辑器
@@ -117,7 +117,7 @@ editor.on('keypress', () => {
     editor.showHint();
 });
 editor.setValue("");
-editor.setSize('auto', '650px');     //设置代码框的长宽
+editor.setSize('auto', '710px');     //设置代码框的长宽
 //操作系统判断
 var mac = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault;
 CodeMirror.keyMap.default[(mac ? "Cmd" : "Ctrl")] = "autocomplete";

@@ -18,30 +18,50 @@
     <div class="layui-tab-item layui-show">
 		<!-- 数据源设置 -->
 		<form class="layui-form" action="">
-		  <div class="layui-form-item layui-inline">
-		    <label class="layui-form-label">数据库账号</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="输入数据库账号" class="layui-input" th:value="${data.dbInfo.username}">
-		    </div>
-		  </div>
-		  <div class="layui-form-item layui-inline">
-		    <label class="layui-form-label">数据库密码</label>
-		    <div class="layui-input-block">
-		      <input type="text" name="password" placeholder="输入数据库密码" autocomplete="off" class="layui-input" th:value="${data.dbInfo.password}">
-		    </div>
-		  </div>
-		   <div class="layui-form-item">
-		    <label class="layui-form-label">数据库连接
-		    </label>
-		    <div class="layui-input-block">
-		      <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="数据库url" class="layui-input" th:value="${data.dbInfo.url}">
-		    </div>
-		  </div>
-		   <div class="layui-form-item">
-	        <div class="layui-input-block">
-	            <button  id="submit" class="layui-btn" name="editDb" lay-submit lay-filter="editDb">提交</button>
-	        </div>
-		   </div>
+		  	<!-- 单选按钮 -->
+			<div class="layui-form-item">
+			    <label class="layui-form-label layui-form">单选框</label>
+			    <div class="layui-input-block">
+			      <input type="radio" name="dbType" lay-filter="dbType" value="1" title="mysql" th:checked="${data.dbInfo.dbType==1}" >
+			      <input type="radio" name="dbType" lay-filter="dbType" value="2" title="excel" th:checked="${data.dbInfo.dbType==2}">
+			    </div>
+			</div>
+			
+			<!-- Mysql数据源内容 -->
+			<div class="layui-form-item">
+			<div id="mysqlDiv" style="display: true;">
+			<div class="layui-form-item layui-inline">
+			  <label class="layui-form-label">数据库账号</label>
+			  <div class="layui-input-block">
+			    <input type="text" name="username" lay-verify="title" autocomplete="off" placeholder="输入数据库账号" class="layui-input" th:value="${data.dbInfo.username}">
+			  </div>
+			</div>
+			<div class="layui-form-item layui-inline">
+			  <label class="layui-form-label">数据库密码</label>
+			  <div class="layui-input-block">
+			    <input type="text" name="password" placeholder="输入数据库密码" autocomplete="off" class="layui-input" th:value="${data.dbInfo.password}">
+			  </div>
+			</div>
+			 <div class="layui-form-item">
+			  <label class="layui-form-label">数据库连接
+			  </label>
+			  <div class="layui-input-block">
+			    <input type="text" name="url" lay-verify="title" autocomplete="off" placeholder="数据库url" class="layui-input" th:value="${data.dbInfo.url}">
+			  </div>
+			</div>
+			</div>
+			
+			<!-- Excel表格内容 -->
+			<div id="excelDiv" style="display: none; margin: 50px;">
+			<p> <font size = 5>回到主页面, 设置模块数据源</font></p>
+			</div>
+			</div>
+			
+			<div class="layui-form-item">
+			     <div class="layui-input-block">
+			         <button  id="submit" class="layui-btn" name="editDb" lay-submit lay-filter="editDb">提交</button>
+			     </div>
+			 </div>
 		</form>
 		<!-- end -->
     </div>
@@ -164,7 +184,7 @@
       </div>
       <div class="layui-tab-item">
       <!-- 模板管理 -->
-		<iframe src="/zproto/setting/editTemplate" frameborder="0" id="topFrame" style="width: 100%; height: 700px; "></iframe>     
+		<iframe src="/zproto/setting/editTemplate" frameborder="0" id="topFrame" style="width: 100%; height: 800px; "></iframe>     
       </div>
   </div>
 </div> 
@@ -292,9 +312,12 @@ layui.use('table', function(){
 //表单操作
 layui.use(function(){
     var form = layui.form;
+    
+    //	修改数据库配置
     form.on('submit(editDb)', function (data) {
         var d = {};
-		d.username=data.field.username;
+        d.dbType = data.field.dbType;
+        d.username=data.field.username;
 		d.password=data.field.password;
 		d.url=data.field.url;
         $.ajax({
@@ -314,42 +337,40 @@ layui.use(function(){
             error: function(jqXHR){console.log(jqXHR)},
         });
         return false;
-});});
-
-layui.use('form', function(){
-    var form = layui.form;
-    form.on('submit(editProto)', function (data) {
-        var d = {};
+	});
+    
+    //	修改proto配置
+	form.on('submit(editProto)', function (data) {
+		var d = {};
 		d.protoExePath=$("input[name='protoExePath']").val();
-        d.protoPath=$("input[name='protoPath']").val();
-        d.javaPackagePath=$("input[name='javaPackagePath']").val();
-        d.protoIdSortBy=$("input[name='protoIdSortBy']").val();
-        d.reqPrefix=$("input[name='reqPrefix']").val();
-        d.respPrefix=$("input[name='respPrefix']").val();
-        d.pbPrefix=$("input[name='pbPrefix']").val();
-        d.ptoroCoefficient=$("input[name='ptoroCoefficient']").val();
-                      
-        $.ajax({
-            type: 'POST',
-            url: '/zproto/setting/addSettingProto',
-            data: JSON.stringify(d),
-            dataType: 'json',
-            contentType: "application/json; charset=utf-8",
-            success: function(data){
-                var str = data.tips;
-                if(data.code == 0){
-                	layer.msg(str, {icon: 1});
-                }else{
-                	layer.msg(str, {icon: 2});
-                }
-            },
-            error: function(jqXHR){console.log(jqXHR)},
-        });
-        return false;
-});});
-
-layui.use('form', function(){
-    var form = layui.form;
+		d.protoPath=$("input[name='protoPath']").val();
+		d.javaPackagePath=$("input[name='javaPackagePath']").val();
+		d.protoIdSortBy=$("input[name='protoIdSortBy']").val();
+		d.reqPrefix=$("input[name='reqPrefix']").val();
+		d.respPrefix=$("input[name='respPrefix']").val();
+		d.pbPrefix=$("input[name='pbPrefix']").val();
+		d.ptoroCoefficient=$("input[name='ptoroCoefficient']").val();
+		              
+		$.ajax({
+		    type: 'POST',
+		    url: '/zproto/setting/addSettingProto',
+		    data: JSON.stringify(d),
+		    dataType: 'json',
+		    contentType: "application/json; charset=utf-8",
+		    success: function(data){
+		        var str = data.tips;
+		        if(data.code == 0){
+		        	layer.msg(str, {icon: 1});
+		        }else{
+		        	layer.msg(str, {icon: 2});
+		        }
+		    },
+		    error: function(jqXHR){console.log(jqXHR)},
+		});
+   		return false;
+	});
+    
+	//	修改svn配置
     form.on('submit(editSvn)', function (data) {
         var d = {};
 		d.account=data.field.svnAccount;
@@ -373,7 +394,32 @@ layui.use('form', function(){
             error: function(jqXHR){console.log(jqXHR)},
         });
         return false;
-});});
+	});
+    
+    layer.ready(function(){
+    	var val = $("input[name='dbType']:checked").val();
+    	if(val == '1'){
+            $("#mysqlDiv").css("display", "block");
+            $("#excelDiv").css("display", "none");
+        } else {
+            $("#excelDiv").css("display", "block");
+            $("#mysqlDiv").css("display", "none");
+        }
+   	});  
+	
+    //	单选框事件
+    form.on('radio(dbType)', function(data){
+        if(data.value == '1'){
+            $("#mysqlDiv").css("display", "block");
+            $("#excelDiv").css("display", "none");
+        } else {
+            $("#excelDiv").css("display", "block");
+            $("#mysqlDiv").css("display", "none");
+        }
+    });
+    
+});
+
 </script>
 
 </body>

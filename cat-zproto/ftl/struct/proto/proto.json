@@ -1,6 +1,0 @@
-{
-	"content":"<#--根据数据 生成*.proto文件-->\r\nsyntax = \"proto3\";\r\npackage Protocol;\r\noption java_package = \"${javaPath}\";\r\noption java_outer_classname = \"${outClass}\";\r\n\r\n<#-- 引用 -->\r\n<#if dependenceObjs??&&(dependenceObjs?size > 0)>\r\n<#list dependenceObjs as dependanceObj>\r\n<#if dependanceObj??>\r\nimport \"${dependanceObj}.proto\";\r\n</#if>\r\n</#list>\r\n</#if>\r\n\r\n<#list structureList as structure>\r\n// ${structure.comment}\r\nmessage ${structure.name}{\r\n<#if structure.fields??>\r\n<#list structure.fields as field>\r\n    <#if field.repeated==true>repeated </#if>${field.type} ${field.name} = ${field.index};  //${field.comment}\r\n</#list>\r\n</#if>\r\n}\r\n\r\n</#list>",
-	"id":2004,
-	"name":"proto",
-	"type":2
-}

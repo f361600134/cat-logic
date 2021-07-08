@@ -59,18 +59,19 @@ public class SettingController {
 	@Autowired
 	private TemplateService templateService;
 	
-//	/**
-//	 *设置信息
-//	 * @return  
-//	 * @return ModelAndView  
-//	 * @date 2021年6月12日下午9:50:40
-//	 */
-//	@RequestMapping("/settingView")
-//    public ModelAndView settingView(){
-//    	ModelAndView mv = new ModelAndView();
-//    	mv.setViewName("view_version");
-//        return mv;
-//    } 
+	/**
+	 *设置信息
+	 * @return  
+	 * @return ModelAndView  
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@RequestMapping("/radio")
+    public ModelAndView settingView(){
+    	ModelAndView mv = new ModelAndView();
+    	mv.setViewName("radio");
+    	mv.addObject("data", setting);
+        return mv;
+    } 
 
 	/**
 	 * 设置修改页

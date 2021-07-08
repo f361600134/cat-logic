@@ -19,9 +19,9 @@ message ReqPlayerCreateRole{
 
 // 请求断线重连
 message ReqPlayerReLogin{
-    string userName = 1;  //
-    int32 channel = 2;  //
-    string sessionKey = 3;  //
+    string userName = 1;  //账号
+    int32 channel = 2;  //渠道
+    string sessionKey = 3;  //秘钥
     int32 recvSequenceNo = 4;  //客户端收到的服务器流水号
     int32 serverId = 5;  //登陆时所选游戏服id
     string version = 6;  //版本号
@@ -33,12 +33,12 @@ message AckPlayerEnterGame{
 
 // 响应主公基本信息
 message AckInitPlayerInfo{
-    PBPlayerInfo playerInfo = 1;  //
+    PBPlayerInfo playerInfo = 1;  //玩家协议对象
 }
 
 // 响应获取随机名结果
 message AckPlayerRandName{
-    repeated string names = 1;  //
+    repeated string names = 1;  //名字列表,有5个
 }
 
 // 玩家协议对象,自己看的
@@ -58,7 +58,7 @@ message PBPlayerInfo{
 
 // 响应连接游戏服结果
 message AckPlayerLogin{
-    int32 code = 1;  //
+    int32 code = 1;  //错误码
     int32 status = 2;  //是否进入创建角色环节, 0=否,1=是
 }
 
@@ -69,13 +69,13 @@ message AckPlayerHeart{
 
 // 响应重连结果
 message AckPlayerReLogin{
-    int32 code = 1;  //
+    int32 code = 1;  //错误码
     int32 recvSequenceNo = 2;  //服务器收到的客户端流水号
 }
 
 // 更新主公基本信息
 message AckUpdatePlayerInfo{
-    PBPlayerInfo playinfo = 1;  //
+    PBPlayerInfo playinfo = 1;  //玩家协议对象
 }
 
 // 请求获取随机名
@@ -94,7 +94,7 @@ message PBPlayerProfile{
 
 // 响应创建角色结果
 message AckPlayerCreateRole{
-    int32 code = 1;  //
+    int32 code = 1;  //错误码
 }
 
 // 请求连接游戏服

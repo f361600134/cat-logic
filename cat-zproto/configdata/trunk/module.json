@@ -15,7 +15,7 @@
 	"extendInfo":[],
 	"id":101,
 	"name":"Player",
-	"one2one":false
+	"one2one":true
 },{
 	"comment":"物品",
 	"extendInfo":[
