@@ -3,7 +3,7 @@ package com.cat.zproto.assist.generator;
 import com.cat.zproto.domain.template.TemplateStruct;
 import com.cat.zproto.dto.TableFreemarkerDto;
 
-public interface IDefineGenerator extends IGenerator{
+public interface IDefineCodeGenerator extends IGenerator{
 	
 	/**
 	 * 获取proto名字,freemarker根据此名字获得模板

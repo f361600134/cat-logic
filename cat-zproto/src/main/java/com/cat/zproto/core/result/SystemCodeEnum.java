@@ -25,7 +25,7 @@ public enum SystemCodeEnum implements CodeEnum{
 	ERROR_NOT_FOUND_FREEMAKER(20, "找不到对应模板"),
 	ERROR_ALREADY_EXITS_FREEMAKER(21, "已存在该模板"),
 	ERROR_NOT_FOUND_DOMAIN(22, "域不存在"),
-	ERROR_SUBFIX_NOT_RIGHT(23, "模板名字不能带有特殊字符,数字以及下划线"),
+	ERROR_SUBFIX_NOT_RIGHT(23, "模板名字不能带有特殊字符,中文"),
 	;
 	
 	private int status;

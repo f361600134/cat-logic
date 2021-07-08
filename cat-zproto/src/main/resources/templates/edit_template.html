@@ -190,7 +190,7 @@ layui.use(function(){
                 var tree = layui.tree;
                 var data1 = data.data;
                 //templateTreeRender(tree, data.data);
-              //开启节点操作图标
+              	//开启节点操作图标
                 tree.render({
                   elem: '#test9'
                   ,data: data1
@@ -226,13 +226,17 @@ layui.use(function(){
                     var type = obj.type; //得到操作类型：add、edit、del
                     var data = obj.data; //得到当前节点的数据
                     var elem = obj.elem; //得到当前节点元素
+//                     if(type === 'add'){ //修改节点
+//                     	var dto = {}
+//                         dto.curNode = data.id;
+//                     	newTemplateFile(dto);
+//                     }
                     if(type === 'update'){ //修改节点
                       var dto = {}
                       dto.curNode = data.id;
                       dto.fileName = data.title;
                       renameTemplateFile(dto);
                     } else if(type === 'del'){ //删除节点
-                    	console.log("====>删除文件"+data.id+", "+data.title); //得到修改后的内容
                     	var dto = {}
                         dto.curNode = data.id;
                         dto.fileName = data.title;
@@ -374,6 +378,30 @@ function renameTemplateFile(dto){
          }
      });
 }
+
+// //新建模板文件
+// function newTemplateFile(dto){
+//      $.ajax({
+//          type: 'POST',
+//          url: '/zproto/module/newTemplateFile',
+//          data: JSON.stringify(dto),
+//          dataType: 'JSON',
+//          contentType: "application/json; charset=utf-8",
+//          success: function(data){
+//         	 var str = data.tips;
+//         	 console.log("====>"+data.data); //得到iframe页的body内容
+//         	 if(data.code == 0){
+//              	layer.msg(str, {icon: 1});
+//              }else{
+//              	layer.msg(str, {icon: 2});
+//              }
+//          },
+//          error : function(data) {
+//              alert("访问出错！");
+//              return 0;
+//          }
+//      });
+// }
 
 </script>
 

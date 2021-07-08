@@ -20,7 +20,6 @@ public class ProtocolObject {
 	 * 模块名字,协议文件的名字都会加上PB 比如PBChat, 模块名字就是chat
 	 */
 	private String moduleName;
-
 	/**
 	 * 所在路径,需要生成到的java路径
 	 */
@@ -36,7 +35,6 @@ public class ProtocolObject {
 	 * 如果被其他类引用, 则java_outer_classname视为引入包名
 	 */
 	private Set<String> dependenceObjs = new HashSet<>();
-
 	/**
 	 * key: 协议名字 value: 协议结构 协议对象对应的所有协议结构
 	 */

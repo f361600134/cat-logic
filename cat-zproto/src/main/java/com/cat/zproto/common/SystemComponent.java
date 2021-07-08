@@ -126,9 +126,12 @@ public class SystemComponent {
     public freemarker.template.Configuration freemarkerConfig() throws IOException, TemplateException {
 		freemarker.template.Configuration configuration = new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_29);
 		//way1
+		//FIXME 这种加载linux环境下会有问题
+		ClassPathResource resource = new ClassPathResource("/ftl/proto");
+		FileTemplateLoader loader=new FileTemplateLoader(resource.getFile());
 		FileTemplateLoader loader1=new FileTemplateLoader(new File(CommonConstant.FTL_CODE_PATH));
 		FileTemplateLoader loader2=new FileTemplateLoader(new File(CommonConstant.FTL_PROTO_PATH));
-		TemplateLoader[] fileloadders={loader1,loader2};
+		TemplateLoader[] fileloadders={loader, loader1,loader2};
 		MultiTemplateLoader fmtl=new MultiTemplateLoader(fileloadders);
 		configuration.setTemplateLoader(fmtl);
         //way2

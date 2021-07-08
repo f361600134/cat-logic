@@ -52,6 +52,12 @@ public class SettingProto {
 	 * 默认消息体对象前缀, 可修改
 	 */
 	private String pbPrefix = "PB";
+	
+	/**
+	 * 默认消息体对象后部分补全, 
+	 */
+	private String latterPart = "Builder";
+	
 	/**
 	 * 默认消息体协议号系数, 可修改
 	 */
@@ -128,6 +134,14 @@ public class SettingProto {
 
 	public void setPtoroCoefficient(int ptoroCoefficient) {
 		this.ptoroCoefficient = ptoroCoefficient;
+	}
+
+	public String getLatterPart() {
+		return latterPart;
+	}
+
+	public void setLatterPart(String latterPart) {
+		this.latterPart = latterPart;
 	}
 	
 }

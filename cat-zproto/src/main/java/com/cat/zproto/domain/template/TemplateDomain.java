@@ -180,6 +180,18 @@ public class TemplateDomain {
 	}
 	
 	/**
+	 * 模板改名
+	 * 1. 修改本地文件
+	 * 2. 修改缓存
+	 * @param newName 名字不能带有任何后缀
+	 */
+	public TemplateStruct newTemplate(String name) {
+		TemplateStruct struct = this.create(name, StringUtils.EMPTY);
+		this.templateMap.put(struct.getId(), struct);
+		return struct;
+	}
+	
+	/**
 	 * 保存指定文件, 持久化到本地
 	 * 1. 存储模板结构
 	 * 2. 存储模板文件

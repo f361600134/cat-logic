@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cat.zproto.assist.generator.IDefineGenerator;
+import com.cat.zproto.assist.generator.IDefineCodeGenerator;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingVersion;
 import com.cat.zproto.domain.template.TemplateStruct;
@@ -24,7 +24,7 @@ import com.cat.zproto.service.TemplateService;
  * @author Administrator
  */
 @Component
-public class GenDefine implements IDefineGenerator{
+public class GenDefineCode implements IDefineCodeGenerator{
 
 	/**
 	 * 命名关键字

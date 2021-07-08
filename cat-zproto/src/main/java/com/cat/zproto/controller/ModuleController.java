@@ -31,7 +31,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cat.zproto.assist.generator.ICodeGenerator;
-import com.cat.zproto.assist.generator.IDefineGenerator;
+import com.cat.zproto.assist.generator.IDefineCodeGenerator;
+import com.cat.zproto.assist.generator.IDefineProtoGenerator;
 import com.cat.zproto.assist.generator.IProtoGenerator;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.core.result.SystemCodeEnum;
@@ -96,14 +97,17 @@ public class ModuleController {
 	@Autowired
 	private DbService dbService;
 
-	@Autowired
-	private List<IProtoGenerator> generatorProtoList;
+//	@Autowired
+//	private List<IProtoGenerator> generatorProtoList;
 
-	@Autowired
-	private List<ICodeGenerator> generatorCodeList;
+//	@Autowired
+//	private List<ICodeGenerator> generatorCodeList;
 	
 	@Autowired
-	private IDefineGenerator defineGenerator;
+	private IDefineProtoGenerator defineProtoGenerator;
+	
+	@Autowired
+	private IDefineCodeGenerator defineCodeGenerator;
 
 	@Autowired
 	private SvnService svnService;
@@ -414,8 +418,12 @@ public class ModuleController {
 		logger.info("command:{}, result:{}", command, result);
 
 		// 生成协议文件
-		for (IProtoGenerator generator : generatorProtoList) {
-			generator.generate(version, protoObject);
+//		for (IProtoGenerator generator : generatorProtoList) {
+//			generator.generate(version, protoObject);
+//		}
+		Collection<TemplateStruct> struts = templateService.getAllStruct(TemplateEnum.PROTO.getType());
+		for (TemplateStruct templateStruct : struts) {
+			defineProtoGenerator.generate(version, templateStruct, protoObject);
 		}
 		return result;
 	}
@@ -624,6 +632,26 @@ public class ModuleController {
 		}
 	}
 	
+	/**
+	 * 模板改名
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/newTemplateFile")
+	public Object newTemplateFile(@RequestBody TemplateDto dto) {
+		//获取到模板文件内容
+		try {
+			int curNodeId  = dto.getCurNode();
+			String name = "undefined";
+			return templateService.newStruct(curNodeId, name);
+		} catch (Exception e) {
+			logger.error("showTemplate error, {}",e);
+			return SystemResult.build(SystemCodeEnum.UNKNOW, e.getMessage());
+		}
+	}
+	
 	private TableFreemarkerDto createDto(String version, int moduleId){
 		ModuleEntity entity = moduleService.getModuleEntity(version, moduleId);
 		if (entity == null) {
@@ -739,7 +767,7 @@ public class ModuleController {
 //		}
 		Collection<TemplateStruct> struts = templateService.getAllStruct(TemplateEnum.CODE.getType());
 		for (TemplateStruct struct : struts) {
-			defineGenerator.generate(version, struct, dto);
+			defineCodeGenerator.generate(version, struct, dto);
 		}
 		// 压缩代码
 		zipCode(version, entity);

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.zproto.core.result.SystemCodeEnum;
+import com.cat.zproto.core.result.SystemResult;
 import com.cat.zproto.domain.template.TemplateDomain;
 import com.cat.zproto.domain.template.TemplateStruct;
 import com.cat.zproto.enums.TemplateEnum;
@@ -139,6 +140,25 @@ public class TemplateService implements InitializingBean{
 		}
 		//写入到本地
 		return domain.renameTemplate(id, newName);
+	}
+	
+	/**
+	 * 修改模板名字
+	 * @param id
+	 * @return
+	 */
+	public SystemResult newStruct(int type, String name) {
+		TemplateDomain domain = templateManager.getDomain(type);
+		if (domain == null) {
+			logger.info("renameStruct error");
+			return SystemResult.build(SystemCodeEnum.ERROR_NOT_FOUND_DOMAIN);
+		}
+		//写入到本地
+		if (domain.contains(name)) {
+			return SystemResult.build(SystemCodeEnum.ERROR_ALREADY_EXITS_FREEMAKER);
+		}
+		TemplateStruct struct = domain.newTemplate(name);
+		return SystemResult.build(SystemCodeEnum.SUCCESS, struct.getId());
 	}
 	
 	/**

@@ -1,5 +1,5 @@
 {
-	"content":"package com.cat.server.game.module.${entity.getEntityName()?lower_case}.domain;\n\nimport com.cat.server.core.server.IPersistence; \n\n/**\n* @author Jeremy\n*/\n@PO(name = \"${entity.getTablName()}\")\npublic class ${entity.getEntityName()}2 extends ${entity.getEntityName()}Po implements IPersistence{\n\n\tpublic ${entity.getEntityName()}() {\n\n\t}\n\n\t\n\tpublic String aaa() {\n\t\treturn \"aaa\";\n\t}\n\n}",
+	"content":"package com.cat.server.game.module.${entity.getEntityName()?lower_case}.domain;\n\nimport com.cat.server.core.server.IPersistence; \n\n/**\n* @author Jeremy\n*/\n@PO(name = \"${entity.getTablName()}\")\npublic class ${entity.getEntityName()} extends ${entity.getEntityName()}Po implements IPersistence{\n\n\tpublic ${entity.getEntityName()}() {\n\n\t}\n\n\t\n\tpublic String aaa() {\n\t\treturn \"bbb\";\n\t}\n\n}",
 	"id":1014,
 	"name":"EntityTest2",
 	"type":1

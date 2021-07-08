@@ -88,7 +88,14 @@
 		  <div class="layui-form-item layui-inline">
 		    <label class="layui-form-label" style="white-space:nowrap!important;">协议对象前缀</label>
 		    <div class="layui-input-block">
-		      <input type="text" name="pbPrefix" lay-verify="title" autocomplete="off" placeholder="建议PB作为对象前缀" class="layui-input" th:value="${data.proto.pbPrefix}">
+		      <input type="text" name="pbPrefix" lay-verify="title" autocomplete="off" placeholder="建议Builder作为对象前缀" class="layui-input" th:value="${data.proto.pbPrefix}">
+		    </div>
+		  </div>
+		  
+		  <div class="layui-form-item layui-inline">
+		    <label class="layui-form-label" style="white-space:nowrap!important;">协议名补充</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="latterPart" lay-verify="title" autocomplete="off" placeholder="建议PB作为对象前缀" class="layui-input" th:value="${data.proto.latterPart}">
 		    </div>
 		  </div>
 		  
