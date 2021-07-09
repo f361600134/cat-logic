@@ -9,18 +9,18 @@ import com.cat.orm.core.base.BasePo;
 public abstract class ${entity.getEntityName()}Po extends BasePo {
 
 	<#-- Static Field -->
-	<#if entity.getEntityBeans() ? exists>
-	<#list entity.getEntityBeans() as bean>
-	public static final String PROP_${bean.field ? upper_case} = "${bean.field}";
+	<#if entity.properties ? exists>
+	<#list entity.properties as prop>
+	public static final String PROP_${prop.field ? upper_case} = "${prop.field}";
 	</#list>
 	</#if>
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
-			<#if entity.entityBeans ? exists>
-			<#list entity.entityBeans as bean>
-			<#--"`${bean.field}`",-->
-			PROP_${bean.field ? upper_case},
+			<#if entity.properties ? exists>
+			<#list entity.properties as prop>
+			<#--"`${prop.field}`",-->
+			PROP_${prop.field ? upper_case},
 			</#list>
 			</#if>
 			};
@@ -45,34 +45,34 @@ public abstract class ${entity.getEntityName()}Po extends BasePo {
 	
 	
 	<#-- filed -->
-	<#if entity.entityBeans ? exists>
-	<#list entity.entityBeans as bean>
-	/** ${bean.desc}*/
-	protected ${bean.type} ${bean.field};
+	<#if entity.properties ? exists>
+	<#list entity.properties as prop>
+	/** ${prop.desc}*/
+	protected ${prop.type} ${prop.field};
 	</#list>
 	</#if>
 	
 	<#-- Constructor -->
 	public ${entity.getEntityName()}Po(){
-		<#if entity.entityBeans ? exists>
-		<#list entity.entityBeans as bean>
-		<#if bean.type == 'String'>
-		this.${bean.field} = "";
+		<#if entity.properties ? exists>
+		<#list entity.properties as prop>
+		<#if prop.type == 'String'>
+		this.${prop.field} = "";
 		</#if>
 		</#list>
 		</#if>
 	}
 	
 	<#-- Getter Setter-->
-	<#if entity.entityBeans ? exists>
-	<#list entity.entityBeans as bean>
-	/** ${bean.desc} **/
-	public ${bean.type} get${bean.field ? cap_first}(){
-		return this.${bean.field};
+	<#if entity.properties ? exists>
+	<#list entity.properties as prop>
+	/** ${prop.desc} **/
+	public ${prop.type} get${prop.field ? cap_first}(){
+		return this.${prop.field};
 	}
 	
-	public void set${bean.field ? cap_first}(${bean.type} ${bean.field}){
-		this.${bean.field} = ${bean.field};
+	public void set${prop.field ? cap_first}(${prop.type} ${prop.field}){
+		this.${prop.field} = ${prop.field};
 	}
 	
 	</#list>
@@ -86,9 +86,9 @@ public abstract class ${entity.getEntityName()}Po extends BasePo {
 	@Override
 	public String[] props() {
 		<#--return new String[] {
-		<#if entity.entityBeans ? exists>
-		<#list entity.entityBeans as bean>
-		PROP_${bean.field ? upper_case},
+		<#if entity.properties ? exists>
+		<#list entity.properties as prop>
+		PROP_${prop.field ? upper_case},
 		</#list>
 		</#if>
 		};-->
@@ -98,9 +98,9 @@ public abstract class ${entity.getEntityName()}Po extends BasePo {
 	@Override
 	public Object[] propValues() {
 		return new Object[] { 
-		<#if entity.entityBeans ? exists>
-		<#list entity.entityBeans as bean>
-		get${bean.field ? cap_first}(),
+		<#if entity.properties ? exists>
+		<#list entity.properties as prop>
+		get${prop.field ? cap_first}(),
 		</#list>
 		</#if>
 		};

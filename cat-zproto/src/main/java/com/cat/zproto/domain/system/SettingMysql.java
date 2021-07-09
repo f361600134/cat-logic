@@ -1,6 +1,9 @@
 package com.cat.zproto.domain.system;
 
+import java.io.File;
+
 import com.alibaba.druid.pool.DruidDataSource;
+import com.cat.zproto.constant.CommonConstant;
 
 /**
  * 数据源是mysql数据库<br>
@@ -21,9 +24,19 @@ public class SettingMysql {
 	private String dbName;
 	//初始连接, 不配置了, 直接写死1条连接
 	private int initialSize;
-
+	
+	
+	/**
+	 * 模块数据源存储路径<br>
+	 * 此路径, 不区分版本, 所有版本都是用同一个路径.
+	 * 如果是excel配置的话, 存储锁模块的数据源信息, 即:Javabean结构信息
+	 */
+	private final transient String moduleDbsPath;
+	
 	public SettingMysql() {
 		super();
+		this.moduleDbsPath = CommonConstant.RESOURCE_CONFIGDATA_PATH
+				.concat(File.separator).concat(CommonConstant.DBSOURCE_PACKAGE);
 	}
 
 	public String getUrl() {
@@ -78,6 +91,10 @@ public class SettingMysql {
 
 	public void setDbType(int dbType) {
 		this.dbType = dbType;
+	}
+	
+	public String getModuleDbsPath() {
+		return moduleDbsPath;
 	}
 
 	public DruidDataSource newDruidDataSource() {

@@ -254,22 +254,23 @@
             }
          else if(layEvent === 'editBeanInfo'){
          	//编辑数据源
-        	 layer.open({
-                 type: 2 //此处以iframe举例
-                 ,title: '编辑数据源'
-                 ,area: ['800px', '500px']
-                 ,shade: 0
-                 ,maxmin: true
-                 ,offset: [ //为了演示，随机坐标
-                     0
-                     ,0
-                 ]
-                 ,content: '/zproto/module/editBeanInfoView?version='+version+'&id='+data.id
-                 ,zIndex: layer.zIndex //重点1
-                 ,success: function(layero){
-                     layer.setTop(layero); //重点2
-                 }
-             });
+//         	layer.open({
+//                  type: 2 //此处以iframe举例
+//                  ,title: '编辑数据源'
+//                  ,area: ['1024px', '768px']
+//                  ,shade: 0
+//                  ,maxmin: true
+//                  ,offset: [ //为了演示，随机坐标
+//                      0
+//                      ,0
+//                  ]
+//                  ,content: '/zproto/module/editBeanInfoView?version='+version+'&id='+data.id
+//                  ,zIndex: layer.zIndex //重点1
+//                  ,success: function(layero){
+//                      layer.setTop(layero); //重点2
+//                  }
+//              });
+        	 	window.location.href = '/zproto/module/editBeanInfoView?version='+version+'&id='+data.id;
          	}
         });
 

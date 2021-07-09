@@ -1,4 +1,4 @@
-package com.cat.zproto.domain.table;
+package com.cat.zproto.domain.table.po;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,39 +7,109 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * 表对象信息, 解析后的表信息存储于此对象
  * 
  * @auth Jeremy
  * @date 2019年9月16日上午10:56:00
  */
-public class TableEntity {
+public class TableEntity extends Entity<Properties>{
 
-	private String tablName; // 表名
-	private String entityName;// 实体名
-	private List<TableBean> entityBeans;// 实体内属性
+	/**
+	 * 数据库表名
+	 */
+	private String tablName;
+	/**
+	 * 依赖对象
+	 */
+	private Map<String, Entity<AssistProperties>> assistEntityMap; //辅助字段
 	/**
 	 * 索引map, 一般不建议设置主键后,又创建索引, 但是为了避免出问题, 对索引去重,剔除掉已存在的主键索引
 	 */
-	private Map<String, List<String>> indexMap;
-	private List<String> primaryKeys;// 主键
+	private transient Map<String, List<String>> indexMap;
+	/**
+	 * 主键列表
+	 */
+	private transient List<String> primaryKeys;
+	
+	public static void main(String[] args) {
+		TableEntity entity = new TableEntity();
+		entity.setTablName("Player");
+		entity.setEntityName("Player");
+		
+		//设置bean的成员变量
+		Properties properties = new Properties();
+		properties.setType("long");
+		properties.setField("id");
+		properties.setDesc("玩家id");
+		properties.setInit("0L");
+		properties.setKeyword("transient");
+		entity.getProperties().add(properties);
+		
+		properties = new Properties();
+		properties.setType("int");
+		properties.setField("brothelLevel");
+		properties.setDesc("红人馆等级");
+		properties.setInit("0");
+		properties.setKeyword("final");
+		entity.getProperties().add(properties);
+		
+		properties = new Properties();
+		properties.setType("ConcurrentMap<Integer, SlaveData>");
+		properties.setField("slaveDatas");
+		properties.setDesc("红人馆等级");
+		properties.setInit("0");
+		properties.setKeyword("final");
+		entity.getProperties().add(properties);
+		
+		//设置bean的辅助对象信息
+		Entity<AssistProperties> assist = new Entity<AssistProperties>();
+		AssistProperties assistProperties = new AssistProperties();
+		assistProperties.setDesc("奴隶唯一id");
+		assistProperties.setInit("0L");
+		assistProperties.setFieldDetails("int_id");
+		assistProperties.setEntityName("SlaveData");
+		assist.getProperties().add(assistProperties);
+		
+		assistProperties = new AssistProperties();
+		assistProperties.setDesc("外面特征");
+		assistProperties.setInit("new ArrayList<>(5)");
+		assistProperties.setFieldDetails("int_id");
+		assistProperties.setKeyword("final");
+		assistProperties.setEntityName("SlaveData");
+		assist.getProperties().add(assistProperties);
+		
+		entity.getAssistEntities().put(assistProperties.getEntityName(), assist);
+		
+		String json = JSON.toJSONString(entity, true);
+		System.out.println(json);
+	}
 
 	public TableEntity() {
-		entityBeans = new ArrayList<>();
-		indexMap = new HashMap<>();
+		this.properties = new ArrayList<>();
+		this.indexMap = new HashMap<>();
+		this.primaryKeys = new ArrayList<>();
+		this.assistEntityMap = new HashMap<>(); 
 	}
 
 	public TableEntity(String entityName) {
 		super();
 		this.entityName = entityName;
-		entityBeans = new ArrayList<>();
-		indexMap = new HashMap<>();
+		this.properties = new ArrayList<>();
+		this.indexMap = new HashMap<>();
+		this.primaryKeys = new ArrayList<>();
+		this.assistEntityMap = new HashMap<>(); 
 	}
 
-	public TableEntity(String entityName, List<TableBean> entityBeans) {
+	public TableEntity(String entityName, List<Properties> entityBeans) {
 		super();
 		this.entityName = entityName;
-		this.entityBeans = entityBeans;
+		this.properties = entityBeans;
+		this.primaryKeys = new ArrayList<>();
+		this.assistEntityMap = new HashMap<>(); 
 	}
 
 	public String getTablName() {
@@ -58,16 +128,16 @@ public class TableEntity {
 		this.entityName = entityName;
 	}
 
-	public List<TableBean> getEntityBeans() {
-		return entityBeans;
+	public List<Properties> getProperties() {
+		return properties;
 	}
 
-	public void setEntityBeans(List<TableBean> entityBeans) {
-		this.entityBeans = entityBeans;
+	public void setProperties(List<Properties> properties) {
+		this.properties = properties;
 	}
 
-	public void addEntityBeans(TableBean entityBean) {
-		this.entityBeans.add(entityBean);
+	public void addEntityBeans(Properties entityBean) {
+		this.properties.add(entityBean);
 	}
 
 	public List<String> getPrimaryKeys() {
@@ -86,6 +156,7 @@ public class TableEntity {
 		return indexMap;
 	}
 
+	@JSONField(serialize = false)
 	public List<String> getIndexs() {
 		List<String> ret = new ArrayList<>();
 		indexMap.forEach((key, values) -> {
@@ -100,7 +171,7 @@ public class TableEntity {
 
 	@Override
 	public String toString() {
-		return "ExcelEntity [entityName=" + entityName + ", entityBeans=" + entityBeans + ", indexMap=" + indexMap
+		return "ExcelEntity [entityName=" + entityName + ", entityBeans=" + properties + ", indexMap=" + indexMap
 				+ "]";
 	}
 
@@ -161,11 +232,12 @@ public class TableEntity {
 	 * @return String
 	 * @date 2019年9月16日上午10:25:13
 	 */
+	@JSONField(serialize = false)
 	public String genToStr() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("\"").append(entityName);
 		int length = 0;
-		for (TableBean excelBean : entityBeans) {
+		for (Properties excelBean : properties) {
 			length++;
 			if (length == 1) {
 				builder.append(" [");
@@ -176,7 +248,7 @@ public class TableEntity {
 			if (length % 5 == 0) {
 				builder.append("\n\t\t\t\t");
 			}
-			if (length == entityBeans.size()) {
+			if (length == properties.size()) {
 				builder.append("+\"]\";");
 			} else {
 				builder.append(" +\"");
@@ -192,6 +264,7 @@ public class TableEntity {
 	 * @return String
 	 * @date 2019年9月17日下午1:05:27
 	 */
+	@JSONField(serialize = false)
 	public String genIndexNames() {
 		StringBuilder builder = new StringBuilder();
 		Iterator<Entry<String, List<String>>> iter = indexMap.entrySet().iterator();
@@ -211,6 +284,7 @@ public class TableEntity {
 	 * 
 	 * @return
 	 */
+	@JSONField(serialize = false)
 	public List<String> getKeyAndIndexs() {
 		List<String> keyAndIndexs = new ArrayList<>(primaryKeys);
 		Iterator<Entry<String, List<String>>> iter = indexMap.entrySet().iterator();
@@ -231,6 +305,7 @@ public class TableEntity {
 	 * 
 	 * @return
 	 */
+	@JSONField(serialize = false)
 	public List<String> getIndexsWithoutKey() {
 		List<String> indexs = new ArrayList<>();
 		Iterator<Entry<String, List<String>>> iter = indexMap.entrySet().iterator();
@@ -242,4 +317,9 @@ public class TableEntity {
 		}
 		return indexs;
 	}
+
+	public Map<String, Entity<AssistProperties>> getAssistEntities() {
+		return this.assistEntityMap;
+	}
+
 }

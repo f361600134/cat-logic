@@ -39,7 +39,7 @@ import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingVersion;
-import com.cat.zproto.domain.table.TableEntity;
+import com.cat.zproto.domain.table.po.TableEntity;
 import com.cat.zproto.domain.template.TemplateStruct;
 import com.cat.zproto.dto.TableFreemarkerDto;
 import com.cat.zproto.dto.TemplateDto;
@@ -93,12 +93,6 @@ public class ModuleController {
 	@Autowired
 	private DbService dbService;
 
-//	@Autowired
-//	private List<IProtoGenerator> generatorProtoList;
-
-//	@Autowired
-//	private List<ICodeGenerator> generatorCodeList;
-	
 	@Autowired
 	private IDefineProtoGenerator defineProtoGenerator;
 	
@@ -108,17 +102,6 @@ public class ModuleController {
 	@Autowired
 	private SvnService svnService;
 
-//	/**
-//	 * 主页面
-//	 * @deprecated
-//	 */
-//	@RequestMapping("/index")
-//	public ModelAndView index() {
-//		ModelAndView mv = new ModelAndView();
-//		mv.setViewName("index");
-//		mv.addObject("version", version);
-//		return mv;
-//	}
 	/**
 	 * home页面信息
 	 * @return
@@ -177,11 +160,40 @@ public class ModuleController {
 	 */
 	@RequestMapping("/editBeanInfoView")
 	public Object editBeanInfoView(String version, int id) {
-		ModuleEntity moduleEntitie = moduleService.getModuleEntity(version, id);
 		ModelAndView mv = new ModelAndView();
+		ModuleEntity moduleEntitie = moduleService.getModuleEntity(version, id);
+		
+		if (moduleEntitie == null) {
+			mv.setViewName("error");
+			return mv;
+		}
+		
 		mv.setViewName("edit_beanInfo");
 		mv.addObject("version", version);
 		mv.addObject("data", moduleEntitie);
+		return mv;
+	}
+	
+//	/**
+//	 * 模块列表
+//	 * 
+//	 * @param version
+//	 */
+//	@ResponseBody
+//	@RequestMapping("/moduleList")
+//	public Object moduleList(String version) {
+//		Collection<ModuleEntity> moduleEntities = moduleService.getAllModuleEntity(version);
+//		return SystemResult.build(SystemCodeEnum.SUCCESS, moduleEntities);
+//	}
+	
+	/**
+	 * 添加bean字段页面
+	 */
+	@RequestMapping("/addBeanPropertiesView")
+	public Object addBeanPropertiesView(String version) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("add_bean_properties");
+		mv.addObject("version", version);
 		return mv;
 	}
 
@@ -247,12 +259,10 @@ public class ModuleController {
 		ModelAndView mv = new ModelAndView();
 		ModuleEntity entity = moduleService.getModuleEntity(version, id);
 		if (entity == null) {
-			// TODO 重定向页面
 			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
 		}
 		ProtocolObject protoObject = protoService.getProtoObject(version, entity.getName());
 		if (protoObject == null) {
-			// TODO 重定向页面
 			mv.setViewName("no_proto");
 			return mv;
 		}
@@ -378,12 +388,10 @@ public class ModuleController {
 	public Object createMessage(String version, int id, String langType) {
 		ModuleEntity entity = moduleService.getModuleEntity(version, id);
 		if (entity == null) {
-			// TODO 重定向页面
 			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
 		}
 		ProtocolObject protoObject = protoService.getProtoObject(version, entity.getName());
 		if (protoObject == null) {
-			// TODO 重定向页面
 			return SystemResult.build(SystemCodeEnum.ERROR_PARAM);
 		}
 		// 返回信息,包含成功和失败的
@@ -427,10 +435,6 @@ public class ModuleController {
 		SystemResult result = commandService.execCommand(command);
 		logger.info("command:{}, result:{}", command, result);
 
-		// 生成协议文件
-//		for (IProtoGenerator generator : generatorProtoList) {
-//			generator.generate(version, protoObject);
-//		}
 		Collection<TemplateStruct> struts = templateService.getAllStruct(TemplateEnum.PROTO.getType());
 		for (TemplateStruct templateStruct : struts) {
 			defineProtoGenerator.generate(version, templateStruct, protoObject);
@@ -452,11 +456,9 @@ public class ModuleController {
 		if (!file.isFile()) {
 			return "下载失败, 请先生成此文件";
 		}
-		
-		System.out.println("==========================="+file.getPath());
-		System.out.println("==========================="+path);
-		System.out.println("==========================="+file.getAbsolutePath());
-		
+//		System.out.println("==========================="+file.getPath());
+//		System.out.println("==========================="+path);
+//		System.out.println("==========================="+file.getAbsolutePath());
 		try (InputStream inStream = new FileInputStream(file.getAbsolutePath());
 				BufferedInputStream bis = new BufferedInputStream(inStream);) {
 			OutputStream os = response.getOutputStream();
@@ -493,13 +495,9 @@ public class ModuleController {
 		SettingVersion first = iter.hasNext() ? iter.next().getValue() : null;
 		//使用默认的数据, 生成dto
 		TableFreemarkerDto dto = createDto(first.getVersion(), 101);
-//		StringTemplateLoader templateLoader = new StringTemplateLoader();
-		// template = 虚拟名称, 用来当作获取静态文件的key
+		// template作为虚拟名称, 用来当作获取静态文件的key
 		templateLoader.putTemplate("template", str); 
-//		configuration.setTemplateLoader(templateLoader);
-		
 		configuration.setClassicCompatible(true);
-		
 		String ret = "";
 		try (StringWriter stringWriter = new StringWriter();){
 			Template template = configuration.getTemplate("template", "utf-8");
@@ -671,17 +669,6 @@ public class ModuleController {
 		if (protoObject == null) {
 			return null;
 		}
-		//TODO 优化点, 这里是读取数据库信息, 匹配模块
-		// 每次重新读取数据库所有表, 进行匹配.
-		//加入缓存, 先从缓存获取数据, 没有数据再去拉库
-//		List<TableEntity> entitys = dbService.readDb();
-//		TableEntity tableEntity = null;
-//		for (TableEntity te : entitys) {
-//			if (StringUtils.equals(te.getEntityName(), entity.getName())) {
-//				tableEntity = te;
-//				break;
-//			}
-//		}
 		//TODO 优化点，在无数据库时，根据模块信息生成代码。
 		TableEntity tableEntity = dbService.getTableEntity(entity.getName());
 		if (tableEntity == null) {

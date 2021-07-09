@@ -83,6 +83,11 @@ public class CommonConstant {
 	public static final String PROTO_PACKAGE= "/proto";
 	
 	/**
+	 * 生成数据源的文件夹
+	 */
+	public static final String DBSOURCE_PACKAGE= "/dbsource";
+	
+	/**
 	 * 下载目录, 也是压缩代码的目录
 	 */
 	public static final String DOWNLOAD_PACKAGE= "./download";

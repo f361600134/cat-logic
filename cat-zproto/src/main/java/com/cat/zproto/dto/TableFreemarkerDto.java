@@ -8,7 +8,7 @@ import java.util.Map;
 import com.cat.zproto.domain.module.ModuleEntity;
 import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
-import com.cat.zproto.domain.table.TableEntity;
+import com.cat.zproto.domain.table.po.TableEntity;
 
 /**
  * 协议

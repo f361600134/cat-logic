@@ -2,10 +2,10 @@ package com.cat.zproto.domain.system;
 
 import java.io.File;
 import java.util.Date;
+
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ClassPathResource;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.cat.zproto.constant.CommonConstant;
@@ -67,6 +67,7 @@ public class SettingVersion {
 	 * 生成的协议目录
 	 */
 	private transient String genDir;
+
 	
 	public SettingVersion() {
 		
@@ -130,6 +131,11 @@ public class SettingVersion {
 		return configDataDirPath;
 	}
 	
+//	@JSONField(serialize = false)
+//	public String getModuleDbsPath() {
+//		return moduleDbsPath;
+//	}
+	
 	
 //	public String modulePath() {
 //		return modulePath;
@@ -189,7 +195,7 @@ public class SettingVersion {
 			this.modulePath = versionDir.concat(CommonConstant.MODULE_FILE_NAME);
 			this.protoDataPath = versionDir.concat(CommonConstant.PROTO_FILE_NAME);
 			this.protoIdPath = versionDir.concat(CommonConstant.PROTO_ID_FILE_NAME);
-			
+
 			//生成路径
 //			ClassPathResource genResource = new ClassPathResource(CommonConstant.GENERATOR_PATH);
 			this.genDir = CommonConstant.GENERATOR_PATH.concat(version);
@@ -199,6 +205,7 @@ public class SettingVersion {
 			
 			this.codePath = genDir.concat(CommonConstant.CODE_PACKAGE);
 			this.protoMessagePath =  genDir.concat(CommonConstant.PROTO_PACKAGE);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.info("init error, version:{}", version);

@@ -1,0 +1,56 @@
+{
+	"assistEntities":{
+		"SlaveData":{
+			"properties":[
+				{
+					"desc":"奴隶唯一id",
+					"entityName":"SlaveData",
+					"field":"id",
+					"fieldDetails":"int_id",
+					"genericType":"",
+					"init":"0L",
+					"keyword":"",
+					"type":"int"
+				},
+				{
+					"desc":"外面特征",
+					"entityName":"SlaveData",
+					"field":"id",
+					"fieldDetails":"int_id",
+					"genericType":"",
+					"init":"new ArrayList<>(5)",
+					"keyword":"final",
+					"type":"int"
+				}
+			]
+		}
+	},
+	"entityName":"Player",
+	"properties":[
+		{
+			"desc":"玩家id",
+			"field":"id",
+			"genericType":"",
+			"init":"0L",
+			"keyword":"transient",
+			"type":"long"
+		},
+		{
+			"desc":"红人馆等级",
+			"field":"brothelLevel",
+			"genericType":"",
+			"init":"0",
+			"keyword":"final",
+			"type":"int"
+		},
+		{
+			"desc":"红人馆等级",
+			"field":"slaveDatas",
+			"genericType":"SlaveData",
+			"init":"0",
+			"keyword":"final",
+			"type":"ConcurrentMap<Integer, SlaveData>"
+		}
+	],
+	"tablName":"Player"
+}

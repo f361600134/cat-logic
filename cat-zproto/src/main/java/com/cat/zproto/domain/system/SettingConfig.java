@@ -25,7 +25,7 @@ public class SettingConfig {
 	 * 数据源信息, 数据库连接信息, 用于反向生成javapojo.
 	 */
 	private SettingMysql dbInfo;
-
+	
 	/**
 	 * proto相关的设置
 	 */

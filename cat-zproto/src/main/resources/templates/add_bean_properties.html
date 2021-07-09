@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+      
+<head th:include="head :: htmlhead" th:with="title='协议生成管理'">
+</head>
+
+<body>
+<form class="layui-form" action="" lay-filter="example">
+  <div class="layui-form-item layui-inline" style="margin-top: 10px;">
+  
+  <div class="layui-form-item">
+    <label class="layui-form-label">字段名字</label>
+    <div class="layui-input-inline">
+      <input type="text" name="field" lay-verify="field" autocomplete="off" placeholder="字段名字" class="layui-input">
+    </div>
+    </div>
+    
+	<div class="layui-form-item">
+		<label class="layui-form-label">字段类型：</label>
+		<div class="layui-input-inline layui-form">
+		<select name="field_type" lay-search >
+			<option value=""></option>
+<!-- 			<option th:each="prototype:${allTypes}" th:value="${prototype}" th:text="${prototype}"></option> -->
+		</select>
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">关键字</label>
+		<div class="layui-input-inline">
+			<input type="text" name="keyword" autocomplete="off" class="layui-input" placeholder="支持 final,volatile,transient" >
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">默认初始化</label>
+		<div class="layui-input-inline">
+			<input type="text" name="init" autocomplete="off" class="layui-input" placeholder="用于List,Set,Map等结构的初始化">
+		</div>
+	</div>
+	
+	<div class="layui-form-item">
+		<label class="layui-form-label">注释</label>
+		<div class="layui-input-inline">
+			<input type="text" name="desc" autocomplete="off" class="layui-input" placeholder="注释内容, 支持换行符号">
+		</div>
+	</div>
+    
+    <div class="layui-form-item" style="margin-top:  20px;">
+        <div class="layui-input-block">
+            <button  id="submit" class="layui-btn" lay-submit lay-filter="addVersion">立即提交</button>
+        </div>
+    </div>
+  </div>
+</form>
+
+<script>
+    layui.use('form', function(){
+        var form = layui.form;
+        form.on('submit(addVersion)', function (data) {
+            var version = data.field.version;
+            $.ajax({
+                type: 'POST',
+                url: '/zproto/setting/addVersionSave?version='+version,
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+                success: function(data){
+                    var str = data.tips;
+                    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                    layer.confirm(str, {
+                        btn: ['ok'] //按钮
+                    }, function () {
+                        parent.layer.close(index); //再执行关闭
+                        parent.window.location.reload();
+                    });
+                },
+                error: function(jqXHR){console.log(jqXHR)},
+            });
+            return false;
+    });});
+</script>
+
+</body>
+</html>
