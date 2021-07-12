@@ -39,12 +39,12 @@
             toolbar: 'default',
             totalRow: true, //开启合计行
             cols: [[ //表头
-            	{type: 'checkbox', fixed: 'left'}
-                ,{field: 'id', title: '模块id', width:80, sort: true, fixed: 'left'}
+            	{fixed: 'left', type: 'checkbox'}
+                ,{field: 'id', title: '模块id', width:80, sort: true}
                 ,{field: 'name', title: '模块名', width:120}
                 ,{field: 'endPoints', title: '终端', width:80}
                 ,{field: 'comment', title: '注释', width:120}
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:800}
+                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:500}
             ]]
         });
 
