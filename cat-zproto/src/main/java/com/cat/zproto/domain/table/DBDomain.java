@@ -35,4 +35,9 @@ public class DBDomain implements IDBSource {
 		return source.dbType();
 	}
 
+	@Override
+	public void save(String tableEntityName) {
+		source.save(tableEntityName);
+	}
+
 }

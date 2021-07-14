@@ -10,6 +10,13 @@
   <div class="layui-form-item layui-inline" style="margin-top: 10px;">
   
   <div class="layui-form-item">
+    <label class="layui-form-label">依赖对象名</label>
+    <div class="layui-input-inline">
+      <input type="text" name="entityName" lay-verify="field" autocomplete="off" placeholder="依赖对象名" class="layui-input">
+    </div>
+    </div>
+    
+  <div class="layui-form-item">
     <label class="layui-form-label">字段名字</label>
     <div class="layui-input-inline">
       <input type="text" name="field" lay-verify="field" autocomplete="off" placeholder="字段名字" class="layui-input">
@@ -59,18 +66,11 @@
     layui.use('form', function(){
         var form = layui.form;
         form.on('submit(addVersion)', function (data) {
-        	var d = {};
-        	d.field = $("#field").val();
-        	d.type = $("#field_type").val();
-        	d.keyword = $("#keyword").val();
-        	d.init = $("#init").val();
-        	d.desc = $("#desc").val();
-            console.log("======>"+JSON.stringify(d)); //得到iframe页的body内容
+            var version = data.field.version;
             $.ajax({
                 type: 'POST',
-                url: '/zproto/module/addBeanPropertiesSave',
+                url: '/zproto/setting/addVersionSave?version='+version,
                 dataType: 'json',
-                data:JSON.stringify(d),
                 contentType: "application/json; charset=utf-8",
                 success: function(data){
                     var str = data.tips;

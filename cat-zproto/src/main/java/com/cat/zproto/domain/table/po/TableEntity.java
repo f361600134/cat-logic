@@ -23,7 +23,7 @@ public class TableEntity extends Entity<Properties>{
 	 */
 	private String tablName;
 	/**
-	 * 依赖对象
+	 * 依赖对象<br>
 	 */
 	private Map<String, Entity<AssistProperties>> assistEntityMap; //辅助字段
 	/**
@@ -60,8 +60,8 @@ public class TableEntity extends Entity<Properties>{
 		properties = new Properties();
 		properties.setType("ConcurrentMap<Integer, SlaveData>");
 		properties.setField("slaveDatas");
-		properties.setDesc("红人馆等级");
-		properties.setInit("0");
+		properties.setDesc("红人馆,奴隶数据");
+		properties.setInit("new ConcurrentHashMap<>()");
 		properties.setKeyword("final");
 		entity.getProperties().add(properties);
 		
@@ -70,26 +70,27 @@ public class TableEntity extends Entity<Properties>{
 		AssistProperties assistProperties = new AssistProperties();
 		assistProperties.setDesc("奴隶唯一id");
 		assistProperties.setInit("0L");
-		assistProperties.setFieldDetails("int_id");
+		assistProperties.setField("id");
+		assistProperties.setType("int");
 		assistProperties.setEntityName("SlaveData");
 		assist.getProperties().add(assistProperties);
 		
 		assistProperties = new AssistProperties();
 		assistProperties.setDesc("外面特征");
-		assistProperties.setInit("new ArrayList<>(5)");
-		assistProperties.setFieldDetails("int_id");
+		assistProperties.setInit("new ArrayList<Integer>(5)");
+		assistProperties.setField("features");
+		assistProperties.setType("List<Integer>");
 		assistProperties.setKeyword("final");
 		assistProperties.setEntityName("SlaveData");
 		assist.getProperties().add(assistProperties);
 		
-		entity.getAssistEntities().put(assistProperties.getEntityName(), assist);
+		entity.getAssistEntityMap().put(assistProperties.getEntityName(), assist);
 		
 		String json = JSON.toJSONString(entity, true);
 		System.out.println(json);
 	}
 
 	public TableEntity() {
-		this.properties = new ArrayList<>();
 		this.indexMap = new HashMap<>();
 		this.primaryKeys = new ArrayList<>();
 		this.assistEntityMap = new HashMap<>(); 
@@ -98,7 +99,6 @@ public class TableEntity extends Entity<Properties>{
 	public TableEntity(String entityName) {
 		super();
 		this.entityName = entityName;
-		this.properties = new ArrayList<>();
 		this.indexMap = new HashMap<>();
 		this.primaryKeys = new ArrayList<>();
 		this.assistEntityMap = new HashMap<>(); 
@@ -107,7 +107,6 @@ public class TableEntity extends Entity<Properties>{
 	public TableEntity(String entityName, List<Properties> entityBeans) {
 		super();
 		this.entityName = entityName;
-		this.properties = entityBeans;
 		this.primaryKeys = new ArrayList<>();
 		this.assistEntityMap = new HashMap<>(); 
 	}
@@ -126,18 +125,6 @@ public class TableEntity extends Entity<Properties>{
 
 	public void setEntityName(String entityName) {
 		this.entityName = entityName;
-	}
-
-	public List<Properties> getProperties() {
-		return properties;
-	}
-
-	public void setProperties(List<Properties> properties) {
-		this.properties = properties;
-	}
-
-	public void addEntityBeans(Properties entityBean) {
-		this.properties.add(entityBean);
 	}
 
 	public List<String> getPrimaryKeys() {
@@ -171,8 +158,7 @@ public class TableEntity extends Entity<Properties>{
 
 	@Override
 	public String toString() {
-		return "ExcelEntity [entityName=" + entityName + ", entityBeans=" + properties + ", indexMap=" + indexMap
-				+ "]";
+		return "ExcelEntity [entityName=" + entityName  + ", indexMap=" + indexMap+ "]";
 	}
 
 	/**
@@ -237,7 +223,7 @@ public class TableEntity extends Entity<Properties>{
 		StringBuilder builder = new StringBuilder();
 		builder.append("\"").append(entityName);
 		int length = 0;
-		for (Properties excelBean : properties) {
+		for (Properties excelBean : getProperties()) {
 			length++;
 			if (length == 1) {
 				builder.append(" [");
@@ -248,7 +234,7 @@ public class TableEntity extends Entity<Properties>{
 			if (length % 5 == 0) {
 				builder.append("\n\t\t\t\t");
 			}
-			if (length == properties.size()) {
+			if (length == getProperties().size()) {
 				builder.append("+\"]\";");
 			} else {
 				builder.append(" +\"");
@@ -318,8 +304,22 @@ public class TableEntity extends Entity<Properties>{
 		return indexs;
 	}
 
-	public Map<String, Entity<AssistProperties>> getAssistEntities() {
+	public Map<String, Entity<AssistProperties>> getAssistEntityMap() {
 		return this.assistEntityMap;
+	}
+	
+	/**
+	 * 获取或创建辅助对象
+	 * @param assistEntityName 辅助对象名
+	 * @return
+	 */
+	public Entity<AssistProperties> getOrCreateAssistEntity(String assistEntityName){
+		Entity<AssistProperties> assist = this.assistEntityMap.get(assistEntityName);
+		if (assist == null) {
+			assist = new Entity<AssistProperties>(assistEntityName);
+			this.assistEntityMap.put(assist.getEntityName(), assist);
+		}
+		return assist;
 	}
 
 }

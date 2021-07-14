@@ -41,7 +41,7 @@ public class DBSourceMysqlProxy implements IDBSource{
 	}
 	
 	/**
-	 * 获取所有tableEntity, 先从本地缓存获取, 没有再查库
+	 * 获取所有tableEntity, 先从本地缓存获取, 没有再查库. 如果库中没有, 则返回null
 	 */
 	@Override
 	public TableEntity getTableEntity(String tableEntityName){

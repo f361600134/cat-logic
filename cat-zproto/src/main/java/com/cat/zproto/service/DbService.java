@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.table.DBDomain;
 import com.cat.zproto.domain.table.po.TableEntity;
+import com.cat.zproto.dto.DataBeanDto;
 import com.cat.zproto.manager.DBManager;
 
 /**
@@ -32,7 +33,25 @@ public class DbService implements InitializingBean{
 		}
 		return domain.getTableEntity(tableEntityName);
 	}
-
+	
+	public void saveTableEntity(String tableEntityName) {
+		int dbType = setting.getDbInfo().getDbType();
+		DBDomain domain = dbManager.getOrCreateDomain(dbType);
+		if (domain == null) {
+			return;
+		}
+		domain.save(tableEntityName);
+	}
+	
+	public void addNewTableEntity(TableEntity tableEntity) {
+		int dbType = setting.getDbInfo().getDbType();
+		DBDomain domain = dbManager.getOrCreateDomain(dbType);
+		if (domain == null) {
+			return;
+		}
+		domain.addNew(tableEntity);
+	}
+	
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		dbManager.getOrCreateDomain(1);

@@ -15,7 +15,7 @@ public enum SystemCodeEnum implements CodeEnum{
 	ERROR_NOT_FOUND_TABLE(9, "未找到对应表信息,请检查模块名与表命是否保持一致"),
 	ERROR_SELECT_EXCPTION(10, "数据查询出现异常"),
 	ERROR_CANNOT_FOUND_PROTOOBJECT(11, "找不到协议对象"),
-	ERROR_NOT_SUPPORT(12, "不支持的操作"),
+	ERROR_NOT_SUPPORT(12, "可以支持但是不想支持的操作"),
 	ERROR_NOT_WRITE_FAILED(13, "修改成功但是持久化失败"),
 	ERROR_VERSION_EXIST(14, "已存在此版本"),
 	ERROR_COPIED_TRUNK_DIR(16, "复制主干目录出错"),

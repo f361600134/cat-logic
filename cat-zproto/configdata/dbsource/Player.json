@@ -3,24 +3,22 @@
 		"SlaveData":{
 			"properties":[
 				{
-					"desc":"Å«Á¥Î¨Ò»id",
+					"desc":"å¥´éš¶å”¯ä¸€id",
 					"entityName":"SlaveData",
 					"field":"id",
-					"fieldDetails":"int_id",
 					"genericType":"",
 					"init":"0L",
 					"keyword":"",
 					"type":"int"
 				},
 				{
-					"desc":"ÍâÃæÌØÕ÷",
+					"desc":"å¤–é¢ç‰¹å¾",
 					"entityName":"SlaveData",
-					"field":"id",
-					"fieldDetails":"int_id",
+					"field":"features",
 					"genericType":"",
-					"init":"new ArrayList<>(5)",
+					"init":"new ArrayList&lt;Integer&gt;(5)",
 					"keyword":"final",
-					"type":"int"
+					"type":"List&lt;Integer&gt;"
 				}
 			]
 		}
@@ -28,7 +26,7 @@
 	"entityName":"Player",
 	"properties":[
 		{
-			"desc":"Íæ¼Òid",
+			"desc":"ç©å®¶id",
 			"field":"id",
 			"genericType":"",
 			"init":"0L",
@@ -36,7 +34,7 @@
 			"type":"long"
 		},
 		{
-			"desc":"ºìÈË¹İµÈ¼¶",
+			"desc":"çº¢äººé¦†ç­‰çº§",
 			"field":"brothelLevel",
 			"genericType":"",
 			"init":"0",
@@ -44,12 +42,12 @@
 			"type":"int"
 		},
 		{
-			"desc":"ºìÈË¹İµÈ¼¶",
+			"desc":"çº¢äººé¦†,å¥´éš¶æ•°æ®",
 			"field":"slaveDatas",
-			"genericType":"SlaveData",
-			"init":"0",
+			"genericType":"",
+			"init":"new ConcurrentHashMap&lt;&gt;()",
 			"keyword":"final",
-			"type":"ConcurrentMap<Integer, SlaveData>"
+			"type":"ConcurrentMap&lt;Integer, SlaveData&gt;"
 		}
 	],
 	"tablName":"Player"

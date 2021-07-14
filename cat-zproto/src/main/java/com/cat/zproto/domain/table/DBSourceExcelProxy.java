@@ -12,9 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.cat.zproto.common.SpringContextHolder;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.domain.system.SettingConfig;
+import com.cat.zproto.domain.system.SettingVersion;
 import com.cat.zproto.domain.table.po.TableEntity;
 
 @Repository
@@ -25,8 +29,8 @@ public class DBSourceExcelProxy implements IDBSource{
 	@Autowired private SettingConfig setting;
 	
 	/**
-	 * key: <br>
-	 * value: <br>
+	 * key: entityName<br>
+	 * value: 数据库数据源实体<br>
 	 */
 	private final Map<String, TableEntity> tableEntitieMap = new HashMap<>();
 
@@ -47,34 +51,39 @@ public class DBSourceExcelProxy implements IDBSource{
 		}
 	}
 	
-	private boolean loadOne(String tableEntityName) throws IOException {
+	private TableEntity loadOne(String tableEntityName) throws IOException {
 		String dbsPath = setting.getDbInfo().getModuleDbsPath();
 		String filePath = dbsPath.concat(File.separator).concat(tableEntityName).concat(CommonConstant.JSON_SUBFIX);
 		File file = new File(filePath);
 		if (!file.exists()) {
-			return false;
+			return null;
 		}
 		if (!file.isFile()) {
-			return false;
+			return null;
 		}
 		String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
 		TableEntity entity = JSONObject.parseObject(content, TableEntity.class);
-		this.tableEntitieMap.put(entity.getEntityName(), entity);
-		return true;
+		return entity;
 	}
 
+	/**
+	 * 如果是excel表内获取数据源, 如果根据名字获取不到, 那么生成一个新的
+	 */
 	@Override
 	public TableEntity getTableEntity(String tableEntityName) {
 		TableEntity tableEntity = tableEntitieMap.get(tableEntityName);
 		if (tableEntity == null) {
 			try {
-				if (this.loadOne(tableEntityName)) {
-					tableEntity = tableEntitieMap.get(tableEntityName);
-				}
+				tableEntity = this.loadOne(tableEntityName);
 			} catch (IOException e) {
 				e.printStackTrace();
 				log.error("getTableEntity error", e);
 			}
+			//如果最后还是获取不到,则表示没有这个模块的数据源, 实例化新的
+			if (tableEntity == null) {
+				tableEntity = new TableEntity(tableEntityName);
+			}
+			this.tableEntitieMap.put(tableEntity.getEntityName(), tableEntity);
 		}
 		return tableEntity;
 	}
@@ -82,6 +91,20 @@ public class DBSourceExcelProxy implements IDBSource{
 	@Override
 	public int dbType() {
 		return excel;
+	}
+
+	@Override
+	public void save(String tableEntityName) {
+		String dbsPath = setting.getDbInfo().getModuleDbsPath();
+		TableEntity tableEntity = tableEntitieMap.get(tableEntityName);
+		//先存储协议
+		String data = JSON.toJSONString(tableEntity, SerializerFeature.PrettyFormat);
+		String filePath = dbsPath.concat(File.separator).concat(tableEntityName).concat(CommonConstant.JSON_SUBFIX);
+		try {
+			FileUtils.writeStringToFile(new File(filePath), data, StandardCharsets.UTF_8, false);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 

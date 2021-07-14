@@ -2,16 +2,17 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
       
-<head th:include="head :: htmlhead" th:with="title='协议生成管理'">
-</head>
+<head th:include="head :: htmlhead" th:with="title='协议生成管理'"></head>
 
-<input id="version" th:value="${version}"  hidden="true">
-<input id="id" th:value="${id}"  hidden="true">
-	<h1 align="center" style="color:#FF5722"  th:text="'当前使用的版本为'+${version}"> </h1>
-<a th:href="'/zproto/module/viewModule?version='+${version}"><p align="center">回到模块页</p>
+<input id="version" th:value="${version}" hidden="true">
+<input id="id" th:value="${id}" hidden="true">
+
+<h1 align="center" style="color:#FF5722"  th:text="'当前使用的版本为'+${version}"> </h1>
+	<a th:href="'/zproto/module/viewModule?version='+${version}"><p align="center">回到模块页</p>
 </a>
 
 <body>
+<i id="data1" th:value="${data1}"></i>
 <form class="layui-form" action="" lay-filter="example">
     <!-- 对象表格 -->
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
@@ -33,34 +34,57 @@
   	  <!--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
 	  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a> 
 	</script> 
+	
+	<div class="layui-form-item" style="margin-top:  20px;">
+        <div class="layui-input-block">
+		<!--             <button id="button" type="button" class="layui-btn" >立即提交</button> -->
+		<button id="button" type="button" class="layui-btn" lay-submit lay-filter="replaceAll">立即提交</button>
+        </div>
+    </div>
 </form>
 
 <script type="text/javascript"  th:inline="none">
 layui.use('table', function(){
 	  var table = layui.table;
-	  
+	  var version=$("#version").val();
+	  var moduleId=$("#id").val();
+	  var beanData = []
+	  $.ajax({
+			url: '/zproto/module/dataBeanList?version='+version+'&id='+moduleId,
+			type: 'GET',
+			dataType: 'json',
+			async : false,
+			success: function(data) {
+				if(data.code == 0){
+					beanData = data.data
+				}
+			}
+		});
 	  table.render({
 	    elem: '#beanInfo'
-	    ,url:'/zproto/setting/versionList'
+// 	    ,url:'/zproto/module/dataBeanList?version='+version+'&id='+moduleId
+		,data:beanData
 	    ,toolbar: 'default' //开启头部工具栏，并为其绑定左侧模板
-	    ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
-	      title: '提示'
-	      ,layEvent: 'LAYTABLE_TIPS'
-	      ,icon: 'layui-icon-tips'
-	    }]
 	    ,title: '用户数据表'
     	,totalRow: true
 	    ,cols: [
 	    	[
 	    		{type: 'checkbox', fixed: 'left'}
-                ,{field: 'field', title: '字段', edit: 'text', width:100, fixed: 'left'}
-                ,{field: 'type', title: '类型', edit: 'text', width:120}
-                ,{field: 'desc', title: '描述', edit: 'text', width:200}
-                ,{field: 'init', title: '默认初始化', edit: 'text', width:120}
-                ,{field: 'keyword', title: '关键字', edit: 'text', width:120}
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}
+                ,{field: 'field', title: '字段', edit: 'text'}
+                ,{field: 'type', title: '类型', edit: 'text'}
+                ,{field: 'desc', title: '描述', edit: 'text'}
+                ,{field: 'init', title: '默认初始化', edit: 'text'}
+                ,{field: 'keyword', title: '关键字', edit: 'text'}
+//                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}
 	    	]
 	    ]
+// 	  ,done: function (res, curr, count) {
+//           // 如果是异步请求数据方式，res即为你接口返回的信息。
+//           // 如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+//           $("[data-field='type']").children().each(function () {
+// 				console.log("====>"+$(this).text());
+//           });
+//       }
 	  });
 	  //监听头工具栏事件
 	  table.on('toolbar(beanInfo)', function(obj){
@@ -68,38 +92,55 @@ layui.use('table', function(){
 	    ,data = checkStatus.data; //获取选中的数据
 	    switch(obj.event){
 	      case 'add':
-	        layer.open({
-	            type: 2 //此处以iframe举例
-	            ,title: '新增字段'
-	            ,area: ['400px', '500px']
-	            ,shade: 0
-	            ,maxmin: true
-	            ,offset: [ //为了演示，随机坐标
-	                0
-	                ,0
-	            ]
-	            ,content: '/zproto/module/addBeanPropertiesView'
-	            ,zIndex: layer.zIndex //重点1
-	            ,success: function(layero){
-	                layer.setTop(layero); //重点2
-	            }
-	        });
+	    	  var dataBak = [];
+	    	  var tableBak = table.cache.beanInfo; 
+	    	  for (var i = 0; i < tableBak.length; i++) {
+    		  		dataBak.push(tableBak[i]);      //将之前的数组备份
+    		  }
+	    	  dataBak.push({   
+	    		    "field": ""
+	    		    ,"type": ""
+	    		    ,"desc": ""
+	    		    ,"init": ""
+	    		    ,"keyword": ""
+	    		});
+	    	  console.log("=====>data:"+JSON.stringify(dataBak));
+	    	  table.reload("beanInfo",{
+	    		    data:dataBak,   // 将新数据重新载入表格
+	    		});
+// 	        layer.open({
+// 	            type: 2 //此处以iframe举例
+// 	            ,title: '新增字段'
+// 	            ,area: ['400px', '500px']
+// 	            ,shade: 0
+// 	            ,maxmin: true
+// 	            ,offset: [ //为了演示，随机坐标
+// 	                0
+// 	                ,0
+// 	            ]
+// 	            ,content: '/zproto/module/addBeanPropertiesView'
+// 	            ,zIndex: layer.zIndex //重点1
+// 	            ,success: function(layero){
+// 	                layer.setTop(layero); //重点2
+// 	            }
+// 	        });
 	      break;
 	      case 'update':
-// 	        if(data.length === 0){
-// 	          layer.msg('请选择一行');
-// 	        } else if(data.length > 1){
-// 	          layer.msg('只能同时编辑一个');
-// 	        } else {
+	        if(data.length === 0){
+	          layer.msg('请选择一行');
+	        } else if(data.length > 1){
+	          layer.msg('只能同时编辑一个');
+	        } 
+// 	        else {
 // 	          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
 // 	        }
 	      break;
 	      case 'delete':
-// 	        if(data.length === 0){
-// 	          layer.msg('请选择一行');
-// 	        }else if(data.length >= 2){
-// 	          layer.msg('防误删,每次最多删除1条数据');
-// 	        } 
+	        if(data.length === 0){
+	          layer.msg('请选择一行');
+	        }else if(data.length >= 2){
+	          layer.msg('防误删,每次最多删除1条数据');
+	        } 
 // 	        else {
 // 	        	var dels = [];
 // 	        	data.forEach(function(n,i){
@@ -151,15 +192,40 @@ layui.use('table', function(){
 // 	    }
 // 	  });
 	});
+	
+// $("#button").click(function(){
+// 	var dataBak = [];
+// 	 var table = layui.table;
+// 	  var tableBak = table.cache.beanInfo; 
+// 	  for (var i = 0; i < tableBak.length; i++) {
+// 	  		dataBak.push(tableBak[i]);      //将之前的数组备份
+// 	  }
+// // 	  var len = tableBak.length;
+// 	  dataBak.push({   
+// 		  "indexId":0
+// 		  ,"field": "1"
+// 		    ,"type": "1"
+// 		    ,"desc": "1"
+// 		    ,"init": "1"
+// 		    ,"keyword": "1"
+// 		});
+// 	  console.log("=====>data:"+JSON.stringify(dataBak));
+// 	  table.reload("beanInfo",{
+// 		  data: dataBak
+// 		})
+// });
+	
 </script>
 
 <script type="text/javascript"  th:inline="none">
 layui.use('table', function(){
 	  var table = layui.table;
+	  var version=$("#version").val();
+	  var moduleId=$("#id").val();
 	  
 	  table.render({
 	    elem: '#assistBeanInfo'
-	    ,url:'/zproto/setting/versionList'
+	    ,url:'/zproto/module/dataAssistBeanList?version='+version+'&id='+moduleId
 	    ,toolbar: 'default' //开启头部工具栏，并为其绑定左侧模板
 	    ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
 	      title: '提示'
@@ -171,13 +237,13 @@ layui.use('table', function(){
 	    ,cols: [
 	    	[
 	    		{type: 'checkbox', fixed: 'left'}
-                ,{field: 'entityName', title: '依赖对象名', edit: 'text', width:100, fixed: 'left'}
-                ,{field: 'field', title: '字段', edit: 'text', width:100, fixed: 'left'}
-                ,{field: 'type', title: '类型', edit: 'text', width:120}
-                ,{field: 'desc', title: '描述', edit: 'text', width:200}
-                ,{field: 'init', title: '默认初始化', edit: 'text', width:120}
-                ,{field: 'keyword', title: '关键字', edit: 'text', width:120}
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}
+                ,{field: 'entityName', title: '依赖对象名', edit: 'text', fixed: 'left'}
+                ,{field: 'field', title: '字段', edit: 'text', fixed: 'left'}
+                ,{field: 'type', title: '类型', edit: 'text'}
+                ,{field: 'desc', title: '描述', edit: 'text'}
+                ,{field: 'init', title: '默认初始化', edit: 'text'}
+                ,{field: 'keyword', title: '关键字', edit: 'text'}
+//                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}
 	    	]
 	    ]
 	  });
@@ -205,20 +271,21 @@ layui.use('table', function(){
 	        });
 	      break;
 	      case 'update':
-// 	        if(data.length === 0){
-// 	          layer.msg('请选择一行');
-// 	        } else if(data.length > 1){
-// 	          layer.msg('只能同时编辑一个');
-// 	        } else {
+	        if(data.length === 0){
+	          layer.msg('请选择一行');
+	        } else if(data.length > 1){
+	          layer.msg('只能同时编辑一个');
+	        }
+// 	        else {
 // 	          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
 // 	        }
 	      break;
 	      case 'delete':
-// 	        if(data.length === 0){
-// 	          layer.msg('请选择一行');
-// 	        }else if(data.length >= 2){
-// 	          layer.msg('防误删,每次最多删除1条数据');
-// 	        } 
+	        if(data.length === 0){
+	          layer.msg('请选择一行');
+	        }else if(data.length >= 2){
+	          layer.msg('防误删,每次最多删除1条数据');
+	        } 
 // 	        else {
 // 	        	var dels = [];
 // 	        	data.forEach(function(n,i){
@@ -270,6 +337,68 @@ layui.use('table', function(){
 // 	    }
 // 	  });
 	});
+</script>
+
+<script type="text/javascript"  th:inline="none">
+//表格内容全部提交到服务器
+//清空功能
+
+layui.use(['form', 'table'], function(data){
+    var form = layui.form;
+    form.on('submit(replaceAll)', function () {
+//     	var d = {}
+//     	var data1 = layui.table.cache["beanInfo"];
+//     	console.log("=====>data1:"+JSON.stringify(data1));
+    	//console.log("=====>data:"+JSON.stringify(layui.table));
+    	var table = layui.table;
+    	var dataBak = [];
+	    	  var tableBak = table.cache.beanInfo; 
+	    	  for (var i = 0; i < tableBak.length; i++) {
+    		  		dataBak.push(tableBak[i]);      //将之前的数组备份
+    		  }
+	    	  var len = tableBak.length;
+	    	  dataBak.push({   
+	    		  "indexId":0
+	    		  ,"field": "1"
+	    		    ,"type": "1"
+	    		    ,"desc": "1"
+	    		    ,"init": "1"
+	    		    ,"keyword": "1"
+	    		    ,"LAY_TABLE_INDEX":len
+	    		});
+	    	  console.log("=====>data:"+JSON.stringify(dataBak));
+	    	  table.render("beanInfo",{
+	    		  data:dataBak,   // 将新数据重新载入表格
+	    		});
+    	
+//         d.curNode = data.field.templateType;
+//         d.fileName = data.field.templateName;
+//         d.content = data.field.content;
+//         $.ajax({
+//             type: 'POST',
+//             url: '/zproto/module/saveTemplateDetail',
+//             dataType: 'json',
+//             contentType: "application/json; charset=utf-8",
+//             data: JSON.stringify(d),
+//             success: function(data){
+//             	var code = data.code;
+//                 var str = data.tips;
+//                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+//                 //console.log(body.html()); //得到iframe页的body内容
+//                 layer.confirm(str, {
+//                     btn: ['ok'] //按钮
+//                 }, function () {
+//                 	parent.layer.close(index); //再执行关闭
+//                 	if(code == 0){
+//                          parent.window.location.reload();
+//                 	}
+//                 });
+//             },
+//             error: function(jqXHR){console.log(jqXHR)},
+//         });
+//         return false;
+});});
+
 </script>
 
 </body>

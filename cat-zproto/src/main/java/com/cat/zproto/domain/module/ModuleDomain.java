@@ -13,8 +13,14 @@ import org.apache.commons.io.FileUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.cat.zproto.common.SpringContextHolder;
+import com.cat.zproto.domain.proto.ProtocolObject;
+import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingVersion;
+import com.cat.zproto.domain.table.po.TableEntity;
+import com.cat.zproto.dto.TableFreemarkerDto;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 public class ModuleDomain {
 
@@ -120,5 +126,5 @@ public class ModuleDomain {
 			e.printStackTrace();
 		}
 	}
-
+	
 }

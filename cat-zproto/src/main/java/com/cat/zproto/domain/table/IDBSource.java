@@ -26,5 +26,14 @@ public interface IDBSource {
 	 */
 	public void init() throws IOException;
 	
+	/**
+	 * 存储数据源
+	 */
+	default public void save(String tableEntityName) {}
+	
+	/**
+	 * 新增数据源
+	 */
+	default public void addNew(TableEntity tableEntity) {}
 	
 }

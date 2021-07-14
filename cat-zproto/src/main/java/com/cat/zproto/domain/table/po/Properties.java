@@ -6,6 +6,11 @@ package com.cat.zproto.domain.table.po;
  * @date 2019年9月16日上午10:55:41
  */
 public class Properties {
+	
+	/**
+	 * 编号id, 每个字段拥有唯一的一个编号id.增加字段时自动生成
+	 */
+	private int indexId;
 
 	private String field; // Java字段
 	private String desc; // 描述
@@ -44,6 +49,7 @@ public class Properties {
 	
 	public void setType(String type) {
 		this.type = type;
+//		this.type = StringEscapeUtils.escapeHtml4(type);
 		if (this.type.startsWith("List<") || this.type.startsWith("Set<")) {
 			//List<Integer> || Set<Integer>
 			String tem = type.replaceAll(" ", "");
@@ -105,6 +111,7 @@ public class Properties {
 
 	public void setInit(String init) {
 		this.init = init;
+//		this.init = StringEscapeUtils.escapeHtml4(init);
 	}
 
 	public String getKeyword() {
@@ -115,6 +122,14 @@ public class Properties {
 		this.keyword = keyword;
 	}
 	
+	public int getIndexId() {
+		return indexId;
+	}
+
+	public void setIndexId(int indexId) {
+		this.indexId = indexId;
+	}
+
 	@Override
 	public String toString() {
 		return "TableBean [field=" + field + ", desc=" + desc + ", type=" + type + ", tbField=" + tbField + "]";

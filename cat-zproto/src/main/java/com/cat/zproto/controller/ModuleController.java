@@ -17,6 +17,7 @@ import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,12 @@ import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
 import com.cat.zproto.domain.system.SettingVersion;
+import com.cat.zproto.domain.table.po.AssistProperties;
+import com.cat.zproto.domain.table.po.Entity;
+import com.cat.zproto.domain.table.po.Properties;
 import com.cat.zproto.domain.table.po.TableEntity;
 import com.cat.zproto.domain.template.TemplateStruct;
+import com.cat.zproto.dto.DataBeanDto;
 import com.cat.zproto.dto.TableFreemarkerDto;
 import com.cat.zproto.dto.TemplateDto;
 import com.cat.zproto.enums.ProtoTypeEnum;
@@ -161,30 +166,19 @@ public class ModuleController {
 	@RequestMapping("/editBeanInfoView")
 	public Object editBeanInfoView(String version, int id) {
 		ModelAndView mv = new ModelAndView();
-		ModuleEntity moduleEntitie = moduleService.getModuleEntity(version, id);
+		ModuleEntity moduleEntity = moduleService.getModuleEntity(version, id);
 		
-		if (moduleEntitie == null) {
+		if (moduleEntity == null) {
 			mv.setViewName("error");
 			return mv;
 		}
 		
 		mv.setViewName("edit_beanInfo");
 		mv.addObject("version", version);
-		mv.addObject("data", moduleEntitie);
+		mv.addObject("id", id);
+		mv.addObject("data", moduleEntity);
 		return mv;
 	}
-	
-//	/**
-//	 * 模块列表
-//	 * 
-//	 * @param version
-//	 */
-//	@ResponseBody
-//	@RequestMapping("/moduleList")
-//	public Object moduleList(String version) {
-//		Collection<ModuleEntity> moduleEntities = moduleService.getAllModuleEntity(version);
-//		return SystemResult.build(SystemCodeEnum.SUCCESS, moduleEntities);
-//	}
 	
 	/**
 	 * 添加bean字段页面
@@ -195,6 +189,108 @@ public class ModuleController {
 		mv.setViewName("add_bean_properties");
 		mv.addObject("version", version);
 		return mv;
+	}
+	
+	/**
+	 * 数据源数据列表
+	 */
+	@ResponseBody
+	@RequestMapping("/dataBeanList")
+	public Object dataBeanList(String version, int id) {
+		ModuleEntity moduleEntity = moduleService.getModuleEntity(version, id);
+ 		if (moduleEntity == null) {
+			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
+		}
+		TableEntity tableEntity = dbService.getTableEntity(moduleEntity.getName());
+		if (tableEntity == null) {
+			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
+		}
+		ArrayList<Properties> ret = new ArrayList<>();
+		ret.addAll(tableEntity.getProperties());
+		logger.info("ret:{}", ret);
+		return SystemResult.build(SystemCodeEnum.SUCCESS, ret);
+	}
+	
+	/**
+	 * 数据源数据列表
+	 */
+	@ResponseBody
+	@RequestMapping("/dataAssistBeanList")
+	public Object dataAssistBeanList(String version, int id) {
+		ModuleEntity moduleEntity = moduleService.getModuleEntity(version, id);
+		if (moduleEntity == null) {
+			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
+		}
+		TableEntity tableEntity = dbService.getTableEntity(moduleEntity.getName());
+		if (tableEntity == null) {
+			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
+		}
+		ArrayList<AssistProperties> ret = new ArrayList<>();
+		for (Entity<AssistProperties> assistEntity : tableEntity.getAssistEntityMap().values()) {
+			ret.addAll(assistEntity.getProperties());
+		}
+		return SystemResult.build(SystemCodeEnum.SUCCESS, ret);
+	}
+	
+	/**
+	 * 新增加一条成员变量
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/editBeanPropertiesSave")
+	public Object editBeanPropertiesSave(@RequestBody DataBeanDto dto) {
+		//获取到模板文件内容
+		ModuleEntity moduleEntity = moduleService.getModuleEntity(dto.getVersion(), dto.getModuleId());
+		if (moduleEntity == null) {
+			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
+		}
+//		TableEntity tableEntity = dbService.getTableEntity(moduleEntity.getName());
+//		Properties property = new Properties();
+//		property.setIndexId(tableEntity.getNextIndexId());
+//		property.setDesc(dto.getDesc());
+//		property.setField(dto.getField());
+//		property.setType(StringEscapeUtils.escapeHtml4(dto.getType()));
+//		property.setKeyword(dto.getKeyword());
+//		property.setInit(StringEscapeUtils.escapeHtml4(dto.getInit()));
+//		tableEntity.addEntityBeans(property);
+//		
+//		dbService.saveTableEntity(moduleEntity.getName());
+		return SystemResult.build(SystemCodeEnum.SUCCESS);
+	}
+	
+	/**
+	 * 新增加一条依赖对象的成员变量
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/editBeanAssistPropertiesSave")
+	public Object editBeanAssistPropertiesSave(@RequestBody DataBeanDto dto) {
+		//获取到模板文件内容
+		ModuleEntity moduleEntity = moduleService.getModuleEntity(dto.getVersion(), dto.getModuleId());
+		if (moduleEntity == null) {
+			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
+		}
+		// 获取到数据源对象
+		TableEntity tableEntity = dbService.getTableEntity(moduleEntity.getName());
+		// 辅助对象
+		Entity<AssistProperties> assistEntity = tableEntity.getOrCreateAssistEntity(dto.getAssistEntityName());
+//		assistEntity.
+		
+//		Properties property = new Properties();
+//		property.setIndexId(tableEntity.getNextIndexId());
+//		property.setDesc(dto.getDesc());
+//		property.setField(dto.getField());
+//		property.setType(StringEscapeUtils.escapeHtml4(dto.getType()));
+//		property.setKeyword(dto.getKeyword());
+//		property.setInit(StringEscapeUtils.escapeHtml4(dto.getInit()));
+//		tableEntity.addEntityBeans(property);
+//		
+//		dbService.saveTableEntity(moduleEntity.getName());
+		return SystemResult.build(SystemCodeEnum.SUCCESS);
 	}
 
 	/**
@@ -224,7 +320,6 @@ public class ModuleController {
 		 *2.其他自定义类型
 		 */
 		List<String> allTypes = new ArrayList<>(ProtoTypeEnum.enumMap.values());
-//		allTypes.addAll(protoService.getAllPbProtoName(version, ProtocolConstant.PB_PREFIX));
 		allTypes.addAll(protoService.getAllPbProtoName(version, setting.getProto().getPbPrefix()));
 		/*
 		 * 也只是为了做一个排序, 写这么多代码,这里的数据结构没有设计好 工具完成后要想办法重构代码 20210603
@@ -274,9 +369,6 @@ public class ModuleController {
 		TreeMap<Integer, ProtocolStructure> responses = new TreeMap<>();
 		List<ProtocolStructure> pbs = new ArrayList<>();
 
-//		String reqPrefix = ProtocolConstant.REQ_PREFIX;
-//		String respPrefix = ProtocolConstant.RESP_PREFIX;
-//		String pbPrefix = ProtocolConstant.PB_PREFIX;
 		String reqPrefix = setting.getProto().getReqPrefix();
 		String respPrefix = setting.getProto().getRespPrefix();
 		String pbPrefix = setting.getProto().getPbPrefix();
@@ -456,9 +548,6 @@ public class ModuleController {
 		if (!file.isFile()) {
 			return "下载失败, 请先生成此文件";
 		}
-//		System.out.println("==========================="+file.getPath());
-//		System.out.println("==========================="+path);
-//		System.out.println("==========================="+file.getAbsolutePath());
 		try (InputStream inStream = new FileInputStream(file.getAbsolutePath());
 				BufferedInputStream bis = new BufferedInputStream(inStream);) {
 			OutputStream os = response.getOutputStream();
@@ -494,7 +583,7 @@ public class ModuleController {
 		Iterator<Entry<String, SettingVersion>> iter = setting.getVersionInfo().entrySet().iterator();
 		SettingVersion first = iter.hasNext() ? iter.next().getValue() : null;
 		//使用默认的数据, 生成dto
-		TableFreemarkerDto dto = createDto(first.getVersion(), 101);
+		TableFreemarkerDto dto = this.createFreemarkerDto(first.getVersion(), 101);
 		// template作为虚拟名称, 用来当作获取静态文件的key
 		templateLoader.putTemplate("template", str); 
 		configuration.setClassicCompatible(true);
@@ -660,47 +749,6 @@ public class ModuleController {
 		}
 	}
 	
-	private TableFreemarkerDto createDto(String version, int moduleId){
-		ModuleEntity entity = moduleService.getModuleEntity(version, moduleId);
-		if (entity == null) {
-			return null;
-		}
-		ProtocolObject protoObject = protoService.getProtoObject(version, entity.getName());
-		if (protoObject == null) {
-			return null;
-		}
-		//TODO 优化点，在无数据库时，根据模块信息生成代码。
-		TableEntity tableEntity = dbService.getTableEntity(entity.getName());
-		if (tableEntity == null) {
-			return null;
-		}
-		TableFreemarkerDto dto = new TableFreemarkerDto(tableEntity, protoObject, entity);
-//		//协议层方法获取
-		List<ProtocolStructure> protoPBStructList = Lists.newArrayList();
-		List<ProtocolStructure> protoReqStructList = Lists.newArrayList();
-		Map<String, ProtocolStructure> protoAckStructMap = Maps.newHashMap();
-		Map<String, ProtocolStructure> structureMap = protoObject.getStructures();
-
-		String reqPrefix = setting.getProto().getReqPrefix();
-		String respPrefix = setting.getProto().getRespPrefix();
-		String pbPrefix = setting.getProto().getPbPrefix();
-		
-		for (String key : structureMap.keySet()) {
-			if (key.startsWith(respPrefix)) {
-				String newKey = key.replace(respPrefix, reqPrefix);
-				protoAckStructMap.put(newKey, structureMap.get(key));
-			} else if (key.startsWith(reqPrefix)) {
-				protoReqStructList.add(structureMap.get(key));
-			} else if (key.startsWith(pbPrefix)) {
-				protoPBStructList.add(structureMap.get(key));
-			}
-		}
-		dto.getProtoAckStructMap().putAll(protoAckStructMap);
-		dto.getProtoReqStructList().addAll(protoReqStructList);
-		dto.getProtoPBStructList().addAll(protoPBStructList);
-		return dto;
-	}
-	
 	/**
 	 * 生成代码<br>
 	 * 根据定义的module信息, 找到数据库中的table, 最终根据table结构生成代码.<br>
@@ -718,50 +766,40 @@ public class ModuleController {
 		if (entity == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_FOUND_PROTOOBJECT);
 		}
-		ProtocolObject protoObject = protoService.getProtoObject(version, entity.getName());
-		if (protoObject == null) {
-			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
-		}
-//		List<TableEntity> entitys = dbService.readDb();
-//		TableEntity tableEntity = null;
-//		for (TableEntity te : entitys) {
-//			if (StringUtils.equals(te.getEntityName(), entity.getName())) {
-//				tableEntity = te;
-//				break;
+//		ProtocolObject protoObject = protoService.getProtoObject(version, entity.getName());
+//		if (protoObject == null) {
+//			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
+//		}
+//		TableEntity tableEntity = dbService.getTableEntity(entity.getName());
+//		if (tableEntity == null) {
+//			return SystemResult.build(SystemCodeEnum.ERROR_NOT_FOUND_TABLE);
+//		}
+		
+		TableFreemarkerDto dto = this.createFreemarkerDto(version, id);
+//		TableFreemarkerDto dto = new TableFreemarkerDto(tableEntity, protoObject, entity);
+//		//协议层方法获取
+//		List<ProtocolStructure> protoPBStructList = Lists.newArrayList();
+//		List<ProtocolStructure> protoReqStructList = Lists.newArrayList();
+//		Map<String, ProtocolStructure> protoAckStructMap = Maps.newHashMap();
+//		Map<String, ProtocolStructure> structureMap = protoObject.getStructures();
+//
+//		String reqPrefix = setting.getProto().getReqPrefix();
+//		String respPrefix = setting.getProto().getRespPrefix();
+//		String pbPrefix = setting.getProto().getPbPrefix();
+//		
+//		for (String key : structureMap.keySet()) {
+//			if (key.startsWith(respPrefix)) {
+//				String newKey = key.replace(respPrefix, reqPrefix);
+//				protoAckStructMap.put(newKey, structureMap.get(key));
+//			} else if (key.startsWith(reqPrefix)) {
+//				protoReqStructList.add(structureMap.get(key));
+//			} else if (key.startsWith(pbPrefix)) {
+//				protoPBStructList.add(structureMap.get(key));
 //			}
 //		}
-		TableEntity tableEntity = dbService.getTableEntity(entity.getName());
-		if (tableEntity == null) {
-			return SystemResult.build(SystemCodeEnum.ERROR_NOT_FOUND_TABLE);
-		}
-		TableFreemarkerDto dto = new TableFreemarkerDto(tableEntity, protoObject, entity);
-//		//协议层方法获取
-		List<ProtocolStructure> protoPBStructList = Lists.newArrayList();
-		List<ProtocolStructure> protoReqStructList = Lists.newArrayList();
-		Map<String, ProtocolStructure> protoAckStructMap = Maps.newHashMap();
-		Map<String, ProtocolStructure> structureMap = protoObject.getStructures();
-
-		String reqPrefix = setting.getProto().getReqPrefix();
-		String respPrefix = setting.getProto().getRespPrefix();
-		String pbPrefix = setting.getProto().getPbPrefix();
-		
-		for (String key : structureMap.keySet()) {
-			if (key.startsWith(respPrefix)) {
-				String newKey = key.replace(respPrefix, reqPrefix);
-				protoAckStructMap.put(newKey, structureMap.get(key));
-			} else if (key.startsWith(reqPrefix)) {
-				protoReqStructList.add(structureMap.get(key));
-			} else if (key.startsWith(pbPrefix)) {
-				protoPBStructList.add(structureMap.get(key));
-			}
-		}
-		dto.getProtoAckStructMap().putAll(protoAckStructMap);
-		dto.getProtoReqStructList().addAll(protoReqStructList);
-		dto.getProtoPBStructList().addAll(protoPBStructList);
-		// 生成代码
-//		for (ICodeGenerator generator : generatorCodeList) {
-//			generator.generate(version, dto);
-//		}
+//		dto.getProtoAckStructMap().putAll(protoAckStructMap);
+//		dto.getProtoReqStructList().addAll(protoReqStructList);
+//		dto.getProtoPBStructList().addAll(protoPBStructList);
 		Collection<TemplateStruct> struts = templateService.getAllStruct(TemplateEnum.CODE.getType());
 		for (TemplateStruct struct : struts) {
 			defineCodeGenerator.generate(version, struct, dto);
@@ -860,6 +898,53 @@ public class ModuleController {
 	public Object moduleList(String version) {
 		Collection<ModuleEntity> moduleEntities = moduleService.getAllModuleEntity(version);
 		return SystemResult.build(SystemCodeEnum.SUCCESS, moduleEntities);
+	}
+	
+	/**
+	 * 从module, proto, 数据源拿到数据, 组装成dto, 最终丢给freemaker渲染
+	 * @param version
+	 * @param moduleId
+	 * @return
+	 */
+	private TableFreemarkerDto createFreemarkerDto(String version, int moduleId){
+		ModuleEntity entity = moduleService.getModuleEntity(version, moduleId);
+		if (entity == null) {
+			return null;
+		}
+		ProtocolObject protoObject = protoService.getProtoObject(version, entity.getName());
+		if (protoObject == null) {
+			return null;
+		}
+		//TODO 优化点，在无数据库时，根据模块信息生成代码。
+		TableEntity tableEntity = dbService.getTableEntity(entity.getName());
+		if (tableEntity == null) {
+			return null;
+		}
+		TableFreemarkerDto dto = new TableFreemarkerDto(tableEntity, protoObject, entity);
+//		//协议层方法获取
+		List<ProtocolStructure> protoPBStructList = Lists.newArrayList();
+		List<ProtocolStructure> protoReqStructList = Lists.newArrayList();
+		Map<String, ProtocolStructure> protoAckStructMap = Maps.newHashMap();
+		Map<String, ProtocolStructure> structureMap = protoObject.getStructures();
+
+		String reqPrefix = setting.getProto().getReqPrefix();
+		String respPrefix = setting.getProto().getRespPrefix();
+		String pbPrefix = setting.getProto().getPbPrefix();
+		
+		for (String key : structureMap.keySet()) {
+			if (key.startsWith(respPrefix)) {
+				String newKey = key.replace(respPrefix, reqPrefix);
+				protoAckStructMap.put(newKey, structureMap.get(key));
+			} else if (key.startsWith(reqPrefix)) {
+				protoReqStructList.add(structureMap.get(key));
+			} else if (key.startsWith(pbPrefix)) {
+				protoPBStructList.add(structureMap.get(key));
+			}
+		}
+		dto.getProtoAckStructMap().putAll(protoAckStructMap);
+		dto.getProtoReqStructList().addAll(protoReqStructList);
+		dto.getProtoPBStructList().addAll(protoPBStructList);
+		return dto;
 	}
 
 }
