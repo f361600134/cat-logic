@@ -1,31 +1,10 @@
 package com.cat.zproto.dto;
 
+import java.util.List;
+
+import com.cat.zproto.domain.table.po.Properties;
+
 public class DataBeanDto {
-	
-	/**
-	 * 依赖对象名字
-	 */
-	private String assistEntityName;
-	/**
-	 *  Java字段
-	 */
-	private String field;
-	/**
-	 * 描述
-	 */
-	private String desc;
-	/**
-	 * 类型
-	 */
-	private String type;
-	/**
-	 * 关键字
-	 */
-	private String keyword;
-	/**
-	 * 初始化方法
-	 */
-	private String init;
 	/**
 	 * 版本
 	 */
@@ -35,34 +14,14 @@ public class DataBeanDto {
 	 */
 	private int moduleId;
 	/**
-	 * 修改编号id
+	 * 自身的属性
 	 */
-	private int indexId;
+	private List<Properties> propertiesDtos;
+	/**
+	 * 依赖对象的属性
+	 */
+	private List<Properties> assistPropertiesDtos;
 	
-	public String getField() {
-		return field;
-	}
-	public void setField(String field) {
-		this.field = field;
-	}
-	public String getDesc() {
-		return desc;
-	}
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getAssistEntityName() {
-		return assistEntityName;
-	}
-	public void setAssistEntityName(String assistEntityName) {
-		this.assistEntityName = assistEntityName;
-	}
 	public String getVersion() {
 		return version;
 	}
@@ -75,22 +34,93 @@ public class DataBeanDto {
 	public void setModuleId(int moduleId) {
 		this.moduleId = moduleId;
 	}
-	public int getIndexId() {
-		return indexId;
+	public List<Properties> getPropertiesDtos() {
+		return propertiesDtos;
 	}
-	public void setIndexId(int indexId) {
-		this.indexId = indexId;
+	public void setPropertiesDtos(List<Properties> propertiesDtos) {
+		this.propertiesDtos = propertiesDtos;
 	}
-	public String getKeyword() {
-		return keyword;
+	public List<Properties> getAssistPropertiesDtos() {
+		return assistPropertiesDtos;
 	}
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
+	public void setAssistPropertiesDtos(List<Properties> assistPropertiesDtos) {
+		this.assistPropertiesDtos = assistPropertiesDtos;
 	}
-	public String getInit() {
-		return init;
-	}
-	public void setInit(String init) {
-		this.init = init;
-	}
+
+	
+//	public static class PropertiesDto{
+//		/**
+//		 * 依赖对象名字
+//		 */
+//		private String assistEntityName;
+//		/**
+//		 * 修改编号id
+//		 */
+//		private int indexId;
+//		/**
+//		 *  Java字段
+//		 */
+//		private String field;
+//		/**
+//		 * 描述
+//		 */
+//		private String desc;
+//		/**
+//		 * 类型
+//		 */
+//		private String type;
+//		/**
+//		 * 关键字
+//		 */
+//		private String keyword;
+//		/**
+//		 * 初始化方法
+//		 */
+//		private String init;
+//		
+//		public String getField() {
+//			return field;
+//		}
+//		public void setField(String field) {
+//			this.field = field;
+//		}
+//		public String getDesc() {
+//			return desc;
+//		}
+//		public void setDesc(String desc) {
+//			this.desc = desc;
+//		}
+//		public String getType() {
+//			return type;
+//		}
+//		public void setType(String type) {
+//			this.type = type;
+//		}
+//		public String getAssistEntityName() {
+//			return assistEntityName;
+//		}
+//		public void setAssistEntityName(String assistEntityName) {
+//			this.assistEntityName = assistEntityName;
+//		}
+//		public int getIndexId() {
+//			return indexId;
+//		}
+//		public void setIndexId(int indexId) {
+//			this.indexId = indexId;
+//		}
+//		public String getKeyword() {
+//			return keyword;
+//		}
+//		public void setKeyword(String keyword) {
+//			this.keyword = keyword;
+//		}
+//		public String getInit() {
+//			return init;
+//		}
+//		public void setInit(String init) {
+//			this.init = init;
+//		}
+//	}
+
+
 }

@@ -47,7 +47,7 @@ public class TableEntity extends Entity<Properties>{
 		properties.setDesc("玩家id");
 		properties.setInit("0L");
 		properties.setKeyword("transient");
-		entity.getProperties().add(properties);
+		entity.addProperties(properties);
 		
 		properties = new Properties();
 		properties.setType("int");
@@ -55,34 +55,36 @@ public class TableEntity extends Entity<Properties>{
 		properties.setDesc("红人馆等级");
 		properties.setInit("0");
 		properties.setKeyword("final");
-		entity.getProperties().add(properties);
+		entity.addProperties(properties);
 		
 		properties = new Properties();
-		properties.setType("ConcurrentMap<Integer, SlaveData>");
+//		properties.setType("ConcurrentMap<Integer, SlaveData>");
 		properties.setField("slaveDatas");
 		properties.setDesc("红人馆,奴隶数据");
-		properties.setInit("new ConcurrentHashMap<>()");
+//		properties.setInit("new ConcurrentHashMap<>()");
 		properties.setKeyword("final");
-		entity.getProperties().add(properties);
+		entity.addProperties(properties);
 		
 		//设置bean的辅助对象信息
 		Entity<AssistProperties> assist = new Entity<AssistProperties>();
+		assist.setEntityName("SlaveData");
+		
 		AssistProperties assistProperties = new AssistProperties();
 		assistProperties.setDesc("奴隶唯一id");
 		assistProperties.setInit("0L");
 		assistProperties.setField("id");
 		assistProperties.setType("int");
 		assistProperties.setEntityName("SlaveData");
-		assist.getProperties().add(assistProperties);
+		assist.addProperties(assistProperties);
 		
 		assistProperties = new AssistProperties();
 		assistProperties.setDesc("外面特征");
-		assistProperties.setInit("new ArrayList<Integer>(5)");
+//		assistProperties.setInit("new ArrayList<Integer>(5)");
 		assistProperties.setField("features");
-		assistProperties.setType("List<Integer>");
+//		assistProperties.setType("List<Integer>");
 		assistProperties.setKeyword("final");
 		assistProperties.setEntityName("SlaveData");
-		assist.getProperties().add(assistProperties);
+		assist.addProperties(assistProperties);
 		
 		entity.getAssistEntityMap().put(assistProperties.getEntityName(), assist);
 		

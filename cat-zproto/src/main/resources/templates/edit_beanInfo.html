@@ -70,6 +70,7 @@ layui.use('table', function(){
 	    ,cols: [
 	    	[
 	    		{type: 'checkbox', fixed: 'left'}
+	    		,{field: 'indexId', title: 'ID', align:'center', width:80}
                 ,{field: 'field', title: '字段', edit: 'text'}
                 ,{field: 'type', title: '类型', edit: 'text'}
                 ,{field: 'desc', title: '描述', edit: 'text'}
@@ -97,8 +98,15 @@ layui.use('table', function(){
 	    	  for (var i = 0; i < tableBak.length; i++) {
     		  		dataBak.push(tableBak[i]);      //将之前的数组备份
     		  }
-	    	  dataBak.push({   
-	    		    "field": ""
+	    	  var indexId = 0;
+	    	  if(dataBak.length > 0){
+	    		  indexId = dataBak[dataBak.length-1].indexId + 1;;
+	    	  }else{
+	    		  indexId = 1;
+	    	  }
+	    	  dataBak.push({
+	    		    "indexId":indexId
+	    		    ,"field": ""
 	    		    ,"type": ""
 	    		    ,"desc": ""
 	    		    ,"init": ""
@@ -131,21 +139,31 @@ layui.use('table', function(){
 	        } else if(data.length > 1){
 	          layer.msg('只能同时编辑一个');
 	        } 
-// 	        else {
-// 	          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
-// 	        }
+	        else {
+	          layer.alert('编辑 [id]：'+JSON.stringify(checkStatus.data[0].field));
+	        }
 	      break;
 	      case 'delete':
 	        if(data.length === 0){
 	          layer.msg('请选择一行');
-	        }else if(data.length >= 2){
-	          layer.msg('防误删,每次最多删除1条数据');
-	        } 
-// 	        else {
-// 	        	var dels = [];
-// 	        	data.forEach(function(n,i){
-// 	        		dels.push(n.version);
-// 	        	});
+	        }
+	        else {
+	        	layer.confirm('真的删除么?', function(index){
+	        		layer.close(index);
+	        		 
+		        	var tableBak = table.cache.beanInfo;
+		        	$.each(data, function (index, value){
+		        		//console.log("=====>tableBak index:"+index+", value:"+JSON.stringify(value));
+						for (let i = tableBak.length - 1; i >= 0; i--) {
+						    if (tableBak[i].indexId === value.indexId) {
+						    	tableBak.splice(i, 1);
+						    }
+						}
+		        	})
+		        	table.reload("beanInfo",{
+		    		    data:tableBak,   // 将新数据重新载入表格
+		    		});
+	        	});
 // 	        	layer.confirm('真的删除么?', function(index){
 // 	                layer.close(index);
 // 	                $.ajax({
@@ -166,7 +184,7 @@ layui.use('table', function(){
 // 	                });
 // 	                //向服务端发送删除指令
 // 	            });
-// 	        }
+	        }
 	      break;
 	    };
 	  });
@@ -237,6 +255,7 @@ layui.use('table', function(){
 	    ,cols: [
 	    	[
 	    		{type: 'checkbox', fixed: 'left'}
+	    		//,{field: 'indexId', title: 'ID', align:'center', width:80}
                 ,{field: 'entityName', title: '依赖对象名', edit: 'text', fixed: 'left'}
                 ,{field: 'field', title: '字段', edit: 'text', fixed: 'left'}
                 ,{field: 'type', title: '类型', edit: 'text'}
@@ -339,64 +358,38 @@ layui.use('table', function(){
 	});
 </script>
 
-<script type="text/javascript"  th:inline="none">
+<script>
 //表格内容全部提交到服务器
 //清空功能
-
-layui.use(['form', 'table'], function(data){
+layui.use(['form', 'table'], function(){
     var form = layui.form;
-    form.on('submit(replaceAll)', function () {
-//     	var d = {}
-//     	var data1 = layui.table.cache["beanInfo"];
-//     	console.log("=====>data1:"+JSON.stringify(data1));
-    	//console.log("=====>data:"+JSON.stringify(layui.table));
+    form.on('submit(replaceAll)', function (data) {
     	var table = layui.table;
-    	var dataBak = [];
-	    	  var tableBak = table.cache.beanInfo; 
-	    	  for (var i = 0; i < tableBak.length; i++) {
-    		  		dataBak.push(tableBak[i]);      //将之前的数组备份
-    		  }
-	    	  var len = tableBak.length;
-	    	  dataBak.push({   
-	    		  "indexId":0
-	    		  ,"field": "1"
-	    		    ,"type": "1"
-	    		    ,"desc": "1"
-	    		    ,"init": "1"
-	    		    ,"keyword": "1"
-	    		    ,"LAY_TABLE_INDEX":len
-	    		});
-	    	  console.log("=====>data:"+JSON.stringify(dataBak));
-	    	  table.render("beanInfo",{
-	    		  data:dataBak,   // 将新数据重新载入表格
-	    		});
-    	
-//         d.curNode = data.field.templateType;
-//         d.fileName = data.field.templateName;
-//         d.content = data.field.content;
-//         $.ajax({
-//             type: 'POST',
-//             url: '/zproto/module/saveTemplateDetail',
-//             dataType: 'json',
-//             contentType: "application/json; charset=utf-8",
-//             data: JSON.stringify(d),
-//             success: function(data){
-//             	var code = data.code;
-//                 var str = data.tips;
-//                 var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-//                 //console.log(body.html()); //得到iframe页的body内容
+    	var d = {}
+//     	d.version = $("#version").val();
+//     	d.moduleId = $("#id").val();
+    	d.propertiesDtos = table.cache.beanInfo;
+    	d.assistPropertiesDtos = table.cache.assistBeanInfo;
+    	console.log("=====>dddd:"+JSON.stringify(d));
+        $.ajax({
+            type: 'POST',
+            url: '/zproto/module/saveDataBean',
+            dataType: 'json',
+            data: JSON.stringify(d),
+            contentType: "application/json; charset=utf-8",
+            success: function(data){
+                var str = data.tips;
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
 //                 layer.confirm(str, {
 //                     btn: ['ok'] //按钮
 //                 }, function () {
-//                 	parent.layer.close(index); //再执行关闭
-//                 	if(code == 0){
-//                          parent.window.location.reload();
-//                 	}
+//                     parent.layer.close(index); //再执行关闭
+//                     parent.window.location.reload();
 //                 });
-//             },
+            },
 //             error: function(jqXHR){console.log(jqXHR)},
-//         });
-//         return false;
+        });
+        return false;
 });});
 
 </script>

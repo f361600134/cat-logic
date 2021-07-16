@@ -1,5 +1,7 @@
 package com.cat.zproto.domain.table.po;
 
+import org.apache.commons.text.StringEscapeUtils;
+
 /**
  * 	表单行数据信息, 每一列表示一个类型,表示了详细列类型数据
  * @auth Jeremy

@@ -1,12 +1,14 @@
 {
-	"assistEntities":{
+	"assistEntityMap":{
 		"SlaveData":{
+			"entityName":"SlaveData",
 			"properties":[
 				{
 					"desc":"奴隶唯一id",
 					"entityName":"SlaveData",
 					"field":"id",
 					"genericType":"",
+					"indexId":1,
 					"init":"0L",
 					"keyword":"",
 					"type":"int"
@@ -16,6 +18,7 @@
 					"entityName":"SlaveData",
 					"field":"features",
 					"genericType":"",
+					"indexId":2,
 					"init":"new ArrayList&lt;Integer&gt;(5)",
 					"keyword":"final",
 					"type":"List&lt;Integer&gt;"
@@ -29,6 +32,7 @@
 			"desc":"玩家id",
 			"field":"id",
 			"genericType":"",
+			"indexId":1,
 			"init":"0L",
 			"keyword":"transient",
 			"type":"long"
@@ -37,6 +41,7 @@
 			"desc":"红人馆等级",
 			"field":"brothelLevel",
 			"genericType":"",
+			"indexId":2,
 			"init":"0",
 			"keyword":"final",
 			"type":"int"
@@ -45,6 +50,7 @@
 			"desc":"红人馆,奴隶数据",
 			"field":"slaveDatas",
 			"genericType":"",
+			"indexId":3,
 			"init":"new ConcurrentHashMap&lt;&gt;()",
 			"keyword":"final",
 			"type":"ConcurrentMap&lt;Integer, SlaveData&gt;"

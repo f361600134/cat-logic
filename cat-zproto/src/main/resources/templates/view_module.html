@@ -298,6 +298,7 @@
                     });
                     break;
                 case 'update':
+                	console.log("checkStatus.data[0].id:"+checkStatus.data[0].id);
                     if(data.length === 0){
                       layer.msg('请选择一行');
                     } else if(data.length > 1){

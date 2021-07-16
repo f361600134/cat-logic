@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 
-public class Entity<V>{
+public class Entity<V extends Properties>{
 	
 	/**
 	 * 实体名
@@ -39,8 +39,18 @@ public class Entity<V>{
 	public void setProperties(List<V> properties) {
 		this.properties = properties;
 	}
-	public void addEntityBeans(V property) {
+	public void addProperties(V property) {
+		property.setIndexId(getNextIndexId());
 		this.properties.add(property);
+	}
+	private int getNextIndexId() {
+		int size = properties.size();
+		if (size == 0) {
+			return 1;
+		}else{
+			V v = properties.get(size-1);
+			return v.getIndexId() + 1;
+		}
 	}
 	
 	@Override

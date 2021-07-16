@@ -229,7 +229,37 @@ public class ModuleController {
 		for (Entity<AssistProperties> assistEntity : tableEntity.getAssistEntityMap().values()) {
 			ret.addAll(assistEntity.getProperties());
 		}
+		logger.info("dataAssistBeanList, ret:{}", ret);
 		return SystemResult.build(SystemCodeEnum.SUCCESS, ret);
+	}
+	
+	/**
+	 * 新增加一条成员变量
+	 * @return
+	 * @return ModelAndView
+	 * @date 2021年6月12日下午9:50:40
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/saveDataBean")
+	public Object saveDataBean(@RequestBody DataBeanDto dto) {
+		//获取到模板文件内容
+		ModuleEntity moduleEntity = moduleService.getModuleEntity(dto.getVersion(), dto.getModuleId());
+		if (moduleEntity == null) {
+			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
+		}
+		logger.info("=====>{}", dto);
+//		TableEntity tableEntity = dbService.getTableEntity(moduleEntity.getName());
+//		Properties property = new Properties();
+//		property.setIndexId(tableEntity.getNextIndexId());
+//		property.setDesc(dto.getDesc());
+//		property.setField(dto.getField());
+//		property.setType(StringEscapeUtils.escapeHtml4(dto.getType()));
+//		property.setKeyword(dto.getKeyword());
+//		property.setInit(StringEscapeUtils.escapeHtml4(dto.getInit()));
+//		tableEntity.addEntityBeans(property);
+//		
+//		dbService.saveTableEntity(moduleEntity.getName());
+		return SystemResult.build(SystemCodeEnum.SUCCESS);
 	}
 	
 	/**
@@ -277,7 +307,11 @@ public class ModuleController {
 		// 获取到数据源对象
 		TableEntity tableEntity = dbService.getTableEntity(moduleEntity.getName());
 		// 辅助对象
-		Entity<AssistProperties> assistEntity = tableEntity.getOrCreateAssistEntity(dto.getAssistEntityName());
+		logger.info("=====>{}", dto);
+//		dto.getPropertiesDtos();
+//		tableEntity.setProperties(dto.getPropertiesDtos());
+		
+//		Entity<AssistProperties> assistEntity = tableEntity.getOrCreateAssistEntity(dto.getAssistEntityName());
 //		assistEntity.
 		
 //		Properties property = new Properties();

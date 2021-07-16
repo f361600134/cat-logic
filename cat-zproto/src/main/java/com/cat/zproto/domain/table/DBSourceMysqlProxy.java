@@ -133,7 +133,7 @@ public class DBSourceMysqlProxy implements IDBSource{
 	 * @throws SQLException
 	 */
 	private void readColumns(Connection conn, String tbName, TableEntity excelEntity) throws SQLException {
-		Properties excelBean = null;
+		Properties property = null;
 		//列
 		ResultSet rs = conn.getMetaData().getColumns(setting.getDbInfo().getDbName(), null, tbName, null);
 		while (rs.next()) {
@@ -143,12 +143,12 @@ public class DBSourceMysqlProxy implements IDBSource{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			excelBean = new Properties();
-			excelBean.setField(StringUtil.firstCharLower(rs.getString("COLUMN_NAME")));
-			excelBean.setTbField(StringUtil.firstCharUpper(rs.getString("COLUMN_NAME")));
-			excelBean.setType(ctype);
-			excelBean.setDesc(rs.getString("REMARKS"));
-			excelEntity.addEntityBeans(excelBean);
+			property = new Properties();
+			property.setField(StringUtil.firstCharLower(rs.getString("COLUMN_NAME")));
+			property.setTbField(StringUtil.firstCharUpper(rs.getString("COLUMN_NAME")));
+			property.setType(ctype);
+			property.setDesc(rs.getString("REMARKS"));
+			excelEntity.addProperties(property);
 		}
 	}
 
