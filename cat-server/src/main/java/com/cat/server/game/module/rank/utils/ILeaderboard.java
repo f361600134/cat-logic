@@ -6,19 +6,10 @@ import java.util.Map;
 public interface ILeaderboard<K, V>{
 	
 	/**
-	 * 初始化排行榜数据,第一次加入排行榜,不监听移除.
-	 *   
-	 * @return void  
-	 * @date 2021年3月21日下午9:01:31
-	 */
-	public void initData(Map<? extends K, ? extends V> m);
-	
-	/**
 	 * 添加排行榜元素,被修改,移除掉的数据会通过回调通知业务层
 	 * @return
-	 * @throws Exception 
 	 */
-	public V put(K k, V v) throws Exception;
+	public V put(K k, V v);
 	
 	/**
 	 * 添加排行榜元素,被修改,移除掉的数据会通过回调通知业务层
@@ -33,80 +24,84 @@ public interface ILeaderboard<K, V>{
 	public void remove(K key);
 	
 	/**
-	 * 获取key获取到名词
+	 * 获取key获取到名次
+	 * @param K 指定key
+	 * @return Integer  名次
+	 */
+	public Integer getRankByKey(K key);
+	
+	/**
+	 *      获取指定对象的排名
 	 * @param v
 	 * @return  
 	 * @return Integer  
-	 * @throws Exception 
-	 * @date 2019年3月25日下午2:27:52
 	 */
-	public Integer getRankByKey(K key) throws Exception;
+	public Integer getRank(V v);
 	
 	/**
-	 * 获取排名
-	 * @param v
-	 * @return  
-	 * @return Integer  
-	 * @throws Exception 
-	 * @date 2019年3月25日下午2:27:52
-	 */
-	public Integer getRank(V v) throws Exception;
-	
-	/**
-	 * 获取排名第一的数据
-	 * @return  
+	 *    获取排名第一的数据
 	 * @return V  
-	 * @throws Exception 为空的时候会爆异常
-	 * @date 2019年3月25日下午2:27:26
 	 */
-	public V getFirst() throws Exception;
+	public V getFirst();
 	
 	/**
 	 * 获取最后一名的数据
-	 * @return  
 	 * @return V  
-	 * @throws Exception 
 	 * @date 2019年3月25日下午2:27:26
 	 */
-	public V getLast() throws Exception;
+	public V getLast();
 	
 	/**
 	 * 根据指定排名获取数据
 	 * @param rank 名次
-	 * @return  
 	 * @return V  
-	 * @throws Exception 
 	 * @date 2019年3月25日下午2:28:59
 	 */
-	public V getByRank(int rank) throws Exception;
+	public V getByRank(int rank);
 
 	/**
 	 * 获取指定排名区间内的排名数据
 	 * @param fromRank 起始排名
-	 * @param toIndex 结束排名
-	 * @return
-	 * @return Collection<V>
-	 * @throws Exception 
-	 * @date 2019年3月25日下午2:51:37
+	 * @param toRank 结束排名
 	 */
-	public Collection<V> subRankInfo(int fromRank, int toRank) throws Exception;
+	public Collection<V> subRankInfo(int fromRank, int toRank);
 
 	/**
-	 * 获取指定排名区间内的排名数据
-	 * @param fromIndex
-	 * @param toIndex
-	 * @return  
-	 * @return Collection<V>  
-	 * @throws Exception 
-	 * @date 2019年3月25日下午2:51:37
+	 * 获取指定排名区间内的排名数据, 包含指定的头和尾
+	 * @param from 开始对象
+	 * @param to 结束对象
 	 */
-	public Collection<V> subRankInfo(V from, V to) throws Exception;
+	public Collection<V> subRankInfo(V from, V to);
+	
+	/**
+	 * 获取指定排名区间内的排名数据,  需要指定是否包含起始值
+	 * @param from 开始对象
+	 * @param fromInclusive 是否包含开始对象
+	 * @param to 结束对象
+	 * @param toInclusive 是否包含结束对象
+	 */
+	public Collection<V> subRankInfo(V from, boolean fromInclusive, V to, boolean toInclusive);
 
 	/**
 	 * 获取排行榜快照
 	 * @throws Exception 
 	 */
-	public Collection<V> getRankInfo() throws Exception;
-
+	public Collection<V> getRankInfo();
+	
+	/**
+	 * 返回排行榜内所有数据
+	 * @return
+	 */
+	public Collection<V> values();
+	
+	/**
+	 * 清空排行榜
+	 */
+	public void clear();
+	
+	/**
+	 * 清空排行榜
+	 */
+	public int size();
 
 }

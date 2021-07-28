@@ -28,23 +28,28 @@ public class Rank extends RankPo implements IPersistence, ISorter{
 //	}
 
 	@Override
-	public Long getId() {
+	public long getId() {
 		return getUniqueId();
 	}
 
 	@Override
-	public Long getFirstOrder() {
+	public long getFirstOrder() {
 		return getFirstValue();
 	}
 
 	@Override
-	public Long getSecondOrder() {
+	public long getSecondOrder() {
 		return getSecondValue();
 	}
 
 	@Override
-	public Long getThirdOrder() {
+	public long getThirdOrder() {
 		return getThirdValue();
+	}
+
+	@Override
+	public long getFourthOrder() {
+		return 0;
 	}
 	
 }

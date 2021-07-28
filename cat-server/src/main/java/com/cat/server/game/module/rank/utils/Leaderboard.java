@@ -7,13 +7,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.SortedSet;
 
-import com.google.common.collect.Lists;
-
 /**
+ * 排行榜对象
  * @author Jeremy Feng
- * @changhe 新增Leaderboard类, 再一次的对SortedValueMap进行封装<br>
- * 主要改动: 更加细粒度的提取公共元素,一次写成工具, 到处使用
- * @warning 线程不安全
  */
 public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	
@@ -40,11 +36,10 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	 * 回调监听,当有数据变动时直接调用监听器内的call方法
 	 */
 	private ICallBackListener<V> listen;
-	/**
-	 * 被修改的列表
-	 */
-	private Collection<V> updateSet = Lists.newArrayList();
-	private Collection<V> deleteSet = Lists.newArrayList();
+	/*** 被修改的列表, 原榜内数据变动,视为被修改数据 */
+	private Collection<V> updateSet = new ArrayList<>();
+	/*** 被删除的列表, 从榜内移除掉的数据, 视为删除列表 */
+	private Collection<V> deleteSet = new ArrayList<>();
 	
 	enum NullListener implements ICallBackListener<Object> {
 	   INSTANCE;
@@ -64,15 +59,15 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	public Leaderboard(Comparator<V> comparator, int maximum){
 		this.map = new SortedValueMap<K, V>(comparator);
 		this.comparator = comparator;
-		this.maximum = maximum;
+		this.setMaximum(maximum);
 		this.listen = (ICallBackListener<V>)NullListener.INSTANCE;
 	}
 	
 	public Leaderboard(Comparator<V> comparator, int maximum, ICallBackListener<V> listen){
 		this.map = new SortedValueMap<K, V>(comparator);
 		this.comparator = comparator;
-		this.maximum = maximum;
-		setListen(listen);
+		this.setMaximum(maximum);
+		this.setListen(listen);
 	}
 	
 	/**
@@ -97,40 +92,24 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 		this.listen = listen;
 	}
 	
-//	/**
-//	 * 溢出则移除,小量数据适用. 效率会随着数据量的增长而下降
-//	 * @param v 被移除掉的数据
-//	 */
-//	private Collection<V> removeIfoverflow(){
-//		final int size = map.size();
-//		if (maximum > DEFAULT_CAPACITY &&  size > maximum) {
-//			int count = size - maximum;
-//			for (int i = 0; i < count; i++) {
-//				V v = map.last();
-//				map.removeValue(v);
-//				return v;
-//			}
-//		}
-//		return null;
-//	}
-	
 	/**
-	 * 溢出则移除, 适用于多条溢出数据进行移除
-	 * @change 重写方法. 效率比之前removeIfoverflow好太多!
-	 * 获取到指定排名对象, 截取对象之前的所有数据.复制出来.
-	 * @note 为了节省内存空间
-	 * 1.复制数据的时候, 对数据量小的那部分进行复制.
-	 * 2.移除数据的时候, 对原数据进行保留
-	 * @return void  
+	 * 溢出则移除, 适用于多条溢出数据进行移除<br>
+	 * @change 重写方法. 效率比之前removeIfoverflow好太多! 获取到指定排名对象, 截取对象之前的所有数据.复制出来.<br>
+	 * @note 为了节省内存空间<br>
+	 * 1.复制数据的时候, 对数据量小的那部分进行复制.<br>
+	 * 2.移除数据的时候, 对原数据进行保留<br>
 	 */
 	private Collection<V> removeOverflow(){
-		Collection<V> deletes = Lists.newArrayList();
+		Collection<V> deletes = new ArrayList<>();
 		final int size = map.size();
 		if (maximum > DEFAULT_CAPACITY && size > maximum) {
 			V max = getByRank(maximum);
 			int diff = size - maximum;
 			if (diff > maximum) {
-				Collection<V> irs = map.tailSet(max);
+				//保留部分
+				Collection<V> irs = map.headSet(max, true);
+				//删除部分
+				deletes.addAll(map.tailSet(max, false));//被删除的数据,添加进去
 				//	实例化一个新的map.把需要的数据添加进去
 				//	截取的数据量肯定是小于指定数量的
 				SortedValueMap<K, V> temMap = new SortedValueMap<K, V>(comparator);
@@ -141,13 +120,12 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 					}
 				}
 				this.map = temMap;
-				deletes.addAll(map.headSet(max));//被丢弃的数据,添加进去
 			}else{
 				//	复制一需要删除的那部分数据
-				Collection<V> rs = new ArrayList<V>(subRankInfo(max, map.last()));
+				Collection<V> rs = new ArrayList<V>(subRankInfo(max, false, map.last(), true));
 				for (V v : rs) {
 					K k = map.getKey(v);
-					remove(k);
+					this.removeVal(k);
 				}
 				deletes.addAll(rs);
 			}
@@ -156,11 +134,11 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	}
 
 	/**
-	 * 获取排名
+	 * 获取排名, 
 	 */
 	@Override
 	public Integer getRank(V v) {
-		SortedSet<V> sub = map.headSet(v);
+		SortedSet<V> sub = map.headSet(v, true);
 		if(sub==null)	return 0;
 		return sub.size() + 1;
 	}
@@ -184,21 +162,51 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	@Override
 	public V getByRank(int rank) {
 		V v = null;
-		Collection<V> vs = subRank(rank, rank);
-		if (vs.iterator().hasNext()) {
-			v = vs.iterator().next();
+		Collection<V> vs = subRankInfo(rank, rank);
+		Iterator<V> iter = vs.iterator();
+		if (iter.hasNext()) {
+			v = iter.next();
 		}
 		return v;
 	}
 
+	
+	/**
+	 * 返回截取的指定开始到指定结束的数据,足则返回,不足则返回全部.第二種寫法
+	 * @param fromIndex 开始名次, 最小为1, 表示从第一名开始截取
+	 * @param toIndex 截止名次, 包含此名次
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<V> subRankInfo(int fromRank, int toRank) {
-		return subRank(fromRank, toRank);
+		if (fromRank < 1) {
+            throw new IndexOutOfBoundsException("Leaderboard's size out of range"+fromRank);
+        }
+        if (toRank > map.size()) {
+            throw new IndexOutOfBoundsException("Leaderboard's size out of range"+toRank);
+        }
+        int subLen = toRank - fromRank;
+        if (subLen < 0) {
+        	throw new IndexOutOfBoundsException("Leaderboard's size out of range"+subLen);
+		}
+		Collection<V> result = new ArrayList<>();
+		Object[] obj = map.toArray();
+		//下标从0开始,名次-1
+		for (int rank = fromRank; rank <= toRank && rank <= obj.length; rank++) {
+			result.add((V)obj[rank-1]);
+		}
+		return result;
 	}
 
 	@Override
 	public Collection<V> subRankInfo(V from, V to) {
-		return map.subSet(from, to);
+		return map.subSet(from, true, to, true);
+	}
+	
+	@Override
+	public Collection<V> subRankInfo(V from, boolean fromInclusive, V to, boolean toInclusive) {
+		return map.subSet(from, fromInclusive, to, toInclusive);
 	}
 
 	@Override
@@ -217,10 +225,12 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	
 	/**
 	 * 先插入所有数据, 进行排序.然后再移除溢出部分.
-	 * 效率略高
 	 */
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m) {
+		if (m == null) {
+			throw new NullPointerException("putAll error, value is null");
+		}
 		for(Map.Entry<? extends K, ? extends V> entry : m.entrySet()){
 			V v = map.put(entry.getKey(), entry.getValue());
 			if (v != null) updateSet.add(v);
@@ -242,6 +252,12 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	 * @return true:插入成功. false: 插入失败
 	 */
 	private boolean putIfAbove(K key, V v){
+		if (key == null) {
+			throw new NullPointerException("putIfAbove error, key is null");
+		}
+		if (v == null) {
+			throw new NullPointerException("putIfAbove error, v is null");
+		}
 		//如果排行榜满了,插入新数据需要判断是否大于榜内最小值
 		if (maximum > DEFAULT_CAPACITY && maximum <= map.size()) {
 			int result = comparator.compare(map.last(), v);
@@ -257,15 +273,17 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	}
 	
 	/**
-	 * 排行榜数据入库
+	 * 插入排行榜数据
 	 * @param key
 	 * @param v
 	 */
 	private void putVal(K key, V v) {
-		map.put(key, v);
+		V old = map.put(key, v);
+		if (old != null) {
+			//变动数据加入集合
+			updateSet.add(v);
+		}
 		deleteSet.addAll(removeOverflow());
-		//变动数据加入集合
-		updateSet.add(v);
 		//调用监听
 		callBack();
 	}
@@ -283,64 +301,20 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 		deleteSet.clear();
 	}
 	
-	/**
-	 * 返回截取的指定开始到指定结束的数据,足则返回,不足则返回全部.
-	 * @param fromIndex 开始名次
-	 * @param toIndex 截止名次, 包含次名次
-	 * @return
-	 */
-	public Collection<V> subRank(int fromIndex, int toIndex){
-		try {
-			Collection<V> result = new ArrayList<>();
-			V v;
-			int rank = 1;
-			Iterator<V> it = map.iterator();
-			while(it.hasNext()){
-				v = it.next();
-				if(fromIndex <= rank && rank <= toIndex){//已到达开始名次
-					result.add(v);
-					rank ++;
-				}else if(rank < fromIndex) {//排名到达开始的名次
-					rank ++;
-				}
-				else {
-					break;
-				}
-			}
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	/**
-	 * 返回截取的指定开始到指定结束的数据,足则返回,不足则返回全部.第二種寫法
-	 * @param fromIndex 开始名次
-	 * @param toIndex 截止名次, 包含此名次
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	public Collection<V> subRank2(int fromRank, int toRank){
-		try {
-			Collection<V> result = new ArrayList<>();
-			Object[] obj = map.toArray();
-			//下标从0开始,名次-1
-			for (int rank = fromRank; rank <= toRank && rank <= obj.length; rank++) {
-				result.add((V)obj[rank-1]);
-			}
-			return result;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
 	@Override
 	public void remove(K key) {
-		V v = map.remove(key);
+		V v = removeVal(key);
 		deleteSet.add(v);
 		callBack();
+	}
+	
+	/**
+	 * 移除排行榜数据
+	 * @param key
+	 * @param v
+	 */
+	private V removeVal(K key) {
+		return map.remove(key);
 	}
 	
 	@Override
@@ -349,16 +323,27 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	}
 
 	@Override
-	public Integer getRankByKey(K key) throws Exception {
+	public Integer getRankByKey(K key) {
 		V v = map.get(key);
+		if (v == null) {
+			return 0;
+		}
 		return getRank(v);
 	}
 
 	@Override
-	public void initData(Map<? extends K, ? extends V> m) {
-		map.putAll(m);
+	public Collection<V> values() {
+		return map.values();
 	}
-	
-	
+
+	@Override
+	public void clear() {
+		map.clear();
+	}
+
+	@Override
+	public int size() {
+		return map.size();
+	}
 	
  }

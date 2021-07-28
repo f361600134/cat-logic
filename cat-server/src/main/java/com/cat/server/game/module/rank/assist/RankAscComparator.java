@@ -2,14 +2,12 @@ package com.cat.server.game.module.rank.assist;
 
 import java.util.Comparator;
 
-import com.cat.server.game.module.rank.domain.Rank;
-
 /**
  * 排行榜升序比较器, 值越小, 排在越前
  * @auth Jeremy
  * @date 2019年4月2日下午9:07:51
  */
-public class RankAscComparator implements Comparator<Rank>{
+public class RankAscComparator<T extends ISorter> implements Comparator<T>{
 
 	/**
 	 * 升序排序
@@ -18,7 +16,7 @@ public class RankAscComparator implements Comparator<Rank>{
 	 * o1=o2 : 返回0
 	 */
 	@Override
-	public int compare(Rank o1, Rank o2) {
+	public int compare(ISorter o1, ISorter o2) {
 		//	先比较一级排序值
 		int code = Long.compare(o1.getFirstOrder(), o2.getFirstOrder());
 		if (code != 0) return code;

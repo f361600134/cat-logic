@@ -15,9 +15,10 @@ import com.cat.net.common.NetConfig;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.game.module.resource.IResourceService;
 
 //FSC
-//@Component
+@Component
 public class InitialRunner implements Lifecycle{
 	
 	private static final Logger log = LoggerFactory.getLogger(InitialRunner.class);
@@ -58,6 +59,8 @@ public class InitialRunner implements Lifecycle{
 	
 	public void run() throws Exception {
 		try {
+			IResourceService service = SpringContextHolder.getBean("HeroService");
+			System.out.println("接口隔离个屁====>"+service.resType());
 			
 //			TestConService testService = SpringContextHolder.getBean(TestConService.class);
 //			if (testService != null) {

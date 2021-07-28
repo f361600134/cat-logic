@@ -30,5 +30,7 @@ public interface IChatService {
 	 * @param content
 	 */
 	public void onChat(ChannelType channelType, Long playerId, String content);
+	
+	
 
 }

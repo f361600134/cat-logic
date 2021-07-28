@@ -36,11 +36,10 @@ public class GameServerController extends DefaultServerController {
 		Packet packet = null;
 		try {
 			if (!serverRunning) {
-				log.error("服务器不在运行状态, 舍弃消息"); 
+				log.warn("服务器不在运行状态, 舍弃消息"); 
 				return;
 			} 
 			packet = Packet.decode(message);
-			log.info("====> GameServerHandler onReceive, cmd=[{}], threadName:{}", packet.cmd(), Thread.currentThread().getName());
 			Commander commander = processor.getCommander(packet.cmd());
 			if (commander == null) {
 				log.info("收到未处理协议, cmd=[{}]",  packet.cmd());

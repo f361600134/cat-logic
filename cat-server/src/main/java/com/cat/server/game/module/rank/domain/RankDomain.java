@@ -6,8 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
@@ -101,7 +103,8 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 				map.put(rank.getId(), rank);
 			});
 			//	初始化排行榜数据
-			initData(map);
+			//initData(map);
+			leaderboard.putAll(map);
 		});
 	}
 
@@ -114,11 +117,12 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 	}
 	
 	@Override
-	public Rank put(Long k, Rank v) throws Exception {
+	public Rank put(Long k, Rank v) {
 		Future<Rank> future = defaultExecutor.submit(0, ()->{
 			return leaderboard.put(k, v);
 		});
-		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+//		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+		return null;
 	}
 
 	@Override
@@ -136,59 +140,66 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 	}
 
 	@Override
-	public Integer getRank(Rank v) throws Exception {
+	public Integer getRank(Rank v) {
 		Future<Integer> future = defaultExecutor.submit(0, ()->{
 			return leaderboard.getRank(v);
 		});
-		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+//		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+		return null;
 	}
 
 	@Override
-	public Rank getFirst() throws Exception {
+	public Rank getFirst() {
 		Future<Rank> future = defaultExecutor.submit(0, ()->{
 			return leaderboard.getFirst();
 		});
-		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+//		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+		return null;
 	}
 
 	@Override
-	public Rank getLast() throws Exception{
+	public Rank getLast(){
 		Future<Rank> future = defaultExecutor.submit(0, ()->{
 			return leaderboard.getLast();
 		});
-		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+//		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+		return null;
 	}
 
 	@Override
-	public Rank getByRank(int rank) throws Exception {
+	public Rank getByRank(int rank) {
 		Future<Rank> future = defaultExecutor.submit(0, ()->{
 			return leaderboard.getByRank(rank);
 		});
-		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+//		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+		return null;
 	}
 
 	@Override
-	public Collection<Rank> subRankInfo(int fromRank, int toRank) throws Exception{
+	public Collection<Rank> subRankInfo(int fromRank, int toRank){
 		Future<Collection<Rank>> future = defaultExecutor.submit(0, ()->{
 			return leaderboard.subRankInfo(fromRank, toRank);
 		});
-		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+//		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+		return null;
 	}
 
 	@Override
-	public Collection<Rank> subRankInfo(Rank from, Rank to) throws Exception{
+	public Collection<Rank> subRankInfo(Rank from, Rank to){
 		Future<Collection<Rank>> future = defaultExecutor.submit(0, ()->{
 			return leaderboard.subRankInfo(from, to);
 		});
-		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+//		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+		return null;
 	}
 
 	@Override
-	public Collection<Rank> getRankInfo() throws Exception{
+	public Collection<Rank> getRankInfo(){
 		Future<Collection<Rank>> future = defaultExecutor.submit(0, ()->{
 			return leaderboard.getRankInfo();
 		});
-		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+//		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+		return null;
 	}
 
 	////////////业务代码////////////////////
@@ -219,23 +230,44 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 	}
 
 	@Override
-	public Integer getRankByKey(Long key) throws Exception {
+	public Integer getRankByKey(Long key) {
 		Future<Integer> future = defaultExecutor.submit(0, ()->{
 			return leaderboard.getRankByKey(key);
 		});
-		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+//		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+		return null;
 	}
 
-	@Override
-	public void initData(Map<? extends Long, ? extends Rank> m) {
-		defaultExecutor.submit(0, ()->{
-			leaderboard.initData(m);
-		});
-	}
+//	@Override
+//	public void initData(Map<? extends Long, ? extends Rank> m) {
+//		defaultExecutor.submit(0, ()->{
+//			leaderboard.initData(m);
+//		});
+//	}
 	
 	@Override
 	public String toString() {
 		return leaderboard.toString();
+	}
+
+	@Override
+	public Collection<Rank> subRankInfo(Rank from, boolean fromInclusive, Rank to, boolean toInclusive) {
+		return leaderboard.subRankInfo(from, fromInclusive, to, toInclusive);
+	}
+
+	@Override
+	public Collection<Rank> values() {
+		return leaderboard.values();
+	}
+
+	@Override
+	public void clear() {
+		leaderboard.clear();
+	}
+
+	@Override
+	public int size() {
+		return leaderboard.size();
 	}
 
 }

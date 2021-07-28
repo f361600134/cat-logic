@@ -10,25 +10,31 @@ public interface ISorter {
 	 * 对象唯一id
 	 * @return
 	 */
-	public Long getId();
+	public long getId();
 	
 	/**
 	 * 一级排序值
 	 * @return
 	 */
-	public Long getFirstOrder();
+	public long getFirstOrder();
 	
 	
 	/**
 	 * 二级排序值
 	 * @return
 	 */
-	public Long getSecondOrder();
+	public long getSecondOrder();
 	
 	/**
 	 * 三级排序值, 通常用于时间
 	 * @return
 	 */
-	public Long getThirdOrder();
+	public long getThirdOrder();
+	
+	/**
+	 *  四级级排序值
+	 * @return
+	 */
+	public long getFourthOrder();
 	
 }

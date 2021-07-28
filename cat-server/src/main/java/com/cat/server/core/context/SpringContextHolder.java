@@ -36,6 +36,10 @@ public class SpringContextHolder implements ApplicationContextAware{
 		return springContext.getBean(tClass);
 	}
 	
+	public static <T> T getBean(String name) {
+		return (T)springContext.getBean(name);
+	}
+	
 	/**
 	 * 根据注解类型获取实体集合
 	 * 

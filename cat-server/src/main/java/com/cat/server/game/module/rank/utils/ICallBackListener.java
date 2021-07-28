@@ -11,7 +11,7 @@ import java.util.Collection;
 public interface ICallBackListener<V> {
 	
 	/**
-	 * 任务回调
+	 * 回调方法
 	 * @param updateSet
 	 * @param deleteSet
 	 */

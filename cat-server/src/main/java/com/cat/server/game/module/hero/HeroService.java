@@ -10,13 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service()
 class HeroService implements IHeroService, IResourceService{
 	
 	private static final Logger log = LoggerFactory.getLogger(HeroService.class);
 	
 	@Autowired private HeroManager heroManager;
-
 	
 	
 	/////////////业务逻辑/////////////
