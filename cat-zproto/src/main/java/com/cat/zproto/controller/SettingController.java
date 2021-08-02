@@ -61,8 +61,7 @@ public class SettingController {
 	
 	/**
 	 *设置信息
-	 * @return  
-	 * @return ModelAndView  
+	 * @return ModelAndView
 	 * @date 2021年6月12日下午9:50:40
 	 */
 	@RequestMapping("/radio")
@@ -75,8 +74,6 @@ public class SettingController {
 
 	/**
 	 * 设置修改页
-	 * 
-	 * @return
 	 * @return ModelAndView
 	 * @date 2021年6月12日下午9:50:40
 	 */
@@ -89,7 +86,6 @@ public class SettingController {
 
 	/**
 	 * 设置
-	 * @return
 	 * @return ModelAndView
 	 * @date 2021年6月12日下午9:50:40
 	 */
@@ -102,7 +98,6 @@ public class SettingController {
 
 	/**
 	 * 编辑模板页面
-	 * @return
 	 * @return ModelAndView
 	 * @date 2021年6月12日下午9:50:40
 	 */
@@ -115,8 +110,6 @@ public class SettingController {
 	
 	/**
 	 * 模块列表
-	 * 
-	 * @param version
 	 */
 	@ResponseBody
 	@RequestMapping("/templateFileList")
@@ -134,8 +127,6 @@ public class SettingController {
 	}
 	/**
 	 * 设置修改页
-	 * 
-	 * @return
 	 * @return ModelAndView
 	 * @date 2021年6月12日下午9:50:40
 	 */
@@ -149,8 +140,6 @@ public class SettingController {
 
 	/**
 	 * 添加版本界面
-	 * 
-	 * @return
 	 * @return ModelAndView
 	 * @date 2021年6月12日下午9:51:13
 	 */
@@ -163,7 +152,6 @@ public class SettingController {
 	
 	/**
 	 * 请求添加模板的页面
-	 * @return
 	 */
 	@RequestMapping("/addTemplateView")
 	public ModelAndView addTemplateView() {
@@ -178,7 +166,6 @@ public class SettingController {
 	 * 2.执行check out导出分支信息
 	 * 3.从主干拷贝文件到新目录
 	 * 4.提交目录到svn
-	 * @return
 	 * @return ModelAndView
 	 * @date 2021年6月12日下午9:51:13
 	 */
@@ -225,7 +212,6 @@ public class SettingController {
 	 * 2.执行check out导出分支信息
 	 * 3.从主干拷贝文件到新目录
 	 * 4.提交目录到svn
-	 * @return
 	 * @return ModelAndView
 	 * @date 2021年6月12日下午9:51:13
 	 */

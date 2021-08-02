@@ -1,6 +1,9 @@
 package com.cat.zproto.domain.table.po;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.text.StringEscapeUtils;
+
+import java.util.ArrayList;
 
 /**
  * 	表单行数据信息, 每一列表示一个类型,表示了详细列类型数据
@@ -13,11 +16,22 @@ public class Properties {
 	 * 编号id, 每个字段拥有唯一的一个编号id.增加字段时自动生成
 	 */
 	private int indexId;
-
-	private String field; // Java字段
-	private String desc; // 描述
-	private String type; // 类型
-	private String tbField; // 表字段
+	/**
+	 *  Java字段
+	 */
+	private String field;
+	/**
+	 * 描述
+	 */
+	private String desc;
+	/**
+	 * 类型, 如果用excel表格编辑, 特殊符号需要转义.
+	 */
+	private String type;
+	/**
+	 * 表字段
+	 */
+	private String tbField;
 	
 	//======其他辅助信息可以为空不设置========
 	/**
@@ -25,7 +39,7 @@ public class Properties {
 	 */
 	private String genericType;
 	/**
-	 * 初始化方法
+	 * 初始化方法, 如果用excel表格编辑,返回渲染前需要转义成符号
 	 */
 	private String init;
 	/**
@@ -42,7 +56,8 @@ public class Properties {
 	}
 
 	public String getType() {
-		return type;
+		//return type;
+		return StringEscapeUtils.unescapeHtml4(type);
 	}
 
 //	public void setType(String type) {
@@ -51,19 +66,26 @@ public class Properties {
 	
 	public void setType(String type) {
 		this.type = type;
-//		this.type = StringEscapeUtils.escapeHtml4(type);
-		if (this.type.startsWith("List<") || this.type.startsWith("Set<")) {
+		//兼容layui转义问题, 如果带有尖括号,服务器转义后存储,否则直接保存类型
+		if (this.type.contains("<") && this.type.contains(">")){
+			this.type = StringEscapeUtils.escapeHtml4(type);
+		}
+		//如果是复杂类型, 则获取到泛型类型
+		String temp = StringEscapeUtils.unescapeHtml4(this.type);
+		if (temp.contains("List<") || temp.contains("Set<")) {
 			//List<Integer> || Set<Integer>
-			String tem = type.replaceAll(" ", "");
+			String tem = temp.replaceAll(" ", "");
 			int begin = tem.indexOf("<");
 			int end = tem.indexOf(">");
-			this.genericType = this.type.substring(begin+1, end);//截取复杂类型的泛型类
-		}else if (this.type.startsWith("Map<") || this.type.startsWith("ConcurrentMap<")) {
+			//截取复杂类型的泛型类
+			this.genericType = temp.substring(begin+1, end);
+		}else if (temp.contains("Map<")) {
 			//Map<Integer, Integer>
-			String tem = this.type.replaceAll(" ", "");
+			String tem = temp.replaceAll(" ", "");
 			int begin = tem.indexOf(",");
 			int end = tem.indexOf(">");
-			this.genericType = tem.substring(begin+1, end);//截取复杂类型的泛型类
+			//截取复杂类型的泛型类
+			this.genericType = tem.substring(begin+1, end);
 		}
 	}
 
@@ -108,12 +130,22 @@ public class Properties {
 //	}
 
 	public String getInit() {
-		return init;
+		//return init;
+		return StringEscapeUtils.unescapeHtml4(init);
 	}
 
 	public void setInit(String init) {
 		this.init = init;
-//		this.init = StringEscapeUtils.escapeHtml4(init);
+		//如果没有设置初始化目标, 则默认目标
+		if (StringUtils.isBlank(init) && !StringUtils.isBlank(this.type)){
+			if (this.type.contains("List")){
+				this.init = "new ArrayList<>()";
+			}else if (this.type.contains("Set")){
+				this.init = "new HashSet<>()";
+			}else if (this.type.contains("Map")){
+				this.init = "new HashMap<>()";
+			}
+		}
 	}
 
 	public String getKeyword() {

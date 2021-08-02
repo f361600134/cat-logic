@@ -71,22 +71,12 @@ public enum TemplateEnum {
 	 * @return
 	 */
 	public abstract String getPath();
-	
-	
+
 	/**
 	 * 根据类型返回对应的存储结构路径
 	 * @return
 	 */
 	public abstract String getStructPath();
-	
-//	public List<String> getAllFileName() {
-//		File file = new File(getPath());
-//		List<String> ret = new ArrayList<>();
-//		for (File f : file.listFiles()) {
-//			ret.add(f.getName());
-//		}
-//		return ret;
-//	}
 	
 	public static TemplateEnum getEnum(int type) {
 		for (TemplateEnum tenum : values()) {

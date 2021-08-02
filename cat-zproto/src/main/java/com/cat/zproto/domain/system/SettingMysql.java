@@ -12,7 +12,6 @@ import com.cat.zproto.constant.CommonConstant;
  * 目前先实现mysql版本
  */
 public class SettingMysql {
-	
 	/**
 	 * 数据源类型 1:mysql, 2:excel
 	 */
@@ -24,7 +23,6 @@ public class SettingMysql {
 	private String dbName;
 	//初始连接, 不配置了, 直接写死1条连接
 	private int initialSize;
-	
 	
 	/**
 	 * 模块数据源存储路径<br>

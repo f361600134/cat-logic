@@ -14,7 +14,7 @@ public class CommonConstant {
 //	public static String SYSTEM_SETTING = "src/main/resources/setting/settings.json";
 //	@Value("${systemSetting}")
 //	private String systemSetting;
-	public static final String SYSTEM_SETTING = "setting/settings.json";
+	public static final String SYSTEM_SETTING = "./config/settings.json";
 //	
 //	/**
 //	 * 结构存储路径

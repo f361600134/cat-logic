@@ -1,6 +1,0 @@
-{
-	"content":"package com.kepe.dragon.persistent.domain;\n\nimport com.cat.server.core.event.IObserver;\nimport com.cat.server.core.event.PlayerEventBase;\nimport com.cat.server.game.module.${entityName?lower_case}.service.${entityName}Service;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.stereotype.Component;\n\n@Component\npublic class ${entityName}ObserverTest implements IObserver {\n\t\n\t@Autowired private ${entityName}Service ${entityName?uncap_first}Service;\n\t\n\t/**\n\t * \t任务默认接收所有事件,然后在任务内进行事件判断\n\t * @param event\n\t */\n\tpublic void onEvent(PlayerEventBase event){\n\t\t${entityName?uncap_first}Service.onEvent(event);\n\t}\n\t\n}",
-	"id":1016,
-	"name":"EntityTest3",
-	"type":1
-}

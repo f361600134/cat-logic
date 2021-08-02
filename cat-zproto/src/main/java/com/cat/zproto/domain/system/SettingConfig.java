@@ -1,9 +1,11 @@
 package com.cat.zproto.domain.system;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.ClassPathResource;
 
@@ -129,11 +131,9 @@ public class SettingConfig {
 	 * @return
 	 */
 	public SystemResult save() {
-		ClassPathResource resource = new ClassPathResource(CommonConstant.SYSTEM_SETTING);
 		String json = JSON.toJSONString(this, true);
 		try {
-			//TODO 这里写入文件在linux环境可能存在问题
-			FileUtils.write(resource.getFile(), json, StandardCharsets.UTF_8);
+			FileUtils.write(new File(CommonConstant.SYSTEM_SETTING), json, StandardCharsets.UTF_8);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return SystemResult.build(SystemCodeEnum.ERROR_NOT_WRITE_FAILED);

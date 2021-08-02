@@ -1,7 +1,6 @@
 {
 	"assistEntityMap":{
 		"SlaveData":{
-			"entityName":"SlaveData",
 			"properties":[
 				{
 					"desc":"奴隶唯一id",
@@ -17,11 +16,35 @@
 					"desc":"外面特征",
 					"entityName":"SlaveData",
 					"field":"features",
-					"genericType":"",
+					"genericType":"Integer",
 					"indexId":2,
-					"init":"new ArrayList&lt;Integer&gt;(5)",
+					"init":"new ArrayList<>()",
 					"keyword":"final",
 					"type":"List&lt;Integer&gt;"
+				}
+			]
+		},
+		"AttendantData":{
+			"properties":[
+				{
+					"desc":"侍从唯一id",
+					"entityName":"AttendantData",
+					"field":"id",
+					"genericType":"",
+					"indexId":1,
+					"init":"",
+					"keyword":"",
+					"type":"int"
+				},
+				{
+					"desc":"基础属性,包含武力,魔力,行政,魅力",
+					"entityName":"AttendantData",
+					"field":"attrMap",
+					"genericType":"Integer",
+					"indexId":2,
+					"init":"new HashMap<>()",
+					"keyword":"",
+					"type":"Map&lt;Integer, Integer&gt;"
 				}
 			]
 		}
@@ -49,11 +72,29 @@
 		{
 			"desc":"红人馆,奴隶数据",
 			"field":"slaveDatas",
-			"genericType":"",
+			"genericType":"SlaveData",
 			"indexId":3,
 			"init":"new ConcurrentHashMap&lt;&gt;()",
 			"keyword":"final",
 			"type":"ConcurrentMap&lt;Integer, SlaveData&gt;"
+		},
+		{
+			"desc":"奴隶房等级",
+			"field":"slaveRoomLevel",
+			"genericType":"",
+			"indexId":4,
+			"init":"",
+			"keyword":"",
+			"type":"int"
+		},
+		{
+			"desc":"唯一id,侍从",
+			"field":"attendantDatas",
+			"genericType":"AttendantData",
+			"indexId":5,
+			"init":"new HashMap<>()",
+			"keyword":"",
+			"type":"Map&lt;Integer, AttendantData&gt;"
 		}
 	],
 	"tablName":"Player"

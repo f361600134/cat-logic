@@ -207,7 +207,7 @@ public class ModuleController {
 		}
 		ArrayList<Properties> ret = new ArrayList<>();
 		ret.addAll(tableEntity.getProperties());
-		logger.info("ret:{}", ret);
+		//logger.info("ret:{}", ret);
 		return SystemResult.build(SystemCodeEnum.SUCCESS, ret);
 	}
 	
@@ -229,7 +229,7 @@ public class ModuleController {
 		for (Entity<AssistProperties> assistEntity : tableEntity.getAssistEntityMap().values()) {
 			ret.addAll(assistEntity.getProperties());
 		}
-		logger.info("dataAssistBeanList, ret:{}", ret);
+		//logger.info("dataAssistBeanList, ret:{}", ret);
 		return SystemResult.build(SystemCodeEnum.SUCCESS, ret);
 	}
 	
@@ -247,18 +247,19 @@ public class ModuleController {
 		if (moduleEntity == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
 		}
-		logger.info("=====>{}", dto);
-//		TableEntity tableEntity = dbService.getTableEntity(moduleEntity.getName());
-//		Properties property = new Properties();
-//		property.setIndexId(tableEntity.getNextIndexId());
-//		property.setDesc(dto.getDesc());
-//		property.setField(dto.getField());
-//		property.setType(StringEscapeUtils.escapeHtml4(dto.getType()));
-//		property.setKeyword(dto.getKeyword());
-//		property.setInit(StringEscapeUtils.escapeHtml4(dto.getInit()));
-//		tableEntity.addEntityBeans(property);
-//		
-//		dbService.saveTableEntity(moduleEntity.getName());
+		TableEntity tableEntity = dbService.getTableEntity(moduleEntity.getName());
+		//覆盖对象
+		tableEntity.setProperties(dto.getPropertiesDtos());
+
+		//覆盖辅助对象
+		Map<String, Entity<AssistProperties>> temp = new HashMap<>();
+		for (AssistProperties assist:dto.getAssistPropertiesDtos()) {
+			Entity entity = temp.getOrDefault(assist.getEntityName(), new Entity<AssistProperties>());
+			entity.addProperties(assist);
+			temp.put(assist.getEntityName(), entity);
+		}
+		tableEntity.setAssistEntityMap(temp);
+		dbService.saveTableEntity(moduleEntity.getName());
 		return SystemResult.build(SystemCodeEnum.SUCCESS);
 	}
 	
@@ -434,7 +435,6 @@ public class ModuleController {
 	 * 
 	 * @param version      版本
 	 * @param id           模块id
-	 * @param 本模块对应的所有协议信息
 	 */
 	@ResponseBody
 	@RequestMapping("/protoCommit")

@@ -1,13 +1,15 @@
 {
 	"dbInfo":{
 		"dbName":"coral",
-		"initialSize":1,
+		"dbType":2,
+		"initialSize":0,
 		"password":"Jeremy2oe5.",
 		"url":"jdbc:mysql://139.9.44.104:3306/coral?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true",
 		"username":"root"
 	},
 	"proto":{
 		"javaPackagePath":"com.cat.server.game.data.proto",
+		"latterPart":"Builder",
 		"pbPrefix":"PB",
 		"protoExePath":"./proto3/exec/",
 		"protoIdSortBy":1,

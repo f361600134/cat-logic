@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +53,7 @@ public class SystemComponent {
 	public SettingConfig setting() {
 		SettingConfig setting = null;
 		try {
-			ClassPathResource resource = new ClassPathResource(CommonConstant.SYSTEM_SETTING);
+			//ClassPathResource resource = new ClassPathResource(CommonConstant.SYSTEM_SETTING);
 			//way1
 //			File file = resource.getFile();
 //			String content = FileUtils.readFileToString(file,StandardCharsets.UTF_8);
@@ -60,11 +61,11 @@ public class SystemComponent {
 //			InputStream inputStream= resource.getInputStream();
 //			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 			//way3
-//			String content = FileUtils.readFileToString(new File(CommonConstant.SYSTEM_SETTING),
-//					StandardCharsets.UTF_8);
+			String content = FileUtils.readFileToString(new File(CommonConstant.SYSTEM_SETTING),
+					StandardCharsets.UTF_8);
 			//way4
-			InputStream inputStream = resource.getInputStream();
-			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+//			InputStream inputStream = resource.getInputStream();
+//			String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
 			setting = JSON.parseObject(content, SettingConfig.class, Feature.CustomMapDeserializer);
 			setting.init();
 		} catch (IOException e) {

@@ -175,20 +175,26 @@ public abstract class ${entity.getEntityName()}Po extends BasePo {
 	@Override
 	public String cacheId() {
 		<#if entity.keysEmpty() >
+    <#assign count = 0/>
 		<#assign text="" />
 		//主键为空,返回索引组合
 		<#if entity.getIndexsWithoutKey() ? exists>
 		<#list entity.getIndexsWithoutKey() as index>
 		<#assign text += "get"+ index?cap_first+"()+\":\"+"/>
 		</#list>
+    <#if count lt 1>
+    return null;
+		<#elseif count gt 1>
 		return ${text?substring(0, text?length-5)};
+		<#else>
+		return String.valueOf(${text?substring(0, text?length-5)});
+		</#if>
 		</#if>
 		<#else>
-		<#assign count = 0/>
 		<#list entity.getPrimaryKeys() as index>
 		<#assign count = count+1 />
 		<#assign text += "get"+ index?cap_first+"()+\":\"+"/>
-		</#list>
+		</#list>    
 		<#if count gt 1>
 		return ${text?substring(0, text?length-5)};
 		<#else>

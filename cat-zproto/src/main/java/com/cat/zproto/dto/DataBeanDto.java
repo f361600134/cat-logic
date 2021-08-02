@@ -1,8 +1,9 @@
 package com.cat.zproto.dto;
 
-import java.util.List;
-
+import com.cat.zproto.domain.table.po.AssistProperties;
 import com.cat.zproto.domain.table.po.Properties;
+
+import java.util.List;
 
 public class DataBeanDto {
 	/**
@@ -20,7 +21,7 @@ public class DataBeanDto {
 	/**
 	 * 依赖对象的属性
 	 */
-	private List<Properties> assistPropertiesDtos;
+	private List<AssistProperties> assistPropertiesDtos;
 	
 	public String getVersion() {
 		return version;
@@ -40,10 +41,10 @@ public class DataBeanDto {
 	public void setPropertiesDtos(List<Properties> propertiesDtos) {
 		this.propertiesDtos = propertiesDtos;
 	}
-	public List<Properties> getAssistPropertiesDtos() {
+	public List<AssistProperties> getAssistPropertiesDtos() {
 		return assistPropertiesDtos;
 	}
-	public void setAssistPropertiesDtos(List<Properties> assistPropertiesDtos) {
+	public void setAssistPropertiesDtos(List<AssistProperties> assistPropertiesDtos) {
 		this.assistPropertiesDtos = assistPropertiesDtos;
 	}
 

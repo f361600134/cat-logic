@@ -309,7 +309,11 @@ public class TableEntity extends Entity<Properties>{
 	public Map<String, Entity<AssistProperties>> getAssistEntityMap() {
 		return this.assistEntityMap;
 	}
-	
+
+	public void setAssistEntityMap(Map<String, Entity<AssistProperties>> assistEntityMap) {
+		this.assistEntityMap = assistEntityMap;
+	}
+
 	/**
 	 * 获取或创建辅助对象
 	 * @param assistEntityName 辅助对象名

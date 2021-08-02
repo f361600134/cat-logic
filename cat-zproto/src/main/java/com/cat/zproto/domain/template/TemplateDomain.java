@@ -2,12 +2,14 @@ package com.cat.zproto.domain.template;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.core.result.SystemCodeEnum;
 import com.cat.zproto.enums.TemplateEnum;
+import org.springframework.core.io.ClassPathResource;
 
 public class TemplateDomain {
 	
@@ -183,7 +186,7 @@ public class TemplateDomain {
 	 * 模板改名
 	 * 1. 修改本地文件
 	 * 2. 修改缓存
-	 * @param newName 名字不能带有任何后缀
+	 * @param name 名字不能带有任何后缀
 	 */
 	public TemplateStruct newTemplate(String name) {
 		TemplateStruct struct = this.create(name, StringUtils.EMPTY);
@@ -195,7 +198,7 @@ public class TemplateDomain {
 	 * 保存指定文件, 持久化到本地
 	 * 1. 存储模板结构
 	 * 2. 存储模板文件
-	 * @param name
+	 * @param id
 	 */
 	private void saveTemplate(int id) {
 		TemplateStruct struct = getTemplate(id);
@@ -218,7 +221,7 @@ public class TemplateDomain {
 	/**
 	 * 保存指定文件, 持久化到本地
 	 * 1. 存储模板结构
-	 * @param name
+	 * @param struct
 	 */
 	private void saveStruct(TemplateStruct struct) {
 		TemplateEnum tenum = TemplateEnum.getEnum(type);
@@ -251,7 +254,6 @@ public class TemplateDomain {
 			FileUtils.forceMkdir(file);
 		}
 		File[] files = file.listFiles();
-		
 		int genNum = 0;
 		for (File f : files) {
 			String content = FileUtils.readFileToString(f, StandardCharsets.UTF_8);
@@ -259,10 +261,8 @@ public class TemplateDomain {
 			this.templateMap.put(struct.getId(), struct);
 			genNum = Math.max(genNum, struct.getId());
 		}
-		
 		//设置id生成器
 		generator.set(genNum); 
-		
 		//加载模板文件目录, 对比模板文件目录和结构目录的, 新增的模板文件自动加载进来
 		file = new File(tenum.getPath());
 		for (File f : file.listFiles()) {
@@ -276,6 +276,18 @@ public class TemplateDomain {
 			this.templateMap.put(struct.getId(), struct);
 			this.saveStruct(struct);
 		}
+		//加载系统目录内的模板
+//		initApi();
 	}
+
+//	private void initApi() throws IOException {
+//		ClassPathResource resource = new ClassPathResource("/ftl/code/Api.ftl");
+//		InputStream inputStream = resource.getInputStream();
+//		String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+//		TemplateStruct struct = this.create("Api", content);
+//		struct.setId(1);//默认第一个
+//		this.templateMap.put(struct.getId(), struct);
+//		this.saveStruct(struct);
+//	}
 	
 }
