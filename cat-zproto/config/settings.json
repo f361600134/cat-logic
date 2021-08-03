@@ -12,7 +12,7 @@
 		"latterPart":"Builder",
 		"pbPrefix":"PB",
 		"protoExePath":"./proto3/exec/",
-		"protoIdSortBy":1,
+		"protoIdSortBy":3,
 		"protoPath":"./proto3/proto",
 		"ptoroCoefficient":1000,
 		"reqPrefix":"Req",

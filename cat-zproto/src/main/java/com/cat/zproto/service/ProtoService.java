@@ -162,12 +162,15 @@ public class ProtoService implements InitializingBean{
 				}
 				else {
 					//最后解析构内的字段
-					if (line.equals(empty))
+					if (line.equals(empty)) {
 						continue;
-					if(line.contains(leftBracket))
+					}
+					if(line.contains(leftBracket)) {
 						continue;
-					if(line.contains(rightBracket))
+					}
+					if(line.contains(rightBracket)) {
 						continue;
+					}
 					
 					ProtocolField field = new ProtocolField();
 					String[] temps = line.split(slash);
@@ -308,7 +311,6 @@ public class ProtoService implements InitializingBean{
 		//	根据配置重新设置
 		String javaPackage = setting.getProto().getJavaPackagePath();
 		protoObject.setJavaPath(javaPackage);
-//		String PbObj = ProtocolConstant.PB_PREFIX.concat(com.cat.zproto.util.StringUtils.firstCharUpper(moduleName));
 		String PbObj = setting.getProto().getPbPrefix().concat(com.cat.zproto.util.StringUtil.firstCharUpper(moduleName));
 		protoObject.setOutClass(PbObj);
 		//查询所有引用类
@@ -321,7 +323,7 @@ public class ProtoService implements InitializingBean{
 		List<String> dependans = protocolDomain.getDependanceObj(moduleName, dtoNames);
 		protoObject.getDependenceObjs().addAll(dependans);
 		//存储
-		protocolDomain.save();
+		protocolDomain.saveAll();
 		return protoObject;
 	}
 	
@@ -333,15 +335,9 @@ public class ProtoService implements InitializingBean{
 		if (protocolDomain == null) {
 			return null;
 		}
-		protocolDomain.getProtoIdMap().clear();
 		//根据使用者定义的排序方式生成协议号
 		IGenProtoId genProtoId = genProtoIdMap.get(setting.getProto().getProtoIdSortBy());
-		for (ModuleEntity module : moduleEntitys) {
-			ProtocolObject protoObject = protocolDomain.getProtoObject(module.getName());
-			Map<String, Integer> tempMap = genProtoId.genProtoIds(module.getId(), protoObject);
-			protocolDomain.putProtoId(tempMap);
-		}
-		protocolDomain.save();
+		genProtoId.genAllProtoIds(protocolDomain, moduleEntitys);
 		return protocolDomain.getProtoIdMap();
 	}
 	
@@ -362,7 +358,7 @@ public class ProtoService implements InitializingBean{
 		String protoPath = setting.getProto().getProtoPath();
 		Pair<Map<String, ProtocolObject>, HashBiMap<String, Integer>> pair = this.parse(protoPath);
 		protocolDomain.init(pair.getLeft(), pair.getRight());
-		protocolDomain.save();
+		protocolDomain.saveAll();
 		return true;
 	}
 	
@@ -380,7 +376,6 @@ public class ProtoService implements InitializingBean{
 	}
 	
 	/**
-	 * @param protoMethodName
 	 * @return
 	 */
 	public BiMap<String, Integer> getProtoIdMap(String version) {
@@ -393,7 +388,6 @@ public class ProtoService implements InitializingBean{
 	
 	/**
 	 * 通过协议方法名, 获取协议所有对象信息
-	 * @param protoMethodName
 	 * @return
 	 */
 	public Collection<ProtocolObject> getAllProtoObject(String version) {
@@ -406,7 +400,6 @@ public class ProtoService implements InitializingBean{
 	
 	/**
 	 * 通过协议方法名, 获取协议对象信息
-	 * @param protoMethodName
 	 * @return
 	 */
 	public List<String> getAllPbProtoName(String version, String prefix) {
@@ -458,7 +451,7 @@ public class ProtoService implements InitializingBean{
 	public void loadProtoProperties(SettingVersion settingVersion) throws IOException{
 		String version = settingVersion.getVersion();
 		ProtocolDomain domain = protocolManager.getOrCreateDomain(version);
-		String protoPath = settingVersion.getProtoDataPath();
+		String protoPath = settingVersion.getProtoDataDir();
 		String protoIdPath = settingVersion.getProtoIdPath();
 		domain.init(protoPath, protoIdPath);
 	}

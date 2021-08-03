@@ -1,10 +1,9 @@
 package com.cat.zproto.assist.serial;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import com.cat.zproto.domain.module.ModuleEntity;
+import com.cat.zproto.domain.proto.ProtocolDomain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -37,12 +36,10 @@ public class GenProtoIdAfterReq implements IGenProtoId{
 		List<ProtocolStructure> reqs = new ArrayList<>();
 		Map<String, ProtocolStructure> resps = new LinkedHashMap<>();
 		Map<String, Integer> result = new LinkedHashMap<>();
-		
-//		String reqPrefix = ProtocolConstant.REQ_PREFIX;
-//		String respPrefix = ProtocolConstant.RESP_PREFIX; 
 		String reqPrefix = setting.getProto().getReqPrefix();
 		String respPrefix = setting.getProto().getRespPrefix();
-		
+
+		int interval = setting.getProto().getPtoroCoefficient();
 		//筛选请求响应协议
 		protoObj.getStructures().forEach((protoName, struct)->{
 			if (protoName.startsWith(reqPrefix)) {
@@ -52,13 +49,13 @@ public class GenProtoIdAfterReq implements IGenProtoId{
 				resps.put(protoName, struct);
 			}
 		});
-		int protoId = moduleId * INTERVAL + 100;
+		int protoId = moduleId * interval + 100;
 		for (ProtocolStructure reqStruct : reqs) {
 			String reqProtoName = reqStruct.getName();
 			result.put(reqProtoName, protoId+=1);
 		}
 		
-		protoId = moduleId * INTERVAL + 200;
+		protoId = moduleId * interval + 200;
 		for (ProtocolStructure respStruct : resps.values()) {
 			String respProtoName = respStruct.getName();
 			result.put(respProtoName, protoId+=1);

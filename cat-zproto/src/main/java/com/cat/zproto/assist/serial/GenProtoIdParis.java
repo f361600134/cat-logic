@@ -13,16 +13,6 @@ import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
 
-/**
- * 协议id生成排序方式<br>
- * 1.成对排序, 请求/响应的方式有序生成协议号, <br>
- * 	ReqXXX 1001  AckXXX 1002<br>
- *  ReqYYY 1003  AckYYY 1004<br>
- * 2.先请求, 后响应, 间隔100<br>
- *  ReqXXX 1001 ReqYYY 1002<br>
- *  AckXXX 1003 AckYYY 1004<br>
- */
-
 @Component
 public class GenProtoIdParis implements IGenProtoId{
 	
@@ -35,16 +25,13 @@ public class GenProtoIdParis implements IGenProtoId{
 
 	@Override
 	public Map<String, Integer> genProtoIds(int moduleId, ProtocolObject protoObj) {
+
+		Map<String, Integer> result = new LinkedHashMap<>();
+		final String reqPrefix = setting.getProto().getReqPrefix();
+		final String respPrefix = setting.getProto().getRespPrefix();
+
 		List<ProtocolStructure> reqs = new ArrayList<>();
 		Map<String, ProtocolStructure> resps = new LinkedHashMap<>();
-		Map<String, Integer> result = new LinkedHashMap<>();
-		
-//		String reqPrefix = ProtocolConstant.REQ_PREFIX;
-//		String respPrefix = ProtocolConstant.RESP_PREFIX; 
-		String reqPrefix = setting.getProto().getReqPrefix();
-		String respPrefix = setting.getProto().getRespPrefix();
-//		String pbPrefix = setting.getProto().getPbPrefix();
-		
 		//筛选请求响应协议
 		protoObj.getStructures().forEach((protoName, struct)->{
 			if (protoName.startsWith(reqPrefix)) {
@@ -54,7 +41,7 @@ public class GenProtoIdParis implements IGenProtoId{
 				resps.put(protoName, struct);
 			}
 		});
-		int protoId = moduleId * INTERVAL;
+		int protoId = moduleId * setting.getProto().getPtoroCoefficient();
 		for (ProtocolStructure reqStruct : reqs) {
 			String reqProtoName = reqStruct.getName();
 			result.put(reqProtoName, protoId+=1);

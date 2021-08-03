@@ -339,6 +339,7 @@ public class ModuleController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("version", version);
 		mv.addObject("id", id);
+		mv.addObject("sortBy", setting.getProto().getProtoIdSortBy());
 		ModuleEntity entity = moduleService.getModuleEntity(version, id);
 		if (entity == null) {
 			mv.setViewName("error");
@@ -455,7 +456,6 @@ public class ModuleController {
 		if (protoObject == null) {
 			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
 		}
-		// 生成协议id
 		Map<String, Integer> protoIdMap = protoService.genProtoIds(version, moduleService.getAllModuleEntity(version));
 		// 生成proto文件
 		String protoPath = setting.getProto().getProtoPath();

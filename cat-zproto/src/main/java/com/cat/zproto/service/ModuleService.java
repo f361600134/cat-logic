@@ -147,6 +147,7 @@ public class ModuleService implements InitializingBean{
 		String content = FileUtils.readFileToString(new File(moduleInfoPath), StandardCharsets.UTF_8);
 		List<ModuleEntity> entitys = JSON.parseArray(content, ModuleEntity.class);
 		domain.initModuleEntity(entitys);
+
 	}
     
 }

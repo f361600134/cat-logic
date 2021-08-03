@@ -59,9 +59,6 @@ public class ModuleDomain {
 
 	/**
 	 * 获取指定entity
-	 * 
-	 * @param id
-	 * @return
 	 * @return ModuleEntity
 	 * @date 2021年6月2日下午1:38:10
 	 */
@@ -71,9 +68,6 @@ public class ModuleDomain {
 
 	/**
 	 * 覆盖指定entity
-	 * 
-	 * @param id
-	 * @return
 	 * @return ModuleEntity
 	 * @date 2021年6月2日下午1:38:10
 	 */
@@ -84,9 +78,6 @@ public class ModuleDomain {
 	
 	/**
 	 * 覆盖指定entity
-	 * 
-	 * @param id
-	 * @return
 	 * @return ModuleEntity
 	 * @date 2021年6月2日下午1:38:10
 	 */
@@ -101,9 +92,6 @@ public class ModuleDomain {
 
 	/**
 	 * 覆盖指定entity
-	 * 
-	 * @param id
-	 * @return
 	 * @return ModuleEntity
 	 * @date 2021年6月2日下午1:38:10
 	 */

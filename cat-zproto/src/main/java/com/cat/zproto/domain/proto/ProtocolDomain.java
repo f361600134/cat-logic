@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.cat.zproto.constant.CommonConstant;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -20,8 +21,13 @@ import com.cat.zproto.domain.system.SettingVersion;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Maps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProtocolDomain {
+
+
+	private static Logger logger = LoggerFactory.getLogger(ProtocolDomain.class);
 	
 	private String version;
 	
@@ -82,7 +88,6 @@ public class ProtocolDomain {
 	
 	/**
 	 * 通过协议方法名, 获取协议所有对象信息
-	 * @param protoMethodName
 	 * @return
 	 */
 	public Collection<ProtocolObject> getAllProtoObject() {
@@ -99,7 +104,6 @@ public class ProtocolDomain {
 	
 	/**
 	 * 添加proto对象
-	 * @param protoObj
 	 */
 	public void putProtoObject(Map<String, ProtocolObject> protoObjMap) {
 		this.protoMap.putAll(protoObjMap);
@@ -126,15 +130,14 @@ public class ProtocolDomain {
 	
 	/**
 	 * 通过协议方法名, 获取协议id
-	 * @param protoMethodName
 	 * @return
 	 */
-	public void putProtoId(Map<String, Integer> protoIdMap) {
+	public void replaceAllProtoId(Map<String, Integer> protoIdMap) {
+		this.protoIdMap.clear();
 		this.protoIdMap.putAll(protoIdMap);
 	}
 	
 	/**
-	 * @param protoMethodName
 	 * @return
 	 */
 	public BiMap<String, Integer> getProtoIdMap() {
@@ -190,24 +193,15 @@ public class ProtocolDomain {
 	 * @throws IOException 
 	 */
 	public void init(String protoPath, String protoIdPath) throws IOException {
-		//基于项目根目录初始化协议
-		String content = FileUtils.readFileToString(new File(protoPath), StandardCharsets.UTF_8);
-		
-		//way2. 基于resources目录的读取配置
-//		ClassPathResource resource = new ClassPathResource(protoPath);
-//		InputStream inputStream = resource.getInputStream();
-//		String content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
-		
-		List<ProtocolObject> protoData = JSON.parseArray(content, ProtocolObject.class);
-		protoData.forEach((p) ->{
-			protoMap.put(p.getModuleName(), p);
-		});
-		
-		content = FileUtils.readFileToString(new File(protoIdPath), StandardCharsets.UTF_8);
-		//初始化协议号, 基于resources目录的读取配置
-//		resource = new ClassPathResource(protoIdPath);
-//		inputStream = resource.getInputStream();
-//		content = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+		//加载协议文件
+		File file = new File(protoPath);
+		for (File f: file.listFiles()) {
+			String content = FileUtils.readFileToString(f, StandardCharsets.UTF_8);
+			ProtocolObject protocolObject = JSON.parseObject(content, ProtocolObject.class);
+			protoMap.put(protocolObject.getModuleName(), protocolObject);
+		}
+		//加载协议id
+		String content = FileUtils.readFileToString(new File(protoIdPath), StandardCharsets.UTF_8);
 		Map<String, Integer> tempMap = JSON.parseObject(content, new TypeReference<Map<String, Integer>>(){});
 		this.protoIdMap.putAll(tempMap);
 	}
@@ -220,33 +214,56 @@ public class ProtocolDomain {
 		this.protoMap.putAll(map);
 		this.protoIdMap.putAll(biMap);
 	}
-	
-	
+
+
 	/**
-	 * 存储协议对象
+	 * 存储指定协议对象
 	 */
-	public void save() {
-		//先存储协议
-		String data = JSON.toJSONString(protoMap.values(), SerializerFeature.PrettyFormat);
+	public void save(String moduleName)  {
 		SettingConfig config = SpringContextHolder.getBean(SettingConfig.class);
 		SettingVersion settingVersion = config.getVersionInfo().get(version);
-		String path = settingVersion.getProtoDataPath();
+		String versionPath = settingVersion.getProtoDataDir();
 		try {
-			FileUtils.writeStringToFile(new File(path), data, StandardCharsets.UTF_8, false);
-		} catch (IOException e) {
+			//创建目录
+			FileUtils.forceMkdir(new File(versionPath));
+		}catch (Exception e){
 			e.printStackTrace();
 		}
+		ProtocolObject protocolObject = protoMap.get(moduleName);
+		if (protocolObject == null){
+			return;
+		}
+		String data = JSON.toJSONString(protocolObject, SerializerFeature.PrettyFormat);
+		String path = versionPath.concat(File.separator).concat(protocolObject.getModuleName()).concat(CommonConstant.JSON_SUBFIX);
+		try {
+			FileUtils.writeStringToFile(new File(path), data, StandardCharsets.UTF_8, false);
+		}catch (Exception e){
+			e.printStackTrace();
+			logger.error("ProrocalDomain save error, ", e);
+		}
+	}
+
+
+	/**
+	 * 存储所有协议对象<br>
+	 */
+	public void saveAll()  {
+		for (ProtocolObject protocolObject : protoMap.values()) {
+			this.save(protocolObject.getModuleName());
+		}
+		this.saveProtoId();
 	}
 	
 	/**
-	 * 存储协议号
+	 * 存储协议号<br>
+	 *     当协议号发生改变, 覆盖缓存内的所有协议号, 并保存到本地
 	 */
 	public void saveProtoId() {
 		//再存储协议id
 		String data = JSON.toJSONString(this.protoIdMap, SerializerFeature.PrettyFormat);
 		SettingConfig config = SpringContextHolder.getBean(SettingConfig.class);
 		SettingVersion settingVersion = config.getVersionInfo().get(version);
-		String path = settingVersion.getProtoDataPath();
+		String path = settingVersion.getProtoDataDir();
 		try {
 			FileUtils.writeStringToFile(new File(path), data, StandardCharsets.UTF_8, false);
 		} catch (IOException e) {

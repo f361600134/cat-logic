@@ -15,6 +15,15 @@
 <protocolTmp id="protocolTmp" hidden="true">
 <hr class="layui-border-black">
 <div class="layui-form-item">
+
+	<div th:if="${sortBy==3}" class="layui-inline">
+		<label class="layui-form-label">内部序号：</label>
+		<div class="layui-input-inline" style="width: 75px;">
+			<input type="tel" name="protocol_insideId" autocomplete="off"
+				   class="layui-input">
+		</div>
+	</div>
+
 	<div class="layui-inline">
 		<label class="layui-form-label">协议类名：</label>
 		<div class="layui-input-inline">
@@ -133,6 +142,7 @@
             var fieldIndex=0;
             var fieldArray=[];
 
+            protocol_obj.insideId=$(this).find("input[name='protocol_insideId']").val();
             protocol_obj.name=$(this).find("input[name='protocol_name']").val();
             protocol_obj.comment=$(this).find("input[name='protocol_comment']").val();
 
@@ -224,6 +234,7 @@
             var clone = $("#protocolTmp").clone(true);
             clone.attr("hidden",false);
             clone.attr("name","protocol");
+			clone.find("input[name='protocol_insideId']").val(protocol.insideId);
             clone.find("input[name='protocol_name']").val(protocol.name);
             clone.find("input[name='protocol_comment']").val(protocol.comment);
 
