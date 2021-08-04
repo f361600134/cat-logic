@@ -22,9 +22,7 @@ import com.cat.zproto.domain.system.SettingConfig;
  *  AckXXX 1003 AckYYY 1004<br>
  */
 @Component
-public class GenProtoIdAfterReq implements IGenProtoId{
-	
-	@Autowired private SettingConfig setting;
+public class GenProtoIdAfterReq extends AbstractGenProtoId {
 	
 	@Override
 	public int type() {
@@ -32,29 +30,16 @@ public class GenProtoIdAfterReq implements IGenProtoId{
 	}
 
 	@Override
-	public Map<String, Integer> genProtoIds(int moduleId, ProtocolObject protoObj) {
-		List<ProtocolStructure> reqs = new ArrayList<>();
-		Map<String, ProtocolStructure> resps = new LinkedHashMap<>();
+	public Map<String, Integer> generater(int moduleId, List<ProtocolStructure> reqs, Map<String, ProtocolStructure> resps) {
 		Map<String, Integer> result = new LinkedHashMap<>();
-		String reqPrefix = setting.getProto().getReqPrefix();
-		String respPrefix = setting.getProto().getRespPrefix();
 
 		int interval = setting.getProto().getPtoroCoefficient();
-		//筛选请求响应协议
-		protoObj.getStructures().forEach((protoName, struct)->{
-			if (protoName.startsWith(reqPrefix)) {
-				reqs.add(struct);
-			}
-			else if (protoName.startsWith(respPrefix)) {
-				resps.put(protoName, struct);
-			}
-		});
 		int protoId = moduleId * interval + 100;
 		for (ProtocolStructure reqStruct : reqs) {
 			String reqProtoName = reqStruct.getName();
 			result.put(reqProtoName, protoId+=1);
 		}
-		
+
 		protoId = moduleId * interval + 200;
 		for (ProtocolStructure respStruct : resps.values()) {
 			String respProtoName = respStruct.getName();
@@ -62,5 +47,4 @@ public class GenProtoIdAfterReq implements IGenProtoId{
 		}
 		return result;
 	}
-
 }

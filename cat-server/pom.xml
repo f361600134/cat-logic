@@ -137,6 +137,15 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<scope>provided</scope>
 	</dependency>
 	
+	<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+	<dependency>
+	    <groupId>org.testng</groupId>
+	    <artifactId>testng</artifactId>
+	    <version>7.4.0</version>
+	    <scope>test</scope>
+	</dependency>
+	
+	
 	
 </dependencies>
 

@@ -263,7 +263,7 @@ public class ProtocolDomain {
 		String data = JSON.toJSONString(this.protoIdMap, SerializerFeature.PrettyFormat);
 		SettingConfig config = SpringContextHolder.getBean(SettingConfig.class);
 		SettingVersion settingVersion = config.getVersionInfo().get(version);
-		String path = settingVersion.getProtoDataDir();
+		String path = settingVersion.getProtoIdPath();
 		try {
 			FileUtils.writeStringToFile(new File(path), data, StandardCharsets.UTF_8, false);
 		} catch (IOException e) {

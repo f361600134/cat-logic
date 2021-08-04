@@ -17,7 +17,6 @@ import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.text.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,6 @@ import com.cat.zproto.constant.CommonConstant;
 import com.cat.zproto.core.result.SystemCodeEnum;
 import com.cat.zproto.core.result.SystemResult;
 import com.cat.zproto.domain.module.ModuleEntity;
-import com.cat.zproto.domain.proto.ProtocolConstant;
 import com.cat.zproto.domain.proto.ProtocolObject;
 import com.cat.zproto.domain.proto.ProtocolStructure;
 import com.cat.zproto.domain.system.SettingConfig;
@@ -450,26 +448,8 @@ public class ModuleController {
 		if (entity == null) {
 			return SystemResult.build(SystemCodeEnum.UNKNOW);
 		}
-		String entityName = entity.getName();
-
-		ProtocolObject protoObject = protoService.protoObjectUpdate(version, entityName, protoStructure);
-		if (protoObject == null) {
-			return SystemResult.build(SystemCodeEnum.ERROR_CANNOT_DOUND_MODULE);
-		}
-		Map<String, Integer> protoIdMap = protoService.genProtoIds(version, moduleService.getAllModuleEntity(version));
-		// 生成proto文件
-		String protoPath = setting.getProto().getProtoPath();
-		String fileName = protoPath.concat(File.separator).concat(protoObject.getOutClass())
-				.concat(ProtocolConstant.PROTO_SUBFIX);
-		templateService.printer(protoObject, fileName, "proto.ftl");
-		// 生成protoId文件
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("javaPath", setting.getProto().getJavaPackagePath());
-		map.put("outClass", "PBDefine");
-		map.put("protoIdMap", protoIdMap);
-		fileName = protoPath.concat(File.separator).concat("PBProtocol").concat(ProtocolConstant.PROTO_SUBFIX);
-		templateService.printer(map, fileName, "protoId.ftl");
-
+		protoService.updateProtoObject(version, entity.getName(), protoStructure);
+		protoService.updateProtoIds(version, moduleService.getAllModuleEntity(version));
 		return SystemResult.build(SystemCodeEnum.SUCCESS);
 	}
 

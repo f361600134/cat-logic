@@ -12,7 +12,10 @@ public class TemplateTreeDto {
 	private int id;
 	private String title;
 	private boolean disabled;
-	private boolean spread;//节点是否初始展开，默认 false
+	/**
+	 * 节点是否初始展开，默认 false
+	 */
+	private boolean spread;
 	private List<TemplateTreeDto> children = new ArrayList<>();
 	
 	public int getId() {

@@ -57,7 +57,7 @@ public interface IGenProtoId {
 	 * @param moduleEntitys 协议对象列表
 	 * @return
 	 */
-	default void genAllProtoIds(ProtocolDomain protocolDomain, Collection<ModuleEntity> moduleEntitys){
+	default Map<String, Integer> genAllProtoIds(ProtocolDomain protocolDomain, Collection<ModuleEntity> moduleEntitys){
 		Map<String, Integer> tempMap = new HashMap<>();
 		for (ModuleEntity module : moduleEntitys) {
 			ProtocolObject protoObject = protocolDomain.getProtoObject(module.getName());
@@ -65,6 +65,7 @@ public interface IGenProtoId {
 		}
 		protocolDomain.replaceAllProtoId(tempMap);
 		protocolDomain.saveAll();
+		return protocolDomain.getProtoIdMap();
 	}
 
 }

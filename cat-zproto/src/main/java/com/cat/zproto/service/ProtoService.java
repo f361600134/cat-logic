@@ -45,6 +45,8 @@ public class ProtoService implements InitializingBean{
 	@Autowired private List<IGenProtoId> genProtoIds;
 	
 	@Autowired private ProtocolManager protocolManager;
+
+	@Autowired private TemplateService templateService;
 	
 	/**
 	 * 生成类型<br>
@@ -298,12 +300,14 @@ public class ProtoService implements InitializingBean{
 	}
 	
 	/**
-	 * proto修改, 修改proto后, 会伴随着协议号的修改
+	 * proto修改, 修改proto后
 	 * 1. 读取配置重新设置,
 	 * 2. 修改协议列表,直接替换成新的
+	 * 3. 生成最新的proto文件
+	 * 4. 持久化最新的proto结构
 	 * @return 返回被修改的最新的协议对象
 	 */
-	public ProtocolObject protoObjectUpdate(String version, String moduleName, List<ProtocolStructure> protoStructure) {
+	public ProtocolObject updateProtoObject(String version, String moduleName, List<ProtocolStructure> protoStructure) {
 		ProtocolDomain protocolDomain =  protocolManager.getOrCreateDomain(version);
 		ProtocolObject protoObject = protocolDomain.getOrCreateProtoObject(moduleName);
 		//	替换掉协议信息
@@ -322,23 +326,31 @@ public class ProtoService implements InitializingBean{
 		}
 		List<String> dependans = protocolDomain.getDependanceObj(moduleName, dtoNames);
 		protoObject.getDependenceObjs().addAll(dependans);
-		//存储
-		protocolDomain.saveAll();
+		//生成proto文件
+		this.genProto(protoObject);
+		//持久化结构
+		protocolDomain.save(moduleName);
 		return protoObject;
 	}
 	
 	/**
 	 * 重新生成所有的协议id<br>
+	 *     1. 生成后覆盖掉缓存
+	 *     2. 生成最新的proto枚举文件
+	 *     3. 持久化最新的protoId的结构
 	 */
-	public BiMap<String, Integer> genProtoIds(String version, Collection<ModuleEntity> moduleEntitys) {
+	public void updateProtoIds(String version, Collection<ModuleEntity> moduleEntitys) {
 		ProtocolDomain protocolDomain = protocolManager.getDomain(version);
 		if (protocolDomain == null) {
-			return null;
+			return;
 		}
 		//根据使用者定义的排序方式生成协议号
 		IGenProtoId genProtoId = genProtoIdMap.get(setting.getProto().getProtoIdSortBy());
 		genProtoId.genAllProtoIds(protocolDomain, moduleEntitys);
-		return protocolDomain.getProtoIdMap();
+		//生成protoId
+		this.genProtoId(protocolDomain);
+		//持久化结构
+		protocolDomain.saveProtoId();
 	}
 	
 	/**
@@ -409,8 +421,38 @@ public class ProtoService implements InitializingBean{
 		}
 		return protocolDomain.getAllPbProtoName(prefix);
 	}
-	
-	
+
+	/**
+	 * 指定 ProtocolObject 对象生成proto
+	 * @param protoObject
+	 */
+	public void genProto(ProtocolObject protoObject){
+		// 生成proto文件
+		String protoPath = setting.getProto().getProtoPath();
+		String fileName = protoPath.concat(File.separator).concat(protoObject.getOutClass())
+				.concat(ProtocolConstant.PROTO_SUBFIX);
+		templateService.printer(protoObject, fileName, "proto.ftl");
+	}
+
+	/**
+	 * 生成所有的protoId, 持久化到本地
+	 * @param protocolDomain
+	 */
+	public void genProtoId(ProtocolDomain protocolDomain){
+		Map<String, Integer> protoIdMap = protocolDomain.getProtoIdMap();
+		Map<String, ProtocolObject> protoMap = protocolDomain.getProtoMap();
+		// 生成protoId文件, 独立成一个方法
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("javaPath", setting.getProto().getJavaPackagePath());
+		map.put("outClass", "PBDefine");
+		map.put("protoMap", protoMap);
+		map.put("protoIdMap", protoIdMap);
+		String protoPath = setting.getProto().getProtoPath();
+		String fileName = protoPath.concat(File.separator).concat("PBProtocol").concat(ProtocolConstant.PROTO_SUBFIX);
+		templateService.printer(map, fileName, "protoId.ftl");
+	}
+
+
 //	@SuppressWarnings("unchecked")
 //	public Map<String, Integer> getSortProtoIdMap(String version, Collection<ModuleEntity> moduleEntitys){
 //		ProtocolDomain protocolDomain = protocolManager.getDomain(version);
