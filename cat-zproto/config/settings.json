@@ -1,7 +1,7 @@
 {
 	"dbInfo":{
 		"dbName":"coral",
-		"dbType":2,
+		"dbType":1,
 		"initialSize":0,
 		"password":"Jeremy2oe5.",
 		"url":"jdbc:mysql://139.9.44.104:3306/coral?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true",
