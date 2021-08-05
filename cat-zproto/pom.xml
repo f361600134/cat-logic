@@ -131,7 +131,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			
+			<!-- 编译插件配置 -->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>  
@@ -142,6 +142,7 @@
 				</configuration>
 			</plugin>
 			
+			<!-- 资源插件配置 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -149,6 +150,7 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 				<executions>
+					<!-- resources内资源拷贝 -->
 					<execution>
 						<id>copy-resources</id>
 						<phase>validate</phase>
@@ -160,7 +162,7 @@
 							<resources>
 								<resource>
 									<directory>src/main/resources</directory>
-									<filtering>true</filtering>
+<!-- 									<filtering>true</filtering> -->
 								</resource>
 								<resource>
 									<directory>shell</directory>
@@ -169,7 +171,7 @@
 							</resources>
 						</configuration>
 					</execution>
-					
+					<!-- 配置结构拷贝 -->
 					<execution>
 						<id>copy-configdata</id>
 						<phase>validate</phase>
@@ -186,12 +188,64 @@
 							</resources>
 						</configuration>
 					</execution>
-					
+					<!-- 配置拷贝 -->
+					<execution>
+						<id>copy-config</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/release/config</outputDirectory>
+							<resources>
+								<resource>
+									<directory>config</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<!-- proto拷贝 -->
+					<execution>
+						<id>copy-proto3</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/release/proto3</outputDirectory>
+							<resources>
+								<resource>
+									<directory>proto3</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+					<!-- 模板拷贝 -->
+					<execution>
+						<id>copy-ftl</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/release/ftl</outputDirectory>
+							<resources>
+								<resource>
+									<directory>ftl</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
+			<!-- 依赖配置 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
+				<!-- 依赖拷贝 -->
 				<executions>
 					<execution>
 						<id>copy-dependencies</id>
@@ -218,7 +272,7 @@
 						<exclude>**/*.sh</exclude>
 						<exclude>**/*.bat</exclude>
 						<exclude>**/*.json</exclude>
-						<exclude>/configdata</exclude>
+						<exclude>**/*.ftl</exclude>
 					</excludes>
 					<outputDirectory>${project.build.directory}/release</outputDirectory>
 					<archive>

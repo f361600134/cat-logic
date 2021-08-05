@@ -195,15 +195,17 @@ public class ProtocolDomain {
 	public void init(String protoPath, String protoIdPath) throws IOException {
 		//加载协议文件
 		File file = new File(protoPath);
-		for (File f: file.listFiles()) {
-			String content = FileUtils.readFileToString(f, StandardCharsets.UTF_8);
-			ProtocolObject protocolObject = JSON.parseObject(content, ProtocolObject.class);
-			protoMap.put(protocolObject.getModuleName(), protocolObject);
+		if (file.exists() && file.isDirectory()) {
+			for (File f: file.listFiles()) {
+				String content = FileUtils.readFileToString(f, StandardCharsets.UTF_8);
+				ProtocolObject protocolObject = JSON.parseObject(content, ProtocolObject.class);
+				protoMap.put(protocolObject.getModuleName(), protocolObject);
+			}
+			//加载协议id
+			String content = FileUtils.readFileToString(new File(protoIdPath), StandardCharsets.UTF_8);
+			Map<String, Integer> tempMap = JSON.parseObject(content, new TypeReference<Map<String, Integer>>(){});
+			this.protoIdMap.putAll(tempMap);
 		}
-		//加载协议id
-		String content = FileUtils.readFileToString(new File(protoIdPath), StandardCharsets.UTF_8);
-		Map<String, Integer> tempMap = JSON.parseObject(content, new TypeReference<Map<String, Integer>>(){});
-		this.protoIdMap.putAll(tempMap);
 	}
 	
 	/**
