@@ -129,8 +129,9 @@
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">协议号排序</label>
 		    <div class="layui-input-block">
-		      <input type="radio" name="protoIdSortBy" value="1" title="成对出现" checked="">
-		      <input type="radio" name="protoIdSortBy" value="2" title="先请求后响应">
+				<input type="radio" name="protoIdSortBy" value="1" title="成对出现" th:checked="${data.proto.protoIdSortBy==1}">
+				<input type="radio" name="protoIdSortBy" value="2" title="先请求后响应" th:checked="${data.proto.protoIdSortBy==2}">
+				<input type="radio" name="protoIdSortBy" value="3" title="自定义协议号" th:checked="${data.proto.protoIdSortBy==3}">
 		    </div>
 		  </div>
 		  
@@ -345,7 +346,8 @@ layui.use(function(){
 		d.protoExePath=$("input[name='protoExePath']").val();
 		d.protoPath=$("input[name='protoPath']").val();
 		d.javaPackagePath=$("input[name='javaPackagePath']").val();
-		d.protoIdSortBy=$("input[name='protoIdSortBy']").val();
+		//d.protoIdSortBy=$("input[name='protoIdSortBy']").val();
+		d.protoIdSortBy=$("input[name='protoIdSortBy']:checked").val();
 		d.reqPrefix=$("input[name='reqPrefix']").val();
 		d.respPrefix=$("input[name='respPrefix']").val();
 		d.pbPrefix=$("input[name='pbPrefix']").val();

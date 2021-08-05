@@ -1,4 +1,5 @@
 {
+	"default": 0,
 	"AckTips":1001,
 	"ReqLogin":100001,
 	"AckLogin":100002,

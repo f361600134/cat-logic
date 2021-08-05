@@ -60,7 +60,7 @@ public class CommonConstant {
 	/**
 	 * 协议结构信息
 	 */
-	public static final String PROTO_FILE_NAME = "/protoData.json";
+	public static final String PROTO_DATA_DIR = "/data";
 	
 	/**
 	 * 协议id信息

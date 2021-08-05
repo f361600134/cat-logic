@@ -33,7 +33,6 @@ public class ClassPathScanner {
      * 过滤规则列表 如果是null或者空，即全部符合不过滤
      */
     private List<String> classFilters = null;
-
     /**
      * 无参构造器，默认是排除内部类、并搜索符合规则
      */

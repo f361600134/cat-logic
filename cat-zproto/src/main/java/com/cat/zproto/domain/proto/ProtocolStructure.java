@@ -17,6 +17,10 @@ public class ProtocolStructure {
 	 */
 	private String comment;
 	/**
+	 * 协议号id, 协议号不存储
+	 */
+	private int insideId;
+	/**
 	 * 协议结构拥有的所有字段属性
 	 */
 	private List<ProtocolField> fields = new ArrayList<>();
@@ -36,6 +40,14 @@ public class ProtocolStructure {
 	public List<ProtocolField> getFields() {
 		return fields;
 	}
+	public int getInsideId() {
+		return insideId;
+	}
+
+	public void setInsideId(int insideId) {
+		this.insideId = insideId;
+	}
+
 	@Override
 	public String toString() {
 		return "ProtocolStructure [name=" + name + ", comment=" + comment + ", fields=" + fields + "]";

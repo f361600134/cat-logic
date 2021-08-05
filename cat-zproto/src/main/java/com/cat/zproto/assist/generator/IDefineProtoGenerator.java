@@ -15,8 +15,7 @@ public interface IDefineProtoGenerator extends IGenerator{
 	
 	/**
 	 * 生成
-	 * @param dto  
-	 * @return void  
+	 * @return void
 	 * @date 2021年6月6日下午9:18:14
 	 */
 	void generate(String version, TemplateStruct struct,  ProtocolObject protocolObj);

@@ -12,7 +12,7 @@ public class ProtoDto {
 	private String moduleName;
 	
 	/**
-	 * 文件名字
+	 * 类名字
 	 * 此对象可变, 享元对象
 	 */
 	private String clazzName;

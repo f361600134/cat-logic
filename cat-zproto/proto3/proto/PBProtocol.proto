@@ -9,43 +9,58 @@ option java_outer_classname = "PBDefine";
 *返回协议号=模块id*1000+100+返回协议号
 */
 enum PBProtocol {
-   AckTips=1001;
-   ReqLogin=100001;
-   AckLogin=100002;
-   ReqRandName=100003;
-   AckRandName=100004;
-   ReqCreateRole=100005;
-   AckCreateRole=100006;
-   AckEnterGame=100007;
-   ReqPlayerCreateRole=101001;
-   AckPlayerCreateRole=101002;
-   ReqPlayerReLogin=101003;
-   AckPlayerReLogin=101004;
-   ReqPlayerRandName=101005;
-   AckPlayerRandName=101006;
-   ReqPlayerLogin=101007;
-   AckPlayerLogin=101008;
-   ReqPlayerHeart=101009;
-   AckPlayerHeart=101010;
-   AckPlayerDisconnect=101011;
-   AckPlayerEnterGame=101012;
-   AckInitPlayerInfo=101013;
-   AckUpdatePlayerInfo=101014;
-   ReqItemUse=102001;
-   AckItemUse=102002;
-   ReqItemSell=102003;
-   AckItemSell=102004;
-   AckItemUpdate=102005;
-   AckRewards=102006;
-   AckItemDelete=102007;
-   ReqMailReward=103001;
-   AckMailReward=103002;
-   ReqMailRead=103003;
-   AckMailRead=103004;
-   ReqMailList=103005;
-   AckMailList=103006;
-   ReqMailDelete=103007;
-   AckMailDelete=103008;
-   ReqChat=104001;
-   AckChat=104002;
+   DEFAULTID = 0;
+
+   //Item
+   ReqItemUse=102101;
+   AckItemUpdate=102201;
+   AckItemSell=102202;
+   AckRewards=102203;
+   ReqItemSell=102102;
+   AckItemDelete=102204;
+   AckItemUse=102205;
+
+   //Player
+   AckPlayerDisconnect=101201;
+   ReqPlayerCreateRole=101101;
+   ReqPlayerReLogin=101102;
+   AckPlayerEnterGame=101202;
+   AckInitPlayerInfo=101203;
+   AckPlayerRandName=101204;
+   AckPlayerLogin=101205;
+   AckPlayerHeart=101206;
+   AckPlayerReLogin=101207;
+   AckUpdatePlayerInfo=101208;
+   ReqPlayerRandName=101103;
+   AckPlayerCreateRole=101209;
+   ReqPlayerLogin=101104;
+   ReqPlayerHeart=101105;
+
+   //Mail
+   AckMailDelete=103201;
+   AckMailList=103202;
+   ReqMailReward=103101;
+   ReqMailRead=103102;
+   AckMailRead=103203;
+   ReqMailList=103103;
+   AckMailReward=103204;
+   ReqMailDelete=103104;
+
+   //Chat
+   ReqChat=104101;
+   AckChat=104201;
+
+   //Login
+   AckCreateRole=100201;
+   AckRandName=100202;
+   ReqLogin=100101;
+   AckEnterGame=100203;
+   ReqRandName=100102;
+   AckLogin=100204;
+   ReqCreateRole=100103;
+
+   //Mission
+
+   //Common
+   AckTips=1201;
 }
