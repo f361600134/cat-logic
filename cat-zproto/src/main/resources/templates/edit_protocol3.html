@@ -7,8 +7,11 @@
 
 <body>
 
+<!--<form class="layui-form" action="">-->
+
 <input id="version" th:value="${version}"  hidden="true">
 <input id="id" th:value="${id}"  hidden="true">
+<input id="allTypes" th:value="${allTypes}"  hidden="true">
 
 	<h1 align="center" style="color:#FF5722"  th:text="'当前使用的版本为'+${version}"> </h1>
 <a th:href="'/zproto/module/viewModule?version='+${version}"><p align="center">回到模块页</p>
@@ -19,7 +22,7 @@
 <div class="layui-form-item">
 
 	<div th:if="${sortBy==3}" class="layui-inline">
-		<label class="layui-form-label">内部序号</label>
+		<label class="layui-form-label">内部序号：</label>
 		<div class="layui-input-inline" style="width: 75px;">
 			<input type="tel" name="protocol_insideId" autocomplete="off"
 				   class="layui-input">
@@ -27,10 +30,10 @@
 	</div>
 
 	<div class="layui-inline">
-		<label class="layui-form-label">协议类名</label>
-		<div class="layui-input-inline layui-form">
-			<input type="text" name="protocol_name" id="protocol_name" autocomplete="off"
-				class="layui-input" lay-filter="protocol_name">
+		<label class="layui-form-label">协议类名：</label>
+		<div class="layui-input-inline">
+			<input type="text" name="protocol_name" autocomplete="off"
+				class="layui-input">
 		</div>
 	</div>
 	<div class="layui-inline">
@@ -55,14 +58,14 @@
 <fieldTmp id="fieldTmp" hidden="true">
 <div class="layui-form-item">
 	<div class="layui-inline layui-form">
-		<label class="layui-form-label">列表</label>
+		<label class="layui-form-label">列表:</label>
 		<div class="layui-input-block">
 		<input type="checkbox" name="field_repeated" lay-skin="switch" lay-text="true|false">
 		</div>
 	</div>
 	
 	<div class="layui-inline">
-		<label class="layui-form-label">字段类型</label>
+		<label class="layui-form-label">字段类型：</label>
 		<div class="layui-input-inline layui-form">
 		<input type="text" name="fieldType" id="fieldType" lay-filter="fieldType" class="layui-input" placeholder="请选择"
 			   style="position:absolute;z-index:2;width: 80%;" lay-verify="required" value="" autocomplete="off">
@@ -74,13 +77,13 @@
 	</div>
 	
 	<div class="layui-inline">
-		<label class="layui-form-label">字段名</label>
+		<label class="layui-form-label">字段名：</label>
 		<div class="layui-input-inline">
 			<input type="text" name="field_name" autocomplete="off" class="layui-input">
 		</div>
 	</div>
 	<div class="layui-inline">
-		<label class="layui-form-label">注释</label>
+		<label class="layui-form-label">注释：</label>
 		<div class="layui-input-inline">
 			<input type="text" name="field_comment" autocomplete="off" class="layui-input">
 		</div>
@@ -105,6 +108,7 @@
 <br>
 <br>
 <br>
+<!--</form>-->
 </body>
 <script type="text/javascript">
 
@@ -112,6 +116,9 @@
         var layer = layui.layer;
 		var form = layui.form;
 		form.on('select(field_type)', function(data){
+			// console.log(data.elem); //得到select原始DOM对象
+			// console.log(data.value); //得到被选中的值
+			// console.log(data.othis); //得到美化后的DOM对象
 			var eleId = data.elem.id;
 			var eleIndex = eleId.replace("field_type", "");
 			$("#fieldType"+eleIndex).val(data.value); //这里直接将obj的值设置给input框达到选择input时让它俩联动起来
@@ -146,6 +153,9 @@
     });
     
     $("#submit").click(function(){
+        // var moduleId=$("#moduleId").val();
+        // var moduleName=$("#moduleName").val();
+        // var moduleComment=$("#moduleComment").val();
         var protocolIndex=0;
         
         var protocolArray = [];
@@ -193,12 +203,26 @@
         });
     });
 
+    // //input和select添加联动
+	// //设置select 与 input 输入框联动
+	// //form.on('select(field_type)',function (obj) {
+	// //$("#field_type").on('change',function () {
+	// $("#field_type").change(function () {
+	// 	//obj有 每一个option的值，有兴趣的可以再次打印然后看obj的结构
+	// 	var obj =$("#field_type").val()
+	// 	console.log("===="+obj)
+	// 	$("#fieldType").val(obj.value); //这里直接将obj的值设置给input框达到选择input时让它俩联动起来
+	// 	$("#field_type").next().find("dl").css({"display":"note"});
+	// 	form.render();
+	// })
+
 	//给input框加监听
 	$("#fieldType").on('input',function () {
 		//这里是获取input输入的值设置给select 这里的select 一定要添加一个 lay-search 这个属性，否则select 不可搜索
 		var eleId = document.activeElement.id;
 		var eleIndex = eleId.replace("fieldType", "");
 		var value = $("#fieldType"+eleIndex).val()
+		console.log("===value===>"+value)
 		value = value.replace(/^\s*/,"");//利用正则去除左侧空格
 		$("#field_type"+eleIndex).val(value);
 		form.render();
@@ -215,6 +239,26 @@
 			}
 		}
 	})
+
+	// $(document).on('click','input.layui-input',function(){
+	// 		var parEle = document.activeElement.parentElement.parentElement.parentElement;
+	// 		var curActiveId = parEle.getElementsByTagName("select")[0].id;
+	// 		console.log(curActiveId);
+	// })
+
+	// function aa(){
+	// 	var activename=document.activeElement.name; // 当前获取焦点的对象
+	// 	alert(activename);
+	// }
+	//
+	// //联通下拉菜单和输入框
+	// $(document).on('click','div.layui-form-select',function(){
+	// 	    var parEle = document.activeElement.parentElement.parentElement.parentElement;
+	// 	    var curActiveId = parEle.getElementsByTagName("select")[0].id;
+	// 		console.log(curActiveId);
+	// })
+
+
 
 	$("#createMessage1").click(function(){
 		var version=$("#version").val();
@@ -264,7 +308,7 @@
 	var eleIndex = 0;
     $(document).ready(function(){
  		var protocols = /*[[${data}]]*/ ;
-		var allTypes = /*[[${allTypes}]]*/ ;
+ 		var allTypes = /*[[${allTypes}]]*/ ;
         for(var i in protocols){
             var protocol=protocols[i];
             var clone = $("#protocolTmp").clone(true);
