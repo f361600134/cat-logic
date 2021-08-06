@@ -172,22 +172,29 @@ public class ProtocolDomain {
 	}
 	
 	/**
-	 * 获取所有PB对象
+	 * 根据给定prefix,模糊匹配所有合适的协议对象
 	 * @return
 	 */
 	public List<String> getAllPbProtoName(String prefix){
 		List<String> ret = new ArrayList<>();
+		if (StringUtils.isBlank(prefix)){
+			return ret;
+		}
 		for (ProtocolObject ptoto : protoMap.values()) {
 			for (ProtocolStructure struct : ptoto.getStructures().values()) {
 				if (!StringUtils.startsWith(struct.getName(), prefix) ) {
 					continue;
 				}
 				ret.add(struct.getName());
+				//如果查到的数据大于10, 则不继续查询, 直接返回
+				if (ret.size() >= 10){
+					break;
+				}
 			}
 		}
 		return ret;
 	}
-	
+
 	/**
 	 * 初始化
 	 * @throws IOException 

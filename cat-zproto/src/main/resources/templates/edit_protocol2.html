@@ -68,7 +68,7 @@
 			   style="position:absolute;z-index:2;width: 80%;" lay-verify="required" value="" autocomplete="off">
 		<select name="field_type" id="field_type"  lay-search autocomplete="off" lay-filter="field_type">
 			<option value=""></option>
-<!--			<option th:each="prototype:${allTypes}" th:value="${prototype}" th:text="${prototype}"></option>-->
+			<option th:each="prototype:${allTypes}" th:value="${prototype}" th:text="${prototype}"></option>
 		</select>
 		</div>
 	</div>
@@ -107,6 +107,7 @@
 <br>
 </body>
 <script type="text/javascript">
+
     layui.use('layer', function(){
         var layer = layui.layer;
 		var form = layui.form;
@@ -194,48 +195,51 @@
 
 	/**
 	 * 给input框加监听<br>
-	 * input监听,当输入内容时, 通过ajax异步从后台拿到匹配到的前十条内容, 返回页面渲染<br>
-	 * enter监听,因为下拉搜索使用input+select实现, 当输入内容是, 焦点在input控件上, 所以enter键需要特别处理
+	 * 这里换一种实现方式, 当输入内容时, 通过ajax异步从后台拿到匹配到的前十条内容, 返回页面渲染<br>
+	 * 这样的话, 当输入内容时, 就要ajax获取数据
 	 */
 	$("#fieldType").on('input',function () {
 		//这里是获取input输入的值设置给select 这里的select 一定要添加一个 lay-search 这个属性，否则select 不可搜索
 		var eleId = document.activeElement.id;
 		var eleIndex = eleId.replace("fieldType", "");
-		var value = $("#fieldType"+eleIndex).val();
-
-		var version=$("#version").val();
-		var moduleId=$("#id").val();
-		$.ajax({
-			type: 'POST',
-			url: '/zproto/module/selectProtoObjList?version='+version+'&moduleId='+moduleId+'&input='+value,
-			dataType: 'JSON',
-			contentType: "application/json; charset=utf-8",
-			success: function(data){
-				$("#field_type"+eleIndex).val(value);
-				$("#field_type"+eleIndex).empty();
-				$.each(data, function (index, item) {
-					$("#field_type"+eleIndex).append(new Option(item, item));//往下拉菜单里添加元素
-				});
-				form.render();
-				$("#field_type"+eleIndex).next().find(".layui-select-title input").click();
-			},
-			error : function(data) {
-				alert("访问出错！");
-				return false;
+		var value = $("#fieldType"+eleIndex).val()
+		value = value.replace(/^\s*/,"");//利用正则去除左侧空格
+		$("#field_type"+eleIndex).val(value);
+		form.render();
+		$("#field_type"+eleIndex).next().find(".layui-select-title input").click();
+		var dl = $("#field_type"+eleIndex).next().find("dl").children();
+		var j = -1;
+		for (var i =0;i<dl.length;i++){
+			if (dl[i].innerHTML.indexOf(value)<=-1){
+				dl[i].style.display="none";
+				j++
 			}
-		});
+			if (j ==dl.length-1){
+				$("#field_type"+eleIndex).next().find("dl").css({"display":"none"});
+			}
+		}
 	})
-	.on('keyup', function(event){
-		var eleId = document.activeElement.id;
-		var eleIndex = eleId.replace("fieldType", "");
-		if(event.keyCode ==13){
-			var value = $("#field_type"+eleIndex).next().find(".layui-select-title input").val();
-			if (value!=""){
-				$("#field_type"+eleIndex).next().find(".layui-select-title input").click();
-				$("#fieldType"+eleIndex).val(value);
-			}
-		}//不监听上下键选择,太难实现,用鼠标点吧!!!!
-	});
+	// $("#fieldType").on('input',function () {
+	// 	//这里是获取input输入的值设置给select 这里的select 一定要添加一个 lay-search 这个属性，否则select 不可搜索
+	// 	var eleId = document.activeElement.id;
+	// 	var eleIndex = eleId.replace("fieldType", "");
+	// 	var value = $("#fieldType"+eleIndex).val()
+	// 	value = value.replace(/^\s*/,"");//利用正则去除左侧空格
+	// 	$("#field_type"+eleIndex).val(value);
+	// 	form.render();
+	// 	$("#field_type"+eleIndex).next().find(".layui-select-title input").click();
+	// 	var dl = $("#field_type"+eleIndex).next().find("dl").children();
+	// 	var j = -1;
+	// 	for (var i =0;i<dl.length;i++){
+	// 		if (dl[i].innerHTML.indexOf(value)<=-1){
+	// 			dl[i].style.display="none";
+	// 			j++
+	// 		}
+	// 		if (j ==dl.length-1){
+	// 			$("#field_type"+eleIndex).next().find("dl").css({"display":"none"});
+	// 		}
+	// 	}
+	// })
 
 	$("#createMessage1").click(function(){
 		var version=$("#version").val();
@@ -285,6 +289,7 @@
 	var eleIndex = 0;
     $(document).ready(function(){
  		var protocols = /*[[${data}]]*/ ;
+		var allTypes = /*[[${allTypes}]]*/ ;
         for(var i in protocols){
             var protocol=protocols[i];
             var clone = $("#protocolTmp").clone(true);

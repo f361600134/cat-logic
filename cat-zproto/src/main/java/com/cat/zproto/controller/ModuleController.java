@@ -17,6 +17,7 @@ import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -354,7 +355,7 @@ public class ModuleController {
 		 *2.其他自定义类型
 		 */
 		List<String> allTypes = new ArrayList<>(ProtoTypeEnum.enumMap.values());
-		allTypes.addAll(protoService.getAllPbProtoName(version, setting.getProto().getPbPrefix()));
+//		allTypes.addAll(protoService.getAllPbProtoName(version, setting.getProto().getPbPrefix()));
 		/*
 		 * 也只是为了做一个排序, 写这么多代码,这里的数据结构没有设计好 工具完成后要想办法重构代码 20210603
 		 * 工具基本完成, 已经懒得重构了 20210611
@@ -929,7 +930,6 @@ public class ModuleController {
 		if (protoObject == null) {
 			return null;
 		}
-		//TODO 优化点，在无数据库时，根据模块信息生成代码。
 		TableEntity tableEntity = dbService.getTableEntity(entity.getName());
 		if (tableEntity == null) {
 			return null;
@@ -959,6 +959,32 @@ public class ModuleController {
 		dto.getProtoReqStructList().addAll(protoReqStructList);
 		dto.getProtoPBStructList().addAll(protoPBStructList);
 		return dto;
+	}
+
+	/**
+	 * 查询proto对象列表
+	 */
+	@ResponseBody
+	@RequestMapping("/selectProtoObjList")
+	public List<String> selectProtoList(String version, int moduleId, String input){
+		ModuleEntity entity = moduleService.getModuleEntity(version, moduleId);
+		if (entity == null) {
+			return null;
+		}
+		List<String> allTypes = new ArrayList<>();
+		if (StringUtils.isBlank(input)) {
+			//如果输入的空字符, 则填充基础类型
+			allTypes.addAll(ProtoTypeEnum.enumMap.values());
+		}else {
+			for(String s : ProtoTypeEnum.enumMap.values()) {
+				if (s.startsWith(input)) {
+					allTypes.add(s);
+				}
+			}
+			//否则填充查询出来的类型
+			allTypes.addAll(protoService.getAllPbProtoName(version, input));
+		}
+		return allTypes;
 	}
 
 }

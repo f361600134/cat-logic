@@ -130,6 +130,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludeDevtools>false</excludeDevtools>
+				</configuration>
 			</plugin>
 			<!-- 编译插件配置 -->
 			<plugin>
@@ -162,11 +165,9 @@
 							<resources>
 								<resource>
 									<directory>src/main/resources</directory>
-<!-- 									<filtering>true</filtering> -->
 								</resource>
 								<resource>
 									<directory>shell</directory>
-									<filtering>true</filtering>
 								</resource>
 							</resources>
 						</configuration>
