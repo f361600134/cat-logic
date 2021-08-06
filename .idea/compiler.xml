@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cat-api" />
+        <module name="cat-server" />
+        <module name="cat-battle" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cat" target="1.8" />
+      <module name="cat-api" target="1.5" />
+      <module name="cat-battle" target="1.8" />
+      <module name="cat-logic" target="1.8" />
+      <module name="cat-net" target="1.8" />
+      <module name="cat-orm" target="1.8" />
+      <module name="cat-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
