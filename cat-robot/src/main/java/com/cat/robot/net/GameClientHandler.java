@@ -3,7 +3,8 @@ package com.cat.robot.net;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.net.network.base.GameSession;
+import com.cat.net.network.base.DefaultSession;
+import com.cat.net.network.base.ISession;
 import com.cat.net.network.base.Packet;
 import com.cat.robot.actor.IRobotActor;
 
@@ -22,7 +23,7 @@ public class GameClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
 		logger.info("连接服务:{}", ctx.channel().remoteAddress());
-		GameSession gameSession = GameSession.create(ctx.channel());
+		ISession gameSession = DefaultSession.create(ctx.channel());
 		this.robotActor.setGameSession(gameSession);
 	}
 

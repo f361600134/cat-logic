@@ -1,6 +1,6 @@
 package com.cat.robot.actor;
 
-import com.cat.net.network.base.GameSession;
+import com.cat.net.network.base.ISession;
 import com.cat.net.network.base.Packet;
 import com.cat.net.network.process.ControllerDispatcher;
 import com.cat.robot.module.robot.RobotContext;
@@ -14,7 +14,7 @@ public interface IRobotActor {
 	void setContext(RobotContext robotCtx);
 	
 	//	设置session
-	void setGameSession(GameSession gameSession);
+	void setGameSession(ISession gameSession);
 	
 	//消息响应
 	void response(Packet packet);

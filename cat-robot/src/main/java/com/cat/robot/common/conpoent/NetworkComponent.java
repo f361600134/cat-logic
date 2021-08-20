@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.cat.net.network.controller.DefaultServerController;
+import com.cat.net.network.controller.DefaultConnectController;
 import com.cat.net.network.process.ControllerDispatcher;
 
 /**
@@ -23,9 +23,9 @@ public class NetworkComponent {
 	 * @return
 	 */
 	@Bean
-	public DefaultServerController gameServerController() {
+	public DefaultConnectController gameServerController() {
 		logger.info("注册[GameServerController]服务");
-		return new DefaultServerController();
+		return new DefaultConnectController();
 	}
 	
 	/**

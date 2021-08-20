@@ -9,15 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
-import com.cat.net.network.base.GameSession;
 import com.cat.net.network.base.IProtocol;
+import com.cat.net.network.base.ISession;
 import com.cat.net.network.process.ControllerDispatcher;
 import com.cat.robot.actor.IRobotActor;
 import com.cat.robot.actor.RobotActor;
 import com.cat.robot.common.akka.AkkaContext;
 import com.cat.robot.common.config.Config;
 import com.cat.robot.common.context.SpringContextHolder;
-import com.cat.robot.module.chat.proto.ReqChat;
 import com.cat.robot.module.login.proto.ReqLogin;
 import com.cat.robot.net.RobotNet;
 import com.cat.robot.util.HttpClientUtil;
@@ -32,7 +31,7 @@ public class RobotContext {
 	
 	private AckInitPlayerInfo robotInfo;
 	
-	private GameSession gameSession;
+	private ISession gameSession;
 	private RobotNet robotNet = new RobotNet(this);
 	
 	private boolean entryGame;
@@ -80,11 +79,11 @@ public class RobotContext {
 		return robot.getRobotLogin().getPort();
 	}
 	
-	public GameSession getGameSession() {
+	public ISession getGameSession() {
 		return gameSession;
 	}
 
-	public void setGameSession(GameSession gameSession) {
+	public void setGameSession(ISession gameSession) {
 		this.gameSession = gameSession;
 	}
 
@@ -170,7 +169,7 @@ public class RobotContext {
 	public void send(IProtocol protocol) {
 		if (isOnline()) {
 			gameSession.push(protocol);
-			logger.info("send message:[{}], playerId:{}, size={}B, data:{}", protocol.protocol(), gameSession.getPlayerId(),
+			logger.info("send message:[{}], playerId:{}, size={}B, data:{}", protocol.protocol(), gameSession.getUserData(),
 					protocol, protocol.toBytes().length);
 		}
 	}

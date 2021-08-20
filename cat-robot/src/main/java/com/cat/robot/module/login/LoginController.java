@@ -5,9 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
 import com.cat.net.network.annotation.Cmd;
-import com.cat.net.network.base.GameSession;
+import com.cat.net.network.base.ISession;
 import com.cat.net.network.controller.IController;
-import com.cat.robot.module.robot.RobotContext;
 import com.cat.server.game.data.proto.PBDefine;
 import com.cat.server.game.data.proto.PBLogin;
 
@@ -24,7 +23,7 @@ public class LoginController implements IController{
 	 * @date 2019年7月4日上午11:45:13
 	 */
 	@Cmd(PBDefine.PBProtocol.AckPlayerLogin_VALUE)
-	public void ackLogin(GameSession gameSession, PBLogin.AckLogin ack) {
+	public void ackLogin(ISession gameSession, PBLogin.AckLogin ack) {
 		int code = ack.getCode();
 		int staus = ack.getStatus();
 		logger.info("ackLogin code:{}, staus:{}", code, staus);
@@ -48,7 +47,7 @@ public class LoginController implements IController{
 	 * @date 2019年7月4日上午11:45:02
 	 */
 	@Cmd(PBDefine.PBProtocol.AckPlayerRandName_VALUE)
-	public void ackLogin(GameSession gameSession, PBLogin.AckRandName ack) {
+	public void ackLogin(ISession gameSession, PBLogin.AckRandName ack) {
 //		String names = ack.getNames();
 //		if (!names.isEmpty()) {
 //			int cmd = PBDefine.PBProtocol.ReqCreateHost_VALUE;
