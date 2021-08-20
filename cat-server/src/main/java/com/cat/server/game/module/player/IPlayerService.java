@@ -3,6 +3,7 @@ package com.cat.server.game.module.player;
 import java.util.Collection;
 
 import com.cat.net.network.base.IProtocol;
+import com.cat.net.network.base.ISession;
 import com.cat.server.game.module.player.domain.PlayerContext;
 
 public interface IPlayerService {
@@ -44,5 +45,19 @@ public interface IPlayerService {
 	 * @param playerIds
 	 */
 	public void kickPlayer(Collection<Long> playerIds);
+	
+//	/**
+//	 * 通过session获取玩家id
+//	 * @param session
+//	 * @return
+//	 */
+//	public Long getPlayerId(ISession session);
+//	
+//	/**
+//	 * 通过session获取玩家对象
+//	 * @param session
+//	 * @return
+//	 */
+//	public PlayerContext getPlayerContext(ISession session);
 
 }

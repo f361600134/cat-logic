@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.cat.net.network.annotation.Cmd;
-import com.cat.net.network.base.GameSession;
+import com.cat.net.network.base.ISession;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.server.game.data.proto.PBPlayer.ReqPlayerCreateRole;
 import com.cat.server.game.data.proto.PBPlayer.ReqPlayerHeart;
@@ -36,8 +36,8 @@ public class PlayerController {
 	*请求获取随机名
 	*/
 	@Cmd(value = PBProtocol.ReqPlayerRandName_VALUE)
-	public void ReqPlayerRandName(GameSession session, ReqPlayerRandName req) {
-		long playerId = session.getPlayerId();
+	public void ReqPlayerRandName(ISession session, ReqPlayerRandName req) {
+		long playerId = session.getUserData();
 		AckPlayerRandNameResp ack = AckPlayerRandNameResp.newInstance();
 		playerService.reqPlayerRandName(playerId, req, ack);
 		playerService.sendMessage(playerId, ack);
@@ -47,8 +47,8 @@ public class PlayerController {
 	*请求断线重连
 	*/
 	@Cmd(value = PBProtocol.ReqPlayerReLogin_VALUE)
-	public void ReqPlayerReLogin(GameSession session, ReqPlayerReLogin req) {
-		long playerId = session.getPlayerId();
+	public void ReqPlayerReLogin(ISession session, ReqPlayerReLogin req) {
+		long playerId = session.getUserData();
 		AckPlayerReLoginResp ack = AckPlayerReLoginResp.newInstance();
 		ErrorCode code = playerService.reqPlayerReLogin(playerId, req, ack);
 		ack.setCode(code.getCode());
@@ -59,8 +59,8 @@ public class PlayerController {
 	*请求心跳
 	*/
 	@Cmd(value = PBProtocol.ReqPlayerHeart_VALUE)
-	public void ReqPlayerHeart(GameSession session, ReqPlayerHeart req) {
-		long playerId = session.getPlayerId();
+	public void ReqPlayerHeart(ISession session, ReqPlayerHeart req) {
+		long playerId = session.getUserData();
 		AckPlayerHeartResp ack = AckPlayerHeartResp.newInstance();
 		playerService.reqPlayerHeart(playerId, req, ack);
 		playerService.sendMessage(playerId, ack);
@@ -70,8 +70,8 @@ public class PlayerController {
 	*请求创建角色
 	*/
 	@Cmd(value = PBProtocol.ReqPlayerCreateRole_VALUE)
-	public void ReqPlayerCreateRole(GameSession session, ReqPlayerCreateRole req) {
-		long playerId = session.getPlayerId();
+	public void ReqPlayerCreateRole(ISession session, ReqPlayerCreateRole req) {
+		long playerId = session.getUserData();
 		AckPlayerCreateRoleResp ack = AckPlayerCreateRoleResp.newInstance();
 		ErrorCode code = playerService.reqPlayerCreateRole(playerId, req, ack);
 		ack.setCode(code.getCode());
@@ -82,8 +82,8 @@ public class PlayerController {
 	*请求连接游戏服
 	*/
 	@Cmd(value = PBProtocol.ReqPlayerLogin_VALUE)
-	public void ReqPlayerLogin(GameSession session, ReqPlayerLogin req) {
-		long playerId = session.getPlayerId();
+	public void ReqPlayerLogin(ISession session, ReqPlayerLogin req) {
+		long playerId = session.getUserData();
 		AckPlayerLoginResp ack = AckPlayerLoginResp.newInstance();
 		ErrorCode code = playerService.reqPlayerLogin(playerId, req, ack);
 		ack.setCode(code.getCode());

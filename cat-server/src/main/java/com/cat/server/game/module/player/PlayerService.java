@@ -15,20 +15,28 @@ import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
 import com.cat.net.core.executor.DisruptorStrategy;
-import com.cat.net.network.base.GameSession;
 import com.cat.net.network.base.IProtocol;
+import com.cat.net.network.base.ISession;
 import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.common.ServerConstant;
 import com.cat.server.core.event.GameEventBus;
-import com.cat.server.game.data.proto.PBPlayer.*;
+import com.cat.server.game.data.proto.PBPlayer.ReqPlayerCreateRole;
+import com.cat.server.game.data.proto.PBPlayer.ReqPlayerHeart;
+import com.cat.server.game.data.proto.PBPlayer.ReqPlayerLogin;
+import com.cat.server.game.data.proto.PBPlayer.ReqPlayerRandName;
+import com.cat.server.game.data.proto.PBPlayer.ReqPlayerReLogin;
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
 import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
-import com.cat.server.game.module.player.proto.*;
+import com.cat.server.game.module.player.proto.AckPlayerCreateRoleResp;
+import com.cat.server.game.module.player.proto.AckPlayerHeartResp;
+import com.cat.server.game.module.player.proto.AckPlayerLoginResp;
+import com.cat.server.game.module.player.proto.AckPlayerRandNameResp;
+import com.cat.server.game.module.player.proto.AckPlayerReLoginResp;
 import com.cat.server.game.module.player.resp.ResAuthResult;
 import com.cat.server.game.module.resource.IResourceService;
 import com.cat.server.utils.HttpClientUtil;
@@ -51,6 +59,10 @@ class PlayerService implements IPlayerService, IResourceService {
 	@Autowired
 	private GameEventBus eventBus;
 	
+	/**
+	 * 缓存玩家session
+	 */
+//	private final BiMap<Long, ISession> sessionMap = Maps.synchronizedBiMap(HashBiMap.create());
 	/**
 	 * 玩家登录信息缓存<P>
 	 * key:玩家账号+初始服务器id<P>
@@ -132,7 +144,7 @@ class PlayerService implements IPlayerService, IResourceService {
 	 * @param req 登录请求消息体
 	 * @return 错误码
 	 */
-	public ErrorCode login(GameSession session, ReqPlayerLogin req, AckPlayerLoginResp ack) {
+	public ErrorCode login(ISession session, ReqPlayerLogin req, AckPlayerLoginResp ack) {
 		final String accountName = req.getAccountName();
 		final int initServerId = req.getServerId();
 		// Http调用, 去账号服请求验证
@@ -159,7 +171,7 @@ class PlayerService implements IPlayerService, IResourceService {
 		if (context.isOnline()) {
 			kickPlayer(playerId);
 		}
-		session.setPlayerId(playerId);
+		session.setUserData(playerId);
 		context.setSession(session);
 		addContext(context);
 		//	登录事件
@@ -320,7 +332,7 @@ class PlayerService implements IPlayerService, IResourceService {
 		if (context == null || context.isOnline()) {
 			return;
 		}
-		final int sessionId = context.getSession().getId();
+		final int sessionId = context.getSession().getSessionId();
 		DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(sessionId, context::forceLogout);
 	}
 	
@@ -380,6 +392,20 @@ class PlayerService implements IPlayerService, IResourceService {
 	public void sendMessage(Collection<Long> playerIds, IProtocol protocol) {
 		playerIds.forEach(playerId -> sendMessage(playerId, protocol));
 	}
+	
+//	@Override
+//	public Long getPlayerId(ISession session) {
+//		return sessionMap.inverse().get(session);
+//	}
+//
+//	@Override
+//	public PlayerContext getPlayerContext(ISession session) {
+//		Long playerId = getPlayerId(session);
+//		if (playerId == null) {
+//			return null;
+//		}
+//		return getPlayerContext(playerId);
+//	}
 
 	/**
 	 * 玩家下线, 玩家丢进线程池中,执行踢下线操作

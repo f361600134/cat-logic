@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cat.net.network.base.GameSession;
+import com.cat.net.network.base.ISession;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.game.module.gm.annotation.Command;
 import com.cat.server.game.module.gm.type.ICommand;
@@ -35,7 +35,7 @@ class CommandService implements ICommandService, Lifecycle{
 	}
 
 	@Override
-	public boolean process(GameSession session, String command) {
+	public boolean process(ISession session, String command) {
 		String[] cmds = command.split(" ");
 		ICommand conmand = null;
 		for (String key : commands.keySet()) {

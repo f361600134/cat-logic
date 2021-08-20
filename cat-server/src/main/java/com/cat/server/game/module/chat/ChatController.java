@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.cat.net.network.annotation.Cmd;
-import com.cat.net.network.base.GameSession;
+import com.cat.net.network.base.ISession;
 import com.cat.net.network.controller.IController;
 import com.cat.server.game.data.proto.PBChat.ReqChat;
 import com.cat.server.game.data.proto.PBDefine;
@@ -35,8 +35,8 @@ public class ChatController implements IController{
     private IPlayerService playerService;
 
     @Cmd(PBDefine.PBProtocol.ReqChat_VALUE)
-    public void chat(GameSession session, ReqChat req) {
-        long playerId = session.getPlayerId();
+    public void chat(ISession session, ReqChat req) {
+        long playerId = session.getUserData();
         boolean isGm = this.commandService.isCommand(req.getContent());
         if (isGm) {
             this.commandService.process(session, req.getContent());

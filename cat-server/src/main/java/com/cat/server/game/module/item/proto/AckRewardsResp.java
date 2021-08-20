@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.server.game.data.proto.PBDefine.*;
-import com.cat.net.network.base.IProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
+import com.cat.net.network.base.IProtocol;
 import com.cat.server.game.data.proto.PBCommon.*;
 import com.cat.server.game.data.proto.PBItem.*;
 

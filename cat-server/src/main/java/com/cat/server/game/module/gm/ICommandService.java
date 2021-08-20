@@ -1,6 +1,6 @@
 package com.cat.server.game.module.gm;
 
-import com.cat.net.network.base.GameSession;
+import com.cat.net.network.base.ISession;
 
 public interface ICommandService {
 	
@@ -16,6 +16,6 @@ public interface ICommandService {
 	 * @param command
 	 * @return
 	 */
-	public boolean process(GameSession session, String command);
+	public boolean process(ISession session, String command);
 
 }

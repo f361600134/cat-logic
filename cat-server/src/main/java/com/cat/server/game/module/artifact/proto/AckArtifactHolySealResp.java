@@ -1,7 +1,6 @@
 package com.cat.server.game.module.artifact.proto;
 
 import com.cat.net.network.base.IProtocol;
-
 import com.google.protobuf.AbstractMessageLite.Builder;
 
 /**

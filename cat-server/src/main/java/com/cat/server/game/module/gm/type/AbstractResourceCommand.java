@@ -1,6 +1,6 @@
 package com.cat.server.game.module.gm.type;
 
-import com.cat.net.network.base.GameSession;
+import com.cat.net.network.base.ISession;
 import com.cat.server.game.module.gm.annotation.Command;
 
 /**
@@ -11,7 +11,7 @@ import com.cat.server.game.module.gm.annotation.Command;
 public abstract class AbstractResourceCommand implements ICommand{
 	
 	@Override
-	public boolean process(GameSession session, String content) {
+	public boolean process(ISession session, String content) {
 		Command command = this.getClass().getAnnotation(Command.class);
 		if (command == null) {
 			return false;
@@ -20,7 +20,7 @@ public abstract class AbstractResourceCommand implements ICommand{
 		String name = command.value();
 		String params = content.substring(name.length());
 		
-		return doProcess(session.getPlayerId(), params);
+		return doProcess(session.getUserData(), params);
 	}
 	
 	public abstract boolean doProcess(long playerId, String params);

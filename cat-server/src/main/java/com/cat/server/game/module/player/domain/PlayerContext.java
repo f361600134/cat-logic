@@ -3,8 +3,8 @@ package com.cat.server.game.module.player.domain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.net.network.base.GameSession;
 import com.cat.net.network.base.IProtocol;
+import com.cat.net.network.base.ISession;
 import com.cat.net.network.base.Packet;
 
 /**
@@ -20,7 +20,7 @@ public class PlayerContext{
 	/** 玩家对象 */
 	private Player player;
 	/** 玩家会话 */
-	private GameSession session;
+	private ISession session;
 
 	public final Player getPlayer() {
 		return player;
@@ -30,11 +30,11 @@ public class PlayerContext{
 		this.player = player;
 	}
 
-	public GameSession getSession() {
+	public ISession getSession() {
 		return session;
 	}
 
-	public void setSession(GameSession session) {
+	public void setSession(ISession session) {
 		this.session = session;
 	}
 
@@ -45,7 +45,7 @@ public class PlayerContext{
 		this.player = player;
 	}
 
-	public PlayerContext(Player player, GameSession session) {
+	public PlayerContext(Player player, ISession session) {
 		this.player = player;
 		this.session = session;
 	}

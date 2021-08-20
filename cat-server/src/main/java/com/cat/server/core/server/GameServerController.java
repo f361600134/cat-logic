@@ -2,24 +2,22 @@ package com.cat.server.core.server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 
 import com.cat.net.core.executor.DisruptorDispatchTask;
 import com.cat.net.core.executor.DisruptorStrategy;
 import com.cat.net.network.base.Commander;
-import com.cat.net.network.base.GameSession;
+import com.cat.net.network.base.ISession;
 import com.cat.net.network.base.Packet;
-import com.cat.net.network.controller.DefaultServerController;
+import com.cat.net.network.controller.DefaultConnectController;
 
 import io.netty.buffer.ByteBuf;
 
 /**
- * 游戏服分发处理器
+ * 游戏服分发处理器, 开发人员使用时注册
  */
 //@Primary
 //@Component
-public class GameServerController extends DefaultServerController {
+public class GameServerController extends DefaultConnectController {
 	
 	private static final Logger log = LoggerFactory.getLogger(GameServerController.class);
 	
@@ -27,12 +25,11 @@ public class GameServerController extends DefaultServerController {
 //		log.info("注册[GameServerController]服务");
 	}
 	
-	public void onConnect(GameSession session) {
+	public void onConnect(ISession session) {
 		log.info("自定义分发器, 客户端连接游戏服:{}", session.getChannel().remoteAddress());
 	}
 
-	public void onReceive(GameSession session, ByteBuf message) {
-//		log.info("自定义分发器, 客户端请求消息:{}", session.getChannel().remoteAddress());
+	public void onReceive(ISession session, ByteBuf message) {
 		Packet packet = null;
 		try {
 			if (!serverRunning) {
@@ -46,7 +43,7 @@ public class GameServerController extends DefaultServerController {
 				return;
 			}
 			if (commander.isMustLogin()) {
-				if (session.getPlayerId() <= 0L) { // 未登录
+				if (session.getUserData() != null) { // 未登录
 					log.info("协议[{}]需要登录成功后才能请求", packet.cmd()); 
 //					S2CCommonReply reply = S2CCommonReply.newBuilder().setProtoCode(packet.cmd()).setSuccess(1).build();
 //					SimpleProtocol proto = SimpleProtocol.create(ProtocolCode.COMMON_S2C_REPLY, reply);
@@ -55,7 +52,7 @@ public class GameServerController extends DefaultServerController {
 				}
 			} 
 			DisruptorDispatchTask task = new DisruptorDispatchTask(processor, session, packet);
-			DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(session.getId(), task);
+			DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(session.getSessionId(), task);
 		} catch (Exception e) {
 			if (packet == null) {
 				log.error("协议解析失败", e);
@@ -66,12 +63,12 @@ public class GameServerController extends DefaultServerController {
 	}
 
 	@Override
-	public void onClose(GameSession session) {
+	public void onClose(ISession session) {
 		log.info("自定义分发器, 客户端连接断开:{}", session.getChannel().remoteAddress());
 	}
 
 	@Override
-	public void onException(GameSession session, Throwable e) {
+	public void onException(ISession session, Throwable e) {
 		log.error("自定义分发器, 游戏协议通信过程出错", e);
 	}
 }

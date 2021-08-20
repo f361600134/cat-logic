@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.cat.net.core.reflect.MethodInvoker;
-import com.cat.net.network.base.GameSession;
+import com.cat.net.network.base.ISession;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.game.module.gm.annotation.Command;
 
@@ -23,7 +23,7 @@ public abstract class AbstractModuleCommand implements ICommand, Lifecycle{
 	 */
 	private Map<String, MethodInvoker> commandMap = new HashMap<>();
 
-	public boolean process(GameSession session, String content) {
+	public boolean process(ISession session, String content) {
 		Command command = this.getClass().getAnnotation(Command.class);
 		if (command == null) {
 			return false;
