@@ -11,31 +11,31 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * spring上下文获取, 
+ * spring上下文获取,
+ * 
  * @author Administrator
  *
  */
 @Component
-public class SpringContextHolder implements ApplicationContextAware{
-	
+public class SpringContextHolder implements ApplicationContextAware {
+
 	private static final Logger log = LoggerFactory.getLogger(SpringContextHolder.class);
 
 	private static ApplicationContext springContext;
-	
-	public void setApplicationContext(ApplicationContext context) throws BeansException
-	{
+
+	public void setApplicationContext(ApplicationContext context) throws BeansException {
 		log.info("注册[ApplicationContext]服务");
 		SpringContextHolder.springContext = context;
 	}
-		
+
 	public ApplicationContext getSpringContext() {
 		return springContext;
 	}
-	
+
 	public static <T> T getBean(Class<T> tClass) {
 		return springContext.getBean(tClass);
 	}
-	
+
 	/**
 	 * 根据注解类型获取实体集合
 	 * 

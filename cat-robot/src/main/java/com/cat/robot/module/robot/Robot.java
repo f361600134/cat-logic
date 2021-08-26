@@ -2,70 +2,84 @@
 package com.cat.robot.module.robot;
 
 public class Robot {
-	/*	编号*/
+	/* 编号 */
 	private int index;
-	/*	名字*/
+	/* 名字 */
 	private String name;
-	/*	密码*/
+	/* 密码 */
 	private String pwd;
-	/*	渠道id*/
+	/* 渠道id */
 	private int channal;
-	/*	服务器id*/
+	/* 服务器id */
 	private int serverId;
-	
-	/*	服务器返回的机器人玩家id*/
+
+	/* 服务器返回的机器人玩家id */
 	private int playerId;
-	/*	机器人登录相关信息*/
+	/* 机器人登录相关信息 */
 	private RobotLogin robotLogin;
-	
+
 	public Robot(String name, String pwd) {
 		super();
 		this.name = name;
 		this.pwd = pwd;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getPwd() {
 		return pwd;
 	}
+
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+
 	public int getPlayerId() {
 		return playerId;
 	}
+
 	public void setPlayerId(int playerId) {
 		this.playerId = playerId;
 	}
+
 	public RobotLogin getRobotLogin() {
 		return robotLogin;
 	}
+
 	public void setRobotLogin(RobotLogin robotLogin) {
 		this.robotLogin = robotLogin;
 	}
+
 	public int getChannal() {
 		return channal;
 	}
+
 	public void setChannal(int channal) {
 		this.channal = channal;
 	}
+
 	public int getServerId() {
 		return serverId;
 	}
+
 	public void setServerId(int serverId) {
 		this.serverId = serverId;
 	}
+
 	public int getIndex() {
 		return index;
 	}
+
 	public void setIndex(int index) {
 		this.index = index;
 	}
-	
+
 	public static Robot create() {
 //		int accountId = RobotConfig.get().getNextAccountInt();
 //		String name = RobotConfig.get().getRobotName()+accountId;

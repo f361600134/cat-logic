@@ -10,7 +10,7 @@ public interface Lifecycle {
 	default String name() {
 		return this.getClass().getSimpleName();
 	}
-	
+
 	default void start() throws Throwable {
 
 	}
@@ -18,7 +18,7 @@ public interface Lifecycle {
 	default void stop() throws Throwable {
 
 	}
-	
+
 	default int priority() {
 		return Priority.LOWEST.getPriority();
 	}

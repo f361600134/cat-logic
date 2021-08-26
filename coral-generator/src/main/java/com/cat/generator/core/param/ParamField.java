@@ -13,7 +13,7 @@ public class ParamField {
 		this.prefix = prefix;
 		this.mainWord = mainWord;
 		this.keyIndex = keyIndex;
-		this.fullName = prefix+"."+mainWord;
+		this.fullName = prefix + "." + mainWord;
 		this.value = value;
 	}
 
@@ -22,7 +22,7 @@ public class ParamField {
 		this.prefix = prefix;
 		this.mainWord = mainWord;
 		this.keyIndex = mainWord;
-		this.fullName = prefix+"."+mainWord;
+		this.fullName = prefix + "." + mainWord;
 		this.value = value;
 	}
 
@@ -61,7 +61,7 @@ public class ParamField {
 	public void setKeyIndex(String keyIndex) {
 		this.keyIndex = keyIndex;
 	}
-	
+
 	public String getValue() {
 		return value;
 	}

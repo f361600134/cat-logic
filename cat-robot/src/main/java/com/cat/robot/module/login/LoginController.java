@@ -11,15 +11,16 @@ import com.cat.server.game.data.proto.PBDefine;
 import com.cat.server.game.data.proto.PBLogin;
 
 @Controller
-public class LoginController implements IController{
-	
+public class LoginController implements IController {
+
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	
+
 	/**
 	 * 响应登录, 开始获取随机名
+	 * 
 	 * @param robotContext
-	 * @param ack  
-	 * @return void  
+	 * @param ack
+	 * @return void
 	 * @date 2019年7月4日上午11:45:13
 	 */
 	@Cmd(PBDefine.PBProtocol.AckPlayerLogin_VALUE)
@@ -30,20 +31,21 @@ public class LoginController implements IController{
 		// 0 表示登陆成功
 		if (code == 0) {
 			if (staus == 0) {
-				//不创建主公, 进入游戏
-			}else {
-				//取随机名
+				// 不创建主公, 进入游戏
+			} else {
+				// 取随机名
 //				PBLogin.ReqRandName.Builder newBuilder = PBLogin.ReqRandName.newBuilder();
 //				context.send(PBDefine.PBProtocol.ReqRandName_VALUE, newBuilder.build());
 			}
 		}
 	}
-	
+
 	/**
 	 * 返回名字列表, 创建角色
+	 * 
 	 * @param robotContext
-	 * @param ack  
-	 * @return void  
+	 * @param ack
+	 * @return void
 	 * @date 2019年7月4日上午11:45:02
 	 */
 	@Cmd(PBDefine.PBProtocol.AckPlayerRandName_VALUE)
@@ -78,6 +80,5 @@ public class LoginController implements IController{
 //			logger.info("CreateHost error, code: ", res.getCode());
 //		}
 //	}
-	
 
 }

@@ -18,12 +18,11 @@ import com.cat.generator.util.StringUtils;
 import com.google.common.collect.Multimap;
 
 public enum ParamEnum {
-	
-	Primitive(new Class<?>[] {Boolean.TYPE, Boolean.class, 
-		Integer.TYPE, Integer.class, Long.TYPE, Long.class, Byte.TYPE, Byte.class,
-		Double.TYPE, Double.class, Short.TYPE, Short.class, Float.TYPE, Float.class,
-		String.class }){//基础类型
-		
+
+	Primitive(new Class<?>[] { Boolean.TYPE, Boolean.class, Integer.TYPE, Integer.class, Long.TYPE, Long.class,
+			Byte.TYPE, Byte.class, Double.TYPE, Double.class, Short.TYPE, Short.class, Float.TYPE, Float.class,
+			String.class }) {// 基础类型
+
 		@Override
 		public boolean isAssignableFrom(Class<?> cla) {
 			Class<?>[] classes = getClasses();
@@ -34,15 +33,15 @@ public enum ParamEnum {
 			}
 			return false;
 		}
-		
+
 		public void doInject(String prefix, PropertiesBase base, Field field) {
 			Value v = field.getAnnotation(Value.class);
-			String prefixName = v == null ? (prefix):(prefix + "." + v.name());
+			String prefixName = v == null ? (prefix) : (prefix + "." + v.name());
 			// 基础参数
 			Multimap<String, ParamField> paramFieldMap = base.getValue(prefixName);
 			// 基础类型和String类型
 			Collection<ParamField> colls = paramFieldMap.get(field.getName());
-			for (ParamField param: colls) {
+			for (ParamField param : colls) {
 				try {
 					setValue(field, param.getValue());
 				} catch (Exception e) {
@@ -51,9 +50,10 @@ public enum ParamEnum {
 				break;
 			}
 		}
-		
+
 		/**
 		 * 基础属性直接数据赋值
+		 * 
 		 * @param field
 		 * @param value
 		 * @return
@@ -84,12 +84,12 @@ public enum ParamEnum {
 			} else if (clz == String.class) {
 				field.set(null, value);
 			} else {
-				//logger.info("不支持的类型:{}", clz);
+				// logger.info("不支持的类型:{}", clz);
 			}
 			return false;
 		}
 	},
-	Map(new Class<?>[] {Map.class}){ //Map类型
+	Map(new Class<?>[] { Map.class }) { // Map类型
 		@Override
 		public boolean isAssignableFrom(Class<?> cla) {
 			Class<?>[] classes = getClasses();
@@ -119,23 +119,24 @@ public enum ParamEnum {
 			Class<?> keyClazz = Class.forName(keyActualType.getTypeName());
 			Class<?> valueClazz = Class.forName(valueActualType.getTypeName());
 			Method method = obj.getClass().getMethod("put", Object.class, Object.class);
-			//value 为简单对象
+			// value 为简单对象
 			if (Primitive.isAssignableFrom(valueClazz)) {
 				for (ParamField paramField : paramFieldMap.values()) {
-					method.invoke(obj, ConvertUtils.convert(paramField.getKeyIndex(), keyClazz), ConvertUtils.convert(paramField.getValue(), valueClazz));
+					method.invoke(obj, ConvertUtils.convert(paramField.getKeyIndex(), keyClazz),
+							ConvertUtils.convert(paramField.getValue(), valueClazz));
 				}
-			}else {
-				for (String key: paramFieldMap.keySet()) {
+			} else {
+				for (String key : paramFieldMap.keySet()) {
 					Collection<ParamField> colls = paramFieldMap.get(key);
 					Object obj_ = valueClazz.newInstance();
 					for (ParamField paramField : colls) {
-						//只处理value
+						// 只处理value
 						Constructor<?>[] constructors_ = valueClazz.getConstructors();
 						// 构造函数数量为0, 表示不是对象, 是接口或者抽象类
 						if (constructors_.length == 0) {
 							return;
 						}
-						//获取类型
+						// 获取类型
 						String methodGetName = "get" + StringUtils.firstCharUpper(paramField.getMainWord());
 						Class<?> valueClazz_ = null;
 						try {
@@ -146,7 +147,7 @@ public enum ParamEnum {
 							Method methodGet = obj_.getClass().getMethod(methodGetName);
 							valueClazz_ = methodGet.getReturnType();
 						}
-						//设置值
+						// 设置值
 						String methodSetName = "set" + StringUtils.firstCharUpper(paramField.getMainWord());
 						Method methodSet = obj_.getClass().getMethod(methodSetName, valueClazz_);
 						methodSet.invoke(obj_, ConvertUtils.convert(paramField.getValue(), valueClazz_));
@@ -157,7 +158,7 @@ public enum ParamEnum {
 			field.set(null, obj);
 		}
 	},
-	Collection(new Class<?>[] {Collection.class}){ //Collection类型
+	Collection(new Class<?>[] { Collection.class }) { // Collection类型
 		@Override
 		public boolean isAssignableFrom(Class<?> cla) {
 			Class<?>[] classes = getClasses();
@@ -166,7 +167,7 @@ public enum ParamEnum {
 			}
 			return false;
 		}
-		
+
 		@Override
 		public void doInject(String prefix, PropertiesBase base, Field field) throws Exception {
 			String prefixName = prefix + "." + field.getName();
@@ -193,9 +194,9 @@ public enum ParamEnum {
 				for (ParamField paramField : paramFieldMap.values()) {
 					method.invoke(obj, ConvertUtils.convert(paramField.getValue(), valueClazz));
 				}
-			}else {
+			} else {
 				// 如果是基础类型,则直接调用add方法添加数据
-				for (String key: paramFieldMap.keySet()) {
+				for (String key : paramFieldMap.keySet()) {
 					Collection<ParamField> colls = paramFieldMap.get(key);
 					Object obj_ = valueClazz.newInstance();
 					for (ParamField paramField : colls) {
@@ -204,11 +205,11 @@ public enum ParamEnum {
 						if (constructors_.length == 0) {
 							return;
 						}
-						//获取类型
+						// 获取类型
 						String methodGetName = "get" + StringUtils.firstCharUpper(paramField.getMainWord());
 						Method methodGet = obj_.getClass().getMethod(methodGetName);
 						Class<?> valueClazz_ = methodGet.getReturnType();
-						//设置值
+						// 设置值
 						String methodSetName = "set" + StringUtils.firstCharUpper(paramField.getMainWord());
 						Method methodSet = obj_.getClass().getMethod(methodSetName, valueClazz_);
 						methodSet.invoke(obj_, ConvertUtils.convert(paramField.getValue(), valueClazz_));
@@ -219,24 +220,24 @@ public enum ParamEnum {
 			field.set(null, obj);
 		}
 	},
-	MultiMap(){ //看需要增加MultiMap的实现, 不过
+	MultiMap() { // 看需要增加MultiMap的实现, 不过
 		@Override
-		public boolean isAssignableFrom(Class<?> cla){
+		public boolean isAssignableFrom(Class<?> cla) {
 			return false;
 		}
-		
+
 		@Override
 		public void doInject(String prefix, PropertiesBase base, Field field) throws Exception {
-			//TODO 
+			// TODO
 		}
-		
+
 	},
-	Custom(){//自定义类型
+	Custom() {// 自定义类型
 		@Override
 		public boolean isAssignableFrom(Class<?> cla) {
 			return true;
 		}
-		
+
 		@Override
 		public void doInject(String prefix, PropertiesBase base, Field field) throws Exception {
 			// 获取list的泛型的类型
@@ -249,39 +250,40 @@ public enum ParamEnum {
 			Object obj = field.getType().newInstance();
 			Multimap<String, ParamField> paramFieldMap = base.getValue(prefixName);
 			for (ParamField paramField : paramFieldMap.values()) {
-				//获取类型
+				// 获取类型
 				String methodGetName = "get" + StringUtils.firstCharUpper(paramField.getMainWord());
 				Method methodGet = obj.getClass().getMethod(methodGetName);
 				Class<?> valueClazz = methodGet.getReturnType();
-				//设置值
+				// 设置值
 				String methodSetName = "set" + StringUtils.firstCharUpper(paramField.getMainWord());
 				Method methodSet = obj.getClass().getMethod(methodSetName, valueClazz);
 				methodSet.invoke(obj, ConvertUtils.convert(paramField.getValue(), valueClazz));
 			}
 			field.set(null, obj);
 		}
-	},
-	;
-	
+	},;
+
 	private Class<?>[] classes;
-	
+
 	private ParamEnum() {
 	}
+
 	private ParamEnum(Class<?>[] classes) {
 		this.classes = classes;
 	}
-	
+
 	public Class<?>[] getClasses() {
 		return classes;
 	}
+
 	public void setClasses(Class<?>[] classes) {
 		this.classes = classes;
 	}
-	
+
 	public abstract boolean isAssignableFrom(Class<?> clazz);
-	
+
 	public abstract void doInject(String prefix, PropertiesBase base, Field field) throws Exception;
-		
+
 	public static ParamEnum getEnum(Class<?> clazz) {
 		for (ParamEnum pEnum : values()) {
 			if (pEnum.isAssignableFrom(clazz)) {
@@ -290,5 +292,5 @@ public enum ParamEnum {
 		}
 		return null;
 	}
-	
+
 }

@@ -25,6 +25,11 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * FIXME 要优化工具类, 支持异步http请求, 且无需每次创建httpclient, 
+ * @author Jeremy
+ *
+ */
 public class HttpClientUtil {
 
 	private static final Logger logger = LoggerFactory.getLogger(HttpClientUtil.class.getName());

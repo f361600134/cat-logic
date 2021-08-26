@@ -21,33 +21,31 @@ import com.google.common.collect.Multimap;
 public class PropertiesBase {
 
 	public final Logger logger = LoggerFactory.getLogger(PropertiesBase.class);
-	
+
 	private String configPath;
 
 	private static final String defaultConfigPath = "resource/config.properties";
 	private static Properties properties;
-	
+
 	/**
-	 * key: prefixName, 即: 前缀+对象名
-	 * Multimap:  index, 下标主键 或者 miankey?
+	 * key: prefixName, 即: 前缀+对象名 Multimap: index, 下标主键 或者 miankey?
 	 */
 	public Map<String, Multimap<String, ParamField>> paramMap = Maps.newHashMap();
-	
-	public PropertiesBase (String configPath) {
+
+	public PropertiesBase(String configPath) {
 		this.configPath = configPath;
 	}
-	
-	public PropertiesBase () {
-		
+
+	public PropertiesBase() {
+
 	}
-	
 
 	public static PropertiesBase instance(String configPath) {
 		PropertiesBase base = new PropertiesBase(configPath);
 		base.properties();
 		return base;
-	} 
-	
+	}
+
 	/**
 	 * 解析配置表, 并且以键值对的方式缓存到map中
 	 * 
@@ -80,7 +78,7 @@ public class PropertiesBase {
 		}
 //		logger.info("paramMap:" + paramMap);
 	}
-	
+
 	private ParamField split(String k) {
 		ParamField paramField;
 		if (k.contains("[")) {

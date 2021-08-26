@@ -12,25 +12,26 @@ import com.google.common.eventbus.EventBus;
  */
 public class GameEventBus {
 	public final Logger logger = LoggerFactory.getLogger(GameEventBus.class.getName());
-	
+
 	private static GameEventBus gameEventBus = new GameEventBus();
 	private EventBus eventBus = new EventBus();
-	
-	private GameEventBus(){
+
+	private GameEventBus() {
 	}
-	
-	public static GameEventBus instance(){
+
+	public static GameEventBus instance() {
 		return gameEventBus;
 	}
 
 	/**
 	 * 注册观察者相关的订阅事件
+	 * 
 	 * @param object
 	 */
 	public void register(Object object) {
 		eventBus.register(object);
 	}
-	
+
 	public void register(Collection<Class<?>> classes) {
 		for (Class<?> cls : classes) {
 			try {
@@ -41,15 +42,16 @@ public class GameEventBus {
 			}
 		}
 	}
-	
+
 	/**
 	 * 发送事件
+	 * 
 	 * @param event
 	 */
 	public void post(Object event) {
 		eventBus.post(event);
 	}
-	
+
 	public void post(Object... events) {
 		if (events.length <= 0) {
 			return;
