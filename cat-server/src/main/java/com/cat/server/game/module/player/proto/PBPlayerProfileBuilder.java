@@ -1,18 +1,14 @@
 package com.cat.server.game.module.player.proto;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import com.cat.net.network.base.AbstractProtocol;
+import com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile;
 import com.google.protobuf.AbstractMessageLite.Builder;
-import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBPlayer.*;
 
 /**
 * PBPlayerProfileBuilder
 * @author Jeremy
 */
-public class PBPlayerProfileBuilder implements IProtocol {
+public class PBPlayerProfileBuilder extends AbstractProtocol {
 
 	private final PBPlayerProfile.Builder builder = PBPlayerProfile.newBuilder();
 	

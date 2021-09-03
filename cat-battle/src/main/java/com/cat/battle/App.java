@@ -1,7 +1,10 @@
 package com.cat.battle;
 
-import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -10,15 +13,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App 
 {
+    private static Logger logger = LoggerFactory.getLogger(App.class);
+
     public static void main( String[] args )
     {
-	   ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"provider.xml"});
-//    	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ProviderConfiguration.class);
-    	context.start();
-       try {
-		System.in.read();
-	} catch (IOException e) {
-		e.printStackTrace();
-	} // 按任意键退出
+        long startTime = System.currentTimeMillis();
+        //扫描配置环境
+        AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
+        ctx.registerShutdownHook();
+        ctx.start();
+        logger.info("Start server successful， cost time:{}ms", (System.currentTimeMillis() - startTime));
+        try {
+            TimeUnit.SECONDS.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

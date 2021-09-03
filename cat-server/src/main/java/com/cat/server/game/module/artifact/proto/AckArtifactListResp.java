@@ -3,14 +3,14 @@ package com.cat.server.game.module.artifact.proto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.net.network.base.IProtocol;
+import com.cat.net.network.base.AbstractProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
 
 /**
 * AckArtifactListResp
 * @author Jeremy
 */
-public class AckArtifactListResp implements IProtocol{
+public class AckArtifactListResp extends AbstractProtocol{
 
 	private static final Logger log = LoggerFactory.getLogger(AckArtifactListResp.class);
 

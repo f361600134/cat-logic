@@ -3,17 +3,16 @@ package com.cat.server.game.module.player.proto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.PBDefine.*;
+import com.cat.net.network.base.AbstractProtocol;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
+import com.cat.server.game.data.proto.PBPlayer.AckPlayerEnterGame;
 import com.google.protobuf.AbstractMessageLite.Builder;
-import com.cat.server.game.data.proto.PBItem.*;
-import com.cat.server.game.data.proto.PBPlayer.*;
 
 /**
 * AckPlayerEnterGameResp
 * @author Jeremy
 */
-public class AckPlayerEnterGameResp implements IProtocol {
+public class AckPlayerEnterGameResp extends AbstractProtocol {
 
 	private static final Logger log = LoggerFactory.getLogger(AckPlayerEnterGameResp.class);
 	

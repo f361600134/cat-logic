@@ -3,17 +3,17 @@ package com.cat.server.game.module.chat.proto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.server.game.data.proto.PBDefine.*;
+import com.cat.net.network.base.AbstractProtocol;
+import com.cat.server.game.data.proto.PBChat.AckChat;
+import com.cat.server.game.data.proto.PBChat.PBChatInfo;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
-import com.cat.server.game.data.proto.PBPlayer.*;
-import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.PBChat.*;
 
 /**
 * AckChatResp
 * @author Jeremy
 */
-public class AckChatResp implements IProtocol {
+public class AckChatResp extends AbstractProtocol {
 
 	private static final Logger log = LoggerFactory.getLogger(AckChatResp.class);
 	

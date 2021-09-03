@@ -1,11 +1,11 @@
 package com.cat.server.game.module.chat.proto;
 
-import com.cat.net.network.base.IProtocol;
+import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBChat;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
 
-public class ReqChat implements IProtocol{
+public class ReqChat extends AbstractProtocol{
 	
 	private PBChat.ReqChat.Builder builder;
 	

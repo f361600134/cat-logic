@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cat.net.network.base.ISession;
 import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.module.gm.annotation.Command;
 import com.cat.server.game.module.gm.type.ICommand;
 
@@ -54,6 +55,10 @@ class CommandService implements ICommandService, Lifecycle{
 			String name = command.value();
 			this.commands.put(name, obj);
 		}
+	}
+	
+	public int priority() {
+		return Priority.LOGIC.getPriority();
 	}
 
 }

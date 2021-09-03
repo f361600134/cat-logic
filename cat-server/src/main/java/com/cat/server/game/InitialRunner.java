@@ -3,19 +3,17 @@ package com.cat.server.game;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 
-import org.apache.dubbo.config.RegistryConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.cat.net.common.NetConfig;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.lifecycle.Lifecycle;
-import com.cat.server.game.module.resource.IResourceService;
+import com.cat.server.core.lifecycle.Priority;
+import com.zaxxer.hikari.HikariDataSource;
 
 //FSC
 @Component
@@ -59,9 +57,6 @@ public class InitialRunner implements Lifecycle{
 	
 	public void run() throws Exception {
 		try {
-			IResourceService service = SpringContextHolder.getBean("HeroService");
-			System.out.println("接口隔离个屁====>"+service.resType());
-			
 //			TestConService testService = SpringContextHolder.getBean(TestConService.class);
 //			if (testService != null) {
 //				testService.print();
@@ -233,8 +228,7 @@ public class InitialRunner implements Lifecycle{
 		
 		builder.append("----------------------------------------------------").append("\n");
 		
-		DruidDataSource dataSource = SpringContextHolder.getBean(DruidDataSource.class);
-		
+		HikariDataSource dataSource = SpringContextHolder.getBean(HikariDataSource.class);
 		//LettuceConnectionFactory lettuceFactory = SpringContextHolder.getBean(LettuceConnectionFactory.class);
 		//RegistryConfig registryConfig = SpringContextHolder.getBean(RegistryConfig.class);
 		builder.append("当前服务器id:").append(config.getServerId()).append("\n");
@@ -247,7 +241,7 @@ public class InitialRunner implements Lifecycle{
 //		if (registryConfig != null) {
 //			builder.append("Dubbo注册中心:").append(registryConfig.getAddress()).append(":").append(registryConfig.getPort()).append("\n");
 //		}
-		builder.append("数据库连接地址:").append(dataSource.getUrl()).append("\n");
+		builder.append("数据库连接地址:").append(dataSource.getJdbcUrl()).append("\n");
 		builder.append("====================================================").append("\n\n");
 		return builder.toString();
 	} 
@@ -281,6 +275,10 @@ public class InitialRunner implements Lifecycle{
 	@Override
 	public void start() throws Throwable {
 		this.run();
+	}
+	
+	public int priority() {
+		return Priority.LOWEST.getPriority();
 	}
 	
 }

@@ -3,17 +3,16 @@ package com.cat.server.game.module.item.proto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.server.game.data.proto.PBDefine.*;
+import com.cat.net.network.base.AbstractProtocol;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
+import com.cat.server.game.data.proto.PBItem.AckItemDelete;
 import com.google.protobuf.AbstractMessageLite.Builder;
-import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.PBCommon.*;
-import com.cat.server.game.data.proto.PBItem.*;
 
 /**
 * AckItemDeleteResp
 * @author Jeremy
 */
-public class AckItemDeleteResp implements IProtocol {
+public class AckItemDeleteResp extends AbstractProtocol {
 
 	private static final Logger log = LoggerFactory.getLogger(AckItemDeleteResp.class);
 	

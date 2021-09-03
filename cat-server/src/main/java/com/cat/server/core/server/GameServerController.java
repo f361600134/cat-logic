@@ -3,12 +3,10 @@ package com.cat.server.core.server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.net.core.executor.DisruptorDispatchTask;
-import com.cat.net.core.executor.DisruptorStrategy;
 import com.cat.net.network.base.Commander;
 import com.cat.net.network.base.ISession;
 import com.cat.net.network.base.Packet;
-import com.cat.net.network.controller.DefaultConnectController;
+import com.cat.net.network.controller.DefaultConnectControllerDispatcher;
 
 import io.netty.buffer.ByteBuf;
 
@@ -17,12 +15,12 @@ import io.netty.buffer.ByteBuf;
  */
 //@Primary
 //@Component
-public class GameServerController extends DefaultConnectController {
+@Deprecated
+public class GameServerController extends DefaultConnectControllerDispatcher {
 	
 	private static final Logger log = LoggerFactory.getLogger(GameServerController.class);
 	
 	public GameServerController(){
-//		log.info("注册[GameServerController]服务");
 	}
 	
 	public void onConnect(ISession session) {
@@ -37,7 +35,7 @@ public class GameServerController extends DefaultConnectController {
 				return;
 			} 
 			packet = Packet.decode(message);
-			Commander commander = processor.getCommander(packet.cmd());
+			Commander commander = mapper.get(packet.cmd());
 			if (commander == null) {
 				log.info("收到未处理协议, cmd=[{}]",  packet.cmd());
 				return;
@@ -51,8 +49,8 @@ public class GameServerController extends DefaultConnectController {
 					return;
 				}
 			} 
-			DisruptorDispatchTask task = new DisruptorDispatchTask(processor, session, packet);
-			DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(session.getSessionId(), task);
+//			DisruptorDispatchTask task = new DisruptorDispatchTask(processor, session, packet);
+//			DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(session.getSessionId(), task);
 		} catch (Exception e) {
 			if (packet == null) {
 				log.error("协议解析失败", e);

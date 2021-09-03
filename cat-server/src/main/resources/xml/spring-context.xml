@@ -7,6 +7,6 @@
 	<context:property-placeholder location="classpath:application.properties" />
 	<import resource="classpath:xml/spring-db.xml"/>
 <!-- 	<import resource="classpath:xml/dubbo-consumer.xml"/> -->
-	<context:component-scan base-package="com.cat.server,com.cat.net" />
+	<context:component-scan base-package="com.cat.server,com.cat.net,com.rpc" />
 	
 </beans> 

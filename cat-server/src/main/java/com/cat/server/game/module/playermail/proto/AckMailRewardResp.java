@@ -3,17 +3,17 @@ package com.cat.server.game.module.playermail.proto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.PBDefine.*;
+import com.cat.net.network.base.AbstractProtocol;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
+import com.cat.server.game.data.proto.PBItem.PBPairInfo;
+import com.cat.server.game.data.proto.PBMail.AckMailReward;
 import com.google.protobuf.AbstractMessageLite.Builder;
-import com.cat.server.game.data.proto.PBItem.*;
-import com.cat.server.game.data.proto.PBMail.*;
 
 /**
 * AckMailRewardResp
 * @author Jeremy
 */
-public class AckMailRewardResp implements IProtocol {
+public class AckMailRewardResp extends AbstractProtocol {
 
 	private static final Logger log = LoggerFactory.getLogger(AckMailRewardResp.class);
 	

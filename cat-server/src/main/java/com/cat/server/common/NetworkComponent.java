@@ -1,5 +1,7 @@
 package com.cat.server.common;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +11,13 @@ import org.springframework.context.annotation.Configuration;
 import com.cat.net.LocalNetService;
 import com.cat.net.http.controller.DefaultHttpController;
 import com.cat.net.http.process.RequestProcessor;
-import com.cat.net.network.process.ControllerDispatcher;
+import com.cat.net.network.controller.DefaultConnectControllerDispatcher;
+import com.cat.net.network.controller.DefaultRemoteCallControllerDispatcher;
+import com.cat.net.network.controller.IController;
+import com.cat.net.network.rpc.IResponseCallback;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.lifecycle.Priority;
-import com.cat.server.core.server.GameServerController;
+import com.google.protobuf.AbstractMessageLite;
 
 /**
  * 网络组件
@@ -49,25 +54,38 @@ public class NetworkComponent implements Lifecycle{
 		return new RequestProcessor();
 	}
 	
-	
 	/**
 	 * 注册游戏服分发处理器
 	 * @return
 	 */
 	@Bean
-	public GameServerController gameServerController() {
-		logger.info("注册[GameServerController]服务");
-		return new GameServerController();
+	public DefaultConnectControllerDispatcher serverController(List<IController> controllers) {
+		logger.info("注册[DefaultConnectController]服务");
+		DefaultConnectControllerDispatcher controller = new DefaultConnectControllerDispatcher();
+		try {	
+			controller.initialize(controllers);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("注册[DefaultConnectController]服务失败, 异常:", e);
+		}
+		return controller;
 	}
 	
 	/**
-	 * 注册游戏协议控制器
+	 * RPC服务
 	 * @return
 	 */
 	@Bean
-	public ControllerDispatcher controllerProcessor() {
-		logger.info("注册[ControllerDispatcher]服务");
-		return new ControllerDispatcher();
+	public DefaultRemoteCallControllerDispatcher rpcController(List<IResponseCallback<? extends AbstractMessageLite<?, ?>>> callbacks) {
+		logger.info("注册[DefaultRemoteCallController]服务, size:{}", callbacks.size());
+		DefaultRemoteCallControllerDispatcher controller = new DefaultRemoteCallControllerDispatcher();
+		try {
+			controller.initialize(callbacks);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("注册[DefaultRemoteCallController]服务失败, 异常:", e);
+		}
+		return controller;
 	}
 	
 	/**
@@ -79,24 +97,6 @@ public class NetworkComponent implements Lifecycle{
 		logger.info("注册[LocalNetService]服务");
 		return new LocalNetService();
 	}
-	
-//	/**
-//	 * 注册tcp服务
-//	 * @return
-//	 */
-//	@Bean
-//	public TcpServerStarter tcpServerStarter(IServerController gameController, NetConfig config) {
-//		return new TcpServerStarter(gameController, config.getServerIp(), config.getTcpPort());
-//	}
-//	
-//	/**
-//	 * 注册webSocket服务
-//	 * @return
-//	 */
-//	@Bean
-//	public WebSocketServerStarter webSocketServerStarter(IServerController gameController, NetConfig config) {
-//		return new WebSocketServerStarter(gameController, config.getServerIp(), config.getWebscoketPort());
-//	}
 	
 	@Override
 	public void start() throws Throwable {

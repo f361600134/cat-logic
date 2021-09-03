@@ -5,7 +5,7 @@ import com.cat.net.network.base.IProtocol;
 import com.cat.server.game.data.proto.PBLogin;
 import com.google.protobuf.AbstractMessageLite.Builder;
 
-public class ReqLogin implements IProtocol{
+public class ReqLogin extends AbstractProtocol{
 	
 	private PBLogin.ReqLogin.Builder builder;
 	

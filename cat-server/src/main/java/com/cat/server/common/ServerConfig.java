@@ -22,7 +22,7 @@ public class ServerConfig {
 	// 后台地址
 	@Value("${cat.game.server.remoteUrl}")
 	private String remoteUrl;
-	// 后台地址
+	// 登录地址
 	@Value("${cat.game.server.loginUrl}")
 	private String loginUrl;
 

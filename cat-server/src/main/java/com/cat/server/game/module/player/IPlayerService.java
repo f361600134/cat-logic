@@ -3,7 +3,6 @@ package com.cat.server.game.module.player;
 import java.util.Collection;
 
 import com.cat.net.network.base.IProtocol;
-import com.cat.net.network.base.ISession;
 import com.cat.server.game.module.player.domain.PlayerContext;
 
 public interface IPlayerService {

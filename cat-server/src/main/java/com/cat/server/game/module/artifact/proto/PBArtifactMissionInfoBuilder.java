@@ -3,14 +3,14 @@ package com.cat.server.game.module.artifact.proto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.net.network.base.IProtocol;
+import com.cat.net.network.base.AbstractProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
 
 /**
 * PBArtifactMissionInfoBuilder
 * @author Jeremy
 */
-public class PBArtifactMissionInfoBuilder implements IProtocol {
+public class PBArtifactMissionInfoBuilder extends AbstractProtocol{
 
 	private static final Logger log = LoggerFactory.getLogger(PBArtifactMissionInfoBuilder.class);
 	

@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import com.alibaba.fastjson.JSON;
 import com.cat.net.network.base.IProtocol;
 import com.cat.net.network.base.ISession;
-import com.cat.net.network.process.ControllerDispatcher;
+import com.cat.net.network.process.CommanderProtocolMapper;
 import com.cat.robot.actor.IRobotActor;
 import com.cat.robot.actor.RobotActor;
 import com.cat.robot.common.akka.AkkaContext;
@@ -54,7 +54,7 @@ public class RobotContext {
 		RobotContext context = new RobotContext();
 		context.setRobot(robot);
 		context.getRobotAcotr().setContext(context);
-		ControllerDispatcher dispacher =  SpringContextHolder.getBean(ControllerDispatcher.class);
+		CommanderProtocolMapper dispacher =  SpringContextHolder.getBean(CommanderProtocolMapper.class);
 		context.getRobotAcotr().registDispatcher(dispacher);
 		return context;
 	}

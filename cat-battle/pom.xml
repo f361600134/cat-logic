@@ -22,40 +22,11 @@
       <scope>test</scope>
     </dependency>
     
-    <dependency>
-		<groupId>com.cat</groupId>
-		<artifactId>cat-api</artifactId>
+	<!-- birpc -->
+	<dependency>
+		<groupId>com.rpc</groupId>
+		<artifactId>bi-rpc</artifactId>
 		<version>0.0.1</version>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/com.alibaba/dubbo -->
-<!-- 	<dependency> -->
-<!-- 	    <groupId>com.alibaba</groupId> -->
-<!-- 	    <artifactId>dubbo</artifactId> -->
-<!-- 	    <version>2.6.9</version> -->
-<!-- 	</dependency> -->
-	<dependency>
-	    <groupId>org.apache.dubbo</groupId>
-	    <artifactId>dubbo</artifactId>
-	    <version>2.7.5</version>
-	</dependency>
-	
-	<dependency>
-	    <groupId>org.apache.zookeeper</groupId>
-	    <artifactId>zookeeper</artifactId>
-	    <version>3.4.14</version>
-	</dependency>
-	
-	<dependency>
-		<groupId>org.apache.curator</groupId>
-		<artifactId>curator-framework</artifactId>
-		<version>4.0.0</version>
-	</dependency>
-	
-	<dependency>
-		<groupId>org.apache.curator</groupId>
-		<artifactId>curator-recipes</artifactId>
-		<version>4.0.0</version>
 	</dependency>
     
   </dependencies>

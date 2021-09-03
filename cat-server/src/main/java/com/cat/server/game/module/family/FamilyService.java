@@ -2,6 +2,7 @@ package com.cat.server.game.module.family;
 
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.core.task.TokenTaskQueueExecutor;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.family.assist.FamilyPosition;
@@ -208,6 +209,10 @@ class FamilyService implements IFamilyService, Lifecycle{
 	@Override
 	public void start() throws Throwable {
 		familyManager.init();
+	}
+	
+	public int priority() {
+		return Priority.LOGIC.getPriority();
 	}
 	
 	@Override

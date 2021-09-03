@@ -3,17 +3,16 @@ package com.cat.server.game.module.common.proto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.server.game.data.proto.PBDefine.*;
+import com.cat.net.network.base.AbstractProtocol;
+import com.cat.server.game.data.proto.PBCommon.AckTips;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
-import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBCommon.*;
 
 /**
 * AckTipsResp
 * @author Jeremy
 */
-public class AckTipsResp implements IProtocol {
+public class AckTipsResp extends AbstractProtocol {
 
 	private static final Logger log = LoggerFactory.getLogger(AckTipsResp.class);
 	

@@ -13,7 +13,9 @@ public class ServerConstant {
 	//扫描的目录
 	public static String scanPath = "com.cat.server";
 	
-	//账号验证地址
-	public static String authUrl = "/coral/official/login";
+	//游戏节点分组
+	public static String NODE_TYPE_GAME = "game";
+	public static String NODE_TYPE_LOGIN = "login";
+	public static String NODE_TYPE_BATTLE = "battle";
 	
 }

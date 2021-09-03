@@ -3,16 +3,16 @@ package com.cat.server.game.module.playermail.proto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.cat.net.network.base.AbstractProtocol;
+import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
+import com.cat.server.game.data.proto.PBMail.PBMailInfo;
 import com.google.protobuf.AbstractMessageLite.Builder;
-import com.cat.net.network.base.IProtocol;
-import com.cat.server.game.data.proto.PBItem.*;
-import com.cat.server.game.data.proto.PBMail.*;
 
 /**
 * PBMailInfoBuilder
 * @author Jeremy
 */
-public class PBMailInfoBuilder implements IProtocol {
+public class PBMailInfoBuilder extends AbstractProtocol {
 
 	private static final Logger log = LoggerFactory.getLogger(PBMailInfoBuilder.class);
 	

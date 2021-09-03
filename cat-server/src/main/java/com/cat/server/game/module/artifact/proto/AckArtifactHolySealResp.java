@@ -1,13 +1,13 @@
 package com.cat.server.game.module.artifact.proto;
 
-import com.cat.net.network.base.IProtocol;
+import com.cat.net.network.base.AbstractProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
 
 /**
 * AckArtifactHolySealResp
 * @author Jeremy
 */
-public class AckArtifactHolySealResp implements IProtocol {
+public class AckArtifactHolySealResp extends AbstractProtocol {
 
 //	private static final Logger log = LoggerFactory.getLogger(AckArtifactHolySealResp.class);
 //	

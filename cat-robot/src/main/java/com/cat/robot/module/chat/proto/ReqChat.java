@@ -5,7 +5,7 @@ import com.cat.server.game.data.proto.PBChat;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.google.protobuf.AbstractMessageLite.Builder;
 
-public class ReqChat implements IProtocol{
+public class ReqChat extends AbstractProtocol{
 	
 	private PBChat.ReqChat.Builder builder;
 	

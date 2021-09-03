@@ -15,60 +15,17 @@
     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <!-- 数据源 -->
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-        init-method="init" destroy-method="close">
-        <!-- 数据库基本信息配置 -->
-        <property name="url" value="${druid.url}" />
-        <property name="username" value="${druid.username}" />
-        <property name="password" value="${druid.password}" />
-        <property name = "driverClassName" value = "${druid.driverClassName}" />  
-
-        <!-- 初始化连接数量 -->
-        <property name="initialSize" value="${druid.initialSize}" />
-        <!-- 最小空闲连接数 -->
-        <property name="minIdle" value="${druid.minIdle}" />
-        <!-- 最大并发连接数 -->
-        <property name="maxActive" value="${druid.maxActive}" />
-        <!-- 配置获取连接等待超时的时间 -->
-        <property name="maxWait" value="${druid.maxWait}" />
-
-        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
-        <property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}" />
-
-        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
-        <property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}" />
-        <property name="validationQuery" value="${druid.validationQuery}" />
-        <property name="testWhileIdle" value="${druid.testWhileIdle}" />
-        <property name="testOnBorrow" value="${druid.testOnBorrow}" />
-        <property name="testOnReturn" value="${druid.testOnReturn}" />
-
-        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。 -->
-        <property name="poolPreparedStatements" value="${druid.poolPreparedStatements}" />
-        <property name="maxPoolPreparedStatementPerConnectionSize"
-            value="${druid.maxPoolPreparedStatementPerConnectionSize}" />
-
-        <!-- 配置监控统计拦截的filters -->
-        <property name="filters" value="${druid.filters}" />
-		<property name="proxyFilters">
-			<list>
-				<ref bean="wall-filter"/>
-			</list>
-		</property>
+   <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+<!--         <property name="driverClassName" value="${db.driver}"/> -->
+        <property name="jdbcUrl" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+        <property name="autoCommit" value="${db.autoCommit}"/>
+        <property name="minimumIdle" value="${db.minimumIdle}"/>
+        <property name="connectionTimeout" value="${db.connectionTimeout}"/>
+        <property name="idleTimeout" value="${db.idleTimeout}"/>
+        <property name="maximumPoolSize" value="${db.maximumPoolSize}"/>
+        <property name="maxLifetime" value="${db.maxLifetime}"/>
     </bean>
-
-	<bean id="wall-filter" class="com.alibaba.druid.wall.WallFilter">
-		<property name="config" ref="wall-config" />
-	</bean>
-	<bean id="wall-config" class="com.alibaba.druid.wall.WallConfig">
-		<property name="multiStatementAllow" value="true" />
-	</bean>
-
-    <!-- 事务配置 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-
-    <!-- 使用annotation注解方式配置事务 -->
-    <tx:annotation-driven transaction-manager="transactionManager" />
 		
 </beans>

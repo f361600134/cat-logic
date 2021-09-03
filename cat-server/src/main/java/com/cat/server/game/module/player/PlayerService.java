@@ -26,6 +26,7 @@ import com.cat.server.game.data.proto.PBPlayer.ReqPlayerHeart;
 import com.cat.server.game.data.proto.PBPlayer.ReqPlayerLogin;
 import com.cat.server.game.data.proto.PBPlayer.ReqPlayerRandName;
 import com.cat.server.game.data.proto.PBPlayer.ReqPlayerReLogin;
+import com.cat.server.game.helper.AccountApiEnum;
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
@@ -193,7 +194,7 @@ class PlayerService implements IPlayerService, IResourceService {
 		// 登录服务器id
 		int loginServerId = data.getLoginSid();
 
-		String url = config.getLoginUrl() + ServerConstant.authUrl;
+		String url = AccountApiEnum.getApi(AccountApiEnum.LOGIN);
 		List<NameValuePair> params = new ArrayList<>();
 		params.add(new BasicNameValuePair("account", account));
 		params.add(new BasicNameValuePair("channel", String.valueOf(channel)));
