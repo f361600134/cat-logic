@@ -1,4 +1,4 @@
-package com.cat.server.game.module.playermail.service;
+package com.cat.server.game.module.playermail;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,10 +15,9 @@ import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.item.proto.AckRewardsResp;
 import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
 import com.cat.server.game.module.player.IPlayerService;
-import com.cat.server.game.module.playermail.PlayerMailConstant;
+import com.cat.server.game.module.playermail.assist.PlayerMailConstant;
 import com.cat.server.game.module.playermail.domain.PlayerMail;
 import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
-import com.cat.server.game.module.playermail.manager.PlayerMailManager;
 import com.cat.server.game.module.playermail.proto.AckMailDeleteResp;
 import com.cat.server.game.module.playermail.proto.AckMailListResp;
 import com.cat.server.game.module.playermail.proto.AckMailReadResp;

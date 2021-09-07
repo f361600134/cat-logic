@@ -4,7 +4,7 @@ import com.cat.net.network.client.TcpClientStarter;
 import com.cat.net.network.controller.DefaultConnectControllerDispatcher;
 import com.cat.net.network.controller.IControllerDispatcher;
 
-public class TcpCliemt {
+public class TcpClient {
 	public static void main(String[] args) {
 		try {
 			int id = 1;

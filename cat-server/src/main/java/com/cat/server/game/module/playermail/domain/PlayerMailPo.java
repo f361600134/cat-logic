@@ -31,12 +31,13 @@ public abstract class PlayerMailPo extends BasePo {
 			
 	/** 所有主键索引字段数组*/
 	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
-			PROP_PLAYERID,
 			PROP_ID,
+			PROP_PLAYERID,
 			};
 		
 	/** 所有索引字段数组*/
 	public static final String[] INDEX_ALL = new String[] {
+			PROP_PLAYERID,
 			};
 	
 	
@@ -163,24 +164,24 @@ public abstract class PlayerMailPo extends BasePo {
 	
 	@Override
 	public Object key() {
-		return getPlayerId();
+		return getId();
 	}
 	
 	@Override
 	public String keyColumn() {
-		return PROP_PLAYERID;
+		return PROP_ID;
 	}
 
 	@Override
 	public String[] keyAndIndexColumn() {
 		return KEY_AND_INDEX_COLUMN;
 	}
-
+	
 	@Override
 	public Object[] keyAndIndexValues() {
 		return new Object[] {
-			getPlayerId(),
 			getId(),
+			getPlayerId(),
 		};
 	}
 	
@@ -192,12 +193,13 @@ public abstract class PlayerMailPo extends BasePo {
 	@Override
 	public String[] indexValues() {
 		return new String[] {
+			PROP_PLAYERID,
 		};
 	}
 	
 	@Override
 	public String cacheId() {
-		return getPlayerId()+":"+getId();
+		return getId()+":"+getPlayerId();
 	}
 	
 }

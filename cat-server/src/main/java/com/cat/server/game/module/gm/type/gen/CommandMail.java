@@ -9,8 +9,8 @@ import com.cat.net.network.base.ISession;
 import com.cat.server.game.data.proto.PBMail;
 import com.cat.server.game.module.gm.annotation.Command;
 import com.cat.server.game.module.gm.type.AbstractModuleCommand;
-import com.cat.server.game.module.playermail.controller.PlayerMailController;
-import com.cat.server.game.module.playermail.service.PlayerMailService;
+import com.cat.server.game.module.playermail.PlayerMailController;
+import com.cat.server.game.module.playermail.PlayerMailService;
 
 /**
  * @mail

@@ -17,6 +17,7 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.util.concurrent.DefaultThreadFactory;
 
+@Deprecated
 public class RobotNet {
 	
 	private final Logger logger = LoggerFactory.getLogger(RobotNet.class.getName());

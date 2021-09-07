@@ -1,4 +1,4 @@
-package com.cat.server.game.module.playermail;
+package com.cat.server.game.module.playermail.assist;
 
 public class PlayerMailConstant {
 	

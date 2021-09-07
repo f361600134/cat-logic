@@ -145,7 +145,7 @@ class PlayerService implements IPlayerService, IResourceService {
 	 * @param req 登录请求消息体
 	 * @return 错误码
 	 */
-	public ErrorCode login(ISession session, ReqPlayerLogin req, AckPlayerLoginResp ack) {
+	public ErrorCode reqPlayerLogin(ISession session, ReqPlayerLogin req, AckPlayerLoginResp ack) {
 		final String accountName = req.getAccountName();
 		final int initServerId = req.getServerId();
 		// Http调用, 去账号服请求验证
@@ -302,27 +302,27 @@ class PlayerService implements IPlayerService, IResourceService {
 			return ErrorCode.UNKNOWN_ERROR;
 		}
 	}
-	/**
-	* 请求连接游戏服
-	* @param long playerId
-	* @param ReqPlayerLogin req
-	* @param Resp ack
-	*/
-	public ErrorCode reqPlayerLogin(long playerId, ReqPlayerLogin req, AckPlayerLoginResp ack){
-		try {
-//			PlayerDomain domain = getDomain(playerId);
-//			if (domain == null) {
-//				return ErrorCode.DOMAIN_IS_NULL;
-//			}
-//			//TODO Somthing.
-//			this.responsePlayerInfo(domain);
-			return ErrorCode.SUCCESS;
-		} catch (Exception e) {
-			logger.info("reqPlayerLogin error, playerId:{}", playerId);
-			logger.error("reqPlayerLogin error, e:", e);
-			return ErrorCode.UNKNOWN_ERROR;
-		}
-	}
+//	/**
+//	* 请求连接游戏服
+//	* @param long playerId
+//	* @param ReqPlayerLogin req
+//	* @param Resp ack
+//	*/
+//	public ErrorCode reqPlayerLogin(ISession session, ReqPlayerLogin req, AckPlayerLoginResp ack){
+//		try {
+////			PlayerDomain domain = getDomain(playerId);
+////			if (domain == null) {
+////				return ErrorCode.DOMAIN_IS_NULL;
+////			}
+////			//TODO Somthing.
+////			this.responsePlayerInfo(domain);
+//			return ErrorCode.SUCCESS;
+//		} catch (Exception e) {
+//			logger.info("reqPlayerLogin error, playerId:{}", playerId);
+//			logger.error("reqPlayerLogin error, e:", e);
+//			return ErrorCode.UNKNOWN_ERROR;
+//		}
+//	}
 	
 	/**
 	 * 踢玩家下线

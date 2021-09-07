@@ -8,7 +8,7 @@ import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.data.proto.PBMail;
 import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
-import com.cat.server.game.module.playermail.PlayerMailConstant;
+import com.cat.server.game.module.playermail.assist.PlayerMailConstant;
 import com.cat.server.game.module.playermail.proto.PBMailInfoBuilder;
 import com.cat.server.utils.TimeUtil;
 

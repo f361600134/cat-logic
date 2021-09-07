@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.cat.net.network.controller.DefaultConnectController;
+import com.cat.net.network.controller.DefaultConnectControllerDispatcher;
 import com.cat.net.network.controller.IController;
 
 /**
@@ -25,9 +25,9 @@ public class NetworkComponent {
 	 * @return
 	 */
 	@Bean
-	public DefaultConnectController serverController(List<IController> controllers) {
+	public DefaultConnectControllerDispatcher serverController(List<IController> controllers) {
 		logger.info("注册[DefaultConnectController]服务");
-		DefaultConnectController controller = new DefaultConnectController();
+		DefaultConnectControllerDispatcher controller = new DefaultConnectControllerDispatcher();
 		try {
 			controller.initialize(controllers);
 		} catch (Exception e) {

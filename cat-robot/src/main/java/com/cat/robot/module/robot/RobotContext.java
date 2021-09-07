@@ -10,15 +10,14 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 import com.cat.net.network.base.IProtocol;
-import com.cat.net.network.base.ISession;
-import com.cat.net.network.process.CommanderProtocolMapper;
+import com.cat.net.network.client.TcpClientStarter;
+import com.cat.net.network.controller.DefaultConnectControllerDispatcher;
 import com.cat.robot.actor.IRobotActor;
 import com.cat.robot.actor.RobotActor;
 import com.cat.robot.common.akka.AkkaContext;
 import com.cat.robot.common.config.Config;
 import com.cat.robot.common.context.SpringContextHolder;
 import com.cat.robot.module.login.proto.ReqLogin;
-import com.cat.robot.net.RobotNet;
 import com.cat.robot.util.HttpClientUtil;
 import com.cat.server.game.data.proto.PBPlayer.AckInitPlayerInfo;
 
@@ -31,8 +30,9 @@ public class RobotContext {
 	
 	private AckInitPlayerInfo robotInfo;
 	
-	private ISession gameSession;
-	private RobotNet robotNet = new RobotNet(this);
+//	private ISession gameSession;
+//	private RobotNet robotNet = new RobotNet(this);
+	private TcpClientStarter client;
 	
 	private boolean entryGame;
 	//控制相关,脚本相关
@@ -54,8 +54,10 @@ public class RobotContext {
 		RobotContext context = new RobotContext();
 		context.setRobot(robot);
 		context.getRobotAcotr().setContext(context);
-		CommanderProtocolMapper dispacher =  SpringContextHolder.getBean(CommanderProtocolMapper.class);
+		DefaultConnectControllerDispatcher dispacher = 
+				SpringContextHolder.getBean(DefaultConnectControllerDispatcher.class);
 		context.getRobotAcotr().registDispatcher(dispacher);
+		context.client = new TcpClientStarter(dispacher, 3, "game", robot.getRobotLogin().getIp(), robot.getRobotLogin().getPort());
 		return context;
 	}
 	
@@ -79,13 +81,13 @@ public class RobotContext {
 		return robot.getRobotLogin().getPort();
 	}
 	
-	public ISession getGameSession() {
-		return gameSession;
-	}
+//	public ISession getGameSession() {
+//		return client.get;
+//	}
 
-	public void setGameSession(ISession gameSession) {
-		this.gameSession = gameSession;
-	}
+//	public void setGameSession(ISession gameSession) {
+//		this.gameSession = gameSession;
+//	}
 
 	public int getPlayerId() {
 		return robot.getPlayerId();
@@ -144,8 +146,8 @@ public class RobotContext {
 	 * @param time
 	 */
 	public void disconnect(){
-		if (gameSession != null) {
-			gameSession.disConnect();
+		if (client != null) {
+			client.disConnect();
 		}else {
 			logger.info("Failed to disconnect, channel is null, robotId:{}", robot.getPlayerId());
 		}
@@ -155,7 +157,7 @@ public class RobotContext {
 	 * 连接游戏服
 	 */
 	public boolean gameServerConnection(){
-		return this.robotNet.connectToServer();
+		return client.connect();
 	}
 	
 	/**
@@ -167,16 +169,9 @@ public class RobotContext {
 	}
 	
 	public void send(IProtocol protocol) {
-		if (isOnline()) {
-			gameSession.push(protocol);
-			logger.info("send message:[{}], playerId:{}, size={}B, data:{}", protocol.protocol(), gameSession.getUserData(),
-					protocol, protocol.toBytes().length);
-		}
+		client.sendMessage(protocol);
 	}
 	
-	public boolean isOnline() {
-		return gameSession != null && gameSession.isConnect();
-	}
 	
 //	/**
 //	 * 游戏服登陆验证

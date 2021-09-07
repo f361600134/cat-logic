@@ -1,4 +1,4 @@
-package com.cat.server.game.module.playermail.manager;
+package com.cat.server.game.module.playermail;
 
 import com.cat.server.core.server.AbstractModuleManager;
 import com.cat.server.game.module.playermail.domain.PlayerMailDomain;

@@ -26,6 +26,7 @@ public class InitialRunner implements Lifecycle {
 			RobotContext context = RobotContext.create(robot);
 			context.gameServerConnection();
 			context.serverLogin();
+//			Thread.sleep(100);
 			// 测试GM命令
 //			ReqChat req = ReqChat.create();
 //			req.setChatChannel(0);

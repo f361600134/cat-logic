@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import com.cat.net.network.annotation.Cmd;
 import com.cat.net.network.base.ISession;
+import com.cat.net.network.controller.IController;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.server.game.data.proto.PBPlayer.ReqPlayerCreateRole;
 import com.cat.server.game.data.proto.PBPlayer.ReqPlayerHeart;
@@ -24,7 +25,7 @@ import com.cat.server.game.module.player.proto.AckPlayerReLoginResp;
  * Player控制器
  */
 @Controller
-public class PlayerController {
+public class PlayerController implements IController{
 	
 	private static final Logger log = LoggerFactory.getLogger(PlayerController.class);
 	
@@ -81,13 +82,16 @@ public class PlayerController {
 	/*
 	*请求连接游戏服
 	*/
-	@Cmd(value = PBProtocol.ReqPlayerLogin_VALUE)
+	@Cmd(value = PBProtocol.ReqPlayerLogin_VALUE, mustLogin = false)
 	public void ReqPlayerLogin(ISession session, ReqPlayerLogin req) {
-		long playerId = session.getUserData();
 		AckPlayerLoginResp ack = AckPlayerLoginResp.newInstance();
-		ErrorCode code = playerService.reqPlayerLogin(playerId, req, ack);
+		ErrorCode code = playerService.reqPlayerLogin(session, req, ack);
 		ack.setCode(code.getCode());
-		playerService.sendMessage(playerId, ack);
+		
+		Long playerId = session.getUserData();
+		if (playerId != null) {
+			playerService.sendMessage(playerId.longValue(), ack);
+		}
 	}
 	
 

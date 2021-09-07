@@ -13,7 +13,7 @@ import ${protocolObj.getJavaImport()};
 * ${protoClassName}
 * @author Jeremy
 */
-public class ${protoClassName} implements IProtocol {
+public class ${protoClassName} extends AbstractProtocol {
 
 	private static final Logger log = LoggerFactory.getLogger(${protoClassName}.class);
 	

@@ -1,5 +1,6 @@
 package com.cat.robot.module.chat.proto;
 
+import com.cat.net.network.base.AbstractProtocol;
 import com.cat.net.network.base.IProtocol;
 import com.cat.server.game.data.proto.PBChat;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;

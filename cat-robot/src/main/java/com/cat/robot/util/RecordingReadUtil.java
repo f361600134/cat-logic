@@ -46,7 +46,7 @@ public class RecordingReadUtil {
 					continue;
 				}
 				//FIXME
-				Packet packet = new Packet((short)ProtocolManager.getProtocolId(protocolStr), lite.toByteArray());
+				Packet packet = new Packet(ProtocolManager.getProtocolId(protocolStr), 0, lite.toByteArray());
 				SavePacket savePacket = new SavePacket(packet);
 				scriptRecords.add(savePacket);
 			}

@@ -12,6 +12,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
+@Deprecated
 public class GameClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 	private final Logger logger = LoggerFactory.getLogger(GameClientHandler.class.getName());
 	private IRobotActor robotActor;

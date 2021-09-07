@@ -1,4 +1,4 @@
-package com.cat.server.game.module.playermail.service;
+package com.cat.server.game.module.playermail;
 
 import java.util.Map;
 

@@ -1,7 +1,7 @@
 package com.cat.robot.module.login.proto;
 
+import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
-import com.cat.net.network.base.IProtocol;
 import com.cat.server.game.data.proto.PBLogin;
 import com.google.protobuf.AbstractMessageLite.Builder;
 

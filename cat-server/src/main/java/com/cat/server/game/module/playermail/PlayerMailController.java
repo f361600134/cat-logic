@@ -1,4 +1,4 @@
-package com.cat.server.game.module.playermail.controller;
+package com.cat.server.game.module.playermail;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,6 @@ import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.playermail.proto.AckMailDeleteResp;
 import com.cat.server.game.module.playermail.proto.AckMailReadResp;
 import com.cat.server.game.module.playermail.proto.AckMailRewardResp;
-import com.cat.server.game.module.playermail.service.PlayerMailService;
 
 /**
  * PlayerMail控制器
