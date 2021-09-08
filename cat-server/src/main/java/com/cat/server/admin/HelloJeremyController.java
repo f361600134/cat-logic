@@ -19,14 +19,14 @@ import io.netty.util.CharsetUtil;
 @RequestMapping("/hello")
 public class HelloJeremyController {
 	
-	//http://localhost:7001/hello/index
+	//http://localhost:8001/hello/index
 	@RequestMapping("/index")
 	public String index() {
 		return "Hello Jeremy";
 	}
 	/**
 	 * 参数简单类型
-	 * http://localhost:7001/hello/index2?a=1&b=aac&c=0.1&dd=1111
+	 * http://localhost:8001/hello/index2?a=1&b=aac&c=0.1&dd=1111
 	 */
 	@RequestMapping("/index2")
 	public String index2(int a, @Param("b") String b, double c, @Param("dd") Long d) {
@@ -35,7 +35,7 @@ public class HelloJeremyController {
 	
 	/**
 	 * 参数是Map对象
-	 * @test http://localhost:7001/hello/index3?a=1&b=aa
+	 * @test http://localhost:8001/hello/index3?a=1&b=aa
 	 */
 	@RequestMapping("/index3")
 	public String index3(Map<String, Object> map) {
@@ -44,7 +44,7 @@ public class HelloJeremyController {
 	
 	/**
 	 * 参数复杂对象
-	 * @test http://localhost:7001/hello/index4?a=1&b=aa
+	 * @test http://localhost:8001/hello/index4?a=1&b=aa
 	 */
 	@RequestMapping("/index4")
 	public String index4(Stu stu) {
@@ -53,7 +53,7 @@ public class HelloJeremyController {
 
 	/**
 	 * 参数简单类型和List类型
-	 * @test http://localhost:7001/hello/index5?a=1&list=[1,2]
+	 * @test http://localhost:8001/hello/index5?a=1&list=[1,2]
 	 */
 	@RequestMapping("/index5")
 	public String index5(@Param("a") int a, @Param("list") List<Integer> list) {
@@ -63,7 +63,7 @@ public class HelloJeremyController {
 	
 	/**
 	 * 参数携带FullHttpRequest,FullHttpResponse
-	 *  @test http://localhost:7001/hello/index7
+	 *  @test http://localhost:8001/hello/index7
 	 * @param parameter
 	 * @return
 	 */
@@ -75,7 +75,7 @@ public class HelloJeremyController {
 	
 	/**
 	 * 参数携带json
-	 *  @test http://localhost:7001/hello/index8
+	 *  @test http://localhost:8001/hello/index8
 	 * @param parameter
 	 * @return
 	 * 
@@ -91,7 +91,7 @@ public class HelloJeremyController {
 		stu.setB("aa");
 		String json = JSON.toJSONString(stu);
 		System.out.println(json);
-//		String url = "http://localhost:7001/hello/index6";
+//		String url = "http://localhost:8001/hello/index6";
 //		String ret = HttpClientUtil.doHttpPost(url, json, ContentType.APPLICATION_JSON);
 //		System.out.println(ret);
 	}
