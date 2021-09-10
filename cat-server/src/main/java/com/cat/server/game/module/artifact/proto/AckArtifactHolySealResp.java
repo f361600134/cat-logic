@@ -1,7 +1,6 @@
 package com.cat.server.game.module.artifact.proto;
 
 import com.cat.net.network.base.AbstractProtocol;
-import com.google.protobuf.AbstractMessageLite.Builder;
 
 /**
 * AckArtifactHolySealResp
@@ -35,9 +34,11 @@ public class AckArtifactHolySealResp extends AbstractProtocol {
 //		return PBDefine.PBProtocol.AckArtifactHolySeal_VALUE;
 		return 0;
 	}
-
+	
 	@Override
-	public Builder<?, ?> getBuilder() {
+	public byte[] toBytes() {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

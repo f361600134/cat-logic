@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
 import com.cat.server.game.data.proto.PBMail.PBMailInfo;
-import com.google.protobuf.AbstractMessageLite.Builder;
 
 /**
 * PBMailInfoBuilder
@@ -60,7 +59,7 @@ public class PBMailInfoBuilder extends AbstractProtocol {
 	}
 
 	@Override
-	public Builder<?, ?> getBuilder() {
-		return builder;
+	public byte[] toBytes() {
+		return builder.build().toByteArray();
 	}
 }

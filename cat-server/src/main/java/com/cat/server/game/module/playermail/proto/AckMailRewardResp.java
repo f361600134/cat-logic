@@ -44,7 +44,7 @@ public class AckMailRewardResp extends AbstractProtocol {
 	}
 
 	@Override
-	public Builder<?, ?> getBuilder() {
-		return builder;
+	public byte[] toBytes() {
+		return builder.build().toByteArray();
 	}
 }

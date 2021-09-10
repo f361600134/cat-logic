@@ -41,9 +41,10 @@ public class AckMailDeleteResp extends AbstractProtocol {
 	public int protocol() {
 		return PBProtocol.AckMailDelete_VALUE;
 	}
-
+	
 	@Override
-	public Builder<?, ?> getBuilder() {
-		return builder;
+	public byte[] toBytes() {
+		return builder.build().toByteArray();
 	}
+
 }

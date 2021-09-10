@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBCommon.AckTips;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
-import com.google.protobuf.AbstractMessageLite.Builder;
 
 /**
 * AckTipsResp
@@ -43,7 +42,7 @@ public class AckTipsResp extends AbstractProtocol {
 	}
 
 	@Override
-	public Builder<?, ?> getBuilder() {
-		return builder;
+	public byte[] toBytes() {
+		return builder.build().toByteArray();
 	}
 }

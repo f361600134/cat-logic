@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.net.network.base.AbstractProtocol;
-import com.google.protobuf.AbstractMessageLite.Builder;
 
 /**
 * AckArtifactListResp
@@ -21,8 +20,7 @@ public class AckArtifactListResp extends AbstractProtocol{
 	}
 
 	@Override
-	public Builder<?, ?> getBuilder() {
-		// TODO Auto-generated method stub
+	public byte[] toBytes() {
 		return null;
 	}
 	

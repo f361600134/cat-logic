@@ -43,8 +43,13 @@ public class AckChatResp extends AbstractProtocol {
 		return PBProtocol.AckChat_VALUE;
 	}
 
+//	@Override
+//	public Builder<?, ?> getBuilder() {
+//		return builder;
+//	}
+	
 	@Override
-	public Builder<?, ?> getBuilder() {
-		return builder;
+	public byte[] toBytes() {
+		return builder.build().toByteArray();
 	}
 }
