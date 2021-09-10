@@ -7,11 +7,11 @@ import com.cat.net.network.controller.IControllerDispatcher;
 public class TcpClient {
 	public static void main(String[] args) {
 		try {
-			int id = 1;
+			int curId = 1, id = 1;
 			String ip = "0.0.0.0";
 			int port = 7079;
 			IControllerDispatcher handler = new DefaultConnectControllerDispatcher();
-			TcpClientStarter starter = new TcpClientStarter(handler, id, "game", ip, port);
+			TcpClientStarter starter = new TcpClientStarter(curId, id, "game", ip, port, handler);
 			starter.connect();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -12,7 +12,7 @@ import com.cat.server.game.data.proto.PBLogin.ReqLogin;
 public class PlayerController implements IController {
 	
 	@Cmd(value=100001, mustLogin= false)
-	public void login(ISession session, ReqLogin req) {
+	public void login(ISession session, ReqLogin req, int seq) {
 		com.cat.battle.service.module.other.ReqLoginBuilder reqqqq = com.cat.battle.service.module.other.ReqLoginBuilder.newInstance();
 		reqqqq.build(req.toByteArray());
 		
@@ -21,7 +21,7 @@ public class PlayerController implements IController {
 		String userName = req.getUserName();
 		AckLoginResp resp = AckLoginResp.newInstance(); 
 		resp.setCode(0);
-		resp.setSeq(1);
+		resp.setSeq(seq);
 		resp.setStatus(1);
 		session.push(resp);
 		System.out.println("模拟收到RPC请求, 响应成功! 请求数据:"+userName);

@@ -2,6 +2,8 @@ package com.cat.server.game;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
+import java.util.Locale;
+import java.util.Scanner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,10 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cat.net.common.NetConfig;
+import com.cat.net.network.client.RpcClientStarter;
 import com.cat.server.common.ServerConfig;
+import com.cat.server.common.ServerConstant;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.lifecycle.Priority;
+import com.cat.server.game.module.player.proto.ReqLogin;
+import com.cat.server.game.module.player.rpc.LoginModuleCallback;
+import com.rpc.core.client.RequesterManager;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import com.zaxxer.hikari.HikariDataSource;
 
 //FSC
@@ -23,6 +31,10 @@ public class InitialRunner implements Lifecycle{
 	
 	@Autowired private NetConfig netConfig;
 	@Autowired private ServerConfig config;
+	
+	@Autowired 
+	private RequesterManager requesterManager;
+	
 //	@Autowired 
 //	private RankManager rankManager;
 	
@@ -85,6 +97,7 @@ public class InitialRunner implements Lifecycle{
 ////			testInsertBatch();
 ////			testSelect();
 ////			System.out.println(userDao.getById(5));
+			this.consoleListener();
 			log.info(getSystemInfo());
 		} catch (Exception e) {
 			log.error("服务器初始化过程出现异常, 启动失败", e);
@@ -271,6 +284,48 @@ public class InitialRunner implements Lifecycle{
 			return currObtain;
 		}
 	}
+	
+	public void consoleListener() {
+		if (!System.getProperty("os.name").toLowerCase(Locale.US).contains("windows")) {
+            // 只监听 windows 系统
+            return;
+        }
+		Thread consoleThread = new Thread(() -> {
+            try (Scanner sc = new Scanner(System.in)) {
+            	while (true) {
+            		 String cmd = sc.next();
+                     if(cmd.equals("close")) {
+                     	break;
+                     }else if(cmd.equals("battle")) {
+                    	 try {
+                    		//rpc请求
+                 			RpcClientStarter client = requesterManager.getClient(ServerConstant.NODE_TYPE_LOGIN);
+                 			if(client == null) {
+                 				log.info("没有找到合适的节点, 节点类型{}", ServerConstant.NODE_TYPE_LOGIN);
+                 				continue;
+                 			}
+                 			log.info("节点类型: {}, 客户端:{}", ServerConstant.NODE_TYPE_LOGIN, client);
+                 			client.ask(ReqLogin.create("aaa"), 300L, new LoginModuleCallback());
+                 			
+     					} catch (Exception e) {
+     						e.printStackTrace();
+     					}
+                     }
+                     try {
+						Thread.sleep(100L);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+                }
+            }finally {
+            	System.exit(0);
+            }
+        });
+        consoleThread.setName("os_console_thread");
+        consoleThread.setDaemon(true);
+        consoleThread.start();
+	}
+	
 	
 	@Override
 	public void start() throws Throwable {

@@ -57,7 +57,7 @@ public class RobotContext {
 		DefaultConnectControllerDispatcher dispacher = 
 				SpringContextHolder.getBean(DefaultConnectControllerDispatcher.class);
 		context.getRobotAcotr().registDispatcher(dispacher);
-		context.client = new TcpClientStarter(3, "game", robot.getRobotLogin().getIp(), robot.getRobotLogin().getPort(), dispacher);
+		context.client = new TcpClientStarter(1, 3, "game", robot.getRobotLogin().getIp(), robot.getRobotLogin().getPort(), dispacher);
 		return context;
 	}
 	
@@ -157,12 +157,8 @@ public class RobotContext {
 	 * 连接游戏服
 	 */
 	public boolean gameServerConnection(){
-		try {
-			return client.connect();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
+		client.connect();
+		return true;
 	}
 	
 	/**
