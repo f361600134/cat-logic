@@ -4,7 +4,6 @@ import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.server.game.data.proto.PBLogin;
 import com.cat.server.game.data.proto.PBLogin.ReqLogin;
-import com.google.protobuf.AbstractMessageLite.Builder;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 public class ReqLoginBuilder extends AbstractProtocol{
@@ -45,8 +44,8 @@ public class ReqLoginBuilder extends AbstractProtocol{
     }
 
     @Override
-    public Builder<?, ?> getBuilder() {
-        return builder;
-    }
+	public byte[] toBytes() {
+		return builder.build().toByteArray();
+	}
 	
 }
