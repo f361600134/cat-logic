@@ -11,13 +11,13 @@ import org.springframework.context.annotation.Configuration;
 import com.cat.net.LocalNetService;
 import com.cat.net.http.controller.DefaultHttpController;
 import com.cat.net.http.process.RequestProcessor;
+import com.cat.net.network.base.AbstractProtocol;
 import com.cat.net.network.controller.DefaultConnectControllerDispatcher;
 import com.cat.net.network.controller.DefaultRemoteCallControllerDispatcher;
 import com.cat.net.network.controller.IController;
 import com.cat.net.network.rpc.IResponseCallback;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.lifecycle.Priority;
-import com.google.protobuf.AbstractMessageLite;
 
 /**
  * 网络组件
@@ -76,7 +76,7 @@ public class NetworkComponent implements Lifecycle{
 	 * @return
 	 */
 	@Bean
-	public DefaultRemoteCallControllerDispatcher rpcController(List<IResponseCallback<? extends AbstractMessageLite<?, ?>>> callbacks) {
+	public DefaultRemoteCallControllerDispatcher rpcController(List<IResponseCallback<? extends AbstractProtocol>> callbacks) {
 		logger.info("注册[DefaultRemoteCallController]服务, size:{}", callbacks.size());
 		DefaultRemoteCallControllerDispatcher controller = new DefaultRemoteCallControllerDispatcher();
 		try {

@@ -254,15 +254,11 @@ public class TemplateDomain {
 			FileUtils.forceMkdir(file);
 		}
 		File[] files = file.listFiles();
-		int genNum = 0;
 		for (File f : files) {
 			String content = FileUtils.readFileToString(f, StandardCharsets.UTF_8);
 			TemplateStruct struct = JSONObject.parseObject(content, TemplateStruct.class);
 			this.templateMap.put(struct.getId(), struct);
-			genNum = Math.max(genNum, struct.getId());
 		}
-		//设置id生成器
-		generator.set(genNum); 
 		//加载模板文件目录, 对比模板文件目录和结构目录的, 新增的模板文件自动加载进来
 		file = new File(tenum.getPath());
 		for (File f : file.listFiles()) {

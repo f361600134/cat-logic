@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.cat.api.request.ReqIdentityAuthenticate;
 import com.cat.net.common.NetConfig;
 import com.cat.net.network.client.RpcClientStarter;
 import com.cat.server.common.ServerConfig;
@@ -19,8 +20,8 @@ import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.module.player.proto.ReqLogin;
 import com.cat.server.game.module.player.rpc.LoginModuleCallback;
+import com.rpc.common.RpcConfig;
 import com.rpc.core.client.RequesterManager;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import com.zaxxer.hikari.HikariDataSource;
 
 //FSC
@@ -29,6 +30,7 @@ public class InitialRunner implements Lifecycle{
 	
 	private static final Logger log = LoggerFactory.getLogger(InitialRunner.class);
 	
+	@Autowired private RpcConfig rpcConfig;
 	@Autowired private NetConfig netConfig;
 	@Autowired private ServerConfig config;
 	
@@ -305,7 +307,8 @@ public class InitialRunner implements Lifecycle{
                  				continue;
                  			}
                  			log.info("节点类型: {}, 客户端:{}", ServerConstant.NODE_TYPE_LOGIN, client);
-                 			client.ask(ReqLogin.create("aaa"), 300L, new LoginModuleCallback());
+                 			ReqIdentityAuthenticate req = ReqIdentityAuthenticate.create(rpcConfig.getServerId(), rpcConfig.getNodeType());
+                 			client.ask(req, 300L, new LoginModuleCallback());
                  			
      					} catch (Exception e) {
      						e.printStackTrace();
