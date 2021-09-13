@@ -7,11 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.cat.net.network.controller.DefaultConnectControllerDispatcher;
+import com.cat.net.network.base.AbstractProtocol;
 import com.cat.net.network.controller.DefaultRemoteCallControllerDispatcher;
 import com.cat.net.network.controller.IController;
 import com.cat.net.network.rpc.IResponseCallback;
-import com.google.protobuf.AbstractMessageLite;
+import com.rpc.core.dispatcher.RpcDispacher;
 import com.rpc.core.server.RpcNetService;
 
 /**
@@ -35,13 +35,13 @@ public class NetworkComponent {
 	}
 	
 	/**
-	 * 注册游戏服分发处理器
+	 * RPC服务
 	 * @return
 	 */
 	@Bean
-	public DefaultConnectControllerDispatcher serverController(List<IController> controllers) {
-		logger.info("注册[DefaultConnectController]服务");
-		DefaultConnectControllerDispatcher controller = new DefaultConnectControllerDispatcher();
+	public RpcDispacher serverController(List<IController> controllers) {
+		logger.info("注册[RpcDispacher]服务");
+		RpcDispacher controller = new RpcDispacher();
 		try {	
 			controller.initialize(controllers);
 		} catch (Exception e) {
@@ -56,7 +56,7 @@ public class NetworkComponent {
 	 * @return
 	 */
 	@Bean
-	public DefaultRemoteCallControllerDispatcher rpcController(List<IResponseCallback<? extends AbstractMessageLite<?, ?>>> callbacks) {
+	public DefaultRemoteCallControllerDispatcher rpcController(List<IResponseCallback<? extends AbstractProtocol>> callbacks) {
 		logger.info("注册[DefaultRemoteCallController]服务, size:{}", callbacks.size());
 		DefaultRemoteCallControllerDispatcher controller = new DefaultRemoteCallControllerDispatcher();
 		try {
