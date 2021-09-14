@@ -22,12 +22,19 @@
       <scope>test</scope>
     </dependency>
     
-	<!-- birpc -->
-	<dependency>
-		<groupId>com.rpc</groupId>
-		<artifactId>bi-rpc</artifactId>
+    <!-- api -->
+    <dependency>
+		<groupId>com.cat</groupId>
+		<artifactId>cat-api</artifactId>
 		<version>0.0.1</version>
 	</dependency>
+    
+	<!-- birpc -->
+<!-- 	<dependency> -->
+<!-- 		<groupId>com.rpc</groupId> -->
+<!-- 		<artifactId>bi-rpc</artifactId> -->
+<!-- 		<version>0.0.1</version> -->
+<!-- 	</dependency> -->
     
   </dependencies>
 </project>

@@ -25,5 +25,7 @@ public class ProtocolId {
 	
 	public static final int ReqIdentityAuthenticate  = 10001;
 	public static final int RespIdentityAuthenticate  = 10002;
+	public static final int ReqKickUpPlayer = 10003;
+	public static final int RespKickUpPlayer = 10004;
 
 }

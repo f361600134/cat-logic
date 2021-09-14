@@ -19,7 +19,7 @@ import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.module.player.proto.ReqLogin;
-import com.cat.server.game.module.player.rpc.LoginModuleCallback;
+import com.cat.server.game.module.player.rpc.ReqIdentityAuthenticateCallback;
 import com.rpc.common.RpcConfig;
 import com.rpc.core.client.RequesterManager;
 import com.zaxxer.hikari.HikariDataSource;
@@ -298,7 +298,7 @@ public class InitialRunner implements Lifecycle{
             		 String cmd = sc.next();
                      if(cmd.equals("close")) {
                      	break;
-                     }else if(cmd.equals("battle")) {
+                     }else if(cmd.equals("rpc")) {
                     	 try {
                     		//rpc请求
                  			RpcClientStarter client = requesterManager.getClient(ServerConstant.NODE_TYPE_LOGIN);
@@ -306,10 +306,9 @@ public class InitialRunner implements Lifecycle{
                  				log.info("没有找到合适的节点, 节点类型{}", ServerConstant.NODE_TYPE_LOGIN);
                  				continue;
                  			}
-                 			log.info("节点类型: {}, 客户端:{}", ServerConstant.NODE_TYPE_LOGIN, client);
                  			ReqIdentityAuthenticate req = ReqIdentityAuthenticate.create(rpcConfig.getServerId(), rpcConfig.getNodeType());
-                 			client.ask(req, 300L, new LoginModuleCallback());
-                 			
+                 			log.info("目标节点类型: {}, 发送验证参数:[{}|{}], 客户端:{}", ServerConstant.NODE_TYPE_LOGIN, rpcConfig.getServerId(), rpcConfig.getNodeType(), client);
+                 			client.ask(req, 300L, new ReqIdentityAuthenticateCallback());
      					} catch (Exception e) {
      						e.printStackTrace();
      					}

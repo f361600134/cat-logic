@@ -41,9 +41,14 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	</dependency>
 	
 	<!-- birpc -->
-	<dependency>
-		<groupId>com.rpc</groupId>
-		<artifactId>bi-rpc</artifactId>
+<!-- 	<dependency> -->
+<!-- 		<groupId>com.rpc</groupId> -->
+<!-- 		<artifactId>bi-rpc</artifactId> -->
+<!-- 		<version>0.0.1</version> -->
+<!-- 	</dependency> -->
+    <dependency>
+		<groupId>com.cat</groupId>
+		<artifactId>cat-api</artifactId>
 		<version>0.0.1</version>
 	</dependency>
 
@@ -54,31 +59,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<version>2.6</version>
 	</dependency>
 
-	<!-- commons-->
-	<dependency>
-		<groupId>org.apache.commons</groupId>
-		<artifactId>commons-lang3</artifactId>
-		<version>3.10</version>
-	</dependency>
-
 	<!-- httpclient -->
 	<dependency>
 		<groupId>org.apache.httpcomponents</groupId>
 		<artifactId>httpclient</artifactId>
 		<version>4.5.13</version>
-	</dependency>
-
-	<!-- protostuff-core -->
-	<dependency>
-		<groupId>io.protostuff</groupId>
-		<artifactId>protostuff-core</artifactId>
-		<version>1.7.2</version>
-	</dependency>
-
-	<dependency>
-		<groupId>io.protostuff</groupId>
-		<artifactId>protostuff-runtime</artifactId>
-		<version>1.7.2</version>
 	</dependency>
 
 	<!-- druid -->

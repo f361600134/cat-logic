@@ -21,5 +21,26 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+    <!-- birpc -->
+	<dependency>
+		<groupId>com.rpc</groupId>
+		<artifactId>bi-rpc</artifactId>
+		<version>0.0.1</version>
+	</dependency>
+    
+     <!-- protostuff-core -->
+	<dependency>
+		<groupId>io.protostuff</groupId>
+		<artifactId>protostuff-core</artifactId>
+		<version>1.7.2</version>
+	</dependency>
+
+	<dependency>
+		<groupId>io.protostuff</groupId>
+		<artifactId>protostuff-runtime</artifactId>
+		<version>1.7.2</version>
+	</dependency>
+    
   </dependencies>
 </project>

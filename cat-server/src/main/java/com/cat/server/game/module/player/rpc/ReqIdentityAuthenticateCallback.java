@@ -13,9 +13,9 @@ import com.cat.net.network.rpc.IResponseCallback;
  * @author Jeremy
  */
 @Rpc(value = ProtocolId.RespIdentityAuthenticate)
-public class LoginModuleCallback implements IResponseCallback<RespIdentityAuthenticate>{
+public class ReqIdentityAuthenticateCallback implements IResponseCallback<RespIdentityAuthenticate>{
 	
-	private static Logger logger = LoggerFactory.getLogger(LoginModuleCallback.class);
+	private static Logger logger = LoggerFactory.getLogger(ReqIdentityAuthenticateCallback.class);
 
 	@Override
 	public void receiveResponse(RespIdentityAuthenticate response) {

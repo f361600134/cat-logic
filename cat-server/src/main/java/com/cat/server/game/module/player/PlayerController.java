@@ -5,7 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.cat.api.ProtocolId;
+import com.cat.api.request.ReqKickUpPlayer;
+import com.cat.api.response.RespKickUpPlayer;
 import com.cat.net.network.annotation.Cmd;
+import com.cat.net.network.annotation.RpcRequest;
 import com.cat.net.network.base.ISession;
 import com.cat.net.network.controller.IController;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
@@ -93,6 +97,5 @@ public class PlayerController implements IController{
 			playerService.sendMessage(playerId.longValue(), ack);
 		}
 	}
-	
 
 }

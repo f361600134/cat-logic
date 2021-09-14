@@ -13,8 +13,10 @@ import com.cat.net.http.controller.DefaultHttpController;
 import com.cat.net.http.process.RequestProcessor;
 import com.cat.net.network.base.AbstractProtocol;
 import com.cat.net.network.controller.DefaultConnectControllerDispatcher;
-import com.cat.net.network.controller.DefaultRemoteCallControllerDispatcher;
+import com.cat.net.network.controller.DefaultRemoteCallClientDispatcher;
+import com.cat.net.network.controller.DefaultRpcDispatcher;
 import com.cat.net.network.controller.IController;
+import com.cat.net.network.controller.IRpcController;
 import com.cat.net.network.rpc.IResponseCallback;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.lifecycle.Priority;
@@ -71,21 +73,38 @@ public class NetworkComponent implements Lifecycle{
 		return controller;
 	}
 	
+//	/**
+//	 * RPC服务
+//	 * @return
+//	 */
+//	@Bean
+//	public DefaultRemoteCallClientDispatcher rpcController(List<IResponseCallback<? extends AbstractProtocol>> callbacks) {
+//		logger.info("注册[DefaultRemoteCallController]服务, size:{}", callbacks.size());
+//		DefaultRemoteCallClientDispatcher controller = new DefaultRemoteCallClientDispatcher();
+//		try {
+//			controller.initialize(callbacks);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			logger.error("注册[DefaultRemoteCallController]服务失败, 异常:", e);
+//		}
+//		return controller;
+//	}
+	
 	/**
 	 * RPC服务
 	 * @return
 	 */
 	@Bean
-	public DefaultRemoteCallControllerDispatcher rpcController(List<IResponseCallback<? extends AbstractProtocol>> callbacks) {
-		logger.info("注册[DefaultRemoteCallController]服务, size:{}", callbacks.size());
-		DefaultRemoteCallControllerDispatcher controller = new DefaultRemoteCallControllerDispatcher();
+	public DefaultRpcDispatcher rpcController(List<IRpcController> controllers) {
+		logger.info("注册[DefaultRpcDispatcher]服务, size:{}", controllers.size());
+		DefaultRpcDispatcher dispatcher = new DefaultRpcDispatcher();
 		try {
-			controller.initialize(callbacks);
+			dispatcher.initialize(controllers);
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("注册[DefaultRemoteCallController]服务失败, 异常:", e);
+			logger.error("注册[DefaultRpcDispatcher]服务失败, 异常:", e);
 		}
-		return controller;
+		return dispatcher;
 	}
 	
 	/**
