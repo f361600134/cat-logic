@@ -7,13 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.cat.net.network.base.AbstractProtocol;
-import com.cat.net.network.controller.DefaultRemoteCallClientDispatcher;
-import com.cat.net.network.controller.DefaultRemoteCallServerDispatcher;
-import com.cat.net.network.controller.DefaultRpcDispatcher;
-import com.cat.net.network.controller.IController;
 import com.cat.net.network.controller.IRpcController;
-import com.cat.net.network.rpc.IResponseCallback;
+import com.cat.net.network.controller.RpcDispatcher;
 import com.rpc.core.server.RpcNetService;
 
 /**
@@ -75,9 +70,9 @@ public class NetworkComponent {
 	 * @return
 	 */
 	@Bean
-	public DefaultRpcDispatcher rpcController(List<IRpcController> callbacks) {
+	public RpcDispatcher rpcController(List<IRpcController> callbacks) {
 		logger.info("注册[DefaultRpcDispatcher]服务, size:{}", callbacks.size());
-		DefaultRpcDispatcher controller = new DefaultRpcDispatcher();
+		RpcDispatcher controller = new RpcDispatcher();
 		try {
 			controller.initialize(callbacks);
 		} catch (Exception e) {

@@ -21,7 +21,7 @@ public class PlayerController implements IRpcController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	
-	@Rpc(value= ProtocolId.ReqIdentityAuthenticate, type = Rpc.RESPONSE, isAuth = false)
+	@Rpc(value= ProtocolId.ReqIdentityAuthenticate, isAuth = false)
 	public void reqIdentityAuthenticate(ISession session, ReqIdentityAuthenticate req) {
 		
 		RpcNetService netService = SpringContextHolder.getBean(RpcNetService.class);
@@ -45,7 +45,7 @@ public class PlayerController implements IRpcController {
 		resp.setCode(0);
 		resp.setSeq(req.getSeq());
 		session.push(resp);
-		logger.info("收到RPC请求, 节点id:{}, 节点类型:{}, 返回结果:{}", req.getNodeId(), req.getNodeType(), 0);
+		logger.info("收到RPC请求, 节点id:{}, 节点类型:{}, 返回结果:{}, 序列号:{}", req.getNodeId(), req.getNodeType(), 0, req.getSeq());
 	}
 	
 }

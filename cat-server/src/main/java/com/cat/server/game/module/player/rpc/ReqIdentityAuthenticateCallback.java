@@ -12,7 +12,7 @@ import com.cat.net.network.rpc.IResponseCallback;
  * 登录回调, 如果账号服与游戏服长连接的话, 
  * @author Jeremy
  */
-@Rpc(value = ProtocolId.RespIdentityAuthenticate)
+@Rpc(value = ProtocolId.RespIdentityAuthenticate, listen = Rpc.RESPONSE)
 public class ReqIdentityAuthenticateCallback implements IResponseCallback<RespIdentityAuthenticate>{
 	
 	private static Logger logger = LoggerFactory.getLogger(ReqIdentityAuthenticateCallback.class);

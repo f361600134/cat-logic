@@ -34,18 +34,18 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<version>0.0.1</version>
 	</dependency>
 
-	<dependency>
-		<groupId>com.cat</groupId>
-		<artifactId>cat-net</artifactId>
-		<version>0.0.1</version>
-	</dependency>
-	
-	<!-- birpc -->
 <!-- 	<dependency> -->
-<!-- 		<groupId>com.rpc</groupId> -->
-<!-- 		<artifactId>bi-rpc</artifactId> -->
+<!-- 		<groupId>com.cat</groupId> -->
+<!-- 		<artifactId>cat-net</artifactId> -->
 <!-- 		<version>0.0.1</version> -->
 <!-- 	</dependency> -->
+	
+	<!-- birpc -->
+	<dependency>
+		<groupId>com.rpc</groupId>
+		<artifactId>bi-rpc</artifactId>
+		<version>0.0.1</version>
+	</dependency>
     <dependency>
 		<groupId>com.cat</groupId>
 		<artifactId>cat-api</artifactId>
@@ -66,35 +66,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<version>4.5.13</version>
 	</dependency>
 
-	<!-- druid -->
-<!-- 	<dependency> -->
-<!-- 		<groupId>com.alibaba</groupId> -->
-<!-- 		<artifactId>druid</artifactId> -->
-<!-- 		<version>1.1.10</version> -->
-<!-- 	</dependency> -->
-	
-	<!-- dubbo -->
-	<dependency>
-	    <groupId>org.apache.dubbo</groupId>
-	    <artifactId>dubbo</artifactId>
-	    <version>2.7.5</version>
-	</dependency>
-<!-- 	<dependency> -->
-<!-- 	    <groupId>org.apache.zookeeper</groupId> -->
-<!-- 	    <artifactId>zookeeper</artifactId> -->
-<!-- 	    <version>3.4.14</version> -->
-<!-- 	</dependency> -->
-<!-- 	<dependency> -->
-<!-- 		<groupId>org.apache.curator</groupId> -->
-<!-- 		<artifactId>curator-framework</artifactId> -->
-<!-- 		<version>4.0.0</version> -->
-<!-- 	</dependency> -->
-<!-- 	<dependency> -->
-<!-- 		<groupId>org.apache.curator</groupId> -->
-<!-- 		<artifactId>curator-recipes</artifactId> -->
-<!-- 		<version>4.0.0</version> -->
-<!-- 	</dependency> -->
-	
 	<!-- cat-api -->
 	<dependency>
 		<groupId>com.cat</groupId>
@@ -140,20 +111,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	    <artifactId>HikariCP</artifactId>
 	    <version>4.0.3</version>
 	</dependency>
-
-	<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.25</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.25</version>
-	</dependency>
-	
-	
 	
 </dependencies>
 

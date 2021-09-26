@@ -16,7 +16,7 @@ public class PlayerRpcController implements IRpcController{
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
-	@Rpc(value= ProtocolId.ReqKickUpPlayer, type = Rpc.RESPONSE, isAuth = false)
+	@Rpc(value= ProtocolId.ReqKickUpPlayer, isAuth = false)
 	public void reqIdentityAuthenticate(ISession session, ReqKickUpPlayer req) {
 		
 		long playerId = req.getPlayerId();
