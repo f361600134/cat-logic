@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.cat.net.network.controller.IRpcController;
-import com.cat.net.network.controller.RpcDispatcher;
+import com.cat.net.network.controller.DefaultRpcDispatcher;
 import com.rpc.core.server.RpcNetService;
 
 /**
@@ -70,9 +70,9 @@ public class NetworkComponent {
 	 * @return
 	 */
 	@Bean
-	public RpcDispatcher rpcController(List<IRpcController> callbacks) {
+	public DefaultRpcDispatcher rpcController(List<IRpcController> callbacks) {
 		logger.info("注册[DefaultRpcDispatcher]服务, size:{}", callbacks.size());
-		RpcDispatcher controller = new RpcDispatcher();
+		DefaultRpcDispatcher controller = new DefaultRpcDispatcher();
 		try {
 			controller.initialize(callbacks);
 		} catch (Exception e) {
