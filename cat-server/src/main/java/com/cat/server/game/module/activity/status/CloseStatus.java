@@ -32,7 +32,7 @@ public class CloseStatus extends AbstractStatus{
 	 * 到达关闭阶段, 处理当前状态的逻辑
 	 */
 	@Override
-	public void handle(long now) {
+	public void doHandle(long now) {
 		activityType.onClose(now);
 	}
 	

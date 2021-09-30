@@ -31,8 +31,7 @@ public class BeginStatus extends AbstractStatus {
 	 * 到达开始阶段, 处理当前状态的逻辑
 	 */
 	@Override
-	public void handle(long now) {
-		super.handle(now);
+	public void doHandle(long now) {
         activityType.onBegin(now);
 	}
 

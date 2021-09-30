@@ -1,7 +1,7 @@
 package com.cat.server.game.module.activityoperation.learncommunity.domain;
 
 import com.cat.orm.core.annotation.PO;
-import com.cat.server.core.server.IPersistence; 
+import com.cat.server.core.server.IPersistence;
 
 /**
 * @author Jeremy
@@ -16,6 +16,5 @@ public class LearnCommunity extends LearnCommunityPo implements IPersistence{
 	public LearnCommunity(long playerId) {
 		this.playerId = playerId;
 	}
-	
 
 }

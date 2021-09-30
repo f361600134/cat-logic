@@ -17,5 +17,14 @@ public class LearnCommunityDomain extends AbstractModuleDomain<Long, LearnCommun
 	}
 	
 	////////////业务代码////////////////////
+	/**
+	 * 检测每日重置
+	 *   
+	 * @return void  
+	 * @date 2021年9月30日上午8:45:37
+	 */
+	public boolean checkAndReset() {
+		return false;
+	}
 }
 

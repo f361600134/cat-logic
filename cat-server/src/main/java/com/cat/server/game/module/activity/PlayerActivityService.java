@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.cat.server.game.data.proto.PBActivity.ReqActivityInfo;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.proto.RespActivityInfoBuilder;
+import com.cat.server.game.module.activity.proto.RespActivityInfoUpdateBuilder;
+import com.cat.server.game.module.activity.type.IActivityType;
 import com.cat.server.game.module.player.IPlayerService;
 
 @Service
@@ -21,7 +23,7 @@ public class PlayerActivityService {
 	@Autowired private IPlayerService playerService;
 	
 	/**
-	 * 更新信息
+	 * 更新信息给指定玩家
 	 */
 	public void responseActivityInfo(long playerId) {
 		RespActivityInfoBuilder resp = RespActivityInfoBuilder.newInstance();
@@ -35,6 +37,21 @@ public class PlayerActivityService {
 			e.printStackTrace();
 			log.error("responseActivityInfo error, e:", e);
 		}
+	}
+	
+	/**
+	 * 更新指定的活动信息给所有玩家
+	 * @param typeId 类型id
+	 */
+	public void responseActivityUpdateInfo(int typeId) {
+		RespActivityInfoUpdateBuilder resp = RespActivityInfoUpdateBuilder.newInstance();
+		IActivityType activityType = activityService.getActivityType(typeId);
+		Activity activity = activityType.getActivity();
+		if (activity == null) {
+			return;
+		}
+		resp.setActivity(activity.toProto());
+		playerService.sendMessageToAll(resp);
 	}
 	
 	

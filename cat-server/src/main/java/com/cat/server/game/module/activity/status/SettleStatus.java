@@ -36,8 +36,7 @@ public class SettleStatus extends AbstractStatus {
 	 * 到达结算阶段, 处理当前状态的逻辑.
 	 */
 	@Override
-	public void handle(long now) {
-		super.handle(now);
+	public void doHandle(long now) {
         activityType.onSettle(now);
 	}
 	

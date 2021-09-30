@@ -95,6 +95,10 @@ public enum ErrorCode implements ModuleDefines {
     TEAM_ALREADY_IN_TEAM(TEAM, 5, "已处在队伍中不能创建队伍"),
     TEAM_NOT_LEADER(TEAM, 6, "不是队长无权限操作"),
     TEAM_APPLY_EXPIRE(TEAM, 7, "该申请已过期"),
+    
+    // -----------------活动---------------------
+    ACTIVITY_NOT_EXIST(ACTIVITY, 1, "活动不存在"),
+    ACTIVITY_NOT_IN_ACTIVITY_TIME(ACTIVITY, 2, "未处于活动时间"),
     ;
 	
 	

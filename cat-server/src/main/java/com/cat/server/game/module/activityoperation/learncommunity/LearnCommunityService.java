@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 import com.cat.server.game.data.proto.PBLearnCommunity.ReqLearnCommunityInfo;
 import com.cat.server.game.data.proto.PBLearnCommunity.ReqLearnCommunityReward;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.activity.IActivityService;
+import com.cat.server.game.module.activity.type.ActivityTypeEnum;
+import com.cat.server.game.module.activity.type.IActivityType;
+import com.cat.server.game.module.activity.type.IPlayerActivityService;
+import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunity;
 import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunityDomain;
 import com.cat.server.game.module.activityoperation.learncommunity.proto.RespLearnCommunityInfoBuilder;
 import com.cat.server.game.module.activityoperation.learncommunity.proto.RespLearnCommunityRewardBuilder;
@@ -19,7 +24,7 @@ import com.cat.server.game.module.player.IPlayerService;
  * @author Jeremy
  */
 @Service
-public class LearnCommunityService implements ILearnCommunityService {
+public class LearnCommunityService implements ILearnCommunityService, IPlayerActivityService{
 	
 	private static final Logger log = LoggerFactory.getLogger(LearnCommunityService.class);
 	
@@ -32,10 +37,23 @@ public class LearnCommunityService implements ILearnCommunityService {
 	 */
 	public void onLogin(long playerId) {
 		LearnCommunityDomain domain = learnCommunityManager.getDomain(playerId);
-//		Collection<LearnCommunity> beans = domain.getBeans();
-		//FSC todo somthing...
-		//Codes for proto
-		//playerService.sendMessage(playerId, ack);
+		if (domain == null) {
+			log.info("LearnCommunityService error, domain is null");
+			return;
+		}
+		//检测活动结束
+		IActivityType activityType = getActivityType();
+		int activityId = activityType.getActivity().getConfigId();
+		if (activityId != domain.getBean().getActivityId()) {
+			//TODO 玩家保存的活动id跟当前活动id不一致, 表示活动已经结束,处理活动结束
+			//1. 发送邮件领取未领取的奖励
+			//2. 清除当前研习社所有数据,保存
+			return;
+		}
+		//检测每日重置
+		domain.checkAndReset();
+		//下发最新的研习社至客户端
+		this.responseLearnCommunityInfo(domain);
 	}
 	
 	/**
@@ -46,24 +64,23 @@ public class LearnCommunityService implements ILearnCommunityService {
 		learnCommunityManager.remove(playerId);
 	}
   
-	
 	/**
 	 * 更新信息
 	 */
 	public void responseLearnCommunityInfo(LearnCommunityDomain domain) {
-//		Collection<LearnCommunity> beans = domain.getBeans();
-//		try {
-//			for (LearnCommunity learnCommunity : beans) {
-//				//resp.addArtifactlist(learnCommunity.toProto());
-//			}
-//			//playerService.sendMessage(playerId, resp);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			log.info("responseLearnCommunityInfo error, playerId:{}", domain.getId());
-//			log.error("responseLearnCommunityInfo error, e:", e);
-//		}
+		LearnCommunity bean = domain.getBean();
+		try {
+			RespLearnCommunityInfoBuilder resp = RespLearnCommunityInfoBuilder.newInstance();
+			resp.setLevel(bean.getLevel());
+			resp.setExp(bean.getExp());
+			resp.setExclusive(bean.getExclusive());
+			playerService.sendMessage(domain.getId(), resp);
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("responseLearnCommunityInfo error, playerId:{}", domain.getId());
+			log.error("responseLearnCommunityInfo error, e:", e);
+		}
 	}
-	
 	
 	/////////////业务逻辑//////////////////
 	
@@ -79,7 +96,10 @@ public class LearnCommunityService implements ILearnCommunityService {
 			if (domain == null) {
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
-			//TODO Somthing.
+			ErrorCode errorCode = isInCycle();
+			if (!errorCode.isSuccess()) {
+				return errorCode;
+			}
 			this.responseLearnCommunityInfo(domain);
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {
@@ -101,6 +121,10 @@ public class LearnCommunityService implements ILearnCommunityService {
 			if (domain == null) {
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
+			ErrorCode errorCode = isInCycle();
+			if (!errorCode.isSuccess()) {
+				return errorCode;
+			}
 			//TODO Somthing.
 			this.responseLearnCommunityInfo(domain);
 			return ErrorCode.SUCCESS;
@@ -111,7 +135,11 @@ public class LearnCommunityService implements ILearnCommunityService {
 			return ErrorCode.UNKNOWN_ERROR;
 		}
 	}
-  
+
+	@Override
+	public int activityType() {
+		return ActivityTypeEnum.LEARN_COMMUNITY.getValue();
+	}
 	
 	/////////////接口方法////////////////////////
 	

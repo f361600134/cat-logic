@@ -87,7 +87,8 @@ public abstract class AbstractModuleDomain<I extends Number, T extends IBasePo> 
 	/**
 	 * 创建后的操作, 由子类实现, 初始化模块初始数据等操作
 	 */
-	public void afterCreate() {}
+	public void afterCreate() {
+	}
 	
 	public T getBean() {
 		return bean;

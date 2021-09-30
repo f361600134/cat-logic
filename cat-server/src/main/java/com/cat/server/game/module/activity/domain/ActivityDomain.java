@@ -3,6 +3,8 @@ package com.cat.server.game.module.activity.domain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.cat.server.common.ServerConfig;
+import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.AbstractModuleDomain;
 import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
 import com.cat.server.game.module.activity.type.ActivityTypeEnum;
@@ -18,6 +20,16 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 	private static final Logger log = LoggerFactory.getLogger(ActivityDomain.class);
 	
 	private IActivityType activityType;
+	
+	/**
+	 * Activity自动创建对象,所以创建后保存一下
+	 */
+	@Override
+	public void afterCreate() {
+		ServerConfig config = SpringContextHolder.getBean(ServerConfig.class);
+		this.bean.setCurServerId(config.getServerId());
+		this.bean.save();
+	}
 	
 	@Override
 	public void afterInit() {

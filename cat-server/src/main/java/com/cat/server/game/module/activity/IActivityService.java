@@ -3,6 +3,7 @@ package com.cat.server.game.module.activity;
 import java.util.Collection;
 
 import com.cat.server.game.module.activity.domain.Activity;
+import com.cat.server.game.module.activity.type.ActivityTypeEnum;
 import com.cat.server.game.module.activity.type.IActivityType;
 
 /**
@@ -16,11 +17,16 @@ public interface IActivityService {
 	 */
 	public Collection<Activity> getAllActivitys();
 	
+	/**
+	 * 获取指定类型id的活动域
+	 * @return
+	 */
+	public IActivityType getActivityType(int typeId);
 	
 	/**
 	 * 获取指定类型id的活动域
 	 * @return
 	 */
-	public IActivityType getActivityType(int planId);
+	public IActivityType getActivityType(ActivityTypeEnum activityType);
 	
 }

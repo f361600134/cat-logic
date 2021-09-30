@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
-import com.cat.server.core.task.impl.CommonTaskExecutor;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.domain.ActivityDomain;
+import com.cat.server.game.module.activity.type.ActivityTypeEnum;
 import com.cat.server.game.module.activity.type.IActivityType;
 
 
@@ -39,12 +39,13 @@ class ActivityService implements IActivityService, ILifecycle{
 	}
 
 	@Override
-	public IActivityType getActivityType(int planId) {
-		ActivityDomain domain = activityManager.getDomain(planId);
-		if (domain == null) {
-			return null;
-		}
-		return domain;
+	public IActivityType getActivityType(int typeId) {
+		return activityManager.getDomain(typeId);
+	}
+	
+	@Override
+	public IActivityType getActivityType(ActivityTypeEnum activityType) {
+		return activityManager.getDomain(activityType.getValue());
 	}
 	
 	@Override
@@ -56,7 +57,7 @@ class ActivityService implements IActivityService, ILifecycle{
 	public int priority() {
 		return Priority.LOGIC.getPriority();
 	}
-	
+
 }
  
  

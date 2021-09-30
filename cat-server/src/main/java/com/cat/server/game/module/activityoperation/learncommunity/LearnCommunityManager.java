@@ -9,6 +9,6 @@ import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnC
 * @author Jeremy
 */
 @Component
-public class LearnCommunityManager extends AbstractModuleManager<Long, LearnCommunityDomain>{
+class LearnCommunityManager extends AbstractModuleManager<Long, LearnCommunityDomain>{
 
 }

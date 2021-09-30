@@ -393,6 +393,15 @@ class PlayerService implements IPlayerService, IResourceService {
 		playerIds.forEach(playerId -> sendMessage(playerId, protocol));
 	}
 	
+	/**
+	 * 发送消息至所有玩家
+	 * @param protocol 协议体
+	 */
+	@Override
+	public void sendMessageToAll(IProtocol protocol) {
+		playerMap.forEach((playerId, context)->sendMessage(playerId, protocol));
+	}
+	
 //	@Override
 //	public Long getPlayerId(ISession session) {
 //		return sessionMap.inverse().get(session);

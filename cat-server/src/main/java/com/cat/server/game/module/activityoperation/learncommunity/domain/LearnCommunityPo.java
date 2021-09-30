@@ -55,6 +55,8 @@ public abstract class LearnCommunityPo extends BasePo {
 	protected String dailyActiveMapStr;
 	/** 玩家id*/
 	protected long playerId;
+	/** 当前所处服务器id*/
+	protected int activityId;
 	
 	public LearnCommunityPo(){
 		this.rewardDataMapStr = "";
@@ -132,6 +134,10 @@ public abstract class LearnCommunityPo extends BasePo {
 	
 	public void setPlayerId(long playerId){
 		this.playerId = playerId;
+	}
+	
+	public int getActivityId() {
+		return activityId;
 	}
 	
 	

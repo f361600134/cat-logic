@@ -57,7 +57,7 @@ public interface ModuleDefines {
     int TEAM = 138;
 //    // -----------公共模块---------------------
 //    /** 活动 */
-//    int ACTIVITY = 141;
+    int ACTIVITY = 200;
 //    /** 排行榜 */
 //    int RANK = 142;
     /** 任务 */

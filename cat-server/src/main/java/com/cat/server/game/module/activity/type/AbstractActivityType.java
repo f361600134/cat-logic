@@ -4,9 +4,13 @@ import static com.cat.server.game.module.activity.status.IActivityStatus.*;
 
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
+import com.cat.server.game.module.activity.PlayerActivityController;
 import com.cat.server.game.module.activity.define.ActivityConstant;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.status.ActivityStatusManager;
@@ -18,6 +22,8 @@ import com.cat.server.utils.TimeUtil;
  * @author Jeremy
  */
 public abstract class AbstractActivityType implements IActivityType{
+	
+	protected final Logger log = LoggerFactory.getLogger(AbstractActivityType.class);
 	
 	protected final Activity activity;
 	
@@ -166,7 +172,7 @@ public abstract class AbstractActivityType implements IActivityType{
         this.activity.setBeginTime(beginTime);
         this.activity.setSettleTime(settleTime);
         this.activity.setCloseTime(closeTime);
-        this.activity.save();
+        this.activity.update();
     }
     
     @Override
@@ -178,7 +184,7 @@ public abstract class AbstractActivityType implements IActivityType{
 		activity.setBeginTime(0);
 		activity.setSettleTime(0);
 		activity.setCloseTime(0);
-		activity.save();
+		activity.update();
     }
 //    
 //    @Override

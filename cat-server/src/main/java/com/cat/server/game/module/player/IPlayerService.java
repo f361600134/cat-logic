@@ -40,6 +40,12 @@ public interface IPlayerService {
 	public void sendMessage(Collection<Long> playerIds, IProtocol protocol);
 	
 	/**
+	 * 群发送消息给所有在线玩家
+	 * @param protocol
+	 */
+	public void sendMessageToAll(IProtocol protocol);
+	
+	/**
 	 * 踢指定玩家下线
 	 * @param playerIds
 	 */

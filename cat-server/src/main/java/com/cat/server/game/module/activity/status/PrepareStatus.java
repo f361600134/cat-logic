@@ -24,18 +24,17 @@ public class PrepareStatus extends AbstractStatus{
 		long beginTime = activityType.getBeginTime();
 		long settleTime = activityType.getSettleTime();
 		//如果当前时间,小于开始状态, 或者当前时间大于领奖时间, 不进入下一个状态
-		if (now < beginTime || now > settleTime) {
-			return false;
+		if (now >= beginTime && now < settleTime) {
+			return true;
 		}
-        return true;
+        return false;
 	}
 	
 	/**
 	 * 到达准备阶段, 处理当前状态的逻辑
 	 */
 	@Override
-	public void handle(long now) {
-		super.handle(now);
+	public void doHandle(long now) {
         activityType.onPrepare(now);
 	}
 

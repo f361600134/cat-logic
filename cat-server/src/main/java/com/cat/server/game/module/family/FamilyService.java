@@ -110,7 +110,7 @@ class FamilyService implements IFamilyService, ILifecycle{
 	public Collection<Family> searchFamily(String keyword){
 		FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
 		if (domain == null){
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
 		return domain.searchGroup(keyword);
 	}

@@ -22,10 +22,10 @@ import com.cat.server.utils.TimeUtil;
 import com.google.common.collect.Lists;
 
 /**
- * 活动初始化, 默认根据planId进行初始化, 如果获取不到domain 从数据库获取 对于活动来说, 当启动服务器的时候,
+ * 活动初始化, 默认根据typeId进行初始化, 如果获取不到domain 从数据库获取 对于活动来说, 当启动服务器的时候,
  * 根据serverId获取所有活动, 然后加入活动缓存, 一次IO获取所有活动,这样才比较合理<br>
  * 
- * @param Integer        活动planId
+ * @param Integer        活动typeId
  * @param ActivityDomain 单个活动domain
  * @author Jeremy
  */
@@ -52,7 +52,7 @@ class ActivityManager extends AbstractModuleManager<Integer, ActivityDomain> {
 //	}
 
 	/**
-	 * @param id,活动planId
+	 * @param id,活动typeId
 	 */
 	@Override
 	public ActivityDomain getFromDb(Integer id) {
