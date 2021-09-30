@@ -14,9 +14,10 @@ import org.slf4j.LoggerFactory;
  * 这样好处便是, 对于系统内的所有模块数据, 统一获取.
  *  但是带来的问题便是, 对于超复杂对象, 一条数据,过于庞大
  * @author Jeremy
- * @param <T>
+ * @param <I> I 在抽象domain中,通常用于从数据库load数据, 所以设定为Number的子类
+ * @param <T> T 在抽象domain中,通常用于数据库load出数据后封装的数据,所以设定为IBasePo子类
  */
-public abstract class AbstractModuleDomain<I, T extends IBasePo> implements IModuleDomain<I, T>{
+public abstract class AbstractModuleDomain<I extends Number, T extends IBasePo> implements IModuleDomain<I, T>{
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass()); 
 	

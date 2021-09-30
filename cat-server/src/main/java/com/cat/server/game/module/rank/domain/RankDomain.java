@@ -6,10 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
@@ -18,9 +19,6 @@ import com.cat.server.core.task.DefaultTokenTaskQueueExecutor;
 import com.cat.server.game.data.config.local.ConfigRank;
 import com.cat.server.game.module.rank.utils.ILeaderboard;
 import com.cat.server.game.module.rank.utils.Leaderboard;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.common.collect.Sets;
 
 

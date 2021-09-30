@@ -14,7 +14,7 @@ import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.domain.Chat;
 import com.cat.server.game.module.chat.domain.ChatDetail;
-import com.cat.server.game.module.chat.proto.AckChatResp;
+import com.cat.server.game.module.chat.proto.RespChatBuilder;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
@@ -136,7 +136,7 @@ public abstract class AbstractChatType implements IChatType{
 		beforeSendMsg(uniqueId, chatDetail);
 		
 		// FSC 新增的聊天消息即时同步, 聊天, 如果需要更新状态,可以独立一条消息
-		AckChatResp res = new AckChatResp();
+		RespChatBuilder res = new RespChatBuilder();
 		res.setChannel(channel);
 		res.addChats(chatDetail.toProto());
 		

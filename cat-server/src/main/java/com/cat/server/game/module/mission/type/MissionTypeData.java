@@ -8,7 +8,7 @@ import com.google.common.collect.Maps;
 
 /**
  * 任务类型数据, 对任务进行封装
- * @auth Jeremy
+ * @author Jeremy
  * @date 2021年2月11日下午4:06:54
  */
 public class MissionTypeData<T extends IMission> {
@@ -16,9 +16,7 @@ public class MissionTypeData<T extends IMission> {
 	/**
 	 * 当前已接取具体任务类, 领取奖励以后从任务列表中移除, 
 	 * 如无特殊情况, 不允许初始化时加载玩家所有任务数据,
-	 * 
-	 * 此成员变量因为从
- */
+	 */
 	private Map<Integer, T> missionPojos;
 
 	/**

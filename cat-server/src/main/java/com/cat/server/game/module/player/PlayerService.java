@@ -19,7 +19,6 @@ import com.cat.net.network.base.IProtocol;
 import com.cat.net.network.base.ISession;
 import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.common.ServerConfig;
-import com.cat.server.common.ServerConstant;
 import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.data.proto.PBPlayer.ReqPlayerCreateRole;
 import com.cat.server.game.data.proto.PBPlayer.ReqPlayerHeart;
@@ -33,11 +32,11 @@ import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
 import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
-import com.cat.server.game.module.player.proto.AckPlayerCreateRoleResp;
-import com.cat.server.game.module.player.proto.AckPlayerHeartResp;
-import com.cat.server.game.module.player.proto.AckPlayerLoginResp;
-import com.cat.server.game.module.player.proto.AckPlayerRandNameResp;
-import com.cat.server.game.module.player.proto.AckPlayerReLoginResp;
+import com.cat.server.game.module.player.proto.RespPlayerCreateRoleBuilder;
+import com.cat.server.game.module.player.proto.RespPlayerHeartBuilder;
+import com.cat.server.game.module.player.proto.RespPlayerLoginBuilder;
+import com.cat.server.game.module.player.proto.RespPlayerRandNameBuilder;
+import com.cat.server.game.module.player.proto.RespPlayerReLoginBuilder;
 import com.cat.server.game.module.player.resp.ResAuthResult;
 import com.cat.server.game.module.resource.IResourceService;
 import com.cat.server.utils.HttpClientUtil;
@@ -145,7 +144,7 @@ class PlayerService implements IPlayerService, IResourceService {
 	 * @param req 登录请求消息体
 	 * @return 错误码
 	 */
-	public ErrorCode reqPlayerLogin(ISession session, ReqPlayerLogin req, AckPlayerLoginResp ack) {
+	public ErrorCode reqPlayerLogin(ISession session, ReqPlayerLogin req, RespPlayerLoginBuilder ack) {
 		final String accountName = req.getAccountName();
 		final int initServerId = req.getServerId();
 		// Http调用, 去账号服请求验证
@@ -222,7 +221,7 @@ class PlayerService implements IPlayerService, IResourceService {
 	* @param ReqPlayerRandName req
 	* @param Resp ack
 	*/
-	public ErrorCode reqPlayerRandName(long playerId, ReqPlayerRandName req, AckPlayerRandNameResp ack){
+	public ErrorCode reqPlayerRandName(long playerId, ReqPlayerRandName req, RespPlayerRandNameBuilder ack){
 		try {
 //			PlayerDomain domain = getDomain(playerId);
 //			if (domain == null) {
@@ -244,7 +243,7 @@ class PlayerService implements IPlayerService, IResourceService {
 	* @param ReqPlayerReLogin req
 	* @param Resp ack
 	*/
-	public ErrorCode reqPlayerReLogin(long playerId, ReqPlayerReLogin req, AckPlayerReLoginResp ack){
+	public ErrorCode reqPlayerReLogin(long playerId, ReqPlayerReLogin req, RespPlayerReLoginBuilder ack){
 		try {
 //			PlayerDomain domain = getDomain(playerId);
 //			if (domain == null) {
@@ -266,7 +265,7 @@ class PlayerService implements IPlayerService, IResourceService {
 	* @param ReqPlayerHeart req
 	* @param Resp ack
 	*/
-	public ErrorCode reqPlayerHeart(long playerId, ReqPlayerHeart req, AckPlayerHeartResp ack){
+	public ErrorCode reqPlayerHeart(long playerId, ReqPlayerHeart req, RespPlayerHeartBuilder ack){
 		try {
 //			PlayerDomain domain = getDomain(playerId);
 //			if (domain == null) {
@@ -287,7 +286,7 @@ class PlayerService implements IPlayerService, IResourceService {
 	* @param ReqPlayerCreateRole req
 	* @param Resp ack
 	*/
-	public ErrorCode reqPlayerCreateRole(long playerId, ReqPlayerCreateRole req, AckPlayerCreateRoleResp ack){
+	public ErrorCode reqPlayerCreateRole(long playerId, ReqPlayerCreateRole req, RespPlayerCreateRoleBuilder ack){
 		try {
 //			PlayerDomain domain = getDomain(playerId);
 //			if (domain == null) {

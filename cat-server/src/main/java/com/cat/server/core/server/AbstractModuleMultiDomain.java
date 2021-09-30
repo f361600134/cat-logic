@@ -28,6 +28,7 @@ public abstract class AbstractModuleMultiDomain<I, K, T extends IBasePo> impleme
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public I id;
+    
     protected Map<K, T> beanMap;
 
     private Class<T> basePoClazz;
@@ -35,6 +36,17 @@ public abstract class AbstractModuleMultiDomain<I, K, T extends IBasePo> impleme
     @SuppressWarnings("unchecked")
     public AbstractModuleMultiDomain() {
         this.beanMap = new HashMap<>();
+        try {
+            Type superClass = getClass().getGenericSuperclass();
+            this.basePoClazz = (Class<T>) (((ParameterizedType) superClass).getActualTypeArguments()[2]);
+        } catch (Exception e) {
+            logger.error("AbstractModuleDomain error", e);
+        }
+    }
+    
+    @SuppressWarnings("unchecked")
+    public AbstractModuleMultiDomain(Map<K, T> beanMap) {
+        this.beanMap = beanMap;
         try {
             Type superClass = getClass().getGenericSuperclass();
             this.basePoClazz = (Class<T>) (((ParameterizedType) superClass).getActualTypeArguments()[2]);

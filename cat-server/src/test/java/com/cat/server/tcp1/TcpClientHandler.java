@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.net.network.base.Packet;
-import com.cat.server.game.module.chat.proto.ReqChat;
+import com.cat.server.game.module.chat.proto.ReqChatBuilder;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -25,7 +25,7 @@ public class TcpClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         log.info("==================server channelActive==================");
-        ReqChat req = ReqChat.create();
+        ReqChatBuilder req = ReqChatBuilder.newInstance();
     	Packet obj = Packet.encode(req);
     	ctx.writeAndFlush(obj);
     }

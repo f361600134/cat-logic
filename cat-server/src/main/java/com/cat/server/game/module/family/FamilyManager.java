@@ -18,11 +18,12 @@ class FamilyManager extends AbstractModuleManager<Integer, FamilyDomain> {
 
     @Autowired private ServerConfig serverConfig;
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public FamilyDomain getFromDb(Integer id) {
         try {
             FamilyDomain domain = clazz.newInstance();
-            List list = process.selectByIndex(domain.getBasePoClazz(), new String[]{Family.PROP_CURSERVERID}, new Object[] {id});
+			List list = process.selectByIndex(domain.getBasePoClazz(), new String[]{Family.PROP_CURSERVERID}, new Object[] {id});
             if (list.isEmpty()) {
                 //	无数据创建
                 domain.initData(id);
@@ -40,7 +41,7 @@ class FamilyManager extends AbstractModuleManager<Integer, FamilyDomain> {
 
     @Override
     public void init() {
-        //初始化, 加载一次, 初始化所有家族数据
+        //初始化, 加载一次, 初始化所有活动数据
         getFromDb(serverConfig.getServerId());
     }
 }

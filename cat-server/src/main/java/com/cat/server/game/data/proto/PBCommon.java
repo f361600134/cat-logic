@@ -14,58 +14,52 @@ public final class PBCommon {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface AckTipsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.AckTips)
+  public interface RespTipsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespTips)
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>int32 tipsId = 1;</code>
      * @return The tipsId.
      */
     int getTipsId();
 
     /**
-     * <code>repeated int32 params = 2;</code>
-     * @return A list containing the params.
+     * <pre>
+     * </pre>
+     *
+     * <code>int32 params = 2;</code>
+     * @return The params.
      */
-    java.util.List<java.lang.Integer> getParamsList();
-    /**
-     * <code>repeated int32 params = 2;</code>
-     * @return The count of params.
-     */
-    int getParamsCount();
-    /**
-     * <code>repeated int32 params = 2;</code>
-     * @param index The index of the element to return.
-     * @return The params at the given index.
-     */
-    int getParams(int index);
+    int getParams();
   }
   /**
    * <pre>
-   *tips信息
+   * tips信息
    * </pre>
    *
-   * Protobuf type {@code Protocol.AckTips}
+   * Protobuf type {@code Protocol.RespTips}
    */
-  public  static final class AckTips extends
+  public  static final class RespTips extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.AckTips)
-      AckTipsOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.RespTips)
+      RespTipsOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use AckTips.newBuilder() to construct.
-    private AckTips(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RespTips.newBuilder() to construct.
+    private RespTips(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private AckTips() {
-      params_ = emptyIntList();
+    private RespTips() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new AckTips();
+      return new RespTips();
     }
 
     @java.lang.Override
@@ -73,7 +67,7 @@ public final class PBCommon {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private AckTips(
+    private RespTips(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -81,7 +75,6 @@ public final class PBCommon {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -98,24 +91,8 @@ public final class PBCommon {
               break;
             }
             case 16: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                params_ = newIntList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              params_.addInt(input.readInt32());
-              break;
-            }
-            case 18: {
-              int length = input.readRawVarint32();
-              int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-                params_ = newIntList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              while (input.getBytesUntilLimit() > 0) {
-                params_.addInt(input.readInt32());
-              }
-              input.popLimit(limit);
+
+              params_ = input.readInt32();
               break;
             }
             default: {
@@ -133,29 +110,29 @@ public final class PBCommon {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          params_.makeImmutable(); // C
-        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_AckTips_descriptor;
+      return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_RespTips_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_AckTips_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_RespTips_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBCommon.AckTips.class, com.cat.server.game.data.proto.PBCommon.AckTips.Builder.class);
+              com.cat.server.game.data.proto.PBCommon.RespTips.class, com.cat.server.game.data.proto.PBCommon.RespTips.Builder.class);
     }
 
     public static final int TIPSID_FIELD_NUMBER = 1;
     private int tipsId_;
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>int32 tipsId = 1;</code>
      * @return The tipsId.
      */
@@ -164,31 +141,17 @@ public final class PBCommon {
     }
 
     public static final int PARAMS_FIELD_NUMBER = 2;
-    private com.google.protobuf.Internal.IntList params_;
+    private int params_;
     /**
-     * <code>repeated int32 params = 2;</code>
-     * @return A list containing the params.
+     * <pre>
+     * </pre>
+     *
+     * <code>int32 params = 2;</code>
+     * @return The params.
      */
-    public java.util.List<java.lang.Integer>
-        getParamsList() {
+    public int getParams() {
       return params_;
     }
-    /**
-     * <code>repeated int32 params = 2;</code>
-     * @return The count of params.
-     */
-    public int getParamsCount() {
-      return params_.size();
-    }
-    /**
-     * <code>repeated int32 params = 2;</code>
-     * @param index The index of the element to return.
-     * @return The params at the given index.
-     */
-    public int getParams(int index) {
-      return params_.getInt(index);
-    }
-    private int paramsMemoizedSerializedSize = -1;
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
@@ -204,16 +167,11 @@ public final class PBCommon {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (tipsId_ != 0) {
         output.writeInt32(1, tipsId_);
       }
-      if (getParamsList().size() > 0) {
-        output.writeUInt32NoTag(18);
-        output.writeUInt32NoTag(paramsMemoizedSerializedSize);
-      }
-      for (int i = 0; i < params_.size(); i++) {
-        output.writeInt32NoTag(params_.getInt(i));
+      if (params_ != 0) {
+        output.writeInt32(2, params_);
       }
       unknownFields.writeTo(output);
     }
@@ -228,19 +186,9 @@ public final class PBCommon {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, tipsId_);
       }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < params_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(params_.getInt(i));
-        }
-        size += dataSize;
-        if (!getParamsList().isEmpty()) {
-          size += 1;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        paramsMemoizedSerializedSize = dataSize;
+      if (params_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, params_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -252,15 +200,15 @@ public final class PBCommon {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBCommon.AckTips)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBCommon.RespTips)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBCommon.AckTips other = (com.cat.server.game.data.proto.PBCommon.AckTips) obj;
+      com.cat.server.game.data.proto.PBCommon.RespTips other = (com.cat.server.game.data.proto.PBCommon.RespTips) obj;
 
       if (getTipsId()
           != other.getTipsId()) return false;
-      if (!getParamsList()
-          .equals(other.getParamsList())) return false;
+      if (getParams()
+          != other.getParams()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -274,78 +222,76 @@ public final class PBCommon {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + TIPSID_FIELD_NUMBER;
       hash = (53 * hash) + getTipsId();
-      if (getParamsCount() > 0) {
-        hash = (37 * hash) + PARAMS_FIELD_NUMBER;
-        hash = (53 * hash) + getParamsList().hashCode();
-      }
+      hash = (37 * hash) + PARAMS_FIELD_NUMBER;
+      hash = (53 * hash) + getParams();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseFrom(
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseFrom(
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseFrom(
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseFrom(
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseFrom(
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseFrom(
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseFrom(
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBCommon.AckTips parseFrom(
+    public static com.cat.server.game.data.proto.PBCommon.RespTips parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -358,7 +304,7 @@ public final class PBCommon {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBCommon.AckTips prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBCommon.RespTips prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -375,29 +321,29 @@ public final class PBCommon {
     }
     /**
      * <pre>
-     *tips信息
+     * tips信息
      * </pre>
      *
-     * Protobuf type {@code Protocol.AckTips}
+     * Protobuf type {@code Protocol.RespTips}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.AckTips)
-        com.cat.server.game.data.proto.PBCommon.AckTipsOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.RespTips)
+        com.cat.server.game.data.proto.PBCommon.RespTipsOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_AckTips_descriptor;
+        return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_RespTips_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_AckTips_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_RespTips_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBCommon.AckTips.class, com.cat.server.game.data.proto.PBCommon.AckTips.Builder.class);
+                com.cat.server.game.data.proto.PBCommon.RespTips.class, com.cat.server.game.data.proto.PBCommon.RespTips.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBCommon.AckTips.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBCommon.RespTips.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -417,25 +363,25 @@ public final class PBCommon {
         super.clear();
         tipsId_ = 0;
 
-        params_ = emptyIntList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        params_ = 0;
+
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_AckTips_descriptor;
+        return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_RespTips_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBCommon.AckTips getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBCommon.AckTips.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBCommon.RespTips getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBCommon.RespTips.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBCommon.AckTips build() {
-        com.cat.server.game.data.proto.PBCommon.AckTips result = buildPartial();
+      public com.cat.server.game.data.proto.PBCommon.RespTips build() {
+        com.cat.server.game.data.proto.PBCommon.RespTips result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -443,14 +389,9 @@ public final class PBCommon {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBCommon.AckTips buildPartial() {
-        com.cat.server.game.data.proto.PBCommon.AckTips result = new com.cat.server.game.data.proto.PBCommon.AckTips(this);
-        int from_bitField0_ = bitField0_;
+      public com.cat.server.game.data.proto.PBCommon.RespTips buildPartial() {
+        com.cat.server.game.data.proto.PBCommon.RespTips result = new com.cat.server.game.data.proto.PBCommon.RespTips(this);
         result.tipsId_ = tipsId_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          params_.makeImmutable();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
         result.params_ = params_;
         onBuilt();
         return result;
@@ -490,28 +431,21 @@ public final class PBCommon {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBCommon.AckTips) {
-          return mergeFrom((com.cat.server.game.data.proto.PBCommon.AckTips)other);
+        if (other instanceof com.cat.server.game.data.proto.PBCommon.RespTips) {
+          return mergeFrom((com.cat.server.game.data.proto.PBCommon.RespTips)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBCommon.AckTips other) {
-        if (other == com.cat.server.game.data.proto.PBCommon.AckTips.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBCommon.RespTips other) {
+        if (other == com.cat.server.game.data.proto.PBCommon.RespTips.getDefaultInstance()) return this;
         if (other.getTipsId() != 0) {
           setTipsId(other.getTipsId());
         }
-        if (!other.params_.isEmpty()) {
-          if (params_.isEmpty()) {
-            params_ = other.params_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureParamsIsMutable();
-            params_.addAll(other.params_);
-          }
-          onChanged();
+        if (other.getParams() != 0) {
+          setParams(other.getParams());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -528,11 +462,11 @@ public final class PBCommon {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBCommon.AckTips parsedMessage = null;
+        com.cat.server.game.data.proto.PBCommon.RespTips parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBCommon.AckTips) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBCommon.RespTips) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -541,10 +475,12 @@ public final class PBCommon {
         }
         return this;
       }
-      private int bitField0_;
 
       private int tipsId_ ;
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 tipsId = 1;</code>
        * @return The tipsId.
        */
@@ -552,6 +488,9 @@ public final class PBCommon {
         return tipsId_;
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 tipsId = 1;</code>
        * @param value The tipsId to set.
        * @return This builder for chaining.
@@ -563,6 +502,9 @@ public final class PBCommon {
         return this;
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 tipsId = 1;</code>
        * @return This builder for chaining.
        */
@@ -573,81 +515,41 @@ public final class PBCommon {
         return this;
       }
 
-      private com.google.protobuf.Internal.IntList params_ = emptyIntList();
-      private void ensureParamsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          params_ = mutableCopy(params_);
-          bitField0_ |= 0x00000001;
-         }
-      }
+      private int params_ ;
       /**
-       * <code>repeated int32 params = 2;</code>
-       * @return A list containing the params.
+       * <pre>
+       * </pre>
+       *
+       * <code>int32 params = 2;</code>
+       * @return The params.
        */
-      public java.util.List<java.lang.Integer>
-          getParamsList() {
-        return ((bitField0_ & 0x00000001) != 0) ?
-                 java.util.Collections.unmodifiableList(params_) : params_;
+      public int getParams() {
+        return params_;
       }
       /**
-       * <code>repeated int32 params = 2;</code>
-       * @return The count of params.
-       */
-      public int getParamsCount() {
-        return params_.size();
-      }
-      /**
-       * <code>repeated int32 params = 2;</code>
-       * @param index The index of the element to return.
-       * @return The params at the given index.
-       */
-      public int getParams(int index) {
-        return params_.getInt(index);
-      }
-      /**
-       * <code>repeated int32 params = 2;</code>
-       * @param index The index to set the value at.
+       * <pre>
+       * </pre>
+       *
+       * <code>int32 params = 2;</code>
        * @param value The params to set.
        * @return This builder for chaining.
        */
-      public Builder setParams(
-          int index, int value) {
-        ensureParamsIsMutable();
-        params_.setInt(index, value);
+      public Builder setParams(int value) {
+        
+        params_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>repeated int32 params = 2;</code>
-       * @param value The params to add.
-       * @return This builder for chaining.
-       */
-      public Builder addParams(int value) {
-        ensureParamsIsMutable();
-        params_.addInt(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated int32 params = 2;</code>
-       * @param values The params to add.
-       * @return This builder for chaining.
-       */
-      public Builder addAllParams(
-          java.lang.Iterable<? extends java.lang.Integer> values) {
-        ensureParamsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, params_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated int32 params = 2;</code>
+       * <pre>
+       * </pre>
+       *
+       * <code>int32 params = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearParams() {
-        params_ = emptyIntList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
+        params_ = 0;
         onChanged();
         return this;
       }
@@ -664,51 +566,51 @@ public final class PBCommon {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.AckTips)
+      // @@protoc_insertion_point(builder_scope:Protocol.RespTips)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.AckTips)
-    private static final com.cat.server.game.data.proto.PBCommon.AckTips DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.RespTips)
+    private static final com.cat.server.game.data.proto.PBCommon.RespTips DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBCommon.AckTips();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBCommon.RespTips();
     }
 
-    public static com.cat.server.game.data.proto.PBCommon.AckTips getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBCommon.RespTips getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<AckTips>
-        PARSER = new com.google.protobuf.AbstractParser<AckTips>() {
+    private static final com.google.protobuf.Parser<RespTips>
+        PARSER = new com.google.protobuf.AbstractParser<RespTips>() {
       @java.lang.Override
-      public AckTips parsePartialFrom(
+      public RespTips parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AckTips(input, extensionRegistry);
+        return new RespTips(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<AckTips> parser() {
+    public static com.google.protobuf.Parser<RespTips> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<AckTips> getParserForType() {
+    public com.google.protobuf.Parser<RespTips> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBCommon.AckTips getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBCommon.RespTips getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_AckTips_descriptor;
+    internal_static_Protocol_RespTips_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_AckTips_fieldAccessorTable;
+      internal_static_Protocol_RespTips_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -718,20 +620,20 @@ public final class PBCommon {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016PBCommon.proto\022\010Protocol\")\n\007AckTips\022\016\n" +
-      "\006tipsId\030\001 \001(\005\022\016\n\006params\030\002 \003(\005B*\n\036com.cat" +
-      ".server.game.data.protoB\010PBCommonb\006proto" +
-      "3"
+      "\n\016PBCommon.proto\022\010Protocol\"*\n\010RespTips\022\016" +
+      "\n\006tipsId\030\001 \001(\005\022\016\n\006params\030\002 \001(\005B*\n\036com.ca" +
+      "t.server.game.data.protoB\010PBCommonb\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_Protocol_AckTips_descriptor =
+    internal_static_Protocol_RespTips_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_Protocol_AckTips_fieldAccessorTable = new
+    internal_static_Protocol_RespTips_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_AckTips_descriptor,
+        internal_static_Protocol_RespTips_descriptor,
         new java.lang.String[] { "TipsId", "Params", });
   }
 

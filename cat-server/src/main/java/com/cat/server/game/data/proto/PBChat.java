@@ -104,7 +104,7 @@ public final class PBChat {
   }
   /**
    * <pre>
-   *聊天
+   * 聊天
    * </pre>
    *
    * Protobuf type {@code Protocol.PBChatInfo}
@@ -549,7 +549,7 @@ public final class PBChat {
     }
     /**
      * <pre>
-     *聊天
+     * 聊天
      * </pre>
      *
      * Protobuf type {@code Protocol.PBChatInfo}
@@ -1233,6 +1233,974 @@ public final class PBChat {
 
   }
 
+  public interface RespChatOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespChat)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *频道： 0=世界, 1=系统；2=家族；3=好友；4=队伍
+     * </pre>
+     *
+     * <code>int32 channel = 1;</code>
+     * @return The channel.
+     */
+    int getChannel();
+
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+     */
+    java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo> 
+        getChatsList();
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+     */
+    com.cat.server.game.data.proto.PBChat.PBChatInfo getChats(int index);
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+     */
+    int getChatsCount();
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+     */
+    java.util.List<? extends com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder> 
+        getChatsOrBuilderList();
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+     */
+    com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder getChatsOrBuilder(
+        int index);
+  }
+  /**
+   * <pre>
+   * 响应聊天请求
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.RespChat}
+   */
+  public  static final class RespChat extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.RespChat)
+      RespChatOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RespChat.newBuilder() to construct.
+    private RespChat(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RespChat() {
+      chats_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RespChat();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RespChat(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              channel_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                chats_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBChat.PBChatInfo>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              chats_.add(
+                  input.readMessage(com.cat.server.game.data.proto.PBChat.PBChatInfo.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          chats_ = java.util.Collections.unmodifiableList(chats_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBChat.internal_static_Protocol_RespChat_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBChat.internal_static_Protocol_RespChat_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBChat.RespChat.class, com.cat.server.game.data.proto.PBChat.RespChat.Builder.class);
+    }
+
+    public static final int CHANNEL_FIELD_NUMBER = 1;
+    private int channel_;
+    /**
+     * <pre>
+     *频道： 0=世界, 1=系统；2=家族；3=好友；4=队伍
+     * </pre>
+     *
+     * <code>int32 channel = 1;</code>
+     * @return The channel.
+     */
+    public int getChannel() {
+      return channel_;
+    }
+
+    public static final int CHATS_FIELD_NUMBER = 2;
+    private java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo> chats_;
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+     */
+    public java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo> getChatsList() {
+      return chats_;
+    }
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+     */
+    public java.util.List<? extends com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder> 
+        getChatsOrBuilderList() {
+      return chats_;
+    }
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+     */
+    public int getChatsCount() {
+      return chats_.size();
+    }
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+     */
+    public com.cat.server.game.data.proto.PBChat.PBChatInfo getChats(int index) {
+      return chats_.get(index);
+    }
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+     */
+    public com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder getChatsOrBuilder(
+        int index) {
+      return chats_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (channel_ != 0) {
+        output.writeInt32(1, channel_);
+      }
+      for (int i = 0; i < chats_.size(); i++) {
+        output.writeMessage(2, chats_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (channel_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, channel_);
+      }
+      for (int i = 0; i < chats_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, chats_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBChat.RespChat)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBChat.RespChat other = (com.cat.server.game.data.proto.PBChat.RespChat) obj;
+
+      if (getChannel()
+          != other.getChannel()) return false;
+      if (!getChatsList()
+          .equals(other.getChatsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
+      hash = (53 * hash) + getChannel();
+      if (getChatsCount() > 0) {
+        hash = (37 * hash) + CHATS_FIELD_NUMBER;
+        hash = (53 * hash) + getChatsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBChat.RespChat parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBChat.RespChat prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 响应聊天请求
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.RespChat}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.RespChat)
+        com.cat.server.game.data.proto.PBChat.RespChatOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBChat.internal_static_Protocol_RespChat_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBChat.internal_static_Protocol_RespChat_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBChat.RespChat.class, com.cat.server.game.data.proto.PBChat.RespChat.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBChat.RespChat.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getChatsFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        channel_ = 0;
+
+        if (chatsBuilder_ == null) {
+          chats_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          chatsBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBChat.internal_static_Protocol_RespChat_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBChat.RespChat getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBChat.RespChat.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBChat.RespChat build() {
+        com.cat.server.game.data.proto.PBChat.RespChat result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBChat.RespChat buildPartial() {
+        com.cat.server.game.data.proto.PBChat.RespChat result = new com.cat.server.game.data.proto.PBChat.RespChat(this);
+        int from_bitField0_ = bitField0_;
+        result.channel_ = channel_;
+        if (chatsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            chats_ = java.util.Collections.unmodifiableList(chats_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.chats_ = chats_;
+        } else {
+          result.chats_ = chatsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBChat.RespChat) {
+          return mergeFrom((com.cat.server.game.data.proto.PBChat.RespChat)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBChat.RespChat other) {
+        if (other == com.cat.server.game.data.proto.PBChat.RespChat.getDefaultInstance()) return this;
+        if (other.getChannel() != 0) {
+          setChannel(other.getChannel());
+        }
+        if (chatsBuilder_ == null) {
+          if (!other.chats_.isEmpty()) {
+            if (chats_.isEmpty()) {
+              chats_ = other.chats_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureChatsIsMutable();
+              chats_.addAll(other.chats_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.chats_.isEmpty()) {
+            if (chatsBuilder_.isEmpty()) {
+              chatsBuilder_.dispose();
+              chatsBuilder_ = null;
+              chats_ = other.chats_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              chatsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getChatsFieldBuilder() : null;
+            } else {
+              chatsBuilder_.addAllMessages(other.chats_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBChat.RespChat parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBChat.RespChat) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int channel_ ;
+      /**
+       * <pre>
+       *频道： 0=世界, 1=系统；2=家族；3=好友；4=队伍
+       * </pre>
+       *
+       * <code>int32 channel = 1;</code>
+       * @return The channel.
+       */
+      public int getChannel() {
+        return channel_;
+      }
+      /**
+       * <pre>
+       *频道： 0=世界, 1=系统；2=家族；3=好友；4=队伍
+       * </pre>
+       *
+       * <code>int32 channel = 1;</code>
+       * @param value The channel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setChannel(int value) {
+        
+        channel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *频道： 0=世界, 1=系统；2=家族；3=好友；4=队伍
+       * </pre>
+       *
+       * <code>int32 channel = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearChannel() {
+        
+        channel_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo> chats_ =
+        java.util.Collections.emptyList();
+      private void ensureChatsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          chats_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBChat.PBChatInfo>(chats_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.cat.server.game.data.proto.PBChat.PBChatInfo, com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder, com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder> chatsBuilder_;
+
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo> getChatsList() {
+        if (chatsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(chats_);
+        } else {
+          return chatsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public int getChatsCount() {
+        if (chatsBuilder_ == null) {
+          return chats_.size();
+        } else {
+          return chatsBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public com.cat.server.game.data.proto.PBChat.PBChatInfo getChats(int index) {
+        if (chatsBuilder_ == null) {
+          return chats_.get(index);
+        } else {
+          return chatsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public Builder setChats(
+          int index, com.cat.server.game.data.proto.PBChat.PBChatInfo value) {
+        if (chatsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChatsIsMutable();
+          chats_.set(index, value);
+          onChanged();
+        } else {
+          chatsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public Builder setChats(
+          int index, com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder builderForValue) {
+        if (chatsBuilder_ == null) {
+          ensureChatsIsMutable();
+          chats_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          chatsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public Builder addChats(com.cat.server.game.data.proto.PBChat.PBChatInfo value) {
+        if (chatsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChatsIsMutable();
+          chats_.add(value);
+          onChanged();
+        } else {
+          chatsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public Builder addChats(
+          int index, com.cat.server.game.data.proto.PBChat.PBChatInfo value) {
+        if (chatsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureChatsIsMutable();
+          chats_.add(index, value);
+          onChanged();
+        } else {
+          chatsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public Builder addChats(
+          com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder builderForValue) {
+        if (chatsBuilder_ == null) {
+          ensureChatsIsMutable();
+          chats_.add(builderForValue.build());
+          onChanged();
+        } else {
+          chatsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public Builder addChats(
+          int index, com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder builderForValue) {
+        if (chatsBuilder_ == null) {
+          ensureChatsIsMutable();
+          chats_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          chatsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public Builder addAllChats(
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBChat.PBChatInfo> values) {
+        if (chatsBuilder_ == null) {
+          ensureChatsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, chats_);
+          onChanged();
+        } else {
+          chatsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public Builder clearChats() {
+        if (chatsBuilder_ == null) {
+          chats_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          chatsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public Builder removeChats(int index) {
+        if (chatsBuilder_ == null) {
+          ensureChatsIsMutable();
+          chats_.remove(index);
+          onChanged();
+        } else {
+          chatsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder getChatsBuilder(
+          int index) {
+        return getChatsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder getChatsOrBuilder(
+          int index) {
+        if (chatsBuilder_ == null) {
+          return chats_.get(index);  } else {
+          return chatsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public java.util.List<? extends com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder> 
+           getChatsOrBuilderList() {
+        if (chatsBuilder_ != null) {
+          return chatsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(chats_);
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder addChatsBuilder() {
+        return getChatsFieldBuilder().addBuilder(
+            com.cat.server.game.data.proto.PBChat.PBChatInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder addChatsBuilder(
+          int index) {
+        return getChatsFieldBuilder().addBuilder(
+            index, com.cat.server.game.data.proto.PBChat.PBChatInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
+       */
+      public java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder> 
+           getChatsBuilderList() {
+        return getChatsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.cat.server.game.data.proto.PBChat.PBChatInfo, com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder, com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder> 
+          getChatsFieldBuilder() {
+        if (chatsBuilder_ == null) {
+          chatsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.cat.server.game.data.proto.PBChat.PBChatInfo, com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder, com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder>(
+                  chats_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          chats_ = null;
+        }
+        return chatsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.RespChat)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.RespChat)
+    private static final com.cat.server.game.data.proto.PBChat.RespChat DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBChat.RespChat();
+    }
+
+    public static com.cat.server.game.data.proto.PBChat.RespChat getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RespChat>
+        PARSER = new com.google.protobuf.AbstractParser<RespChat>() {
+      @java.lang.Override
+      public RespChat parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RespChat(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RespChat> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RespChat> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBChat.RespChat getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface ReqChatOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Protocol.ReqChat)
       com.google.protobuf.MessageOrBuilder {
@@ -1279,7 +2247,7 @@ public final class PBChat {
   }
   /**
    * <pre>
-   *聊天请求
+   * 聊天请求
    * </pre>
    *
    * Protobuf type {@code Protocol.ReqChat}
@@ -1626,7 +2594,7 @@ public final class PBChat {
     }
     /**
      * <pre>
-     *聊天请求
+     * 聊天请求
      * </pre>
      *
      * Protobuf type {@code Protocol.ReqChat}
@@ -2020,905 +2988,21 @@ public final class PBChat {
 
   }
 
-  public interface AckChatOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.AckChat)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     *频道： 0=世界, 1=系统；2=家族；3=好友；4=队伍
-     * </pre>
-     *
-     * <code>int32 channel = 1;</code>
-     * @return The channel.
-     */
-    int getChannel();
-
-    /**
-     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-     */
-    java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo> 
-        getChatsList();
-    /**
-     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-     */
-    com.cat.server.game.data.proto.PBChat.PBChatInfo getChats(int index);
-    /**
-     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-     */
-    int getChatsCount();
-    /**
-     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-     */
-    java.util.List<? extends com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder> 
-        getChatsOrBuilderList();
-    /**
-     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-     */
-    com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder getChatsOrBuilder(
-        int index);
-  }
-  /**
-   * <pre>
-   *响应聊天请求
-   * </pre>
-   *
-   * Protobuf type {@code Protocol.AckChat}
-   */
-  public  static final class AckChat extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.AckChat)
-      AckChatOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use AckChat.newBuilder() to construct.
-    private AckChat(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private AckChat() {
-      chats_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new AckChat();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private AckChat(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              channel_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                chats_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBChat.PBChatInfo>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              chats_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBChat.PBChatInfo.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          chats_ = java.util.Collections.unmodifiableList(chats_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.cat.server.game.data.proto.PBChat.internal_static_Protocol_AckChat_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBChat.internal_static_Protocol_AckChat_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBChat.AckChat.class, com.cat.server.game.data.proto.PBChat.AckChat.Builder.class);
-    }
-
-    public static final int CHANNEL_FIELD_NUMBER = 1;
-    private int channel_;
-    /**
-     * <pre>
-     *频道： 0=世界, 1=系统；2=家族；3=好友；4=队伍
-     * </pre>
-     *
-     * <code>int32 channel = 1;</code>
-     * @return The channel.
-     */
-    public int getChannel() {
-      return channel_;
-    }
-
-    public static final int CHATS_FIELD_NUMBER = 2;
-    private java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo> chats_;
-    /**
-     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-     */
-    public java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo> getChatsList() {
-      return chats_;
-    }
-    /**
-     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-     */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder> 
-        getChatsOrBuilderList() {
-      return chats_;
-    }
-    /**
-     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-     */
-    public int getChatsCount() {
-      return chats_.size();
-    }
-    /**
-     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-     */
-    public com.cat.server.game.data.proto.PBChat.PBChatInfo getChats(int index) {
-      return chats_.get(index);
-    }
-    /**
-     * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-     */
-    public com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder getChatsOrBuilder(
-        int index) {
-      return chats_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (channel_ != 0) {
-        output.writeInt32(1, channel_);
-      }
-      for (int i = 0; i < chats_.size(); i++) {
-        output.writeMessage(2, chats_.get(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (channel_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, channel_);
-      }
-      for (int i = 0; i < chats_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, chats_.get(i));
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBChat.AckChat)) {
-        return super.equals(obj);
-      }
-      com.cat.server.game.data.proto.PBChat.AckChat other = (com.cat.server.game.data.proto.PBChat.AckChat) obj;
-
-      if (getChannel()
-          != other.getChannel()) return false;
-      if (!getChatsList()
-          .equals(other.getChatsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CHANNEL_FIELD_NUMBER;
-      hash = (53 * hash) + getChannel();
-      if (getChatsCount() > 0) {
-        hash = (37 * hash) + CHATS_FIELD_NUMBER;
-        hash = (53 * hash) + getChatsList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBChat.AckChat parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBChat.AckChat prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     *响应聊天请求
-     * </pre>
-     *
-     * Protobuf type {@code Protocol.AckChat}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.AckChat)
-        com.cat.server.game.data.proto.PBChat.AckChatOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.cat.server.game.data.proto.PBChat.internal_static_Protocol_AckChat_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBChat.internal_static_Protocol_AckChat_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBChat.AckChat.class, com.cat.server.game.data.proto.PBChat.AckChat.Builder.class);
-      }
-
-      // Construct using com.cat.server.game.data.proto.PBChat.AckChat.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getChatsFieldBuilder();
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        channel_ = 0;
-
-        if (chatsBuilder_ == null) {
-          chats_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          chatsBuilder_.clear();
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBChat.internal_static_Protocol_AckChat_descriptor;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBChat.AckChat getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBChat.AckChat.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBChat.AckChat build() {
-        com.cat.server.game.data.proto.PBChat.AckChat result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBChat.AckChat buildPartial() {
-        com.cat.server.game.data.proto.PBChat.AckChat result = new com.cat.server.game.data.proto.PBChat.AckChat(this);
-        int from_bitField0_ = bitField0_;
-        result.channel_ = channel_;
-        if (chatsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            chats_ = java.util.Collections.unmodifiableList(chats_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.chats_ = chats_;
-        } else {
-          result.chats_ = chatsBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBChat.AckChat) {
-          return mergeFrom((com.cat.server.game.data.proto.PBChat.AckChat)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBChat.AckChat other) {
-        if (other == com.cat.server.game.data.proto.PBChat.AckChat.getDefaultInstance()) return this;
-        if (other.getChannel() != 0) {
-          setChannel(other.getChannel());
-        }
-        if (chatsBuilder_ == null) {
-          if (!other.chats_.isEmpty()) {
-            if (chats_.isEmpty()) {
-              chats_ = other.chats_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureChatsIsMutable();
-              chats_.addAll(other.chats_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.chats_.isEmpty()) {
-            if (chatsBuilder_.isEmpty()) {
-              chatsBuilder_.dispose();
-              chatsBuilder_ = null;
-              chats_ = other.chats_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              chatsBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getChatsFieldBuilder() : null;
-            } else {
-              chatsBuilder_.addAllMessages(other.chats_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.cat.server.game.data.proto.PBChat.AckChat parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBChat.AckChat) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int channel_ ;
-      /**
-       * <pre>
-       *频道： 0=世界, 1=系统；2=家族；3=好友；4=队伍
-       * </pre>
-       *
-       * <code>int32 channel = 1;</code>
-       * @return The channel.
-       */
-      public int getChannel() {
-        return channel_;
-      }
-      /**
-       * <pre>
-       *频道： 0=世界, 1=系统；2=家族；3=好友；4=队伍
-       * </pre>
-       *
-       * <code>int32 channel = 1;</code>
-       * @param value The channel to set.
-       * @return This builder for chaining.
-       */
-      public Builder setChannel(int value) {
-        
-        channel_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *频道： 0=世界, 1=系统；2=家族；3=好友；4=队伍
-       * </pre>
-       *
-       * <code>int32 channel = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearChannel() {
-        
-        channel_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo> chats_ =
-        java.util.Collections.emptyList();
-      private void ensureChatsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          chats_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBChat.PBChatInfo>(chats_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBChat.PBChatInfo, com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder, com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder> chatsBuilder_;
-
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo> getChatsList() {
-        if (chatsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(chats_);
-        } else {
-          return chatsBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public int getChatsCount() {
-        if (chatsBuilder_ == null) {
-          return chats_.size();
-        } else {
-          return chatsBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public com.cat.server.game.data.proto.PBChat.PBChatInfo getChats(int index) {
-        if (chatsBuilder_ == null) {
-          return chats_.get(index);
-        } else {
-          return chatsBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public Builder setChats(
-          int index, com.cat.server.game.data.proto.PBChat.PBChatInfo value) {
-        if (chatsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureChatsIsMutable();
-          chats_.set(index, value);
-          onChanged();
-        } else {
-          chatsBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public Builder setChats(
-          int index, com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder builderForValue) {
-        if (chatsBuilder_ == null) {
-          ensureChatsIsMutable();
-          chats_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          chatsBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public Builder addChats(com.cat.server.game.data.proto.PBChat.PBChatInfo value) {
-        if (chatsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureChatsIsMutable();
-          chats_.add(value);
-          onChanged();
-        } else {
-          chatsBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public Builder addChats(
-          int index, com.cat.server.game.data.proto.PBChat.PBChatInfo value) {
-        if (chatsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureChatsIsMutable();
-          chats_.add(index, value);
-          onChanged();
-        } else {
-          chatsBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public Builder addChats(
-          com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder builderForValue) {
-        if (chatsBuilder_ == null) {
-          ensureChatsIsMutable();
-          chats_.add(builderForValue.build());
-          onChanged();
-        } else {
-          chatsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public Builder addChats(
-          int index, com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder builderForValue) {
-        if (chatsBuilder_ == null) {
-          ensureChatsIsMutable();
-          chats_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          chatsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public Builder addAllChats(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBChat.PBChatInfo> values) {
-        if (chatsBuilder_ == null) {
-          ensureChatsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, chats_);
-          onChanged();
-        } else {
-          chatsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public Builder clearChats() {
-        if (chatsBuilder_ == null) {
-          chats_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          chatsBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public Builder removeChats(int index) {
-        if (chatsBuilder_ == null) {
-          ensureChatsIsMutable();
-          chats_.remove(index);
-          onChanged();
-        } else {
-          chatsBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder getChatsBuilder(
-          int index) {
-        return getChatsFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder getChatsOrBuilder(
-          int index) {
-        if (chatsBuilder_ == null) {
-          return chats_.get(index);  } else {
-          return chatsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder> 
-           getChatsOrBuilderList() {
-        if (chatsBuilder_ != null) {
-          return chatsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(chats_);
-        }
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder addChatsBuilder() {
-        return getChatsFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBChat.PBChatInfo.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder addChatsBuilder(
-          int index) {
-        return getChatsFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBChat.PBChatInfo.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .Protocol.PBChatInfo chats = 2;</code>
-       */
-      public java.util.List<com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder> 
-           getChatsBuilderList() {
-        return getChatsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBChat.PBChatInfo, com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder, com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder> 
-          getChatsFieldBuilder() {
-        if (chatsBuilder_ == null) {
-          chatsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBChat.PBChatInfo, com.cat.server.game.data.proto.PBChat.PBChatInfo.Builder, com.cat.server.game.data.proto.PBChat.PBChatInfoOrBuilder>(
-                  chats_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          chats_ = null;
-        }
-        return chatsBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Protocol.AckChat)
-    }
-
-    // @@protoc_insertion_point(class_scope:Protocol.AckChat)
-    private static final com.cat.server.game.data.proto.PBChat.AckChat DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBChat.AckChat();
-    }
-
-    public static com.cat.server.game.data.proto.PBChat.AckChat getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<AckChat>
-        PARSER = new com.google.protobuf.AbstractParser<AckChat>() {
-      @java.lang.Override
-      public AckChat parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AckChat(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<AckChat> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<AckChat> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.cat.server.game.data.proto.PBChat.AckChat getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_PBChatInfo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_PBChatInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_RespChat_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_RespChat_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_ReqChat_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_ReqChat_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_AckChat_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_AckChat_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2932,11 +3016,11 @@ public final class PBChat {
       "\"\213\001\n\nPBChatInfo\022*\n\007profile\030\001 \001(\0132\031.Proto" +
       "col.PBPlayerProfile\022\017\n\007content\030\002 \001(\t\022\020\n\010" +
       "sendTime\030\003 \001(\003\022.\n\013recvProfile\030\004 \001(\0132\031.Pr" +
-      "otocol.PBPlayerProfile\";\n\007ReqChat\022\017\n\007con" +
-      "tent\030\001 \001(\t\022\017\n\007channel\030\002 \001(\005\022\016\n\006recvId\030\003 " +
-      "\001(\003\"?\n\007AckChat\022\017\n\007channel\030\001 \001(\005\022#\n\005chats" +
-      "\030\002 \003(\0132\024.Protocol.PBChatInfoB(\n\036com.cat." +
-      "server.game.data.protoB\006PBChatb\006proto3"
+      "otocol.PBPlayerProfile\"@\n\010RespChat\022\017\n\007ch" +
+      "annel\030\001 \001(\005\022#\n\005chats\030\002 \003(\0132\024.Protocol.PB" +
+      "ChatInfo\";\n\007ReqChat\022\017\n\007content\030\001 \001(\t\022\017\n\007" +
+      "channel\030\002 \001(\005\022\016\n\006recvId\030\003 \001(\003B(\n\036com.cat" +
+      ".server.game.data.protoB\006PBChatb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2949,18 +3033,18 @@ public final class PBChat {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_PBChatInfo_descriptor,
         new java.lang.String[] { "Profile", "Content", "SendTime", "RecvProfile", });
-    internal_static_Protocol_ReqChat_descriptor =
+    internal_static_Protocol_RespChat_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_Protocol_RespChat_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_RespChat_descriptor,
+        new java.lang.String[] { "Channel", "Chats", });
+    internal_static_Protocol_ReqChat_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_Protocol_ReqChat_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqChat_descriptor,
         new java.lang.String[] { "Content", "Channel", "RecvId", });
-    internal_static_Protocol_AckChat_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_Protocol_AckChat_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_AckChat_descriptor,
-        new java.lang.String[] { "Channel", "Chats", });
     com.cat.server.game.data.proto.PBPlayer.getDescriptor();
   }
 

@@ -1,10 +1,10 @@
 package com.cat.server.game.module.resource.domain;
 
-import com.cat.server.game.module.item.proto.AckRewardsResp;
-import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
+import com.cat.server.game.module.item.proto.RespRewardsBuilder;
 
 /**
  * 奖励对象字典
@@ -134,8 +134,8 @@ public class ResourceMap {
      * 奖励序封装成奖励消息对象
      * @return 奖励消息对象
      */
-    public AckRewardsResp toProto(){
-        AckRewardsResp resp = AckRewardsResp.newInstance();
+    public RespRewardsBuilder toProto(){
+    	RespRewardsBuilder resp = RespRewardsBuilder.newInstance();
         this.dictionary.forEach((key, val)->{
             PBRewardInfoBuilder builder = new PBRewardInfoBuilder();
             builder.setConfigId(key);

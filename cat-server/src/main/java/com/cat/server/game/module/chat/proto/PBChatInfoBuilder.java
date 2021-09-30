@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.net.network.base.AbstractProtocol;
+//import com.cat.server.game.data.proto.*;
 import com.cat.server.game.data.proto.PBChat.PBChatInfo;
 import com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile;
-import com.google.protobuf.AbstractMessageLite.Builder;
 
 /**
 * PBChatInfoBuilder
@@ -18,8 +18,7 @@ public class PBChatInfoBuilder extends AbstractProtocol {
 	
 	private final PBChatInfo.Builder builder = PBChatInfo.newBuilder();
 	
-	public PBChatInfoBuilder() {
-	}
+	public PBChatInfoBuilder() {}
 	
 	public static PBChatInfoBuilder newInstance() {
 		return new PBChatInfoBuilder();

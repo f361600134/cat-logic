@@ -13,8 +13,8 @@ import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.item.domain.IItem;
 import com.cat.server.game.module.item.domain.Item;
 import com.cat.server.game.module.item.domain.ItemDomain;
-import com.cat.server.game.module.item.proto.AckItemDeleteResp;
-import com.cat.server.game.module.item.proto.AckItemUpdateResp;
+import com.cat.server.game.module.item.proto.RespItemDeleteBuilder;
+import com.cat.server.game.module.item.proto.RespItemUpdateBuilder;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceService;
 
@@ -38,7 +38,7 @@ class ItemService implements IItemService, IResourceService{
 		ItemDomain domain = itemManager.getDomain(playerId);
 		Collection<Item> items = domain.getBeans();
 		//登陆成功,下发背包信息
-		AckItemUpdateResp ack = AckItemUpdateResp.newInstance();
+		RespItemUpdateBuilder ack = RespItemUpdateBuilder.newInstance();
 		items.forEach((item)->{
 			ack.addItems(item.toProto());
 		});
@@ -57,7 +57,7 @@ class ItemService implements IItemService, IResourceService{
 	public void responseUpdateItemList(long playerId, List<Item> itemList) {
 		// 更新物品
 		if (!itemList.isEmpty()) {
-			AckItemUpdateResp ack = AckItemUpdateResp.newInstance();
+			RespItemUpdateBuilder ack = RespItemUpdateBuilder.newInstance();
 			itemList.forEach((item)->{
 				ack.addItems(item.toProto());
 			});
@@ -68,7 +68,7 @@ class ItemService implements IItemService, IResourceService{
 	public void responseDeleteItemList(long playerId, List<Item> itemList){
 		//更新物品
 		if (!itemList.isEmpty()) {
-			AckItemDeleteResp ack = AckItemDeleteResp.newInstance();
+			RespItemDeleteBuilder ack = RespItemDeleteBuilder.newInstance();
 			for (IItem item : itemList) {
 				ack.addIds(item.getUniqueId());
 			}

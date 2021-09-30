@@ -15,11 +15,11 @@ import com.cat.server.game.data.proto.PBPlayer.ReqPlayerLogin;
 import com.cat.server.game.data.proto.PBPlayer.ReqPlayerRandName;
 import com.cat.server.game.data.proto.PBPlayer.ReqPlayerReLogin;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.player.proto.AckPlayerCreateRoleResp;
-import com.cat.server.game.module.player.proto.AckPlayerHeartResp;
-import com.cat.server.game.module.player.proto.AckPlayerLoginResp;
-import com.cat.server.game.module.player.proto.AckPlayerRandNameResp;
-import com.cat.server.game.module.player.proto.AckPlayerReLoginResp;
+import com.cat.server.game.module.player.proto.RespPlayerCreateRoleBuilder;
+import com.cat.server.game.module.player.proto.RespPlayerHeartBuilder;
+import com.cat.server.game.module.player.proto.RespPlayerLoginBuilder;
+import com.cat.server.game.module.player.proto.RespPlayerRandNameBuilder;
+import com.cat.server.game.module.player.proto.RespPlayerReLoginBuilder;
 
 /**
  * Player控制器
@@ -39,7 +39,7 @@ public class PlayerController implements IController{
 	@Cmd(value = PBProtocol.ReqPlayerRandName_VALUE)
 	public void ReqPlayerRandName(ISession session, ReqPlayerRandName req) {
 		long playerId = session.getUserData();
-		AckPlayerRandNameResp ack = AckPlayerRandNameResp.newInstance();
+		RespPlayerRandNameBuilder ack = RespPlayerRandNameBuilder.newInstance();
 		playerService.reqPlayerRandName(playerId, req, ack);
 		playerService.sendMessage(playerId, ack);
 	}
@@ -50,7 +50,7 @@ public class PlayerController implements IController{
 	@Cmd(value = PBProtocol.ReqPlayerReLogin_VALUE)
 	public void ReqPlayerReLogin(ISession session, ReqPlayerReLogin req) {
 		long playerId = session.getUserData();
-		AckPlayerReLoginResp ack = AckPlayerReLoginResp.newInstance();
+		RespPlayerReLoginBuilder ack = RespPlayerReLoginBuilder.newInstance();
 		ErrorCode code = playerService.reqPlayerReLogin(playerId, req, ack);
 		ack.setCode(code.getCode());
 		playerService.sendMessage(playerId, ack);
@@ -62,7 +62,7 @@ public class PlayerController implements IController{
 	@Cmd(value = PBProtocol.ReqPlayerHeart_VALUE)
 	public void ReqPlayerHeart(ISession session, ReqPlayerHeart req) {
 		long playerId = session.getUserData();
-		AckPlayerHeartResp ack = AckPlayerHeartResp.newInstance();
+		RespPlayerHeartBuilder ack = RespPlayerHeartBuilder.newInstance();
 		playerService.reqPlayerHeart(playerId, req, ack);
 		playerService.sendMessage(playerId, ack);
 	}
@@ -73,7 +73,7 @@ public class PlayerController implements IController{
 	@Cmd(value = PBProtocol.ReqPlayerCreateRole_VALUE)
 	public void ReqPlayerCreateRole(ISession session, ReqPlayerCreateRole req) {
 		long playerId = session.getUserData();
-		AckPlayerCreateRoleResp ack = AckPlayerCreateRoleResp.newInstance();
+		RespPlayerCreateRoleBuilder ack = RespPlayerCreateRoleBuilder.newInstance();
 		ErrorCode code = playerService.reqPlayerCreateRole(playerId, req, ack);
 		ack.setCode(code.getCode());
 		playerService.sendMessage(playerId, ack);
@@ -84,7 +84,7 @@ public class PlayerController implements IController{
 	*/
 	@Cmd(value = PBProtocol.ReqPlayerLogin_VALUE, mustLogin = false)
 	public void ReqPlayerLogin(ISession session, ReqPlayerLogin req) {
-		AckPlayerLoginResp ack = AckPlayerLoginResp.newInstance();
+		RespPlayerLoginBuilder ack = RespPlayerLoginBuilder.newInstance();
 		ErrorCode code = playerService.reqPlayerLogin(session, req, ack);
 		ack.setCode(code.getCode());
 		

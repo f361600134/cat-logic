@@ -14,13 +14,12 @@ import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ConfigChatModel;
 import com.cat.server.game.data.config.local.ConfigConstantPlus;
 import com.cat.server.game.data.proto.PBChat.ReqChat;
-import com.cat.server.game.helper.result.ConfigTipsMgr;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.assist.ChannelType;
 import com.cat.server.game.module.chat.domain.ChatDetail;
 import com.cat.server.game.module.chat.domain.ChatDomain;
 import com.cat.server.game.module.chat.domain.ChatRule;
-import com.cat.server.game.module.common.proto.AckTipsResp;
+import com.cat.server.game.module.common.proto.RespTipsBuilder;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
@@ -173,15 +172,15 @@ class ChatService {
 		if (rule.isProhibited(curTime)) {
 			//提示玩家剩余x秒后可以聊天, 不转发聊天内容
 			int lessTime = (int)((rule.getNextSpeakTime() - curTime)/1000);
-			AckTipsResp resp = AckTipsResp.newInstance();
+			RespTipsBuilder resp = RespTipsBuilder.newInstance();
 			resp.setTipsId(ErrorCode.CHAT_TIME_LIMIT.getCode());
-			resp.addParams(lessTime);
+			resp.setParams(lessTime);
 			playerService.sendMessage(playerId, resp);
 			return ErrorCode.CHAT_CD;
 		}
 		else if (rule.isAgainst(curTime)) {
 			//提示聊天过快, 但依旧允许其聊天
-			AckTipsResp resp = AckTipsResp.newInstance();
+			RespTipsBuilder resp = RespTipsBuilder.newInstance();
 			resp.setTipsId(ErrorCode.CHAT_CD.getCode());
 			playerService.sendMessage(playerId, resp);
 		}

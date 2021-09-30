@@ -11,9 +11,9 @@ import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.server.game.data.proto.PBMail;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.player.IPlayerService;
-import com.cat.server.game.module.playermail.proto.AckMailDeleteResp;
-import com.cat.server.game.module.playermail.proto.AckMailReadResp;
-import com.cat.server.game.module.playermail.proto.AckMailRewardResp;
+import com.cat.server.game.module.playermail.proto.RespMailDeleteBuilder;
+import com.cat.server.game.module.playermail.proto.RespMailReadBuilder;
+import com.cat.server.game.module.playermail.proto.RespMailRewardBuilder;
 
 /**
  * PlayerMail控制器
@@ -47,7 +47,7 @@ public class PlayerMailController {
 	@Cmd(PBProtocol.ReqMailRead_VALUE)
 	public void reqMailRead(ISession session, PBMail.ReqMailRead req) {
 		final long playerId = session.getUserData();
-		AckMailReadResp resp = AckMailReadResp.newInstance();
+		RespMailReadBuilder resp = RespMailReadBuilder.newInstance();
 		ErrorCode errorCode = playerMailService.read(playerId, req.getMailId(), resp);
 		resp.setCode(errorCode.getCode());
 		playerService.sendMessage(playerId, resp);
@@ -61,7 +61,7 @@ public class PlayerMailController {
 	@Cmd(PBProtocol.ReqMailReward_VALUE)
 	public void reqMailReward(ISession session, PBMail.ReqMailReward req) {
 		final long playerId = session.getUserData();
-		AckMailRewardResp resp = AckMailRewardResp.newInstance();
+		RespMailRewardBuilder resp = RespMailRewardBuilder.newInstance();
 		ErrorCode errorCode = playerMailService.receive(playerId, req.getMailId());
 		resp.setCode(errorCode.getCode());
 		playerService.sendMessage(playerId, resp);
@@ -76,7 +76,7 @@ public class PlayerMailController {
 	@Cmd(PBProtocol.ReqMailDelete_VALUE)
 	public void reqEmailDelete(ISession session, PBMail.ReqMailDelete req) {
 		final long playerId = session.getUserData();
-		AckMailDeleteResp resp = AckMailDeleteResp.newInstance();
+		RespMailDeleteBuilder resp = RespMailDeleteBuilder.newInstance();
 		ErrorCode errorCode = playerMailService.delete(playerId, req.getMailId(), resp);
 		resp.setCode(errorCode.getCode());
 		playerService.sendMessage(playerId, resp);

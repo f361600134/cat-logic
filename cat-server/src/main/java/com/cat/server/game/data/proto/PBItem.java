@@ -14,13 +14,13 @@ public final class PBItem {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface PBItemInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.PBItemInfo)
+  public interface ReqItemUseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.ReqItemUse)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     *唯一id
+     *道具唯一id
      * </pre>
      *
      * <code>int64 id = 1;</code>
@@ -30,48 +30,38 @@ public final class PBItem {
 
     /**
      * <pre>
-     *道具配置id
+     *使用数量
      * </pre>
      *
-     * <code>int32 configId = 2;</code>
-     * @return The configId.
-     */
-    int getConfigId();
-
-    /**
-     * <pre>
-     *数量
-     * </pre>
-     *
-     * <code>int32 count = 3;</code>
+     * <code>int32 count = 2;</code>
      * @return The count.
      */
     int getCount();
   }
   /**
    * <pre>
-   *道具协议对象
+   * 请求使用道具
    * </pre>
    *
-   * Protobuf type {@code Protocol.PBItemInfo}
+   * Protobuf type {@code Protocol.ReqItemUse}
    */
-  public  static final class PBItemInfo extends
+  public  static final class ReqItemUse extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.PBItemInfo)
-      PBItemInfoOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.ReqItemUse)
+      ReqItemUseOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use PBItemInfo.newBuilder() to construct.
-    private PBItemInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ReqItemUse.newBuilder() to construct.
+    private ReqItemUse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private PBItemInfo() {
+    private ReqItemUse() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new PBItemInfo();
+      return new ReqItemUse();
     }
 
     @java.lang.Override
@@ -79,7 +69,7 @@ public final class PBItem {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private PBItemInfo(
+    private ReqItemUse(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -103,11 +93,6 @@ public final class PBItem {
               break;
             }
             case 16: {
-
-              configId_ = input.readInt32();
-              break;
-            }
-            case 24: {
 
               count_ = input.readInt32();
               break;
@@ -133,22 +118,22 @@ public final class PBItem {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBItemInfo_descriptor;
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_ReqItemUse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBItemInfo_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_ReqItemUse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBItem.PBItemInfo.class, com.cat.server.game.data.proto.PBItem.PBItemInfo.Builder.class);
+              com.cat.server.game.data.proto.PBItem.ReqItemUse.class, com.cat.server.game.data.proto.PBItem.ReqItemUse.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
     private long id_;
     /**
      * <pre>
-     *唯一id
+     *道具唯一id
      * </pre>
      *
      * <code>int64 id = 1;</code>
@@ -158,28 +143,14 @@ public final class PBItem {
       return id_;
     }
 
-    public static final int CONFIGID_FIELD_NUMBER = 2;
-    private int configId_;
-    /**
-     * <pre>
-     *道具配置id
-     * </pre>
-     *
-     * <code>int32 configId = 2;</code>
-     * @return The configId.
-     */
-    public int getConfigId() {
-      return configId_;
-    }
-
-    public static final int COUNT_FIELD_NUMBER = 3;
+    public static final int COUNT_FIELD_NUMBER = 2;
     private int count_;
     /**
      * <pre>
-     *数量
+     *使用数量
      * </pre>
      *
-     * <code>int32 count = 3;</code>
+     * <code>int32 count = 2;</code>
      * @return The count.
      */
     public int getCount() {
@@ -203,11 +174,8 @@ public final class PBItem {
       if (id_ != 0L) {
         output.writeInt64(1, id_);
       }
-      if (configId_ != 0) {
-        output.writeInt32(2, configId_);
-      }
       if (count_ != 0) {
-        output.writeInt32(3, count_);
+        output.writeInt32(2, count_);
       }
       unknownFields.writeTo(output);
     }
@@ -222,13 +190,9 @@ public final class PBItem {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(1, id_);
       }
-      if (configId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, configId_);
-      }
       if (count_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, count_);
+          .computeInt32Size(2, count_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -240,15 +204,13 @@ public final class PBItem {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.PBItemInfo)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.ReqItemUse)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBItem.PBItemInfo other = (com.cat.server.game.data.proto.PBItem.PBItemInfo) obj;
+      com.cat.server.game.data.proto.PBItem.ReqItemUse other = (com.cat.server.game.data.proto.PBItem.ReqItemUse) obj;
 
       if (getId()
           != other.getId()) return false;
-      if (getConfigId()
-          != other.getConfigId()) return false;
       if (getCount()
           != other.getCount()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -265,8 +227,6 @@ public final class PBItem {
       hash = (37 * hash) + ID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getId());
-      hash = (37 * hash) + CONFIGID_FIELD_NUMBER;
-      hash = (53 * hash) + getConfigId();
       hash = (37 * hash) + COUNT_FIELD_NUMBER;
       hash = (53 * hash) + getCount();
       hash = (29 * hash) + unknownFields.hashCode();
@@ -274,69 +234,69 @@ public final class PBItem {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -349,7 +309,7 @@ public final class PBItem {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.PBItemInfo prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.ReqItemUse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -366,29 +326,29 @@ public final class PBItem {
     }
     /**
      * <pre>
-     *道具协议对象
+     * 请求使用道具
      * </pre>
      *
-     * Protobuf type {@code Protocol.PBItemInfo}
+     * Protobuf type {@code Protocol.ReqItemUse}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.PBItemInfo)
-        com.cat.server.game.data.proto.PBItem.PBItemInfoOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.ReqItemUse)
+        com.cat.server.game.data.proto.PBItem.ReqItemUseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBItemInfo_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_ReqItemUse_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBItemInfo_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_ReqItemUse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBItem.PBItemInfo.class, com.cat.server.game.data.proto.PBItem.PBItemInfo.Builder.class);
+                com.cat.server.game.data.proto.PBItem.ReqItemUse.class, com.cat.server.game.data.proto.PBItem.ReqItemUse.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBItem.PBItemInfo.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBItem.ReqItemUse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -408,8 +368,6 @@ public final class PBItem {
         super.clear();
         id_ = 0L;
 
-        configId_ = 0;
-
         count_ = 0;
 
         return this;
@@ -418,17 +376,17 @@ public final class PBItem {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBItemInfo_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_ReqItemUse_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.PBItemInfo getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBItem.PBItemInfo.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBItem.ReqItemUse getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBItem.ReqItemUse.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.PBItemInfo build() {
-        com.cat.server.game.data.proto.PBItem.PBItemInfo result = buildPartial();
+      public com.cat.server.game.data.proto.PBItem.ReqItemUse build() {
+        com.cat.server.game.data.proto.PBItem.ReqItemUse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -436,10 +394,9 @@ public final class PBItem {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.PBItemInfo buildPartial() {
-        com.cat.server.game.data.proto.PBItem.PBItemInfo result = new com.cat.server.game.data.proto.PBItem.PBItemInfo(this);
+      public com.cat.server.game.data.proto.PBItem.ReqItemUse buildPartial() {
+        com.cat.server.game.data.proto.PBItem.ReqItemUse result = new com.cat.server.game.data.proto.PBItem.ReqItemUse(this);
         result.id_ = id_;
-        result.configId_ = configId_;
         result.count_ = count_;
         onBuilt();
         return result;
@@ -479,21 +436,18 @@ public final class PBItem {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBItem.PBItemInfo) {
-          return mergeFrom((com.cat.server.game.data.proto.PBItem.PBItemInfo)other);
+        if (other instanceof com.cat.server.game.data.proto.PBItem.ReqItemUse) {
+          return mergeFrom((com.cat.server.game.data.proto.PBItem.ReqItemUse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.PBItemInfo other) {
-        if (other == com.cat.server.game.data.proto.PBItem.PBItemInfo.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.ReqItemUse other) {
+        if (other == com.cat.server.game.data.proto.PBItem.ReqItemUse.getDefaultInstance()) return this;
         if (other.getId() != 0L) {
           setId(other.getId());
-        }
-        if (other.getConfigId() != 0) {
-          setConfigId(other.getConfigId());
         }
         if (other.getCount() != 0) {
           setCount(other.getCount());
@@ -513,11 +467,11 @@ public final class PBItem {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBItem.PBItemInfo parsedMessage = null;
+        com.cat.server.game.data.proto.PBItem.ReqItemUse parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBItem.PBItemInfo) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBItem.ReqItemUse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -530,7 +484,7 @@ public final class PBItem {
       private long id_ ;
       /**
        * <pre>
-       *唯一id
+       *道具唯一id
        * </pre>
        *
        * <code>int64 id = 1;</code>
@@ -541,7 +495,7 @@ public final class PBItem {
       }
       /**
        * <pre>
-       *唯一id
+       *道具唯一id
        * </pre>
        *
        * <code>int64 id = 1;</code>
@@ -556,7 +510,7 @@ public final class PBItem {
       }
       /**
        * <pre>
-       *唯一id
+       *道具唯一id
        * </pre>
        *
        * <code>int64 id = 1;</code>
@@ -569,55 +523,13 @@ public final class PBItem {
         return this;
       }
 
-      private int configId_ ;
-      /**
-       * <pre>
-       *道具配置id
-       * </pre>
-       *
-       * <code>int32 configId = 2;</code>
-       * @return The configId.
-       */
-      public int getConfigId() {
-        return configId_;
-      }
-      /**
-       * <pre>
-       *道具配置id
-       * </pre>
-       *
-       * <code>int32 configId = 2;</code>
-       * @param value The configId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setConfigId(int value) {
-        
-        configId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *道具配置id
-       * </pre>
-       *
-       * <code>int32 configId = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearConfigId() {
-        
-        configId_ = 0;
-        onChanged();
-        return this;
-      }
-
       private int count_ ;
       /**
        * <pre>
-       *数量
+       *使用数量
        * </pre>
        *
-       * <code>int32 count = 3;</code>
+       * <code>int32 count = 2;</code>
        * @return The count.
        */
       public int getCount() {
@@ -625,10 +537,10 @@ public final class PBItem {
       }
       /**
        * <pre>
-       *数量
+       *使用数量
        * </pre>
        *
-       * <code>int32 count = 3;</code>
+       * <code>int32 count = 2;</code>
        * @param value The count to set.
        * @return This builder for chaining.
        */
@@ -640,10 +552,10 @@ public final class PBItem {
       }
       /**
        * <pre>
-       *数量
+       *使用数量
        * </pre>
        *
-       * <code>int32 count = 3;</code>
+       * <code>int32 count = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearCount() {
@@ -665,48 +577,48 @@ public final class PBItem {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.PBItemInfo)
+      // @@protoc_insertion_point(builder_scope:Protocol.ReqItemUse)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.PBItemInfo)
-    private static final com.cat.server.game.data.proto.PBItem.PBItemInfo DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.ReqItemUse)
+    private static final com.cat.server.game.data.proto.PBItem.ReqItemUse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.PBItemInfo();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.ReqItemUse();
     }
 
-    public static com.cat.server.game.data.proto.PBItem.PBItemInfo getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBItem.ReqItemUse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<PBItemInfo>
-        PARSER = new com.google.protobuf.AbstractParser<PBItemInfo>() {
+    private static final com.google.protobuf.Parser<ReqItemUse>
+        PARSER = new com.google.protobuf.AbstractParser<ReqItemUse>() {
       @java.lang.Override
-      public PBItemInfo parsePartialFrom(
+      public ReqItemUse parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PBItemInfo(input, extensionRegistry);
+        return new ReqItemUse(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<PBItemInfo> parser() {
+    public static com.google.protobuf.Parser<ReqItemUse> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<PBItemInfo> getParserForType() {
+    public com.google.protobuf.Parser<ReqItemUse> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBItem.PBItemInfo getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBItem.ReqItemUse getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface AckItemUpdateOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.AckItemUpdate)
+  public interface RespItemUpdateOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespItemUpdate)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -755,21 +667,21 @@ public final class PBItem {
   }
   /**
    * <pre>
-   *更新道具列表
+   * 更新道具列表
    * </pre>
    *
-   * Protobuf type {@code Protocol.AckItemUpdate}
+   * Protobuf type {@code Protocol.RespItemUpdate}
    */
-  public  static final class AckItemUpdate extends
+  public  static final class RespItemUpdate extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.AckItemUpdate)
-      AckItemUpdateOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.RespItemUpdate)
+      RespItemUpdateOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use AckItemUpdate.newBuilder() to construct.
-    private AckItemUpdate(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RespItemUpdate.newBuilder() to construct.
+    private RespItemUpdate(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private AckItemUpdate() {
+    private RespItemUpdate() {
       items_ = java.util.Collections.emptyList();
     }
 
@@ -777,7 +689,7 @@ public final class PBItem {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new AckItemUpdate();
+      return new RespItemUpdate();
     }
 
     @java.lang.Override
@@ -785,7 +697,7 @@ public final class PBItem {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private AckItemUpdate(
+    private RespItemUpdate(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -837,15 +749,15 @@ public final class PBItem {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemUpdate_descriptor;
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemUpdate_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemUpdate_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemUpdate_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBItem.AckItemUpdate.class, com.cat.server.game.data.proto.PBItem.AckItemUpdate.Builder.class);
+              com.cat.server.game.data.proto.PBItem.RespItemUpdate.class, com.cat.server.game.data.proto.PBItem.RespItemUpdate.Builder.class);
     }
 
     public static final int ITEMS_FIELD_NUMBER = 1;
@@ -943,10 +855,10 @@ public final class PBItem {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.AckItemUpdate)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.RespItemUpdate)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBItem.AckItemUpdate other = (com.cat.server.game.data.proto.PBItem.AckItemUpdate) obj;
+      com.cat.server.game.data.proto.PBItem.RespItemUpdate other = (com.cat.server.game.data.proto.PBItem.RespItemUpdate) obj;
 
       if (!getItemsList()
           .equals(other.getItemsList())) return false;
@@ -970,69 +882,69 @@ public final class PBItem {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1045,7 +957,7 @@ public final class PBItem {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.AckItemUpdate prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.RespItemUpdate prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1062,29 +974,29 @@ public final class PBItem {
     }
     /**
      * <pre>
-     *更新道具列表
+     * 更新道具列表
      * </pre>
      *
-     * Protobuf type {@code Protocol.AckItemUpdate}
+     * Protobuf type {@code Protocol.RespItemUpdate}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.AckItemUpdate)
-        com.cat.server.game.data.proto.PBItem.AckItemUpdateOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.RespItemUpdate)
+        com.cat.server.game.data.proto.PBItem.RespItemUpdateOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemUpdate_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemUpdate_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemUpdate_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemUpdate_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBItem.AckItemUpdate.class, com.cat.server.game.data.proto.PBItem.AckItemUpdate.Builder.class);
+                com.cat.server.game.data.proto.PBItem.RespItemUpdate.class, com.cat.server.game.data.proto.PBItem.RespItemUpdate.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBItem.AckItemUpdate.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBItem.RespItemUpdate.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1115,17 +1027,17 @@ public final class PBItem {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemUpdate_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemUpdate_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemUpdate getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBItem.AckItemUpdate.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBItem.RespItemUpdate getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBItem.RespItemUpdate.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemUpdate build() {
-        com.cat.server.game.data.proto.PBItem.AckItemUpdate result = buildPartial();
+      public com.cat.server.game.data.proto.PBItem.RespItemUpdate build() {
+        com.cat.server.game.data.proto.PBItem.RespItemUpdate result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1133,8 +1045,8 @@ public final class PBItem {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemUpdate buildPartial() {
-        com.cat.server.game.data.proto.PBItem.AckItemUpdate result = new com.cat.server.game.data.proto.PBItem.AckItemUpdate(this);
+      public com.cat.server.game.data.proto.PBItem.RespItemUpdate buildPartial() {
+        com.cat.server.game.data.proto.PBItem.RespItemUpdate result = new com.cat.server.game.data.proto.PBItem.RespItemUpdate(this);
         int from_bitField0_ = bitField0_;
         if (itemsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
@@ -1183,16 +1095,16 @@ public final class PBItem {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBItem.AckItemUpdate) {
-          return mergeFrom((com.cat.server.game.data.proto.PBItem.AckItemUpdate)other);
+        if (other instanceof com.cat.server.game.data.proto.PBItem.RespItemUpdate) {
+          return mergeFrom((com.cat.server.game.data.proto.PBItem.RespItemUpdate)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.AckItemUpdate other) {
-        if (other == com.cat.server.game.data.proto.PBItem.AckItemUpdate.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.RespItemUpdate other) {
+        if (other == com.cat.server.game.data.proto.PBItem.RespItemUpdate.getDefaultInstance()) return this;
         if (itemsBuilder_ == null) {
           if (!other.items_.isEmpty()) {
             if (items_.isEmpty()) {
@@ -1234,11 +1146,11 @@ public final class PBItem {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBItem.AckItemUpdate parsedMessage = null;
+        com.cat.server.game.data.proto.PBItem.RespItemUpdate parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBItem.AckItemUpdate) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBItem.RespItemUpdate) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1573,94 +1485,92 @@ public final class PBItem {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.AckItemUpdate)
+      // @@protoc_insertion_point(builder_scope:Protocol.RespItemUpdate)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.AckItemUpdate)
-    private static final com.cat.server.game.data.proto.PBItem.AckItemUpdate DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.RespItemUpdate)
+    private static final com.cat.server.game.data.proto.PBItem.RespItemUpdate DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.AckItemUpdate();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.RespItemUpdate();
     }
 
-    public static com.cat.server.game.data.proto.PBItem.AckItemUpdate getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBItem.RespItemUpdate getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<AckItemUpdate>
-        PARSER = new com.google.protobuf.AbstractParser<AckItemUpdate>() {
+    private static final com.google.protobuf.Parser<RespItemUpdate>
+        PARSER = new com.google.protobuf.AbstractParser<RespItemUpdate>() {
       @java.lang.Override
-      public AckItemUpdate parsePartialFrom(
+      public RespItemUpdate parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AckItemUpdate(input, extensionRegistry);
+        return new RespItemUpdate(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<AckItemUpdate> parser() {
+    public static com.google.protobuf.Parser<RespItemUpdate> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<AckItemUpdate> getParserForType() {
+    public com.google.protobuf.Parser<RespItemUpdate> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBItem.AckItemUpdate getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBItem.RespItemUpdate getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface ReqItemUseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.ReqItemUse)
+  public interface PBPairInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.PBPairInfo)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     *道具唯一id
      * </pre>
      *
-     * <code>int64 id = 1;</code>
-     * @return The id.
+     * <code>int32 configId = 1;</code>
+     * @return The configId.
      */
-    long getId();
+    int getConfigId();
 
     /**
      * <pre>
-     *使用数量
      * </pre>
      *
-     * <code>int32 count = 2;</code>
-     * @return The count.
+     * <code>int32 value = 2;</code>
+     * @return The value.
      */
-    int getCount();
+    int getValue();
   }
   /**
    * <pre>
-   *请求使用道具
+   * 成对的结构,key-value结构,可用于资源, 属性等kv格式的数据
    * </pre>
    *
-   * Protobuf type {@code Protocol.ReqItemUse}
+   * Protobuf type {@code Protocol.PBPairInfo}
    */
-  public  static final class ReqItemUse extends
+  public  static final class PBPairInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.ReqItemUse)
-      ReqItemUseOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.PBPairInfo)
+      PBPairInfoOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ReqItemUse.newBuilder() to construct.
-    private ReqItemUse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use PBPairInfo.newBuilder() to construct.
+    private PBPairInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ReqItemUse() {
+    private PBPairInfo() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new ReqItemUse();
+      return new PBPairInfo();
     }
 
     @java.lang.Override
@@ -1668,7 +1578,7 @@ public final class PBItem {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ReqItemUse(
+    private PBPairInfo(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1688,12 +1598,12 @@ public final class PBItem {
               break;
             case 8: {
 
-              id_ = input.readInt64();
+              configId_ = input.readInt32();
               break;
             }
             case 16: {
 
-              count_ = input.readInt32();
+              value_ = input.readInt32();
               break;
             }
             default: {
@@ -1717,43 +1627,41 @@ public final class PBItem {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_ReqItemUse_descriptor;
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBPairInfo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_ReqItemUse_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBPairInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBItem.ReqItemUse.class, com.cat.server.game.data.proto.PBItem.ReqItemUse.Builder.class);
+              com.cat.server.game.data.proto.PBItem.PBPairInfo.class, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder.class);
     }
 
-    public static final int ID_FIELD_NUMBER = 1;
-    private long id_;
+    public static final int CONFIGID_FIELD_NUMBER = 1;
+    private int configId_;
     /**
      * <pre>
-     *道具唯一id
      * </pre>
      *
-     * <code>int64 id = 1;</code>
-     * @return The id.
+     * <code>int32 configId = 1;</code>
+     * @return The configId.
      */
-    public long getId() {
-      return id_;
+    public int getConfigId() {
+      return configId_;
     }
 
-    public static final int COUNT_FIELD_NUMBER = 2;
-    private int count_;
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private int value_;
     /**
      * <pre>
-     *使用数量
      * </pre>
      *
-     * <code>int32 count = 2;</code>
-     * @return The count.
+     * <code>int32 value = 2;</code>
+     * @return The value.
      */
-    public int getCount() {
-      return count_;
+    public int getValue() {
+      return value_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1770,11 +1678,11 @@ public final class PBItem {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (id_ != 0L) {
-        output.writeInt64(1, id_);
+      if (configId_ != 0) {
+        output.writeInt32(1, configId_);
       }
-      if (count_ != 0) {
-        output.writeInt32(2, count_);
+      if (value_ != 0) {
+        output.writeInt32(2, value_);
       }
       unknownFields.writeTo(output);
     }
@@ -1785,13 +1693,13 @@ public final class PBItem {
       if (size != -1) return size;
 
       size = 0;
-      if (id_ != 0L) {
+      if (configId_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, id_);
+          .computeInt32Size(1, configId_);
       }
-      if (count_ != 0) {
+      if (value_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, count_);
+          .computeInt32Size(2, value_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1803,15 +1711,15 @@ public final class PBItem {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.ReqItemUse)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.PBPairInfo)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBItem.ReqItemUse other = (com.cat.server.game.data.proto.PBItem.ReqItemUse) obj;
+      com.cat.server.game.data.proto.PBItem.PBPairInfo other = (com.cat.server.game.data.proto.PBItem.PBPairInfo) obj;
 
-      if (getId()
-          != other.getId()) return false;
-      if (getCount()
-          != other.getCount()) return false;
+      if (getConfigId()
+          != other.getConfigId()) return false;
+      if (getValue()
+          != other.getValue()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1823,79 +1731,78 @@ public final class PBItem {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getId());
-      hash = (37 * hash) + COUNT_FIELD_NUMBER;
-      hash = (53 * hash) + getCount();
+      hash = (37 * hash) + CONFIGID_FIELD_NUMBER;
+      hash = (53 * hash) + getConfigId();
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + getValue();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1908,7 +1815,7 @@ public final class PBItem {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.ReqItemUse prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.PBPairInfo prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1925,29 +1832,29 @@ public final class PBItem {
     }
     /**
      * <pre>
-     *请求使用道具
+     * 成对的结构,key-value结构,可用于资源, 属性等kv格式的数据
      * </pre>
      *
-     * Protobuf type {@code Protocol.ReqItemUse}
+     * Protobuf type {@code Protocol.PBPairInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.ReqItemUse)
-        com.cat.server.game.data.proto.PBItem.ReqItemUseOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.PBPairInfo)
+        com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_ReqItemUse_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBPairInfo_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_ReqItemUse_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBPairInfo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBItem.ReqItemUse.class, com.cat.server.game.data.proto.PBItem.ReqItemUse.Builder.class);
+                com.cat.server.game.data.proto.PBItem.PBPairInfo.class, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBItem.ReqItemUse.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBItem.PBPairInfo.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1965,9 +1872,9 @@ public final class PBItem {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        id_ = 0L;
+        configId_ = 0;
 
-        count_ = 0;
+        value_ = 0;
 
         return this;
       }
@@ -1975,17 +1882,17 @@ public final class PBItem {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_ReqItemUse_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBPairInfo_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.ReqItemUse getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBItem.ReqItemUse.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBItem.PBPairInfo getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.ReqItemUse build() {
-        com.cat.server.game.data.proto.PBItem.ReqItemUse result = buildPartial();
+      public com.cat.server.game.data.proto.PBItem.PBPairInfo build() {
+        com.cat.server.game.data.proto.PBItem.PBPairInfo result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1993,10 +1900,10 @@ public final class PBItem {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.ReqItemUse buildPartial() {
-        com.cat.server.game.data.proto.PBItem.ReqItemUse result = new com.cat.server.game.data.proto.PBItem.ReqItemUse(this);
-        result.id_ = id_;
-        result.count_ = count_;
+      public com.cat.server.game.data.proto.PBItem.PBPairInfo buildPartial() {
+        com.cat.server.game.data.proto.PBItem.PBPairInfo result = new com.cat.server.game.data.proto.PBItem.PBPairInfo(this);
+        result.configId_ = configId_;
+        result.value_ = value_;
         onBuilt();
         return result;
       }
@@ -2035,21 +1942,21 @@ public final class PBItem {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBItem.ReqItemUse) {
-          return mergeFrom((com.cat.server.game.data.proto.PBItem.ReqItemUse)other);
+        if (other instanceof com.cat.server.game.data.proto.PBItem.PBPairInfo) {
+          return mergeFrom((com.cat.server.game.data.proto.PBItem.PBPairInfo)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.ReqItemUse other) {
-        if (other == com.cat.server.game.data.proto.PBItem.ReqItemUse.getDefaultInstance()) return this;
-        if (other.getId() != 0L) {
-          setId(other.getId());
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.PBPairInfo other) {
+        if (other == com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance()) return this;
+        if (other.getConfigId() != 0) {
+          setConfigId(other.getConfigId());
         }
-        if (other.getCount() != 0) {
-          setCount(other.getCount());
+        if (other.getValue() != 0) {
+          setValue(other.getValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2066,11 +1973,11 @@ public final class PBItem {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBItem.ReqItemUse parsedMessage = null;
+        com.cat.server.game.data.proto.PBItem.PBPairInfo parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBItem.ReqItemUse) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBItem.PBPairInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2080,86 +1987,80 @@ public final class PBItem {
         return this;
       }
 
-      private long id_ ;
+      private int configId_ ;
       /**
        * <pre>
-       *道具唯一id
        * </pre>
        *
-       * <code>int64 id = 1;</code>
-       * @return The id.
+       * <code>int32 configId = 1;</code>
+       * @return The configId.
        */
-      public long getId() {
-        return id_;
+      public int getConfigId() {
+        return configId_;
       }
       /**
        * <pre>
-       *道具唯一id
        * </pre>
        *
-       * <code>int64 id = 1;</code>
-       * @param value The id to set.
+       * <code>int32 configId = 1;</code>
+       * @param value The configId to set.
        * @return This builder for chaining.
        */
-      public Builder setId(long value) {
+      public Builder setConfigId(int value) {
         
-        id_ = value;
+        configId_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *道具唯一id
        * </pre>
        *
-       * <code>int64 id = 1;</code>
+       * <code>int32 configId = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearId() {
+      public Builder clearConfigId() {
         
-        id_ = 0L;
+        configId_ = 0;
         onChanged();
         return this;
       }
 
-      private int count_ ;
+      private int value_ ;
       /**
        * <pre>
-       *使用数量
        * </pre>
        *
-       * <code>int32 count = 2;</code>
-       * @return The count.
+       * <code>int32 value = 2;</code>
+       * @return The value.
        */
-      public int getCount() {
-        return count_;
+      public int getValue() {
+        return value_;
       }
       /**
        * <pre>
-       *使用数量
        * </pre>
        *
-       * <code>int32 count = 2;</code>
-       * @param value The count to set.
+       * <code>int32 value = 2;</code>
+       * @param value The value to set.
        * @return This builder for chaining.
        */
-      public Builder setCount(int value) {
+      public Builder setValue(int value) {
         
-        count_ = value;
+        value_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *使用数量
        * </pre>
        *
-       * <code>int32 count = 2;</code>
+       * <code>int32 value = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearCount() {
+      public Builder clearValue() {
         
-        count_ = 0;
+        value_ = 0;
         onChanged();
         return this;
       }
@@ -2176,51 +2077,54 @@ public final class PBItem {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.ReqItemUse)
+      // @@protoc_insertion_point(builder_scope:Protocol.PBPairInfo)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.ReqItemUse)
-    private static final com.cat.server.game.data.proto.PBItem.ReqItemUse DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.PBPairInfo)
+    private static final com.cat.server.game.data.proto.PBItem.PBPairInfo DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.ReqItemUse();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.PBPairInfo();
     }
 
-    public static com.cat.server.game.data.proto.PBItem.ReqItemUse getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBItem.PBPairInfo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ReqItemUse>
-        PARSER = new com.google.protobuf.AbstractParser<ReqItemUse>() {
+    private static final com.google.protobuf.Parser<PBPairInfo>
+        PARSER = new com.google.protobuf.AbstractParser<PBPairInfo>() {
       @java.lang.Override
-      public ReqItemUse parsePartialFrom(
+      public PBPairInfo parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ReqItemUse(input, extensionRegistry);
+        return new PBPairInfo(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ReqItemUse> parser() {
+    public static com.google.protobuf.Parser<PBPairInfo> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ReqItemUse> getParserForType() {
+    public com.google.protobuf.Parser<PBPairInfo> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBItem.ReqItemUse getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBItem.PBPairInfo getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface AckItemUseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.AckItemUse)
+  public interface RespItemUseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespItemUse)
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>int32 code = 1;</code>
      * @return The code.
      */
@@ -2272,21 +2176,21 @@ public final class PBItem {
   }
   /**
    * <pre>
-   *响应使用到具
+   * 响应使用到具
    * </pre>
    *
-   * Protobuf type {@code Protocol.AckItemUse}
+   * Protobuf type {@code Protocol.RespItemUse}
    */
-  public  static final class AckItemUse extends
+  public  static final class RespItemUse extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.AckItemUse)
-      AckItemUseOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.RespItemUse)
+      RespItemUseOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use AckItemUse.newBuilder() to construct.
-    private AckItemUse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RespItemUse.newBuilder() to construct.
+    private RespItemUse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private AckItemUse() {
+    private RespItemUse() {
       rewards_ = java.util.Collections.emptyList();
     }
 
@@ -2294,7 +2198,7 @@ public final class PBItem {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new AckItemUse();
+      return new RespItemUse();
     }
 
     @java.lang.Override
@@ -2302,7 +2206,7 @@ public final class PBItem {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private AckItemUse(
+    private RespItemUse(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2359,20 +2263,23 @@ public final class PBItem {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemUse_descriptor;
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemUse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemUse_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemUse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBItem.AckItemUse.class, com.cat.server.game.data.proto.PBItem.AckItemUse.Builder.class);
+              com.cat.server.game.data.proto.PBItem.RespItemUse.class, com.cat.server.game.data.proto.PBItem.RespItemUse.Builder.class);
     }
 
     public static final int CODE_FIELD_NUMBER = 1;
     private int code_;
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>int32 code = 1;</code>
      * @return The code.
      */
@@ -2482,10 +2389,10 @@ public final class PBItem {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.AckItemUse)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.RespItemUse)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBItem.AckItemUse other = (com.cat.server.game.data.proto.PBItem.AckItemUse) obj;
+      com.cat.server.game.data.proto.PBItem.RespItemUse other = (com.cat.server.game.data.proto.PBItem.RespItemUse) obj;
 
       if (getCode()
           != other.getCode()) return false;
@@ -2513,69 +2420,69 @@ public final class PBItem {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2588,7 +2495,7 @@ public final class PBItem {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.AckItemUse prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.RespItemUse prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2605,29 +2512,29 @@ public final class PBItem {
     }
     /**
      * <pre>
-     *响应使用到具
+     * 响应使用到具
      * </pre>
      *
-     * Protobuf type {@code Protocol.AckItemUse}
+     * Protobuf type {@code Protocol.RespItemUse}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.AckItemUse)
-        com.cat.server.game.data.proto.PBItem.AckItemUseOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.RespItemUse)
+        com.cat.server.game.data.proto.PBItem.RespItemUseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemUse_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemUse_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemUse_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemUse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBItem.AckItemUse.class, com.cat.server.game.data.proto.PBItem.AckItemUse.Builder.class);
+                com.cat.server.game.data.proto.PBItem.RespItemUse.class, com.cat.server.game.data.proto.PBItem.RespItemUse.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBItem.AckItemUse.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBItem.RespItemUse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2660,17 +2567,17 @@ public final class PBItem {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemUse_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemUse_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemUse getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBItem.AckItemUse.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBItem.RespItemUse getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBItem.RespItemUse.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemUse build() {
-        com.cat.server.game.data.proto.PBItem.AckItemUse result = buildPartial();
+      public com.cat.server.game.data.proto.PBItem.RespItemUse build() {
+        com.cat.server.game.data.proto.PBItem.RespItemUse result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2678,8 +2585,8 @@ public final class PBItem {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemUse buildPartial() {
-        com.cat.server.game.data.proto.PBItem.AckItemUse result = new com.cat.server.game.data.proto.PBItem.AckItemUse(this);
+      public com.cat.server.game.data.proto.PBItem.RespItemUse buildPartial() {
+        com.cat.server.game.data.proto.PBItem.RespItemUse result = new com.cat.server.game.data.proto.PBItem.RespItemUse(this);
         int from_bitField0_ = bitField0_;
         result.code_ = code_;
         if (rewardsBuilder_ == null) {
@@ -2729,16 +2636,16 @@ public final class PBItem {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBItem.AckItemUse) {
-          return mergeFrom((com.cat.server.game.data.proto.PBItem.AckItemUse)other);
+        if (other instanceof com.cat.server.game.data.proto.PBItem.RespItemUse) {
+          return mergeFrom((com.cat.server.game.data.proto.PBItem.RespItemUse)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.AckItemUse other) {
-        if (other == com.cat.server.game.data.proto.PBItem.AckItemUse.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.RespItemUse other) {
+        if (other == com.cat.server.game.data.proto.PBItem.RespItemUse.getDefaultInstance()) return this;
         if (other.getCode() != 0) {
           setCode(other.getCode());
         }
@@ -2783,11 +2690,11 @@ public final class PBItem {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBItem.AckItemUse parsedMessage = null;
+        com.cat.server.game.data.proto.PBItem.RespItemUse parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBItem.AckItemUse) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBItem.RespItemUse) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2800,6 +2707,9 @@ public final class PBItem {
 
       private int code_ ;
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 code = 1;</code>
        * @return The code.
        */
@@ -2807,6 +2717,9 @@ public final class PBItem {
         return code_;
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 code = 1;</code>
        * @param value The code to set.
        * @return This builder for chaining.
@@ -2818,6 +2731,9 @@ public final class PBItem {
         return this;
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 code = 1;</code>
        * @return This builder for chaining.
        */
@@ -3152,41 +3068,715 @@ public final class PBItem {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.AckItemUse)
+      // @@protoc_insertion_point(builder_scope:Protocol.RespItemUse)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.AckItemUse)
-    private static final com.cat.server.game.data.proto.PBItem.AckItemUse DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.RespItemUse)
+    private static final com.cat.server.game.data.proto.PBItem.RespItemUse DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.AckItemUse();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.RespItemUse();
     }
 
-    public static com.cat.server.game.data.proto.PBItem.AckItemUse getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBItem.RespItemUse getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<AckItemUse>
-        PARSER = new com.google.protobuf.AbstractParser<AckItemUse>() {
+    private static final com.google.protobuf.Parser<RespItemUse>
+        PARSER = new com.google.protobuf.AbstractParser<RespItemUse>() {
       @java.lang.Override
-      public AckItemUse parsePartialFrom(
+      public RespItemUse parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AckItemUse(input, extensionRegistry);
+        return new RespItemUse(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<AckItemUse> parser() {
+    public static com.google.protobuf.Parser<RespItemUse> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<AckItemUse> getParserForType() {
+    public com.google.protobuf.Parser<RespItemUse> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBItem.AckItemUse getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBItem.RespItemUse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface RespItemDeleteOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespItemDelete)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *奖励
+     * </pre>
+     *
+     * <code>repeated int64 ids = 1;</code>
+     * @return A list containing the ids.
+     */
+    java.util.List<java.lang.Long> getIdsList();
+    /**
+     * <pre>
+     *奖励
+     * </pre>
+     *
+     * <code>repeated int64 ids = 1;</code>
+     * @return The count of ids.
+     */
+    int getIdsCount();
+    /**
+     * <pre>
+     *奖励
+     * </pre>
+     *
+     * <code>repeated int64 ids = 1;</code>
+     * @param index The index of the element to return.
+     * @return The ids at the given index.
+     */
+    long getIds(int index);
+  }
+  /**
+   * <pre>
+   * 推送道具删除
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.RespItemDelete}
+   */
+  public  static final class RespItemDelete extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.RespItemDelete)
+      RespItemDeleteOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RespItemDelete.newBuilder() to construct.
+    private RespItemDelete(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RespItemDelete() {
+      ids_ = emptyLongList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RespItemDelete();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RespItemDelete(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                ids_ = newLongList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              ids_.addLong(input.readInt64());
+              break;
+            }
+            case 10: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
+                ids_ = newLongList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                ids_.addLong(input.readInt64());
+              }
+              input.popLimit(limit);
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          ids_.makeImmutable(); // C
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemDelete_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemDelete_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBItem.RespItemDelete.class, com.cat.server.game.data.proto.PBItem.RespItemDelete.Builder.class);
+    }
+
+    public static final int IDS_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.LongList ids_;
+    /**
+     * <pre>
+     *奖励
+     * </pre>
+     *
+     * <code>repeated int64 ids = 1;</code>
+     * @return A list containing the ids.
+     */
+    public java.util.List<java.lang.Long>
+        getIdsList() {
+      return ids_;
+    }
+    /**
+     * <pre>
+     *奖励
+     * </pre>
+     *
+     * <code>repeated int64 ids = 1;</code>
+     * @return The count of ids.
+     */
+    public int getIdsCount() {
+      return ids_.size();
+    }
+    /**
+     * <pre>
+     *奖励
+     * </pre>
+     *
+     * <code>repeated int64 ids = 1;</code>
+     * @param index The index of the element to return.
+     * @return The ids at the given index.
+     */
+    public long getIds(int index) {
+      return ids_.getLong(index);
+    }
+    private int idsMemoizedSerializedSize = -1;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (getIdsList().size() > 0) {
+        output.writeUInt32NoTag(10);
+        output.writeUInt32NoTag(idsMemoizedSerializedSize);
+      }
+      for (int i = 0; i < ids_.size(); i++) {
+        output.writeInt64NoTag(ids_.getLong(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < ids_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt64SizeNoTag(ids_.getLong(i));
+        }
+        size += dataSize;
+        if (!getIdsList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        idsMemoizedSerializedSize = dataSize;
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.RespItemDelete)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBItem.RespItemDelete other = (com.cat.server.game.data.proto.PBItem.RespItemDelete) obj;
+
+      if (!getIdsList()
+          .equals(other.getIdsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getIdsCount() > 0) {
+        hash = (37 * hash) + IDS_FIELD_NUMBER;
+        hash = (53 * hash) + getIdsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.RespItemDelete prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 推送道具删除
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.RespItemDelete}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.RespItemDelete)
+        com.cat.server.game.data.proto.PBItem.RespItemDeleteOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemDelete_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemDelete_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBItem.RespItemDelete.class, com.cat.server.game.data.proto.PBItem.RespItemDelete.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBItem.RespItemDelete.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        ids_ = emptyLongList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemDelete_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBItem.RespItemDelete getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBItem.RespItemDelete.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBItem.RespItemDelete build() {
+        com.cat.server.game.data.proto.PBItem.RespItemDelete result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBItem.RespItemDelete buildPartial() {
+        com.cat.server.game.data.proto.PBItem.RespItemDelete result = new com.cat.server.game.data.proto.PBItem.RespItemDelete(this);
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) != 0)) {
+          ids_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.ids_ = ids_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBItem.RespItemDelete) {
+          return mergeFrom((com.cat.server.game.data.proto.PBItem.RespItemDelete)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.RespItemDelete other) {
+        if (other == com.cat.server.game.data.proto.PBItem.RespItemDelete.getDefaultInstance()) return this;
+        if (!other.ids_.isEmpty()) {
+          if (ids_.isEmpty()) {
+            ids_ = other.ids_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureIdsIsMutable();
+            ids_.addAll(other.ids_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBItem.RespItemDelete parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBItem.RespItemDelete) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.Internal.LongList ids_ = emptyLongList();
+      private void ensureIdsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          ids_ = mutableCopy(ids_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <pre>
+       *奖励
+       * </pre>
+       *
+       * <code>repeated int64 ids = 1;</code>
+       * @return A list containing the ids.
+       */
+      public java.util.List<java.lang.Long>
+          getIdsList() {
+        return ((bitField0_ & 0x00000001) != 0) ?
+                 java.util.Collections.unmodifiableList(ids_) : ids_;
+      }
+      /**
+       * <pre>
+       *奖励
+       * </pre>
+       *
+       * <code>repeated int64 ids = 1;</code>
+       * @return The count of ids.
+       */
+      public int getIdsCount() {
+        return ids_.size();
+      }
+      /**
+       * <pre>
+       *奖励
+       * </pre>
+       *
+       * <code>repeated int64 ids = 1;</code>
+       * @param index The index of the element to return.
+       * @return The ids at the given index.
+       */
+      public long getIds(int index) {
+        return ids_.getLong(index);
+      }
+      /**
+       * <pre>
+       *奖励
+       * </pre>
+       *
+       * <code>repeated int64 ids = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The ids to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIds(
+          int index, long value) {
+        ensureIdsIsMutable();
+        ids_.setLong(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *奖励
+       * </pre>
+       *
+       * <code>repeated int64 ids = 1;</code>
+       * @param value The ids to add.
+       * @return This builder for chaining.
+       */
+      public Builder addIds(long value) {
+        ensureIdsIsMutable();
+        ids_.addLong(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *奖励
+       * </pre>
+       *
+       * <code>repeated int64 ids = 1;</code>
+       * @param values The ids to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllIds(
+          java.lang.Iterable<? extends java.lang.Long> values) {
+        ensureIdsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, ids_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *奖励
+       * </pre>
+       *
+       * <code>repeated int64 ids = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIds() {
+        ids_ = emptyLongList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.RespItemDelete)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.RespItemDelete)
+    private static final com.cat.server.game.data.proto.PBItem.RespItemDelete DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.RespItemDelete();
+    }
+
+    public static com.cat.server.game.data.proto.PBItem.RespItemDelete getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RespItemDelete>
+        PARSER = new com.google.protobuf.AbstractParser<RespItemDelete>() {
+      @java.lang.Override
+      public RespItemDelete parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RespItemDelete(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RespItemDelete> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RespItemDelete> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBItem.RespItemDelete getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -3218,7 +3808,7 @@ public final class PBItem {
   }
   /**
    * <pre>
-   *请求出售道具
+   * 请求出售道具
    * </pre>
    *
    * Protobuf type {@code Protocol.ReqItemSell}
@@ -3504,7 +4094,7 @@ public final class PBItem {
     }
     /**
      * <pre>
-     *请求出售道具
+     * 请求出售道具
      * </pre>
      *
      * Protobuf type {@code Protocol.ReqItemSell}
@@ -3795,502 +4385,8 @@ public final class PBItem {
 
   }
 
-  public interface AckItemSellOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.AckItemSell)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>int32 code = 1;</code>
-     * @return The code.
-     */
-    int getCode();
-  }
-  /**
-   * <pre>
-   *响应出售道具
-   * </pre>
-   *
-   * Protobuf type {@code Protocol.AckItemSell}
-   */
-  public  static final class AckItemSell extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.AckItemSell)
-      AckItemSellOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use AckItemSell.newBuilder() to construct.
-    private AckItemSell(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private AckItemSell() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new AckItemSell();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private AckItemSell(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              code_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemSell_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemSell_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBItem.AckItemSell.class, com.cat.server.game.data.proto.PBItem.AckItemSell.Builder.class);
-    }
-
-    public static final int CODE_FIELD_NUMBER = 1;
-    private int code_;
-    /**
-     * <code>int32 code = 1;</code>
-     * @return The code.
-     */
-    public int getCode() {
-      return code_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (code_ != 0) {
-        output.writeInt32(1, code_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (code_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, code_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.AckItemSell)) {
-        return super.equals(obj);
-      }
-      com.cat.server.game.data.proto.PBItem.AckItemSell other = (com.cat.server.game.data.proto.PBItem.AckItemSell) obj;
-
-      if (getCode()
-          != other.getCode()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CODE_FIELD_NUMBER;
-      hash = (53 * hash) + getCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.AckItemSell prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     *响应出售道具
-     * </pre>
-     *
-     * Protobuf type {@code Protocol.AckItemSell}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.AckItemSell)
-        com.cat.server.game.data.proto.PBItem.AckItemSellOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemSell_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemSell_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBItem.AckItemSell.class, com.cat.server.game.data.proto.PBItem.AckItemSell.Builder.class);
-      }
-
-      // Construct using com.cat.server.game.data.proto.PBItem.AckItemSell.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        code_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemSell_descriptor;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemSell getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBItem.AckItemSell.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemSell build() {
-        com.cat.server.game.data.proto.PBItem.AckItemSell result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemSell buildPartial() {
-        com.cat.server.game.data.proto.PBItem.AckItemSell result = new com.cat.server.game.data.proto.PBItem.AckItemSell(this);
-        result.code_ = code_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBItem.AckItemSell) {
-          return mergeFrom((com.cat.server.game.data.proto.PBItem.AckItemSell)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.AckItemSell other) {
-        if (other == com.cat.server.game.data.proto.PBItem.AckItemSell.getDefaultInstance()) return this;
-        if (other.getCode() != 0) {
-          setCode(other.getCode());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.cat.server.game.data.proto.PBItem.AckItemSell parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBItem.AckItemSell) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int code_ ;
-      /**
-       * <code>int32 code = 1;</code>
-       * @return The code.
-       */
-      public int getCode() {
-        return code_;
-      }
-      /**
-       * <code>int32 code = 1;</code>
-       * @param value The code to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCode(int value) {
-        
-        code_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 code = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCode() {
-        
-        code_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Protocol.AckItemSell)
-    }
-
-    // @@protoc_insertion_point(class_scope:Protocol.AckItemSell)
-    private static final com.cat.server.game.data.proto.PBItem.AckItemSell DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.AckItemSell();
-    }
-
-    public static com.cat.server.game.data.proto.PBItem.AckItemSell getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<AckItemSell>
-        PARSER = new com.google.protobuf.AbstractParser<AckItemSell>() {
-      @java.lang.Override
-      public AckItemSell parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AckItemSell(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<AckItemSell> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<AckItemSell> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.cat.server.game.data.proto.PBItem.AckItemSell getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface AckRewardsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.AckRewards)
+  public interface RespRewardsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespRewards)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -4349,21 +4445,21 @@ public final class PBItem {
   }
   /**
    * <pre>
-   *获得奖励信息
+   * 获得奖励信息
    * </pre>
    *
-   * Protobuf type {@code Protocol.AckRewards}
+   * Protobuf type {@code Protocol.RespRewards}
    */
-  public  static final class AckRewards extends
+  public  static final class RespRewards extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.AckRewards)
-      AckRewardsOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.RespRewards)
+      RespRewardsOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use AckRewards.newBuilder() to construct.
-    private AckRewards(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RespRewards.newBuilder() to construct.
+    private RespRewards(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private AckRewards() {
+    private RespRewards() {
       rewards_ = java.util.Collections.emptyList();
     }
 
@@ -4371,7 +4467,7 @@ public final class PBItem {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new AckRewards();
+      return new RespRewards();
     }
 
     @java.lang.Override
@@ -4379,7 +4475,7 @@ public final class PBItem {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private AckRewards(
+    private RespRewards(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4436,15 +4532,15 @@ public final class PBItem {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckRewards_descriptor;
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespRewards_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckRewards_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespRewards_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBItem.AckRewards.class, com.cat.server.game.data.proto.PBItem.AckRewards.Builder.class);
+              com.cat.server.game.data.proto.PBItem.RespRewards.class, com.cat.server.game.data.proto.PBItem.RespRewards.Builder.class);
     }
 
     public static final int REWARDS_FIELD_NUMBER = 1;
@@ -4563,10 +4659,10 @@ public final class PBItem {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.AckRewards)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.RespRewards)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBItem.AckRewards other = (com.cat.server.game.data.proto.PBItem.AckRewards) obj;
+      com.cat.server.game.data.proto.PBItem.RespRewards other = (com.cat.server.game.data.proto.PBItem.RespRewards) obj;
 
       if (!getRewardsList()
           .equals(other.getRewardsList())) return false;
@@ -4594,69 +4690,69 @@ public final class PBItem {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.AckRewards parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespRewards parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4669,7 +4765,7 @@ public final class PBItem {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.AckRewards prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.RespRewards prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -4686,29 +4782,29 @@ public final class PBItem {
     }
     /**
      * <pre>
-     *获得奖励信息
+     * 获得奖励信息
      * </pre>
      *
-     * Protobuf type {@code Protocol.AckRewards}
+     * Protobuf type {@code Protocol.RespRewards}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.AckRewards)
-        com.cat.server.game.data.proto.PBItem.AckRewardsOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.RespRewards)
+        com.cat.server.game.data.proto.PBItem.RespRewardsOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckRewards_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespRewards_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckRewards_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespRewards_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBItem.AckRewards.class, com.cat.server.game.data.proto.PBItem.AckRewards.Builder.class);
+                com.cat.server.game.data.proto.PBItem.RespRewards.class, com.cat.server.game.data.proto.PBItem.RespRewards.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBItem.AckRewards.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBItem.RespRewards.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4741,17 +4837,17 @@ public final class PBItem {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckRewards_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespRewards_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckRewards getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBItem.AckRewards.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBItem.RespRewards getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBItem.RespRewards.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckRewards build() {
-        com.cat.server.game.data.proto.PBItem.AckRewards result = buildPartial();
+      public com.cat.server.game.data.proto.PBItem.RespRewards build() {
+        com.cat.server.game.data.proto.PBItem.RespRewards result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -4759,8 +4855,8 @@ public final class PBItem {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckRewards buildPartial() {
-        com.cat.server.game.data.proto.PBItem.AckRewards result = new com.cat.server.game.data.proto.PBItem.AckRewards(this);
+      public com.cat.server.game.data.proto.PBItem.RespRewards buildPartial() {
+        com.cat.server.game.data.proto.PBItem.RespRewards result = new com.cat.server.game.data.proto.PBItem.RespRewards(this);
         int from_bitField0_ = bitField0_;
         if (rewardsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
@@ -4810,16 +4906,16 @@ public final class PBItem {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBItem.AckRewards) {
-          return mergeFrom((com.cat.server.game.data.proto.PBItem.AckRewards)other);
+        if (other instanceof com.cat.server.game.data.proto.PBItem.RespRewards) {
+          return mergeFrom((com.cat.server.game.data.proto.PBItem.RespRewards)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.AckRewards other) {
-        if (other == com.cat.server.game.data.proto.PBItem.AckRewards.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.RespRewards other) {
+        if (other == com.cat.server.game.data.proto.PBItem.RespRewards.getDefaultInstance()) return this;
         if (rewardsBuilder_ == null) {
           if (!other.rewards_.isEmpty()) {
             if (rewards_.isEmpty()) {
@@ -4864,11 +4960,11 @@ public final class PBItem {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBItem.AckRewards parsedMessage = null;
+        com.cat.server.game.data.proto.PBItem.RespRewards parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBItem.AckRewards) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBItem.RespRewards) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -5245,41 +5341,41 @@ public final class PBItem {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.AckRewards)
+      // @@protoc_insertion_point(builder_scope:Protocol.RespRewards)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.AckRewards)
-    private static final com.cat.server.game.data.proto.PBItem.AckRewards DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.RespRewards)
+    private static final com.cat.server.game.data.proto.PBItem.RespRewards DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.AckRewards();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.RespRewards();
     }
 
-    public static com.cat.server.game.data.proto.PBItem.AckRewards getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBItem.RespRewards getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<AckRewards>
-        PARSER = new com.google.protobuf.AbstractParser<AckRewards>() {
+    private static final com.google.protobuf.Parser<RespRewards>
+        PARSER = new com.google.protobuf.AbstractParser<RespRewards>() {
       @java.lang.Override
-      public AckRewards parsePartialFrom(
+      public RespRewards parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AckRewards(input, extensionRegistry);
+        return new RespRewards(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<AckRewards> parser() {
+    public static com.google.protobuf.Parser<RespRewards> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<AckRewards> getParserForType() {
+    public com.google.protobuf.Parser<RespRewards> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBItem.AckRewards getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBItem.RespRewards getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5290,12 +5386,18 @@ public final class PBItem {
       com.google.protobuf.MessageOrBuilder {
 
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>int32 configId = 1;</code>
      * @return The configId.
      */
     int getConfigId();
 
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>int32 count = 2;</code>
      * @return The count.
      */
@@ -5303,7 +5405,7 @@ public final class PBItem {
   }
   /**
    * <pre>
-   *奖励信息
+   * 奖励信息
    * </pre>
    *
    * Protobuf type {@code Protocol.PBRewardInfo}
@@ -5395,6 +5497,9 @@ public final class PBItem {
     public static final int CONFIGID_FIELD_NUMBER = 1;
     private int configId_;
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>int32 configId = 1;</code>
      * @return The configId.
      */
@@ -5405,6 +5510,9 @@ public final class PBItem {
     public static final int COUNT_FIELD_NUMBER = 2;
     private int count_;
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>int32 count = 2;</code>
      * @return The count.
      */
@@ -5580,7 +5688,7 @@ public final class PBItem {
     }
     /**
      * <pre>
-     *奖励信息
+     * 奖励信息
      * </pre>
      *
      * Protobuf type {@code Protocol.PBRewardInfo}
@@ -5737,6 +5845,9 @@ public final class PBItem {
 
       private int configId_ ;
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 configId = 1;</code>
        * @return The configId.
        */
@@ -5744,6 +5855,9 @@ public final class PBItem {
         return configId_;
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 configId = 1;</code>
        * @param value The configId to set.
        * @return This builder for chaining.
@@ -5755,6 +5869,9 @@ public final class PBItem {
         return this;
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 configId = 1;</code>
        * @return This builder for chaining.
        */
@@ -5767,6 +5884,9 @@ public final class PBItem {
 
       private int count_ ;
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 count = 2;</code>
        * @return The count.
        */
@@ -5774,6 +5894,9 @@ public final class PBItem {
         return count_;
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 count = 2;</code>
        * @param value The count to set.
        * @return This builder for chaining.
@@ -5785,6 +5908,9 @@ public final class PBItem {
         return this;
       }
       /**
+       * <pre>
+       * </pre>
+       *
        * <code>int32 count = 2;</code>
        * @return This builder for chaining.
        */
@@ -5847,46 +5973,43 @@ public final class PBItem {
 
   }
 
-  public interface PBPairInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.PBPairInfo)
+  public interface RespItemSellOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespItemSell)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>int32 configId = 1;</code>
-     * @return The configId.
+     * <pre>
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     * @return The code.
      */
-    int getConfigId();
-
-    /**
-     * <code>int32 value = 2;</code>
-     * @return The value.
-     */
-    int getValue();
+    int getCode();
   }
   /**
    * <pre>
-   *成对的结构,key-value结构,可用于资源, 属性等kv格式的数据
+   * 响应出售道具
    * </pre>
    *
-   * Protobuf type {@code Protocol.PBPairInfo}
+   * Protobuf type {@code Protocol.RespItemSell}
    */
-  public  static final class PBPairInfo extends
+  public  static final class RespItemSell extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.PBPairInfo)
-      PBPairInfoOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.RespItemSell)
+      RespItemSellOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use PBPairInfo.newBuilder() to construct.
-    private PBPairInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RespItemSell.newBuilder() to construct.
+    private RespItemSell(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private PBPairInfo() {
+    private RespItemSell() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new PBPairInfo();
+      return new RespItemSell();
     }
 
     @java.lang.Override
@@ -5894,7 +6017,7 @@ public final class PBItem {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private PBPairInfo(
+    private RespItemSell(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5914,12 +6037,7 @@ public final class PBItem {
               break;
             case 8: {
 
-              configId_ = input.readInt32();
-              break;
-            }
-            case 16: {
-
-              value_ = input.readInt32();
+              code_ = input.readInt32();
               break;
             }
             default: {
@@ -5943,35 +6061,28 @@ public final class PBItem {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBPairInfo_descriptor;
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemSell_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBPairInfo_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemSell_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBItem.PBPairInfo.class, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder.class);
+              com.cat.server.game.data.proto.PBItem.RespItemSell.class, com.cat.server.game.data.proto.PBItem.RespItemSell.Builder.class);
     }
 
-    public static final int CONFIGID_FIELD_NUMBER = 1;
-    private int configId_;
+    public static final int CODE_FIELD_NUMBER = 1;
+    private int code_;
     /**
-     * <code>int32 configId = 1;</code>
-     * @return The configId.
+     * <pre>
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     * @return The code.
      */
-    public int getConfigId() {
-      return configId_;
-    }
-
-    public static final int VALUE_FIELD_NUMBER = 2;
-    private int value_;
-    /**
-     * <code>int32 value = 2;</code>
-     * @return The value.
-     */
-    public int getValue() {
-      return value_;
+    public int getCode() {
+      return code_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5988,11 +6099,8 @@ public final class PBItem {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (configId_ != 0) {
-        output.writeInt32(1, configId_);
-      }
-      if (value_ != 0) {
-        output.writeInt32(2, value_);
+      if (code_ != 0) {
+        output.writeInt32(1, code_);
       }
       unknownFields.writeTo(output);
     }
@@ -6003,13 +6111,9 @@ public final class PBItem {
       if (size != -1) return size;
 
       size = 0;
-      if (configId_ != 0) {
+      if (code_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, configId_);
-      }
-      if (value_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, value_);
+          .computeInt32Size(1, code_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -6021,15 +6125,13 @@ public final class PBItem {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.PBPairInfo)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.RespItemSell)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBItem.PBPairInfo other = (com.cat.server.game.data.proto.PBItem.PBPairInfo) obj;
+      com.cat.server.game.data.proto.PBItem.RespItemSell other = (com.cat.server.game.data.proto.PBItem.RespItemSell) obj;
 
-      if (getConfigId()
-          != other.getConfigId()) return false;
-      if (getValue()
-          != other.getValue()) return false;
+      if (getCode()
+          != other.getCode()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -6041,78 +6143,76 @@ public final class PBItem {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CONFIGID_FIELD_NUMBER;
-      hash = (53 * hash) + getConfigId();
-      hash = (37 * hash) + VALUE_FIELD_NUMBER;
-      hash = (53 * hash) + getValue();
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -6125,7 +6225,7 @@ public final class PBItem {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.PBPairInfo prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.RespItemSell prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -6142,29 +6242,29 @@ public final class PBItem {
     }
     /**
      * <pre>
-     *成对的结构,key-value结构,可用于资源, 属性等kv格式的数据
+     * 响应出售道具
      * </pre>
      *
-     * Protobuf type {@code Protocol.PBPairInfo}
+     * Protobuf type {@code Protocol.RespItemSell}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.PBPairInfo)
-        com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.RespItemSell)
+        com.cat.server.game.data.proto.PBItem.RespItemSellOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBPairInfo_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemSell_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBPairInfo_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemSell_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBItem.PBPairInfo.class, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder.class);
+                com.cat.server.game.data.proto.PBItem.RespItemSell.class, com.cat.server.game.data.proto.PBItem.RespItemSell.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBItem.PBPairInfo.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBItem.RespItemSell.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -6182,9 +6282,7 @@ public final class PBItem {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        configId_ = 0;
-
-        value_ = 0;
+        code_ = 0;
 
         return this;
       }
@@ -6192,17 +6290,17 @@ public final class PBItem {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBPairInfo_descriptor;
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_RespItemSell_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBItem.RespItemSell getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBItem.RespItemSell.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo build() {
-        com.cat.server.game.data.proto.PBItem.PBPairInfo result = buildPartial();
+      public com.cat.server.game.data.proto.PBItem.RespItemSell build() {
+        com.cat.server.game.data.proto.PBItem.RespItemSell result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -6210,10 +6308,9 @@ public final class PBItem {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo buildPartial() {
-        com.cat.server.game.data.proto.PBItem.PBPairInfo result = new com.cat.server.game.data.proto.PBItem.PBPairInfo(this);
-        result.configId_ = configId_;
-        result.value_ = value_;
+      public com.cat.server.game.data.proto.PBItem.RespItemSell buildPartial() {
+        com.cat.server.game.data.proto.PBItem.RespItemSell result = new com.cat.server.game.data.proto.PBItem.RespItemSell(this);
+        result.code_ = code_;
         onBuilt();
         return result;
       }
@@ -6252,21 +6349,18 @@ public final class PBItem {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBItem.PBPairInfo) {
-          return mergeFrom((com.cat.server.game.data.proto.PBItem.PBPairInfo)other);
+        if (other instanceof com.cat.server.game.data.proto.PBItem.RespItemSell) {
+          return mergeFrom((com.cat.server.game.data.proto.PBItem.RespItemSell)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.PBPairInfo other) {
-        if (other == com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance()) return this;
-        if (other.getConfigId() != 0) {
-          setConfigId(other.getConfigId());
-        }
-        if (other.getValue() != 0) {
-          setValue(other.getValue());
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.RespItemSell other) {
+        if (other == com.cat.server.game.data.proto.PBItem.RespItemSell.getDefaultInstance()) return this;
+        if (other.getCode() != 0) {
+          setCode(other.getCode());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -6283,11 +6377,11 @@ public final class PBItem {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBItem.PBPairInfo parsedMessage = null;
+        com.cat.server.game.data.proto.PBItem.RespItemSell parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBItem.PBPairInfo) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBItem.RespItemSell) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -6297,16 +6391,670 @@ public final class PBItem {
         return this;
       }
 
+      private int code_ ;
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @return The code.
+       */
+      public int getCode() {
+        return code_;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @param value The code to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCode(int value) {
+        
+        code_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCode() {
+        
+        code_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.RespItemSell)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.RespItemSell)
+    private static final com.cat.server.game.data.proto.PBItem.RespItemSell DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.RespItemSell();
+    }
+
+    public static com.cat.server.game.data.proto.PBItem.RespItemSell getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RespItemSell>
+        PARSER = new com.google.protobuf.AbstractParser<RespItemSell>() {
+      @java.lang.Override
+      public RespItemSell parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RespItemSell(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RespItemSell> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RespItemSell> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBItem.RespItemSell getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface PBItemInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.PBItemInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *唯一id
+     * </pre>
+     *
+     * <code>int64 id = 1;</code>
+     * @return The id.
+     */
+    long getId();
+
+    /**
+     * <pre>
+     *道具配置id
+     * </pre>
+     *
+     * <code>int32 configId = 2;</code>
+     * @return The configId.
+     */
+    int getConfigId();
+
+    /**
+     * <pre>
+     *数量
+     * </pre>
+     *
+     * <code>int32 count = 3;</code>
+     * @return The count.
+     */
+    int getCount();
+  }
+  /**
+   * <pre>
+   * 道具协议对象
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.PBItemInfo}
+   */
+  public  static final class PBItemInfo extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.PBItemInfo)
+      PBItemInfoOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PBItemInfo.newBuilder() to construct.
+    private PBItemInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PBItemInfo() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PBItemInfo();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PBItemInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              id_ = input.readInt64();
+              break;
+            }
+            case 16: {
+
+              configId_ = input.readInt32();
+              break;
+            }
+            case 24: {
+
+              count_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBItemInfo_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBItemInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBItem.PBItemInfo.class, com.cat.server.game.data.proto.PBItem.PBItemInfo.Builder.class);
+    }
+
+    public static final int ID_FIELD_NUMBER = 1;
+    private long id_;
+    /**
+     * <pre>
+     *唯一id
+     * </pre>
+     *
+     * <code>int64 id = 1;</code>
+     * @return The id.
+     */
+    public long getId() {
+      return id_;
+    }
+
+    public static final int CONFIGID_FIELD_NUMBER = 2;
+    private int configId_;
+    /**
+     * <pre>
+     *道具配置id
+     * </pre>
+     *
+     * <code>int32 configId = 2;</code>
+     * @return The configId.
+     */
+    public int getConfigId() {
+      return configId_;
+    }
+
+    public static final int COUNT_FIELD_NUMBER = 3;
+    private int count_;
+    /**
+     * <pre>
+     *数量
+     * </pre>
+     *
+     * <code>int32 count = 3;</code>
+     * @return The count.
+     */
+    public int getCount() {
+      return count_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (id_ != 0L) {
+        output.writeInt64(1, id_);
+      }
+      if (configId_ != 0) {
+        output.writeInt32(2, configId_);
+      }
+      if (count_ != 0) {
+        output.writeInt32(3, count_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (id_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, id_);
+      }
+      if (configId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, configId_);
+      }
+      if (count_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, count_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.PBItemInfo)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBItem.PBItemInfo other = (com.cat.server.game.data.proto.PBItem.PBItemInfo) obj;
+
+      if (getId()
+          != other.getId()) return false;
+      if (getConfigId()
+          != other.getConfigId()) return false;
+      if (getCount()
+          != other.getCount()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getId());
+      hash = (37 * hash) + CONFIGID_FIELD_NUMBER;
+      hash = (53 * hash) + getConfigId();
+      hash = (37 * hash) + COUNT_FIELD_NUMBER;
+      hash = (53 * hash) + getCount();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.PBItemInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 道具协议对象
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.PBItemInfo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.PBItemInfo)
+        com.cat.server.game.data.proto.PBItem.PBItemInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBItemInfo_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBItemInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBItem.PBItemInfo.class, com.cat.server.game.data.proto.PBItem.PBItemInfo.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBItem.PBItemInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        id_ = 0L;
+
+        configId_ = 0;
+
+        count_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_PBItemInfo_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBItem.PBItemInfo getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBItem.PBItemInfo.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBItem.PBItemInfo build() {
+        com.cat.server.game.data.proto.PBItem.PBItemInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBItem.PBItemInfo buildPartial() {
+        com.cat.server.game.data.proto.PBItem.PBItemInfo result = new com.cat.server.game.data.proto.PBItem.PBItemInfo(this);
+        result.id_ = id_;
+        result.configId_ = configId_;
+        result.count_ = count_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBItem.PBItemInfo) {
+          return mergeFrom((com.cat.server.game.data.proto.PBItem.PBItemInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.PBItemInfo other) {
+        if (other == com.cat.server.game.data.proto.PBItem.PBItemInfo.getDefaultInstance()) return this;
+        if (other.getId() != 0L) {
+          setId(other.getId());
+        }
+        if (other.getConfigId() != 0) {
+          setConfigId(other.getConfigId());
+        }
+        if (other.getCount() != 0) {
+          setCount(other.getCount());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBItem.PBItemInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBItem.PBItemInfo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long id_ ;
+      /**
+       * <pre>
+       *唯一id
+       * </pre>
+       *
+       * <code>int64 id = 1;</code>
+       * @return The id.
+       */
+      public long getId() {
+        return id_;
+      }
+      /**
+       * <pre>
+       *唯一id
+       * </pre>
+       *
+       * <code>int64 id = 1;</code>
+       * @param value The id to set.
+       * @return This builder for chaining.
+       */
+      public Builder setId(long value) {
+        
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *唯一id
+       * </pre>
+       *
+       * <code>int64 id = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearId() {
+        
+        id_ = 0L;
+        onChanged();
+        return this;
+      }
+
       private int configId_ ;
       /**
-       * <code>int32 configId = 1;</code>
+       * <pre>
+       *道具配置id
+       * </pre>
+       *
+       * <code>int32 configId = 2;</code>
        * @return The configId.
        */
       public int getConfigId() {
         return configId_;
       }
       /**
-       * <code>int32 configId = 1;</code>
+       * <pre>
+       *道具配置id
+       * </pre>
+       *
+       * <code>int32 configId = 2;</code>
        * @param value The configId to set.
        * @return This builder for chaining.
        */
@@ -6317,7 +7065,11 @@ public final class PBItem {
         return this;
       }
       /**
-       * <code>int32 configId = 1;</code>
+       * <pre>
+       *道具配置id
+       * </pre>
+       *
+       * <code>int32 configId = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearConfigId() {
@@ -6327,32 +7079,44 @@ public final class PBItem {
         return this;
       }
 
-      private int value_ ;
+      private int count_ ;
       /**
-       * <code>int32 value = 2;</code>
-       * @return The value.
+       * <pre>
+       *数量
+       * </pre>
+       *
+       * <code>int32 count = 3;</code>
+       * @return The count.
        */
-      public int getValue() {
-        return value_;
+      public int getCount() {
+        return count_;
       }
       /**
-       * <code>int32 value = 2;</code>
-       * @param value The value to set.
+       * <pre>
+       *数量
+       * </pre>
+       *
+       * <code>int32 count = 3;</code>
+       * @param value The count to set.
        * @return This builder for chaining.
        */
-      public Builder setValue(int value) {
+      public Builder setCount(int value) {
         
-        value_ = value;
+        count_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 value = 2;</code>
+       * <pre>
+       *数量
+       * </pre>
+       *
+       * <code>int32 count = 3;</code>
        * @return This builder for chaining.
        */
-      public Builder clearValue() {
+      public Builder clearCount() {
         
-        value_ = 0;
+        count_ = 0;
         onChanged();
         return this;
       }
@@ -6369,770 +7133,96 @@ public final class PBItem {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.PBPairInfo)
+      // @@protoc_insertion_point(builder_scope:Protocol.PBItemInfo)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.PBPairInfo)
-    private static final com.cat.server.game.data.proto.PBItem.PBPairInfo DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.PBItemInfo)
+    private static final com.cat.server.game.data.proto.PBItem.PBItemInfo DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.PBPairInfo();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.PBItemInfo();
     }
 
-    public static com.cat.server.game.data.proto.PBItem.PBPairInfo getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBItem.PBItemInfo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<PBPairInfo>
-        PARSER = new com.google.protobuf.AbstractParser<PBPairInfo>() {
+    private static final com.google.protobuf.Parser<PBItemInfo>
+        PARSER = new com.google.protobuf.AbstractParser<PBItemInfo>() {
       @java.lang.Override
-      public PBPairInfo parsePartialFrom(
+      public PBItemInfo parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PBPairInfo(input, extensionRegistry);
+        return new PBItemInfo(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<PBPairInfo> parser() {
+    public static com.google.protobuf.Parser<PBItemInfo> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<PBPairInfo> getParserForType() {
+    public com.google.protobuf.Parser<PBItemInfo> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBItem.PBItemInfo getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface AckItemDeleteOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.AckItemDelete)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     *奖励
-     * </pre>
-     *
-     * <code>repeated int64 ids = 1;</code>
-     * @return A list containing the ids.
-     */
-    java.util.List<java.lang.Long> getIdsList();
-    /**
-     * <pre>
-     *奖励
-     * </pre>
-     *
-     * <code>repeated int64 ids = 1;</code>
-     * @return The count of ids.
-     */
-    int getIdsCount();
-    /**
-     * <pre>
-     *奖励
-     * </pre>
-     *
-     * <code>repeated int64 ids = 1;</code>
-     * @param index The index of the element to return.
-     * @return The ids at the given index.
-     */
-    long getIds(int index);
-  }
-  /**
-   * <pre>
-   *推送道具删除
-   * </pre>
-   *
-   * Protobuf type {@code Protocol.AckItemDelete}
-   */
-  public  static final class AckItemDelete extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.AckItemDelete)
-      AckItemDeleteOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use AckItemDelete.newBuilder() to construct.
-    private AckItemDelete(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private AckItemDelete() {
-      ids_ = emptyLongList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new AckItemDelete();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private AckItemDelete(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                ids_ = newLongList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              ids_.addLong(input.readInt64());
-              break;
-            }
-            case 10: {
-              int length = input.readRawVarint32();
-              int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-                ids_ = newLongList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              while (input.getBytesUntilLimit() > 0) {
-                ids_.addLong(input.readInt64());
-              }
-              input.popLimit(limit);
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          ids_.makeImmutable(); // C
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemDelete_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemDelete_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBItem.AckItemDelete.class, com.cat.server.game.data.proto.PBItem.AckItemDelete.Builder.class);
-    }
-
-    public static final int IDS_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.LongList ids_;
-    /**
-     * <pre>
-     *奖励
-     * </pre>
-     *
-     * <code>repeated int64 ids = 1;</code>
-     * @return A list containing the ids.
-     */
-    public java.util.List<java.lang.Long>
-        getIdsList() {
-      return ids_;
-    }
-    /**
-     * <pre>
-     *奖励
-     * </pre>
-     *
-     * <code>repeated int64 ids = 1;</code>
-     * @return The count of ids.
-     */
-    public int getIdsCount() {
-      return ids_.size();
-    }
-    /**
-     * <pre>
-     *奖励
-     * </pre>
-     *
-     * <code>repeated int64 ids = 1;</code>
-     * @param index The index of the element to return.
-     * @return The ids at the given index.
-     */
-    public long getIds(int index) {
-      return ids_.getLong(index);
-    }
-    private int idsMemoizedSerializedSize = -1;
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (getIdsList().size() > 0) {
-        output.writeUInt32NoTag(10);
-        output.writeUInt32NoTag(idsMemoizedSerializedSize);
-      }
-      for (int i = 0; i < ids_.size(); i++) {
-        output.writeInt64NoTag(ids_.getLong(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      {
-        int dataSize = 0;
-        for (int i = 0; i < ids_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeInt64SizeNoTag(ids_.getLong(i));
-        }
-        size += dataSize;
-        if (!getIdsList().isEmpty()) {
-          size += 1;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        idsMemoizedSerializedSize = dataSize;
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBItem.AckItemDelete)) {
-        return super.equals(obj);
-      }
-      com.cat.server.game.data.proto.PBItem.AckItemDelete other = (com.cat.server.game.data.proto.PBItem.AckItemDelete) obj;
-
-      if (!getIdsList()
-          .equals(other.getIdsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getIdsCount() > 0) {
-        hash = (37 * hash) + IDS_FIELD_NUMBER;
-        hash = (53 * hash) + getIdsList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBItem.AckItemDelete prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     *推送道具删除
-     * </pre>
-     *
-     * Protobuf type {@code Protocol.AckItemDelete}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.AckItemDelete)
-        com.cat.server.game.data.proto.PBItem.AckItemDeleteOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemDelete_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemDelete_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBItem.AckItemDelete.class, com.cat.server.game.data.proto.PBItem.AckItemDelete.Builder.class);
-      }
-
-      // Construct using com.cat.server.game.data.proto.PBItem.AckItemDelete.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        ids_ = emptyLongList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBItem.internal_static_Protocol_AckItemDelete_descriptor;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemDelete getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBItem.AckItemDelete.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemDelete build() {
-        com.cat.server.game.data.proto.PBItem.AckItemDelete result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBItem.AckItemDelete buildPartial() {
-        com.cat.server.game.data.proto.PBItem.AckItemDelete result = new com.cat.server.game.data.proto.PBItem.AckItemDelete(this);
-        int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          ids_.makeImmutable();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.ids_ = ids_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBItem.AckItemDelete) {
-          return mergeFrom((com.cat.server.game.data.proto.PBItem.AckItemDelete)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBItem.AckItemDelete other) {
-        if (other == com.cat.server.game.data.proto.PBItem.AckItemDelete.getDefaultInstance()) return this;
-        if (!other.ids_.isEmpty()) {
-          if (ids_.isEmpty()) {
-            ids_ = other.ids_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureIdsIsMutable();
-            ids_.addAll(other.ids_);
-          }
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.cat.server.game.data.proto.PBItem.AckItemDelete parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBItem.AckItemDelete) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private com.google.protobuf.Internal.LongList ids_ = emptyLongList();
-      private void ensureIdsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          ids_ = mutableCopy(ids_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-      /**
-       * <pre>
-       *奖励
-       * </pre>
-       *
-       * <code>repeated int64 ids = 1;</code>
-       * @return A list containing the ids.
-       */
-      public java.util.List<java.lang.Long>
-          getIdsList() {
-        return ((bitField0_ & 0x00000001) != 0) ?
-                 java.util.Collections.unmodifiableList(ids_) : ids_;
-      }
-      /**
-       * <pre>
-       *奖励
-       * </pre>
-       *
-       * <code>repeated int64 ids = 1;</code>
-       * @return The count of ids.
-       */
-      public int getIdsCount() {
-        return ids_.size();
-      }
-      /**
-       * <pre>
-       *奖励
-       * </pre>
-       *
-       * <code>repeated int64 ids = 1;</code>
-       * @param index The index of the element to return.
-       * @return The ids at the given index.
-       */
-      public long getIds(int index) {
-        return ids_.getLong(index);
-      }
-      /**
-       * <pre>
-       *奖励
-       * </pre>
-       *
-       * <code>repeated int64 ids = 1;</code>
-       * @param index The index to set the value at.
-       * @param value The ids to set.
-       * @return This builder for chaining.
-       */
-      public Builder setIds(
-          int index, long value) {
-        ensureIdsIsMutable();
-        ids_.setLong(index, value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *奖励
-       * </pre>
-       *
-       * <code>repeated int64 ids = 1;</code>
-       * @param value The ids to add.
-       * @return This builder for chaining.
-       */
-      public Builder addIds(long value) {
-        ensureIdsIsMutable();
-        ids_.addLong(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *奖励
-       * </pre>
-       *
-       * <code>repeated int64 ids = 1;</code>
-       * @param values The ids to add.
-       * @return This builder for chaining.
-       */
-      public Builder addAllIds(
-          java.lang.Iterable<? extends java.lang.Long> values) {
-        ensureIdsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, ids_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *奖励
-       * </pre>
-       *
-       * <code>repeated int64 ids = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearIds() {
-        ids_ = emptyLongList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Protocol.AckItemDelete)
-    }
-
-    // @@protoc_insertion_point(class_scope:Protocol.AckItemDelete)
-    private static final com.cat.server.game.data.proto.PBItem.AckItemDelete DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBItem.AckItemDelete();
-    }
-
-    public static com.cat.server.game.data.proto.PBItem.AckItemDelete getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<AckItemDelete>
-        PARSER = new com.google.protobuf.AbstractParser<AckItemDelete>() {
-      @java.lang.Override
-      public AckItemDelete parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AckItemDelete(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<AckItemDelete> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<AckItemDelete> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.cat.server.game.data.proto.PBItem.AckItemDelete getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_PBItemInfo_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_PBItemInfo_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_AckItemUpdate_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_AckItemUpdate_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_ReqItemUse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_ReqItemUse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_AckItemUse_descriptor;
+    internal_static_Protocol_RespItemUpdate_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_AckItemUse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_ReqItemSell_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_ReqItemSell_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_AckItemSell_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_AckItemSell_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_AckRewards_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_AckRewards_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_PBRewardInfo_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_PBRewardInfo_fieldAccessorTable;
+      internal_static_Protocol_RespItemUpdate_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_PBPairInfo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_PBPairInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_AckItemDelete_descriptor;
+    internal_static_Protocol_RespItemUse_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_AckItemDelete_fieldAccessorTable;
+      internal_static_Protocol_RespItemUse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_RespItemDelete_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_RespItemDelete_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_ReqItemSell_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_ReqItemSell_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_RespRewards_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_RespRewards_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_PBRewardInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_PBRewardInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_RespItemSell_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_RespItemSell_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_PBItemInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_PBItemInfo_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -7142,67 +7232,68 @@ public final class PBItem {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014PBItem.proto\022\010Protocol\"9\n\nPBItemInfo\022\n" +
-      "\n\002id\030\001 \001(\003\022\020\n\010configId\030\002 \001(\005\022\r\n\005count\030\003 " +
-      "\001(\005\"4\n\rAckItemUpdate\022#\n\005items\030\001 \003(\0132\024.Pr" +
-      "otocol.PBItemInfo\"\'\n\nReqItemUse\022\n\n\002id\030\001 " +
-      "\001(\003\022\r\n\005count\030\002 \001(\005\"C\n\nAckItemUse\022\014\n\004code" +
-      "\030\001 \001(\005\022\'\n\007rewards\030\002 \003(\0132\026.Protocol.PBRew" +
-      "ardInfo\"(\n\013ReqItemSell\022\n\n\002id\030\001 \001(\003\022\r\n\005co" +
-      "unt\030\002 \001(\005\"\033\n\013AckItemSell\022\014\n\004code\030\001 \001(\005\"C" +
-      "\n\nAckRewards\022\'\n\007rewards\030\001 \003(\0132\026.Protocol" +
-      ".PBRewardInfo\022\014\n\004type\030\002 \001(\005\"/\n\014PBRewardI" +
-      "nfo\022\020\n\010configId\030\001 \001(\005\022\r\n\005count\030\002 \001(\005\"-\n\n" +
-      "PBPairInfo\022\020\n\010configId\030\001 \001(\005\022\r\n\005value\030\002 " +
-      "\001(\005\"\034\n\rAckItemDelete\022\013\n\003ids\030\001 \003(\003B(\n\036com" +
-      ".cat.server.game.data.protoB\006PBItemb\006pro" +
-      "to3"
+      "\n\014PBItem.proto\022\010Protocol\032\016PBCommon.proto" +
+      "\"\'\n\nReqItemUse\022\n\n\002id\030\001 \001(\003\022\r\n\005count\030\002 \001(" +
+      "\005\"5\n\016RespItemUpdate\022#\n\005items\030\001 \003(\0132\024.Pro" +
+      "tocol.PBItemInfo\"-\n\nPBPairInfo\022\020\n\010config" +
+      "Id\030\001 \001(\005\022\r\n\005value\030\002 \001(\005\"D\n\013RespItemUse\022\014" +
+      "\n\004code\030\001 \001(\005\022\'\n\007rewards\030\002 \003(\0132\026.Protocol" +
+      ".PBRewardInfo\"\035\n\016RespItemDelete\022\013\n\003ids\030\001" +
+      " \003(\003\"(\n\013ReqItemSell\022\n\n\002id\030\001 \001(\003\022\r\n\005count" +
+      "\030\002 \001(\005\"D\n\013RespRewards\022\'\n\007rewards\030\001 \003(\0132\026" +
+      ".Protocol.PBRewardInfo\022\014\n\004type\030\002 \001(\005\"/\n\014" +
+      "PBRewardInfo\022\020\n\010configId\030\001 \001(\005\022\r\n\005count\030" +
+      "\002 \001(\005\"\034\n\014RespItemSell\022\014\n\004code\030\001 \001(\005\"9\n\nP" +
+      "BItemInfo\022\n\n\002id\030\001 \001(\003\022\020\n\010configId\030\002 \001(\005\022" +
+      "\r\n\005count\030\003 \001(\005B(\n\036com.cat.server.game.da" +
+      "ta.protoB\006PBItemb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.cat.server.game.data.proto.PBCommon.getDescriptor(),
         });
-    internal_static_Protocol_PBItemInfo_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_Protocol_PBItemInfo_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_PBItemInfo_descriptor,
-        new java.lang.String[] { "Id", "ConfigId", "Count", });
-    internal_static_Protocol_AckItemUpdate_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_Protocol_AckItemUpdate_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_AckItemUpdate_descriptor,
-        new java.lang.String[] { "Items", });
     internal_static_Protocol_ReqItemUse_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_Protocol_ReqItemUse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqItemUse_descriptor,
         new java.lang.String[] { "Id", "Count", });
-    internal_static_Protocol_AckItemUse_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_Protocol_AckItemUse_fieldAccessorTable = new
+    internal_static_Protocol_RespItemUpdate_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_Protocol_RespItemUpdate_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_AckItemUse_descriptor,
+        internal_static_Protocol_RespItemUpdate_descriptor,
+        new java.lang.String[] { "Items", });
+    internal_static_Protocol_PBPairInfo_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_Protocol_PBPairInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_PBPairInfo_descriptor,
+        new java.lang.String[] { "ConfigId", "Value", });
+    internal_static_Protocol_RespItemUse_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_Protocol_RespItemUse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_RespItemUse_descriptor,
         new java.lang.String[] { "Code", "Rewards", });
-    internal_static_Protocol_ReqItemSell_descriptor =
+    internal_static_Protocol_RespItemDelete_descriptor =
       getDescriptor().getMessageTypes().get(4);
+    internal_static_Protocol_RespItemDelete_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_RespItemDelete_descriptor,
+        new java.lang.String[] { "Ids", });
+    internal_static_Protocol_ReqItemSell_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_Protocol_ReqItemSell_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqItemSell_descriptor,
         new java.lang.String[] { "Id", "Count", });
-    internal_static_Protocol_AckItemSell_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_Protocol_AckItemSell_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_AckItemSell_descriptor,
-        new java.lang.String[] { "Code", });
-    internal_static_Protocol_AckRewards_descriptor =
+    internal_static_Protocol_RespRewards_descriptor =
       getDescriptor().getMessageTypes().get(6);
-    internal_static_Protocol_AckRewards_fieldAccessorTable = new
+    internal_static_Protocol_RespRewards_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_AckRewards_descriptor,
+        internal_static_Protocol_RespRewards_descriptor,
         new java.lang.String[] { "Rewards", "Type", });
     internal_static_Protocol_PBRewardInfo_descriptor =
       getDescriptor().getMessageTypes().get(7);
@@ -7210,18 +7301,19 @@ public final class PBItem {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_PBRewardInfo_descriptor,
         new java.lang.String[] { "ConfigId", "Count", });
-    internal_static_Protocol_PBPairInfo_descriptor =
+    internal_static_Protocol_RespItemSell_descriptor =
       getDescriptor().getMessageTypes().get(8);
-    internal_static_Protocol_PBPairInfo_fieldAccessorTable = new
+    internal_static_Protocol_RespItemSell_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_PBPairInfo_descriptor,
-        new java.lang.String[] { "ConfigId", "Value", });
-    internal_static_Protocol_AckItemDelete_descriptor =
+        internal_static_Protocol_RespItemSell_descriptor,
+        new java.lang.String[] { "Code", });
+    internal_static_Protocol_PBItemInfo_descriptor =
       getDescriptor().getMessageTypes().get(9);
-    internal_static_Protocol_AckItemDelete_fieldAccessorTable = new
+    internal_static_Protocol_PBItemInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_AckItemDelete_descriptor,
-        new java.lang.String[] { "Ids", });
+        internal_static_Protocol_PBItemInfo_descriptor,
+        new java.lang.String[] { "Id", "ConfigId", "Count", });
+    com.cat.server.game.data.proto.PBCommon.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

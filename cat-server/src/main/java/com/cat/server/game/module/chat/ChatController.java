@@ -11,7 +11,7 @@ import com.cat.net.network.controller.IController;
 import com.cat.server.game.data.proto.PBChat.ReqChat;
 import com.cat.server.game.data.proto.PBDefine;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.common.proto.AckTipsResp;
+import com.cat.server.game.module.common.proto.RespTipsBuilder;
 import com.cat.server.game.module.gm.ICommandService;
 import com.cat.server.game.module.player.IPlayerService;
 
@@ -43,7 +43,7 @@ public class ChatController implements IController{
         } else {
             //聊天
             ErrorCode code = this.chatService.chat(req, playerId);
-            AckTipsResp ack = AckTipsResp.newInstance();
+            RespTipsBuilder ack = RespTipsBuilder.newInstance();
             ack.setTipsId(code.getCode());
             playerService.sendMessage(playerId, ack);
         }

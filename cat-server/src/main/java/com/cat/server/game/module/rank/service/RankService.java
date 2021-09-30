@@ -60,7 +60,7 @@ public class RankService implements IRankService {
 	 * @param rankType
 	 * @return
 	 */
-	public void responseRankInfo(long playerId, int configId) {
+	public void responseRankInfo(int configId) {
 		try {
 			RankDomain domain = this.rankManager.getDomain(configId);
 			if (domain == null) {
