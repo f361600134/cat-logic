@@ -1,221 +1,222 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-<modelVersion>4.0.0</modelVersion>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-<parent>
-	<groupId>com.cat</groupId>
-	<artifactId>cat-logic</artifactId>
-	<version>0.0.1</version>
-</parent>
-
-<artifactId>cat-server</artifactId>
-<packaging>jar</packaging>
-
-<name>cat-server</name>
-
-<properties>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-</properties>
- 
-<dependencies>
-
-	<dependency>
-		<groupId>junit</groupId>
-		<artifactId>junit</artifactId>
-		<version>3.8.1</version> 
-		<scope>test</scope>
-	</dependency>
- 
-	<!-- cat-core -->
-	<dependency>
+	<parent>
 		<groupId>com.cat</groupId>
-		<artifactId>cat-orm</artifactId>
+		<artifactId>cat-logic</artifactId>
 		<version>0.0.1</version>
-	</dependency>
+	</parent>
 
-<!-- 	<dependency> -->
-<!-- 		<groupId>com.cat</groupId> -->
-<!-- 		<artifactId>cat-net</artifactId> -->
-<!-- 		<version>0.0.1</version> -->
-<!-- 	</dependency> -->
-	
-	<!-- birpc -->
-	<dependency>
-		<groupId>com.rpc</groupId>
-		<artifactId>bi-rpc</artifactId>
-		<version>0.0.1</version>
-	</dependency>
-    <dependency>
-		<groupId>com.cat</groupId>
-		<artifactId>cat-api</artifactId>
-		<version>0.0.1</version>
-	</dependency>
+	<artifactId>cat-server</artifactId>
+	<packaging>jar</packaging>
 
-	<!-- commons-io -->
-	<dependency>
-		<groupId>commons-io</groupId>
-		<artifactId>commons-io</artifactId>
-		<version>2.6</version>
-	</dependency>
+	<name>cat-server</name>
 
-	<!-- httpclient -->
-	<dependency>
-		<groupId>org.apache.httpcomponents</groupId>
-		<artifactId>httpclient</artifactId>
-		<version>4.5.13</version>
-	</dependency>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
-	<!-- cat-api -->
-	<dependency>
-		<groupId>com.cat</groupId>
-		<artifactId>cat-api</artifactId>
-		<version>0.0.1</version>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/junit/junit -->
-	<dependency>
-	    <groupId>junit</groupId>
-	    <artifactId>junit</artifactId>
-	    <version>4.13.2</version>
-	    <scope>test</scope>
-	</dependency>
-	
-	
-	<!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
-	<dependency>
-		<groupId>org.openjdk.jmh</groupId>
-		<artifactId>jmh-core</artifactId>
-		<version>1.32</version>
-	</dependency>
+	<dependencies>
 
-	<!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-generator-annprocess -->
-	<dependency>
-		<groupId>org.openjdk.jmh</groupId>
-		<artifactId>jmh-generator-annprocess</artifactId>
-		<version>1.32</version>
-		<scope>provided</scope>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/org.testng/testng -->
-	<dependency>
-	    <groupId>org.testng</groupId>
-	    <artifactId>testng</artifactId>
-	    <version>7.4.0</version>
-	    <scope>test</scope>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
-	<dependency>
-	    <groupId>com.zaxxer</groupId>
-	    <artifactId>HikariCP</artifactId>
-	    <version>4.0.3</version>
-	</dependency>
-	
-	<dependency>
-		<groupId>org.slf4j</groupId>
-		<artifactId>slf4j-api</artifactId>
-		<version>1.7.25</version>
-	</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
 
-	<dependency>
-		<groupId>org.slf4j</groupId>
-		<artifactId>slf4j-log4j12</artifactId>
-		<version>1.7.25</version>
-</dependency>
-</dependencies>
+		<!-- cat-core -->
+		<dependency>
+			<groupId>com.cat</groupId>
+			<artifactId>cat-orm</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 
-<build>
-<finalName>cat-server</finalName>
-<plugins>
-	<plugin>
-		<artifactId>maven-compiler-plugin</artifactId>
-		<version>2.3.2</version>  
-		<configuration>
-			<source>1.8</source>
-			<target>1.8</target>
-			<encoding>UTF-8</encoding>
-		</configuration>
-	</plugin>
-	
-	<!--resource process -->
-	<plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-resources-plugin</artifactId>
-		<configuration>
-			<encoding>UTF-8</encoding>
-		</configuration>
-		<executions>
-			<execution>
-				<id>copy-resources</id>
-				<phase>validate</phase>
-				<goals>
-					<goal>copy-resources</goal>
-				</goals>
-				<configuration>
-					<outputDirectory>${basedir}/target/release</outputDirectory>
-					<resources>
-						<!-- 过滤config并输出到target目录下 -->
-						<resource>
-							<directory>src/main/resources</directory>
-							<filtering>true</filtering>
-						</resource>
-						<resource>
-							<directory>shell</directory>
-							<filtering>true</filtering>
-						</resource>
-					</resources>
-				</configuration>
-				
-			</execution>
-		</executions>
-	</plugin>
-	<!-- 输出依赖的jar包 -->
-	<plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-dependency-plugin</artifactId>
-		<executions>
-			<execution>
-				<id>copy-dependencies</id>
-				<phase>prepare-package</phase>
-				<goals>
-					<goal>copy-dependencies</goal>
-				</goals>
-				<configuration>
-					<outputDirectory>${project.build.directory}/release/lib</outputDirectory>
-					<overWriteReleases>false</overWriteReleases>
-					<overWriteSnapshots>false</overWriteSnapshots>
-					<overWriteIfNewer>true</overWriteIfNewer>
-				</configuration>
-			</execution>
-		</executions>
-	</plugin>
-	<!-- 打成可运行jar包 -->
-	<plugin>
-		<groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-jar-plugin</artifactId>
-		<configuration>
-			<excludes>
-				<exclude>**/*.properties</exclude>
-				<exclude>**/*.xml</exclude>
-				<exclude>**/*.sh</exclude>
-				<exclude>/config</exclude>
-			</excludes>
-			<outputDirectory>${project.build.directory}/release</outputDirectory>
-			<archive>
-				<manifest>
-					<addClasspath>true</addClasspath>
-					<classpathPrefix>lib/</classpathPrefix>
-					<mainClass>com.cat.server.App</mainClass>
-				</manifest>
-				<manifestEntries>
-					<Class-Path>.</Class-Path>
-				</manifestEntries>
-			</archive>
-		</configuration>
-	</plugin>
+		<!-- <dependency> -->
+		<!-- <groupId>com.cat</groupId> -->
+		<!-- <artifactId>cat-net</artifactId> -->
+		<!-- <version>0.0.1</version> -->
+		<!-- </dependency> -->
+
+		<!-- birpc -->
+		<dependency>
+			<groupId>com.rpc</groupId>
+			<artifactId>bi-rpc</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.cat</groupId>
+			<artifactId>cat-api</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
+		<!-- commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+		<!-- httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.13</version>
+		</dependency>
+
+		<!-- cat-api -->
+		<dependency>
+			<groupId>com.cat</groupId>
+			<artifactId>cat-api</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-core -->
+		<dependency>
+			<groupId>org.openjdk.jmh</groupId>
+			<artifactId>jmh-core</artifactId>
+			<version>1.32</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.openjdk.jmh/jmh-generator-annprocess -->
+		<dependency>
+			<groupId>org.openjdk.jmh</groupId>
+			<artifactId>jmh-generator-annprocess</artifactId>
+			<version>1.32</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.testng/testng -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.4.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.25</version>
+		</dependency>
 		
-	</plugins>
-</build>
+	</dependencies>
+
+	<build>
+		<finalName>cat-server</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<!--resource process -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/target/release</outputDirectory>
+							<resources>
+								<!-- 过滤config并输出到target目录下 -->
+								<resource>
+									<directory>src/main/resources</directory>
+									<filtering>true</filtering>
+								</resource>
+								<resource>
+									<directory>shell</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 输出依赖的jar包 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/release/lib</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>false</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 打成可运行jar包 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/*.properties</exclude>
+						<exclude>**/*.xml</exclude>
+						<exclude>**/*.sh</exclude>
+						<exclude>/config</exclude>
+					</excludes>
+					<outputDirectory>${project.build.directory}/release</outputDirectory>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>com.cat.server.App</mainClass>
+						</manifest>
+						<manifestEntries>
+							<Class-Path>.</Class-Path>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
 
 </project>
