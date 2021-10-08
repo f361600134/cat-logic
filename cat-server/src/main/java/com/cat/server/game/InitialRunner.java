@@ -18,8 +18,8 @@ import com.cat.server.common.ServerConstant;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.lifecycle.Priority;
-import com.cat.server.game.module.player.proto.ReqLogin;
 import com.cat.server.game.module.player.rpc.ReqIdentityAuthenticateCallback;
+import com.cat.server.utils.TimeUtil;
 import com.rpc.common.RpcConfig;
 import com.rpc.core.client.RequesterManager;
 import com.zaxxer.hikari.HikariDataSource;
@@ -246,6 +246,7 @@ public class InitialRunner implements Lifecycle{
 		HikariDataSource dataSource = SpringContextHolder.getBean(HikariDataSource.class);
 		//LettuceConnectionFactory lettuceFactory = SpringContextHolder.getBean(LettuceConnectionFactory.class);
 		//RegistryConfig registryConfig = SpringContextHolder.getBean(RegistryConfig.class);
+		builder.append("开服时间:").append(config.getOpenDate()).append("\n");
 		builder.append("当前服务器id:").append(config.getServerId()).append("\n");
 		builder.append("TCP连接地址:").append(netConfig.getServerIp()).append(":").append(netConfig.getTcpPort()).append("\n");
 		builder.append("WEBSOCKET连接地址:").append(netConfig.getServerIp()).append(":").append(netConfig.getWebscoketPort()).append("\n");

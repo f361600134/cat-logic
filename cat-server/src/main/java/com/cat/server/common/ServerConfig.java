@@ -1,5 +1,7 @@
 package com.cat.server.common;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,6 +27,9 @@ public class ServerConfig {
 	// 登录地址
 	@Value("${cat.game.server.loginUrl}")
 	private String loginUrl;
+	// 开服时间-此值从后台的配置获取是否会更加的合适
+	@Value("#{T(java.time.LocalDate).parse('${cat.game.server.openDate}')}")
+	private LocalDate openDate;
 
 	public int getServerId() {
 		return serverId;
@@ -56,6 +61,14 @@ public class ServerConfig {
 
 	public void setLoginUrl(String loginUrl) {
 		this.loginUrl = loginUrl;
+	}
+
+	public LocalDate getOpenDate() {
+		return openDate;
+	}
+
+	public void setOpenDate(LocalDate openDate) {
+		this.openDate = openDate;
 	}
 	
 }
