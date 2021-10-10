@@ -18,22 +18,6 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 		return bean;
 	}
 
-//	@Override
-//	public ActivityType getType() {
-//		return ActivityType.valueOf(getId());
-//	}
-//
-//	@Override
-//	public int getPlanId() {
-//		return bean.getPlanId();
-//	}
-//
-//	@Override
-//	public int getStatus() {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-
 	@Override
 	public boolean isBegin() {
 		// TODO Auto-generated method stub
@@ -70,35 +54,6 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 		
 	}
 
-//	@Override
-//	public int getConfigId() {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//
-//	@Override
-//	public int getConfigType() {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//	@Override
-//	public long getBeginTime() {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//
-//	@Override
-//	public long getSettleTime() {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-//
-//	@Override
-//	public long getCloseTime() {
-//		// TODO Auto-generated method stub
-//		return 0;
-//	}
-
 	@Override
 	public void onPrepare(long now) {
 		// TODO Auto-generated method stub
@@ -122,6 +77,7 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 	////////////业务代码////////////////////
 	

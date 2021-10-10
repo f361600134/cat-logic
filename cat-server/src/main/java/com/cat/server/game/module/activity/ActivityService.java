@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.server.game.module.activity.domain.Activity;
+import com.cat.server.game.module.activity.domain.ActivityDomain;
 
 
 /**
@@ -15,7 +16,7 @@ import com.cat.server.game.module.activity.domain.Activity;
  * @author Jeremy
  */
 @Service
-public class ActivityService implements IActivityService {
+class ActivityService implements IActivityService {
 	
 	private static final Logger log = LoggerFactory.getLogger(ActivityService.class);
 	
@@ -24,6 +25,7 @@ public class ActivityService implements IActivityService {
 	@Override
 	public Collection<Activity> getAllActivitys(int serverId) {
 		// TODO Auto-generated method stub
+		ActivityDomain domain = activityManager.getDomain(serverId);
 		return null;
 	}
 

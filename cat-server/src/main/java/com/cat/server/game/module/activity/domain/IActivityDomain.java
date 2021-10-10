@@ -12,24 +12,6 @@ public interface IActivityDomain {
 	 */
 	Activity getActivity();
 	
-//	/**
-//     * 活动类型
-//     * @return
-//     */
-//    ActivityType getType();
-//
-//    /**
-//     * 活动方案id
-//     * @return
-//     */
-//    int getPlanId();
-//
-//    /**
-//     * 活动状态<br>
-//     * @return
-//     */
-//    int getStatus();
-    
     /**
      * 活动是否进行中<br>
      * {@link ActivityStatus#BEGIN}阶段<br>

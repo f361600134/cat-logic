@@ -2,7 +2,6 @@ package com.cat.server.game.module.activity.domain;
 
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.server.IPersistence;
-import com.cat.server.game.module.activity.status.IActivityStatus; 
 
 /**
  * 活动实体对象
