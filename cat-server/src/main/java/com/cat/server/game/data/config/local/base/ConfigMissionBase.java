@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.local;
+package com.cat.server.game.data.config.local.base;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +9,7 @@ import com.cat.server.core.config.container.IGameConfig;
 import com.google.common.collect.Maps;
 
 @ConfigPath("ConfigHeroInfo.json")
-public class ConfigMission implements IGameConfig{
+public class ConfigMissionBase implements IGameConfig{
 
 	private int ID;//任务ID
 	private String name;//任务名称
@@ -127,21 +127,21 @@ public class ConfigMission implements IGameConfig{
 
 	////////////////////// 特殊扩展 //////////////
 	
-	public void parse(){
-		
-		Map<Integer, Integer> rewardTemps = Maps.newHashMap();
-    	for(List<Integer> item : this.reward)
-    	{
-    		int c = rewardTemps.getOrDefault(item.get(0), 0);
-    		c += item.get(1);
-    		rewardTemps.put(item.get(0), c);
-    	}
-    	rewardMap = rewardTemps;
-			    
-		
-		this.parseExt();
-    }
-	
+//	public void parse(){
+//		
+//		Map<Integer, Integer> rewardTemps = Maps.newHashMap();
+//    	for(List<Integer> item : this.reward)
+//    	{
+//    		int c = rewardTemps.getOrDefault(item.get(0), 0);
+//    		c += item.get(1);
+//    		rewardTemps.put(item.get(0), c);
+//    	}
+//    	rewardMap = rewardTemps;
+//			    
+//		
+//		this.parseExt();
+//    }
+//	
 	//id_count ID数量
     private Map<Integer, Integer> rewardMap = Maps.newHashMap();
     public Map<Integer, Integer> getRewardMap(){
@@ -150,8 +150,6 @@ public class ConfigMission implements IGameConfig{
     
 	
 	/////////UserDefine Begin///////////
-	private void parseExt(){
-	}
 	
 	/////////UserDefine End/////////////
 	

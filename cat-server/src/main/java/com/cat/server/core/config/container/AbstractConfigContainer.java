@@ -74,6 +74,7 @@ public abstract class AbstractConfigContainer<T extends IGameConfig> implements 
             if (newConfigMap.containsKey(id)) {
                 throw new RuntimeException("config[" + configClazz.getName() + "] has repeat id[" + id + "]");
             }
+            config.parse();
             newConfigMap.put(id, config);
         }
         configMap = newConfigMap;

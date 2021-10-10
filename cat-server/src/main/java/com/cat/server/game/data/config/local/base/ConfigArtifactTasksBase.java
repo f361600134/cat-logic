@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.local;
+package com.cat.server.game.data.config.local.base;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +9,7 @@ import com.cat.server.core.config.container.IGameConfig;
 import com.google.common.collect.Maps;
 
 //@ConfigPath("ConfigArtifactTasks.json")
-public class ConfigArtifactTasks implements IGameConfig{
+public class ConfigArtifactTasksBase implements IGameConfig{
 
 	private int ID;//ID
 	private int usefor;//使用于

@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.local;
+package com.cat.server.game.data.config.local.base;
 
 import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.core.config.container.IGameConfig;
@@ -6,7 +6,7 @@ import com.cat.server.game.module.attribute.domain.AttributeDictionary;
 import com.cat.server.game.module.attribute.domain.AttributeType;
 
 @ConfigPath("ConfigHeroTalents.json")
-public class ConfigHeroLeve implements IGameConfig{
+public class ConfigHeroLeveBase implements IGameConfig{
 
 	private int ID;//武将id
 	private int position;//武将位置
@@ -164,12 +164,12 @@ public class ConfigHeroLeve implements IGameConfig{
 
 	////////////////////// 特殊扩展 //////////////
 	
-	public void parse(){
-		
-		
-		this.parseExt();
-    }
-	
+//	public void parse(){
+//		
+//		
+//		this.parseExt();
+//    }
+//	
 	
 	/////////UserDefine Begin///////////
 	private void parseExt(){

@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.local;
+package com.cat.server.game.data.config.local.base;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.core.config.container.IGameConfig;
 
 @ConfigPath("ConfigHeroInfo.json")
-public class ConfigSkill implements IGameConfig{
+public class ConfigSkillBase implements IGameConfig{
 
 	private int ID;//技能id
 	private String heroname;//武将名称
@@ -188,12 +188,12 @@ public class ConfigSkill implements IGameConfig{
 
 	////////////////////// 特殊扩展 //////////////
 	
-	public void parse(){
-		
-		
-		
-		this.parseExt();
-    }
+//	public void parse(){
+//		
+//		
+//		
+//		this.parseExt();
+//    }
 	
 	
 	/////////UserDefine Begin///////////

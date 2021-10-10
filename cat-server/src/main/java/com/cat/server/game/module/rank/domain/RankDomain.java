@@ -16,7 +16,7 @@ import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IModuleDomain;
 import com.cat.server.core.task.DefaultTokenTaskQueueExecutor;
-import com.cat.server.game.data.config.local.ConfigRank;
+import com.cat.server.game.data.config.local.base.ConfigRank;
 import com.cat.server.game.module.rank.utils.ILeaderboard;
 import com.cat.server.game.module.rank.utils.Leaderboard;
 import com.google.common.collect.Sets;

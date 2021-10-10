@@ -1,10 +1,10 @@
-package com.cat.server.game.data.config.local;
+package com.cat.server.game.data.config.local.base;
 
 import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.core.config.container.IGameConfig;
 
 @ConfigPath("ConfigChat.json")
-public class ConfigChat implements IGameConfig{
+public class ConfigChatBase implements IGameConfig{
 
 	private int ID;//ID
 	private String channelName;//频道名称
@@ -82,17 +82,17 @@ public class ConfigChat implements IGameConfig{
 
 	////////////////////// 特殊扩展 //////////////
 	
-	public void parse(){
-		
-		
-		
-		this.parseExt();
-    }
+//	public void parse(){
+//		
+//		
+//		
+//		this.parseExt();
+//    }
 	
 	
 	/////////UserDefine Begin///////////
-	private void parseExt(){
-	}
+//	private void parseExt(){
+//	}
 	
 	/////////UserDefine End/////////////
 	

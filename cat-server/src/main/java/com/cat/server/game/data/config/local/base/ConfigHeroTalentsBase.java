@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.local;
+package com.cat.server.game.data.config.local.base;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +9,7 @@ import com.cat.server.core.config.container.IGameConfig;
 import com.google.common.collect.Maps;
 
 @ConfigPath("ConfigHeroTalents.json")
-public class ConfigHeroTalents implements IGameConfig{
+public class ConfigHeroTalentsBase implements IGameConfig{
 
 	private int ID;//天赋新id
 	private String name;//天赋名
@@ -95,29 +95,29 @@ public class ConfigHeroTalents implements IGameConfig{
 
 	////////////////////// 特殊扩展 //////////////
 	
-	public void parse(){
-		
-		Map<Integer, Integer> attValuesTemps = Maps.newHashMap();
-    	for(List<Integer> item : this.attValues)
-    	{
-    		int c = attValuesTemps.getOrDefault(item.get(0), 0);
-    		c += item.get(1);
-    		attValuesTemps.put(item.get(0), c);
-    	}
-    	attValuesMap = attValuesTemps;
-			    
-		Map<Integer, Integer> needItemsTemps = Maps.newHashMap();
-    	for(List<Integer> item : this.needItems)
-    	{
-    		int c = needItemsTemps.getOrDefault(item.get(0), 0);
-    		c += item.get(1);
-    		needItemsTemps.put(item.get(0), c);
-    	}
-    	needItemsMap = needItemsTemps;
-			    
-		
-		this.parseExt();
-    }
+//	public void parse(){
+//		
+//		Map<Integer, Integer> attValuesTemps = Maps.newHashMap();
+//    	for(List<Integer> item : this.attValues)
+//    	{
+//    		int c = attValuesTemps.getOrDefault(item.get(0), 0);
+//    		c += item.get(1);
+//    		attValuesTemps.put(item.get(0), c);
+//    	}
+//    	attValuesMap = attValuesTemps;
+//			    
+//		Map<Integer, Integer> needItemsTemps = Maps.newHashMap();
+//    	for(List<Integer> item : this.needItems)
+//    	{
+//    		int c = needItemsTemps.getOrDefault(item.get(0), 0);
+//    		c += item.get(1);
+//    		needItemsTemps.put(item.get(0), c);
+//    	}
+//    	needItemsMap = needItemsTemps;
+//			    
+//		
+//		this.parseExt();
+//    }
 	
 	//id_count ID数量
     private Map<Integer, Integer> attValuesMap = Maps.newHashMap();

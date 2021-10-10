@@ -3,7 +3,7 @@ package com.cat.server.game.module.mission.type;
 import java.util.Map;
 
 import com.cat.server.core.config.ConfigManager;
-import com.cat.server.game.data.config.local.ConfigMission;
+import com.cat.server.game.data.config.local.base.ConfigMissionBase;
 
 /**
  * 	任务类型-主线任务类, 单体任务类
@@ -39,8 +39,8 @@ public class MainMissionType extends AbstractMission{
 		return new MainMissionType(configId);
 	}
 	
-	private ConfigMission getConfig() {
-		return ConfigManager.getInstance().getConfig(ConfigMission.class, configId);
+	private ConfigMissionBase getConfig() {
+		return ConfigManager.getInstance().getConfig(ConfigMissionBase.class, configId);
 	}
 	
 	@Override

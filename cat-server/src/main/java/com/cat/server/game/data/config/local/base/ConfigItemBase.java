@@ -1,10 +1,10 @@
-package com.cat.server.game.data.config.local;
+package com.cat.server.game.data.config.local.base;
 
 import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.core.config.container.IGameConfig;
 
 @ConfigPath("ConfigHeroInfo.json")
-public class ConfigItem implements IGameConfig{
+public class ConfigItemBase implements IGameConfig{
 
 	private int ID;//ID
 	private String name;//物品名称
@@ -61,13 +61,13 @@ public class ConfigItem implements IGameConfig{
     public static int COMPOSE = 0;
     public static int DECOMPOSE = 1;
 	
-	public void parse(){
-		
-		
-		
-		this.parseExt();
-    }
-	
+//	public void parse(){
+//		
+//		
+//		
+//		this.parseExt();
+//    }
+//	
 	
 	/////////UserDefine Begin///////////
 	private void parseExt(){

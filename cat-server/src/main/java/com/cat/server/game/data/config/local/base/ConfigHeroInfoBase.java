@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.local;
+package com.cat.server.game.data.config.local.base;
 
 import java.util.List;
 import java.util.Map;
@@ -10,7 +10,7 @@ import com.google.common.collect.Maps;
 
 
 @ConfigPath("ConfigHeroInfo.json")
-public class ConfigHeroInfo implements IGameConfig{
+public class ConfigHeroInfoBase implements IGameConfig{
 
 	private int ID;//武将编号
 	private String heroname;//武将名字
@@ -336,39 +336,39 @@ public class ConfigHeroInfo implements IGameConfig{
 
 	////////////////////// 特殊扩展 //////////////
 	
-	public void parse(){
-		
-		Map<Integer, Integer> attrsTemps = Maps.newHashMap();
-    	for(List<Integer> item : this.attrs)
-    	{
-    		int c = attrsTemps.getOrDefault(item.get(0), 0);
-    		c += item.get(1);
-    		attrsTemps.put(item.get(0), c);
-    	}
-    	attrsMap = attrsTemps;
-			    
-		Map<Integer, Integer> deComposeTemps = Maps.newHashMap();
-    	for(List<Integer> item : this.deCompose)
-    	{
-    		int c = deComposeTemps.getOrDefault(item.get(0), 0);
-    		c += item.get(1);
-    		deComposeTemps.put(item.get(0), c);
-    	}
-    	deComposeMap = deComposeTemps;
-			    
-		Map<Integer, Integer> godHeroItemCostTemps = Maps.newHashMap();
-    	for(List<Integer> item : this.godHeroItemCost)
-    	{
-    		int c = godHeroItemCostTemps.getOrDefault(item.get(0), 0);
-    		c += item.get(1);
-    		godHeroItemCostTemps.put(item.get(0), c);
-    	}
-    	godHeroItemCostMap = godHeroItemCostTemps;
-			    
-		
-		
-		this.parseExt();
-    }
+//	public void parse(){
+//		
+//		Map<Integer, Integer> attrsTemps = Maps.newHashMap();
+//    	for(List<Integer> item : this.attrs)
+//    	{
+//    		int c = attrsTemps.getOrDefault(item.get(0), 0);
+//    		c += item.get(1);
+//    		attrsTemps.put(item.get(0), c);
+//    	}
+//    	attrsMap = attrsTemps;
+//			    
+//		Map<Integer, Integer> deComposeTemps = Maps.newHashMap();
+//    	for(List<Integer> item : this.deCompose)
+//    	{
+//    		int c = deComposeTemps.getOrDefault(item.get(0), 0);
+//    		c += item.get(1);
+//    		deComposeTemps.put(item.get(0), c);
+//    	}
+//    	deComposeMap = deComposeTemps;
+//			    
+//		Map<Integer, Integer> godHeroItemCostTemps = Maps.newHashMap();
+//    	for(List<Integer> item : this.godHeroItemCost)
+//    	{
+//    		int c = godHeroItemCostTemps.getOrDefault(item.get(0), 0);
+//    		c += item.get(1);
+//    		godHeroItemCostTemps.put(item.get(0), c);
+//    	}
+//    	godHeroItemCostMap = godHeroItemCostTemps;
+//			    
+//		
+//		
+//		this.parseExt();
+//    }
 	
 	//id_count ID数量
     private Map<Integer, Integer> attrsMap = Maps.newHashMap();
@@ -388,10 +388,10 @@ public class ConfigHeroInfo implements IGameConfig{
     
 	
 	/////////UserDefine Begin///////////
-	private void parseExt(){
-		this.talents.addAll(this.godTalents);
-		//this.talents.addAll(this.starTalents);
-	}
+//	private void parseExt(){
+//		this.talents.addAll(this.godTalents);
+//		//this.talents.addAll(this.starTalents);
+//	}
 	
 	/////////UserDefine End/////////////
 	

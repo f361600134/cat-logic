@@ -11,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.server.core.config.ConfigManager;
-import com.cat.server.game.data.config.local.ConfigChatModel;
 import com.cat.server.game.data.config.local.ConfigConstantPlus;
+import com.cat.server.game.data.config.local.base.ConfigChatModelBase;
 import com.cat.server.game.data.proto.PBChat.ReqChat;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.assist.ChannelType;
@@ -105,7 +105,7 @@ class ChatService {
 	 */
 	public void onChat(ChannelType channelType, int configId, Object... args) {
 		try {
-			ConfigChatModel config = ConfigManager.getInstance().getConfig(ConfigChatModel.class, configId);
+			ConfigChatModelBase config = ConfigManager.getInstance().getConfig(ConfigChatModelBase.class, configId);
 			if(config==null) {
 				log.info("Cannot found config for chat, configId:{}", configId);
 				return;

@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.local;
+package com.cat.server.game.data.config.local.base;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +9,7 @@ import com.cat.server.core.config.container.IGameConfig;
 import com.google.common.collect.Maps;
 
 @ConfigPath("ConfigChat.json")
-public class ConfigBuffer implements IGameConfig{
+public class ConfigBufferBase implements IGameConfig{
 
 	private int ID;//bufferId
 	private String skillEffect;//技能特效
@@ -239,39 +239,39 @@ public class ConfigBuffer implements IGameConfig{
 
 	////////////////////// 特殊扩展 //////////////
 	
-	public void parse(){
-		
-		Map<Integer, Integer> attValuesTemps = Maps.newHashMap();
-    	for(List<Integer> item : this.attValues)
-    	{
-    		int c = attValuesTemps.getOrDefault(item.get(0), 0);
-    		c += item.get(1);
-    		attValuesTemps.put(item.get(0), c);
-    	}
-    	attValuesMap = attValuesTemps;
-			    
-		Map<Integer, Integer> extraDamTemps = Maps.newHashMap();
-    	for(List<Integer> item : this.extraDam)
-    	{
-    		int c = extraDamTemps.getOrDefault(item.get(0), 0);
-    		c += item.get(1);
-    		extraDamTemps.put(item.get(0), c);
-    	}
-    	extraDamMap = extraDamTemps;
-			    
-		Map<Integer, Integer> conditionSelectTemps = Maps.newHashMap();
-    	for(List<Integer> item : this.conditionSelect)
-    	{
-    		int c = conditionSelectTemps.getOrDefault(item.get(0), 0);
-    		c += item.get(1);
-    		conditionSelectTemps.put(item.get(0), c);
-    	}
-    	conditionSelectMap = conditionSelectTemps;
-			    
-		
-		
-		this.parseExt();
-    }
+//	public void parse(){
+//		
+//		Map<Integer, Integer> attValuesTemps = Maps.newHashMap();
+//    	for(List<Integer> item : this.attValues)
+//    	{
+//    		int c = attValuesTemps.getOrDefault(item.get(0), 0);
+//    		c += item.get(1);
+//    		attValuesTemps.put(item.get(0), c);
+//    	}
+//    	attValuesMap = attValuesTemps;
+//			    
+//		Map<Integer, Integer> extraDamTemps = Maps.newHashMap();
+//    	for(List<Integer> item : this.extraDam)
+//    	{
+//    		int c = extraDamTemps.getOrDefault(item.get(0), 0);
+//    		c += item.get(1);
+//    		extraDamTemps.put(item.get(0), c);
+//    	}
+//    	extraDamMap = extraDamTemps;
+//			    
+//		Map<Integer, Integer> conditionSelectTemps = Maps.newHashMap();
+//    	for(List<Integer> item : this.conditionSelect)
+//    	{
+//    		int c = conditionSelectTemps.getOrDefault(item.get(0), 0);
+//    		c += item.get(1);
+//    		conditionSelectTemps.put(item.get(0), c);
+//    	}
+//    	conditionSelectMap = conditionSelectTemps;
+//			    
+//		
+//		
+//		this.parseExt();
+//    }
 	
 	//id_count ID数量
     private Map<Integer, Integer> attValuesMap = Maps.newHashMap();
@@ -291,8 +291,8 @@ public class ConfigBuffer implements IGameConfig{
     
 	
 	/////////UserDefine Begin///////////
-	private void parseExt(){
-	}
+//	private void parseExt(){
+//	}
 	
 	/////////UserDefine End/////////////
 	

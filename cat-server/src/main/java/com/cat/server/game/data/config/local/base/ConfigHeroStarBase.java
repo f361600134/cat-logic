@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.local;
+package com.cat.server.game.data.config.local.base;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +9,7 @@ import com.cat.server.core.config.container.IGameConfig;
 import com.google.common.collect.Maps;
 
 @ConfigPath("ConfigHeroTalents.json")
-public class ConfigHeroStar implements IGameConfig{
+public class ConfigHeroStarBase implements IGameConfig{
 
 	private int ID;//星格id
 	private String name;//星格名称
@@ -55,29 +55,29 @@ public class ConfigHeroStar implements IGameConfig{
 
 	////////////////////// 特殊扩展 //////////////
 	
-	public void parse(){
-		
-		Map<Integer, Integer> attValuesTemps = Maps.newHashMap();
-    	for(List<Integer> item : this.attValues)
-    	{
-    		int c = attValuesTemps.getOrDefault(item.get(0), 0);
-    		c += item.get(1);
-    		attValuesTemps.put(item.get(0), c);
-    	}
-    	attValuesMap = attValuesTemps;
-			    
-		Map<Integer, Integer> NeedItemTemps = Maps.newHashMap();
-    	for(List<Integer> item : this.NeedItem)
-    	{
-    		int c = NeedItemTemps.getOrDefault(item.get(0), 0);
-    		c += item.get(1);
-    		NeedItemTemps.put(item.get(0), c);
-    	}
-    	NeedItemMap = NeedItemTemps;
-			    
-		
-		this.parseExt();
-    }
+//	public void parse(){
+//		
+//		Map<Integer, Integer> attValuesTemps = Maps.newHashMap();
+//    	for(List<Integer> item : this.attValues)
+//    	{
+//    		int c = attValuesTemps.getOrDefault(item.get(0), 0);
+//    		c += item.get(1);
+//    		attValuesTemps.put(item.get(0), c);
+//    	}
+//    	attValuesMap = attValuesTemps;
+//			    
+//		Map<Integer, Integer> NeedItemTemps = Maps.newHashMap();
+//    	for(List<Integer> item : this.NeedItem)
+//    	{
+//    		int c = NeedItemTemps.getOrDefault(item.get(0), 0);
+//    		c += item.get(1);
+//    		NeedItemTemps.put(item.get(0), c);
+//    	}
+//    	NeedItemMap = NeedItemTemps;
+//			    
+//		
+//		this.parseExt();
+//    }
 	
 	//id_count ID数量
     private Map<Integer, Integer> attValuesMap = Maps.newHashMap();

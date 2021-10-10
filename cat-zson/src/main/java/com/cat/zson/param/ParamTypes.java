@@ -243,7 +243,7 @@ public enum ParamTypes implements ParamType {
 //            }
 //        }
 //    },
-    REWARD(new String[] { "RewardMap", "CostMap" }, "", "RewardMap", "com.cat.server.game.module.resource.domain.RewardMap") {
+    REWARD(new String[] { "ResourceMap" }, "", "ResourceMap", "com.cat.server.game.module.resource.domain.ResourceMap") {
     	/**
     	 * 格式: 1_1,2_2
     	 * 格式:[[1,2],[1,2]]

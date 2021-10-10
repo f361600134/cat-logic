@@ -1,7 +1,7 @@
 package com.cat.server.game.module.hero.attr;
 
 import com.cat.server.core.config.ConfigManager;
-import com.cat.server.game.data.config.local.ConfigHeroLeve;
+import com.cat.server.game.data.config.local.base.ConfigHeroLeveBase;
 import com.cat.server.game.module.attribute.domain.AttributeDictionary;
 import com.cat.server.game.module.hero.domain.Hero;
 
@@ -28,7 +28,7 @@ public class HeroLevelNode extends AbstractHeroAttrNode {
     protected AttributeDictionary calculateAttrDic() {
         AttributeDictionary attrDic = new AttributeDictionary();
         int level = hero.getLevel();
-        ConfigHeroLeve config = ConfigManager.getInstance().getConfig(ConfigHeroLeve.class, hero.getConfigId());
+        ConfigHeroLeveBase config = ConfigManager.getInstance().getConfig(ConfigHeroLeveBase.class, hero.getConfigId());
         AttributeDictionary dictionary = config.initBaseAttr();
         dictionary.getDictionary().forEach((key, value)->{
         	attrDic.addAttr(key, value * level);
