@@ -15,9 +15,11 @@ import com.cat.net.common.NetConfig;
 import com.cat.net.network.client.RpcClientStarter;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.common.ServerConstant;
+import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.lifecycle.Lifecycle;
 import com.cat.server.core.lifecycle.Priority;
+import com.cat.server.game.data.config.local.ConfigTest;
 import com.cat.server.game.module.player.rpc.ReqIdentityAuthenticateCallback;
 import com.cat.server.utils.TimeUtil;
 import com.rpc.common.RpcConfig;
@@ -40,8 +42,8 @@ public class InitialRunner implements Lifecycle{
 //	@Autowired 
 //	private RankManager rankManager;
 	
-//	@Autowired 
-//	private ConfigManager configManager;
+	@Autowired 
+	private ConfigManager configManager;
 	
 //	@Autowired
 //	private com.coral.api.service.ITestService testService;
@@ -99,6 +101,8 @@ public class InitialRunner implements Lifecycle{
 ////			testInsertBatch();
 ////			testSelect();
 ////			System.out.println(userDao.getById(5));
+			ConfigTest configTest = configManager.getConfig(ConfigTest.class, 101);
+			System.out.println("======11=======>"+configTest.getTime().getUniqueTime()+", "+configTest.getTimePoint());
 			this.consoleListener();
 			log.info(getSystemInfo());
 		} catch (Exception e) {

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.alibaba.fastjson.parser.DefaultJSONParser;
 import com.alibaba.fastjson.parser.JSONToken;
 import com.alibaba.fastjson.parser.deserializer.ObjectDeserializer;
+import com.cat.server.game.module.activity.time.point.impl.OpenDayTimePoint;
 
 /**
  * 
@@ -15,14 +16,14 @@ import com.alibaba.fastjson.parser.deserializer.ObjectDeserializer;
  */
 public class TimePointParser implements ObjectDeserializer {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T deserialze(DefaultJSONParser parser, Type type, Object fieldName) {
 		final String input = parser.lexer.stringVal();
 		if (StringUtils.isBlank(input)) {
             return null;
         }
-		
-		return null;
+		return (T)new OpenDayTimePoint(1, 1);
 	}
 
 	@Override

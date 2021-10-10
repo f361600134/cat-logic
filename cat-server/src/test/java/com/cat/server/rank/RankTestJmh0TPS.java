@@ -97,7 +97,7 @@ public class RankTestJmh0TPS {
 	@Setup
     public void prepare() {
 		//准备排行榜
-		this.dataList = new Leaderboard<>(new RankDescComparator(), maxnum, (updateSet, deleteSet)->{
+		this.dataList = new Leaderboard<>(new RankDescComparator<>(), maxnum, (updateSet, deleteSet)->{
 			if (updateSet.size() > 0) {
 				updateCount += updateSet.size();
 			}

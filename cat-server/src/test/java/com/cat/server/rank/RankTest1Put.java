@@ -44,7 +44,7 @@ public class RankTest1Put {
 	 */
 	@BeforeTest
 	public void init() {
-		dataList = new Leaderboard<>(new RankDescComparator(), maxnum, (updateSet, deleteSet)->{
+		dataList = new Leaderboard<>(new RankDescComparator<>(), maxnum, (updateSet, deleteSet)->{
 			if (updateSet.size() > 0) {
 				updateCount += updateSet.size();
 				//更新数据
