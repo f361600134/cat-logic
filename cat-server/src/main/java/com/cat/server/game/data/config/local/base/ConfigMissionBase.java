@@ -3,12 +3,9 @@ package com.cat.server.game.data.config.local.base;
 import java.util.List;
 import java.util.Map;
 
-import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.core.config.container.IGameConfig;
-
 import com.google.common.collect.Maps;
 
-@ConfigPath("ConfigHeroInfo.json")
 public class ConfigMissionBase implements IGameConfig{
 
 	private int ID;//任务ID

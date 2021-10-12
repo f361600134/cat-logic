@@ -84,6 +84,15 @@ public class JavaWriter {
         String configClassName = tableData.getJavaClazzSimpleName();
 //        String configFullName = JavaConfigConstant.CONFIG_CLAZZ_PACKAGE_NAME + "." + configClassName;
         String configFullName = configClassName;
+        //生成Base
+        File baseFile = getJavaBaseFile(targetDir, configFullName);
+        try {
+			writeFile(tableData, JavaConfigConstant.CONFIG_BASE_TEMPLATE_NAME, baseFile);
+		} catch (Exception e) {
+			logger.error("config[" + tableData.getName() + "(" + tableData.getFileName() + ")] build java config file error.", e);
+		       
+		}
+        //生成config
         File configFile = getJavaFile(targetDir, configFullName);
         try {
             writeFile(tableData, JavaConfigConstant.CONFIG_TEMPLATE_NAME, configFile);
@@ -97,6 +106,15 @@ public class JavaWriter {
     	String clazzPath = projectDir.getPath() + File.separator;
         clazzPath += clazzFullName.replace('.', File.separatorChar);
         clazzPath = clazzPath + ".java";
+        File clazzFile = new File(clazzPath);
+        return clazzFile;
+    }
+    
+    private static File getJavaBaseFile(File projectDir, String clazzFullName) {
+        //String clazzPath = projectDir.getPath() + File.separator + "src/main/java" + File.separator;
+    	String clazzPath = projectDir.getPath() + File.separator;
+        clazzPath += clazzFullName.replace('.', File.separatorChar);
+        clazzPath = clazzPath + "Base.java";
         File clazzFile = new File(clazzPath);
         return clazzFile;
     }

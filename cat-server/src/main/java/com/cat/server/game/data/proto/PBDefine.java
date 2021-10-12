@@ -123,6 +123,26 @@ public final class PBDefine {
     ReqPlayerHeart(101105),
     /**
      * <pre>
+     *LearnCommunity
+     * </pre>
+     *
+     * <code>RespLearnCommunityInfo = 200201;</code>
+     */
+    RespLearnCommunityInfo(200201),
+    /**
+     * <code>RespLearnCommunityReward = 200202;</code>
+     */
+    RespLearnCommunityReward(200202),
+    /**
+     * <code>ReqLearnCommunityInfo = 200101;</code>
+     */
+    ReqLearnCommunityInfo(200101),
+    /**
+     * <code>ReqLearnCommunityReward = 200102;</code>
+     */
+    ReqLearnCommunityReward(200102),
+    /**
+     * <pre>
      *Mail
      * </pre>
      *
@@ -310,6 +330,26 @@ public final class PBDefine {
     public static final int ReqPlayerHeart_VALUE = 101105;
     /**
      * <pre>
+     *LearnCommunity
+     * </pre>
+     *
+     * <code>RespLearnCommunityInfo = 200201;</code>
+     */
+    public static final int RespLearnCommunityInfo_VALUE = 200201;
+    /**
+     * <code>RespLearnCommunityReward = 200202;</code>
+     */
+    public static final int RespLearnCommunityReward_VALUE = 200202;
+    /**
+     * <code>ReqLearnCommunityInfo = 200101;</code>
+     */
+    public static final int ReqLearnCommunityInfo_VALUE = 200101;
+    /**
+     * <code>ReqLearnCommunityReward = 200102;</code>
+     */
+    public static final int ReqLearnCommunityReward_VALUE = 200102;
+    /**
+     * <pre>
      *Mail
      * </pre>
      *
@@ -444,6 +484,10 @@ public final class PBDefine {
         case 101209: return RespUpdatePlayerInfo;
         case 101104: return ReqPlayerLogin;
         case 101105: return ReqPlayerHeart;
+        case 200201: return RespLearnCommunityInfo;
+        case 200202: return RespLearnCommunityReward;
+        case 200101: return ReqLearnCommunityInfo;
+        case 200102: return ReqLearnCommunityReward;
         case 103201: return RespMailRead;
         case 103101: return ReqMailReward;
         case 103202: return RespMailDelete;
@@ -522,7 +566,7 @@ public final class PBDefine {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020PBProtocol.proto\022\010Protocol*\337\006\n\nPBProto" +
+      "\n\020PBProtocol.proto\022\010Protocol*\331\007\n\nPBProto" +
       "col\022\r\n\tDEFAULTID\020\000\022\020\n\nReqItemUse\020\325\235\006\022\024\n\016" +
       "RespItemUpdate\020\271\236\006\022\021\n\013RespItemUse\020\272\236\006\022\024\n" +
       "\016RespItemDelete\020\273\236\006\022\021\n\013ReqItemSell\020\326\235\006\022\021" +
@@ -535,17 +579,20 @@ public final class PBDefine {
       "me\020\326\226\006\022\027\n\021RespPlayerReLogin\020\327\226\006\022\025\n\017RespP" +
       "layerLogin\020\330\226\006\022\027\n\021ReqPlayerRandName\020\357\225\006\022" +
       "\032\n\024RespUpdatePlayerInfo\020\331\226\006\022\024\n\016ReqPlayer" +
-      "Login\020\360\225\006\022\024\n\016ReqPlayerHeart\020\361\225\006\022\022\n\014RespM" +
-      "ailRead\020\241\246\006\022\023\n\rReqMailReward\020\275\245\006\022\024\n\016Resp" +
-      "MailDelete\020\242\246\006\022\021\n\013ReqMailRead\020\276\245\006\022\021\n\013Req" +
-      "MailList\020\277\245\006\022\024\n\016RespMailReward\020\243\246\006\022\022\n\014Re" +
-      "spMailList\020\244\246\006\022\023\n\rReqMailDelete\020\300\245\006\022\016\n\010R" +
-      "espChat\020\211\256\006\022\r\n\007ReqChat\020\245\255\006\022\025\n\017ReqActivit" +
-      "yInfo\020\215\265\006\022\026\n\020RespActivityInfo\020\361\265\006\022\034\n\026Res" +
-      "pActivityInfoUpdate\020\362\265\006\022\016\n\010ReqLogin\020\205\216\006\022" +
-      "\021\n\013ReqRandName\020\206\216\006\022\023\n\rReqCreateRole\020\207\216\006\022" +
-      "\r\n\010RespTips\020\261\tB*\n\036com.cat.server.game.da" +
-      "ta.protoB\010PBDefineb\006proto3"
+      "Login\020\360\225\006\022\024\n\016ReqPlayerHeart\020\361\225\006\022\034\n\026RespL" +
+      "earnCommunityInfo\020\211\234\014\022\036\n\030RespLearnCommun" +
+      "ityReward\020\212\234\014\022\033\n\025ReqLearnCommunityInfo\020\245" +
+      "\233\014\022\035\n\027ReqLearnCommunityReward\020\246\233\014\022\022\n\014Res" +
+      "pMailRead\020\241\246\006\022\023\n\rReqMailReward\020\275\245\006\022\024\n\016Re" +
+      "spMailDelete\020\242\246\006\022\021\n\013ReqMailRead\020\276\245\006\022\021\n\013R" +
+      "eqMailList\020\277\245\006\022\024\n\016RespMailReward\020\243\246\006\022\022\n\014" +
+      "RespMailList\020\244\246\006\022\023\n\rReqMailDelete\020\300\245\006\022\016\n" +
+      "\010RespChat\020\211\256\006\022\r\n\007ReqChat\020\245\255\006\022\025\n\017ReqActiv" +
+      "ityInfo\020\215\265\006\022\026\n\020RespActivityInfo\020\361\265\006\022\034\n\026R" +
+      "espActivityInfoUpdate\020\362\265\006\022\016\n\010ReqLogin\020\205\216" +
+      "\006\022\021\n\013ReqRandName\020\206\216\006\022\023\n\rReqCreateRole\020\207\216" +
+      "\006\022\r\n\010RespTips\020\261\tB*\n\036com.cat.server.game." +
+      "data.protoB\010PBDefineb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -1,12 +1,12 @@
 package com.cat.server.game.module.activity.status;
 
 import com.cat.server.game.module.activity.domain.Activity;
-import com.cat.server.game.module.activity.domain.IActivityDomain;
+import com.cat.server.game.module.activity.type.IActivityType;
 
 public class PrepareStatus extends AbstractStatus{
 
-	public PrepareStatus(IActivityDomain activityDomain) {
-		super(activityDomain);
+	public PrepareStatus(IActivityType activityType) {
+		super(activityType);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class PrepareStatus extends AbstractStatus{
         activity.setStatus(getCode());
         activity.save();
         
-        activityDomain.onPrepare(now);
+        activityType.onPrepare(now);
         return true;
 	}
 

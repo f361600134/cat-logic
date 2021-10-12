@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cat.server.common.ServerConfig;
 import com.cat.server.game.data.proto.PBActivity.ReqActivityInfo;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.proto.RespActivityInfoBuilder;
@@ -18,7 +17,6 @@ public class PlayerActivityService {
 	
 	private static final Logger log = LoggerFactory.getLogger(PlayerActivityService.class);
 	
-	@Autowired private ServerConfig serverConfig;
 	@Autowired private ActivityService activityService;
 	@Autowired private IPlayerService playerService;
 	
@@ -27,10 +25,10 @@ public class PlayerActivityService {
 	 */
 	public void responseActivityInfo(long playerId) {
 		RespActivityInfoBuilder resp = RespActivityInfoBuilder.newInstance();
-		Collection<Activity> beans = activityService.getAllActivitys(serverConfig.getServerId());
+		Collection<Activity> beans = activityService.getAllActivitys();
 		try {
 			for (Activity activity : beans) {
-				//resp.addArtifactlist(activity.toProto());
+				resp.addActivitys(activity.toProto());
 			}
 			playerService.sendMessage(playerId, resp);
 		} catch (Exception e) {
@@ -46,7 +44,6 @@ public class PlayerActivityService {
 	* 查询活动状态信息
 	* @param long playerId
 	* @param ReqActivityInfo req
-	* @param RespActivityInfoResp ack
 	*/
 	public void reqActivityInfo(long playerId, ReqActivityInfo req){
 		try {

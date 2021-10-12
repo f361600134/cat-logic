@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.server.game.module.activity.domain.Activity;
-import com.cat.server.game.module.activity.domain.IActivityDomain;
+import com.cat.server.game.module.activity.type.IActivityType;
 
 public abstract class AbstractStatus implements IActivityStatus{
 	
@@ -12,14 +12,14 @@ public abstract class AbstractStatus implements IActivityStatus{
 	/**
 	 * 活动对象
 	 */
-	protected IActivityDomain activityDomain;
+	protected IActivityType activityType;
 	
-	public AbstractStatus(IActivityDomain activityDomain) {
-		this.activityDomain = activityDomain;
+	public AbstractStatus(IActivityType activityType) {
+		this.activityType = activityType;
 	}
 	
 	public Activity getActivity() {
-		return activityDomain.getActivity();
+		return activityType.getActivity();
 	}
 	
 }

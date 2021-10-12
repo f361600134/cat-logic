@@ -1,10 +1,12 @@
-package com.cat.server.game.module.activity.domain;
+package com.cat.server.game.module.activity.type;
+
+import com.cat.server.game.module.activity.domain.Activity;
 
 /**
- * 活动接口类
+ * 活动容器接口
  * @author Jeremy
  */
-public interface IActivityDomain {
+public interface IActivityType {
 	
 	/**
 	 * 获取活动数据

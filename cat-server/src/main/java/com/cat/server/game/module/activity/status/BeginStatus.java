@@ -1,18 +1,18 @@
 package com.cat.server.game.module.activity.status;
 
 import com.cat.server.game.module.activity.domain.Activity;
-import com.cat.server.game.module.activity.domain.IActivityDomain;
+import com.cat.server.game.module.activity.type.IActivityType;
 
 public class BeginStatus extends AbstractStatus {
 
-	public BeginStatus(IActivityDomain activityDomain) {
+	public BeginStatus(IActivityType activityDomain) {
 		super(activityDomain);
 	}
 
 	@Override
 	public boolean handle(long now) {
 		Activity activity = getActivity();
-		if (activity.getStatus() != CLOSE 
+		if (activity.getStatus() != CLOSE
 				&& activity.getStatus() != PREPARE) {
 			return false;
 		}
@@ -24,7 +24,7 @@ public class BeginStatus extends AbstractStatus {
 		//先设置状态,再通知,最后清空活动数据
         activity.setStatus(getCode());
         activity.save();
-        activityDomain.onBegin(now);
+        activityType.onBegin(now);
 		return true;
 	}
 

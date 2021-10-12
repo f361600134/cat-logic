@@ -1,5 +1,6 @@
 package com.cat.server.game.module.chat;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -59,6 +60,11 @@ class ChatManager implements IModuleManager<Integer, ChatDomain>{
 			chatRuleMap.put(channelType, rule);
 		}
 		return rule;
+	}
+
+	@Override
+	public Collection<ChatDomain> getAllDomain() {
+		return domains.values();
 	}
 	
 }

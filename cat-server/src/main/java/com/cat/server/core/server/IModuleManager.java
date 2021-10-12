@@ -1,11 +1,19 @@
 package com.cat.server.core.server;
 
+import java.util.Collection;
+
 /**
  * 	模块Manager接口
  * @author Jeremy
  * @param <T>
  */
 public interface IModuleManager<I, T> {
+	
+	/**
+	 * 获取所有domain
+	 * @return
+	 */
+	public Collection<T> getAllDomain();
 	
 	/**
 	 *  通过id获取到域信息

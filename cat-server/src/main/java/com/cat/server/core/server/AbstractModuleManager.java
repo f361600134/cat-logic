@@ -3,6 +3,7 @@ package com.cat.server.core.server;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -41,6 +42,11 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 		} catch (Exception e) {
 			logger.error("AbstractModuleDomain error", e);
 		}
+	}
+	
+	@Override
+	public Collection<T> getAllDomain() {
+		return domains.values();
 	}
 	
 	/**

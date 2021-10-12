@@ -7,6 +7,7 @@ public class JavaConfigConstant {
     public final static String CONFIG_CLAZZ_PACKAGE_NAME = "com.cat.server.game.data.config.local";
     
     public final static String CONFIG_TEMPLATE_NAME = "config.ftl";
+    public final static String CONFIG_BASE_TEMPLATE_NAME = "configBase.ftl";
     public static final String TEMPLATE_DIR = "ftl";
     
     public final static String REGISTER_TEMPLATE_NAME = "register.ftl";

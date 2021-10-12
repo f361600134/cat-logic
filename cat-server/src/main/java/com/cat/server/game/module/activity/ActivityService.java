@@ -1,6 +1,8 @@
 package com.cat.server.game.module.activity;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.domain.ActivityDomain;
+import com.cat.server.game.module.activity.type.IActivityType;
 
 
 /**
@@ -23,16 +26,21 @@ class ActivityService implements IActivityService {
 	@Autowired private ActivityManager activityManager;
 
 	@Override
-	public Collection<Activity> getAllActivitys(int serverId) {
-		// TODO Auto-generated method stub
-		ActivityDomain domain = activityManager.getDomain(serverId);
-		return null;
+	public Collection<Activity> getAllActivitys() {
+		List<Activity> activitys = new ArrayList<>();
+		for (ActivityDomain activityDomain : activityManager.getAllDomain()) {
+			activitys.add(activityDomain.getActivity());
+		}
+		return activitys;
 	}
 
 	@Override
-	public Activity getActivity(int serverId, int activityType) {
-		// TODO Auto-generated method stub
-		return null;
+	public IActivityType getActivityType(int planId) {
+		ActivityDomain domain = activityManager.getDomain(planId);
+		if (domain == null) {
+			return null;
+		}
+		return domain;
 	}
 	
 }

@@ -47,7 +47,7 @@ public interface IActivityStatus {
 	 * 状态下的处理, 是否能进入下一个行为, 以及进入下一个状态
 	 * @return  
 	 * @return boolean  
-	 * @date 2019年4月1日下午2:19:37
+	 * @date 2021年10月11日下午2:19:37
 	 */
 	public boolean handle(long now);
 	
@@ -55,7 +55,7 @@ public interface IActivityStatus {
 	 * 状态对象唯一的标识,状态码, 非活动当前状态
 	 * @return  
 	 * @return int  
-	 * @date 2019年4月1日上午10:55:30
+	 * @date 2021年10月11日下午2:19:37
 	 */
 	public int getCode();
 

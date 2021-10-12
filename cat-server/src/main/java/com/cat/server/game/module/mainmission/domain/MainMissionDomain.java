@@ -17,9 +17,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 主线任务域
- * 
  * @author Jeremy
- *
  */
 public class MainMissionDomain extends AbstractModuleDomain<Long, MainMission> implements IMissionHandler {
 

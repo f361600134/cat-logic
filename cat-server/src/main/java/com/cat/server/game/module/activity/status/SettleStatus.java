@@ -1,17 +1,17 @@
 package com.cat.server.game.module.activity.status;
 
 import com.cat.server.game.module.activity.domain.Activity;
-import com.cat.server.game.module.activity.domain.IActivityDomain;
+import com.cat.server.game.module.activity.type.IActivityType;
 
 public class SettleStatus extends AbstractStatus {
 
-	public SettleStatus(IActivityDomain activityDomain) {
+	public SettleStatus(IActivityType activityDomain) {
 		super(activityDomain);
 	}
 
 	@Override
 	public boolean handle(long now) {
-		if (!activityDomain.isBegin()) {
+		if (!activityType.isBegin()) {
             return false;
         }
 		Activity activity = getActivity();
@@ -22,7 +22,7 @@ public class SettleStatus extends AbstractStatus {
 		//先设置状态,再通知,最后清空活动数据
         activity.setStatus(getCode());
         activity.save();
-        activityDomain.onSettle(now);
+        activityType.onSettle(now);
 		return true;
 	}
 	

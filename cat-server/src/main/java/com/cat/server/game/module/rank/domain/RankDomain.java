@@ -26,6 +26,7 @@ import com.google.common.collect.Sets;
  * 公共数据, key排行榜类型, value作为排行榜
  * 所有的任务通过common线程去处理
 * @author Jeremy
+* FIXME 所有的阻塞响应,改为异步回调的方式处理, 或者通过锁的方式去处理
 */
 public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Long, Rank>{
 

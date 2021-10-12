@@ -2,9 +2,12 @@ package com.cat.server.game.module.rank.manager;
 
 import java.util.List;
 
+import com.cat.server.common.ServerConfig;
 import com.cat.server.core.server.AbstractModuleManager;
 import com.cat.server.game.module.rank.domain.Rank;
 import com.cat.server.game.module.rank.domain.RankDomain;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,6 +17,8 @@ import org.springframework.stereotype.Component;
 */
 @Component
 public class RankManager extends AbstractModuleManager<Integer, RankDomain>{
+	
+	@Autowired private ServerConfig serverConfig;
 	
 	/**
 	 * 获取数据, 获取不到从数据库获取
@@ -33,7 +38,7 @@ public class RankManager extends AbstractModuleManager<Integer, RankDomain>{
 		try {
 			RankDomain domain = new RankDomain(id);
 			String[] cols = new String[] {Rank.PROP_CURSERVERID, Rank.PROP_RANKTYPE};
-			List<Rank> list = process.selectByIndex(Rank.class, cols, new Object[] {1,id});
+			List<Rank> list = process.selectByIndex(Rank.class, cols, new Object[] {serverConfig.getServerId(),id});
 			if (list.isEmpty()) {
 				//	无数据
 				domain.initData(id);

@@ -1,7 +1,7 @@
 package com.cat.server.game.module.activity.status;
 
 import com.cat.server.game.module.activity.domain.Activity;
-import com.cat.server.game.module.activity.domain.IActivityDomain;
+import com.cat.server.game.module.activity.type.IActivityType;
 
 /**
  * 活动结束状态
@@ -9,8 +9,8 @@ import com.cat.server.game.module.activity.domain.IActivityDomain;
  */
 public class CloseStatus extends AbstractStatus{
 	
-	public CloseStatus(IActivityDomain activityDomain) {
-		super(activityDomain);
+	public CloseStatus(IActivityType activityType) {
+		super(activityType);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class CloseStatus extends AbstractStatus{
 		activity.setSettleTime(0);
 		activity.setCloseTime(0);
 		activity.save();
-        activityDomain.onClose(now);
+		activityType.onClose(now);
 		return true;
 	}
 	
