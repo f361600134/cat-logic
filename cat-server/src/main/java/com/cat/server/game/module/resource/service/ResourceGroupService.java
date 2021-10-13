@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.resource.IResourceGroupService;
@@ -16,7 +16,7 @@ import com.cat.server.game.module.resource.IResourceService;
 import com.google.common.collect.Maps;
 
 @Service
-public class ResourceGroupService implements IResourceGroupService, Lifecycle {
+public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 
 	private static final Logger log = LoggerFactory.getLogger(ResourceGroupService.class);
 

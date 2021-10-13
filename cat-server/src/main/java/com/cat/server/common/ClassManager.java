@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ import com.google.common.reflect.ClassPath;
 /**
  * 运行时类管理器
  */
-public class ClassManager implements Lifecycle {
+public class ClassManager implements ILifecycle {
 
     private static final Logger logger = LoggerFactory.getLogger(ClassManager.class);
 

@@ -84,7 +84,6 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 				//	有数据初始化
 				domain.initData(id, list);
 			}
-			domain.afterInit();
 			return domain;
 		}catch (Exception e) {
 			logger.error("getFromDb error", e);

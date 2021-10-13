@@ -17,6 +17,14 @@ public class Activity extends ActivityPo implements IPersistence{
 
 	}
 	
+	/**
+	 * 带有类型id的构造
+	 * @param id
+	 */
+	public Activity(Integer id) {
+		this.id = id;
+	}
+	
 //	/**
 //     * 活动是否进行中<br>
 //     * {@link ActivityStatus#BEGIN}阶段<br>

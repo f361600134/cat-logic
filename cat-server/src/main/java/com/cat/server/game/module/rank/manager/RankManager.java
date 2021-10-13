@@ -46,7 +46,6 @@ public class RankManager extends AbstractModuleManager<Integer, RankDomain>{
 				//	有数据初始化
 				domain.initData(id, list);
 			}
-			domain.afterInit();
 			return domain;
 		}catch (Exception e) {
 			logger.error("getFromDb error", e);

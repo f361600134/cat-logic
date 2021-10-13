@@ -7,9 +7,9 @@ import com.cat.server.game.module.activity.type.AbstractActivityType;
  * 仅用于测试
  * @author Jeremy
  */
-public class StudyClubActivityType extends AbstractActivityType{
+public class LearnCommunityActivityType extends AbstractActivityType{
 
-	public StudyClubActivityType(Activity activity) {
+	public LearnCommunityActivityType(Activity activity) {
 		super(activity);
 	}
 

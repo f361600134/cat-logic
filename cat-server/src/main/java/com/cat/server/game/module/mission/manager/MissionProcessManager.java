@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.module.mission.process.IMissionProcess;
 import com.google.common.collect.HashMultimap;
@@ -30,7 +30,7 @@ import com.google.common.collect.Multimap;
  *
  */
 @Component
-public class MissionProcessManager implements Lifecycle{
+public class MissionProcessManager implements ILifecycle{
 	
 	private static Logger log = LoggerFactory.getLogger(MissionProcessManager.class);
 	

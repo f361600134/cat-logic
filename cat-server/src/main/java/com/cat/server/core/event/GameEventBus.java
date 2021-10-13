@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cat.server.core.context.SpringContextHolder;
-import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.google.common.eventbus.EventBus;
 
@@ -19,7 +19,7 @@ import com.google.common.eventbus.EventBus;
  *
  *这里可能会有一个问题, 因为IObserver被spring包装过,所以要确定一下发送的时间是否可以被识别
  */
-public class GameEventBus implements Lifecycle{
+public class GameEventBus implements ILifecycle{
 	
 	private static final Logger logger = LoggerFactory.getLogger(GameEventBus.class);
 	

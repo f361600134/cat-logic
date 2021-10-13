@@ -15,10 +15,10 @@ import com.cat.server.core.config.container.DefaultRemoteConfigContainer;
 import com.cat.server.core.config.container.IConfigContainer;
 import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.core.context.SpringContextHolder;
-import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 
-public class ConfigManager implements IConfigManager, Lifecycle {
+public class ConfigManager implements IConfigManager, ILifecycle {
 
 	private static final Logger logger = LoggerFactory.getLogger(ConfigManager.class);
 

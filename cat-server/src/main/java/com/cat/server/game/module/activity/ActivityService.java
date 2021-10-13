@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cat.server.core.lifecycle.ILifecycle;
+import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.domain.ActivityDomain;
 import com.cat.server.game.module.activity.type.IActivityType;
@@ -19,7 +21,7 @@ import com.cat.server.game.module.activity.type.IActivityType;
  * @author Jeremy
  */
 @Service
-class ActivityService implements IActivityService {
+class ActivityService implements IActivityService, ILifecycle{
 	
 	private static final Logger log = LoggerFactory.getLogger(ActivityService.class);
 	
@@ -41,6 +43,16 @@ class ActivityService implements IActivityService {
 			return null;
 		}
 		return domain;
+	}
+	
+	@Override
+	public void start() throws Throwable {
+		activityManager.init();
+	}
+	
+	@Override
+	public int priority() {
+		return Priority.LOGIC.getPriority();
 	}
 	
 }

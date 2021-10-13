@@ -1,7 +1,7 @@
 package com.cat.server.game.module.family;
 
 import com.cat.server.common.ServerConfig;
-import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.core.task.TokenTaskQueueExecutor;
 import com.cat.server.game.helper.result.ErrorCode;
@@ -25,7 +25,7 @@ import java.util.concurrent.Future;
  * 家族相关的公共操作, 都是线程安全的, 丢进公共线程池去处理
  */
 @Service
-class FamilyService implements IFamilyService, Lifecycle{
+class FamilyService implements IFamilyService, ILifecycle{
 	
 	private static final Logger logger = LoggerFactory.getLogger(FamilyService.class);
 	

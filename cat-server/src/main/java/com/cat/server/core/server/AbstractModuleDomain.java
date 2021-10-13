@@ -30,7 +30,7 @@ public abstract class AbstractModuleDomain<I extends Number, T extends IBasePo> 
 	public AbstractModuleDomain() {
 		try {
 			Type superClass = getClass().getGenericSuperclass();
-			this.basePoClazz = (Class<T>)(((ParameterizedType) superClass).getActualTypeArguments()[0]);
+			this.basePoClazz = (Class<T>)(((ParameterizedType) superClass).getActualTypeArguments()[1]);
 		} catch (Exception e) {
 			logger.error("AbstractModuleDomain error", e);
 		}
@@ -50,7 +50,7 @@ public abstract class AbstractModuleDomain<I extends Number, T extends IBasePo> 
 			this.id = id;
 			//this.bean = basePoClazz.newInstance();
 			//	通过带参数构造方法, 创建playerDomain
-			Constructor<T> constructor = this.basePoClazz.getDeclaredConstructor(Long.class);
+			Constructor<T> constructor = this.basePoClazz.getDeclaredConstructor(id.getClass());
 			if (constructor == null) {
 				//FIXME? 这样强制BasePO提供带有long类型的参数好不好? 如果long类型其他含义的参数这里会有问题
 				//先不改,如果出了问题,可以在aftercreate内,通过传入id,在内部去set持有者的id
@@ -58,7 +58,7 @@ public abstract class AbstractModuleDomain<I extends Number, T extends IBasePo> 
 			}
 			this.bean = constructor.newInstance(id);
 			this.afterCreate();
-			//this.afterInit();
+			this.afterInit();
 		} catch (Exception e) {
 			logger.error("AbstractModuleDomain initData error", e);
 		} 
@@ -74,7 +74,7 @@ public abstract class AbstractModuleDomain<I extends Number, T extends IBasePo> 
 		if (v.size() == 1) {
 			this.bean = v.get(0);
 			this.bean.afterLoad();
-			//this.afterInit();
+			this.afterInit();
 		}
 		else {
 			logger.info("AbstractModuleDomain initData has an error, the v.size != 1");

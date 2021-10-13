@@ -1,8 +1,9 @@
 package com.cat.server.game.module.activity;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
-import org.apache.curator.shaded.com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,8 @@ import com.cat.server.common.ServerConfig;
 import com.cat.server.core.server.AbstractModuleManager;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.domain.ActivityDomain;
-import com.cat.server.game.module.family.domain.Family;
+import com.cat.server.game.module.activity.type.ActivityTypeEnum;
+import com.google.common.collect.Lists;
 
 /**
  * 活动初始化, 默认根据planId进行初始化, 如果获取不到domain 从数据库获取
@@ -45,7 +47,7 @@ class ActivityManager extends AbstractModuleManager<Integer, ActivityDomain> {
 	public ActivityDomain getFromDb(Integer id) {
 		try {
 			ActivityDomain domain = clazz.newInstance();
-			List list = process.selectByIndex(domain.getBasePoClazz(), new String[] { Family.PROP_CURSERVERID, Family.PROP_ID },
+			List list = process.selectByIndex(domain.getBasePoClazz(), new String[] { Activity.PROP_CURSERVERID, Activity.PROP_ID },
 					new Object[] { serverConfig.getServerId(), id });
 			if (list.isEmpty()) {
 				// 无数据创建
@@ -54,7 +56,6 @@ class ActivityManager extends AbstractModuleManager<Integer, ActivityDomain> {
 				// 有数据初始化
 				domain.initData(id, list);
 			}
-			domain.afterInit();
 			return domain;
 		} catch (Exception e) {
 			logger.error("getFromDb error", e);
@@ -63,18 +64,35 @@ class ActivityManager extends AbstractModuleManager<Integer, ActivityDomain> {
 	}
 
 	/**
-	 *  初始化, 加载一次, 初始化所有活动数据
+	 *  初始化, 加载一次, 初始化当前所有活动<br>
+	 *  这里跟{@link #getFromDb(Integer)}唯一的区别就是, 这里在init的时候, 进行一次IO获取到所有活动, 然后在内存中进行初始化
 	 */
 	@Override
 	public void init() {
-		List<Activity> list = process.selectByIndex(Activity.class, new String[] { Family.PROP_CURSERVERID }, new Object[] { serverConfig.getServerId()});
-		ActivityDomain domain = null;
-		for (Activity activity : list) {
-			domain = new ActivityDomain();
-			domains.put(activity.getPlanId(), domain);
-			domain.initData(activity.getPlanId(), Lists.newArrayList(activity));
+		//初始化活动
+		List<Activity> activitys = process.selectByIndex(Activity.class, new String[] { Activity.PROP_CURSERVERID }, new Object[] { serverConfig.getServerId()});
+		//根据定义的活动枚举去初始化
+		Collection<Integer> allTypes = ActivityTypeEnum.allTypes();
+		for (Integer typeId : allTypes) {
+			Activity activity = findActivity(typeId, activitys);
+			ActivityDomain domain = new ActivityDomain();
+			if (activity != null) {
+				//如果不为null, 表示加载的旧活动
+				domain.initData(activity.getId(), Lists.newArrayList(activity));
+			}else {
+				//如果为null, 表示初始化的新活动
+				domain.initData(typeId);
+			}
+			domains.put(domain.getId(), domain);
 		}
 	}
-
+	
+	private Activity findActivity(int typeId, List<Activity> activitys) {
+		Optional<Activity> opt = activitys.stream().filter((a)->a.getId() == typeId).findFirst();
+		if (opt.isPresent()) {
+			return opt.get();
+		} 
+		return null;
+	}
 	
 }

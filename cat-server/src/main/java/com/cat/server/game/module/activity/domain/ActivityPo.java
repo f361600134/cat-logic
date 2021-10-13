@@ -21,6 +21,7 @@ public abstract class ActivityPo extends BasePo {
 	public static final String PROP_CUSTOMDATA = "customData";
 	public static final String PROP_BAGDATA = "bagData";
 	public static final String PROP_OPENEDNUM = "openedNum";
+	public static final String PROP_CURSERVERID = "curServerId";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
@@ -37,6 +38,7 @@ public abstract class ActivityPo extends BasePo {
 			PROP_CUSTOMDATA,
 			PROP_BAGDATA,
 			PROP_OPENEDNUM,
+			PROP_CURSERVERID,
 			};
 			
 	/** 所有主键索引字段数组*/
@@ -75,6 +77,8 @@ public abstract class ActivityPo extends BasePo {
 	protected byte[] bagData;
 	/** 开启的次数*/
 	protected int openedNum;
+	/** 当前所处服务器id*/
+	protected int curServerId;
 	
 	public ActivityPo(){
 	}
@@ -196,12 +200,21 @@ public abstract class ActivityPo extends BasePo {
 		this.openedNum = openedNum;
 	}
 	
+	/** 当前所处服务器id **/
+	public int getCurServerId(){
+		return this.curServerId;
+	}
+	
+	public void setCurServerId(int curServerId){
+		this.curServerId = curServerId;
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "Activity [id= "+ id +", status= "+ status +", stage= "+ stage +", pause= "+ pause +", configId= "+ configId
 				 +", configType= "+ configType +", planId= "+ planId +", beginTime= "+ beginTime +", settleTime= "+ settleTime +", closeTime= "+ closeTime
-				 +", customData= "+ customData +", bagData= "+ bagData +", openedNum= "+ openedNum+"]";
+				 +", customData= "+ customData +", bagData= "+ bagData +", openedNum= "+ openedNum +", curServerId= "+ curServerId+"]";
 	}
 	
 	@Override
@@ -225,6 +238,7 @@ public abstract class ActivityPo extends BasePo {
 		getCustomData(),
 		getBagData(),
 		getOpenedNum(),
+		getCurServerId(),
 		};
 	}
 	

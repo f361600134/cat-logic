@@ -6,14 +6,14 @@ import java.util.Map;
 
 import com.cat.net.core.reflect.MethodInvoker;
 import com.cat.net.network.base.ISession;
-import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.game.module.gm.annotation.Command;
 
 /**
  * 模块相关命令		
  * @author Jeremy
  */
-public abstract class AbstractModuleCommand implements ICommand, Lifecycle{
+public abstract class AbstractModuleCommand implements ICommand, ILifecycle{
 	
 	/**
 	 * key: 命令头 执行方法名

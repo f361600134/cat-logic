@@ -2,6 +2,7 @@ package com.cat.server.game;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
+import java.util.Collection;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -17,26 +18,28 @@ import com.cat.server.common.ServerConfig;
 import com.cat.server.common.ServerConstant;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
-import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
-import com.cat.server.game.data.config.local.ConfigTest;
-import com.cat.server.game.data.config.local.base.ConfigActivityScheduleTimeBase;
+import com.cat.server.game.module.activity.IActivityService;
+import com.cat.server.game.module.activity.domain.Activity;
+import com.cat.server.game.module.activity.type.ActivityTypeEnum;
+import com.cat.server.game.module.activity.type.IActivityType;
 import com.cat.server.game.module.player.rpc.ReqIdentityAuthenticateCallback;
-import com.cat.server.utils.TimeUtil;
 import com.rpc.common.RpcConfig;
 import com.rpc.core.client.RequesterManager;
 import com.zaxxer.hikari.HikariDataSource;
 
 //FSC
 @Component
-public class InitialRunner implements Lifecycle{
+public class InitialRunner implements ILifecycle{
 	
 	private static final Logger log = LoggerFactory.getLogger(InitialRunner.class);
 	
 	@Autowired private RpcConfig rpcConfig;
 	@Autowired private NetConfig netConfig;
 	@Autowired private ServerConfig config;
+	@Autowired private IActivityService activityService;
 	
 	@Autowired 
 	private RequesterManager requesterManager;
@@ -105,6 +108,11 @@ public class InitialRunner implements Lifecycle{
 ////			System.out.println(userDao.getById(5));
 			ConfigActivityScheduleTime config = configManager.getConfig(ConfigActivityScheduleTime.class, 150101);
 			System.out.println("======11=======>"+config.getTime().getUniqueTime()+", "+config.getStartTime());
+			
+			Collection<Activity> activitys = activityService.getAllActivitys();
+			System.out.println(activitys.size());
+//			IActivityType activityType = activityService.getActivityType(ActivityTypeEnum.LEARN_COMMUNITY.getValue());
+//			System.out.println(activityType);
 			this.consoleListener();
 			log.info(getSystemInfo());
 		} catch (Exception e) {

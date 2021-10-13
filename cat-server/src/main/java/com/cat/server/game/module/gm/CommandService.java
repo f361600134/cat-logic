@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.net.network.base.ISession;
-import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.module.gm.annotation.Command;
 import com.cat.server.game.module.gm.type.ICommand;
 
 @Service
-class CommandService implements ICommandService, Lifecycle{
+class CommandService implements ICommandService, ILifecycle{
 	
 	@Autowired
 	private List<ICommand> commandList;

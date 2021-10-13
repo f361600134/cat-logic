@@ -21,8 +21,8 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 	@Override
 	public void afterInit() {
 		super.afterInit();
-		int planId = bean.getPlanId();
-		this.activityType = ActivityTypeEnum.valueOf(planId).newActivityType(bean);
+		int typeId = bean.getId();
+		this.activityType = ActivityTypeEnum.valueOf(typeId).newActivityType(bean);
 	}
 
 	@Override

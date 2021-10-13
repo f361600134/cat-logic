@@ -15,7 +15,7 @@ import com.cat.net.network.controller.DefaultConnectControllerDispatcher;
 import com.cat.net.network.controller.IController;
 import com.cat.net.network.controller.IRpcController;
 import com.cat.net.network.controller.DefaultRpcDispatcher;
-import com.cat.server.core.lifecycle.Lifecycle;
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 
 /**
@@ -24,7 +24,7 @@ import com.cat.server.core.lifecycle.Priority;
  * @author Jeremy
  */
 @Configuration
-public class NetworkComponent implements Lifecycle{
+public class NetworkComponent implements ILifecycle{
 	
 	private static final Logger logger = LoggerFactory.getLogger(NetworkComponent.class);
 	
