@@ -2,6 +2,7 @@ package com.cat.server.game.module.activity.status;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeSet;
 
 import com.cat.server.game.module.activity.type.IActivityType;
 
@@ -14,6 +15,7 @@ public class ActivityStatusManager implements IActivityStatus{
 	/**
 	 * 状态数组
 	 */
+	private TreeSet<IActivityStatus> statusSet = new TreeSet<>();
 	private Map<Integer, IActivityStatus> statusMap = new HashMap<>();
 	/**
 	 * 当前状态

@@ -7,13 +7,23 @@ package com.cat.server.game.module.activity.time.point;
  */
 public interface ITimePoint {
 	
-	/***
-	 * 时间点唯一的时间戳
-	 * @return
-	 */
-	long getUniqueTime();
-	
 	 /**
+     * 获取该时间戳之前的上一个时间点的时间戳<br>
+     * 若该时间戳在时间点范围内 则返回当前时间戳
+     * 
+     * @param time
+     * @return
+     */
+    long getLastTime(long time);
+
+    /**
+     * 获取该时间戳之后的下一个点的时间戳
+     * 
+     * @return
+     */
+    long getNextTime(long time);
+
+    /**
      * 2个时间戳之间是否跨过了该时间点<br>
      * 若有时间戳在该时间点范围(time1,time2]内 也返回true
      * 
@@ -21,12 +31,6 @@ public interface ITimePoint {
      * @param time2
      * @return
      */
-    default boolean isAcross(long time1, long time2) {
-    	 long unique = getUniqueTime();
-         if (unique > time1 && unique <= time2) {
-             return true;
-         }
-         return false;
-    }
-
+    boolean isAcross(long time1, long time2);
+	
 }

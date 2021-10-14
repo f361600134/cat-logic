@@ -1,5 +1,6 @@
 package com.cat.server.game.module.activity.type;
 
+import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
 import com.cat.server.game.module.activity.domain.Activity;
 
 /**
@@ -43,6 +44,15 @@ public interface IActivityType {
      * @return
      */
     boolean isInCycle();
+    
+    /**
+     * 判断并使用活动配置<br>
+     * 若使用了新配置 触发状态刷新
+     * 
+     * @param activityConfig
+     * @param now
+     */
+    void checkAndUseConfig(ConfigActivityScheduleTime activityConfig, long now);
     
     /**
      * 判断并刷新活动状态<br>

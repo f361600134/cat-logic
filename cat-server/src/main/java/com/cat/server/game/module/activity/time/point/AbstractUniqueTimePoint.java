@@ -3,7 +3,7 @@ package com.cat.server.game.module.activity.time.point;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractUniqueTimePoint implements ITimePoint {
+public abstract class AbstractUniqueTimePoint implements IUniqueTimePoint {
 	
 	protected Logger logger = LoggerFactory.getLogger(getClass());
 

@@ -31,11 +31,6 @@ public abstract class AbstractMultiTimePoint implements ITimePoint {
 		return nextTime;
 	}
 	
-	@Override
-	public long getUniqueTime() {
-		return getLastTime(TimeUtil.now());
-	}
-
 	/**
 	 * 检查并尝试刷新时间
 	 * 
@@ -55,6 +50,15 @@ public abstract class AbstractMultiTimePoint implements ITimePoint {
 			logger.error("calculateTime error.", e);
 		}
 	}
+	
+	@Override
+    public boolean isAcross(long time1, long time2) {
+        long lastTime = getLastTime(time2);
+        if (lastTime > time1 && lastTime <= time2) {
+            return true;
+        }
+        return false;
+    }
 
 	/**
 	 * 计算时间

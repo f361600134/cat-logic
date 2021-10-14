@@ -11,8 +11,6 @@ import com.cat.server.game.data.proto.PBActivity.PBActivityInfo;
 @PO(name = "activity")
 public class Activity extends ActivityPo implements IPersistence{
 	
-//	private transient ActivityStatusManager statusManager = new ActivityStatusManager(this);
-
 	public Activity() {
 
 	}

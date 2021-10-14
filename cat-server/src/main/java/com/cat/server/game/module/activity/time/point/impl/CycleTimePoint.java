@@ -81,7 +81,7 @@ public class CycleTimePoint extends AbstractMultiTimePoint {
 
 	@Override
 	protected Pair<Long, Long> calculateTime(long time) {
-		long firstTime = firstTimePoint.getUniqueTime();
+		long firstTime = firstTimePoint.getLastTime(time);
 		if (firstTime != oldFirstTime && stopCycleTime != Long.MAX_VALUE) {// 重新计算不再循环时间
 			long cycleTime = TimeUnit.DAYS.toMillis(cycle);
 			this.stopCycleTime = this.oldFirstTime + cycleTime * (cycleTimes - 1);
@@ -107,7 +107,7 @@ public class CycleTimePoint extends AbstractMultiTimePoint {
 			// 未计算过
 			return true;
 		}
-		long firstTime = firstTimePoint.getUniqueTime();
+		long firstTime = firstTimePoint.getLastTime(time);
         if (firstTime != oldFirstTime) {
             // 开始时间点发生了变化
             return true;

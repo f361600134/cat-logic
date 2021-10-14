@@ -16,8 +16,9 @@ import com.cat.orm.core.db.process.DataProcessor;
 import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.GameEventBus;
-import com.cat.server.core.task.DefaultTokenTaskQueueExecutor;
 import com.cat.server.core.task.TokenTaskQueueExecutor;
+import com.cat.server.core.task.impl.CommonTaskExecutor;
+import com.cat.server.core.task.impl.DefaultTokenTaskQueueExecutor;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 
 /**
@@ -51,7 +52,18 @@ public class LogicComponent {
 	@Bean
 	public TokenTaskQueueExecutor defaultExecutor() {
 		logger.info("注册[DefaultTokenTaskQueueExecutor]服务");
-		return new DefaultTokenTaskQueueExecutor("default-common",1);
+		return new DefaultTokenTaskQueueExecutor("default-executor",1);
+	}
+	
+
+	/**
+	 * 注册默认的公共线程池
+	 * @return
+	 */
+	@Bean
+	public CommonTaskExecutor commonExecutor() {
+		logger.info("注册[CommonTaskExecutor]服务");
+		return new CommonTaskExecutor(2, "common-executor");
 	}
 
 	/**

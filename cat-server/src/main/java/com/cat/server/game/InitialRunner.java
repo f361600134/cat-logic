@@ -107,7 +107,7 @@ public class InitialRunner implements ILifecycle{
 ////			testSelect();
 ////			System.out.println(userDao.getById(5));
 			ConfigActivityScheduleTime config = configManager.getConfig(ConfigActivityScheduleTime.class, 150101);
-			System.out.println("======11=======>"+config.getTime().getUniqueTime()+", "+config.getStartTime());
+//			System.out.println("======11=======>"+config.getTime().getUniqueTime()+", "+config.getStartTime());
 			
 			Collection<Activity> activitys = activityService.getAllActivitys();
 			System.out.println(activitys.size());

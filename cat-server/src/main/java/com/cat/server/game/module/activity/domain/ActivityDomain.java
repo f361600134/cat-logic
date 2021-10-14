@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.server.core.server.AbstractModuleDomain;
+import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
 import com.cat.server.game.module.activity.type.ActivityTypeEnum;
 import com.cat.server.game.module.activity.type.IActivityType;
 
@@ -80,6 +81,19 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 		activityType.onClose(now);
 	}
 
+	@Override
+	public void checkAndUseConfig(ConfigActivityScheduleTime activityConfig, long now) {
+		activityType.checkAndUseConfig(activityConfig, now);
+	}
+
 	////////////业务代码////////////////////
+
+
+
+	
+	
+
+
+	
 	
 }

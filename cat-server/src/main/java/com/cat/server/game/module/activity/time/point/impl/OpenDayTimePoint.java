@@ -35,11 +35,11 @@ public class OpenDayTimePoint extends AbstractMultiTimePoint implements ITimePoi
 		this.hour = hour;
 	}
 	
-	@Override
-    public long getUniqueTime() {
-        checkAndRefresh(TimeUtil.now());
-        return lastTime;
-    }
+//	@Override
+//    public long getUniqueTime() {
+//        checkAndRefresh(TimeUtil.now());
+//        return lastTime;
+//    }
 
 	@Override
 	protected Pair<Long, Long> calculateTime(long time) {

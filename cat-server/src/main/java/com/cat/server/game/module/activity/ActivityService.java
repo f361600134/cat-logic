@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
+import com.cat.server.core.task.impl.CommonTaskExecutor;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.domain.ActivityDomain;
 import com.cat.server.game.module.activity.type.IActivityType;
@@ -25,8 +26,9 @@ class ActivityService implements IActivityService, ILifecycle{
 	
 	private static final Logger log = LoggerFactory.getLogger(ActivityService.class);
 	
-	@Autowired private ActivityManager activityManager;
-
+	@Autowired 
+	private ActivityManager activityManager;
+	
 	@Override
 	public Collection<Activity> getAllActivitys() {
 		List<Activity> activitys = new ArrayList<>();

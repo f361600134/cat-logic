@@ -27,7 +27,6 @@ public class LearnCommunityService implements ILearnCommunityService {
 	
 	@Autowired private LearnCommunityManager learnCommunityManager;
 	
- 
 	/**
 	 * 登陆
 	 */

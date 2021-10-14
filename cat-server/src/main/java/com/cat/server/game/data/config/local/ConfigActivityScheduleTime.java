@@ -18,16 +18,12 @@ import com.cat.server.game.module.activity.time.point.ITimePoint;
 public class ConfigActivityScheduleTime extends ConfigActivityScheduleTimeBase {
 	
 	@JSONField(name="startTime", deserializeUsing = TimePointParser.class)
-	private ITimePoint time;
+	private ITimePoint startTimePoint;
 
-	public ITimePoint getTime() {
-		return time;
+	public ITimePoint getStartTimePoint() {
+		return startTimePoint;
 	}
 
-	public void setTime(ITimePoint time) {
-		this.time = time;
-	}
-	
 	@Override
 	public void parse() {
 		//TODO something.

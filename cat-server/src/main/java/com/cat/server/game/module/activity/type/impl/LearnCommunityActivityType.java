@@ -1,5 +1,6 @@
 package com.cat.server.game.module.activity.type.impl;
 
+import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.type.AbstractActivityType;
 
@@ -33,6 +34,12 @@ public class LearnCommunityActivityType extends AbstractActivityType{
 
 	@Override
 	public void onClose(long now) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void checkAndUseConfig(ConfigActivityScheduleTime activityConfig, long now) {
 		// TODO Auto-generated method stub
 		
 	}
