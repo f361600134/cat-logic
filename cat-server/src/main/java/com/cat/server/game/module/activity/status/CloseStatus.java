@@ -1,10 +1,9 @@
 package com.cat.server.game.module.activity.status;
 
-import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.type.IActivityType;
 
 /**
- * 活动结束状态
+ * 活动关闭状态, 到达此状态, 活动关闭. 客户端无法看见此活动信息
  * @author Jeremy
  */
 public class CloseStatus extends AbstractStatus{
@@ -13,31 +12,27 @@ public class CloseStatus extends AbstractStatus{
 		super(activityType);
 	}
 	
+	/**
+	 * 当前是活动结束状态, 检测进入下一个状态-> {@link PrepareStatus}
+	 */
 	@Override
 	public boolean checkNext(long now) {
-		Activity activity = getActivity();
-		if (activity.getStatus() != SETTLE) {
+		if (activityType.getStatus() != CLOSE) {
             return false;
         }
-		long closeTime = activity.getCloseTime();
-        if (now < closeTime) {
-            return false;
+		// 活动已经到准备时间, 并且没有到领奖时间, 活动可以进入准备状态
+        if (now >= activityType.getPrepareTime() 
+        		&& now < activityType.getSettleTime()) {
+            return true;
         }
-        return true;
+        return false;
 	}
 
+	/**
+	 * 到达关闭阶段, 处理当前状态的逻辑
+	 */
 	@Override
 	public void handle(long now) {
-		Activity activity = getActivity();
-        //先设置状态为关闭,再通知,最后清空活动数据
-        activity.setStatus(getCode());
-        activity.setConfigType(0);
-		activity.setConfigId(0);
-		activity.setPlanId(0);
-		activity.setBeginTime(0);
-		activity.setSettleTime(0);
-		activity.setCloseTime(0);
-		activity.save();
 		activityType.onClose(now);
 	}
 	

@@ -1,8 +1,6 @@
 package com.cat.server.game.module.activity.type;
 
-import static com.cat.server.game.module.activity.status.IActivityStatus.BEGIN;
-import static com.cat.server.game.module.activity.status.IActivityStatus.PREPARE;
-import static com.cat.server.game.module.activity.status.IActivityStatus.SETTLE;
+import static com.cat.server.game.module.activity.status.IActivityStatus.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -19,11 +17,11 @@ import com.cat.server.utils.TimeUtil;
  * 活动抽象类类型, 不同活动不同阶段的操作不同, 所以
  * @author Jeremy
  */
-public abstract class AbstractActivityType implements IActivityType {
+public abstract class AbstractActivityType implements IActivityType{
 	
 	protected final Activity activity;
 	
-	private transient ActivityStatusManager statusManager;
+	private final ActivityStatusManager statusManager;
 
 	public AbstractActivityType(Activity activity) {
 		this.activity = activity;
@@ -61,6 +59,15 @@ public abstract class AbstractActivityType implements IActivityType {
 	public void checkAndRefreshStatus(long now) {
 		statusManager.handle(now);
 	}
+	
+	@Override
+    public void checkAndUseConfig(ConfigActivityScheduleTime activityConfig, long now) {
+        if (!checkUseConfig(activityConfig, now)) {
+            return;
+        }
+        useConfig(activityConfig, now);
+        checkAndRefreshStatus(now);
+    }
 
 	@Override
 	public void refreshConfig() {
@@ -73,6 +80,58 @@ public abstract class AbstractActivityType implements IActivityType {
 		ConfigActivityScheduleTime config = configManager.getConfig(ConfigActivityScheduleTime.class, configId);
 		useConfig(config, configId);
 	}
+	
+	/**
+     * 判断是否使用该配置
+     * 
+     * @param activityConfig
+     * @param now
+     * @return
+     */
+    protected boolean checkUseConfig(ConfigActivityScheduleTime activityConfig, long now) {
+//        if (isPause()) {
+//            // 暂停状态 状态不会发生变化
+//            return false;
+//        }
+//        if (!isFunctionOpen()) {
+//            // 功能被关闭 视为暂停
+//            return false;
+//        }
+        if (isUsingAnyConfig()) {
+            // 已经选用了其中一个配置
+            return false;
+        }
+        if (getStatus() != CLOSE) {
+            // 只在活动结束状态才尝试使用新的活动配置
+            return false;
+        }
+        ITimePoint startTime = activityConfig.getStartTimePoint();
+        long startTimestamp = startTime.getLastTime(now);
+        long settleTime = startTimestamp;
+        int beginDuration = activityConfig.getBeginDuration();
+        if (beginDuration > 0) {
+            // 正常配置 在准备阶段或开始阶段期间
+            int prepareDuration = activityConfig.getPrepareDuration();
+            settleTime = startTimestamp + TimeUnit.SECONDS.toMillis(prepareDuration + beginDuration);
+        } else if (beginDuration == ActivityConstant.ACTIVITY_DURATION_INTERVAL_1_MINUTE) {
+            // 特殊配置
+            int settleDuration = activityConfig.getSettleDuration();
+            settleTime = startTime.getNextTime(now) - TimeUtil.MINIUTE_MILLISECONDS - TimeUnit.SECONDS.toMillis(settleDuration);
+        }
+        if (now >= startTimestamp && now < settleTime) {
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+     * 是否正在使用着任意一个配置
+     * 
+     * @return
+     */
+    protected boolean isUsingAnyConfig() {
+        return activity.getConfigType() != ActivityConstant.CONFIG_TYPE_NONE && activity.getConfigId() > 0;
+    }
 	
 	/**
      * 根据配置 刷新持久化数据<br>
@@ -103,6 +162,7 @@ public abstract class AbstractActivityType implements IActivityType {
         	closeTime = startTime.getNextTime(now) - TimeUtil.MINIUTE_MILLISECONDS;
             settleTime = closeTime - TimeUnit.SECONDS.toMillis(settleDuration);
         }
+        this.activity.setPrepareTime(startTimestamp);
         this.activity.setBeginTime(beginTime);
         this.activity.setSettleTime(settleTime);
         this.activity.setCloseTime(closeTime);
@@ -111,29 +171,57 @@ public abstract class AbstractActivityType implements IActivityType {
     
     @Override
     public void onClose(long now) {
-    	//TODO 
+        //先设置状态为关闭,再通知,最后清空活动数据
+        activity.setConfigType(0);
+		activity.setConfigId(0);
+		activity.setPlanId(0);
+		activity.setBeginTime(0);
+		activity.setSettleTime(0);
+		activity.setCloseTime(0);
+		activity.save();
     }
+//    
+//    @Override
+//   	public void onPrepare(long now) {
+//   		// TODO Auto-generated method stub
+//   		
+//   	}
+//    
+//    @Override
+//    public void onBegin(long now) {
+//    	// TODO Auto-generated method stub
+//    	
+//    }
+//    
+//    @Override
+//    public void onSettle(long now) {
+//    	// TODO Auto-generated method stub
+//    	
+//    }
     
     @Override
-   	public void onPrepare(long now) {
-   		// TODO Auto-generated method stub
-   		
-   	}
+	public long getPrepareTime() {
+		return this.activity.getPrepareTime();
+	}
     
-    @Override
-    public void onBegin(long now) {
-    	// TODO Auto-generated method stub
-    	
-    }
-    
-    @Override
-    public void onSettle(long now) {
-    	// TODO Auto-generated method stub
-    	
-    }
-    
-   
-    
-   
+	@Override
+	public long getBeginTime() {
+		return this.activity.getBeginTime();
+	}
 
+	@Override
+	public long getSettleTime() {
+		return this.activity.getSettleTime();
+	}
+
+	@Override
+	public long getCloseTime() {
+		return this.activity.getCloseTime();
+	}
+	
+	@Override
+	public int getStatus() {
+		return this.activity.getStatus();
+	}
+	
 }

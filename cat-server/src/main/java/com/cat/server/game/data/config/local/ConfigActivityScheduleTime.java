@@ -23,6 +23,10 @@ public class ConfigActivityScheduleTime extends ConfigActivityScheduleTimeBase {
 	public ITimePoint getStartTimePoint() {
 		return startTimePoint;
 	}
+	
+	public void setStartTimePoint(ITimePoint startTimePoint) {
+		this.startTimePoint = startTimePoint;
+	}
 
 	@Override
 	public void parse() {

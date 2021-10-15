@@ -38,11 +38,5 @@ public class LearnCommunityActivityType extends AbstractActivityType{
 		
 	}
 
-	@Override
-	public void checkAndUseConfig(ConfigActivityScheduleTime activityConfig, long now) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 }

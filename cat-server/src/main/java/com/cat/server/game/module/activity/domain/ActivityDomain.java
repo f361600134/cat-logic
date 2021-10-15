@@ -85,15 +85,32 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 	public void checkAndUseConfig(ConfigActivityScheduleTime activityConfig, long now) {
 		activityType.checkAndUseConfig(activityConfig, now);
 	}
+	
+	@Override
+	public long getPrepareTime() {
+		return activityType.getPrepareTime();
+	}
+
+	@Override
+	public long getBeginTime() {
+		return activityType.getBeginTime();
+	}
+
+	@Override
+	public long getSettleTime() {
+		return activityType.getSettleTime();
+	}
+
+	@Override
+	public long getCloseTime() {
+		return activityType.getCloseTime();
+	}
+
+	@Override
+	public int getStatus() {
+		return activityType.getStatus();
+	}
 
 	////////////业务代码////////////////////
-
-
-
-	
-	
-
-
-	
 	
 }

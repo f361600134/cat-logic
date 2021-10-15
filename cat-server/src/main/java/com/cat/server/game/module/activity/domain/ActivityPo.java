@@ -15,6 +15,7 @@ public abstract class ActivityPo extends BasePo {
 	public static final String PROP_CONFIGID = "configId";
 	public static final String PROP_CONFIGTYPE = "configType";
 	public static final String PROP_PLANID = "planId";
+	public static final String PROP_PREPARETIME = "prepareTime";
 	public static final String PROP_BEGINTIME = "beginTime";
 	public static final String PROP_SETTLETIME = "settleTime";
 	public static final String PROP_CLOSETIME = "closeTime";
@@ -32,6 +33,7 @@ public abstract class ActivityPo extends BasePo {
 			PROP_CONFIGID,
 			PROP_CONFIGTYPE,
 			PROP_PLANID,
+			PROP_PREPARETIME,
 			PROP_BEGINTIME,
 			PROP_SETTLETIME,
 			PROP_CLOSETIME,
@@ -65,6 +67,8 @@ public abstract class ActivityPo extends BasePo {
 	protected int configType;
 	/** 活动方案id*/
 	protected int planId;
+	/** 活动准备时间*/
+	protected long prepareTime;
 	/** 活动开始时间*/
 	protected long beginTime;
 	/** 活动结算时间*/
@@ -146,6 +150,15 @@ public abstract class ActivityPo extends BasePo {
 		this.planId = planId;
 	}
 	
+	/** 活动准备时间 **/
+	public long getPrepareTime(){
+		return this.prepareTime;
+	}
+	
+	public void setPrepareTime(long prepareTime){
+		this.prepareTime = prepareTime;
+	}
+	
 	/** 活动开始时间 **/
 	public long getBeginTime(){
 		return this.beginTime;
@@ -213,8 +226,9 @@ public abstract class ActivityPo extends BasePo {
 	@Override
 	public String toString() {
 		return "Activity [id= "+ id +", status= "+ status +", stage= "+ stage +", pause= "+ pause +", configId= "+ configId
-				 +", configType= "+ configType +", planId= "+ planId +", beginTime= "+ beginTime +", settleTime= "+ settleTime +", closeTime= "+ closeTime
-				 +", customData= "+ customData +", bagData= "+ bagData +", openedNum= "+ openedNum +", curServerId= "+ curServerId+"]";
+				 +", configType= "+ configType +", planId= "+ planId +", prepareTime= "+ prepareTime +", beginTime= "+ beginTime +", settleTime= "+ settleTime
+				 +", closeTime= "+ closeTime +", customData= "+ customData +", bagData= "+ bagData +", openedNum= "+ openedNum +", curServerId= "+ curServerId
+				+"]";
 	}
 	
 	@Override
@@ -232,6 +246,7 @@ public abstract class ActivityPo extends BasePo {
 		getConfigId(),
 		getConfigType(),
 		getPlanId(),
+		getPrepareTime(),
 		getBeginTime(),
 		getSettleTime(),
 		getCloseTime(),

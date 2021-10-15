@@ -15,7 +15,7 @@ public enum ActivityTypeEnum {
     /**
      * 研习社活动
      */
-    LEARN_COMMUNITY(101) {
+    LEARN_COMMUNITY(1501) {
 		@Override
 		public IActivityType newActivityType(Activity activity) {
 			return new LearnCommunityActivityType(activity);

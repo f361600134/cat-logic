@@ -27,6 +27,11 @@ public class TimeUtil {
 	public final static long HOUR_MILLISECONDS = TimeUnit.HOURS.toMillis(1);
 	public final static long DAY_MILLISECONDS = TimeUnit.DAYS.toMillis(1);
 	public final static long WEEK_MILLISECONDS = TimeUnit.DAYS.toMillis(7);
+	
+	
+	public static void main(String[] args) {
+		System.out.println(DAY_MILLISECONDS/1000);
+	}
 	/**
 	 * 30天的毫秒数<br>
 	 */

@@ -36,5 +36,4 @@ public interface IResourceGroupService {
 	 * @param desc 其他描述
 	 */
 	public void cost(long playerId, Map<Integer, Integer> costMap, NatureEnum nEnum);
-	
 }

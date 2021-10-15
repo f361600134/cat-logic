@@ -81,24 +81,29 @@ public interface IActivityType {
 //     * @return
 //     */
 //    int getConfigType();
+    /**
+     * 当前活动开始时间
+     * @return
+     */
+    long getPrepareTime();
 
-//    /**
-//     * 当前活动开始时间
-//     * @return
-//     */
-//    long getBeginTime();
-//
-//    /**
-//     * 当前活动结算时间
-//     * @return
-//     */
-//    long getSettleTime();
-//
-//    /**
-//     * 当前活动结束时间
-//     * @return
-//     */
-//    long getCloseTime();
+    /**
+     * 当前活动开始时间
+     * @return
+     */
+    long getBeginTime();
+
+    /**
+     * 当前活动结算时间
+     * @return
+     */
+    long getSettleTime();
+
+    /**
+     * 当前活动结束时间
+     * @return
+     */
+    long getCloseTime();
     
 	 /**
      * 活动进行准备阶段时执行<br>
@@ -132,6 +137,12 @@ public interface IActivityType {
      * @param now
      */
 	public void onClose(long now);
+	
+	 /**
+     * 活动状态<br>
+     * @return
+     */
+    int getStatus();
     
 
 }

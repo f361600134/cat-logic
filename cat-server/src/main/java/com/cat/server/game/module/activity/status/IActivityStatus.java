@@ -65,12 +65,6 @@ public interface IActivityStatus {
 	 */
 	public int getCode();
 	
-//	/**
-//	 * 设置下一个状态, 活动有以下基础状态, 且状态行程一个环形首尾相连<br>
-//	 * 预览状态->开启状态->领奖状态->关闭状态--->预览状态
-//	 */
-//	public IActivityStatus setNextStatus();
-//	
 	/**
 	 * 下一个状态, 活动有以下基础状态, 且状态行程一个环形首尾相连<br>
 	 * 预览状态->开启状态->领奖状态->关闭状态--->预览状态

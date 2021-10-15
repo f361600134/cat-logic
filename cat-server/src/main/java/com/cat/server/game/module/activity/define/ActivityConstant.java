@@ -24,5 +24,19 @@ public class ActivityConstant {
      * 2次活动时间(准备+开始+结算) 之间间隔1分钟
      */
     public final static int ACTIVITY_DURATION_INTERVAL_1_MINUTE = -1;
+    
+    /**
+     * 无配置
+     */
+    public final static int CONFIG_TYPE_NONE = 0;
+    
+    /**
+     * 本地(策划)配置
+     */
+    public final static int CONFIG_TYPE_LOCAL = 1;
+    /**
+     * 后台(运营)配置
+     */
+    public final static int CONFIG_TYPE_REMOTE = 2;
 
 }
