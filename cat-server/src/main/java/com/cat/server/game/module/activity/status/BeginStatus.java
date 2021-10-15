@@ -10,7 +10,7 @@ public class BeginStatus extends AbstractStatus {
 	}
 
 	@Override
-	public boolean handle(long now) {
+	public boolean checkNext(long now) {
 		Activity activity = getActivity();
 		if (activity.getStatus() != CLOSE
 				&& activity.getStatus() != PREPARE) {
@@ -21,11 +21,13 @@ public class BeginStatus extends AbstractStatus {
 		if (now < beginTime || now > settleTime) {
 			return false;
 		}
-		//先设置状态,再通知,最后清空活动数据
-        activity.setStatus(getCode());
-        activity.save();
-        activityType.onBegin(now);
 		return true;
+	}
+	
+	@Override
+	public void handle(long now) {
+		super.handle(now);
+        activityType.onBegin(now);
 	}
 
 	@Override

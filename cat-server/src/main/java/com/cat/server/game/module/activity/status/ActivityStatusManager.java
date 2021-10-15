@@ -2,8 +2,8 @@ package com.cat.server.game.module.activity.status;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeSet;
 
+import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.type.IActivityType;
 
 /**
@@ -15,7 +15,6 @@ public class ActivityStatusManager implements IActivityStatus{
 	/**
 	 * 状态数组
 	 */
-	private TreeSet<IActivityStatus> statusSet = new TreeSet<>();
 	private Map<Integer, IActivityStatus> statusMap = new HashMap<>();
 	/**
 	 * 当前状态
@@ -29,14 +28,23 @@ public class ActivityStatusManager implements IActivityStatus{
 	public ActivityStatusManager(IActivityType activityType) {
 		this.activityType = activityType;
 		//初始化状态
-		IActivityStatus closeState = new CloseStatus(activityType);
-		IActivityStatus prepareStatus = new PrepareStatus(activityType);
-		IActivityStatus beginStatus = new BeginStatus(activityType);
-		IActivityStatus settleStatus = new SettleStatus(activityType);
+		AbstractStatus closeState = new CloseStatus(activityType);
+		AbstractStatus prepareStatus = new PrepareStatus(activityType);
+		AbstractStatus beginStatus = new BeginStatus(activityType);
+		AbstractStatus settleStatus = new SettleStatus(activityType);
+		
+		//设置状态首尾相连
+		closeState.setNextStatus(prepareStatus);
+		prepareStatus.setNextStatus(beginStatus);
+		beginStatus.setNextStatus(settleStatus);
+		settleStatus.setNextStatus(closeState);
+		
+		//缓存一份状态信息
 		statusMap.put(closeState.getCode(), closeState);
 		statusMap.put(prepareStatus.getCode(), prepareStatus);
 		statusMap.put(beginStatus.getCode(), beginStatus);
 		statusMap.put(settleStatus.getCode(), settleStatus);
+		
 		//初始化当前状态
 		this.curStatus = statusMap.get(activityType.getActivity().getStatus());
 	}
@@ -52,14 +60,16 @@ public class ActivityStatusManager implements IActivityStatus{
 	public void setCurStatus(IActivityStatus curStatus) {
 		this.curStatus = curStatus;
 	}
+	
+	@Override
+	public boolean checkNext(long now) {
+		return curStatus.checkNext(now);
+	}
 
 	@Override
-	public boolean handle(long now) {
-		boolean bool = curStatus.handle(now);
-		if (bool) {//如果当前状态执行成功,则切换状态
-			curStatus = statusMap.get(activityType.getActivity().getStatus());
-		}
-		return bool;
+	public void handle(long now) {
+		curStatus = getNextStatus();
+		curStatus.handle(now);
 	}
 
 	@Override
@@ -67,4 +77,12 @@ public class ActivityStatusManager implements IActivityStatus{
 		return curStatus.getCode();
 	}
 
+	@Override
+	public IActivityStatus getNextStatus() {
+		return curStatus.getNextStatus();
+	}
+
+	public Activity getActivity() {
+		return activityType.getActivity();
+	}
 }

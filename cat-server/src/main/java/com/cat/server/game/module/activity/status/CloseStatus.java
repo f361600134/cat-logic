@@ -12,9 +12,9 @@ public class CloseStatus extends AbstractStatus{
 	public CloseStatus(IActivityType activityType) {
 		super(activityType);
 	}
-
+	
 	@Override
-	public boolean handle(long now) {
+	public boolean checkNext(long now) {
 		Activity activity = getActivity();
 		if (activity.getStatus() != SETTLE) {
             return false;
@@ -23,6 +23,12 @@ public class CloseStatus extends AbstractStatus{
         if (now < closeTime) {
             return false;
         }
+        return true;
+	}
+
+	@Override
+	public void handle(long now) {
+		Activity activity = getActivity();
         //先设置状态为关闭,再通知,最后清空活动数据
         activity.setStatus(getCode());
         activity.setConfigType(0);
@@ -33,7 +39,6 @@ public class CloseStatus extends AbstractStatus{
 		activity.setCloseTime(0);
 		activity.save();
 		activityType.onClose(now);
-		return true;
 	}
 	
 	public int getCode() {

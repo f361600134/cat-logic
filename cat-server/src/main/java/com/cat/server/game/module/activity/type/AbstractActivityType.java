@@ -108,5 +108,32 @@ public abstract class AbstractActivityType implements IActivityType {
         this.activity.setCloseTime(closeTime);
         this.activity.save();
     }
+    
+    @Override
+    public void onClose(long now) {
+    	//TODO 
+    }
+    
+    @Override
+   	public void onPrepare(long now) {
+   		// TODO Auto-generated method stub
+   		
+   	}
+    
+    @Override
+    public void onBegin(long now) {
+    	// TODO Auto-generated method stub
+    	
+    }
+    
+    @Override
+    public void onSettle(long now) {
+    	// TODO Auto-generated method stub
+    	
+    }
+    
+   
+    
+   
 
 }

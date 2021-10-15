@@ -30,18 +30,24 @@ public interface IActivityStatus {
      * 只可以从<b>BEGIN</b>状态进入
      */
     int SETTLE = 3;
+//    /**
+//     * 强行结束<br>
+//     * 活动提前结束 到达原活动时间时 切换为{@link ActivityStatus#END}状态 <br>
+//     * 只是给后台控制<br>
+//     * 只可以从<b>BEGIN</b>/<b>SETTLE</b>状态进入
+//     */
+//    int FORCE_END=5;
+//    /**
+//     * 暂停 活动状态停止改变 且视为未开启/已彻底结束 该状态不直接使用<br>
+//     * 只是展示用
+//     */
+//	int PAUSE = 10;
+    
     /**
-     * 强行结束<br>
-     * 活动提前结束 到达原活动时间时 切换为{@link ActivityStatus#END}状态 <br>
-     * 只是给后台控制<br>
-     * 只可以从<b>BEGIN</b>/<b>SETTLE</b>状态进入
+     * 校验是否可以进入下一个状态
+     * @return
      */
-    int FORCE_END=5;
-    /**
-     * 暂停 活动状态停止改变 且视为未开启/已彻底结束 该状态不直接使用<br>
-     * 只是展示用
-     */
-	int PAUSE = 10;
+    public boolean checkNext(long now);
 	
 	/**
 	 * 状态下的处理, 是否能进入下一个行为, 以及进入下一个状态
@@ -49,7 +55,7 @@ public interface IActivityStatus {
 	 * @return boolean  
 	 * @date 2021年10月11日下午2:19:37
 	 */
-	public boolean handle(long now);
+	public void handle(long now);
 	
 	/**
 	 * 状态对象唯一的标识,状态码, 非活动当前状态
@@ -58,5 +64,17 @@ public interface IActivityStatus {
 	 * @date 2021年10月11日下午2:19:37
 	 */
 	public int getCode();
+	
+//	/**
+//	 * 设置下一个状态, 活动有以下基础状态, 且状态行程一个环形首尾相连<br>
+//	 * 预览状态->开启状态->领奖状态->关闭状态--->预览状态
+//	 */
+//	public IActivityStatus setNextStatus();
+//	
+	/**
+	 * 下一个状态, 活动有以下基础状态, 且状态行程一个环形首尾相连<br>
+	 * 预览状态->开启状态->领奖状态->关闭状态--->预览状态
+	 */
+	public IActivityStatus getNextStatus();
 
 }

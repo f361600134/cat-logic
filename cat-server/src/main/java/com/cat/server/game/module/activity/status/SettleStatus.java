@@ -8,9 +8,9 @@ public class SettleStatus extends AbstractStatus {
 	public SettleStatus(IActivityType activityDomain) {
 		super(activityDomain);
 	}
-
+	
 	@Override
-	public boolean handle(long now) {
+	public boolean checkNext(long now) {
 		if (!activityType.isBegin()) {
             return false;
         }
@@ -19,11 +19,13 @@ public class SettleStatus extends AbstractStatus {
         if (now < settleTime) {
             return false;
         }
-		//先设置状态,再通知,最后清空活动数据
-        activity.setStatus(getCode());
-        activity.save();
+        return true;
+	}
+
+	@Override
+	public void handle(long now) {
+		super.handle(now);
         activityType.onSettle(now);
-		return true;
 	}
 	
 	@Override

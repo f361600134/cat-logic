@@ -8,9 +8,9 @@ public class PrepareStatus extends AbstractStatus{
 	public PrepareStatus(IActivityType activityType) {
 		super(activityType);
 	}
-
+	
 	@Override
-	public boolean handle(long now) {
+	public boolean checkNext(long now) {
 		Activity activity = getActivity();
 		if (activity.getStatus() != CLOSE) {
             return false;
@@ -19,12 +19,13 @@ public class PrepareStatus extends AbstractStatus{
             // 活动已到开始时间 不再尝试进入准备阶段
             return false;
         }
-        //先设置状态为关闭,再通知,最后清空活动数据
-        activity.setStatus(getCode());
-        activity.save();
-        
-        activityType.onPrepare(now);
         return true;
+	}
+	
+	@Override
+	public void handle(long now) {
+		super.handle(now);
+        activityType.onPrepare(now);
 	}
 
 	@Override
