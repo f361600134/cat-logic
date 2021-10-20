@@ -3,10 +3,13 @@ package com.cat.server.game.module.rank.type;
 import java.util.Collection;
 
 import com.cat.net.network.base.IProtocol;
+import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.data.proto.PBRank.PBRankDto;
 import com.cat.server.game.module.rank.domain.Rank;
 import com.cat.server.game.module.rank.proto.PBRankDtoBuilder;
 import com.cat.server.game.module.rank.proto.RespRankInfoBuilder;
+import com.cat.server.game.module.shadow.IShadowService;
+import com.cat.server.game.module.shadow.domain.Shadow;
 
 /**
  * 抽象的排行榜类型
@@ -15,6 +18,10 @@ import com.cat.server.game.module.rank.proto.RespRankInfoBuilder;
 public abstract class AbstractRankType implements IRankType {
 	
 	/**
+	 * 接口类,实例化时注入
+	 */
+	protected IShadowService shadowService;
+	/**
 	 * 排行榜类型
 	 */
 	private final int rankType;
@@ -22,6 +29,7 @@ public abstract class AbstractRankType implements IRankType {
 	public AbstractRankType(int rankType) {
 		super();
 		this.rankType = rankType;
+		this.shadowService = SpringContextHolder.getBean(IShadowService.class);
 	}
 
 	public int getRankType() {
@@ -40,6 +48,9 @@ public abstract class AbstractRankType implements IRankType {
 		PBRankDto selfDto = null;
 		for (Rank rank : rankList) {
 			PBRankDto rankDto = buildRankDto(rank);
+			if (rankDto == null) 
+				continue;
+			
 			builder.addRankDtos(rankDto);
 			if (selfDto == null && rank.getUniqueId() == playerId) {
 				selfDto = rankDto;
@@ -55,11 +66,15 @@ public abstract class AbstractRankType implements IRankType {
 	
 	@Override
 	public PBRankDto buildRankDto(Rank rank) {
+		Shadow shadow = shadowService.get(rank.getUniqueId());
+		if (shadow == null) {
+			return null;
+		}
 		PBRankDtoBuilder dtoBuilder = PBRankDtoBuilder.newInstance();
 		dtoBuilder.setUniqueId(rank.getUniqueId());
 		dtoBuilder.setValue(rank.getFirstOrder());
 		//FIXME 这里从玩家影子对象里面获取到玩家信息, 丢给排行榜
-		dtoBuilder.setPlayerProfile(null);
+		dtoBuilder.setPlayerProfile(shadow.toProto());
 		return dtoBuilder.build();
 	}
 	

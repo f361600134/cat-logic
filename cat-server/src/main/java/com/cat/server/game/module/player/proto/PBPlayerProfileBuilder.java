@@ -1,8 +1,12 @@
 package com.cat.server.game.module.player.proto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cat.net.network.base.AbstractProtocol;
-import com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile;
-import com.google.protobuf.AbstractMessageLite.Builder;
+import com.cat.server.game.data.proto.PBDefine.*;
+//import com.cat.server.game.data.proto.*;
+import com.cat.server.game.data.proto.PBPlayer.*;
 
 /**
 * PBPlayerProfileBuilder
@@ -10,10 +14,11 @@ import com.google.protobuf.AbstractMessageLite.Builder;
 */
 public class PBPlayerProfileBuilder extends AbstractProtocol {
 
+	private static final Logger log = LoggerFactory.getLogger(PBPlayerProfileBuilder.class);
+	
 	private final PBPlayerProfile.Builder builder = PBPlayerProfile.newBuilder();
 	
-	public PBPlayerProfileBuilder() {
-	}
+	public PBPlayerProfileBuilder() {}
 	
 	public static PBPlayerProfileBuilder newInstance() {
 		return new PBPlayerProfileBuilder();
@@ -24,7 +29,7 @@ public class PBPlayerProfileBuilder extends AbstractProtocol {
 	}
 	
 	/** 角色id**/
-	public void setPlayerId(int value){
+	public void setPlayerId(long value){
 		this.builder.setPlayerId(value);
 	}
 	/** 角色昵称**/

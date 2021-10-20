@@ -2,7 +2,6 @@ package com.cat.server.game;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
-import java.util.Collection;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -20,12 +19,10 @@ import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
-import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
 import com.cat.server.game.module.activity.IActivityService;
-import com.cat.server.game.module.activity.domain.Activity;
-import com.cat.server.game.module.activity.type.ActivityTypeEnum;
-import com.cat.server.game.module.activity.type.IActivityType;
 import com.cat.server.game.module.player.rpc.ReqIdentityAuthenticateCallback;
+import com.cat.server.game.module.shadow.IShadowService;
+import com.cat.server.game.module.shadow.domain.Shadow;
 import com.rpc.common.RpcConfig;
 import com.rpc.core.client.RequesterManager;
 import com.zaxxer.hikari.HikariDataSource;
@@ -49,6 +46,8 @@ public class InitialRunner implements ILifecycle{
 	
 	@Autowired 
 	private ConfigManager configManager;
+	
+	@Autowired private IShadowService shadowService;
 	
 //	@Autowired
 //	private com.coral.api.service.ITestService testService;
@@ -106,11 +105,10 @@ public class InitialRunner implements ILifecycle{
 ////			testInsertBatch();
 ////			testSelect();
 ////			System.out.println(userDao.getById(5));
-			ConfigActivityScheduleTime config = configManager.getConfig(ConfigActivityScheduleTime.class, 150101);
+//			ConfigActivityScheduleTime config = configManager.getConfig(ConfigActivityScheduleTime.class, 150101);
 //			System.out.println("======11=======>"+config.getTime().getUniqueTime()+", "+config.getStartTime());
-			
-			Collection<Activity> activitys = activityService.getAllActivitys();
-			System.out.println(activitys.size());
+//			Collection<Activity> activitys = activityService.getAllActivitys();
+//			System.out.println(activitys.size());
 //			IActivityType activityType = activityService.getActivityType(ActivityTypeEnum.LEARN_COMMUNITY.getValue());
 //			System.out.println(activityType);
 			this.consoleListener();
@@ -311,7 +309,7 @@ public class InitialRunner implements ILifecycle{
             try (Scanner sc = new Scanner(System.in)) {
             	while (true) {
             		 String cmd = sc.next();
-                     if(cmd.equals("close")) {
+                     if(cmd.equals("exit")) {
                      	break;
                      }else if(cmd.equals("rpc")) {
                     	 try {
@@ -327,6 +325,18 @@ public class InitialRunner implements ILifecycle{
      					} catch (Exception e) {
      						e.printStackTrace();
      					}
+                     }
+                     else if(cmd.equals("shadow")) {
+                    	 try {
+                    		 Shadow shadow = shadowService.get(1);
+                        	 System.out.println("获取shadow:"+shadow);
+                        	 if (shadow == null) {
+                        		 shadow = shadowService.getOrCreate(1);
+    						}
+                        	 System.out.println("再次获取shadow:"+shadow);
+						} catch (Exception e2) {
+							e2.printStackTrace();
+						}
                      }
                      try {
 						Thread.sleep(100L);

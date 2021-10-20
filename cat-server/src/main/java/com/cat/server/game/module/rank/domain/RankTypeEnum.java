@@ -4,10 +4,12 @@ import java.util.Comparator;
 
 import com.cat.server.game.module.rank.assist.RankAscComparator;
 import com.cat.server.game.module.rank.type.IRankType;
-import com.cat.server.game.module.rank.type.impl.DefaultRankType;
+import com.cat.server.game.module.rank.type.impl.PowerRankType;
 
 public enum RankTypeEnum {
-	DEFAULT(1),
+	
+	/**战力排行*/
+	POWER(1),
 	;
 	
 	//排行榜配置id
@@ -34,7 +36,7 @@ public enum RankTypeEnum {
 	 * @return
 	 */
 	public IRankType newRankType() {
-		return new DefaultRankType(getConfigId());
+		return new PowerRankType(getConfigId());
 	}
 	
 	public static RankTypeEnum getRankType(int configId) {

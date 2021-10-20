@@ -9508,6 +9508,1153 @@ public final class PBPlayer {
 
   }
 
+  public interface PBPlayerProfileOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.PBPlayerProfile)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *角色id
+     * </pre>
+     *
+     * <code>int64 playerId = 1;</code>
+     * @return The playerId.
+     */
+    long getPlayerId();
+
+    /**
+     * <pre>
+     *角色昵称
+     * </pre>
+     *
+     * <code>string nickName = 2;</code>
+     * @return The nickName.
+     */
+    java.lang.String getNickName();
+    /**
+     * <pre>
+     *角色昵称
+     * </pre>
+     *
+     * <code>string nickName = 2;</code>
+     * @return The bytes for nickName.
+     */
+    com.google.protobuf.ByteString
+        getNickNameBytes();
+
+    /**
+     * <pre>
+     *等级
+     * </pre>
+     *
+     * <code>int32 level = 3;</code>
+     * @return The level.
+     */
+    int getLevel();
+
+    /**
+     * <pre>
+     *战力
+     * </pre>
+     *
+     * <code>int32 power = 4;</code>
+     * @return The power.
+     */
+    int getPower();
+
+    /**
+     * <pre>
+     *家族名称
+     * </pre>
+     *
+     * <code>string familyName = 5;</code>
+     * @return The familyName.
+     */
+    java.lang.String getFamilyName();
+    /**
+     * <pre>
+     *家族名称
+     * </pre>
+     *
+     * <code>string familyName = 5;</code>
+     * @return The bytes for familyName.
+     */
+    com.google.protobuf.ByteString
+        getFamilyNameBytes();
+
+    /**
+     * <pre>
+     *vip等级
+     * </pre>
+     *
+     * <code>int32 vip = 6;</code>
+     * @return The vip.
+     */
+    int getVip();
+  }
+  /**
+   * <pre>
+   * 
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.PBPlayerProfile}
+   */
+  public  static final class PBPlayerProfile extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.PBPlayerProfile)
+      PBPlayerProfileOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PBPlayerProfile.newBuilder() to construct.
+    private PBPlayerProfile(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PBPlayerProfile() {
+      nickName_ = "";
+      familyName_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PBPlayerProfile();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PBPlayerProfile(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              playerId_ = input.readInt64();
+              break;
+            }
+            case 18: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              nickName_ = s;
+              break;
+            }
+            case 24: {
+
+              level_ = input.readInt32();
+              break;
+            }
+            case 32: {
+
+              power_ = input.readInt32();
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              familyName_ = s;
+              break;
+            }
+            case 48: {
+
+              vip_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBPlayer.internal_static_Protocol_PBPlayerProfile_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBPlayer.internal_static_Protocol_PBPlayerProfile_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.class, com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.Builder.class);
+    }
+
+    public static final int PLAYERID_FIELD_NUMBER = 1;
+    private long playerId_;
+    /**
+     * <pre>
+     *角色id
+     * </pre>
+     *
+     * <code>int64 playerId = 1;</code>
+     * @return The playerId.
+     */
+    public long getPlayerId() {
+      return playerId_;
+    }
+
+    public static final int NICKNAME_FIELD_NUMBER = 2;
+    private volatile java.lang.Object nickName_;
+    /**
+     * <pre>
+     *角色昵称
+     * </pre>
+     *
+     * <code>string nickName = 2;</code>
+     * @return The nickName.
+     */
+    public java.lang.String getNickName() {
+      java.lang.Object ref = nickName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        nickName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *角色昵称
+     * </pre>
+     *
+     * <code>string nickName = 2;</code>
+     * @return The bytes for nickName.
+     */
+    public com.google.protobuf.ByteString
+        getNickNameBytes() {
+      java.lang.Object ref = nickName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        nickName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int LEVEL_FIELD_NUMBER = 3;
+    private int level_;
+    /**
+     * <pre>
+     *等级
+     * </pre>
+     *
+     * <code>int32 level = 3;</code>
+     * @return The level.
+     */
+    public int getLevel() {
+      return level_;
+    }
+
+    public static final int POWER_FIELD_NUMBER = 4;
+    private int power_;
+    /**
+     * <pre>
+     *战力
+     * </pre>
+     *
+     * <code>int32 power = 4;</code>
+     * @return The power.
+     */
+    public int getPower() {
+      return power_;
+    }
+
+    public static final int FAMILYNAME_FIELD_NUMBER = 5;
+    private volatile java.lang.Object familyName_;
+    /**
+     * <pre>
+     *家族名称
+     * </pre>
+     *
+     * <code>string familyName = 5;</code>
+     * @return The familyName.
+     */
+    public java.lang.String getFamilyName() {
+      java.lang.Object ref = familyName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        familyName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *家族名称
+     * </pre>
+     *
+     * <code>string familyName = 5;</code>
+     * @return The bytes for familyName.
+     */
+    public com.google.protobuf.ByteString
+        getFamilyNameBytes() {
+      java.lang.Object ref = familyName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        familyName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int VIP_FIELD_NUMBER = 6;
+    private int vip_;
+    /**
+     * <pre>
+     *vip等级
+     * </pre>
+     *
+     * <code>int32 vip = 6;</code>
+     * @return The vip.
+     */
+    public int getVip() {
+      return vip_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (playerId_ != 0L) {
+        output.writeInt64(1, playerId_);
+      }
+      if (!getNickNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, nickName_);
+      }
+      if (level_ != 0) {
+        output.writeInt32(3, level_);
+      }
+      if (power_ != 0) {
+        output.writeInt32(4, power_);
+      }
+      if (!getFamilyNameBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, familyName_);
+      }
+      if (vip_ != 0) {
+        output.writeInt32(6, vip_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (playerId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, playerId_);
+      }
+      if (!getNickNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, nickName_);
+      }
+      if (level_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, level_);
+      }
+      if (power_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, power_);
+      }
+      if (!getFamilyNameBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, familyName_);
+      }
+      if (vip_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, vip_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile other = (com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile) obj;
+
+      if (getPlayerId()
+          != other.getPlayerId()) return false;
+      if (!getNickName()
+          .equals(other.getNickName())) return false;
+      if (getLevel()
+          != other.getLevel()) return false;
+      if (getPower()
+          != other.getPower()) return false;
+      if (!getFamilyName()
+          .equals(other.getFamilyName())) return false;
+      if (getVip()
+          != other.getVip()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + PLAYERID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getPlayerId());
+      hash = (37 * hash) + NICKNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getNickName().hashCode();
+      hash = (37 * hash) + LEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getLevel();
+      hash = (37 * hash) + POWER_FIELD_NUMBER;
+      hash = (53 * hash) + getPower();
+      hash = (37 * hash) + FAMILYNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getFamilyName().hashCode();
+      hash = (37 * hash) + VIP_FIELD_NUMBER;
+      hash = (53 * hash) + getVip();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.PBPlayerProfile}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.PBPlayerProfile)
+        com.cat.server.game.data.proto.PBPlayer.PBPlayerProfileOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBPlayer.internal_static_Protocol_PBPlayerProfile_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBPlayer.internal_static_Protocol_PBPlayerProfile_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.class, com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        playerId_ = 0L;
+
+        nickName_ = "";
+
+        level_ = 0;
+
+        power_ = 0;
+
+        familyName_ = "";
+
+        vip_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBPlayer.internal_static_Protocol_PBPlayerProfile_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile build() {
+        com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile buildPartial() {
+        com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile result = new com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile(this);
+        result.playerId_ = playerId_;
+        result.nickName_ = nickName_;
+        result.level_ = level_;
+        result.power_ = power_;
+        result.familyName_ = familyName_;
+        result.vip_ = vip_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile other) {
+        if (other == com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.getDefaultInstance()) return this;
+        if (other.getPlayerId() != 0L) {
+          setPlayerId(other.getPlayerId());
+        }
+        if (!other.getNickName().isEmpty()) {
+          nickName_ = other.nickName_;
+          onChanged();
+        }
+        if (other.getLevel() != 0) {
+          setLevel(other.getLevel());
+        }
+        if (other.getPower() != 0) {
+          setPower(other.getPower());
+        }
+        if (!other.getFamilyName().isEmpty()) {
+          familyName_ = other.familyName_;
+          onChanged();
+        }
+        if (other.getVip() != 0) {
+          setVip(other.getVip());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long playerId_ ;
+      /**
+       * <pre>
+       *角色id
+       * </pre>
+       *
+       * <code>int64 playerId = 1;</code>
+       * @return The playerId.
+       */
+      public long getPlayerId() {
+        return playerId_;
+      }
+      /**
+       * <pre>
+       *角色id
+       * </pre>
+       *
+       * <code>int64 playerId = 1;</code>
+       * @param value The playerId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPlayerId(long value) {
+        
+        playerId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *角色id
+       * </pre>
+       *
+       * <code>int64 playerId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPlayerId() {
+        
+        playerId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object nickName_ = "";
+      /**
+       * <pre>
+       *角色昵称
+       * </pre>
+       *
+       * <code>string nickName = 2;</code>
+       * @return The nickName.
+       */
+      public java.lang.String getNickName() {
+        java.lang.Object ref = nickName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          nickName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *角色昵称
+       * </pre>
+       *
+       * <code>string nickName = 2;</code>
+       * @return The bytes for nickName.
+       */
+      public com.google.protobuf.ByteString
+          getNickNameBytes() {
+        java.lang.Object ref = nickName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          nickName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *角色昵称
+       * </pre>
+       *
+       * <code>string nickName = 2;</code>
+       * @param value The nickName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNickName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        nickName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *角色昵称
+       * </pre>
+       *
+       * <code>string nickName = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearNickName() {
+        
+        nickName_ = getDefaultInstance().getNickName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *角色昵称
+       * </pre>
+       *
+       * <code>string nickName = 2;</code>
+       * @param value The bytes for nickName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNickNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        nickName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int level_ ;
+      /**
+       * <pre>
+       *等级
+       * </pre>
+       *
+       * <code>int32 level = 3;</code>
+       * @return The level.
+       */
+      public int getLevel() {
+        return level_;
+      }
+      /**
+       * <pre>
+       *等级
+       * </pre>
+       *
+       * <code>int32 level = 3;</code>
+       * @param value The level to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLevel(int value) {
+        
+        level_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *等级
+       * </pre>
+       *
+       * <code>int32 level = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLevel() {
+        
+        level_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int power_ ;
+      /**
+       * <pre>
+       *战力
+       * </pre>
+       *
+       * <code>int32 power = 4;</code>
+       * @return The power.
+       */
+      public int getPower() {
+        return power_;
+      }
+      /**
+       * <pre>
+       *战力
+       * </pre>
+       *
+       * <code>int32 power = 4;</code>
+       * @param value The power to set.
+       * @return This builder for chaining.
+       */
+      public Builder setPower(int value) {
+        
+        power_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *战力
+       * </pre>
+       *
+       * <code>int32 power = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearPower() {
+        
+        power_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object familyName_ = "";
+      /**
+       * <pre>
+       *家族名称
+       * </pre>
+       *
+       * <code>string familyName = 5;</code>
+       * @return The familyName.
+       */
+      public java.lang.String getFamilyName() {
+        java.lang.Object ref = familyName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          familyName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *家族名称
+       * </pre>
+       *
+       * <code>string familyName = 5;</code>
+       * @return The bytes for familyName.
+       */
+      public com.google.protobuf.ByteString
+          getFamilyNameBytes() {
+        java.lang.Object ref = familyName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          familyName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *家族名称
+       * </pre>
+       *
+       * <code>string familyName = 5;</code>
+       * @param value The familyName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFamilyName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        familyName_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *家族名称
+       * </pre>
+       *
+       * <code>string familyName = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFamilyName() {
+        
+        familyName_ = getDefaultInstance().getFamilyName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *家族名称
+       * </pre>
+       *
+       * <code>string familyName = 5;</code>
+       * @param value The bytes for familyName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFamilyNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        familyName_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int vip_ ;
+      /**
+       * <pre>
+       *vip等级
+       * </pre>
+       *
+       * <code>int32 vip = 6;</code>
+       * @return The vip.
+       */
+      public int getVip() {
+        return vip_;
+      }
+      /**
+       * <pre>
+       *vip等级
+       * </pre>
+       *
+       * <code>int32 vip = 6;</code>
+       * @param value The vip to set.
+       * @return This builder for chaining.
+       */
+      public Builder setVip(int value) {
+        
+        vip_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *vip等级
+       * </pre>
+       *
+       * <code>int32 vip = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearVip() {
+        
+        vip_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.PBPlayerProfile)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.PBPlayerProfile)
+    private static final com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile();
+    }
+
+    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PBPlayerProfile>
+        PARSER = new com.google.protobuf.AbstractParser<PBPlayerProfile>() {
+      @java.lang.Override
+      public PBPlayerProfile parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PBPlayerProfile(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<PBPlayerProfile> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PBPlayerProfile> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface RespUpdatePlayerInfoOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Protocol.RespUpdatePlayerInfo)
       com.google.protobuf.MessageOrBuilder {
@@ -10189,1152 +11336,6 @@ public final class PBPlayer {
 
     @java.lang.Override
     public com.cat.server.game.data.proto.PBPlayer.RespUpdatePlayerInfo getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface PBPlayerProfileOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.PBPlayerProfile)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     *角色id
-     * </pre>
-     *
-     * <code>int32 playerId = 1;</code>
-     * @return The playerId.
-     */
-    int getPlayerId();
-
-    /**
-     * <pre>
-     *角色昵称
-     * </pre>
-     *
-     * <code>string nickName = 2;</code>
-     * @return The nickName.
-     */
-    java.lang.String getNickName();
-    /**
-     * <pre>
-     *角色昵称
-     * </pre>
-     *
-     * <code>string nickName = 2;</code>
-     * @return The bytes for nickName.
-     */
-    com.google.protobuf.ByteString
-        getNickNameBytes();
-
-    /**
-     * <pre>
-     *等级
-     * </pre>
-     *
-     * <code>int32 level = 3;</code>
-     * @return The level.
-     */
-    int getLevel();
-
-    /**
-     * <pre>
-     *战力
-     * </pre>
-     *
-     * <code>int32 power = 4;</code>
-     * @return The power.
-     */
-    int getPower();
-
-    /**
-     * <pre>
-     *家族名称
-     * </pre>
-     *
-     * <code>string familyName = 5;</code>
-     * @return The familyName.
-     */
-    java.lang.String getFamilyName();
-    /**
-     * <pre>
-     *家族名称
-     * </pre>
-     *
-     * <code>string familyName = 5;</code>
-     * @return The bytes for familyName.
-     */
-    com.google.protobuf.ByteString
-        getFamilyNameBytes();
-
-    /**
-     * <pre>
-     *vip等级
-     * </pre>
-     *
-     * <code>int32 vip = 6;</code>
-     * @return The vip.
-     */
-    int getVip();
-  }
-  /**
-   * <pre>
-   * 
-   * </pre>
-   *
-   * Protobuf type {@code Protocol.PBPlayerProfile}
-   */
-  public  static final class PBPlayerProfile extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.PBPlayerProfile)
-      PBPlayerProfileOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use PBPlayerProfile.newBuilder() to construct.
-    private PBPlayerProfile(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private PBPlayerProfile() {
-      nickName_ = "";
-      familyName_ = "";
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new PBPlayerProfile();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private PBPlayerProfile(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              playerId_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              nickName_ = s;
-              break;
-            }
-            case 24: {
-
-              level_ = input.readInt32();
-              break;
-            }
-            case 32: {
-
-              power_ = input.readInt32();
-              break;
-            }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              familyName_ = s;
-              break;
-            }
-            case 48: {
-
-              vip_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.cat.server.game.data.proto.PBPlayer.internal_static_Protocol_PBPlayerProfile_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPlayer.internal_static_Protocol_PBPlayerProfile_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.class, com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.Builder.class);
-    }
-
-    public static final int PLAYERID_FIELD_NUMBER = 1;
-    private int playerId_;
-    /**
-     * <pre>
-     *角色id
-     * </pre>
-     *
-     * <code>int32 playerId = 1;</code>
-     * @return The playerId.
-     */
-    public int getPlayerId() {
-      return playerId_;
-    }
-
-    public static final int NICKNAME_FIELD_NUMBER = 2;
-    private volatile java.lang.Object nickName_;
-    /**
-     * <pre>
-     *角色昵称
-     * </pre>
-     *
-     * <code>string nickName = 2;</code>
-     * @return The nickName.
-     */
-    public java.lang.String getNickName() {
-      java.lang.Object ref = nickName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        nickName_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     *角色昵称
-     * </pre>
-     *
-     * <code>string nickName = 2;</code>
-     * @return The bytes for nickName.
-     */
-    public com.google.protobuf.ByteString
-        getNickNameBytes() {
-      java.lang.Object ref = nickName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        nickName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int LEVEL_FIELD_NUMBER = 3;
-    private int level_;
-    /**
-     * <pre>
-     *等级
-     * </pre>
-     *
-     * <code>int32 level = 3;</code>
-     * @return The level.
-     */
-    public int getLevel() {
-      return level_;
-    }
-
-    public static final int POWER_FIELD_NUMBER = 4;
-    private int power_;
-    /**
-     * <pre>
-     *战力
-     * </pre>
-     *
-     * <code>int32 power = 4;</code>
-     * @return The power.
-     */
-    public int getPower() {
-      return power_;
-    }
-
-    public static final int FAMILYNAME_FIELD_NUMBER = 5;
-    private volatile java.lang.Object familyName_;
-    /**
-     * <pre>
-     *家族名称
-     * </pre>
-     *
-     * <code>string familyName = 5;</code>
-     * @return The familyName.
-     */
-    public java.lang.String getFamilyName() {
-      java.lang.Object ref = familyName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        familyName_ = s;
-        return s;
-      }
-    }
-    /**
-     * <pre>
-     *家族名称
-     * </pre>
-     *
-     * <code>string familyName = 5;</code>
-     * @return The bytes for familyName.
-     */
-    public com.google.protobuf.ByteString
-        getFamilyNameBytes() {
-      java.lang.Object ref = familyName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        familyName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int VIP_FIELD_NUMBER = 6;
-    private int vip_;
-    /**
-     * <pre>
-     *vip等级
-     * </pre>
-     *
-     * <code>int32 vip = 6;</code>
-     * @return The vip.
-     */
-    public int getVip() {
-      return vip_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (playerId_ != 0) {
-        output.writeInt32(1, playerId_);
-      }
-      if (!getNickNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, nickName_);
-      }
-      if (level_ != 0) {
-        output.writeInt32(3, level_);
-      }
-      if (power_ != 0) {
-        output.writeInt32(4, power_);
-      }
-      if (!getFamilyNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, familyName_);
-      }
-      if (vip_ != 0) {
-        output.writeInt32(6, vip_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (playerId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, playerId_);
-      }
-      if (!getNickNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, nickName_);
-      }
-      if (level_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, level_);
-      }
-      if (power_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, power_);
-      }
-      if (!getFamilyNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, familyName_);
-      }
-      if (vip_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, vip_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile)) {
-        return super.equals(obj);
-      }
-      com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile other = (com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile) obj;
-
-      if (getPlayerId()
-          != other.getPlayerId()) return false;
-      if (!getNickName()
-          .equals(other.getNickName())) return false;
-      if (getLevel()
-          != other.getLevel()) return false;
-      if (getPower()
-          != other.getPower()) return false;
-      if (!getFamilyName()
-          .equals(other.getFamilyName())) return false;
-      if (getVip()
-          != other.getVip()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + PLAYERID_FIELD_NUMBER;
-      hash = (53 * hash) + getPlayerId();
-      hash = (37 * hash) + NICKNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getNickName().hashCode();
-      hash = (37 * hash) + LEVEL_FIELD_NUMBER;
-      hash = (53 * hash) + getLevel();
-      hash = (37 * hash) + POWER_FIELD_NUMBER;
-      hash = (53 * hash) + getPower();
-      hash = (37 * hash) + FAMILYNAME_FIELD_NUMBER;
-      hash = (53 * hash) + getFamilyName().hashCode();
-      hash = (37 * hash) + VIP_FIELD_NUMBER;
-      hash = (53 * hash) + getVip();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 
-     * </pre>
-     *
-     * Protobuf type {@code Protocol.PBPlayerProfile}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.PBPlayerProfile)
-        com.cat.server.game.data.proto.PBPlayer.PBPlayerProfileOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.cat.server.game.data.proto.PBPlayer.internal_static_Protocol_PBPlayerProfile_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPlayer.internal_static_Protocol_PBPlayerProfile_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.class, com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.Builder.class);
-      }
-
-      // Construct using com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        playerId_ = 0;
-
-        nickName_ = "";
-
-        level_ = 0;
-
-        power_ = 0;
-
-        familyName_ = "";
-
-        vip_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPlayer.internal_static_Protocol_PBPlayerProfile_descriptor;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile build() {
-        com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile buildPartial() {
-        com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile result = new com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile(this);
-        result.playerId_ = playerId_;
-        result.nickName_ = nickName_;
-        result.level_ = level_;
-        result.power_ = power_;
-        result.familyName_ = familyName_;
-        result.vip_ = vip_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile other) {
-        if (other == com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile.getDefaultInstance()) return this;
-        if (other.getPlayerId() != 0) {
-          setPlayerId(other.getPlayerId());
-        }
-        if (!other.getNickName().isEmpty()) {
-          nickName_ = other.nickName_;
-          onChanged();
-        }
-        if (other.getLevel() != 0) {
-          setLevel(other.getLevel());
-        }
-        if (other.getPower() != 0) {
-          setPower(other.getPower());
-        }
-        if (!other.getFamilyName().isEmpty()) {
-          familyName_ = other.familyName_;
-          onChanged();
-        }
-        if (other.getVip() != 0) {
-          setVip(other.getVip());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int playerId_ ;
-      /**
-       * <pre>
-       *角色id
-       * </pre>
-       *
-       * <code>int32 playerId = 1;</code>
-       * @return The playerId.
-       */
-      public int getPlayerId() {
-        return playerId_;
-      }
-      /**
-       * <pre>
-       *角色id
-       * </pre>
-       *
-       * <code>int32 playerId = 1;</code>
-       * @param value The playerId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPlayerId(int value) {
-        
-        playerId_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *角色id
-       * </pre>
-       *
-       * <code>int32 playerId = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPlayerId() {
-        
-        playerId_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object nickName_ = "";
-      /**
-       * <pre>
-       *角色昵称
-       * </pre>
-       *
-       * <code>string nickName = 2;</code>
-       * @return The nickName.
-       */
-      public java.lang.String getNickName() {
-        java.lang.Object ref = nickName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          nickName_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       *角色昵称
-       * </pre>
-       *
-       * <code>string nickName = 2;</code>
-       * @return The bytes for nickName.
-       */
-      public com.google.protobuf.ByteString
-          getNickNameBytes() {
-        java.lang.Object ref = nickName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          nickName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       *角色昵称
-       * </pre>
-       *
-       * <code>string nickName = 2;</code>
-       * @param value The nickName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNickName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        nickName_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *角色昵称
-       * </pre>
-       *
-       * <code>string nickName = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearNickName() {
-        
-        nickName_ = getDefaultInstance().getNickName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *角色昵称
-       * </pre>
-       *
-       * <code>string nickName = 2;</code>
-       * @param value The bytes for nickName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setNickNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        nickName_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int level_ ;
-      /**
-       * <pre>
-       *等级
-       * </pre>
-       *
-       * <code>int32 level = 3;</code>
-       * @return The level.
-       */
-      public int getLevel() {
-        return level_;
-      }
-      /**
-       * <pre>
-       *等级
-       * </pre>
-       *
-       * <code>int32 level = 3;</code>
-       * @param value The level to set.
-       * @return This builder for chaining.
-       */
-      public Builder setLevel(int value) {
-        
-        level_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *等级
-       * </pre>
-       *
-       * <code>int32 level = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearLevel() {
-        
-        level_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int power_ ;
-      /**
-       * <pre>
-       *战力
-       * </pre>
-       *
-       * <code>int32 power = 4;</code>
-       * @return The power.
-       */
-      public int getPower() {
-        return power_;
-      }
-      /**
-       * <pre>
-       *战力
-       * </pre>
-       *
-       * <code>int32 power = 4;</code>
-       * @param value The power to set.
-       * @return This builder for chaining.
-       */
-      public Builder setPower(int value) {
-        
-        power_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *战力
-       * </pre>
-       *
-       * <code>int32 power = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearPower() {
-        
-        power_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object familyName_ = "";
-      /**
-       * <pre>
-       *家族名称
-       * </pre>
-       *
-       * <code>string familyName = 5;</code>
-       * @return The familyName.
-       */
-      public java.lang.String getFamilyName() {
-        java.lang.Object ref = familyName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          familyName_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <pre>
-       *家族名称
-       * </pre>
-       *
-       * <code>string familyName = 5;</code>
-       * @return The bytes for familyName.
-       */
-      public com.google.protobuf.ByteString
-          getFamilyNameBytes() {
-        java.lang.Object ref = familyName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          familyName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <pre>
-       *家族名称
-       * </pre>
-       *
-       * <code>string familyName = 5;</code>
-       * @param value The familyName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFamilyName(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        familyName_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *家族名称
-       * </pre>
-       *
-       * <code>string familyName = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearFamilyName() {
-        
-        familyName_ = getDefaultInstance().getFamilyName();
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *家族名称
-       * </pre>
-       *
-       * <code>string familyName = 5;</code>
-       * @param value The bytes for familyName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFamilyNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        familyName_ = value;
-        onChanged();
-        return this;
-      }
-
-      private int vip_ ;
-      /**
-       * <pre>
-       *vip等级
-       * </pre>
-       *
-       * <code>int32 vip = 6;</code>
-       * @return The vip.
-       */
-      public int getVip() {
-        return vip_;
-      }
-      /**
-       * <pre>
-       *vip等级
-       * </pre>
-       *
-       * <code>int32 vip = 6;</code>
-       * @param value The vip to set.
-       * @return This builder for chaining.
-       */
-      public Builder setVip(int value) {
-        
-        vip_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *vip等级
-       * </pre>
-       *
-       * <code>int32 vip = 6;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearVip() {
-        
-        vip_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Protocol.PBPlayerProfile)
-    }
-
-    // @@protoc_insertion_point(class_scope:Protocol.PBPlayerProfile)
-    private static final com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile();
-    }
-
-    public static com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<PBPlayerProfile>
-        PARSER = new com.google.protobuf.AbstractParser<PBPlayerProfile>() {
-      @java.lang.Override
-      public PBPlayerProfile parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PBPlayerProfile(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<PBPlayerProfile> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<PBPlayerProfile> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -13341,15 +13342,15 @@ public final class PBPlayer {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_ReqPlayerRandName_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_RespUpdatePlayerInfo_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_RespUpdatePlayerInfo_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_PBPlayerProfile_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_PBPlayerProfile_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_RespUpdatePlayerInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_RespUpdatePlayerInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_ReqPlayerLogin_descriptor;
   private static final 
@@ -13390,12 +13391,12 @@ public final class PBPlayer {
       ".Protocol.PBPairInfo\"9\n\021RespPlayerReLogi" +
       "n\022\014\n\004code\030\001 \001(\005\022\026\n\016recvSequenceNo\030\002 \001(\005\"" +
       "/\n\017RespPlayerLogin\022\014\n\004code\030\001 \001(\005\022\016\n\006stat" +
-      "us\030\002 \001(\005\"\023\n\021ReqPlayerRandName\"@\n\024RespUpd" +
-      "atePlayerInfo\022(\n\010playinfo\030\001 \001(\0132\026.Protoc" +
-      "ol.PBPlayerInfo\"t\n\017PBPlayerProfile\022\020\n\010pl" +
-      "ayerId\030\001 \001(\005\022\020\n\010nickName\030\002 \001(\t\022\r\n\005level\030" +
-      "\003 \001(\005\022\r\n\005power\030\004 \001(\005\022\022\n\nfamilyName\030\005 \001(\t" +
-      "\022\013\n\003vip\030\006 \001(\005\"\217\001\n\016ReqPlayerLogin\022\023\n\013acco" +
+      "us\030\002 \001(\005\"\023\n\021ReqPlayerRandName\"t\n\017PBPlaye" +
+      "rProfile\022\020\n\010playerId\030\001 \001(\003\022\020\n\010nickName\030\002" +
+      " \001(\t\022\r\n\005level\030\003 \001(\005\022\r\n\005power\030\004 \001(\005\022\022\n\nfa" +
+      "milyName\030\005 \001(\t\022\013\n\003vip\030\006 \001(\005\"@\n\024RespUpdat" +
+      "ePlayerInfo\022(\n\010playinfo\030\001 \001(\0132\026.Protocol" +
+      ".PBPlayerInfo\"\217\001\n\016ReqPlayerLogin\022\023\n\013acco" +
       "untName\030\001 \001(\t\022\017\n\007channel\030\002 \001(\005\022\022\n\nsessio" +
       "nKey\030\003 \001(\t\022\020\n\010serverId\030\004 \001(\005\022\017\n\007version\030" +
       "\005 \001(\t\022\020\n\010loginSid\030\006 \001(\005\022\016\n\006device\030\007 \001(\t\"" +
@@ -13480,18 +13481,18 @@ public final class PBPlayer {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqPlayerRandName_descriptor,
         new java.lang.String[] { });
-    internal_static_Protocol_RespUpdatePlayerInfo_descriptor =
-      getDescriptor().getMessageTypes().get(12);
-    internal_static_Protocol_RespUpdatePlayerInfo_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_RespUpdatePlayerInfo_descriptor,
-        new java.lang.String[] { "Playinfo", });
     internal_static_Protocol_PBPlayerProfile_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_Protocol_PBPlayerProfile_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_PBPlayerProfile_descriptor,
         new java.lang.String[] { "PlayerId", "NickName", "Level", "Power", "FamilyName", "Vip", });
+    internal_static_Protocol_RespUpdatePlayerInfo_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_Protocol_RespUpdatePlayerInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_RespUpdatePlayerInfo_descriptor,
+        new java.lang.String[] { "Playinfo", });
     internal_static_Protocol_ReqPlayerLogin_descriptor =
       getDescriptor().getMessageTypes().get(14);
     internal_static_Protocol_ReqPlayerLogin_fieldAccessorTable = new

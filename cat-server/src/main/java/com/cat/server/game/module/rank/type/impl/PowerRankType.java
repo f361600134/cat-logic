@@ -3,19 +3,20 @@ package com.cat.server.game.module.rank.type.impl;
 import com.cat.server.game.data.proto.PBRank.PBRankDto;
 import com.cat.server.game.module.rank.proto.PBRankDtoBuilder;
 import com.cat.server.game.module.rank.type.AbstractRankType;
+import com.cat.server.game.module.shadow.domain.Shadow;
 
 /**
- * 默认排行类型
+ * 战力排行类型
  * @author Jeremy
  */
-public class DefaultRankType extends AbstractRankType{
+public class PowerRankType extends AbstractRankType{
 
 //	@Override
 //	public int rankType() {
-//		return RankTypeEnum.DEFAULT.getConfigId();
+//		return RankTypeEnum.POWER.getConfigId();
 //	}
 
-	public DefaultRankType(int rankType) {
+	public PowerRankType(int rankType) {
 		super(rankType);
 	}
 
@@ -24,13 +25,16 @@ public class DefaultRankType extends AbstractRankType{
 	 */
 	@Override
 	public PBRankDto buildRankDto(long playerId) {
+		Shadow shadow = shadowService.get(playerId);
+		if (shadow == null) {
+			return null;
+		}
 		PBRankDtoBuilder dtoBuilder = PBRankDtoBuilder.newInstance();
 		dtoBuilder.setUniqueId(playerId);
-		//FIXME
 		//获取到影子对象
-		dtoBuilder.setValue(0L);
+		dtoBuilder.setValue(shadow.getOther().getPower());
 		//构建排行榜玩家数据
-		dtoBuilder.setPlayerProfile(null);
+		dtoBuilder.setPlayerProfile(shadow.toProto());
 		return dtoBuilder.build();
 	}
 

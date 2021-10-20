@@ -20,7 +20,7 @@ public interface ILifecycle {
 	}
 	
 	default int priority() {
-		return Priority.LOWEST.getPriority();
+		return Priority.LOGIC_INITIALIZATION.getPriority();
 	}
 
 }
