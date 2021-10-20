@@ -4,25 +4,27 @@ freemaker规定, List,Map不能直接输出, 只能通过for循环取出数据�
 
 #实体信息
 entity entity信息,可以直接渲染输出
-entity.tablName, String, 数据表名
-entity.entityName ,String, 对象名
+entity.tablName, String, 数据表名,eg:${entity.tablName}
+entity.entityName ,String, 对象名,eg:${entity.entityName}
 entity.primaryKeys, List<String>, 实体字段主键列表, 循环取出
-entity.entityBeans, List<TableBean>, 实体拥有的成员变量列表, 可指定下标查看指定字段信息, eg:${entity.entityBeans[0]}
+entity.properties, List<TableBean>, 实体拥有的成员变量列表, 可指定下标查看指定字段信息, eg:${entity.properties[0]}
 
+#实体内的TableBean成员变量
 TableBean
-bean.field, String, 成员变量字段名
-bean.type, String, 成员变量类型
-bean.desc, String, 字段注释
-bean.primary, String, 是否主键
-bean.tbField, String, 表字段名字
+bean.field, String, 成员变量字段名,eg:${entity.properties[0].field}
+bean.type, String, 成员变量类型,eg:${entity.properties[0].type}
+bean.desc, String, 字段注释,eg:${entity.properties[0].desc}
+bean.primary, String, 是否主键,eg:${entity.properties[0].primary}
+bean.tbField, String, 表字段名字,eg:${entity.properties[0].tbField}
+
 
 #模块信息
 module module信息, 可以直接渲染输出
-module.id, String, 模块Id
-module.name, String, 模块名
-module.comment, String, 模块注释
-module.one2one, String, true|false 是否一对一
-module.extendInfo, List<Integer>, 附加信息, 1:任务,2:资源, 3:个人模块(通常伴有事件机制,消息返回)
+module.id, String, 模块Id,eg:${module.id}
+module.name, String, 模块名,eg:${module.name}
+module.comment, String, 模块注释,eg:${module.comment}
+module.one2one, String, true|false 是否一对一, eg:${module.one2one}
+module.extendInfo, List<Integer>, 附加信息, 1:任务,2:资源, 3:个人模块(通常伴有事件机制,消息返回),eg:${module.extendInfo[0]}
 
 #协议信息
 protocolObj 此模块锁拥有的所有协议对象信息, 可以直接渲染输出, 包含了协议对象, 请求协议, 响应协议
@@ -44,7 +46,7 @@ comment, String, 协议注释
 fields, List<ProtocolField>, 协议字段列表
 
 ProtocolField, 字段结构
-identifier, String, 标识符，repeated
+identifier, String, 标识符, repeated
 type, String, proto 数据类型
 name, String, 字段名称
 comment, String, 备注信息

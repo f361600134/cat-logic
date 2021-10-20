@@ -1,0 +1,31 @@
+{
+	"dependenceObjs":[],
+	"javaPath":"com.cat.server.game.data.proto",
+	"moduleName":"Common",
+	"outClass":"PBCommon",
+	"structures":{
+		"AckTips":{
+			"comment":"tips信息",
+			"fields":[
+				{
+					"comment":"",
+					"identifier":"",
+					"index":1,
+					"name":"tipsId",
+					"repeated":false,
+					"type":"int32"
+				},
+				{
+					"comment":"",
+					"identifier":"",
+					"index":2,
+					"name":"params",
+					"repeated":false,
+					"type":"int32"
+				}
+			],
+			"insideId":0,
+			"name":"AckTips"
+		}
+	}
+}

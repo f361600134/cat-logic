@@ -10,8 +10,7 @@ import com.cat.server.game.module.activity.type.IActivityType;
 
 /**
  * 活动状态抽象类, 维护活动对象代理, 以及当前活动下一个状态<br>
- * 状态类, 只能修改活动的状态信息, 活动其他信息, 不允许状态类修改<br>
- * 
+ * 状态类, 不允许状态类修改<br>
  * @author Jeremy
  */
 public abstract class AbstractStatus implements IActivityStatus{
@@ -39,13 +38,6 @@ public abstract class AbstractStatus implements IActivityStatus{
 	
 	@Override
 	public void handle(long now) {
-		//处理状态改变
-		Activity activity = activityType.getActivity();
-        activity.setStatus(getCode());
-        activity.update();
-        //通知客户端有活动状态发生了改变
-        PlayerActivityService service = SpringContextHolder.getBean(PlayerActivityService.class);
-        service.responseActivityUpdateInfo(activity.getId());
         //最后处理相关状态下的行为
         doHandle(now);
 	}

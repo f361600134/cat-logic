@@ -30,9 +30,6 @@ public class Item extends ItemPo implements IItem{
 		item.setPlayerId(playerId);
 		
 		item.save();
-		item.update();
-		item.delete();
-		
 		return item;
 	}
 	

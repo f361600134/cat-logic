@@ -316,7 +316,7 @@ public class JsonUtil {
 
         // 2020/07/24 修改代码,支持转移字符 @lst
 //        ObjectWriter writer = objectMapper.writerWithDefaultPrettyPrinter();
-        String jsonStr = objectMapper.writeValueAsString(json);
+        String jsonStr = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(json);
         jsonStr = StringEscapeUtils.unescapeJava(jsonStr);
 
         PrintWriter printWriter = new PrintWriter(file,"UTF-8");

@@ -5,10 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceDomain;
 
 abstract class AbstractResourceDomain<K, V extends IResource> implements IResourceDomain<K, V>{
+	
+	protected final Logger log = LoggerFactory.getLogger(getClass());
 	
 	protected long playerId;
 	/**

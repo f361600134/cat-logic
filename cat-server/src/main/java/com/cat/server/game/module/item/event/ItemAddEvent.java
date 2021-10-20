@@ -1,11 +1,11 @@
 package com.cat.server.game.module.item.event;
 
-import com.cat.server.core.event.PlayerEventBase;
+import com.cat.server.core.event.PlayerBaseEvent;
 
 /**
  * 新增物品事件
  */
-public class ItemAddEvent extends PlayerEventBase {
+public class ItemAddEvent extends PlayerBaseEvent {
 	
 	public static String ID = ItemAddEvent.class.getSimpleName();
 

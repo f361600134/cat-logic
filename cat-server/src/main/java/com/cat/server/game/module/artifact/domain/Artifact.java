@@ -6,8 +6,9 @@ import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.module.artifact.attr.ArtifactAttrNode;
 import com.cat.server.game.module.attribute.domain.IAttributeEntity;
 import com.cat.server.game.module.attribute.domain.IAttributeNode;
-import com.cat.server.game.module.mission.type.ArtifactMissionType;
 import com.cat.server.game.module.mission.type.MissionTypeData;
+import com.cat.server.game.module.mission.type.impl.ArtifactMissionType;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

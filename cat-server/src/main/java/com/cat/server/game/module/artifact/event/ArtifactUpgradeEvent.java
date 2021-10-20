@@ -1,8 +1,8 @@
 package com.cat.server.game.module.artifact.event;
 
-import com.cat.server.core.event.PlayerEventBase;
+import com.cat.server.core.event.PlayerBaseEvent;
 
-public class ArtifactUpgradeEvent extends PlayerEventBase {
+public class ArtifactUpgradeEvent extends PlayerBaseEvent {
 
     private final int configId; //神器配置id
     private final int level; //等级

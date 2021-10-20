@@ -13,16 +13,11 @@ public enum ResourceType {
 	Item(2),	
 	/** 装备 */
 	Equip(3),	
-	/** 神装 */
-	GodEquip(4),
-	/** 英雄碎片 */
-	HeroPatch(5),
-	/** 符文 */
-	Rune(6),
-	/** 精灵 */
-	Spirit(7),
 	/** 英雄 */
-	Hero(9),
+	Hero(4),
+	/**活动道具*/
+	ActivityItem(5),
+	
 	;
 	private int type;
 	private ResourceType(int type) {

@@ -4,15 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import com.cat.server.game.module.item.domain.Item;
-import com.cat.server.game.module.item.domain.ItemDomain;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.common.collect.Lists;
 
 public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
-	
-	private static final Logger log = LoggerFactory.getLogger(ItemDomain.class);
 	
 	public static final int LIMIT = 999;
 	

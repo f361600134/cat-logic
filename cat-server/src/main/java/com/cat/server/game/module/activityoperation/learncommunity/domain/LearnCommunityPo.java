@@ -16,6 +16,8 @@ public abstract class LearnCommunityPo extends BasePo {
 	public static final String PROP_QUESTTYPEDATASTR = "questTypeDataStr";
 	public static final String PROP_DAILYACTIVEMAPSTR = "dailyActiveMapStr";
 	public static final String PROP_PLAYERID = "playerId";
+	public static final String PROP_ACTIVITYID = "activityId";
+	public static final String PROP_LASTRESETTIME = "lastResetTime";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
@@ -27,6 +29,8 @@ public abstract class LearnCommunityPo extends BasePo {
 			PROP_QUESTTYPEDATASTR,
 			PROP_DAILYACTIVEMAPSTR,
 			PROP_PLAYERID,
+			PROP_ACTIVITYID,
+			PROP_LASTRESETTIME,
 			};
 			
 	/** 所有主键索引字段数组*/
@@ -55,8 +59,10 @@ public abstract class LearnCommunityPo extends BasePo {
 	protected String dailyActiveMapStr;
 	/** 玩家id*/
 	protected long playerId;
-	/** 当前所处服务器id*/
+	/** 活动id*/
 	protected int activityId;
+	/** 最后重置时间*/
+	protected long lastResetTime;
 	
 	public LearnCommunityPo(){
 		this.rewardDataMapStr = "";
@@ -136,15 +142,30 @@ public abstract class LearnCommunityPo extends BasePo {
 		this.playerId = playerId;
 	}
 	
-	public int getActivityId() {
-		return activityId;
+	/** 活动id **/
+	public int getActivityId(){
+		return this.activityId;
+	}
+	
+	public void setActivityId(int activityId){
+		this.activityId = activityId;
+	}
+	
+	/** 最后重置时间 **/
+	public long getLastResetTime(){
+		return this.lastResetTime;
+	}
+	
+	public void setLastResetTime(long lastResetTime){
+		this.lastResetTime = lastResetTime;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "LearnCommunity [todayExp= "+ todayExp +", exp= "+ exp +", level= "+ level +", exclusive= "+ exclusive +", rewardDataMapStr= "+ rewardDataMapStr
-				 +", questTypeDataStr= "+ questTypeDataStr +", dailyActiveMapStr= "+ dailyActiveMapStr +", playerId= "+ playerId+"]";
+				 +", questTypeDataStr= "+ questTypeDataStr +", dailyActiveMapStr= "+ dailyActiveMapStr +", playerId= "+ playerId +", activityId= "+ activityId +", lastResetTime= "+ lastResetTime
+				+"]";
 	}
 	
 	@Override
@@ -163,6 +184,8 @@ public abstract class LearnCommunityPo extends BasePo {
 		getQuestTypeDataStr(),
 		getDailyActiveMapStr(),
 		getPlayerId(),
+		getActivityId(),
+		getLastResetTime(),
 		};
 	}
 	

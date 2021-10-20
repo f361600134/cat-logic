@@ -3,8 +3,8 @@ package com.cat.server.game.module.mainmission.domain;
 import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.server.IPersistence;
-import com.cat.server.game.module.mission.type.MainMissionType;
 import com.cat.server.game.module.mission.type.MissionTypeData;
+import com.cat.server.game.module.mission.type.impl.MainMissionType;
 
 /**
  * 主线任务对象, 所有主线任务存储在此

@@ -54,6 +54,14 @@ public class MissionTypeData<T extends IMission> {
 	}
 	
 	/**
+	 * 数据清理
+	 */
+	public void clear() {
+		this.finishIds.clear();
+		this.missionPojos.clear();
+	}
+	
+	/**
 	 * 任务是否完成/是否已领奖
 	 * @param configId
 	 */

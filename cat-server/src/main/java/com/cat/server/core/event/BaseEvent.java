@@ -5,7 +5,6 @@ import com.cat.server.utils.TimeUtil;
 /**
  * 事件基础类, 可用作于公共事件基础类
  * @author Jeremy
- *
  */
 public abstract class BaseEvent implements IEvent{
 	

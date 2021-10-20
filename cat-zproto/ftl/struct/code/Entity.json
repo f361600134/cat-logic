@@ -1,6 +1,6 @@
 {
 	"content":"package com.cat.server.game.module.${entity.getEntityName()?lower_case}.domain;\n\nimport com.cat.server.core.server.IPersistence; \n\n/**\n* @author Jeremy\n*/\n@PO(name = \"${entity.getTablName()}\")\npublic class ${entity.getEntityName()} extends ${entity.getEntityName()}Po implements IPersistence{\n\n\tpublic ${entity.getEntityName()}() {\n\n\t}\n\t\n\tpublic ${entity.getEntityName()}(long playerId) {\n\t\tthis.playerId = playerId;\n\t}\n\t\n\t@Override\n\tpublic Object key() {\n\t\t//TODO\n\t\t//return getPlayerId();\n\t}\n\t\n\tpublic String keyColumn() {\n\t\t//TODO \n\t\t//return PROP_PLAYERID;\n\t}\n\n}\n",
-	"id":1013,
+	"id":1002,
 	"name":"Entity",
 	"type":1
 }

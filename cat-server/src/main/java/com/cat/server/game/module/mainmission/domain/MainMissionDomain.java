@@ -11,7 +11,8 @@ import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mission.handler.IMissionHandler;
 import com.cat.server.game.module.mission.handler.MissionHandler;
 import com.cat.server.game.module.mission.type.IMission;
-import com.cat.server.game.module.mission.type.MainMissionType;
+import com.cat.server.game.module.mission.type.impl.MainMissionType;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,9 +59,9 @@ public class MainMissionDomain extends AbstractModuleDomain<Long, MainMission> i
 		missionHandler.setPlayerId(getPlayerId());
 		//missionHandler.setMissionData(bean.getMissionData());
 		missionHandler.setAfterRewardedListener((mission, missionData) -> {
-					int nextConfigId = 0;
-					MainMissionType nextNission = MainMissionType.create(nextConfigId);
-					missionData.addMissionPojo(nextNission);
+			int nextConfigId = 0;
+			MainMissionType nextNission = MainMissionType.create(nextConfigId);
+			missionData.addMissionPojo(nextNission);
 		}); 
 	}
 	

@@ -357,7 +357,7 @@ class PlayerService implements IPlayerService, IResourceService {
 	 * @date 2020年8月24日下午2:57:19
 	 */
 	@Override
-	public Collection<Long> getPlayerIds() {
+	public Collection<Long> getOnlinePlayerIds() {
 		return playerMap.keySet();
 	}
 

@@ -2,7 +2,7 @@ package com.cat.server.game.module.mainmission.service;
 
 import java.util.List;
 
-import com.cat.server.core.event.PlayerEventBase;
+import com.cat.server.core.event.PlayerBaseEvent;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mainmission.domain.MainMissionDomain;
@@ -43,7 +43,7 @@ public class MainMissionService implements IMainMissionService{
 	 * @return void  
 	 * @date 2021年2月21日下午11:21:25
 	 */
-	public void onEvent(PlayerEventBase event) {
+	public void onEvent(PlayerBaseEvent event) {
 		long playerId = event.getPlayerId();
 		MainMissionDomain domain = manager.getDomain(playerId);
 		if (domain  == null) {

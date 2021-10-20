@@ -1,8 +1,8 @@
 package com.cat.server.game.module.player.event;
 
-import com.cat.server.core.event.PlayerEventBase;
+import com.cat.server.core.event.PlayerBaseEvent;
 
-public class PlayerLoginEndEvent extends PlayerEventBase {
+public class PlayerLoginEndEvent extends PlayerBaseEvent {
 	
 	public static String ID = PlayerLoginEndEvent.class.getSimpleName();
 

@@ -1,9 +1,9 @@
 package com.cat.server.game.module.artifact.event;
 
-import com.cat.server.core.event.PlayerEventBase;
+import com.cat.server.core.event.PlayerBaseEvent;
 import com.cat.server.game.module.artifact.domain.Artifact;
 
-public class ArtifactSkillUpgradeEvent extends PlayerEventBase {
+public class ArtifactSkillUpgradeEvent extends PlayerBaseEvent {
 	
     private final Artifact artifact;
 

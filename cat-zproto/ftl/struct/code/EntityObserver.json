@@ -1,6 +1,6 @@
 {
 	"content":"package com.cat.server.game.module.${entity.getEntityName()?lower_case}.event;\n\nimport com.cat.server.core.event.IObserver;\nimport com.cat.server.game.module.${entity.getEntityName()?lower_case}.service.${entity.getEntityName()}Service;\nimport org.springframework.beans.factory.annotation.Autowired;\nimport org.springframework.stereotype.Component;\n\n/**\n * ${entity.getEntityName()}事件类\n */\n@Component\npublic class ${entity.getEntityName()}Observer implements IObserver{\n\n\t@Autowired\n    private ${entity.getEntityName()}Service ${entity.getEntityName()?uncap_first}Service;\n\n\n}",
-	"id":1007,
+	"id":1012,
 	"name":"EntityObserver",
 	"type":1
 }

@@ -1,7 +1,7 @@
 package com.cat.server.game.module.mission.handler;
 
-import com.cat.server.game.module.mission.type.ArtifactMissionType;
 import com.cat.server.game.module.mission.type.MissionTypeData;
+import com.cat.server.game.module.mission.type.impl.ArtifactMissionType;
 
 /**
  * 主线任务具体实现类,

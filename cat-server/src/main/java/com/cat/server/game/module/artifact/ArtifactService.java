@@ -2,7 +2,7 @@ package com.cat.server.game.module.artifact;
 
 import java.util.Collection;
 
-import com.cat.server.core.event.PlayerEventBase;
+import com.cat.server.core.event.PlayerBaseEvent;
 import com.cat.server.game.module.artifact.domain.Artifact;
 import com.cat.server.game.module.artifact.domain.ArtifactDomain;
 import com.cat.server.game.module.artifact.proto.AckArtifactListResp;
@@ -28,7 +28,7 @@ class ArtifactService {
 	/**
 	 * 当收到事件
 	 */
-	public void onEvent(PlayerEventBase event) {
+	public void onEvent(PlayerBaseEvent event) {
 		long playerId = event.getPlayerId();
 		ArtifactDomain domain = manager.getDomain(playerId);
 		if (domain  == null) {

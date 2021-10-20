@@ -1,6 +1,6 @@
 {
 	"content":"package com.cat.server.game.module.${entity.getEntityName()?lower_case}.manager;\n\nimport com.cat.server.core.server.AbstractModuleManager;\nimport com.cat.server.game.module.${entity.getEntityName()?lower_case}.domain.${entity.getEntityName()}Domain;\nimport org.springframework.stereotype.Component;\n\n/**\n* @author Jeremy\n*/\n@Component\npublic class ${entity.getEntityName()}Manager extends AbstractModuleManager<Long, ${entity.getEntityName()}Domain>{\n\n}\n",
-	"id":1004,
+	"id":1009,
 	"name":"EntityManager",
 	"type":1
 }

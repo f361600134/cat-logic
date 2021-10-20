@@ -1,0 +1,6 @@
+{
+	"content":"syntax = \"proto3\";\r\npackage Protocol;\r\noption java_package = \"${javaPath}\";\r\noption java_outer_classname = \"${outClass}\";\r\n\r\n/*\r\n*生成规则\r\n*请求协议号=模块id*1000+请求协议号\r\n*返回协议号=模块id*1000+100+返回协议号\r\n*/\r\nenum PBProtocol {\r\n   DEFAULTID = 0;\r\n<#if protoMap??>\r\n   <#list protoMap?keys as moduleName>\r\n\r\n   //${moduleName}\r\n   <#list protoMap[moduleName].structures?values as struct>\r\n   <#if protoIdMap[struct.name]??>\r\n   ${struct.name}=${protoIdMap[struct.name]?c};\r\n   </#if>\r\n   </#list>\r\n   </#list>\r\n</#if>\r\n}\r\n",
+	"id":2003,
+	"name":"protoId",
+	"type":2
+}

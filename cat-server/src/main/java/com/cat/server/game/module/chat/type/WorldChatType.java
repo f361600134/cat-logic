@@ -43,7 +43,7 @@ public class WorldChatType extends AbstractChatType {
 	 */
 	@Override
 	public Collection<Long> findReceiverIds(BigInteger uniqueId) {
-		return playerService.getPlayerIds();
+		return playerService.getOnlinePlayerIds();
 	}
 
 	@Override

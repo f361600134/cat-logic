@@ -1,5 +1,6 @@
 package com.cat.server.core.event;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
+import com.cat.server.game.module.player.IPlayerService;
 import com.google.common.eventbus.EventBus;
 
 /**
@@ -81,6 +83,52 @@ public class GameEventBus implements ILifecycle{
 			}
 			post(event);
 		}
+	}
+	
+	/**
+	 * 发送玩家事件
+	 * @param event
+	 */
+	public void post(long playerId, PlayerBaseEvent event) {
+		if (!this.running) {
+			return;
+		}
+		event.setPlayerId(playerId);
+		eventBus.post(event);
+	}
+	
+	/**
+	 * 群发玩家事件<br>
+	 * 所有玩家共用一个事件
+	 * @param event
+	 */
+	public void post(Collection<Long> playerIds, PlayerBaseEvent event) {
+		if (!this.running) {
+			return;
+		}
+		playerIds.forEach(playerId->{
+			event.setPlayerId(playerId);
+			eventBus.post(event);
+		});
+	}
+	
+	/**
+	 * 群发玩家事件<br>
+	 * 所有玩家共用一个事件
+	 * @param event
+	 */
+	public void postOnlinePlayers(PlayerBaseEvent event) {
+		if (!this.running) {
+			return;
+		}
+		//这里是为数不多的地方, 框架层依赖了业务层代码
+		//实际上可以把事件丢到业务层,当成一个服务去做
+		IPlayerService playerService = SpringContextHolder.getBean(IPlayerService.class);
+		Collection<Long> playerIds = playerService.getOnlinePlayerIds();
+		playerIds.forEach(playerId->{
+			event.setPlayerId(playerId);
+			eventBus.post(event);
+		});
 	}
 	
 	public static GameEventBus getInstance() {

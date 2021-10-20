@@ -5,10 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cat.server.core.event.PlayerBaseEvent;
 import com.cat.server.game.data.proto.PBLearnCommunity.ReqLearnCommunityInfo;
 import com.cat.server.game.data.proto.PBLearnCommunity.ReqLearnCommunityReward;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.activity.IActivityService;
+import com.cat.server.game.module.activity.event.ActivityStatusUpdateEvent;
+import com.cat.server.game.module.activity.status.IActivityStatus;
 import com.cat.server.game.module.activity.type.ActivityTypeEnum;
 import com.cat.server.game.module.activity.type.IActivityType;
 import com.cat.server.game.module.activity.type.IPlayerActivityService;
@@ -30,13 +32,13 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 	
 	@Autowired private IPlayerService playerService;
 	
-	@Autowired private LearnCommunityManager learnCommunityManager;
+	@Autowired private LearnCommunityManager manager;
 	
 	/**
 	 * 登陆
 	 */
 	public void onLogin(long playerId) {
-		LearnCommunityDomain domain = learnCommunityManager.getDomain(playerId);
+		LearnCommunityDomain domain = manager.getDomain(playerId);
 		if (domain == null) {
 			log.info("LearnCommunityService error, domain is null");
 			return;
@@ -45,9 +47,8 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 		IActivityType activityType = getActivityType();
 		int activityId = activityType.getActivity().getConfigId();
 		if (activityId != domain.getBean().getActivityId()) {
-			//TODO 玩家保存的活动id跟当前活动id不一致, 表示活动已经结束,处理活动结束
-			//1. 发送邮件领取未领取的奖励
-			//2. 清除当前研习社所有数据,保存
+			//玩家保存的活动id跟当前活动id不一致, 表示活动已经结束,处理活动结束
+			onActivityClose(domain);
 			return;
 		}
 		//检测每日重置
@@ -61,7 +62,47 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 	 * @param playerId
 	 */
 	public void onLogout(long playerId) {
-		learnCommunityManager.remove(playerId);
+		manager.remove(playerId);
+	}
+	
+	/**
+	 * 当活动状态变化
+	 * @param event
+	 */
+	public void onEvent(PlayerBaseEvent event){
+		long playerId = event.getPlayerId();
+		LearnCommunityDomain domain = manager.getDomain(playerId);
+		if (domain == null) {
+			log.info("onEvent error, playerId:{}", playerId);
+			return;
+		}
+		domain.onProcess(event);
+	}
+	
+	/**
+	 * 当活动状态变化
+	 * @param event
+	 */
+	public void onActivityStatusUpdate(ActivityStatusUpdateEvent event){
+		LearnCommunityDomain domain = manager.getDomain(event.getPlayerId());
+		if (domain == null) {
+			return;
+		}
+		if (event.getStatus() == IActivityStatus.CLOSE) {
+			//研习社活动结束, 计算奖励, 发送邮件
+			onActivityClose(domain);
+		}
+	}
+	
+	/**
+	 * 当活动结束
+	 * //1. 发送邮件领取未领取的奖励
+	 * //2. 清除当前研习社所有数据,保存
+	 */
+	public void onActivityClose(LearnCommunityDomain domain) {
+		//邮件通知
+		//清理数据
+		domain.clear();
 	}
   
 	/**
@@ -74,6 +115,7 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 			resp.setLevel(bean.getLevel());
 			resp.setExp(bean.getExp());
 			resp.setExclusive(bean.getExclusive());
+			
 			playerService.sendMessage(domain.getId(), resp);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,7 +134,7 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 	*/
 	public ErrorCode reqLearnCommunityInfo(long playerId, ReqLearnCommunityInfo req, RespLearnCommunityInfoBuilder ack){
 		try {
-			LearnCommunityDomain domain = learnCommunityManager.getDomain(playerId);
+			LearnCommunityDomain domain = manager.getDomain(playerId);
 			if (domain == null) {
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
@@ -117,7 +159,7 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 	*/
 	public ErrorCode reqLearnCommunityReward(long playerId, ReqLearnCommunityReward req, RespLearnCommunityRewardBuilder ack){
 		try {
-			LearnCommunityDomain domain = learnCommunityManager.getDomain(playerId);
+			LearnCommunityDomain domain = manager.getDomain(playerId);
 			if (domain == null) {
 				return ErrorCode.DOMAIN_IS_NULL;
 			}

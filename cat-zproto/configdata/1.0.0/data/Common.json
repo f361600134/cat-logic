@@ -1,0 +1,30 @@
+{
+	"dependenceObjs":[],
+	"javaPath":"com.cat.server.game.data.proto",
+	"moduleName":"Common",
+	"outClass":"PBCommon",
+	"structures":{
+		"AckTest":{
+			"comment":"测试协议",
+			"fields":[
+				{
+					"comment":"id",
+					"identifier":"",
+					"index":1,
+					"name":"id",
+					"repeated":false,
+					"type":"int32"
+				},
+				{
+					"comment":"ids",
+					"identifier":"repeated",
+					"index":2,
+					"name":"ids",
+					"repeated":true,
+					"type":"int32"
+				}
+			],
+			"name":"AckTest"
+		}
+	}
+}

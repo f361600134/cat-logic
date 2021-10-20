@@ -1,8 +1,10 @@
 package com.cat.server.core.config;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Predicate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,6 +51,34 @@ public class ConfigManager implements IConfigManager, ILifecycle {
 		}
 		return container.getAllConfigs();
 	}
+	
+	 /**
+     * 获取满足条件的配置
+     * @param <T>
+     * @param clazz
+     * @param predicate 返回true时塞到结果列表中
+     * @return
+     */
+    public <T extends IGameConfig> Map<Integer, T> getConfigs(Class<T> clazz, Predicate<T> predicate) {
+        if (clazz == null) {
+            throw new NullPointerException("clazz is null");
+        }
+        if (predicate == null) {
+            return getAllConfigs(clazz);
+        }
+        IConfigContainer<T> container = getContainer(clazz);
+        if (container == null) {
+            return Collections.emptyMap();
+        }
+        Map<Integer, T> allConfigs = container.getAllConfigs();
+        Map<Integer, T> result = new HashMap<>();
+        for (T config : allConfigs.values()) {
+            if (predicate.test(config)) {
+                result.put(config.getId(), config);
+            }
+        }
+        return result;
+    }
 
 	@Override
 	public Map<Class<? extends IGameConfig>, IConfigContainer<?>> getContainers() {

@@ -9,12 +9,16 @@ import org.slf4j.LoggerFactory;
 
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
 import com.cat.server.game.module.activity.PlayerActivityController;
+import com.cat.server.game.module.activity.PlayerActivityService;
 import com.cat.server.game.module.activity.define.ActivityConstant;
 import com.cat.server.game.module.activity.domain.Activity;
+import com.cat.server.game.module.activity.event.ActivityStatusUpdateEvent;
 import com.cat.server.game.module.activity.status.ActivityStatusManager;
 import com.cat.server.game.module.activity.time.point.ITimePoint;
+import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.utils.TimeUtil;
 
 /**
@@ -178,6 +182,7 @@ public abstract class AbstractActivityType implements IActivityType{
     @Override
     public void onClose(long now) {
         //先设置状态为关闭,再通知,最后清空活动数据
+        activity.setStatus(CLOSE);
         activity.setConfigType(0);
 		activity.setConfigId(0);
 		activity.setPlanId(0);
@@ -185,25 +190,34 @@ public abstract class AbstractActivityType implements IActivityType{
 		activity.setSettleTime(0);
 		activity.setCloseTime(0);
 		activity.update();
+		//通知客户端有活动状态发生了改变
+        PlayerActivityService service = SpringContextHolder.getBean(PlayerActivityService.class);
+        service.responseActivityUpdateInfo(activity.getId());
+		//发送活动关闭事件
+		GameEventBus.getInstance().postOnlinePlayers(
+				ActivityStatusUpdateEvent.create(activity.getConfigId()
+				, activity.getId()
+				, activity.getStatus())
+				);
     }
-//    
-//    @Override
-//   	public void onPrepare(long now) {
-//   		// TODO Auto-generated method stub
-//   		
-//   	}
-//    
-//    @Override
-//    public void onBegin(long now) {
-//    	// TODO Auto-generated method stub
-//    	
-//    }
-//    
-//    @Override
-//    public void onSettle(long now) {
-//    	// TODO Auto-generated method stub
-//    	
-//    }
+    
+    @Override
+   	public void onPrepare(long now) {
+    	activity.setStatus(PREPARE);
+    	activity.update();
+   	}
+    
+    @Override
+    public void onBegin(long now) {
+    	activity.setStatus(BEGIN);
+    	activity.update();
+    }
+    
+    @Override
+    public void onSettle(long now) {
+    	activity.setStatus(SETTLE);
+    	activity.update();
+    }
     
     @Override
 	public long getPrepareTime() {

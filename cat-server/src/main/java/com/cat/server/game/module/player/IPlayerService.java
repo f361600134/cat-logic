@@ -11,7 +11,7 @@ public interface IPlayerService {
 	 * 获取所有在线玩家
 	 * @return
 	 */
-	public Collection<Long> getPlayerIds();
+	public Collection<Long> getOnlinePlayerIds();
 	
 	/**
 	 * 获取获取玩家上下文
