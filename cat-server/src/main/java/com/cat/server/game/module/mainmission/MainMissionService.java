@@ -1,4 +1,4 @@
-package com.cat.server.game.module.mainmission.service;
+package com.cat.server.game.module.mainmission;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ import com.cat.server.core.event.PlayerBaseEvent;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mainmission.domain.MainMissionDomain;
-import com.cat.server.game.module.mainmission.manager.MainMissionManager;
 import com.cat.server.game.module.mission.type.IMission;
 import com.cat.server.game.module.player.IPlayerService;
 
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class MainMissionService implements IMainMissionService{
+class MainMissionService implements IMainMissionService{
 	
 	private static final Logger log = LoggerFactory.getLogger(MainMissionService.class);
 	

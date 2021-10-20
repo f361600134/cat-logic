@@ -207,6 +207,18 @@ public final class PBDefine {
     RespActivityInfoUpdate(105202),
     /**
      * <pre>
+     *Rank
+     * </pre>
+     *
+     * <code>ReqRankInfo = 106101;</code>
+     */
+    ReqRankInfo(106101),
+    /**
+     * <code>RespRankInfo = 106201;</code>
+     */
+    RespRankInfo(106201),
+    /**
+     * <pre>
      *Login
      * </pre>
      *
@@ -221,6 +233,22 @@ public final class PBDefine {
      * <code>ReqCreateRole = 100103;</code>
      */
     ReqCreateRole(100103),
+    /**
+     * <pre>
+     *ActivityItem
+     * </pre>
+     *
+     * <code>RespActivityItemDelete = 201201;</code>
+     */
+    RespActivityItemDelete(201201),
+    /**
+     * <code>RespActivityItemsInfo = 201202;</code>
+     */
+    RespActivityItemsInfo(201202),
+    /**
+     * <code>RespActivityItemsUpdate = 201203;</code>
+     */
+    RespActivityItemsUpdate(201203),
     /**
      * <pre>
      *Common
@@ -414,6 +442,18 @@ public final class PBDefine {
     public static final int RespActivityInfoUpdate_VALUE = 105202;
     /**
      * <pre>
+     *Rank
+     * </pre>
+     *
+     * <code>ReqRankInfo = 106101;</code>
+     */
+    public static final int ReqRankInfo_VALUE = 106101;
+    /**
+     * <code>RespRankInfo = 106201;</code>
+     */
+    public static final int RespRankInfo_VALUE = 106201;
+    /**
+     * <pre>
      *Login
      * </pre>
      *
@@ -428,6 +468,22 @@ public final class PBDefine {
      * <code>ReqCreateRole = 100103;</code>
      */
     public static final int ReqCreateRole_VALUE = 100103;
+    /**
+     * <pre>
+     *ActivityItem
+     * </pre>
+     *
+     * <code>RespActivityItemDelete = 201201;</code>
+     */
+    public static final int RespActivityItemDelete_VALUE = 201201;
+    /**
+     * <code>RespActivityItemsInfo = 201202;</code>
+     */
+    public static final int RespActivityItemsInfo_VALUE = 201202;
+    /**
+     * <code>RespActivityItemsUpdate = 201203;</code>
+     */
+    public static final int RespActivityItemsUpdate_VALUE = 201203;
     /**
      * <pre>
      *Common
@@ -501,9 +557,14 @@ public final class PBDefine {
         case 105101: return ReqActivityInfo;
         case 105201: return RespActivityInfo;
         case 105202: return RespActivityInfoUpdate;
+        case 106101: return ReqRankInfo;
+        case 106201: return RespRankInfo;
         case 100101: return ReqLogin;
         case 100102: return ReqRandName;
         case 100103: return ReqCreateRole;
+        case 201201: return RespActivityItemDelete;
+        case 201202: return RespActivityItemsInfo;
+        case 201203: return RespActivityItemsUpdate;
         case 1201: return RespTips;
         default: return null;
       }
@@ -566,7 +627,7 @@ public final class PBDefine {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020PBProtocol.proto\022\010Protocol*\331\007\n\nPBProto" +
+      "\n\020PBProtocol.proto\022\010Protocol*\332\010\n\nPBProto" +
       "col\022\r\n\tDEFAULTID\020\000\022\020\n\nReqItemUse\020\325\235\006\022\024\n\016" +
       "RespItemUpdate\020\271\236\006\022\021\n\013RespItemUse\020\272\236\006\022\024\n" +
       "\016RespItemDelete\020\273\236\006\022\021\n\013ReqItemSell\020\326\235\006\022\021" +
@@ -589,10 +650,13 @@ public final class PBDefine {
       "RespMailList\020\244\246\006\022\023\n\rReqMailDelete\020\300\245\006\022\016\n" +
       "\010RespChat\020\211\256\006\022\r\n\007ReqChat\020\245\255\006\022\025\n\017ReqActiv" +
       "ityInfo\020\215\265\006\022\026\n\020RespActivityInfo\020\361\265\006\022\034\n\026R" +
-      "espActivityInfoUpdate\020\362\265\006\022\016\n\010ReqLogin\020\205\216" +
-      "\006\022\021\n\013ReqRandName\020\206\216\006\022\023\n\rReqCreateRole\020\207\216" +
-      "\006\022\r\n\010RespTips\020\261\tB*\n\036com.cat.server.game." +
-      "data.protoB\010PBDefineb\006proto3"
+      "espActivityInfoUpdate\020\362\265\006\022\021\n\013ReqRankInfo" +
+      "\020\365\274\006\022\022\n\014RespRankInfo\020\331\275\006\022\016\n\010ReqLogin\020\205\216\006" +
+      "\022\021\n\013ReqRandName\020\206\216\006\022\023\n\rReqCreateRole\020\207\216\006" +
+      "\022\034\n\026RespActivityItemDelete\020\361\243\014\022\033\n\025RespAc" +
+      "tivityItemsInfo\020\362\243\014\022\035\n\027RespActivityItems" +
+      "Update\020\363\243\014\022\r\n\010RespTips\020\261\tB*\n\036com.cat.ser" +
+      "ver.game.data.protoB\010PBDefineb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

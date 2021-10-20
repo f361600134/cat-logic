@@ -1,5 +1,8 @@
 package com.cat.server.game.helper.result;
 
+import com.cat.server.game.data.proto.PBCommon.RespTips;
+import com.cat.server.game.module.common.proto.RespTipsBuilder;
+
 /**
  * 错误码(返回码)<br>
  * 需要生成excel提供给客户端读取
@@ -96,6 +99,9 @@ public enum ErrorCode implements ModuleDefines {
     TEAM_NOT_LEADER(TEAM, 6, "不是队长无权限操作"),
     TEAM_APPLY_EXPIRE(TEAM, 7, "该申请已过期"),
     
+    // -----------------排行榜---------------------
+    RANK_NOT_EXIST(TEAM, 1, "排行榜不存在"),
+    
     // -----------------活动---------------------
     ACTIVITY_NOT_EXIST(ACTIVITY, 1, "活动不存在"),
     ACTIVITY_NOT_IN_ACTIVITY_TIME(ACTIVITY, 2, "未处于活动时间"),
@@ -122,5 +128,26 @@ public enum ErrorCode implements ModuleDefines {
     
     public boolean isSuccess() {
         return this.code == SUCCESS.getCode();
+    }
+    
+    /**
+     * 构建默认不带参数协议
+     * @return
+     */
+    public RespTipsBuilder toProto() {
+    	RespTipsBuilder builder = RespTipsBuilder.newInstance();
+    	builder.setTipsId(getCode());
+    	return builder;
+    }
+    
+    /**
+     * 构建带参数协议
+     * @return
+     */
+    public RespTipsBuilder toProto(int param) {
+    	RespTipsBuilder builder = RespTipsBuilder.newInstance();
+    	builder.setTipsId(getCode());
+    	builder.setParams(param);
+    	return builder;
     }
 }

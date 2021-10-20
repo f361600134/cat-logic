@@ -27,7 +27,7 @@ public class RespTipsBuilder extends AbstractProtocol {
 		return builder.build();
 	}
 	
-	/** **/
+	/** 错误码id**/
 	public void setTipsId(int value){
 		this.builder.setTipsId(value);
 	}

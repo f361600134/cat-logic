@@ -59,7 +59,7 @@ public interface ModuleDefines {
 //    /** 活动 */
     int ACTIVITY = 200;
 //    /** 排行榜 */
-//    int RANK = 142;
+    int RANK = 142;
     /** 任务 */
     int MISSION = 143;
 //    /** 战斗 */

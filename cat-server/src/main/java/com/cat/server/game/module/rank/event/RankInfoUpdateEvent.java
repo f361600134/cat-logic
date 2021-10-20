@@ -1,7 +1,7 @@
 package com.cat.server.game.module.rank.event;
 
 import com.cat.server.core.event.BaseEvent;
-import com.cat.server.game.module.rank.domain.RankType;
+import com.cat.server.game.module.rank.domain.RankTypeEnum;
 
 /**
  * 更新排行榜事件
@@ -13,9 +13,9 @@ public class RankInfoUpdateEvent extends BaseEvent {
 	private final long uniqueId;	//唯一id
 	private final long value;	//更新的值
 	private final long value2;	//更新的值2
-	private final RankType type; //更新的排行榜
+	private final RankTypeEnum type; //更新的排行榜
 	
-	public RankInfoUpdateEvent(RankType type, long uniqueId, long value, long value2) {
+	public RankInfoUpdateEvent(RankTypeEnum type, long uniqueId, long value, long value2) {
 		this.type = type;
 		this.uniqueId = uniqueId;
 		this.value = value;
@@ -25,14 +25,14 @@ public class RankInfoUpdateEvent extends BaseEvent {
 	/**
 	 * 用于一个排序值
 	 */
-	public static RankInfoUpdateEvent create(RankType type, long uniqueId, long value) {
+	public static RankInfoUpdateEvent create(RankTypeEnum type, long uniqueId, long value) {
 		return new RankInfoUpdateEvent(type, uniqueId, value, 0);
 	}
 	
 	/**
 	 * 用于两个排序值
 	 */
-	public static RankInfoUpdateEvent create(RankType type, long playerId, long value, long value2) {
+	public static RankInfoUpdateEvent create(RankTypeEnum type, long playerId, long value, long value2) {
 		return new RankInfoUpdateEvent(type, playerId, value, value2);
 	}
 	
@@ -40,7 +40,7 @@ public class RankInfoUpdateEvent extends BaseEvent {
 		return uniqueId;
 	}
 	
-	public RankType getType() {
+	public RankTypeEnum getType() {
 		return type;
 	}
 
