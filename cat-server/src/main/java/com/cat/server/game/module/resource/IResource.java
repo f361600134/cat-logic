@@ -7,6 +7,8 @@ package com.cat.server.game.module.resource;
  */
 public interface IResource {
 	
+	public int RESOURC_TYPE_SPLIT = 100000;
+	
 	/**
 	 * 获取唯一id
 	 */
@@ -43,6 +45,6 @@ public interface IResource {
 	 * @return
 	 */
 	default public boolean isType(int type) {
-		return ((getConfigId() / 100000) == type);
+		return ((getConfigId() / RESOURC_TYPE_SPLIT) == type);
 	}
 }

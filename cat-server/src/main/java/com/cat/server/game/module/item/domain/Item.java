@@ -28,7 +28,6 @@ public class Item extends ItemPo implements IItem{
 		item.setConfigId(configId);
 		item.setCount(count);
 		item.setPlayerId(playerId);
-		
 		item.save();
 		return item;
 	}

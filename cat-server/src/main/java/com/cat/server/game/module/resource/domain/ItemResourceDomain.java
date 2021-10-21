@@ -48,7 +48,6 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 			if(item == null) {//没有此物品,创建
 				item = Item.create(playerId, configId, count);
 				beanMap.put(item.getItemId(), item);
-				item.save();
 			}else {
 				//有此物品,增加数量
 				item.addCount(count);
