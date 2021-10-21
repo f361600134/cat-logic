@@ -172,19 +172,13 @@ class ChatService {
 		if (rule.isProhibited(curTime)) {
 			//提示玩家剩余x秒后可以聊天, 不转发聊天内容
 			int lessTime = (int)((rule.getNextSpeakTime() - curTime)/1000);
-			RespTipsBuilder resp = RespTipsBuilder.newInstance();
-			resp.setTipsId(ErrorCode.CHAT_TIME_LIMIT.getCode());
-			resp.setParams(lessTime);
-			playerService.sendMessage(playerId, resp);
+			playerService.sendMessage(playerId, ErrorCode.CHAT_TIME_LIMIT.toProto(lessTime));
 			return ErrorCode.CHAT_CD;
 		}
 		else if (rule.isAgainst(curTime)) {
 			//提示聊天过快, 但依旧允许其聊天
-			RespTipsBuilder resp = RespTipsBuilder.newInstance();
-			resp.setTipsId(ErrorCode.CHAT_CD.getCode());
-			playerService.sendMessage(playerId, resp);
+			playerService.sendMessage(playerId, ErrorCode.CHAT_CD.toProto());
 		}
-		
 		ChatDetail chatDetail = ChatDetail.create(player.getPlayerId(), content, recvId);
 		code = domain.sendMsg(chatDetail);
 		rule.onChatSuccess(curTime);
@@ -230,7 +224,6 @@ class ChatService {
 		for (String tag : tags) {
 			str = str.replaceFirst("\\?", tag);
 		}
-		
 		return Pair.of(code, str);
 	}
 	

@@ -11,13 +11,17 @@ import org.slf4j.LoggerFactory;
 
 import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.game.data.proto.PBChat.PBChatInfo;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.domain.Chat;
 import com.cat.server.game.module.chat.domain.ChatDetail;
+import com.cat.server.game.module.chat.proto.PBChatInfoBuilder;
 import com.cat.server.game.module.chat.proto.RespChatBuilder;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
+import com.cat.server.game.module.shadow.IShadowService;
+import com.cat.server.game.module.shadow.domain.Shadow;
 import com.cat.server.utils.Pair;
 import com.google.common.cache.Cache;
 
@@ -29,6 +33,8 @@ public abstract class AbstractChatType implements IChatType{
 	
 	private static Logger logger = LoggerFactory.getLogger(AbstractChatType.class); 
 	
+	
+	protected IShadowService shadowService;
 	protected IPlayerService playerService;
 	
 	protected int channel;
@@ -78,6 +84,7 @@ public abstract class AbstractChatType implements IChatType{
 	public AbstractChatType(int channel) {
 		this.channel = channel;
 		this.playerService = SpringContextHolder.getBean(IPlayerService.class);
+		this.shadowService = SpringContextHolder.getBean(IShadowService.class);
 	}
 	
 	@Override
@@ -138,7 +145,7 @@ public abstract class AbstractChatType implements IChatType{
 		// FSC 新增的聊天消息即时同步, 聊天, 如果需要更新状态,可以独立一条消息
 		RespChatBuilder res = new RespChatBuilder();
 		res.setChannel(channel);
-		res.addChats(chatDetail.toProto());
+		res.addChats(buildChatDto(chatDetail));
 		
 		Collection<Long> receiverIds = findReceiverIds(uniqueId);
 		receiverIds.forEach(playerId -> {
@@ -150,6 +157,24 @@ public abstract class AbstractChatType implements IChatType{
 		return ErrorCode.SUCCESS;
 	}
 	
+	/**
+	 *构建聊天实体对象<br>
+	 *默认仅构造发送者简单信息, 需要构建接收者信息, 则由具体实现类处理
+	 * @return
+	 */
+	protected PBChatInfo buildChatDto(ChatDetail chatDetail) {
+		PBChatInfoBuilder builder = new PBChatInfoBuilder();
+		builder.setContent(chatDetail.getContent());
+		builder.setSendTime(chatDetail.getSendTime());
+		//构建发送者简单信息
+		if (chatDetail.getSenderId() > 0) {
+			Shadow sender = shadowService.get(chatDetail.getSenderId());
+			if (sender != null) {
+				builder.setProfile(sender.toProto());
+			}
+		}
+		return builder.build();
+	}
 	
 	/**
 	 * 获取所有聊天记录

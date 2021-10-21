@@ -92,19 +92,19 @@ public class ChatDetail {
 		return new ChatDetail(-1, content, -1);
 	}
 
-	/**
-	 * 序列化为聊天记录
-	 * @return
-	 */
-	public PBChat.PBChatInfo toProto() {
-		PBChatInfoBuilder builder = new PBChatInfoBuilder();
-		builder.setContent(this.content);
-		builder.setSendTime(this.sendTime);
-		//TODO
-//		otherplayerinfo.
-//		builder.setProfile(value);
-		
-		return builder.build();
-	}
+//	/**
+//	 * 序列化为聊天记录
+//	 * @return
+//	 */
+//	public PBChat.PBChatInfo toProto() {
+//		PBChatInfoBuilder builder = new PBChatInfoBuilder();
+//		builder.setContent(this.content);
+//		builder.setSendTime(this.sendTime);
+//		//TODO
+////		otherplayerinfo.
+////		builder.setProfile(value);
+//		
+//		return builder.build();
+//	}
 
 }

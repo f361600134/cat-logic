@@ -32,7 +32,7 @@ public class RespChatBuilder extends AbstractProtocol {
 	public void setChannel(int value){
 		this.builder.setChannel(value);
 	}
-	/** **/
+	/** 聊天内容**/
 	public void addChats(PBChatInfo value){
 		this.builder.addChats(value);
 	}

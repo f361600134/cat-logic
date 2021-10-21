@@ -1,7 +1,5 @@
 package com.cat.server.game.module.chat;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -23,8 +21,6 @@ import com.cat.server.game.module.player.IPlayerService;
 @Controller
 public class ChatController implements IController{
 
-    private static final Log log = LogFactory.getLog(ChatController.class);
-
     @Autowired
     private ChatService chatService;
     
@@ -43,9 +39,7 @@ public class ChatController implements IController{
         } else {
             //聊天
             ErrorCode code = this.chatService.chat(req, playerId);
-            RespTipsBuilder ack = RespTipsBuilder.newInstance();
-            ack.setTipsId(code.getCode());
-            playerService.sendMessage(playerId, ack);
+            playerService.sendMessage(playerId, code.toProto());
         }
     }
 

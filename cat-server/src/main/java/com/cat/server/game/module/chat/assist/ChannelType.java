@@ -3,12 +3,12 @@ package com.cat.server.game.module.chat.assist;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.cat.server.game.module.chat.type.FamilyChatType;
-import com.cat.server.game.module.chat.type.FriendChatType;
 import com.cat.server.game.module.chat.type.IChatType;
-import com.cat.server.game.module.chat.type.SystemChatType;
-import com.cat.server.game.module.chat.type.TeamChatType;
-import com.cat.server.game.module.chat.type.WorldChatType;
+import com.cat.server.game.module.chat.type.impl.FamilyChatType;
+import com.cat.server.game.module.chat.type.impl.FriendChatType;
+import com.cat.server.game.module.chat.type.impl.SystemChatType;
+import com.cat.server.game.module.chat.type.impl.TeamChatType;
+import com.cat.server.game.module.chat.type.impl.WorldChatType;
 
 /**
  * 聊天枚举类

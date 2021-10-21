@@ -241,7 +241,7 @@ class PlayerService implements IPlayerService, IResourceService {
 	* 请求断线重连
 	* @param long playerId
 	* @param ReqPlayerReLogin req
-	* @param Resp ack
+	* @param RespPlayerReLoginBuilder ack
 	*/
 	public ErrorCode reqPlayerReLogin(long playerId, ReqPlayerReLogin req, RespPlayerReLoginBuilder ack){
 		try {
@@ -301,6 +301,7 @@ class PlayerService implements IPlayerService, IResourceService {
 			return ErrorCode.UNKNOWN_ERROR;
 		}
 	}
+	
 //	/**
 //	* 请求连接游戏服
 //	* @param long playerId

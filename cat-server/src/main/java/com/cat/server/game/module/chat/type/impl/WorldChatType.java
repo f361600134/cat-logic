@@ -1,4 +1,4 @@
-package com.cat.server.game.module.chat.type;
+package com.cat.server.game.module.chat.type.impl;
 
 import java.math.BigInteger;
 import java.util.Collection;
@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.cat.server.game.module.chat.assist.ChannelType;
 import com.cat.server.game.module.chat.domain.Chat;
+import com.cat.server.game.module.chat.type.AbstractChatType;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
