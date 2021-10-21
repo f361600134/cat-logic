@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
+import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.shadow.domain.Shadow;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -68,7 +69,7 @@ class ShadowService implements IShadowService, ILifecycle {
 	}
 	
 	/**
-	 * 这里依赖cache->remove回调
+	 * 这里依赖cache->remove回调<br>
 	 * 清掉所有数据, 被清掉的数据会调用到回调方法, 最终得以存储
 	 */
 	public void save() {
@@ -107,6 +108,12 @@ class ShadowService implements IShadowService, ILifecycle {
 	}
 	
 	@Override
+	public void onPlayerUpdate(Player player) {
+		Shadow shadow = get(player.getPlayerId());
+		shadow.replacement(player);
+	}
+	
+	@Override
 	public void start() throws Throwable {
 		load();
 	}
@@ -120,7 +127,7 @@ class ShadowService implements IShadowService, ILifecycle {
 	public void stop() throws Throwable {
 		save();
 	}
-	
+
 }
  
  

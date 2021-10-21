@@ -1,7 +1,5 @@
 package com.cat.server.game.module.shadow.domain;
 
-import com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile;
-
 public class OtherPlayer {
 	
 	/** 玩家id*/
@@ -45,18 +43,4 @@ public class OtherPlayer {
 	public void setPower(short power) {
 		this.power = power;
 	}
-	/**
-	 * 玩家影子信息转协议对象
-	 * @return
-	 */
-	public PBPlayerProfile toProto() {
-		PBPlayerProfile.Builder builder = PBPlayerProfile.newBuilder();
-		builder.setPlayerId(playerId);
-		builder.setNickName(nickName);
-		builder.setLevel(level);
-		builder.setVip(vip);
-		builder.setPower(power);
-		return builder.build();
-	}
-
 }

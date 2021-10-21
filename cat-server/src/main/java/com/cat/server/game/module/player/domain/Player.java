@@ -5,7 +5,9 @@ import java.util.Map;
 
 import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
+import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IPersistence;
+import com.cat.server.game.module.shadow.IShadowService;
 
 @PO(name = "player")
 public class Player extends PlayerPo implements IPersistence{
@@ -73,5 +75,28 @@ public class Player extends PlayerPo implements IPersistence{
 		propertieMap.put(configId, val);
 		this.update();
 	}
+	
+	/**
+	 * 重写玩家数据存储方法<br>
+	 * 当玩家数据更新,重置影子数据,不保存,停服时保存
+	 */
+	@Override
+	public void update() {
+		IPersistence.super.update();
+		IShadowService shadowService =  SpringContextHolder.getBean(IShadowService.class);
+		shadowService.onPlayerUpdate(this);
+	}
+	
+	/**
+	 * 重写玩家数据存储方法<br>
+	 * 当玩家数据更新,重置影子数据,不保存,停服时保存
+	 */
+	@Override
+	public void replace() {
+		IPersistence.super.replace();
+		IShadowService shadowService =  SpringContextHolder.getBean(IShadowService.class);
+		shadowService.onPlayerUpdate(this);
+	}
+	
 
 }

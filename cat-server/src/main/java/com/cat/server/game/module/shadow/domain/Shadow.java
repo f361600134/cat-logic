@@ -4,6 +4,7 @@ import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.data.proto.PBPlayer.PBPlayerProfile;
+import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.utils.TimeUtil; 
 
 /**
@@ -53,11 +54,28 @@ public class Shadow extends ShadowPo implements IPersistence{
 	}
 	
 	/**
+	 * 数据替换
+	 */
+	public void replacement(Player player) {
+		other.setNickName(player.getNickName());
+		other.setPlayerId(player.getPlayerId());
+		other.setVip(player.getVip());
+		//this.setPower(player.getpo());
+		other.setLevel(player.getLevel());
+	}
+
+	/**
 	 * 影子对象转协议对象
 	 * @return
 	 */
 	public PBPlayerProfile toProto() {
-		return other.toProto();
+		PBPlayerProfile.Builder builder = PBPlayerProfile.newBuilder();
+		builder.setPlayerId(other.getPlayerId());
+		builder.setNickName(other.getNickName());
+		builder.setLevel(other.getLevel());
+		builder.setVip(other.getVip());
+		builder.setPower(other.getPower());
+		return builder.build();
 	}
 	
 }
