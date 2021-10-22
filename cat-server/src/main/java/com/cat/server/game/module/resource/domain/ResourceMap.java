@@ -1,31 +1,36 @@
 package com.cat.server.game.module.resource.domain;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
+import com.cat.server.core.annotation.NotUse;
+import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
 import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
 import com.cat.server.game.module.item.proto.RespRewardsBuilder;
 
 /**
  * 奖励对象字典
  */
+@NotUse
 public class ResourceMap {
 
     /**
      * key:资源id，可以是属性，道具
      * value:值
      */
-    private final Map<Integer, Integer> dictionary;
+    private final Map<Integer, Integer> dictionary = new HashMap<>();
 
     public ResourceMap() {
-        this.dictionary = new HashMap<>();
     }
 
     public ResourceMap(Map<Integer, Integer> dictionary) {
         if (dictionary == null) {
             throw new NullPointerException();
         }
-        this.dictionary = dictionary;
+        this.dictionary.putAll(dictionary);
     }
 
     /**
@@ -113,6 +118,7 @@ public class ResourceMap {
 //        int id = attrType.getId();
 //        return getRateAttr(id);
 //    }
+    
 //    /**
 //     * 	百分比值计算
 //     * @param attrType
@@ -129,7 +135,7 @@ public class ResourceMap {
     public boolean isEmpty() {
         return dictionary.isEmpty();
     }
-
+    
     /**
      * 奖励序封装成奖励消息对象
      * @return 奖励消息对象
@@ -144,5 +150,35 @@ public class ResourceMap {
         });
         return resp;
     }
+    
+    /**
+     * 奖励序封装成奖励消息对象
+     * @return 奖励消息对象
+     */
+    public Collection<PBRewardInfo> toCollProto(){
+    	Collection<PBRewardInfo> ret = new ArrayList<>();
+        this.dictionary.forEach((key, val)->{
+            PBRewardInfoBuilder builder = new PBRewardInfoBuilder();
+            builder.setConfigId(key);
+            builder.setCount(val);
+            ret.add(builder.build());
+        });
+        return ret;
+    }
+    
+    public static void main(String[] args) {
+    	Map<Integer, Integer> ret = new HashMap<>();
+    	ret.put(1, 1);
+    	ret.put(2, 2);
+    	String json = JSON.toJSONString(ret);
+    	System.out.println(json);
+    	
+//    	ResourceMap map = new ResourceMap(ret);
+//    	json = JSON.toJSONString(map);
+//    	System.out.println(json);
+    	
+    	ResourceMap map = JSON.parseObject(json, ResourceMap.class);
+    	System.out.println(map);
+	}
 
 }

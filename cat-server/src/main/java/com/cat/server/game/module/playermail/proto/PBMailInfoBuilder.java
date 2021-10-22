@@ -1,5 +1,7 @@
 package com.cat.server.game.module.playermail.proto;
 
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,6 +45,10 @@ public class PBMailInfoBuilder extends AbstractProtocol {
 	/** 附件**/
 	public void addRewards(PBRewardInfo value){
 		this.builder.addRewards(value);
+	}
+	/**附件*/
+	public void addAllRewards(Collection<PBRewardInfo> values){
+		this.builder.addAllRewards(values);
 	}
 	/** 0=未读取;1=已读取**/
 	public void setState(int value){

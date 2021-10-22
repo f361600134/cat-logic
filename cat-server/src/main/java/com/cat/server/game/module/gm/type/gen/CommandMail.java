@@ -16,7 +16,6 @@ import com.cat.server.game.module.playermail.PlayerMailService;
  * @mail
  * @author Jeremy
  */
-@Component
 @Command("@mail")
 public class CommandMail extends AbstractModuleCommand{
 	

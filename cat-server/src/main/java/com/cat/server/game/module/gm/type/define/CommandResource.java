@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.gm.annotation.Command;
@@ -19,7 +18,6 @@ import com.google.common.collect.Maps;
  * @resource 1001,10,1002,-10
  * @author Administrator
  */
-@Component
 @Command("@resource")
 public class CommandResource extends AbstractResourceCommand{
 	

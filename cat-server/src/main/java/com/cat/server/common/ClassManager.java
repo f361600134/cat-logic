@@ -20,7 +20,7 @@ import com.google.common.reflect.ClassPath;
 /**
  * 运行时类管理器
  */
-public class ClassManager implements ILifecycle {
+public class ClassManager {
 
     private static final Logger logger = LoggerFactory.getLogger(ClassManager.class);
 
@@ -138,16 +138,6 @@ public class ClassManager implements ILifecycle {
             e.printStackTrace();
         }
         return result;
-    }
-
-    @Override
-    public void start() throws Throwable {
-        this.loadClasses(ServerConstant.scanPath);
-    }
-
-    @Override
-    public int priority() {
-        return Priority.HIGHEST.getPriority();
     }
 
 }

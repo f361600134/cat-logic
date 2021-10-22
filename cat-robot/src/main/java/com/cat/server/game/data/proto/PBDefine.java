@@ -17,8 +17,8 @@ public final class PBDefine {
   /**
    * <pre>
    *生成规则
-   *请求协议号=模块id*100+请求协议号
-   *返回协议号=模块id*100+100+返回协议号
+   *请求协议号=模块id*1000+请求协议号
+   *返回协议号=模块id*1000+100+返回协议号
    * </pre>
    *
    * Protobuf enum {@code Protocol.PBProtocol}
@@ -26,320 +26,496 @@ public final class PBDefine {
   public enum PBProtocol
       implements com.google.protobuf.ProtocolMessageEnum {
     /**
-     * <pre>
-     *system
-     * </pre>
-     *
-     * <code>UNIVERSAL = 0;</code>
+     * <code>DEFAULTID = 0;</code>
      */
-    UNIVERSAL(0),
+    DEFAULTID(0),
     /**
      * <pre>
-     *common-1
+     *Item
      * </pre>
      *
-     * <code>AckTips = 1101;</code>
+     * <code>ReqItemUse = 102101;</code>
      */
-    AckTips(1101),
+    ReqItemUse(102101),
+    /**
+     * <code>RespItemUpdate = 102201;</code>
+     */
+    RespItemUpdate(102201),
+    /**
+     * <code>RespItemUse = 102202;</code>
+     */
+    RespItemUse(102202),
+    /**
+     * <code>RespItemDelete = 102203;</code>
+     */
+    RespItemDelete(102203),
+    /**
+     * <code>ReqItemSell = 102102;</code>
+     */
+    ReqItemSell(102102),
+    /**
+     * <code>RespRewards = 102204;</code>
+     */
+    RespRewards(102204),
+    /**
+     * <code>RespItemSell = 102205;</code>
+     */
+    RespItemSell(102205),
     /**
      * <pre>
-     *login-100
+     *Player
      * </pre>
      *
-     * <code>ReqPlayerLogin = 100001;</code>
+     * <code>RespPlayerCreateRole = 101201;</code>
      */
-    ReqPlayerLogin(100001),
+    RespPlayerCreateRole(101201),
     /**
-     * <code>AckPlayerLogin = 100101;</code>
+     * <code>ReqPlayerCreateRole = 101101;</code>
      */
-    AckPlayerLogin(100101),
+    ReqPlayerCreateRole(101101),
     /**
-     * <code>ReqPlayerRandName = 100002;</code>
+     * <code>ReqPlayerReLogin = 101102;</code>
      */
-    ReqPlayerRandName(100002),
+    ReqPlayerReLogin(101102),
     /**
-     * <code>AckPlayerRandName = 100102;</code>
+     * <code>RespPlayerHeart = 101202;</code>
      */
-    AckPlayerRandName(100102),
+    RespPlayerHeart(101202),
     /**
-     * <code>ReqPlayerCreateRole = 100003;</code>
+     * <code>RespInitPlayerInfo = 101203;</code>
      */
-    ReqPlayerCreateRole(100003),
+    RespInitPlayerInfo(101203),
     /**
-     * <code>AckPlayerCreateRole = 100103;</code>
+     * <code>RespPlayerRandName = 101204;</code>
      */
-    AckPlayerCreateRole(100103),
+    RespPlayerRandName(101204),
     /**
-     * <code>AckPlayerEnterGame = 100104;</code>
+     * <code>RespPlayerDisconnect = 101205;</code>
      */
-    AckPlayerEnterGame(100104),
+    RespPlayerDisconnect(101205),
     /**
-     * <code>ReqPlayerReLogin = 100005;</code>
+     * <code>RespPlayerEnterGame = 101206;</code>
      */
-    ReqPlayerReLogin(100005),
+    RespPlayerEnterGame(101206),
     /**
-     * <code>AckPlayerReLogin = 100105;</code>
+     * <code>RespPlayerReLogin = 101207;</code>
      */
-    AckPlayerReLogin(100105),
+    RespPlayerReLogin(101207),
     /**
-     * <code>ReqPlayerHeart = 100006;</code>
+     * <code>RespPlayerLogin = 101208;</code>
      */
-    ReqPlayerHeart(100006),
+    RespPlayerLogin(101208),
     /**
-     * <code>AckPlayerHeart = 100106;</code>
+     * <code>ReqPlayerRandName = 101103;</code>
      */
-    AckPlayerHeart(100106),
+    ReqPlayerRandName(101103),
     /**
-     * <code>AckPlayerDisconnect = 100107;</code>
+     * <code>RespUpdatePlayerInfo = 101209;</code>
      */
-    AckPlayerDisconnect(100107),
+    RespUpdatePlayerInfo(101209),
     /**
-     * <code>AckInitPlayerInfo = 100108;</code>
+     * <code>ReqPlayerLogin = 101104;</code>
      */
-    AckInitPlayerInfo(100108),
+    ReqPlayerLogin(101104),
     /**
-     * <code>AckUpdatePlayerInfo = 100109;</code>
+     * <code>ReqPlayerHeart = 101105;</code>
      */
-    AckUpdatePlayerInfo(100109),
+    ReqPlayerHeart(101105),
     /**
      * <pre>
-     *chat-101
+     *LearnCommunity
      * </pre>
      *
-     * <code>ReqChat = 101001;</code>
+     * <code>RespLearnCommunityInfo = 200201;</code>
      */
-    ReqChat(101001),
+    RespLearnCommunityInfo(200201),
     /**
-     * <code>AckChat = 101101;</code>
+     * <code>RespLearnCommunityReward = 200202;</code>
      */
-    AckChat(101101),
+    RespLearnCommunityReward(200202),
+    /**
+     * <code>ReqLearnCommunityInfo = 200101;</code>
+     */
+    ReqLearnCommunityInfo(200101),
+    /**
+     * <code>ReqLearnCommunityReward = 200102;</code>
+     */
+    ReqLearnCommunityReward(200102),
     /**
      * <pre>
-     *item-102
+     *Mail
      * </pre>
      *
-     * <code>ReqItemUse = 102001;</code>
+     * <code>RespMailRead = 103201;</code>
      */
-    ReqItemUse(102001),
+    RespMailRead(103201),
     /**
-     * <code>AckItemUse = 102101;</code>
+     * <code>ReqMailReward = 103101;</code>
      */
-    AckItemUse(102101),
+    ReqMailReward(103101),
     /**
-     * <code>ReqItemSell = 102002;</code>
+     * <code>RespMailDelete = 103202;</code>
      */
-    ReqItemSell(102002),
+    RespMailDelete(103202),
     /**
-     * <code>AckItemSell = 102102;</code>
+     * <code>ReqMailRead = 103102;</code>
      */
-    AckItemSell(102102),
+    ReqMailRead(103102),
     /**
-     * <code>AckRewards = 102103;</code>
+     * <code>ReqMailList = 103103;</code>
      */
-    AckRewards(102103),
+    ReqMailList(103103),
     /**
-     * <code>AckItemUpdate = 102104;</code>
+     * <code>RespMailReward = 103203;</code>
      */
-    AckItemUpdate(102104),
+    RespMailReward(103203),
     /**
-     * <code>AckItemDelete = 102105;</code>
+     * <code>RespMailList = 103204;</code>
      */
-    AckItemDelete(102105),
+    RespMailList(103204),
+    /**
+     * <code>ReqMailDelete = 103104;</code>
+     */
+    ReqMailDelete(103104),
     /**
      * <pre>
-     *mail-103
+     *Chat
      * </pre>
      *
-     * <code>ReqMailRead = 103001;</code>
+     * <code>RespChat = 104201;</code>
      */
-    ReqMailRead(103001),
+    RespChat(104201),
     /**
-     * <code>AckMailRead = 103101;</code>
+     * <code>ReqChat = 104101;</code>
      */
-    AckMailRead(103101),
+    ReqChat(104101),
     /**
-     * <code>ReqMailReward = 103002;</code>
+     * <pre>
+     *Activity
+     * </pre>
+     *
+     * <code>ReqActivityInfo = 105101;</code>
      */
-    ReqMailReward(103002),
+    ReqActivityInfo(105101),
     /**
-     * <code>AckMailReward = 103102;</code>
+     * <code>RespActivityInfo = 105201;</code>
      */
-    AckMailReward(103102),
+    RespActivityInfo(105201),
     /**
-     * <code>ReqMailDelete = 103003;</code>
+     * <code>RespActivityInfoUpdate = 105202;</code>
      */
-    ReqMailDelete(103003),
+    RespActivityInfoUpdate(105202),
     /**
-     * <code>AckMailDelete = 103103;</code>
+     * <pre>
+     *Shadow
+     * </pre>
+     *
+     * <code>RespShadowInfo = 107201;</code>
      */
-    AckMailDelete(103103),
+    RespShadowInfo(107201),
     /**
-     * <code>ReqMailList = 103004;</code>
+     * <code>ReqShadowInfo = 107101;</code>
      */
-    ReqMailList(103004),
+    ReqShadowInfo(107101),
     /**
-     * <code>AckMailList = 103104;</code>
+     * <pre>
+     *Rank
+     * </pre>
+     *
+     * <code>ReqRankInfo = 106101;</code>
      */
-    AckMailList(103104),
+    ReqRankInfo(106101),
+    /**
+     * <code>RespRankInfo = 106201;</code>
+     */
+    RespRankInfo(106201),
+    /**
+     * <pre>
+     *Login
+     * </pre>
+     *
+     * <code>ReqLogin = 100101;</code>
+     */
+    ReqLogin(100101),
+    /**
+     * <code>ReqRandName = 100102;</code>
+     */
+    ReqRandName(100102),
+    /**
+     * <code>ReqCreateRole = 100103;</code>
+     */
+    ReqCreateRole(100103),
+    /**
+     * <pre>
+     *ActivityItem
+     * </pre>
+     *
+     * <code>RespActivityItemDelete = 201201;</code>
+     */
+    RespActivityItemDelete(201201),
+    /**
+     * <code>RespActivityItemsInfo = 201202;</code>
+     */
+    RespActivityItemsInfo(201202),
+    /**
+     * <code>RespActivityItemsUpdate = 201203;</code>
+     */
+    RespActivityItemsUpdate(201203),
+    /**
+     * <pre>
+     *Common
+     * </pre>
+     *
+     * <code>RespTips = 1201;</code>
+     */
+    RespTips(1201),
     UNRECOGNIZED(-1),
     ;
 
     /**
-     * <pre>
-     *system
-     * </pre>
-     *
-     * <code>UNIVERSAL = 0;</code>
+     * <code>DEFAULTID = 0;</code>
      */
-    public static final int UNIVERSAL_VALUE = 0;
+    public static final int DEFAULTID_VALUE = 0;
     /**
      * <pre>
-     *common-1
+     *Item
      * </pre>
      *
-     * <code>AckTips = 1101;</code>
+     * <code>ReqItemUse = 102101;</code>
      */
-    public static final int AckTips_VALUE = 1101;
+    public static final int ReqItemUse_VALUE = 102101;
+    /**
+     * <code>RespItemUpdate = 102201;</code>
+     */
+    public static final int RespItemUpdate_VALUE = 102201;
+    /**
+     * <code>RespItemUse = 102202;</code>
+     */
+    public static final int RespItemUse_VALUE = 102202;
+    /**
+     * <code>RespItemDelete = 102203;</code>
+     */
+    public static final int RespItemDelete_VALUE = 102203;
+    /**
+     * <code>ReqItemSell = 102102;</code>
+     */
+    public static final int ReqItemSell_VALUE = 102102;
+    /**
+     * <code>RespRewards = 102204;</code>
+     */
+    public static final int RespRewards_VALUE = 102204;
+    /**
+     * <code>RespItemSell = 102205;</code>
+     */
+    public static final int RespItemSell_VALUE = 102205;
     /**
      * <pre>
-     *login-100
+     *Player
      * </pre>
      *
-     * <code>ReqPlayerLogin = 100001;</code>
+     * <code>RespPlayerCreateRole = 101201;</code>
      */
-    public static final int ReqPlayerLogin_VALUE = 100001;
+    public static final int RespPlayerCreateRole_VALUE = 101201;
     /**
-     * <code>AckPlayerLogin = 100101;</code>
+     * <code>ReqPlayerCreateRole = 101101;</code>
      */
-    public static final int AckPlayerLogin_VALUE = 100101;
+    public static final int ReqPlayerCreateRole_VALUE = 101101;
     /**
-     * <code>ReqPlayerRandName = 100002;</code>
+     * <code>ReqPlayerReLogin = 101102;</code>
      */
-    public static final int ReqPlayerRandName_VALUE = 100002;
+    public static final int ReqPlayerReLogin_VALUE = 101102;
     /**
-     * <code>AckPlayerRandName = 100102;</code>
+     * <code>RespPlayerHeart = 101202;</code>
      */
-    public static final int AckPlayerRandName_VALUE = 100102;
+    public static final int RespPlayerHeart_VALUE = 101202;
     /**
-     * <code>ReqPlayerCreateRole = 100003;</code>
+     * <code>RespInitPlayerInfo = 101203;</code>
      */
-    public static final int ReqPlayerCreateRole_VALUE = 100003;
+    public static final int RespInitPlayerInfo_VALUE = 101203;
     /**
-     * <code>AckPlayerCreateRole = 100103;</code>
+     * <code>RespPlayerRandName = 101204;</code>
      */
-    public static final int AckPlayerCreateRole_VALUE = 100103;
+    public static final int RespPlayerRandName_VALUE = 101204;
     /**
-     * <code>AckPlayerEnterGame = 100104;</code>
+     * <code>RespPlayerDisconnect = 101205;</code>
      */
-    public static final int AckPlayerEnterGame_VALUE = 100104;
+    public static final int RespPlayerDisconnect_VALUE = 101205;
     /**
-     * <code>ReqPlayerReLogin = 100005;</code>
+     * <code>RespPlayerEnterGame = 101206;</code>
      */
-    public static final int ReqPlayerReLogin_VALUE = 100005;
+    public static final int RespPlayerEnterGame_VALUE = 101206;
     /**
-     * <code>AckPlayerReLogin = 100105;</code>
+     * <code>RespPlayerReLogin = 101207;</code>
      */
-    public static final int AckPlayerReLogin_VALUE = 100105;
+    public static final int RespPlayerReLogin_VALUE = 101207;
     /**
-     * <code>ReqPlayerHeart = 100006;</code>
+     * <code>RespPlayerLogin = 101208;</code>
      */
-    public static final int ReqPlayerHeart_VALUE = 100006;
+    public static final int RespPlayerLogin_VALUE = 101208;
     /**
-     * <code>AckPlayerHeart = 100106;</code>
+     * <code>ReqPlayerRandName = 101103;</code>
      */
-    public static final int AckPlayerHeart_VALUE = 100106;
+    public static final int ReqPlayerRandName_VALUE = 101103;
     /**
-     * <code>AckPlayerDisconnect = 100107;</code>
+     * <code>RespUpdatePlayerInfo = 101209;</code>
      */
-    public static final int AckPlayerDisconnect_VALUE = 100107;
+    public static final int RespUpdatePlayerInfo_VALUE = 101209;
     /**
-     * <code>AckInitPlayerInfo = 100108;</code>
+     * <code>ReqPlayerLogin = 101104;</code>
      */
-    public static final int AckInitPlayerInfo_VALUE = 100108;
+    public static final int ReqPlayerLogin_VALUE = 101104;
     /**
-     * <code>AckUpdatePlayerInfo = 100109;</code>
+     * <code>ReqPlayerHeart = 101105;</code>
      */
-    public static final int AckUpdatePlayerInfo_VALUE = 100109;
+    public static final int ReqPlayerHeart_VALUE = 101105;
     /**
      * <pre>
-     *chat-101
+     *LearnCommunity
      * </pre>
      *
-     * <code>ReqChat = 101001;</code>
+     * <code>RespLearnCommunityInfo = 200201;</code>
      */
-    public static final int ReqChat_VALUE = 101001;
+    public static final int RespLearnCommunityInfo_VALUE = 200201;
     /**
-     * <code>AckChat = 101101;</code>
+     * <code>RespLearnCommunityReward = 200202;</code>
      */
-    public static final int AckChat_VALUE = 101101;
+    public static final int RespLearnCommunityReward_VALUE = 200202;
+    /**
+     * <code>ReqLearnCommunityInfo = 200101;</code>
+     */
+    public static final int ReqLearnCommunityInfo_VALUE = 200101;
+    /**
+     * <code>ReqLearnCommunityReward = 200102;</code>
+     */
+    public static final int ReqLearnCommunityReward_VALUE = 200102;
     /**
      * <pre>
-     *item-102
+     *Mail
      * </pre>
      *
-     * <code>ReqItemUse = 102001;</code>
+     * <code>RespMailRead = 103201;</code>
      */
-    public static final int ReqItemUse_VALUE = 102001;
+    public static final int RespMailRead_VALUE = 103201;
     /**
-     * <code>AckItemUse = 102101;</code>
+     * <code>ReqMailReward = 103101;</code>
      */
-    public static final int AckItemUse_VALUE = 102101;
+    public static final int ReqMailReward_VALUE = 103101;
     /**
-     * <code>ReqItemSell = 102002;</code>
+     * <code>RespMailDelete = 103202;</code>
      */
-    public static final int ReqItemSell_VALUE = 102002;
+    public static final int RespMailDelete_VALUE = 103202;
     /**
-     * <code>AckItemSell = 102102;</code>
+     * <code>ReqMailRead = 103102;</code>
      */
-    public static final int AckItemSell_VALUE = 102102;
+    public static final int ReqMailRead_VALUE = 103102;
     /**
-     * <code>AckRewards = 102103;</code>
+     * <code>ReqMailList = 103103;</code>
      */
-    public static final int AckRewards_VALUE = 102103;
+    public static final int ReqMailList_VALUE = 103103;
     /**
-     * <code>AckItemUpdate = 102104;</code>
+     * <code>RespMailReward = 103203;</code>
      */
-    public static final int AckItemUpdate_VALUE = 102104;
+    public static final int RespMailReward_VALUE = 103203;
     /**
-     * <code>AckItemDelete = 102105;</code>
+     * <code>RespMailList = 103204;</code>
      */
-    public static final int AckItemDelete_VALUE = 102105;
+    public static final int RespMailList_VALUE = 103204;
+    /**
+     * <code>ReqMailDelete = 103104;</code>
+     */
+    public static final int ReqMailDelete_VALUE = 103104;
     /**
      * <pre>
-     *mail-103
+     *Chat
      * </pre>
      *
-     * <code>ReqMailRead = 103001;</code>
+     * <code>RespChat = 104201;</code>
      */
-    public static final int ReqMailRead_VALUE = 103001;
+    public static final int RespChat_VALUE = 104201;
     /**
-     * <code>AckMailRead = 103101;</code>
+     * <code>ReqChat = 104101;</code>
      */
-    public static final int AckMailRead_VALUE = 103101;
+    public static final int ReqChat_VALUE = 104101;
     /**
-     * <code>ReqMailReward = 103002;</code>
+     * <pre>
+     *Activity
+     * </pre>
+     *
+     * <code>ReqActivityInfo = 105101;</code>
      */
-    public static final int ReqMailReward_VALUE = 103002;
+    public static final int ReqActivityInfo_VALUE = 105101;
     /**
-     * <code>AckMailReward = 103102;</code>
+     * <code>RespActivityInfo = 105201;</code>
      */
-    public static final int AckMailReward_VALUE = 103102;
+    public static final int RespActivityInfo_VALUE = 105201;
     /**
-     * <code>ReqMailDelete = 103003;</code>
+     * <code>RespActivityInfoUpdate = 105202;</code>
      */
-    public static final int ReqMailDelete_VALUE = 103003;
+    public static final int RespActivityInfoUpdate_VALUE = 105202;
     /**
-     * <code>AckMailDelete = 103103;</code>
+     * <pre>
+     *Shadow
+     * </pre>
+     *
+     * <code>RespShadowInfo = 107201;</code>
      */
-    public static final int AckMailDelete_VALUE = 103103;
+    public static final int RespShadowInfo_VALUE = 107201;
     /**
-     * <code>ReqMailList = 103004;</code>
+     * <code>ReqShadowInfo = 107101;</code>
      */
-    public static final int ReqMailList_VALUE = 103004;
+    public static final int ReqShadowInfo_VALUE = 107101;
     /**
-     * <code>AckMailList = 103104;</code>
+     * <pre>
+     *Rank
+     * </pre>
+     *
+     * <code>ReqRankInfo = 106101;</code>
      */
-    public static final int AckMailList_VALUE = 103104;
+    public static final int ReqRankInfo_VALUE = 106101;
+    /**
+     * <code>RespRankInfo = 106201;</code>
+     */
+    public static final int RespRankInfo_VALUE = 106201;
+    /**
+     * <pre>
+     *Login
+     * </pre>
+     *
+     * <code>ReqLogin = 100101;</code>
+     */
+    public static final int ReqLogin_VALUE = 100101;
+    /**
+     * <code>ReqRandName = 100102;</code>
+     */
+    public static final int ReqRandName_VALUE = 100102;
+    /**
+     * <code>ReqCreateRole = 100103;</code>
+     */
+    public static final int ReqCreateRole_VALUE = 100103;
+    /**
+     * <pre>
+     *ActivityItem
+     * </pre>
+     *
+     * <code>RespActivityItemDelete = 201201;</code>
+     */
+    public static final int RespActivityItemDelete_VALUE = 201201;
+    /**
+     * <code>RespActivityItemsInfo = 201202;</code>
+     */
+    public static final int RespActivityItemsInfo_VALUE = 201202;
+    /**
+     * <code>RespActivityItemsUpdate = 201203;</code>
+     */
+    public static final int RespActivityItemsUpdate_VALUE = 201203;
+    /**
+     * <pre>
+     *Common
+     * </pre>
+     *
+     * <code>RespTips = 1201;</code>
+     */
+    public static final int RespTips_VALUE = 1201;
 
 
     public final int getNumber() {
@@ -366,39 +542,56 @@ public final class PBDefine {
      */
     public static PBProtocol forNumber(int value) {
       switch (value) {
-        case 0: return UNIVERSAL;
-        case 1101: return AckTips;
-        case 100001: return ReqPlayerLogin;
-        case 100101: return AckPlayerLogin;
-        case 100002: return ReqPlayerRandName;
-        case 100102: return AckPlayerRandName;
-        case 100003: return ReqPlayerCreateRole;
-        case 100103: return AckPlayerCreateRole;
-        case 100104: return AckPlayerEnterGame;
-        case 100005: return ReqPlayerReLogin;
-        case 100105: return AckPlayerReLogin;
-        case 100006: return ReqPlayerHeart;
-        case 100106: return AckPlayerHeart;
-        case 100107: return AckPlayerDisconnect;
-        case 100108: return AckInitPlayerInfo;
-        case 100109: return AckUpdatePlayerInfo;
-        case 101001: return ReqChat;
-        case 101101: return AckChat;
-        case 102001: return ReqItemUse;
-        case 102101: return AckItemUse;
-        case 102002: return ReqItemSell;
-        case 102102: return AckItemSell;
-        case 102103: return AckRewards;
-        case 102104: return AckItemUpdate;
-        case 102105: return AckItemDelete;
-        case 103001: return ReqMailRead;
-        case 103101: return AckMailRead;
-        case 103002: return ReqMailReward;
-        case 103102: return AckMailReward;
-        case 103003: return ReqMailDelete;
-        case 103103: return AckMailDelete;
-        case 103004: return ReqMailList;
-        case 103104: return AckMailList;
+        case 0: return DEFAULTID;
+        case 102101: return ReqItemUse;
+        case 102201: return RespItemUpdate;
+        case 102202: return RespItemUse;
+        case 102203: return RespItemDelete;
+        case 102102: return ReqItemSell;
+        case 102204: return RespRewards;
+        case 102205: return RespItemSell;
+        case 101201: return RespPlayerCreateRole;
+        case 101101: return ReqPlayerCreateRole;
+        case 101102: return ReqPlayerReLogin;
+        case 101202: return RespPlayerHeart;
+        case 101203: return RespInitPlayerInfo;
+        case 101204: return RespPlayerRandName;
+        case 101205: return RespPlayerDisconnect;
+        case 101206: return RespPlayerEnterGame;
+        case 101207: return RespPlayerReLogin;
+        case 101208: return RespPlayerLogin;
+        case 101103: return ReqPlayerRandName;
+        case 101209: return RespUpdatePlayerInfo;
+        case 101104: return ReqPlayerLogin;
+        case 101105: return ReqPlayerHeart;
+        case 200201: return RespLearnCommunityInfo;
+        case 200202: return RespLearnCommunityReward;
+        case 200101: return ReqLearnCommunityInfo;
+        case 200102: return ReqLearnCommunityReward;
+        case 103201: return RespMailRead;
+        case 103101: return ReqMailReward;
+        case 103202: return RespMailDelete;
+        case 103102: return ReqMailRead;
+        case 103103: return ReqMailList;
+        case 103203: return RespMailReward;
+        case 103204: return RespMailList;
+        case 103104: return ReqMailDelete;
+        case 104201: return RespChat;
+        case 104101: return ReqChat;
+        case 105101: return ReqActivityInfo;
+        case 105201: return RespActivityInfo;
+        case 105202: return RespActivityInfoUpdate;
+        case 107201: return RespShadowInfo;
+        case 107101: return ReqShadowInfo;
+        case 106101: return ReqRankInfo;
+        case 106201: return RespRankInfo;
+        case 100101: return ReqLogin;
+        case 100102: return ReqRandName;
+        case 100103: return ReqCreateRole;
+        case 201201: return RespActivityItemDelete;
+        case 201202: return RespActivityItemsInfo;
+        case 201203: return RespActivityItemsUpdate;
+        case 1201: return RespTips;
         default: return null;
       }
     }
@@ -460,26 +653,37 @@ public final class PBDefine {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020PBProtocol.proto\022\010Protocol*\306\005\n\nPBProto" +
-      "col\022\r\n\tUNIVERSAL\020\000\022\014\n\007AckTips\020\315\010\022\024\n\016ReqP" +
-      "layerLogin\020\241\215\006\022\024\n\016AckPlayerLogin\020\205\216\006\022\027\n\021" +
-      "ReqPlayerRandName\020\242\215\006\022\027\n\021AckPlayerRandNa" +
-      "me\020\206\216\006\022\031\n\023ReqPlayerCreateRole\020\243\215\006\022\031\n\023Ack" +
-      "PlayerCreateRole\020\207\216\006\022\030\n\022AckPlayerEnterGa" +
-      "me\020\210\216\006\022\026\n\020ReqPlayerReLogin\020\245\215\006\022\026\n\020AckPla" +
-      "yerReLogin\020\211\216\006\022\024\n\016ReqPlayerHeart\020\246\215\006\022\024\n\016" +
-      "AckPlayerHeart\020\212\216\006\022\031\n\023AckPlayerDisconnec" +
-      "t\020\213\216\006\022\027\n\021AckInitPlayerInfo\020\214\216\006\022\031\n\023AckUpd" +
-      "atePlayerInfo\020\215\216\006\022\r\n\007ReqChat\020\211\225\006\022\r\n\007AckC" +
-      "hat\020\355\225\006\022\020\n\nReqItemUse\020\361\234\006\022\020\n\nAckItemUse\020" +
-      "\325\235\006\022\021\n\013ReqItemSell\020\362\234\006\022\021\n\013AckItemSell\020\326\235" +
-      "\006\022\020\n\nAckRewards\020\327\235\006\022\023\n\rAckItemUpdate\020\330\235\006" +
-      "\022\023\n\rAckItemDelete\020\331\235\006\022\021\n\013ReqMailRead\020\331\244\006" +
-      "\022\021\n\013AckMailRead\020\275\245\006\022\023\n\rReqMailReward\020\332\244\006" +
-      "\022\023\n\rAckMailReward\020\276\245\006\022\023\n\rReqMailDelete\020\333" +
-      "\244\006\022\023\n\rAckMailDelete\020\277\245\006\022\021\n\013ReqMailList\020\334" +
-      "\244\006\022\021\n\013AckMailList\020\300\245\006B*\n\036com.cat.server." +
-      "game.data.protoB\010PBDefineb\006proto3"
+      "\n\020PBProtocol.proto\022\010Protocol*\205\t\n\nPBProto" +
+      "col\022\r\n\tDEFAULTID\020\000\022\020\n\nReqItemUse\020\325\235\006\022\024\n\016" +
+      "RespItemUpdate\020\271\236\006\022\021\n\013RespItemUse\020\272\236\006\022\024\n" +
+      "\016RespItemDelete\020\273\236\006\022\021\n\013ReqItemSell\020\326\235\006\022\021" +
+      "\n\013RespRewards\020\274\236\006\022\022\n\014RespItemSell\020\275\236\006\022\032\n" +
+      "\024RespPlayerCreateRole\020\321\226\006\022\031\n\023ReqPlayerCr" +
+      "eateRole\020\355\225\006\022\026\n\020ReqPlayerReLogin\020\356\225\006\022\025\n\017" +
+      "RespPlayerHeart\020\322\226\006\022\030\n\022RespInitPlayerInf" +
+      "o\020\323\226\006\022\030\n\022RespPlayerRandName\020\324\226\006\022\032\n\024RespP" +
+      "layerDisconnect\020\325\226\006\022\031\n\023RespPlayerEnterGa" +
+      "me\020\326\226\006\022\027\n\021RespPlayerReLogin\020\327\226\006\022\025\n\017RespP" +
+      "layerLogin\020\330\226\006\022\027\n\021ReqPlayerRandName\020\357\225\006\022" +
+      "\032\n\024RespUpdatePlayerInfo\020\331\226\006\022\024\n\016ReqPlayer" +
+      "Login\020\360\225\006\022\024\n\016ReqPlayerHeart\020\361\225\006\022\034\n\026RespL" +
+      "earnCommunityInfo\020\211\234\014\022\036\n\030RespLearnCommun" +
+      "ityReward\020\212\234\014\022\033\n\025ReqLearnCommunityInfo\020\245" +
+      "\233\014\022\035\n\027ReqLearnCommunityReward\020\246\233\014\022\022\n\014Res" +
+      "pMailRead\020\241\246\006\022\023\n\rReqMailReward\020\275\245\006\022\024\n\016Re" +
+      "spMailDelete\020\242\246\006\022\021\n\013ReqMailRead\020\276\245\006\022\021\n\013R" +
+      "eqMailList\020\277\245\006\022\024\n\016RespMailReward\020\243\246\006\022\022\n\014" +
+      "RespMailList\020\244\246\006\022\023\n\rReqMailDelete\020\300\245\006\022\016\n" +
+      "\010RespChat\020\211\256\006\022\r\n\007ReqChat\020\245\255\006\022\025\n\017ReqActiv" +
+      "ityInfo\020\215\265\006\022\026\n\020RespActivityInfo\020\361\265\006\022\034\n\026R" +
+      "espActivityInfoUpdate\020\362\265\006\022\024\n\016RespShadowI" +
+      "nfo\020\301\305\006\022\023\n\rReqShadowInfo\020\335\304\006\022\021\n\013ReqRankI" +
+      "nfo\020\365\274\006\022\022\n\014RespRankInfo\020\331\275\006\022\016\n\010ReqLogin\020" +
+      "\205\216\006\022\021\n\013ReqRandName\020\206\216\006\022\023\n\rReqCreateRole\020" +
+      "\207\216\006\022\034\n\026RespActivityItemDelete\020\361\243\014\022\033\n\025Res" +
+      "pActivityItemsInfo\020\362\243\014\022\035\n\027RespActivityIt" +
+      "emsUpdate\020\363\243\014\022\r\n\010RespTips\020\261\tB*\n\036com.cat." +
+      "server.game.data.protoB\010PBDefineb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

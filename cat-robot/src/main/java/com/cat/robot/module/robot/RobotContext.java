@@ -19,7 +19,7 @@ import com.cat.robot.common.config.Config;
 import com.cat.robot.common.context.SpringContextHolder;
 import com.cat.robot.module.login.proto.ReqLogin;
 import com.cat.robot.util.HttpClientUtil;
-import com.cat.server.game.data.proto.PBPlayer.AckInitPlayerInfo;
+import com.cat.server.game.data.proto.PBPlayer.RespInitPlayerInfo;
 
 public class RobotContext {
 	
@@ -28,7 +28,7 @@ public class RobotContext {
 	private Robot robot;
 	private IRobotActor robotAcotr;
 	
-	private AckInitPlayerInfo robotInfo;
+	private RespInitPlayerInfo robotInfo;
 	
 //	private ISession gameSession;
 //	private RobotNet robotNet = new RobotNet(this);
@@ -97,11 +97,11 @@ public class RobotContext {
 		return robot.getName();
 	}
 	
-	public AckInitPlayerInfo getRobotInfo() {
+	public RespInitPlayerInfo getRobotInfo() {
 		return robotInfo;
 	}
 
-	public void setRobotInfo(AckInitPlayerInfo robotInfo) {
+	public void setRobotInfo(RespInitPlayerInfo robotInfo) {
 		this.robotInfo = robotInfo;
 	}
 

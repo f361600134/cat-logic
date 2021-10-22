@@ -22,7 +22,7 @@ import com.cat.server.game.module.playermail.proto.RespMailDeleteBuilder;
 import com.cat.server.game.module.playermail.proto.RespMailListBuilder;
 import com.cat.server.game.module.playermail.proto.RespMailReadBuilder;
 import com.cat.server.game.module.resource.IResourceGroupService;
-import com.cat.server.utils.CollectionUtil;
+import com.cat.server.game.module.resource.helper.ResourceHelper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -84,7 +84,7 @@ public class PlayerMailService implements IPlayerMailService {
 	}
 	
 	/**
-	 * 更新信息, 通知客户端新邮件
+	 * 更新信息, 通知客户端多封新邮件
 	 */
 	public void responsePlayerMailInfo(PlayerMailDomain domain, List<Long> mailIds) {
 		RespMailListBuilder resp = RespMailListBuilder.newInstance(); 
@@ -204,7 +204,7 @@ public class PlayerMailService implements IPlayerMailService {
 				continue;
 
 			//merge reward
-			CollectionUtil.mergeToMap(mail.getRewardMap(), rewardMap);
+			ResourceHelper.mergeToMap(mail.getRewardMap(), rewardMap);
 			mailIds.add(mail.getId());
 			
 			mail.setState(PlayerMailConstant.REWARD);
@@ -289,7 +289,7 @@ public class PlayerMailService implements IPlayerMailService {
 	@Override
 	public void sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args) {
 		// TODO 从邮件配置获取邮件信息
-		String title = "", content = "";
+		String title = "测试邮件", content = "这是一封测试邮件忽略内容";
 		int expireDays = 1;
 		this.sendMail(playerId, title, content, expireDays, rewards);
 	}
