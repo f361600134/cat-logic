@@ -35,7 +35,9 @@ public enum ActivityTypeEnum {
     
     public abstract IActivityType newActivityType(Activity activity);
 
-    //使用缓存, 避免values内存复制
+    /**
+     * 使用缓存, 避免values内存复制
+     */
     private static EnumMap<ActivityTypeEnum, Integer> activityTypeMap = new EnumMap<>(ActivityTypeEnum.class);
     static {
     	for (ActivityTypeEnum activityType : ActivityTypeEnum.values()) {

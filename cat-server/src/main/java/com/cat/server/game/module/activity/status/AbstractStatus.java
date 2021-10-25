@@ -20,14 +20,17 @@ public abstract class AbstractStatus implements IActivityStatus{
 	 * 活动对象
 	 */
 	protected IActivityType activityType;
-	
-	//当前状态的下一个状态
+
+	/**
+	 * 当前状态的下一个状态
+	 */
 	protected IActivityStatus nextStatus;
 	
 	public AbstractStatus(IActivityType activityType) {
 		this.activityType = activityType;
 	}
 	
+	@Override
 	public IActivityStatus getNextStatus() {
 		return nextStatus;
 	}

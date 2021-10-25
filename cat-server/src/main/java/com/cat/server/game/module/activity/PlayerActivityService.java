@@ -59,8 +59,8 @@ public class PlayerActivityService {
 	
 	/**
 	* 查询活动状态信息
-	* @param long playerId
-	* @param ReqActivityInfo req
+	* @param playerId 玩家id
+	* @param req 请求参数对象
 	*/
 	public void reqActivityInfo(long playerId, ReqActivityInfo req){
 		try {

@@ -1,10 +1,7 @@
 package com.cat.server.game.module.chat.type;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,10 +36,16 @@ public abstract class AbstractChatType implements IChatType{
 	protected IPlayerService playerService;
 	
 	protected int channel;
-	
+
+	public AbstractChatType(int channel) {
+		this.channel = channel;
+		this.playerService = SpringContextHolder.getBean(IPlayerService.class);
+		this.shadowService = SpringContextHolder.getBean(IShadowService.class);
+	}
+
 	/**
 	 * TODO 具体的聊天记录, 由子类去根据需要实例化
-	 * @return
+	 * @return 聊天缓存
 	 */
 	public abstract Cache<BigInteger, Chat> getChatMap();
 	
@@ -62,8 +65,8 @@ public abstract class AbstractChatType implements IChatType{
 	
 	/**
 	 * 根据uniqueId获取聊天内容
-	 * @param uniqueId
-	 * @return
+	 * @param uniqueId 唯一id
+	 * @return 聊天对象
 	 */
 	public Chat getChat(BigInteger uniqueId) {
 		Cache<BigInteger, Chat> chatMap = getChatMap();
@@ -82,12 +85,6 @@ public abstract class AbstractChatType implements IChatType{
 		return chat;
 	}
 	
-	public AbstractChatType(int channel) {
-		this.channel = channel;
-		this.playerService = SpringContextHolder.getBean(IPlayerService.class);
-		this.shadowService = SpringContextHolder.getBean(IShadowService.class);
-	}
-	
 	@Override
 	public int getChannel() {
 		return channel;
@@ -98,6 +95,7 @@ public abstract class AbstractChatType implements IChatType{
 	 * @param senderId
 	 * @return
 	 */
+	@Override
 	public ErrorCode checkChat(long senderId, BigInteger uniqueId) {
 		PlayerContext sender = playerService.getPlayerContext(senderId);
 		
@@ -120,8 +118,9 @@ public abstract class AbstractChatType implements IChatType{
 	
 	/**
 	 * 获取原始的id
-	 * @return
+	 * @return 返回构建uniqueId的原始的id
 	 */
+	@Override
 	public Pair<Long, Long> getOriginalIds(BigInteger uniqueId) {
 		BigInteger left = uniqueId.shiftRight(64);
 		long leftPlayerId = left.longValue();
@@ -161,9 +160,10 @@ public abstract class AbstractChatType implements IChatType{
 	/**
 	 *构建聊天实体对象<br>
 	 *默认仅构造发送者简单信息, 需要构建接收者信息, 则由具体实现类处理
-	 * @return
+	 * @return 聊天信息dto
 	 */
-	protected PBChatInfo buildChatDto(ChatDetail chatDetail) {
+	@Override
+	public PBChatInfo buildChatDto(ChatDetail chatDetail) {
 		PBChatInfoBuilder builder = new PBChatInfoBuilder();
 		builder.setContent(chatDetail.getContent());
 		builder.setSendTime(chatDetail.getSendTime());
@@ -179,14 +179,15 @@ public abstract class AbstractChatType implements IChatType{
 	
 	/**
 	 * 获取所有聊天记录
-	 * @return
+	 * @return 聊天记录
 	 */
-	public List<ChatDetail> getAllChatRecord(Player sender, long targetId) {
+	@Override
+	public Collection<ChatDetail> getAllChatRecord(long playerId, long targetId) {
 		List<ChatDetail> ret = new ArrayList<>();
-		BigInteger uniqueId = getUniqueId(sender.getPlayerId(), targetId);
+		BigInteger uniqueId = getUniqueId(playerId, targetId);
 		Chat chat = getChat(uniqueId);
         if (chat == null) {
-			return new ArrayList<>();
+			return Collections.emptyList();
 		}
         Iterator<ChatDetail> iter = chat.getChatDetails().iterator();
         while (iter.hasNext()) {
@@ -197,9 +198,9 @@ public abstract class AbstractChatType implements IChatType{
 	
 	/**
 	 * 获取最新的一条聊天记录
-	 * @param sender
-	 * @param targetId
-	 * @return
+	 * @param sender 发送者对象
+	 * @param targetId 目标id
+	 * @return 单条聊天记录
 	 */
 	public ChatDetail getLastChatRecord(Player sender, long targetId) {
 		BigInteger uniqueId = getUniqueId(sender.getPlayerId(), targetId);
@@ -209,9 +210,9 @@ public abstract class AbstractChatType implements IChatType{
 	
 	/**
 	 * 获取指定数量的聊天记录, 客户端主动拉取.
-	 * @param sender
-	 * @param targetId
-	 * @return
+	 * @param sender 发送者对象
+	 * @param targetId 目标id
+	 * @return 聊天记录列表
 	 */
 	public List<ChatDetail> getChatRecord(Player sender, long targetId, int num) {
 		final long senderId = sender.getPlayerId();
@@ -222,11 +223,16 @@ public abstract class AbstractChatType implements IChatType{
 		}
         return chat.getChatDetail(num);
 	}
-	
+
+	/**
+	 * 数据库获取聊天对象
+	 * @param leftKey 索引构成leftKey
+	 * @param rightKey 索引构成rightKey
+	 * @return
+	 */
 	Chat getFromDb(long leftKey, long rightKey) {
 		try {
 			IDataProcess process = SpringContextHolder.getBean(IDataProcess.class);
-//			String[] cols = new String[] {Chat.PROP_LEFTKEY, Chat.PROP_RIGHTKEY};
 			Chat chat = process.selectOneByIndex(Chat.class, new Object[] {leftKey, rightKey});
 			chat.afterLoad();
 			return chat;
@@ -235,6 +241,5 @@ public abstract class AbstractChatType implements IChatType{
 		}
 		return null;
 	}
-	
-	
+
 }

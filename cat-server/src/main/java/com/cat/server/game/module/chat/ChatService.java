@@ -2,8 +2,10 @@ package com.cat.server.game.module.chat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
+import com.cat.server.game.module.chat.proto.RespChatBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,31 +41,23 @@ class ChatService {
 	////////////////业务/////////////////////////
 	
 	/**
-	 * 当登陆成功,推送所有聊天信息
+	 * 当登陆成功,推送所有频道的聊天信息
 	 */
 	public void onLogin(long playerId) {
 		try {
-//			for (ChatEnum chatEnum : ChatEnum.values()) {
-//				ChatDomain chatDomain = chatEnum.getDomain(playerId);
-//				if (chatDomain == null) {
-//					continue;
-//				}
-//				AckChatResp ack = chatDomain.toAllProto();
-//				playerService.sendMessage(playerId, ack);
-//			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * 当玩家登出, 释放私聊缓存
-	 */
-	public void onLogout(long playerId) {
-		try {
-			log.info("onLogin playerId:{}",playerId);
-//			System.out.println("onLogin playerId:{}"+playerId);
-//			gc(playerId);
+			for (ChannelType chatEnum : ChannelType.values()) {
+				ChatDomain chatDomain = chatManager.getDomain(chatEnum.getChannel());
+				if (chatDomain == null) {
+					continue;
+				}
+				Collection<ChatDetail> details = chatDomain.getAllChatRecord(playerId, chatDomain.getChannel());
+				RespChatBuilder builder = RespChatBuilder.newInstance();
+				builder.setChannel(chatDomain.getChannel());
+				details.forEach(detail->{
+					builder.addChats(chatDomain.getChatType().buildChatDto(detail));
+				});
+				playerService.sendMessage(playerId, builder);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -131,7 +125,8 @@ class ChatService {
 	 */
 	public void onChat(ChannelType channelType, Long playerId, String content) {
 		try {
-			if (content.length() > 100) {//长度限制,拒绝广播
+			//长度限制,拒绝广播
+			if (content.length() > 100) {
 				return;
 			}
 			ChatDomain chatDomain = chatManager.getDomain(channelType.getChannel());
@@ -160,7 +155,8 @@ class ChatService {
 		
 		Pair<ErrorCode, String> pair = checkContent(content);
 		ErrorCode code = pair.getLeft();
-		if (!code.isSuccess()) {//校验文本
+		//校验文本
+		if (!code.isSuccess()) {
 			return code;
 		}
 		//使用过滤后的文本
@@ -207,15 +203,19 @@ class ChatService {
 //		int realLen = str.length() - tags.size();
 		ErrorCode code = ErrorCode.SUCCESS;
 		if (StringUtils.isBlank(str)) {
-			code = ErrorCode.CHAT_MESSAGE_IS_EMPTY;//聊天内容为空
-		} 
-		if (content.length() > 100) {//总长度大于100超过限制
+			//聊天内容为空
+			code = ErrorCode.CHAT_MESSAGE_IS_EMPTY;
+		}
+		//总长度大于100超过限制
+		if (content.length() > 100) {
 			code = ErrorCode.CHAT_MESSAGE_TOO_LONG;
 		}
-//		if (realLen > ConfigConstantPlus.chat) {//文字长度大于100超过限制
+		//文字长度大于100超过限制
+//		if (realLen > configconstantplus.chat) {
 //			code = ErrorCode.CHAT_MESSAGE_TOO_LONG;
 //		}
-		if (tags.size() > ConfigConstantPlus.expression) {//玩家只能发送表情标签, 表情大于5, 视为失败
+		//玩家只能发送表情标签, 表情大于5, 视为失败
+		if (tags.size() > ConfigConstantPlus.expression) {
 			code = ErrorCode.CHAT_MESSAGE_TOO_LONG;
 		}
 		//TODO 文本过滤

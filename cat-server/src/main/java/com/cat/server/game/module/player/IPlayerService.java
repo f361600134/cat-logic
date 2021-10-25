@@ -27,27 +27,27 @@ public interface IPlayerService {
 	
 	/**
 	 * 发送消息
-	 * @param playerId
-	 * @param protocol
+	 * @param playerId 玩家id
+	 * @param protocol 发送的消息
 	 */
 	public void sendMessage(long playerId, IProtocol protocol);
 	
 	/**
 	 * 群发送消息
-	 * @param playerId
-	 * @param protocol
+	 * @param playerIds 玩家id列表
+	 * @param protocol 发送的消息
 	 */
 	public void sendMessage(Collection<Long> playerIds, IProtocol protocol);
 	
 	/**
 	 * 群发送消息给所有在线玩家
-	 * @param protocol
+	 * @param protocol 发送的消息
 	 */
 	public void sendMessageToAll(IProtocol protocol);
 	
 	/**
 	 * 踢指定玩家下线
-	 * @param playerIds
+	 * @param playerIds 玩家id列表
 	 */
 	public void kickPlayer(Collection<Long> playerIds);
 	

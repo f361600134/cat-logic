@@ -14,6 +14,7 @@ import com.google.common.cache.Cache;
 /**
  * 系统聊天, 仅作转发作用,不能实质聊天.
  * 不缓存, 不持久化
+ * @author Jeremy
  */
 public class SystemChatType extends AbstractChatType {
 

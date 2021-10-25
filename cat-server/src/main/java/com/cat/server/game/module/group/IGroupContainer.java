@@ -21,11 +21,14 @@ public interface IGroupContainer<T> {
      * @param memberId 成员id,创建人员默认为leader
      * @param groupName 团体名字
      * @date 2021年5月12日下午11:03:04
+     * @return 团体对象
      */
     public T create(long memberId, String groupName);
 
     /**
      * 加入团体
+     * @param member 成员对象
+     * @param groupId 组id
      * @date 2021年5月12日下午10:50:55
      */
     public void enter(IMember member, long groupId);

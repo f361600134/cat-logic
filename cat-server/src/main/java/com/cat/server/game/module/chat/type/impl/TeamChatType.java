@@ -4,10 +4,14 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
+import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.module.chat.assist.ChannelType;
 import com.cat.server.game.module.chat.domain.Chat;
 import com.cat.server.game.module.chat.domain.ChatDetail;
 import com.cat.server.game.module.chat.type.AbstractChatType;
+import com.cat.server.game.module.family.IFamilyService;
+import com.cat.server.game.module.team.ITeamService;
+import com.cat.server.utils.Pair;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
@@ -23,8 +27,10 @@ public class TeamChatType extends AbstractChatType {
 	 * 队伍聊天缓存,不持久化
 	 */
 	private Cache<BigInteger, Chat> chatRecordMap = CacheBuilder.newBuilder()
-			.expireAfterAccess(1, TimeUnit.HOURS)// 在给定时间内没有被读/写访问,则清除
-			.maximumSize(100)//	最大条目,超过这个聊天记录, 根据LRU特点移除
+			//在给定时间内没有被读/写访问,则清除
+			.expireAfterAccess(1, TimeUnit.HOURS)
+			//最大条目,超过这个聊天记录, 根据LRU特点移除
+			.maximumSize(100)
 			.build();
 	
 	public TeamChatType() {
@@ -34,14 +40,8 @@ public class TeamChatType extends AbstractChatType {
 	@Override
 	public BigInteger getUniqueId(long senderId, long targetId) {
 		//	私聊,通过发送方的玩家id,和目标玩家id,组装成唯一id
-//		long tempId = targetId;
-//		if (senderId < tempId) {
-//			senderId ^= tempId;
-//			tempId ^= senderId;
-//			senderId ^= tempId;
-//		}
-//		BigInteger bigInteger = BigInteger.valueOf(senderId).shiftLeft(64).add(BigInteger.valueOf(tempId));
-		long teamId = 0L;
+		ITeamService teamService = SpringContextHolder.getBean(ITeamService.class);
+		long teamId = teamService.getPlayerTeamId(senderId);
 		BigInteger bigInteger = BigInteger.valueOf(getChannel()).shiftLeft(64).add(BigInteger.valueOf(teamId));
 		return bigInteger;
 	}
@@ -49,7 +49,9 @@ public class TeamChatType extends AbstractChatType {
 	@Override
 	public Collection<Long> findReceiverIds(BigInteger uniqueId) {
 		//	获取到队伍, 然后通过队伍获取到成员
-		return null;
+		Pair<Long, Long> pair = getOriginalIds(uniqueId);
+		ITeamService teamService = SpringContextHolder.getBean(ITeamService.class);
+		return teamService.getMemberIdsByTeamId(pair.getRight());
 	}
 
 	@Override

@@ -70,25 +70,8 @@ public class NetworkComponent implements ILifecycle{
 		return controller;
 	}
 	
-//	/**
-//	 * RPC服务
-//	 * @return
-//	 */
-//	@Bean
-//	public DefaultRemoteCallClientDispatcher rpcController(List<IResponseCallback<? extends AbstractProtocol>> callbacks) {
-//		logger.info("注册[DefaultRemoteCallController]服务, size:{}", callbacks.size());
-//		DefaultRemoteCallClientDispatcher controller = new DefaultRemoteCallClientDispatcher();
-//		try {
-//			controller.initialize(callbacks);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			logger.error("注册[DefaultRemoteCallController]服务失败, 异常:", e);
-//		}
-//		return controller;
-//	}
-	
 	/**
-	 * RPC服务
+	 * RPC服务分发器
 	 * @return
 	 */
 	@Bean

@@ -82,9 +82,8 @@ public enum ChannelType {
 
 	/**
 	 * 根据频道类型获取频道枚举
-	 * 
-	 * @param type
-	 * @return
+	 * @param channelType 聊天频道类型
+	 * @return 聊天频道枚举类
 	 */
 	public static ChannelType getChannelType(int channelType) {
 		for (ChannelType chatType : values()) {
@@ -95,6 +94,9 @@ public enum ChannelType {
 		return null;
 	}
 
+	/**
+	 * 聊天频道枚举类缓存
+	 */
 	public static Map<Integer, IChatType> channelTypeMap = new HashMap<>();
 	static {
 		for (ChannelType channelType : ChannelType.values()) {

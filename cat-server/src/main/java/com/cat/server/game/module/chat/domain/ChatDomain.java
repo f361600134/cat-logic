@@ -3,9 +3,12 @@ package com.cat.server.game.module.chat.domain;
 
 import java.math.BigInteger;
 import java.util.Collection;
+
+import com.cat.server.game.data.proto.PBChat;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.assist.ChannelType;
 import com.cat.server.game.module.chat.type.IChatType;
+import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.utils.Pair;
 
 /**
@@ -41,10 +44,6 @@ public class ChatDomain implements IChatType{
 		return chatType;
 	}
 
-	public void setChatType(IChatType chatType) {
-		this.chatType = chatType;
-	}
-	
 	@Override
 	public int getChannel() {
 		return chatType.getChannel();
@@ -74,5 +73,14 @@ public class ChatDomain implements IChatType{
 	public ErrorCode sendMsg(ChatDetail chatDetails) {
 		return chatType.sendMsg(chatDetails);
 	}
-	
+
+	@Override
+	public Collection<ChatDetail> getAllChatRecord(long playerId, long targetId) {
+		return chatType.getAllChatRecord(playerId, targetId);
+	}
+
+	@Override
+	public PBChat.PBChatInfo buildChatDto(ChatDetail chatDetail) {
+		return chatType.buildChatDto(chatDetail);
+	}
 }

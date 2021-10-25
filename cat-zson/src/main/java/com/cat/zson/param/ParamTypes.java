@@ -22,7 +22,6 @@ public enum ParamTypes implements ParamType {
         public Object parseValue0(String param) {
             return StringUtils.EMPTY;
         }
-
     },
     BOOLEAN(new String[] { "bool", "boolean" }, false, "boolean") {
         @Override
@@ -47,6 +46,9 @@ public enum ParamTypes implements ParamType {
         }
 
     },
+    /**
+     * int类型
+     */
     INT(new String[] { "int", "num", "int32" }, 0, "int") {
         @Override
         public Object parseValue0(String param) {
@@ -54,6 +56,9 @@ public enum ParamTypes implements ParamType {
         }
 
     },
+    /**
+     * 长整形
+     */
     LONG(new String[] { "long", "bignum", "bigint", "int64" }, 0, "long") {
         @Override
         public Object parseValue0(String param) {
@@ -61,6 +66,9 @@ public enum ParamTypes implements ParamType {
         }
 
     },
+    /**
+     * string类型
+     */
     STRING(new String[] { "str", "string", "varchar" }, "", "String") {
         @Override
         public Object parseValue0(String param) {
@@ -68,6 +76,9 @@ public enum ParamTypes implements ParamType {
         }
 
     },
+    /**
+     * 数值一维数组
+     */
     NUM_ARRAY(new String[] { "intarray", "int[]", "num[]" }, new int[0], "int[]") {
         @Override
         public Object parseValue0(String param) throws ParamParseException {
@@ -96,6 +107,9 @@ public enum ParamTypes implements ParamType {
         }
 
     },
+    /**
+     * int二维数组
+     */
     NUM_DIMENSIONAL_ARRAY(new String[] { "int2array", "num2array", "int[][]", "num[][]" }, new int[0][], "int[][]") {
         @Override
         public Object parseValue0(String param) throws ParamParseException {
@@ -115,6 +129,9 @@ public enum ParamTypes implements ParamType {
         }
 
     },
+    /**
+     * 字符串数组类型
+     */
     STRING_ARRAY(new String[] { "stringarray", "strarray", "str[]", "string[]" }, "", "String[]") {
         @Override
         public Object parseValue0(String param) {
@@ -243,7 +260,10 @@ public enum ParamTypes implements ParamType {
 //            }
 //        }
 //    },
-    REWARD(new String[] { "ResourceMap" }, "", "ResourceMap", "com.cat.server.game.module.resource.domain.ResourceMap") {
+    /**
+     * 资源类型
+     */
+    RESOURCE_MAP(new String[] { "ResourceMap" }, "", "ResourceMap", "com.cat.server.game.module.resource.domain.ResourceMap") {
     	/**
     	 * 格式: 1_1,2_2
     	 * 格式:[[1,2],[1,2]]

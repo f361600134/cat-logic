@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.concurrent.Future;
@@ -211,6 +212,7 @@ class FamilyService implements IFamilyService, ILifecycle{
 		familyManager.init();
 	}
 	
+	@Override
 	public int priority() {
 		return Priority.LOGIC.getPriority();
 	}
@@ -224,11 +226,6 @@ class FamilyService implements IFamilyService, ILifecycle{
 		return family.getPosition(playerId);
 	}
 	
-	/**
-	 * 根据玩家id获取到家族id
-	 * @param playerId 玩家id
-	 * @return 家族id
-	 */
 	@Override
 	public long getPlayerFamilyId(long playerId){
 		FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
@@ -238,11 +235,6 @@ class FamilyService implements IFamilyService, ILifecycle{
 		return domain.getGroupIdByPlayerId(playerId);
 	}
 	
-	/**
-	 * 根据玩家id获取到家族id
-	 * @param familyId 家族id
-	 * @return 家族对象
-	 */
 	@Override
 	public Family getFamilyByFamilyId(long familyId){
 		FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
@@ -252,11 +244,6 @@ class FamilyService implements IFamilyService, ILifecycle{
 		return domain.get(familyId);
 	}
 	
-	/**
-	 * 根据玩家id获取到家族
-	 * @param playerId 玩家id
-	 * @return 家族对象
-	 */
 	@Override
 	public Family getFamilyByPlayerId(long playerId){
 		final long familyId = getPlayerFamilyId(playerId);
@@ -270,5 +257,15 @@ class FamilyService implements IFamilyService, ILifecycle{
 	public boolean hasPrivilege(long playerId, FamilyPrivilege familyPrivilege) {
 		return hasPrivilege(playerId, familyPrivilege.getPrivilege());
 	}
-	
+
+	@Override
+	public Collection<Long> getMemberIdsByFamilyId(long familyId) {
+		Family family = getFamilyByFamilyId(familyId);
+		if(family == null){
+			return Collections.emptyList();
+		}
+		//返回一个复制的成员ids, 并不是一个视图
+		return new ArrayList<>(family.getMembers().keySet());
+	}
+
 }

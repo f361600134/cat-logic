@@ -2,6 +2,7 @@ package com.cat.server.game.module.chat.type.impl;
 
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +19,11 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Lists;
 
-
+/**
+ * 好友聊天实现类
+ * @author Jeremy
+ *
+ */
 public class FriendChatType extends AbstractChatType{
 	
 	/**
@@ -27,8 +32,10 @@ public class FriendChatType extends AbstractChatType{
 	 * value:聊天记录实体bean
 	 */
 	private Cache<BigInteger, Chat> chatRecordMap = CacheBuilder.newBuilder()
-			.expireAfterAccess(1, TimeUnit.HOURS)// 在给定时间内没有被读/写访问,则清除
-			.maximumSize(1000)//	最大条目,超过这个聊天记录, 根据LRU特点移除
+			//在给定时间内没有被读/写访问,则清除
+			.expireAfterAccess(1, TimeUnit.HOURS)
+			//最大条目,超过这个聊天记录, 根据LRU特点移除
+			.maximumSize(1000)
 			.build();
 
 	public FriendChatType() {
@@ -74,13 +81,12 @@ public class FriendChatType extends AbstractChatType{
 	}
 	
 	@Override
-	public List<ChatDetail> getAllChatRecord(Player sender, long targetId) {
-		if (targetId <= 0) {//获取所有好友聊天记录时,仅获取最新的那条
-            List<ChatDetail> ret = Lists.newArrayList();
-            //TODO nothing.
-			return ret;
+	public Collection<ChatDetail> getAllChatRecord(long playerId, long targetId) {
+		if (targetId <= 0) {
+            //TO DO nothing or get the last one from every friend.
+			return Collections.emptyList();
 		}else {
-			return super.getAllChatRecord(sender, targetId);
+			return super.getAllChatRecord(playerId, targetId);
 		}
 	}
 	

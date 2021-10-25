@@ -20,11 +20,11 @@ public class PlayerActivityController {
 
 	@Autowired private PlayerActivityService activityService;
 
-	/*
+	/**
 	 * 查询活动状态信息
 	 */
 	@Cmd(value = PBProtocol.ReqActivityInfo_VALUE)
-	public void ReqActivityInfo(ISession session, ReqActivityInfo req) {
+	public void reqActivityInfo(ISession session, ReqActivityInfo req) {
 		long playerId = session.getUserData();
 		activityService.reqActivityInfo(playerId, req);
 	}

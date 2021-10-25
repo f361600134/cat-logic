@@ -13,19 +13,19 @@ public interface IActivityService {
 	
 	/**
 	 * 获取服务器下所有活动
-	 * @return
+	 * @return 活动对象列表
 	 */
 	public Collection<Activity> getAllActivitys();
 	
 	/**
 	 * 获取指定类型id的活动域
-	 * @return
+	 * @return 活动实现类类型
 	 */
 	public IActivityType getActivityType(int typeId);
 	
 	/**
-	 * 获取指定类型id的活动域
-	 * @return
+	 * 获取指定类型枚举类获得的活动域
+	 * @return 活动实现类类型
 	 */
 	public IActivityType getActivityType(ActivityTypeEnum activityType);
 	

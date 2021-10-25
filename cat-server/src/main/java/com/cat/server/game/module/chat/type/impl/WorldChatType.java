@@ -11,7 +11,8 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
 /**
- * 
+ * 世界聊天
+ * @author Jeremy
  */
 public class WorldChatType extends AbstractChatType {
 	
@@ -21,8 +22,10 @@ public class WorldChatType extends AbstractChatType {
 	 * value:聊天记录实体bean
 	 */
 	private Cache<BigInteger, Chat> chatRecordMap = CacheBuilder.newBuilder()
-			.expireAfterAccess(1, TimeUnit.HOURS)// 在给定时间内没有被读/写访问,则清除
-			.maximumSize(2)//	最大条目,超过这个聊天记录, 根据LRU特点移除
+			//在给定时间内没有被读/写访问,则清除
+			.expireAfterAccess(1, TimeUnit.HOURS)
+			//最大条目,超过这个聊天记录, 根据LRU特点移除
+			.maximumSize(2)
 			.build();
 
 	public WorldChatType() {

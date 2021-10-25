@@ -2,6 +2,7 @@ package com.cat.server.game.module.activity.type;
 
 import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
 import com.cat.server.game.module.activity.domain.Activity;
+import com.cat.server.game.module.activity.status.IActivityStatus;
 
 /**
  * 活动容器接口
@@ -17,21 +18,21 @@ public interface IActivityType {
 	
     /**
      * 活动是否进行中<br>
-     * {@link ActivityStatus#BEGIN}阶段<br>
+     * {@link IActivityStatus#BEGIN}阶段<br>
      * @return
      */
     boolean isBegin();
 
     /**
      * 活动是否在结算阶段<br>
-     * {@link ActivityStatus#SETTLE}阶段
+     * {@link IActivityStatus#SETTLE}阶段
      * @return
      */
     boolean isSettle();
 
     /**
      * 活动是否开启中<br>
-     * 含{@link ActivityStatus#BEGIN}或{@link ActivityStatus#SETTLE}阶段
+     * 含{@link IActivityStatus#BEGIN}或{@link IActivityStatus#SETTLE}阶段
      * @return
      */
     boolean isOpen();
@@ -39,8 +40,8 @@ public interface IActivityType {
     /**
      * 是否在一次活动的时间周期中<br>
      * 进入准备阶段至活动彻底结束 视为一次活动时间周期<br>
-     * 含{@link ActivityStatus#PREPARE}或
-     * {@link ActivityStatus#BEGIN}或{@link ActivityStatus#SETTLE}阶段
+     * 含{@link IActivityStatus#PREPARE}或
+     * {@link IActivityStatus#BEGIN}或{@link IActivityStatus#SETTLE}阶段
      * @return
      */
     boolean isInCycle();

@@ -11,9 +11,6 @@ import com.cat.zson.param.ParamType;
 /**
  * 单个参数的定义<br>
  * 对应表头
- * 
- * 
- * 
  *
  */
 public class Param {

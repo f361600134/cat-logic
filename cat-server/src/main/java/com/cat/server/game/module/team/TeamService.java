@@ -13,7 +13,9 @@ import com.cat.server.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.concurrent.Future;
 
 /**
@@ -214,14 +216,43 @@ class TeamService implements ITeamService{
     private void approvalAgree() {
     	
     }
+
+    @Override
+    public long getPlayerTeamId(long playerId) {
+        return domain.getGroupIdByPlayerId(playerId);
+    }
+
+    /**
+     * 根据队伍id获取到队伍
+     * @param teamId 队伍id
+     * @return 队伍对象
+     */
+    @Override
+    public Long getTeamIdByTeamId(long teamId){
+        Team team = getTeamByTeamId(teamId);
+        if (team == null){
+            return 0L;
+        }
+        return team.getId();
+    }
     
     /**
      * 根据队伍id获取到队伍
      * @param teamId 队伍id
      * @return 队伍对象
      */
+    @Override
     public Team getTeamByTeamId(long teamId){
         return domain.get(teamId);
+    }
+
+    @Override
+    public Collection<Long> getMemberIdsByTeamId(long teamId) {
+        Team team =  getTeamByTeamId(teamId);
+        if (team == null){
+            return Collections.emptyList();
+        }
+        return new ArrayList<>(team.getMembers().keySet());
     }
 
     /**

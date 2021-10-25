@@ -26,6 +26,7 @@ class ChatManager implements IModuleManager<Integer, ChatDomain>{
 	/**
 	 * 获取数据, 获取不到从数据库获取
 	 */
+	@Override
 	public ChatDomain getDomain(Integer id) {
 		ChatDomain domain = domains.get(id);
 		if (domain == null) {
@@ -35,6 +36,10 @@ class ChatManager implements IModuleManager<Integer, ChatDomain>{
 		return domain;
 	}
 
+	/**
+	 * 停服时执行,其他情况无需执行
+	 * @param id 频道域
+	 */
 	@Override
 	public void remove(Integer id) {
 		domains.remove(id);
@@ -42,10 +47,9 @@ class ChatManager implements IModuleManager<Integer, ChatDomain>{
 	
 	/**
 	 * 获取玩家指定渠道的渠道规则
-	 * @param playerId
-	 * @param channelType
-	 * @return  
-	 * @return ChatRule  
+	 * @param playerId 玩家id
+	 * @param channelType 频道类型
+	 * @return 聊天规则记录
 	 * @date 2020年12月15日下午11:50:44
 	 */
 	public ChatRule getChatRule(long playerId, int channelType) {

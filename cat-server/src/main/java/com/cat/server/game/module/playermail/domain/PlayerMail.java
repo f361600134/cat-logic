@@ -3,6 +3,7 @@ package com.cat.server.game.module.playermail.domain;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 
@@ -50,14 +51,6 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 		return PROP_PLAYERID;
 	}
 	
-//	public ResourceMap getRewardMap() {
-//		return rewardMap;
-//	}
-//
-//	public void setRewardMap(ResourceMap rewardMap) {
-//		this.rewardMap = rewardMap;
-//	}
-
 	/**
 	 * 创建邮件对象
 	 * @param playerId 玩家id
@@ -70,7 +63,8 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 	public static PlayerMail create(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
 		SnowflakeGenerator generator = SpringContextHolder.getBean(SnowflakeGenerator.class);
 		PlayerMail mail = new PlayerMail(playerId);
-		mail.setId(generator.nextId());//邮件id唯一,使用雪花生成器生成
+		//邮件id唯一,使用雪花生成器生成
+		mail.setId(generator.nextId());
 		mail.setTitle(title);
 		mail.setContent(content);
 		long now = TimeUtil.now();
@@ -81,13 +75,12 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 		mail.save();
 		return mail;
 	}
-	
+
+	/**
+	 * @return 邮件奖励列表
+	 */
 	public Map<Integer, Integer> getRewardMap() {
 		return rewardMap;
-	}
-
-	public void setRewardMap(Map<Integer, Integer> rewardMap) {
-		this.rewardMap = rewardMap;
 	}
 
 	/**
@@ -110,29 +103,24 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 	
 	/**
 	 * 是否已经领取
-	 * @return
+	 * @return true:已领奖
 	 */
 	public boolean isRewarded() {
-		if (this.getState() == PlayerMailConstant.REWARD) {
-			return true;
-		}
-		return false;
+		return this.getState() == PlayerMailConstant.REWARD;
 	}
 	
 	/**
 	 * 是否过期
-	 * @return
+	 * @return true:已过期
 	 */
 	public boolean isExpired() {
-		if ((TimeUtil.now() / 1000) >= this.getExpireTime()) {//截止时间大于当前时间,表示过期
-			return true;
-		}
-		return false;
+		//截止时间大于当前时间,表示过期
+		return (TimeUnit.MILLISECONDS.toSeconds(TimeUtil.now())) >= this.getExpireTime();
 	}
-	
+
 	/**
 	 * 是否可以删除
-	 * @return
+	 * @return true:可删除
 	 */
 	public boolean canDel() {
 		if (this.getState() == PlayerMailConstant.READ && this.getRewardMap().isEmpty()) {

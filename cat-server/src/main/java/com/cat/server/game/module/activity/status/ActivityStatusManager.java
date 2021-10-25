@@ -55,10 +55,6 @@ public class ActivityStatusManager implements IActivityStatus{
 		this.curStatus = statusMap.get(activityType.getActivity().getStatus());
 	}
 
-//	public Map<Integer, IActivityStatus> getStatusMap() {
-//		return statusMap;
-//	}
-
 	public IActivityStatus getCurStatus() {
 		return curStatus;
 	}

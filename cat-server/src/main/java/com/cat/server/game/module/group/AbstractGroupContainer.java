@@ -149,8 +149,8 @@ public abstract class AbstractGroupContainer <T extends IGroup> implements IGrou
 
 	/**
 	 * 这里的查找,仅仅是根据关键字进行的模糊查找
-	 * @param keyword
-	 * @return
+	 * @param keyword 关键字
+	 * @return 符合关键字的团体
 	 */
 	@Override
 	public Collection<T> searchGroup(String keyword) {

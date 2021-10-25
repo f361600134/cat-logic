@@ -4,38 +4,50 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
+import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.assist.ChannelType;
 import com.cat.server.game.module.chat.domain.Chat;
 import com.cat.server.game.module.chat.type.AbstractChatType;
+import com.cat.server.game.module.family.IFamilyService;
+import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.utils.Pair;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
 /**
- * 
+ * 家族聊天实现类
+ * @author Jeremy
+ *
  */
 public class FamilyChatType extends AbstractChatType {
-	
+
 	/**
 	 * 聊天缓存, 所有频道聊天缓存, 使用Cache替代掉Map
 	 * key:BigInteger, uniqueId, 唯一id
 	 * value:聊天记录实体bean
 	 */
 	private Cache<BigInteger, Chat> chatRecordMap = CacheBuilder.newBuilder()
-			.expireAfterAccess(1, TimeUnit.HOURS)// 在给定时间内没有被读/写访问,则清除
-			.maximumSize(100)//	最大条目,超过这个聊天记录, 根据LRU特点移除
+			//在给定时间内没有被读/写访问,则清除
+			.expireAfterAccess(1, TimeUnit.HOURS)
+			//最大条目,超过这个聊天记录, 根据LRU特点移除
+			.maximumSize(100)
 			.build();
 
 	public FamilyChatType() {
 		super(ChannelType.FAMILY.getChannel());
 	}
 
+	/**
+	 * 获取家族聊天唯一id, 根据玩家id获取到家族id, 生成uniqueId
+	 * @param senderId 发送者id
+	 * @param targetId 目标id
+	 * @return uniqueId
+	 */
 	@Override
 	public BigInteger getUniqueId(long senderId, long targetId) {
-//		PlayerView playerView = PlayerManager.getInstance().getPlayerView(senderId);
-//		long allianceId = playerView == null ? 0 : playerView.getAllianceId();
-		long familyId = 0L;
+		IFamilyService familyService = SpringContextHolder.getBean(IFamilyService.class);
+		long familyId = familyService.getPlayerFamilyId(senderId);
 		BigInteger bigInteger = BigInteger.valueOf(getChannel()).shiftLeft(64)
 				.add(BigInteger.valueOf(familyId));
 		return bigInteger;
@@ -43,13 +55,9 @@ public class FamilyChatType extends AbstractChatType {
 
 	@Override
 	public Collection<Long> findReceiverIds(BigInteger uniqueId) {
-//		Pair<Long, Long> pair = getOriginalIds(uniqueId);
-//		Alliance alliance = AllianceManager.getInstance().getAlliance(pair.getRight());
-//		if (alliance == null) {
-//			return Collections.emptyList();
-//		}
-//		return alliance.getAllianceData().getMemberMap().keySet();
-		return null;
+		Pair<Long, Long> pair = getOriginalIds(uniqueId);
+		IFamilyService familyService = SpringContextHolder.getBean(IFamilyService.class);
+		return familyService.getMemberIdsByFamilyId(pair.getRight());
 	}
 	
 	@Override

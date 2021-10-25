@@ -49,7 +49,7 @@ public class GameEventBus implements ILifecycle{
 	
 	/**
 	 * 注册观察者相关的订阅事件
-	 * @param object
+	 * @param
 	 */
 	public void register() {
 		observers.forEach(o -> eventBus.register(o));
