@@ -1,24 +1,25 @@
 package com.cat.server.game.module.family;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.concurrent.Future;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cat.api.core.task.TokenTaskQueueExecutor;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
-import com.cat.server.core.task.TokenTaskQueueExecutor;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.family.assist.FamilyPosition;
 import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
 import com.cat.server.game.module.family.domain.FamilyDomain;
 import com.cat.server.game.module.group.domain.DefaultApply;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.concurrent.Future;
 
 
 /**

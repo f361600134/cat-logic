@@ -1,6 +1,6 @@
 package com.cat.server.rank;
 
-import com.cat.server.game.module.rank.assist.ISorter;
+import com.cat.api.module.rank.assist.ISorter;
 import com.cat.server.utils.Pair;
 
 /**

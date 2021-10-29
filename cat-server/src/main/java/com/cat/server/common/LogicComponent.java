@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.cat.api.core.task.TokenTaskQueueExecutor;
+import com.cat.api.core.task.impl.CommonTaskExecutor;
+import com.cat.api.core.task.impl.DefaultTokenTaskQueueExecutor;
 import com.cat.orm.core.base.BasePo;
 import com.cat.orm.core.db.process.DataProcessor;
 import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.GameEventBus;
-import com.cat.server.core.task.TokenTaskQueueExecutor;
-import com.cat.server.core.task.impl.CommonTaskExecutor;
-import com.cat.server.core.task.impl.DefaultTokenTaskQueueExecutor;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 
 /**

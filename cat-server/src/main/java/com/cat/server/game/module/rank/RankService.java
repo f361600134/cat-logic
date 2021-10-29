@@ -8,11 +8,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cat.api.module.rank.proto.PBRankList;
+import com.cat.api.module.rank.proto.ReqInitRankInfo;
 import com.cat.net.network.base.IProtocol;
+import com.cat.net.network.client.RpcClientStarter;
 import com.cat.server.common.ServerConfig;
+import com.cat.server.core.config.ConfigManager;
+import com.cat.server.game.data.config.local.ConfigRank;
 import com.cat.server.game.module.rank.domain.Rank;
 import com.cat.server.game.module.rank.domain.RankDomain;
 import com.cat.server.game.module.rank.domain.RankTypeEnum;
+import com.rpc.core.client.RequesterManager;
 
 /**
  * Rank控制器
@@ -25,13 +31,17 @@ class RankService implements IRankService {
 	@Autowired private RankManager rankManager;
 	
 	@Autowired private ServerConfig config;
-	
+
+	@Autowired private RequesterManager requesterManager;
 	
 	/////////////业务逻辑//////////////////
-	
 	/**
-	 * 更新排行榜事件
-	 * @param context
+	 * 更新排行榜事件<br>
+	 * 如果当前排行榜是跨服排行, 那么入榜成功后, 更新排行数据至跨服排行
+	 * @param rankType 排行榜类型
+	 * @param uniqueId 唯一id
+	 * @param value 第一排序值
+	 * @param value2 第二排序值
 	 */
 	public void rankUpdateEvent(RankTypeEnum rankType, long uniqueId, long value, long value2) {
 		RankDomain domain = this.rankManager.getDomain(rankType.getConfigId());
@@ -53,6 +63,39 @@ class RankService implements IRankService {
 			logger.info("rankUpdateEvent rankType:{}, uniqueId:{}, rank:{}", rankType.getConfigId(), uniqueId, rank);
 			logger.error("rankUpdateEvent error, e:{}", e);
 		}
+	}
+
+	/**
+	 * rpc身份验证成功事件,跨服连接成功
+	 */
+	public void rpcIdentityAuthenticateSuccessEvent(String nodeType)  {
+		RpcClientStarter client = requesterManager.getClient(nodeType);
+		if(client == null) {
+			logger.info("没有找到合适的节点, 节点类型{}", nodeType);
+			return;
+		}
+		//协议对象
+		ReqInitRankInfo req = ReqInitRankInfo.create();
+		for (RankTypeEnum rankType : RankTypeEnum.values()){
+			ConfigRank config = ConfigManager.getInstance().getConfig(ConfigRank.class, rankType.getConfigId());
+			//如果不是跨服排行
+			if (config.getCross() != 1){
+				continue;
+			}
+			RankDomain domain = this.rankManager.getDomain(rankType.getConfigId());
+			if (domain == null){
+				continue;
+			}
+			PBRankList rankList = new PBRankList();
+			rankList.setRankType(rankType.getConfigId());
+			rankList.setSorted(rankType.getSorted());
+			rankList.setLimit(config.getLimit());
+			rankList.setRankType(rankType.getConfigId());
+			rankList.setRankInfos(domain.toInnerProto());
+			req.addRankList(rankList);
+		}
+		//请求通知排行榜服务器
+		client.sendMessage(req);
 	}
 
 	/////////////接口方法////////////////////////

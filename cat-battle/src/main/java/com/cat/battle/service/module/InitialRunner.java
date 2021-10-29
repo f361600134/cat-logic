@@ -9,7 +9,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cat.api.request.ReqKickUpPlayer;
+import com.cat.api.module.battle.request.ReqKickUpPlayer;
 import com.cat.battle.common.ServerConstant;
 import com.cat.battle.service.module.player.handler.KickUpPlayerCallback;
 import com.cat.net.network.tcp.RpcServerStarter;
@@ -53,7 +53,6 @@ public class InitialRunner implements InitializingBean{
                     	 try {
                     		//rpc请求
                     		RpcServerStarter server = (RpcServerStarter)netService.getRpcServer();
-//                 			RpcClientStarter client = requesterManager.getClient(ServerConstant.NODE_TYPE_GAME);
                  			if(server == null) {
                  				log.info("没有找到合适的节点, 节点类型{}", ServerConstant.NODE_TYPE_GAME);
                  				continue;

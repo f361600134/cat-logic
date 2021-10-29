@@ -2,7 +2,7 @@ package com.cat.server.current.future;
 
 import java.util.concurrent.Callable;
 
-import com.cat.server.core.task.impl.ListenableFutureExecutor;
+import com.cat.api.core.task.impl.ListenableFutureExecutor;
 import com.google.common.util.concurrent.FutureCallback;
 
 public class Main {

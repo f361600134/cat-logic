@@ -1,5 +1,6 @@
 package com.cat.server.game.module.rank.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -14,16 +15,17 @@ import java.util.concurrent.TimeoutException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.cat.api.core.task.impl.DefaultTokenTaskQueueExecutor;
+import com.cat.api.module.rank.proto.PBRank;
+import com.cat.api.module.rank.utils.ILeaderboard;
+import com.cat.api.module.rank.utils.Leaderboard;
 import com.cat.net.network.base.IProtocol;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IModuleDomain;
-import com.cat.server.core.task.impl.DefaultTokenTaskQueueExecutor;
-import com.cat.server.game.data.config.local.base.ConfigRank;
+import com.cat.server.game.data.config.local.ConfigRank;
 import com.cat.server.game.data.proto.PBRank.PBRankDto;
 import com.cat.server.game.module.rank.type.IRankType;
-import com.cat.server.game.module.rank.utils.ILeaderboard;
-import com.cat.server.game.module.rank.utils.Leaderboard;
 import com.google.common.collect.Sets;
 
 
@@ -40,34 +42,41 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 	private static final Logger log = LoggerFactory.getLogger(RankDomain.class);
 	
 	public final static long WAIT_TIME = TimeUnit.SECONDS.toMillis(1);
-	
-	//排行榜id,类型?
+
+	/**
+	 * 排行榜id,类型
+	 */
 	private Integer id;
+
 	/**
 	 * 当前排行榜数据
 	 */
-	private ILeaderboard<Long, Rank> leaderboard;
+	private final ILeaderboard<Long, Rank> leaderboard;
 	
 	/**
 	 * 公共的线程池处理器
 	 */
-	private DefaultTokenTaskQueueExecutor defaultExecutor;
+	private final DefaultTokenTaskQueueExecutor defaultExecutor;
 	
 	/**
 	 * 需要修改的数据, 定时修改
+	 * 修改的对象集合
 	 */
-	private Set<Rank> updateMap; //要修改的集合?
-	private Set<Rank> deleteMap; //要删除的集合?
+	private final Set<Rank> updateMap;
+	/**
+	 * 删除的排行对象集合
+	 */
+	private final Set<Rank> deleteMap;
 	
 	/**
 	 * 排行榜类型实现类
 	 */
-	private IRankType rankType;
+	private final IRankType rankType;
 	
 	/**
 	 * 构造方法, 一个domain就是一个排行榜
 	 * 根据config获取到排行榜配置
-	 * @param configId
+	 * @param id 配置id
 	 */
 	public RankDomain(int id){
 		this.id = id;
@@ -161,17 +170,13 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 
 	@Override
 	public Rank getFirst() throws Exception{
-		Future<Rank> future = defaultExecutor.submit(0, ()->{
-			return leaderboard.getFirst();
-		});
+		Future<Rank> future = defaultExecutor.submit(0, leaderboard::getFirst);
 		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
 	}
 
 	@Override
 	public Rank getLast() throws Exception{
-		Future<Rank> future = defaultExecutor.submit(0, ()->{
-			return leaderboard.getLast();
-		});
+		Future<Rank> future = defaultExecutor.submit(0, leaderboard::getLast);
 		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
 	}
 
@@ -201,9 +206,7 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 
 	@Override
 	public Collection<Rank> getRankInfo() throws Exception{
-		Future<Collection<Rank>> future = defaultExecutor.submit(0, ()->{
-			return leaderboard.getRankInfo();
-		});
+		Future<Collection<Rank>> future = defaultExecutor.submit(0, leaderboard::getRankInfo);
 		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
 	}
 
@@ -228,6 +231,22 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 			}
 		});
 	}
+	
+	/**
+	 * 排行榜数据转内部的pb列表对象
+	 * @return
+	 */
+	public List<PBRank> toInnerProto(){
+		List<PBRank> pbRanks = new ArrayList<>();
+		try {
+			for (Rank rank: getRankInfo()) {
+				pbRanks.add(rank.toInnerProto());
+			}
+		} catch (Exception e) {
+			log.error("toInnerProto error, e:", e);
+		}
+		return pbRanks;
+	}
 
 	@Override
 	public Integer getId() {
@@ -242,13 +261,6 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
 	}
 
-//	@Override
-//	public void initData(Map<? extends Long, ? extends Rank> m) {
-//		defaultExecutor.submit(0, ()->{
-//			leaderboard.initData(m);
-//		});
-//	}
-	
 	@Override
 	public String toString() {
 		return leaderboard.toString();
@@ -264,24 +276,18 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 
 	@Override
 	public Collection<Rank> values() throws Exception{
-		Future<Collection<Rank>> future = defaultExecutor.submit(0, ()->{
-			return leaderboard.values();
-		});
+		Future<Collection<Rank>> future = defaultExecutor.submit(0, leaderboard::values);
 		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
 	}
 
 	@Override
 	public void clear() throws Exception{
-		defaultExecutor.submit(0, ()->{
-			leaderboard.clear();
-		});
+		defaultExecutor.submit(0, leaderboard::clear);
 	}
 
 	@Override
 	public int size() throws Exception{
-		Future<Integer> future = defaultExecutor.submit(0, ()->{
-			return leaderboard.size();
-		});
+		Future<Integer> future = defaultExecutor.submit(0, leaderboard::size);
 		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
 	}
 

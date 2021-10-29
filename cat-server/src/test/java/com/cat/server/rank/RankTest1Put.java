@@ -1,17 +1,16 @@
 package com.cat.server.rank;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.cat.api.module.rank.assist.RankComparators;
+import com.cat.api.module.rank.utils.Leaderboard;
+import com.cat.server.utils.Pair;
+import com.cat.server.utils.TimeUtil;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.cat.server.game.module.rank.assist.RankDescComparator;
-import com.cat.server.game.module.rank.utils.Leaderboard;
-import com.cat.server.utils.Pair;
-import com.cat.server.utils.TimeUtil;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 模拟排行榜逐条数据入榜模拟测试<br>
@@ -44,7 +43,7 @@ public class RankTest1Put {
 	 */
 	@BeforeTest
 	public void init() {
-		dataList = new Leaderboard<>(new RankDescComparator<>(), maxnum, (updateSet, deleteSet)->{
+		dataList = new Leaderboard<>(RankComparators.descComparator(), maxnum, (updateSet, deleteSet)->{
 			if (updateSet.size() > 0) {
 				updateCount += updateSet.size();
 				//更新数据

@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.api.ProtocolId;
-import com.cat.api.response.RespKickUpPlayer;
+import com.cat.api.module.battle.response.RespKickUpPlayer;
 import com.cat.net.network.annotation.Rpc;
 import com.cat.net.network.rpc.IResponseCallback;
 

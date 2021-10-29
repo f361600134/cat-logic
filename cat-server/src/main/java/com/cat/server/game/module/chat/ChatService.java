@@ -35,11 +35,9 @@ class ChatService {
 	private static final Logger log = LoggerFactory.getLogger(ChatService.class);
 	
 	@Autowired private IPlayerService playerService;
-	
 	@Autowired private ChatManager chatManager;
 	
 	////////////////业务/////////////////////////
-	
 	/**
 	 * 当登陆成功,推送所有频道的聊天信息
 	 */
@@ -58,35 +56,6 @@ class ChatService {
 				});
 				playerService.sendMessage(playerId, builder);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 *  1秒钟事, 聊天2秒同步广播1次
-	 */
-	public void onSecond() {
-		try {
-//			for (ChatEnum chatEnum : ChatEnum.values()) {
-//				Collection<ChatDomain> domains = chatEnum.getAllDomain();
-//				if (domains == null) {
-//					continue;
-//				}
-//				for (ChatDomain chatDomain : domains) {
-//					if (chatDomain == null || !chatDomain.isBroadcast()) {
-//						continue;
-//					}
-//					AckChatResp resp = chatDomain.toNewerProto();
-//					if (resp == null) {
-//						continue;
-//					}
-//					Collection<Long> playerIds = chatEnum.findPlayerIds(chatDomain);
-//					if(!playerIds.isEmpty()) {
-//						playerService.sendMessage(playerIds, resp);
-//					}
-//				}
-//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -226,5 +195,4 @@ class ChatService {
 		}
 		return Pair.of(code, str);
 	}
-	
 }

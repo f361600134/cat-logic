@@ -22,6 +22,10 @@ public class ConcurrentFixSizeArrayList<E> implements List<E> {
 	private int capacity = (int) (1L << 4); // 16
 	private final int MAX_CAPACITY = (int) (1L << 14); // 最大容量设置为16384
 
+	public ConcurrentFixSizeArrayList() {
+
+	}
+
 	public ConcurrentFixSizeArrayList(int capacity) {
 		if (capacity < 0) {
 			throw new IllegalArgumentException("The capacity value is less than 0");

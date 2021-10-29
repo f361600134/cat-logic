@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 import org.springframework.stereotype.Component;
 
 /**
- * GM的
+ * GM命令
  */
 @Component
 @Documented

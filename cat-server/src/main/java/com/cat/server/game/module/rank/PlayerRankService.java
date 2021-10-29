@@ -1,18 +1,17 @@
 package com.cat.server.game.module.rank;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.cat.net.network.base.IProtocol;
 import com.cat.server.core.config.ConfigManager;
-import com.cat.server.game.data.config.local.base.ConfigRank;
+import com.cat.server.game.data.config.local.ConfigRank;
 import com.cat.server.game.data.proto.PBRank.ReqRankInfo;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.rank.domain.RankTypeEnum;
 import com.cat.server.game.module.rank.proto.RespRankInfoBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class PlayerRankService {
@@ -24,9 +23,9 @@ public class PlayerRankService {
 
 	/**
 	 * 请求排行榜信息
-	 * @param playerId
-	 * @param req
-	 * @param ack
+	 * @param playerId 玩家id
+	 * @param req 请求消息
+	 * @param ack 响应消息
 	 */
 	public ErrorCode reqRankInfo(long playerId, ReqRankInfo req, RespRankInfoBuilder ack) {
 		int rankType = req.getRankType();

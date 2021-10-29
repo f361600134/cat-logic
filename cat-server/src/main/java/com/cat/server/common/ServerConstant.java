@@ -17,5 +17,6 @@ public class ServerConstant {
 	public static String NODE_TYPE_GAME = "game";
 	public static String NODE_TYPE_LOGIN = "login";
 	public static String NODE_TYPE_BATTLE = "battle";
+	public static String NODE_TYPE_RANK = "rank";
 	
 }

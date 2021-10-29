@@ -149,10 +149,7 @@ public abstract class AbstractChatType implements IChatType{
 		
 		Collection<Long> receiverIds = findReceiverIds(uniqueId);
 		receiverIds.forEach(playerId -> {
-			PlayerContext receiver = playerService.getPlayerContext(senderId);
-			if (receiver !=null && receiver.isOnline()) {//	在线则同步,否则不同步
-				receiver.send(res);
-			}
+			playerService.sendMessage(playerId, res);
 		});
 		return ErrorCode.SUCCESS;
 	}

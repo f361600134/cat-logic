@@ -56,15 +56,6 @@ public class Chat extends ChatPo implements IPersistence {
 	}
 
 	@Override
-	public Object key() {
-		return null;
-	}
-
-	public String keyColumn() {
-		return null;
-	}
-
-	@Override
 	public void beforeSave() {
 		// 存储uniqueId
 		IChatType chatType = ChannelType.getChannelType(channel).getChatType();

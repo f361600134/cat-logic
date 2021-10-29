@@ -1,16 +1,15 @@
 package com.cat.server.rank;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.cat.api.module.rank.assist.RankComparators;
+import com.cat.api.module.rank.utils.Leaderboard;
+import com.cat.server.utils.Pair;
+import com.cat.server.utils.TimeUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.cat.server.game.module.rank.assist.RankDescComparator;
-import com.cat.server.game.module.rank.utils.Leaderboard;
-import com.cat.server.utils.Pair;
-import com.cat.server.utils.TimeUtil;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 模拟排行榜批量入榜<br>
@@ -37,7 +36,7 @@ public class RankTest2 {
 	 */
 	@Before
 	public void init() {
-		dataList = new Leaderboard<>(new RankDescComparator<RankingData>(), maxnum, (updateSet, deleteSet)->{
+		dataList = new Leaderboard<>(RankComparators.descComparator(), maxnum, (updateSet, deleteSet)->{
 			updateCount += updateSet.size();
 			deleteCount += deleteSet.size();
 //        	//更新数据
