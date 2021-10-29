@@ -1,20 +1,17 @@
-package com.cat.server.common;
+package com.cat.rank.common;
+
+import com.cat.rank.utils.ClassPathScanner;
+import com.google.common.collect.ImmutableSet;
+import com.google.common.reflect.ClassPath;
+import org.apache.commons.lang3.ArrayUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.cat.server.core.lifecycle.ILifecycle;
-import com.cat.server.core.lifecycle.Priority;
-import org.apache.commons.lang3.ArrayUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.cat.server.utils.ClassPathScanner;
-import com.google.common.collect.ImmutableSet;
-import com.google.common.reflect.ClassPath;
 
 
 /**

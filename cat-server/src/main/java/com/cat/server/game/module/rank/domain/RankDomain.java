@@ -7,10 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -139,11 +137,16 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 	}
 	
 	@Override
-	public Rank put(Long k, Rank v) throws InterruptedException, ExecutionException, TimeoutException {
+	public Rank put(Long k, Rank v) {
 		Future<Rank> future = defaultExecutor.submit(0, ()->{
 			return leaderboard.put(k, v);
 		});
-		return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+		try {
+			return future.get(WAIT_TIME, TimeUnit.MILLISECONDS);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override

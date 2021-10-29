@@ -22,21 +22,17 @@ public class ProtocolId {
 	 */
 	public static final int ReqInitRankInfo = 10101;
 	/**
-	 * 响应排行榜信息
-	 */
-//	public static final int RespInitRankInfo = 10102;
-	/**
 	 * 请求排行榜已更新数据
 	 */
 	public static final int ReqAddDataToRank = 10103;
 	/**
-	 * 响应排行榜已更新数据
-	 */
-//	public static final int RespRankUpdateData= 10104;
-	/**
 	 * 请求覆盖排行榜数据
 	 */
-	public static final int ReqCoverRank = 10105;
+	public static final int ReqCoverRankInfo = 10105;
+	/**
+	 * 请求添加一条数据到跨服排行榜
+	 */
+	public static final int ReqAddOneDataToRank = 10107;
 
 
 

@@ -32,7 +32,7 @@ public enum RankTypeEnum {
 	}
 	
 	public Comparator<Rank> getComparator(){
-		return RankComparators.ascComparator();
+		return RankComparators.descComparator();
 	}
 
 	/**

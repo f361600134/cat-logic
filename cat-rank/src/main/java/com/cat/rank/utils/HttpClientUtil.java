@@ -1,10 +1,6 @@
-package com.cat.server.utils;
+package com.cat.rank.utils;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -23,7 +19,10 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.alibaba.fastjson.JSONObject;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * FIXME 要优化工具类, 支持异步http请求, 且无需每次创建httpclient, 
@@ -151,8 +150,9 @@ public class HttpClientUtil {
 		String result = null;
 		HttpPost httpPost = new HttpPost(url);
 		httpPost.setConfig(config);
-		if (params != null)
+		if (params != null) {
 			httpPost.setEntity(new UrlEncodedFormEntity(params, "UTF-8"));
+		}
 		if (headers != null) {
 			for (BasicNameValuePair header : headers) {
 				httpPost.addHeader(header.getName(), header.getValue());

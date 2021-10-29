@@ -1,7 +1,7 @@
-package com.cat.rank.service.core.config.container;
+package com.cat.rank.core.config.container;
 
 import com.cat.rank.common.ServerConstant;
-import com.cat.rank.service.core.config.annotation.ConfigPath;
+import com.cat.rank.core.config.annotation.ConfigPath;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;

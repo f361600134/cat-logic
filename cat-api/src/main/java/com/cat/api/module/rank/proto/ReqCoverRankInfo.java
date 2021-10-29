@@ -2,6 +2,9 @@ package com.cat.api.module.rank.proto;
 
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import com.cat.api.ProtocolId;
 import com.cat.api.core.AbstractStuffProto;
 
@@ -20,7 +23,7 @@ public class ReqCoverRankInfo extends AbstractStuffProto {
 
 	public ReqCoverRankInfo() {
 	}
-
+	
 	public ReqCoverRankInfo(List<PBRankList> rankList) {
 		this.rankList = rankList;
 	}
@@ -32,12 +35,17 @@ public class ReqCoverRankInfo extends AbstractStuffProto {
 	public void setRankList(List<PBRankList> rankList) {
 		this.rankList = rankList;
 	}
-
+	
 	public static ReqCoverRankInfo create(List<PBRankList> rankList) {
 		return new ReqCoverRankInfo(rankList);
 	}
+	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.reflectionToString(this, ToStringStyle.SIMPLE_STYLE);
+	}
 
 	public int protocol() {
-		return ProtocolId.ReqCoverRank;
+		return ProtocolId.ReqCoverRankInfo;
 	}
 }

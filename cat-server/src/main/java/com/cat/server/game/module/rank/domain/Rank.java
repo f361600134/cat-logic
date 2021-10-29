@@ -20,11 +20,21 @@ public class Rank extends RankPo implements IPersistence, ISorter {
 
 	}
 	
-	public Rank(int curServerId, int rankType, int uniqueId, int firstValue) {
+	public Rank(int curServerId, int rankType, long uniqueId, long firstValue) {
 		setCurServerId(curServerId);
 		setRankType(rankType);
 		setUniqueId(uniqueId);
 		setFirstValue(firstValue);
+	}
+	
+	public Rank(int curServerId, int rankType, long uniqueId, long firstValue, long secondValue, long thirdValue, long createTime) {
+		setCurServerId(curServerId);
+		setRankType(rankType);
+		setUniqueId(uniqueId);
+		setFirstValue(firstValue);
+		setSecondValue(secondValue);
+		setThirdValue(thirdValue);
+		setCreateTime(createTime);
 	}
 	
 	@Override

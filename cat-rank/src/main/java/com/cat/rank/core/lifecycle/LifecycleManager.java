@@ -1,4 +1,4 @@
-package com.cat.rank.service.core.lifecycle;
+package com.cat.rank.core.lifecycle;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

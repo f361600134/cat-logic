@@ -15,33 +15,37 @@ import com.cat.api.core.AbstractStuffProto;
  * 
  * @author Jeremy
  */
-public class ReqAddDataToRank extends AbstractStuffProto {
+public class ReqAddOneDataToRank extends AbstractStuffProto {
 	/**
 	 * 排行榜列表
 	 */
-	private List<PBRankList> rankLists;
+	private List<PBRank> rankInfos;
 
-	public ReqAddDataToRank() {
-	}
-
-	public static ReqAddDataToRank create() {
-		return new ReqAddDataToRank();
-	}
-
-	public List<PBRankList> getRankLists() {
-		return rankLists;
-	}
-
-	public void setRankList(List<PBRankList> rankLists) {
-		this.rankLists = rankLists;
+	public ReqAddOneDataToRank() {
 	}
 	
+	public ReqAddOneDataToRank(List<PBRank> rankInfos) {
+		this.rankInfos = rankInfos;
+	}
+
+	public static ReqAddOneDataToRank create(List<PBRank> rankInfos) {
+		return new ReqAddOneDataToRank(rankInfos);
+	}
+
+	public List<PBRank> getRankInfos() {
+		return rankInfos;
+	}
+
+	public void setRankInfos(List<PBRank> rankInfos) {
+		this.rankInfos = rankInfos;
+	}
+
 	@Override
 	public String toString() {
 		return ReflectionToStringBuilder.reflectionToString(this, ToStringStyle.NO_CLASS_NAME_STYLE);
 	}
 
 	public int protocol() {
-		return ProtocolId.ReqAddDataToRank;
+		return ProtocolId.ReqAddOneDataToRank;
 	}
 }

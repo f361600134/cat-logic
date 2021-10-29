@@ -1,4 +1,4 @@
-package com.cat.rank.service.core.lifecycle;
+package com.cat.rank.core.lifecycle;
 
 /**
  * 优先级由小到大

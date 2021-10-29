@@ -3,16 +3,19 @@ package com.cat.server.game.module.rank;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.apache.curator.shaded.com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.api.module.rank.proto.PBRankList;
+import com.cat.api.module.rank.proto.ReqAddOneDataToRank;
 import com.cat.api.module.rank.proto.ReqInitRankInfo;
 import com.cat.net.network.base.IProtocol;
 import com.cat.net.network.client.RpcClientStarter;
 import com.cat.server.common.ServerConfig;
+import com.cat.server.common.ServerConstant;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ConfigRank;
 import com.cat.server.game.module.rank.domain.Rank;
@@ -57,14 +60,18 @@ class RankService implements IRankService {
 		rank.setFirstValue(value);
 		rank.setSecondValue(value2);
 		rank.setRankType(rankType.getConfigId());
-		try {
-			domain.put(rank.getUniqueId(), rank);
-		} catch (Exception e) {
-			logger.info("rankUpdateEvent rankType:{}, uniqueId:{}, rank:{}", rankType.getConfigId(), uniqueId, rank);
-			logger.error("rankUpdateEvent error, e:{}", e);
+		//更新入排行榜
+		domain.put(rank.getUniqueId(), rank);
+		
+		//FIXME 这里暂时设定为每次必定同步到跨服, 用于模拟测试
+		RpcClientStarter client = requesterManager.getClient(ServerConstant.NODE_TYPE_RANK);
+		if(client == null) {
+			logger.info("没有找到合适的节点, 节点类型{}", ServerConstant.NODE_TYPE_RANK);
+			return;
 		}
+		client.sendMessage(ReqAddOneDataToRank.create(Lists.newArrayList(rank.toInnerProto())));
 	}
-
+	
 	/**
 	 * rpc身份验证成功事件,跨服连接成功
 	 */
@@ -94,8 +101,24 @@ class RankService implements IRankService {
 			rankList.setRankInfos(domain.toInnerProto());
 			req.addRankList(rankList);
 		}
+		logger.info("发送排行榜数据:{}", req);
 		//请求通知排行榜服务器
 		client.sendMessage(req);
+	}
+	
+	/**
+	 * 处理覆盖排行榜数据
+	 */
+	public void reqCoverRankInfo(int rankType, Collection<Rank> ranks) {
+		RankDomain domain = this.rankManager.getDomain(rankType);
+		if (domain == null){
+			logger.info("reqCoverRankInfo error, domain is null");
+			return;
+		}
+		ranks.forEach(rank->{
+			domain.put(rank.getUniqueId(), rank);
+		});
+		
 	}
 
 	/////////////接口方法////////////////////////
@@ -109,6 +132,7 @@ class RankService implements IRankService {
 		RankDomain domain = this.rankManager.getDomain(rankType.getConfigId());
 		if (domain == null) {
 			logger.info("loading rank error, domain is null");
+			return ret;
 		}
 		try {
 			ret = domain.getRankByKey(uniqueId);
@@ -129,7 +153,7 @@ class RankService implements IRankService {
 			return Collections.emptyList();
 		}
 		try {
-			return domain.subRankInfo(0, limit);
+			return domain.subRankInfo(1, limit);
 		} catch (Exception e) {
 			logger.error("getRankList error, e:", e);
 			return Collections.emptyList();
@@ -147,7 +171,7 @@ class RankService implements IRankService {
 		}
 		Collection<Rank> ranks = Collections.emptyList();
 		try {
-			ranks = domain.subRankInfo(0, limit);
+			ranks = domain.subRankInfo(1, limit);
 		} catch (Exception e) {
 			logger.error("buildRankList error, e:", e);
 		}

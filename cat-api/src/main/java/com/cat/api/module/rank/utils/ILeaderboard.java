@@ -9,7 +9,7 @@ public interface ILeaderboard<K, V>{
 	 * 添加排行榜元素,被修改,移除掉的数据会通过回调通知业务层
 	 * @return
 	 */
-	public V put(K k, V v) throws Exception;
+	public V put(K k, V v);
 	
 	/**
 	 * 添加排行榜元素,被修改,移除掉的数据会通过回调通知业务层

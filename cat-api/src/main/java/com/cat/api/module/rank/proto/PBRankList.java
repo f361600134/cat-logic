@@ -2,6 +2,9 @@ package com.cat.api.module.rank.proto;
 
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * 排行榜列表对象
  * @author Jeremy
@@ -65,6 +68,11 @@ public class PBRankList {
 
 	public void setLimit(int limit) {
 		this.limit = limit;
+	}
+	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.reflectionToString(this, ToStringStyle.NO_CLASS_NAME_STYLE);
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.cat.server.utils;
+package com.cat.rank.utils;
 
 import java.security.MessageDigest;
 

@@ -14,7 +14,7 @@ public class ConsoleShadow implements IConsole {
 	private IShadowService shadowService;
 
 	@Override
-	public void process(String content) {
+	public void process(String ...content) {
 		try {
 			Shadow shadow = shadowService.get(1);
 			System.out.println("获取shadow:" + shadow);

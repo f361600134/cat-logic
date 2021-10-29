@@ -1,8 +1,8 @@
-package com.cat.rank.service.core.config.container;
+package com.cat.rank.core.config.container;
 
 import com.cat.rank.common.ServerConfig;
 import com.cat.rank.common.SpringContextHolder;
-import com.cat.rank.service.core.config.annotation.ConfigUrl;
+import com.cat.rank.core.config.annotation.ConfigUrl;
 import com.cat.rank.utils.HttpClientUtil;
 import com.cat.rank.utils.MD5;
 import org.apache.commons.lang3.StringUtils;

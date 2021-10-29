@@ -1,14 +1,14 @@
-package com.cat.battle.service.module.player;
+package com.cat.rank.service.rpc;
 
 import com.cat.api.ProtocolId;
 import com.cat.api.module.battle.request.ReqIdentityAuthenticate;
 import com.cat.api.module.battle.response.RespIdentityAuthenticate;
-import com.cat.battle.service.module.other.SpringContextHolder;
 import com.cat.net.network.annotation.Rpc;
 import com.cat.net.network.base.ISession;
 import com.cat.net.network.controller.IRpcController;
 import com.cat.net.network.tcp.RpcServerStarter;
 import com.cat.net.terminal.IServer;
+import com.cat.rank.common.SpringContextHolder;
 import com.rpc.common.RpcConfig;
 import com.rpc.core.server.RpcNetService;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class PlayerController implements IRpcController {
+public class AuthController implements IRpcController {
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 

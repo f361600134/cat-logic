@@ -1,7 +1,7 @@
-package com.cat.rank.service.core.config;
+package com.cat.rank.core.config;
 
-import com.cat.rank.service.core.config.container.IConfigContainer;
-import com.cat.rank.service.core.config.container.IGameConfig;
+import com.cat.rank.core.config.container.IConfigContainer;
+import com.cat.rank.core.config.container.IGameConfig;
 
 import java.util.Map;
 

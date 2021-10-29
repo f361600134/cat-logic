@@ -1,4 +1,4 @@
-package com.cat.rank.service.core.config.extra;
+package com.cat.rank.core.config.extra;
 
 /**
  * 配置生成器一些代码支持

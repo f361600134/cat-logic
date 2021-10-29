@@ -1,7 +1,4 @@
-package com.cat.battle.service.module.other;
-
-import java.lang.annotation.Annotation;
-import java.util.Collection;
+package com.cat.rank.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +6,9 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+
+import java.lang.annotation.Annotation;
+import java.util.Collection;
 
 /**
  * spring上下文获取, 

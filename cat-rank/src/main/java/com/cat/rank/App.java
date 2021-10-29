@@ -1,11 +1,11 @@
-package com.cat.battle;
-
-import java.util.concurrent.TimeUnit;
+package com.cat.rank;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Hello world!

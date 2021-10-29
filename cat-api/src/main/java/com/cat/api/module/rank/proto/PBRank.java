@@ -1,5 +1,8 @@
 package com.cat.api.module.rank.proto;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * 排行榜协议对象
 * @author Jeremy
@@ -72,6 +75,11 @@ public class PBRank {
 	
 	public static PBRank create(int curServerId, int rankType, long uniqueId, long firstValue, long secondValue, long thirdValue, long createTime) {
 		return new PBRank(curServerId, rankType, uniqueId, firstValue, secondValue, thirdValue, createTime);
+	}
+	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.reflectionToString(this, ToStringStyle.NO_CLASS_NAME_STYLE);
 	}
 
 }

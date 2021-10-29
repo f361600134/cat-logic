@@ -12,7 +12,7 @@ public class ConsoleExit implements IConsole{
 	private static final Logger log = LoggerFactory.getLogger(ConsoleExit.class);
 
 	@Override
-	public void process(String content) {
+	public void process(String ...content) {
 		log.info("====> 收到控制台停服命令, 优雅停服...");
 		System.exit(0);
 	}

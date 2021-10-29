@@ -23,7 +23,7 @@ public class ConsoleIdentify implements IConsole {
 	@Autowired private RequesterManager requesterManager;
 
 	@Override
-	public void process(String content) {
+	public void process(String ...content) {
 		try {
 			//rpc请求
 			RpcClientStarter client = requesterManager.getClient(ServerConstant.NODE_TYPE_RANK);

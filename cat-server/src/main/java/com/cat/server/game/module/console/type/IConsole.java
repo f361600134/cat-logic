@@ -1,10 +1,5 @@
 package com.cat.server.game.module.console.type;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.cat.server.game.module.console.type.impl.ConsoleIdentify;
-
 public interface IConsole {
 	
 	/**
@@ -12,6 +7,6 @@ public interface IConsole {
 	 * @param content
 	 * @return
 	 */
-	public void process(String content);
+	public void process(String ...content);
 
 }

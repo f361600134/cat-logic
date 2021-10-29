@@ -6,6 +6,9 @@ import com.cat.api.core.AbstractStuffProto;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 /**
  * 请求初始化排行榜, 不需要返回<br>
  * game -> rank, game节点连接rank节点身份验证成功后, game节点的数据初始化到rank节点<br>
@@ -36,6 +39,11 @@ public class ReqInitRankInfo extends AbstractStuffProto {
 	
 	public static ReqInitRankInfo create() {
 		return new ReqInitRankInfo();
+	}
+	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.reflectionToString(this, ToStringStyle.NO_CLASS_NAME_STYLE);
 	}
 
 	@Override

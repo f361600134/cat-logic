@@ -1,4 +1,4 @@
-package com.cat.rank.service.core.config.container;
+package com.cat.rank.core.config.container;
 
 import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;

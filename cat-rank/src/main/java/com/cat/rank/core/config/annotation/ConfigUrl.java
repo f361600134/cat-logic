@@ -1,4 +1,4 @@
-package com.cat.rank.service.core.config.annotation;
+package com.cat.rank.core.config.annotation;
 
 import java.lang.annotation.*;
 

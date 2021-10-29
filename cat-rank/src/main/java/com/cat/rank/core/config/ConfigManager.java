@@ -1,15 +1,15 @@
-package com.cat.rank.service.core.config;
+package com.cat.rank.core.config;
 
 import com.cat.rank.common.ClassManager;
 import com.cat.rank.common.SpringContextHolder;
-import com.cat.rank.service.core.config.annotation.ConfigPath;
-import com.cat.rank.service.core.config.annotation.ConfigUrl;
-import com.cat.rank.service.core.config.container.DefaultLocalConfigContainer;
-import com.cat.rank.service.core.config.container.DefaultRemoteConfigContainer;
-import com.cat.rank.service.core.config.container.IConfigContainer;
-import com.cat.rank.service.core.config.container.IGameConfig;
-import com.cat.rank.service.core.lifecycle.ILifecycle;
-import com.cat.rank.service.core.lifecycle.Priority;
+import com.cat.rank.core.config.annotation.ConfigPath;
+import com.cat.rank.core.config.annotation.ConfigUrl;
+import com.cat.rank.core.config.container.DefaultLocalConfigContainer;
+import com.cat.rank.core.config.container.DefaultRemoteConfigContainer;
+import com.cat.rank.core.config.container.IConfigContainer;
+import com.cat.rank.core.config.container.IGameConfig;
+import com.cat.rank.core.lifecycle.ILifecycle;
+import com.cat.rank.core.lifecycle.Priority;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

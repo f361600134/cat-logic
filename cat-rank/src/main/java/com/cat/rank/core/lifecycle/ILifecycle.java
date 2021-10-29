@@ -1,4 +1,4 @@
-package com.cat.rank.service.core.lifecycle;
+package com.cat.rank.core.lifecycle;
 
 /**
  * 生命周期接口类, 控制系统环境,业务环境,业务模块之间的启动顺序 

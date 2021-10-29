@@ -53,12 +53,21 @@ class ConsoleService implements ILifecycle {
 			try (Scanner sc = new Scanner(System.in)) {
 				while (true) {
 					String cmd = sc.next();
-					IConsole console = consoles.get(cmd);
+					String[] cmdArr = null;
+					if(cmd.contains(",")) {//包含分隔符
+						cmdArr = cmd.split(",");
+					}
+					String key = cmdArr == null ? cmd : cmdArr[0];
+					IConsole console = consoles.get(key);
 					if(console == null) {
 						log.info("can not find console:{}", cmd);
 						continue;
 					}
-					console.process(cmd);
+					try {
+						console.process(cmdArr);
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
 					Thread.sleep(1000L);
 				}
 			}catch (Exception e) {
