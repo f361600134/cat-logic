@@ -3,8 +3,6 @@ package com.cat.rank.common;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-import java.time.LocalDate;
-
 /**
  * 游戏服配置
  * 
