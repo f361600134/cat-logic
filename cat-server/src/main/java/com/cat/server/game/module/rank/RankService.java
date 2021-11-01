@@ -2,6 +2,7 @@ package com.cat.server.game.module.rank;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 
 import org.apache.curator.shaded.com.google.common.collect.Lists;
 import org.slf4j.Logger;
@@ -109,16 +110,13 @@ class RankService implements IRankService {
 	/**
 	 * 处理覆盖排行榜数据
 	 */
-	public void reqCoverRankInfo(int rankType, Collection<Rank> ranks) {
+	public void reqCoverRankInfo(int rankType, Map<Long, Rank> rankMap) {
 		RankDomain domain = this.rankManager.getDomain(rankType);
 		if (domain == null){
 			logger.info("reqCoverRankInfo error, domain is null");
 			return;
 		}
-		ranks.forEach(rank->{
-			domain.put(rank.getUniqueId(), rank);
-		});
-		
+		domain.putAll(rankMap);
 	}
 
 	/////////////接口方法////////////////////////

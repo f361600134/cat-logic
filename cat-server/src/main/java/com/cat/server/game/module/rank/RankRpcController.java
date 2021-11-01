@@ -1,7 +1,7 @@
 package com.cat.server.game.module.rank;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,11 +26,11 @@ public class RankRpcController implements IRpcController{
 	@Autowired private RankService rankService;
 	
 	
-	@Rpc(value= ProtocolId.ReqCoverRankInfo)
+	@Rpc(value = ProtocolId.ReqCoverRankInfo)
 	public void reqCoverRankInfo(ISession session, ReqCoverRankInfo req) {
-		List<Rank> ranks = new ArrayList<>();
+		
 		for (PBRankList rankList : req.getRankList()) {
-			
+			Map<Long, Rank> rankMap = new HashMap<>();
 			for (PBRank pbRank : rankList.getRankInfos()) {
 				Rank rank = new Rank(pbRank.getCurServerId(), 
 						pbRank.getRankType(), 
@@ -39,10 +39,11 @@ public class RankRpcController implements IRpcController{
 						pbRank.getSecondValue(),
 						pbRank.getThirdValue(),
 						pbRank.getCreateTime());
-				ranks.add(rank);
+				rankMap.put(rank.getUniqueId(), rank);
 			}
-			rankService.reqCoverRankInfo(rankList.getRankType(), ranks);
-			logger.info("收到覆蓋game跨服排行榜数据消息, req:{}, 当前排行榜数据:{}", req,rankService.getRankList(RankTypeEnum.POWER, 5));
+			rankService.reqCoverRankInfo(rankList.getRankType(), rankMap);
+			logger.info("收到覆蓋game跨服排行榜数据消息, req:{}, \n当前排行榜数据:{}", req, 
+					rankService.getRankList(RankTypeEnum.getRankType(rankList.getRankType()), 100));
 		}
 	}
 

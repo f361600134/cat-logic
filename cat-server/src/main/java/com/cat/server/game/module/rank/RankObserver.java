@@ -29,7 +29,7 @@ class RankObserver implements IObserver{
         //收到rpc身份验证成功事件, 处理相应的业务逻辑
         if (StringUtils.equals(event.getNodeType(), ServerConstant.NODE_TYPE_RANK)){
             //如果身份验证成功的是排行榜服务节点,当前游戏服请求更新排行榜数据覆盖掉排行榜服务
-            rankService.rpcIdentityAuthenticateSuccessEvent(event.getNodeType());
+        	this.rankService.rpcIdentityAuthenticateSuccessEvent(event.getNodeType());
         }
     }
 
