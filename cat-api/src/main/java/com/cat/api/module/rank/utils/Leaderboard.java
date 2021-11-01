@@ -176,7 +176,7 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	/**
 	 * 返回截取的指定开始到指定结束的数据,足则返回,不足则返回全部.第二種寫法
 	 * @param fromRank 开始名次, 最小为1, 表示从第一名开始截取
-	 * @param toRank 截止名次, 包含此名次
+	 * @param toRank 截止名次, 包含此名次, 如果超过排行榜最大排名, 则截止名次等于最大名次
 	 * @return 返回一个复制的排行对象, 不影响原始排行榜
 	 */
 	@SuppressWarnings("unchecked")
@@ -186,7 +186,8 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
             throw new IndexOutOfBoundsException("Leaderboard's size out of range"+fromRank);
         }
         if (toRank > map.size()) {
-            throw new IndexOutOfBoundsException("Leaderboard's size out of range"+toRank);
+            //throw new IndexOutOfBoundsException("Leaderboard's size out of range"+toRank);
+        	toRank = map.size();
         }
         int subLen = toRank - fromRank;
         if (subLen < 0) {

@@ -116,7 +116,7 @@ public class Rank implements ISorter {
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.reflectionToString(this, ToStringStyle.SIMPLE_STYLE);
+		return ReflectionToStringBuilder.reflectionToString(this, ToStringStyle.NO_CLASS_NAME_STYLE);
 	}
 	
 	/**

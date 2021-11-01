@@ -31,9 +31,8 @@ public class LogicComponent {
 
 	private static final Logger logger = LoggerFactory.getLogger(LogicComponent.class);
 
-	@Autowired
-	private ServerConfig serverConfig;
-
+	@Autowired private ServerConfig serverConfig;
+	
 	/**
 	 * 注册指定的数据处理器
 	 * @return
@@ -95,4 +94,5 @@ public class LogicComponent {
 		logger.info("注册[GameEventBus]服务");
 		return new GameEventBus();
 	}
+	
 }

@@ -54,14 +54,20 @@ public class ReqIdentityAuthenticate extends AbstractStuffProto {
 	public ReqIdentityAuthenticate() {
 	}
 	
-	public ReqIdentityAuthenticate(int id, String nodeType) {
+//	public ReqIdentityAuthenticate(int id, String nodeType) {
+//		this.nodeId = id;
+//		this.nodeType = nodeType;
+//		this.secretKey = "123";
+//	}
+	
+	public ReqIdentityAuthenticate(int id, String nodeType, String secretKey) {
 		this.nodeId = id;
 		this.nodeType = nodeType;
-		this.secretKey = "123";
+		this.secretKey = secretKey;
 	}
 	
-	public static ReqIdentityAuthenticate create(int id, String nodeType){
-		return new ReqIdentityAuthenticate(id, nodeType);
+	public static ReqIdentityAuthenticate create(int id, String nodeType, String secretKey){
+		return new ReqIdentityAuthenticate(id, nodeType, secretKey);
 	}
 
 }

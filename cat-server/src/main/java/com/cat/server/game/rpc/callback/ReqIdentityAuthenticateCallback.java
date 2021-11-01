@@ -23,7 +23,7 @@ public class ReqIdentityAuthenticateCallback implements IResponseCallback<RespId
 	public void receiveResponse(RespIdentityAuthenticate response) {
 		logger.info("RPC响应返回=========> response.code:{}", response.getCode());
 		if (response.getCode() != 0){
-			logger.info("RPC身份验证不通过");
+			logger.info("RPC身份验证不通过, errorcode:{}", response.getCode());
 			return;
 		}
 		//处理rpc连接成功逻辑, 发送rpc验证成功事件,使有rpc逻辑的模块去处理响应逻辑
