@@ -69,7 +69,7 @@ public class Rank extends RankPo implements IPersistence, ISorter {
 	public PBRank toInnerProto() {
 		return PBRank.create(
 				getCurServerId(),
-				getCurServerId(),
+				getRankType(),
 				getUniqueId(),
 				getFirstValue(),
 				getSecondValue(),
@@ -77,4 +77,43 @@ public class Rank extends RankPo implements IPersistence, ISorter {
 				getCreateTime()
 		);
 	}
+	
+	/**
+	 * 重写hashcode,只要服务器id,排行榜类型,以及唯一id一致, 表示是同一个对象
+	 */
+	@Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+		result = prime * result + curServerId;
+		result = prime * result + rankType;
+		result = prime * result + (int)(uniqueId ^ uniqueId>>>32);
+		result = prime * result + (int)(firstValue ^ firstValue>>>32);
+		result = prime * result + (int)(secondValue ^ secondValue>>>32);
+		result = prime * result + (int)(thirdValue ^ thirdValue>>>32);
+		result = prime * result + (int)(createTime ^ createTime>>>32);
+        return result;
+    }
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Rank)) {
+			return false;
+		}
+		Rank rank = (Rank) obj;
+		if (curServerId == rank.getCurServerId() 
+				&& rankType == rank.getRankType()
+				&& uniqueId == rank.getUniqueId()
+				&& firstValue == rank.getFirstValue()
+				&& secondValue == rank.getSecondValue()
+				&& thirdValue == rank.getThirdValue()
+				&& createTime == rank.getCreateTime()) {
+			return true;
+		}
+		return false;
+	}
+	
 }

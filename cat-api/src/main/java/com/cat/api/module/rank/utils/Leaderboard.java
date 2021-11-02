@@ -235,8 +235,10 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 			throw new NullPointerException("putAll error, value is null");
 		}
 		for(Map.Entry<? extends K, ? extends V> entry : m.entrySet()){
-			V v = map.put(entry.getKey(), entry.getValue());
-			if (v != null){
+			final V newValue = entry.getValue();
+			V v = map.put(entry.getKey(), newValue);
+//			if (v != null){
+			if (!newValue.equals(v)) {
 				updateSet.add(v);
 			}
 		}
@@ -296,7 +298,7 @@ public class Leaderboard<K, V> implements ILeaderboard<K, V> {
 	 */
 	private void putVal(K key, V v) {
 		V old = map.put(key, v);
-		if (old != null) {
+		if (!v.equals(old)) {
 			//变动数据加入集合
 			updateSet.add(v);
 		}

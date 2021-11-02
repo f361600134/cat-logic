@@ -26,6 +26,8 @@ import com.cat.server.game.data.proto.PBRank.PBRankDto;
 import com.cat.server.game.module.rank.type.IRankType;
 import com.google.common.collect.Sets;
 
+import ch.qos.logback.core.joran.conditional.IfAction;
+
 
 /**
  * 公共数据, key排行榜类型, value作为排行榜
@@ -219,16 +221,21 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 	 */
 	public void onSave() {
 		defaultExecutor.submit(0, ()->{
-			//有数据变动的,修改或添加入库
 			Iterator<Rank> iter = updateMap.iterator();
 			while(iter.hasNext()) {
 				Rank rank = iter.next();
-				rank.replace();
+				if(rank == null) {
+					continue;
+				}
+				log.info("rank replace:{}", rank);
+				rank.save();
 				iter.remove();
 			}
-			iter = deleteMap.iterator();
+			//有数据变动的,修改或添加入库
+			 iter = deleteMap.iterator();
 			while(iter.hasNext()) {
 				Rank rank = iter.next();
+				log.info("rank remove:{}", rank);
 				rank.delete();
 				iter.remove();
 			}

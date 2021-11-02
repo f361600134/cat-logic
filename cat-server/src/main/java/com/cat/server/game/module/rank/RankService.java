@@ -117,6 +117,13 @@ class RankService implements IRankService {
 			return;
 		}
 		domain.putAll(rankMap);
+		/**
+		 * FIXME 严重
+		 * 这里覆盖数据,本地排行榜所有的数据, 都是先删掉, 再插入, 所以都会被清掉一次
+		 * 优化方法: 1. 如果当前排名未变化, 则不插入排行榜(不会重新覆盖原先数据)
+		 * 
+		 */
+		domain.onSave();
 	}
 
 	/////////////接口方法////////////////////////

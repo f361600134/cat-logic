@@ -22,7 +22,7 @@ public class ProtocolId {
 	 */
 	public static final int ReqInitRankInfo = 10101;
 	/**
-	 * 请求排行榜已更新数据
+	 * 请求排行榜添加数据到跨服榜
 	 */
 	public static final int ReqAddDataToRank = 10103;
 	/**

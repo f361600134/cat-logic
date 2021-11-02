@@ -4,6 +4,7 @@ import com.cat.api.module.rank.assist.RankAscComparator;
 import com.cat.api.module.rank.assist.RankComparators;
 import com.cat.api.module.rank.assist.RankDescComparator;
 import com.cat.server.game.module.rank.type.IRankType;
+import com.cat.server.game.module.rank.type.impl.PlayerOtherRankType;
 import com.cat.server.game.module.rank.type.impl.PlayerPowerRankType;
 
 import java.util.Comparator;
@@ -11,7 +12,18 @@ import java.util.Comparator;
 public enum RankTypeEnum {
 	
 	/**战力排行*/
-	POWER(1),
+	POWER(1){
+		public IRankType newRankType() {
+			return new PlayerPowerRankType();
+		}
+	},
+	
+	/**其他排行*/
+	OTHER(2){
+		public IRankType newRankType() {
+			return new PlayerOtherRankType();
+		}
+	},
 	;
 
 	/**
@@ -53,9 +65,7 @@ public enum RankTypeEnum {
 	 * 根据不同的类型构建不同的排行榜实现类
 	 * @return
 	 */
-	public IRankType newRankType() {
-		return new PlayerPowerRankType();
-	}
+	public abstract IRankType newRankType();
 	
 	public static RankTypeEnum getRankType(int configId) {
 		for (RankTypeEnum type : values()) {

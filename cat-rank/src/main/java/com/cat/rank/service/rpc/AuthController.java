@@ -44,7 +44,7 @@ public class AuthController implements IRpcController {
 		}
 		
 		if (errorCode.isSuccess()) {
-			//记录身份OK, 记录信息
+			//验证OK, 记录信息
 			//在连接建立, 网络层缓存session, 但是session是否验证身份, 放在业务层去处理.
 			//细节尽量在底层实现, 上层业务尽量不要关注底层.
 			RpcServerStarter rpcServer = session.getUserData();

@@ -70,8 +70,21 @@ public class SortedValueMap<K, V> implements ISortedMap<K, V>{
 		return biMap.get(key);
 	}
 
+	/**
+	 * 原先分两步:<br>
+	 * 1. remove(key), 先根据key移除掉当前数据<br>
+	 * 2. put and add, 把新数据丢进排行榜<br>
+	 * 这样会导致命名没有变化的内容, 也会重新出榜,入榜一次
+	 * 优化方式:
+	 * 1. 校验当前数据有无变化, 无变化则跳过, 有变化则执行1,2步骤
+	 */
 	@Override
 	public V put(K key, V value) {
+		//Unknow whether the value of v is null.
+		V v = biMap.get(key);
+		if (value.equals(v)) {
+			return null;//Need overwrite hashcode and equals method.
+		}
 		V old = remove(key);
 		sortedSet.add(value);
 		biMap.put(key, value);
