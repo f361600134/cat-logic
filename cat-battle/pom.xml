@@ -30,11 +30,11 @@
 	</dependency>
     
 	<!-- birpc -->
-<!-- 	<dependency> -->
-<!-- 		<groupId>com.rpc</groupId> -->
-<!-- 		<artifactId>bi-rpc</artifactId> -->
-<!-- 		<version>0.0.1</version> -->
-<!-- 	</dependency> -->
+	<dependency>
+		<groupId>com.rpc</groupId>
+		<artifactId>bi-rpc</artifactId>
+		<version>0.0.1</version>
+	</dependency>
     
   </dependencies>
 </project>
