@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
+import com.cat.server.game.data.proto.PBShadow.ReqShadowInfo;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.shadow.domain.Shadow;
+import com.cat.server.game.module.shadow.proto.RespShadowInfoBuilder;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
@@ -29,7 +31,7 @@ class ShadowService implements IShadowService, ILifecycle {
 	@Autowired private IDataProcess process;
 	
 	/**
-	 * 最大缓存2000
+	 * 最大缓存热点数据2000
 	 */
 	public final static int MAXNUM = 2 << 10;
 	/**
@@ -37,7 +39,7 @@ class ShadowService implements IShadowService, ILifecycle {
 	 */
 	public final static int INITNUM = 2 << 4;
 	/**
-	 * 默认初始化512
+	 * 默认加载数据库数据512
 	 */
 	public final static int LOADNUM = 2 << 8;
 	
@@ -90,6 +92,17 @@ class ShadowService implements IShadowService, ILifecycle {
 		return shadow;
 	}
 
+	/**
+	 * 响应影子信息
+	 */
+	public void reqShadowInfo(long playerId, ReqShadowInfo req, RespShadowInfoBuilder ack) {
+		long shadowId = req.getPlayerId();
+		Shadow shadow = get(shadowId);
+		if (shadow!=null) {
+			//影子数据存在, 则构造影子数据返回至客户端
+			ack.setPlayerInfo(shadow.toProto());
+		}
+	}
 	
 	/////////////接口方法////////////////////////
 	
