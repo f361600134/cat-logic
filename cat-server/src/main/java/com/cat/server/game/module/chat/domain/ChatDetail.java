@@ -1,7 +1,5 @@
 package com.cat.server.game.module.chat.domain;
 
-import com.cat.server.game.data.proto.PBChat;
-import com.cat.server.game.module.chat.proto.PBChatInfoBuilder;
 import com.cat.server.utils.TimeUtil;
 
 /**

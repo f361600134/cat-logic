@@ -1,5 +1,8 @@
 package com.cat.server.game.module.user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.game.module.user.domain.StuPo;
 
@@ -9,7 +12,9 @@ import com.cat.server.game.module.user.domain.StuPo;
 @PO(name = "stu")
 public class Stu extends StuPo {
 	
-	public static final String ID = Stu.class.getSimpleName();
+//	public static final String ID = Stu.class.getSimpleName();
+	
+	private final Map<Integer, Integer> map = new HashMap<>();
 	
 	public Stu() {
 
@@ -26,6 +31,10 @@ public class Stu extends StuPo {
 		stu.setAge(1);
 		stu.setName(name);
 		return stu;
+	}
+	
+	public Map<Integer, Integer> getMap() {
+		return map;
 	}
 
 	@Override

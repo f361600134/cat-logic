@@ -82,7 +82,11 @@ class ShadowService implements IShadowService, ILifecycle {
 	 */
 	public Shadow loadOne(long playerId) {
 		Shadow shadow = process.selectByPrimaryKey(Shadow.class, new Object[] {playerId});
+		if (shadow == null) {
+			return null;
+		}
 		shadow.afterLoad();
+		cache.put(shadow.getPlayerId(), shadow);
 		return shadow;
 	}
 
@@ -103,6 +107,7 @@ class ShadowService implements IShadowService, ILifecycle {
 		Shadow shadow = get(playerId);
 		if (shadow == null) {
 			shadow = Shadow.create(playerId);
+			cache.put(shadow.getPlayerId(), shadow);
 		}
 		return shadow;
 	}

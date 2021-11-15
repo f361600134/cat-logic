@@ -6,7 +6,6 @@ import java.util.Collection;
 import com.cat.server.game.data.proto.PBChat;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.domain.ChatDetail;
-import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.utils.Pair;
 
 public interface IChatType {

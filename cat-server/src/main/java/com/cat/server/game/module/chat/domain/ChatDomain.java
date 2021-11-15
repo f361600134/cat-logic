@@ -8,7 +8,6 @@ import com.cat.server.game.data.proto.PBChat;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.assist.ChannelType;
 import com.cat.server.game.module.chat.type.IChatType;
-import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.utils.Pair;
 
 /**

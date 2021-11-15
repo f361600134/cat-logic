@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.context.SpringContextHolder;
@@ -31,7 +34,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 	 */
 	private static final long serialVersionUID = 2942618617969545324L;
 	
-	private Map<Integer, Integer> rewardMap = new HashMap<>();
+	private Map<Integer, Integer> rewardMap;
 
 	public PlayerMail() {
 		
@@ -134,6 +137,15 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public void afterLoad() {
+		if (!StringUtils.isBlank(rewards)){
+			this.rewardMap = JSONObject.parseObject(rewards, new TypeReference<Map<Integer, Integer>>(){});
+		}else {
+			this.rewardMap = new HashMap<>();
+		}
 	}
 	
 }

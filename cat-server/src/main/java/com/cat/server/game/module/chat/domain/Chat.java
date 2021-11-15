@@ -21,6 +21,11 @@ import com.cat.server.utils.Pair;
 public class Chat extends ChatPo implements IPersistence {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7293557188839820375L;
+
+	/**
 	 * 唯一id, 由两个long类型数值生成
 	 */
 	private BigInteger uniqueId;

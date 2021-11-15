@@ -1,12 +1,8 @@
 package com.cat.server.game.module.chat.proto;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.cat.net.network.base.AbstractProtocol;
-import com.cat.server.game.data.proto.PBDefine.*;
-//import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBChat.*;
+import com.cat.server.game.data.proto.PBChat.ReqChat;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 
 /**
 * ReqChatBuilder
@@ -14,8 +10,6 @@ import com.cat.server.game.data.proto.PBChat.*;
 */
 public class ReqChatBuilder extends AbstractProtocol {
 
-	private static final Logger log = LoggerFactory.getLogger(ReqChatBuilder.class);
-	
 	private final ReqChat.Builder builder = ReqChat.newBuilder();
 	
 	public ReqChatBuilder() {}

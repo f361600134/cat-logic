@@ -9,7 +9,6 @@ import com.cat.net.network.controller.IController;
 import com.cat.server.game.data.proto.PBChat.ReqChat;
 import com.cat.server.game.data.proto.PBDefine;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.common.proto.RespTipsBuilder;
 import com.cat.server.game.module.gm.ICommandService;
 import com.cat.server.game.module.player.IPlayerService;
 

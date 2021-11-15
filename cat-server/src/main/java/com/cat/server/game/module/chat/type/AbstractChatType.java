@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.orm.core.db.process.IDataProcess;
-import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.data.proto.PBChat.PBChatInfo;
 import com.cat.server.game.helper.result.ErrorCode;
