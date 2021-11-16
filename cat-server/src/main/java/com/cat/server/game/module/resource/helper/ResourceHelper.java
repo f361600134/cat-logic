@@ -2,15 +2,13 @@ package com.cat.server.game.module.resource.helper;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.cat.server.game.data.proto.PBItem.PBPairInfo;
 import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
+import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
 import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
 import com.cat.server.game.module.item.proto.RespRewardsBuilder;
 import com.google.common.collect.Maps;
@@ -58,7 +56,6 @@ public class ResourceHelper {
     /**
      * 按百分比替换资源<br>
      * 向上取整
-     *
      * @param per 百分比
      * @return 不改变原对象, 返回一个新的对象
      */
@@ -74,7 +71,6 @@ public class ResourceHelper {
 
     /**
      * 根据被除数/除数的比例 替换资源
-     *
      * @param dividend 利率
      * @param divisor 除数
      * @return 不改变原对象, 返回一个新的对象
@@ -91,15 +87,29 @@ public class ResourceHelper {
 
     /**
      * 奖励序封装成奖励消息对象
-     *
      * @return 奖励消息对象
      */
-    public static Collection<PBRewardInfo> toCollProto(Map<Integer, Integer> map) {
+    public static Collection<PBRewardInfo> toRewardProto(Map<Integer, Integer> map) {
         Collection<PBRewardInfo> ret = new ArrayList<>();
         map.forEach((key, val) -> {
             PBRewardInfoBuilder builder = new PBRewardInfoBuilder();
             builder.setConfigId(key);
             builder.setCount(val);
+            ret.add(builder.build());
+        });
+        return ret;
+    }
+    
+    /**
+     * 奖励序封装成奖励消息对象
+     * @return 奖励消息对象
+     */
+    public static Collection<PBPairInfo> toPairProto(Map<Integer, Integer> map) {
+        Collection<PBPairInfo> ret = new ArrayList<>();
+        map.forEach((key, val) -> {
+            PBPairInfoBuilder builder = new PBPairInfoBuilder();
+            builder.setConfigId(key);
+            builder.setValue(val);
             ret.add(builder.build());
         });
         return ret;

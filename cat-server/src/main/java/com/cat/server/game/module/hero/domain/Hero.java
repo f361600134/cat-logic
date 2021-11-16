@@ -90,9 +90,6 @@ public class Hero extends HeroPo implements IAttributeEntity, IPersistence, IRes
 		SnowflakeGenerator generator = SpringContextHolder.getBean(SnowflakeGenerator.class);
 		long id = generator.nextId();
 		Hero hero = new Hero(playerId, id, configId);
-//		DataProcessorAsyn processorAsyn = SpringContextHolder.getInstance()
-//				.getBean(DataProcessorAsyn.class);
-//		processorAsyn.insert(hero);
 		hero.save();
 		return hero;
 	}

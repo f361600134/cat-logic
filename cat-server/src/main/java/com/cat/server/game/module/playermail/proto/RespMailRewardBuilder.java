@@ -1,13 +1,12 @@
 package com.cat.server.game.module.playermail.proto;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Collection;
 
 import com.cat.net.network.base.AbstractProtocol;
-import com.cat.server.game.data.proto.PBDefine.*;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 import com.cat.server.game.data.proto.PBItem.PBPairInfo;
 //import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBMail.*;
+import com.cat.server.game.data.proto.PBPlayerMail.RespMailReward;
 
 /**
 * RespMailRewardBuilder
@@ -15,7 +14,7 @@ import com.cat.server.game.data.proto.PBMail.*;
 */
 public class RespMailRewardBuilder extends AbstractProtocol {
 
-	private static final Logger log = LoggerFactory.getLogger(RespMailRewardBuilder.class);
+	//private static final Logger log = LoggerFactory.getLogger(RespMailRewardBuilder.class);
 	
 	private final RespMailReward.Builder builder = RespMailReward.newBuilder();
 	
@@ -36,6 +35,10 @@ public class RespMailRewardBuilder extends AbstractProtocol {
 	/** 奖励**/
 	public void addRewards(PBPairInfo value){
 		this.builder.addRewards(value);
+	}
+	
+	public void addAllRewards(Collection<PBPairInfo> value){
+		this.builder.addAllRewards(value);
 	}
 	
 	@Override

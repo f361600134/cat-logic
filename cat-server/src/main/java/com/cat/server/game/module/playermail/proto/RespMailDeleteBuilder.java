@@ -1,12 +1,11 @@
 package com.cat.server.game.module.playermail.proto;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Collection;
 
 import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 //import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBMail.RespMailDelete;
+import com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete;
 
 /**
 * RespMailDeleteBuilder
@@ -14,7 +13,7 @@ import com.cat.server.game.data.proto.PBMail.RespMailDelete;
 */
 public class RespMailDeleteBuilder extends AbstractProtocol {
 
-	private static final Logger log = LoggerFactory.getLogger(RespMailDeleteBuilder.class);
+	//private static final Logger log = LoggerFactory.getLogger(RespMailDeleteBuilder.class);
 	
 	private final RespMailDelete.Builder builder = RespMailDelete.newBuilder();
 	
@@ -35,6 +34,10 @@ public class RespMailDeleteBuilder extends AbstractProtocol {
 	/** mail ids**/
 	public void addMailIds(long value){
 		this.builder.addMailIds(value);
+	}
+	
+	public void addAllMailIds(Collection<java.lang.Long> value){
+		this.builder.addAllMailIds(value);
 	}
 	
 	@Override

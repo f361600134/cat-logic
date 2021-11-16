@@ -6,7 +6,8 @@ import org.slf4j.LoggerFactory;
 import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBDefine.*;
 //import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBMail.*;
+import com.cat.server.game.data.proto.PBPlayerMail.*;
+import java.util.Collection;
 
 /**
 * RespMailReadBuilder
@@ -14,7 +15,7 @@ import com.cat.server.game.data.proto.PBMail.*;
 */
 public class RespMailReadBuilder extends AbstractProtocol {
 
-	private static final Logger log = LoggerFactory.getLogger(RespMailReadBuilder.class);
+	//private static final Logger log = LoggerFactory.getLogger(RespMailReadBuilder.class);
 	
 	private final RespMailRead.Builder builder = RespMailRead.newBuilder();
 	

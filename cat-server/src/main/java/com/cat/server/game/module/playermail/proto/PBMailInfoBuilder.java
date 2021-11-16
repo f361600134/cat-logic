@@ -2,12 +2,10 @@ package com.cat.server.game.module.playermail.proto;
 
 import java.util.Collection;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.cat.net.network.base.AbstractProtocol;
-import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
-import com.cat.server.game.data.proto.PBMail.PBMailInfo;
+import com.cat.server.game.data.proto.PBItem.PBPairInfo;
+//import com.cat.server.game.data.proto.*;
+import com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo;
 
 /**
 * PBMailInfoBuilder
@@ -15,12 +13,11 @@ import com.cat.server.game.data.proto.PBMail.PBMailInfo;
 */
 public class PBMailInfoBuilder extends AbstractProtocol {
 
-	private static final Logger log = LoggerFactory.getLogger(PBMailInfoBuilder.class);
+	//private static final Logger log = LoggerFactory.getLogger(PBMailInfoBuilder.class);
 	
 	private final PBMailInfo.Builder builder = PBMailInfo.newBuilder();
 	
-	public PBMailInfoBuilder() {
-	}
+	public PBMailInfoBuilder() {}
 	
 	public static PBMailInfoBuilder newInstance() {
 		return new PBMailInfoBuilder();
@@ -43,12 +40,12 @@ public class PBMailInfoBuilder extends AbstractProtocol {
 		this.builder.setContent(value);
 	}
 	/** 附件**/
-	public void addRewards(PBRewardInfo value){
+	public void addRewards(PBPairInfo value){
 		this.builder.addRewards(value);
 	}
-	/**附件*/
-	public void addAllRewards(Collection<PBRewardInfo> values){
-		this.builder.addAllRewards(values);
+	
+	public void addAllRewards(Collection<PBPairInfo> value){
+		this.builder.addAllRewards(value);
 	}
 	/** 0=未读取;1=已读取**/
 	public void setState(int value){

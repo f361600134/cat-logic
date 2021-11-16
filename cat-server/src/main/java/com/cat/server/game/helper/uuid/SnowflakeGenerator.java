@@ -302,17 +302,18 @@ public class SnowflakeGenerator {
 		return String.format(MSG_UID_PARSE, uid, thatTime, workerId, dataCenterId, sequence);
 	}
 	
-//	/**
-//	 * 测试 1s 400万
-//	 */
-//	public static void main(String[] args) {
-//		long startTime = System.currentTimeMillis();
-//		SnowflakeGenerator snowFlake = new SnowflakeGenerator(3);
+	/**
+	 * 测试 1s 400万
+	 */
+	public static void main(String[] args) {
+		long startTime = System.currentTimeMillis();
+		SnowflakeGenerator snowFlake = new SnowflakeGenerator(3);
 //		for (int i = 0; i < 4000000; i++) {
-//			long id = snowFlake.nextId();
-//			// System.out.println(id);
+			long id = snowFlake.nextId();
+			 System.out.println(id);
 //		}
-//		System.out.println((System.currentTimeMillis() - startTime) + "ms");
-//	}
+		System.out.println((System.currentTimeMillis() - startTime) + "ms");
+		System.out.println(snowFlake.parseUID(id));
+	}
 
 }

@@ -10,15 +10,13 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IPersistence;
-import com.cat.server.game.data.proto.PBMail;
+import com.cat.server.game.data.proto.PBPlayerMail;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 import com.cat.server.game.module.playermail.assist.PlayerMailConstant;
 import com.cat.server.game.module.playermail.proto.PBMailInfoBuilder;
-import com.cat.server.game.module.resource.domain.ResourceMap;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
 import com.cat.server.utils.DateUtils;
 import com.cat.server.utils.TimeUtil;
@@ -90,7 +88,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 	 * 实体对象转协议对象
 	 * @return 邮件序列化成消息对象
 	 */
-	public PBMail.PBMailInfo toProto() {
+	public PBPlayerMail.PBMailInfo toProto() {
 		PBMailInfoBuilder builder = PBMailInfoBuilder.newInstance();
 		builder.setMailId(this.getId());
 		builder.setState(this.getState());
@@ -100,7 +98,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence{
 		String createDate = DateFormatUtils.format(Calendar.getInstance().getTime(), DateUtils.PATTERN_NORMAL);
 		builder.setDate(createDate);
 		//奖励格式化
-		builder.addAllRewards(ResourceHelper.toCollProto(rewardMap));
+		builder.addAllRewards(ResourceHelper.toPairProto(rewardMap));
 		return builder.build();
 	}
 	

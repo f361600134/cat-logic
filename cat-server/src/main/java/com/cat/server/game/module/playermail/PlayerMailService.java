@@ -2,6 +2,7 @@ package com.cat.server.game.module.playermail;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,10 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete;
+import com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead;
+import com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
-import com.cat.server.game.module.item.proto.RespRewardsBuilder;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.playermail.assist.PlayerMailConstant;
 import com.cat.server.game.module.playermail.domain.PlayerMail;
@@ -21,10 +23,10 @@ import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
 import com.cat.server.game.module.playermail.proto.RespMailDeleteBuilder;
 import com.cat.server.game.module.playermail.proto.RespMailListBuilder;
 import com.cat.server.game.module.playermail.proto.RespMailReadBuilder;
+import com.cat.server.game.module.playermail.proto.RespMailRewardBuilder;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 
 /**
@@ -114,11 +116,22 @@ public class PlayerMailService implements IPlayerMailService {
 		this.responsePlayerMailInfos(domain);
 	}
 	
+	/**
+	* 请求邮件列表
+	* @param long playerId
+	* @param ReqMailList req
+	* @param RespMailListResp ack
+	*/
+	public void reqMailList(long playerId){
+		this.responsePlayerMailInfo(playerId);
+	}
+	
 	/***
 	 * 请求阅读邮件
 	 * @param playerId
 	 */
-	public ErrorCode read(long playerId, long mailId, RespMailReadBuilder resp) {
+	public ErrorCode reqMailRead(long playerId, ReqMailRead req, RespMailReadBuilder resp) {
+		final long mailId = req.getMailId();
 		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
@@ -135,26 +148,29 @@ public class PlayerMailService implements IPlayerMailService {
 		return ErrorCode.SUCCESS;
 	}
 
-
-	/***
-	 * 请求领取奖励
-	 * @param playerId
-	 */
-	public ErrorCode receive(long playerId, long mailId) {
+	
+	/**
+	* 获取邮件附件
+	* @param long playerId 玩家id
+	* @param ReqMailReward req 请求消息
+	* @param RespMailRewardResp ack 响应消息
+	*/
+	public ErrorCode reqMailReward(long playerId, ReqMailReward req, RespMailRewardBuilder ack){
+		final long mailId = req.getMailId();
 		if (mailId < 0) {
-			return receiveAll(playerId, mailId);
+			return receiveAll(playerId, mailId, ack);
 		}else {
-			return receiveOne(playerId, mailId);
+			return receiveOne(playerId, mailId, ack);
 		}
 	}
-	
+
 	/**
 	 * 领取一封邮件
 	 * @param playerId
 	 * @param mailId
 	 * @return
 	 */
-	private ErrorCode receiveOne(long playerId, long mailId) {
+	private ErrorCode receiveOne(long playerId, long mailId, RespMailRewardBuilder ack) {
 		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
@@ -174,15 +190,7 @@ public class PlayerMailService implements IPlayerMailService {
 		resourceGroupService.reward(playerId, playerMail.getRewardMap(), NatureEnum.MailReward);
 		//更新状态
 		this.responsePlayerMailInfo(domain, Lists.newArrayList(mailId));
-		//更新奖励
-		RespRewardsBuilder reweardResp = RespRewardsBuilder.newInstance();
-		playerMail.getRewardMap().forEach((key, val)->{
-			PBRewardInfoBuilder builder = new PBRewardInfoBuilder();
-			builder.setConfigId(key);
-			builder.setCount(val);
-			reweardResp.addRewards(builder.build());
-		});
-		playerService.sendMessage(playerId, reweardResp);
+		ack.addAllRewards(ResourceHelper.toPairProto(playerMail.getRewardMap()));
 		return ErrorCode.SUCCESS;
 	}
 	
@@ -192,13 +200,13 @@ public class PlayerMailService implements IPlayerMailService {
 	 * @param mailId
 	 * @return
 	 */
-	private ErrorCode receiveAll(long playerId, long mailId) {
+	private ErrorCode receiveAll(long playerId, long mailId, RespMailRewardBuilder ack) {
 		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
 		}
-		Map<Integer, Integer> rewardMap = Maps.newHashMap();
-		List<Long> mailIds = Lists.newArrayList();
+		Map<Integer, Integer> rewardMap = new HashMap<>();
+		List<Long> mailIds = new ArrayList<>();
 		for (PlayerMail mail : domain.getBeanMap().values()) {
 			if (mail == null || mail.isExpired() || mail.isRewarded())
 				continue;
@@ -211,18 +219,16 @@ public class PlayerMailService implements IPlayerMailService {
 			mail.update();
 			
 		}
+		//没有可领取奖励
+		if (rewardMap.isEmpty()) {
+			return ErrorCode.MAIL_ALREADY_NO_REWARD;
+		}
+		//奖励入背包
 		resourceGroupService.reward(playerId, rewardMap, NatureEnum.MailReward);
 		//更新状态
 		this.responsePlayerMailInfo(domain, mailIds);
 		//更新奖励
-		RespRewardsBuilder reweardResp = RespRewardsBuilder.newInstance();
-		rewardMap.forEach((key, val)->{
-			PBRewardInfoBuilder builder = new PBRewardInfoBuilder();
-			builder.setConfigId(key);
-			builder.setCount(val);
-			reweardResp.addRewards(builder.build());
-		});
-		playerService.sendMessage(playerId, reweardResp);
+		ack.addAllRewards(ResourceHelper.toPairProto(rewardMap));
 		return ErrorCode.SUCCESS;
 	}
 	
@@ -230,7 +236,8 @@ public class PlayerMailService implements IPlayerMailService {
 	 * 请求删除邮件
 	 * @param playerId
 	 */
-	public ErrorCode delete(long playerId, long mailId, RespMailDeleteBuilder resp) {
+	public ErrorCode reqMailDelete(long playerId, ReqMailDelete req, RespMailDeleteBuilder resp) {
+		final long mailId = req.getMailId();
 		if (mailId < 0) {
 			return deleteAll(playerId, mailId, resp);
 		}else {
@@ -274,11 +281,12 @@ public class PlayerMailService implements IPlayerMailService {
 		List<Long> dels = new ArrayList<>();
 		for (PlayerMail mail : domain.getBeanMap().values()) {
 			if (mail.canDel()) {
-				resp.addMailIds(mail.getId());
 				dels.add(mail.getId());
 				mail.delete();
 			}
 		}
+		resp.addAllMailIds(dels);
+		//log
 		return ErrorCode.SUCCESS;
 	}
 	

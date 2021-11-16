@@ -47,4 +47,5 @@ public interface IResource {
 	default public boolean isType(int type) {
 		return ((getConfigId() / RESOURC_TYPE_SPLIT) == type);
 	}
+	
 }

@@ -3,10 +3,9 @@ package com.cat.server.game.module.gm.type.gen;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import com.cat.net.network.base.ISession;
-import com.cat.server.game.data.proto.PBMail;
+import com.cat.server.game.data.proto.PBPlayerMail;
 import com.cat.server.game.module.gm.annotation.Command;
 import com.cat.server.game.module.gm.type.AbstractModuleCommand;
 import com.cat.server.game.module.playermail.PlayerMailController;
@@ -35,32 +34,32 @@ public class CommandMail extends AbstractModuleCommand{
 	}
 	
 	/**
-	 * @mail reqReadEmail,1
+	 * @mail reqMailRead,1
 	 */
-	public void reqReadEmail(ISession session, String data[]) {
-		PBMail.ReqMailRead.Builder req = PBMail.ReqMailRead.newBuilder();
+	public void reqMailRead(ISession session, String data[]) {
+		PBPlayerMail.ReqMailRead.Builder req = PBPlayerMail.ReqMailRead.newBuilder();
 		req.setMailId(Integer.parseInt(data[1]));
 		controller.reqMailRead(session, req.build());
 	}
 	
 	/**
 	 * 领取邮件奖励
-	 * @mail reqReceiveEmail,1
+	 * @mail reqMailReward,1
 	 */
 	public void reqMailReward(ISession session, String data[]) {
-		PBMail.ReqMailReward.Builder req = PBMail.ReqMailReward.newBuilder();
+		PBPlayerMail.ReqMailReward.Builder req = PBPlayerMail.ReqMailReward.newBuilder();
 		req.setMailId(Long.parseLong(data[1]));
 		controller.reqMailReward(session, req.build());
 	}
 	
 	/**
 	 * 删除邮件
-	 * @mail reqDeleteEmail,1
+	 * @mail reqMailDelete,1
 	 */
 	public void reqMailDelete(ISession session, String data[]) {
-		PBMail.ReqMailDelete.Builder req = PBMail.ReqMailDelete.newBuilder();
+		PBPlayerMail.ReqMailDelete.Builder req = PBPlayerMail.ReqMailDelete.newBuilder();
 		req.setMailId(Long.parseLong(data[1]));
-		controller.reqEmailDelete(session, req.build());
+		controller.reqMailDelete(session, req.build());
 	}
 
 }

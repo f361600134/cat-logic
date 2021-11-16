@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.orm.core.annotation.PO;
+import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 
 /**
 * @author Jeremy
@@ -24,7 +26,10 @@ public class Item extends ItemPo implements IItem{
 	 * 创建一个道具对象
 	 */
 	public static Item create(long playerId, int configId, int count) {
+		SnowflakeGenerator generator = SpringContextHolder.getBean(SnowflakeGenerator.class);
+		long itemId = generator.nextId();
 		Item item = new Item();
+		item.setItemId(itemId);
 		item.setConfigId(configId);
 		item.setCount(count);
 		item.setPlayerId(playerId);

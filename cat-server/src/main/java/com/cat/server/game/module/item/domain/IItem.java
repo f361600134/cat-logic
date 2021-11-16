@@ -10,33 +10,6 @@ import com.cat.server.game.module.resource.IResource;
  */
 public interface IItem extends IPersistence, IResource{
 
-//	/**
-//	 * 获取唯一id
-//	 */
-//	long getItemId();
-//	
-//	/**
-//	 * 获取配置id
-//	 * @return
-//	 */
-//	int getConfigId();
-//	
-//	/**
-//	 * 获取所属玩家id
-//	 * @return
-//	 */
-//	long getPlayerId();
-//	
-//	/**
-//	 * 增加数量, 返回最新数量
-//	 * @return
-//	 */
-//	public int getCount();
-//
-//	default public int getQuality(){
-//		return 0;
-//	}
-	
 	/**
 	 * 增加数量, 返回最新数量
 	 * @return
@@ -51,14 +24,6 @@ public interface IItem extends IPersistence, IResource{
 	 */
 	default public int deductCount(int value) {
 		return 0;
-	}
-	
-	/**
-	 * 判断是否属于指定类型物品
-	 * @return
-	 */
-	default public boolean isType(int type) {
-		return ((getConfigId() / 100000) == type);
 	}
 	
 	/**

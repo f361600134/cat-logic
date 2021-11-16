@@ -7,9 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.cat.orm.core.base.IBasePo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.cat.orm.core.base.IBasePo;
 
 /**
  * 模块多Domain域抽象方法<p>
@@ -96,7 +97,8 @@ public abstract class AbstractModuleMultiDomain<I, K, T extends IBasePo> impleme
      *
      * @param itemList
      */
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void initData(I id, List<T> itemList) {
         this.id = id;
         itemList.forEach(e -> {
