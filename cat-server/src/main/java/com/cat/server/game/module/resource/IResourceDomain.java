@@ -76,5 +76,15 @@ public interface IResourceDomain<K, V>{
 	 */
 	public List<V> getAndClearDeleteList();
 	
+	/**
+	 * 通常情况下, 都是不可叠加的, 如果有可叠加道具, 具体域去实现
+	 * @param configId 配置id
+	 * @return boolean  true:可叠加, false:不可叠加  
+	 * @date 2021年11月16日下午9:27:37
+	 */
+	default public boolean isStack(int configId) {
+		return false;
+	}
+	
 	
 }

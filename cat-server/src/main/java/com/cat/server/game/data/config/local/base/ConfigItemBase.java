@@ -1,9 +1,8 @@
 package com.cat.server.game.data.config.local.base;
 
-import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.core.config.container.IGameConfig;
 
-@ConfigPath("ConfigHeroInfo.json")
+
 public class ConfigItemBase implements IGameConfig{
 
 	private int ID;//ID

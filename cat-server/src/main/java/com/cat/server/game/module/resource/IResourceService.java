@@ -71,4 +71,11 @@ public interface IResourceService {
 	 * @param nEnum
 	 */
 	default public void notify(long playerId) {}
+	
+	/**
+	 * 清理过期资源
+	 * @return void  
+	 * @date 2021年11月16日下午10:49:44
+	 */
+	default public void clearExpire(int configId) {}
 }

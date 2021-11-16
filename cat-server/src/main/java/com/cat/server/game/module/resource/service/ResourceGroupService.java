@@ -155,4 +155,14 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 	public int priority() {
 		return Priority.LOGIC.getPriority();
 	}
+
+	@Override
+	public void clearExpire(int configId) {
+		int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
+		IResourceService service = serviceMap.get(resourceType);
+		if (service == null) {
+			throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
+		}
+		service.clearExpire(configId);
+	}
 }

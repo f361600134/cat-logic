@@ -52,6 +52,10 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	public Map<K, V> getBeanMap() {
 		return beanMap;
 	}
+	
+	public void addBeanMap(Map<K, V> beanMap) {
+		beanMap.putAll(beanMap);
+	}
 
 	@Override
 	public List<V> getAndClearUpdateList() {

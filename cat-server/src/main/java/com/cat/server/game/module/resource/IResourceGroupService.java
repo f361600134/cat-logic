@@ -29,11 +29,17 @@ public interface IResourceGroupService {
 	
 	/**
 	 * 消耗
-	 *
 	 * @param playerId 玩家id
 	 * @param costMap value值为正整数
-	 * @param nEnum   资源枚举
+	 * @param nEnum 资源枚举
 	 * @param desc 其他描述
 	 */
 	public void cost(long playerId, Map<Integer, Integer> costMap, NatureEnum nEnum);
+	
+	/**
+	 * 清理过期资源
+	 * @return void  
+	 * @date 2021年11月16日下午10:49:44
+	 */
+	public void clearExpire(int configId);
 }
