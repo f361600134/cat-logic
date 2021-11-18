@@ -3,7 +3,6 @@ package com.cat.server.game.module.resource.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import com.cat.server.game.module.hero.domain.Hero;
 
 /**
@@ -53,7 +52,7 @@ public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 		beanMap.remove(hero.getId());
 		return true;
 	}
-
+	
 	@Override
 	public int getTotalLimit() {
 		return LIMIT;

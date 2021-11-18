@@ -17,7 +17,9 @@ import com.cat.server.game.module.recycle.IRecycleService;
 import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.resource.IResourceService;
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
 
 /**
  * 可以考虑对资源进行分类去处理, 比如有3个道具,2个武将<br>
@@ -130,6 +132,22 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 		return true;
 	}
 	
+	@Override
+	public void clearExpire(long playerId,  Collection<Integer> configIds) {
+		Multimap<Integer, Integer> resourceTypeMap = splitByType(configIds);
+		for (Integer resourceType : resourceTypeMap.keySet()) {
+			IResourceService service = serviceMap.get(resourceType);
+			if (service == null) {
+				throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
+			}
+			Collection<Integer> tempIds = resourceTypeMap.get(resourceType);
+			tempIds.forEach(configId->{
+				service.clearExpire(playerId, configId);
+			});
+			service.notify(playerId);
+		}
+	}
+	
 	/**
 	 * 把资源组按照类型分类
 	 */
@@ -147,6 +165,18 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 		return resourceTypeMap;
 	}
 	
+	/**
+	 * 把资源组按照类型分类
+	 */
+	private Multimap<Integer, Integer> splitByType(Collection<Integer> configIds) {
+		Multimap<Integer, Integer> resourceTypeMap = ArrayListMultimap.create();
+		configIds.forEach((configId)->{
+			int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
+			resourceTypeMap.put(resourceType, configId);
+		});
+		return resourceTypeMap;
+	}
+	
 	@Override
 	public void start() throws Exception {
 		this.serviceMap = Maps.newConcurrentMap();
@@ -160,16 +190,4 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 		return Priority.LOGIC.getPriority();
 	}
 
-	@Override
-	public void clearExpire(long playerId,  Collection<Integer> configIds) {
-		configIds.forEach(configId->{
-			int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
-			IResourceService service = serviceMap.get(resourceType);
-			if (service == null) {
-				throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
-			}
-			service.clearExpire(playerId, configId);
-			service.notify(playerId);
-		});
-	}
 }

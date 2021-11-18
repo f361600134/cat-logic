@@ -1,11 +1,13 @@
 package com.cat.server.game.module.resource;
 
+import com.cat.server.core.server.IPersistence;
+
 /**
  * 	资源类对象, 所有资源类的最高接口
  * @author Jeremy
  *
  */
-public interface IResource {
+public interface IResource extends IPersistence{
 	
 	public int RESOURC_TYPE_SPLIT = 100000;
 	

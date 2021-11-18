@@ -161,12 +161,13 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 			Entry<K, V> entry = (Entry<K, V>) iter.next();
 			V v = entry.getValue();
 			if (v.getConfigId() == configId) {
+				v.delete();
 				iter.remove();
 				deleteList.add(v);
 			}
 		}
 	}
-
+	
 	/**
 	 * 减少物品数量
 	 * @param v

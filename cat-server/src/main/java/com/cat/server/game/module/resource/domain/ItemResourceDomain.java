@@ -124,22 +124,6 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 	}
 	
 	@Override
-	public void clearExpire(int configId) {
-		Iterator<Entry<Long, Item>> iter = beanMap.entrySet().iterator();
-		while (iter.hasNext()) {
-			Entry<Long, Item> entry = (Entry<Long, Item>) iter.next();
-			Item item = entry.getValue();
-			if (item.getConfigId() == configId) {
-				//清掉该对象
-				item.delete();
-				//缓存移除对象
-				iter.remove();
-				deleteList.add(item);
-			}
-		}
-	}
-	
-	@Override
 	public int getLimit(int configId) {
 		return LIMIT;
 	}
@@ -154,4 +138,5 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 		domain.addBeanMap(beanMap);
 		return domain;
 	}
+
 }
