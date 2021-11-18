@@ -3,7 +3,7 @@ package com.cat.server.game.module.resource;
 import java.util.List;
 
 /**
- * 	用于资源管理domain接口
+ * 用于资源管理domain接口
  * K: 唯一id
  * V: 资源配置id
  * @author Jeremy
@@ -86,5 +86,11 @@ public interface IResourceDomain<K, V>{
 		return false;
 	}
 	
+	/**
+	 * 清理过期资源, 只要配置id符合configId, 就清理掉
+	 * @return void  
+	 * @date 2021年11月16日下午10:49:44
+	 */
+	public void clearExpire(int configId);
 	
 }

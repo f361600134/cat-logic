@@ -1,0 +1,13 @@
+[ {
+  "id" : 100101,
+  "recycleStrategy" : "1d"
+}, {
+  "id" : 100102,
+  "recycleStrategy" : "1d_3h"
+}, {
+  "id" : 100103,
+  "recycleStrategy" : "1501a"
+}, {
+  "id" : 100104,
+  "recycleStrategy" : "1501a_1d"
+} ]

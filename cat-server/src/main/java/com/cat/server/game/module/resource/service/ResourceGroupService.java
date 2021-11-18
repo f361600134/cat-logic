@@ -1,5 +1,6 @@
 package com.cat.server.game.module.resource.service;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.helper.log.NatureEnum;
+import com.cat.server.game.module.recycle.IRecycleService;
 import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.resource.IResourceService;
@@ -28,6 +30,8 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 	private static final Logger log = LoggerFactory.getLogger(ResourceGroupService.class);
 
 	@Autowired private List<IResourceService> resourceServices;
+	
+	@Autowired private IRecycleService recycleService;
 	
 	private Map<Integer, IResourceService> serviceMap;
 
@@ -157,12 +161,15 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 	}
 
 	@Override
-	public void clearExpire(int configId) {
-		int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
-		IResourceService service = serviceMap.get(resourceType);
-		if (service == null) {
-			throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
-		}
-		service.clearExpire(configId);
+	public void clearExpire(long playerId,  Collection<Integer> configIds) {
+		configIds.forEach(configId->{
+			int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
+			IResourceService service = serviceMap.get(resourceType);
+			if (service == null) {
+				throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
+			}
+			service.clearExpire(playerId, configId);
+			service.notify(playerId);
+		});
 	}
 }

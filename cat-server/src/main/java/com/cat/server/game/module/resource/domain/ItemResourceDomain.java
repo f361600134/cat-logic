@@ -1,8 +1,10 @@
 package com.cat.server.game.module.resource.domain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ConfigItem;
@@ -121,12 +123,22 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 		return items;
 	}
 	
-	public static ItemResourceDomain create(long playerId, Map<Long, Item> beanMap) {
-		ItemResourceDomain domain = new ItemResourceDomain(playerId);
-		domain.addBeanMap(beanMap);
-		return domain;
+	@Override
+	public void clearExpire(int configId) {
+		Iterator<Entry<Long, Item>> iter = beanMap.entrySet().iterator();
+		while (iter.hasNext()) {
+			Entry<Long, Item> entry = (Entry<Long, Item>) iter.next();
+			Item item = entry.getValue();
+			if (item.getConfigId() == configId) {
+				//清掉该对象
+				item.delete();
+				//缓存移除对象
+				iter.remove();
+				deleteList.add(item);
+			}
+		}
 	}
-
+	
 	@Override
 	public int getLimit(int configId) {
 		return LIMIT;
@@ -137,4 +149,9 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 		return LIMIT;
 	}
 
+	public static ItemResourceDomain create(long playerId, Map<Long, Item> beanMap) {
+		ItemResourceDomain domain = new ItemResourceDomain(playerId);
+		domain.addBeanMap(beanMap);
+		return domain;
+	}
 }

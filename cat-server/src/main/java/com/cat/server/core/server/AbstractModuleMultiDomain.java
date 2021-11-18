@@ -57,7 +57,7 @@ public abstract class AbstractModuleMultiDomain<I, K, T extends IBasePo> impleme
     }
 
     /**
-     * 获取域内的实体map
+     * 新增域内实体
      *
      * @return
      */

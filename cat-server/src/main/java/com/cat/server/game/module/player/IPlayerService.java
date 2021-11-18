@@ -14,6 +14,12 @@ public interface IPlayerService {
 	public Collection<Long> getOnlinePlayerIds();
 	
 	/**
+	 * 获取玩家当前的sessionId
+	 * @return
+	 */
+	public int getSessionId(long playerId);
+	
+	/**
 	 * 获取获取玩家上下文
 	 * @return
 	 */

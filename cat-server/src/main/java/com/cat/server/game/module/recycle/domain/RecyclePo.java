@@ -1,31 +1,29 @@
-package com.cat.server.game.module.activityitem.domain;
+package com.cat.server.game.module.recycle.domain;
 
 import com.cat.orm.core.base.BasePo;
 
 /**
-* ActivityItemPo
+* RecyclePo
 * @author Jeremy
 */
-public abstract class ActivityItemPo extends BasePo {
+public abstract class RecyclePo extends BasePo {
 
 	public static final String PROP_PLAYERID = "playerId";
-	public static final String PROP_ITEMID = "itemId";
+	public static final String PROP_RESOURCEID = "resourceId";
 	public static final String PROP_CONFIGID = "configId";
-	public static final String PROP_COUNT = "count";
 	public static final String PROP_RECIEVETIME = "recieveTime";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
 			PROP_PLAYERID,
-			PROP_ITEMID,
+			PROP_RESOURCEID,
 			PROP_CONFIGID,
-			PROP_COUNT,
 			PROP_RECIEVETIME,
 			};
 			
 	/** 所有主键索引字段数组*/
 	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
-			PROP_ITEMID,
+			PROP_RESOURCEID,
 			PROP_PLAYERID,
 			};
 		
@@ -37,16 +35,14 @@ public abstract class ActivityItemPo extends BasePo {
 	
 	/** 玩家ID*/
 	protected long playerId;
-	/** 道具唯一id*/
-	protected long itemId;
+	/** 资源唯一id*/
+	protected long resourceId;
 	/** 道具配置id*/
 	protected int configId;
-	/** 物品数量*/
-	protected int count;
 	/** 获得的时间戳*/
 	protected long recieveTime;
 	
-	public ActivityItemPo(){
+	public RecyclePo(){
 	}
 	
 	/** 玩家ID **/
@@ -58,13 +54,13 @@ public abstract class ActivityItemPo extends BasePo {
 		this.playerId = playerId;
 	}
 	
-	/** 道具唯一id **/
-	public long getItemId(){
-		return this.itemId;
+	/** 资源唯一id **/
+	public long getResourceId(){
+		return this.resourceId;
 	}
 	
-	public void setItemId(long itemId){
-		this.itemId = itemId;
+	public void setResourceId(long resourceId){
+		this.resourceId = resourceId;
 	}
 	
 	/** 道具配置id **/
@@ -74,15 +70,6 @@ public abstract class ActivityItemPo extends BasePo {
 	
 	public void setConfigId(int configId){
 		this.configId = configId;
-	}
-	
-	/** 物品数量 **/
-	public int getCount(){
-		return this.count;
-	}
-	
-	public void setCount(int count){
-		this.count = count;
 	}
 	
 	/** 获得的时间戳 **/
@@ -97,8 +84,7 @@ public abstract class ActivityItemPo extends BasePo {
 	
 	@Override
 	public String toString() {
-		return "ActivityItem [playerId= "+ playerId +", itemId= "+ itemId +", configId= "+ configId +", count= "+ count +", recieveTime= "+ recieveTime
-				+"]";
+		return "Recycle [playerId= "+ playerId +", resourceId= "+ resourceId +", configId= "+ configId +", recieveTime= "+ recieveTime+"]";
 	}
 	
 	@Override
@@ -110,21 +96,20 @@ public abstract class ActivityItemPo extends BasePo {
 	public Object[] propValues() {
 		return new Object[] { 
 		getPlayerId(),
-		getItemId(),
+		getResourceId(),
 		getConfigId(),
-		getCount(),
 		getRecieveTime(),
 		};
 	}
 	
 	@Override
 	public Object key() {
-		return getItemId();
+		return getResourceId();
 	}
 	
 	@Override
 	public String keyColumn() {
-		return PROP_ITEMID;
+		return PROP_RESOURCEID;
 	}
 
 	@Override
@@ -135,7 +120,7 @@ public abstract class ActivityItemPo extends BasePo {
 	@Override
 	public Object[] keyAndIndexValues() {
 		return new Object[] {
-			getItemId(),
+			getResourceId(),
 			getPlayerId(),
 		};
 	}
@@ -154,7 +139,7 @@ public abstract class ActivityItemPo extends BasePo {
 	
 	@Override
 	public String cacheId() {
-		return String.valueOf(getItemId());
+		return String.valueOf(getResourceId());
 	}
 	
 }

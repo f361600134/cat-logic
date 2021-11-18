@@ -16,7 +16,7 @@ public class Shadow extends ShadowPo implements IPersistence{
 	/**
 	 * 玩家信息
 	 */
-	@Column(PROP_DATA)
+	@Column(value = PROP_DATA)
 	private OtherPlayer other;
 	
 	public Shadow() {

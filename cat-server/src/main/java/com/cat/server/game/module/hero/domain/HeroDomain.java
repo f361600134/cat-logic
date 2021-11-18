@@ -73,5 +73,10 @@ public class HeroDomain extends AbstractModuleMultiDomain<Long, Long, Hero> impl
 	public List<Hero> getAndClearDeleteList() {
 		return resourceDomainProxy.getAndClearDeleteList();
 	}
+	
+	@Override
+	public void clearExpire(int configId) {
+		resourceDomainProxy.clearExpire(configId);
+	}
 }
 

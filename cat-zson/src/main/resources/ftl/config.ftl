@@ -14,9 +14,7 @@ import com.cat.server.game.data.config.local.base.${javaClazzSimpleName}Base;
 /**
  * ${fileName}<br>
  * ${name}.json<br>
- * 
  * @author auto gen
- *
  */
 @ConfigPath("${name}.json")
 public class ${javaClazzSimpleName} extends ${javaClazzSimpleName}Base {

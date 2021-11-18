@@ -136,4 +136,13 @@ class ItemService implements IItemService, IResourceService{
 		this.responseDeleteItemList(playerId, domain.getAndClearUpdateList());
 	}
 	
+	@Override
+	public void clearExpire(long playerId, int configId) {
+		ItemDomain domain = itemManager.getDomain(playerId);
+		if (domain == null) {
+			return;
+		}
+		domain.clearExpire(configId);
+	}
+	
 }

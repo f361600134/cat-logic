@@ -361,6 +361,15 @@ class PlayerService implements IPlayerService, IResourceService {
 	public Collection<Long> getOnlinePlayerIds() {
 		return playerMap.keySet();
 	}
+	
+	@Override
+	public int getSessionId(long playerId) {
+		PlayerContext context = getPlayerContext(playerId);
+		if (context == null) {
+			return 0;
+		}
+		return context.getSession().getSessionId();
+	}
 
 	/**
 	 * 获取所有在线玩家id

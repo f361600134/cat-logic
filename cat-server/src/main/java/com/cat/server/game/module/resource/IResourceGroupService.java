@@ -1,6 +1,7 @@
 
 package com.cat.server.game.module.resource;
 
+import java.util.Collection;
 import java.util.Map;
 
 import com.cat.server.game.helper.log.NatureEnum;
@@ -38,8 +39,8 @@ public interface IResourceGroupService {
 	
 	/**
 	 * 清理过期资源
-	 * @return void  
+	 * @return void
 	 * @date 2021年11月16日下午10:49:44
 	 */
-	public void clearExpire(int configId);
+	public void clearExpire(long playerId, Collection<Integer> configIds);
 }

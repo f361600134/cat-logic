@@ -13,6 +13,10 @@ public class OtherPlayer {
 	/** 战力*/
 	private short power;
 	
+	public OtherPlayer() {
+		super();
+	}
+	
 	public long getPlayerId() {
 		return playerId;
 	}

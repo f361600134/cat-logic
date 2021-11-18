@@ -48,4 +48,11 @@ public interface IResource {
 		return ((getConfigId() / RESOURC_TYPE_SPLIT) == type);
 	}
 	
+	/**
+	 * 资源获得时间
+	 * @return 时间戳
+	 */
+	default public long getRecieveTime() {
+		return 0L;
+	}
 }

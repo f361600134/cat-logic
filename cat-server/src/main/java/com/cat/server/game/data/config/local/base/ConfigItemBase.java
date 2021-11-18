@@ -3,75 +3,95 @@ package com.cat.server.game.data.config.local.base;
 import com.cat.server.core.config.container.IGameConfig;
 
 
-public class ConfigItemBase implements IGameConfig{
+/**
+ * dj.道具.xlsx<br>
+ * item.json<br>
+ * @author auto gen
+ */
+public class ConfigItemBase implements IGameConfig {
 
-	private int ID;//ID
-	private String name;//物品名称
-	private int stack;//物品叠加上限
-	private int quality;//物品品质
-	private int effectType;//使用后触发效果类型
-	private int effectParameter;//使用后触发效果参数
+    /**
+     * id<br>
+     * 道具类型*100000+id自增
+     */
+    private int id;
+    /**
+     * 叠加数量<br>
+     * 1不可叠加,大于0表示一个格子道具最大数量
+     */
+    private int stack;
+    /**
+     * 品质<br>
+     * 0:普通<br>
+     * 1:蓝<br>
+     * 2:靛<br>
+     * 3:粉<br>
+     * 4:绿<br>
+     * 5:黄<br>
+     * 6:红<br>
+     * 7:紫
+     */
+    private int quality;
+    /**
+     * 道具效果<br>
+     * 程序定义
+     */
+    private int effect;
+    /**
+     * 道具效果参数<br>
+     * 程序定义
+     */
+    private String effectParam;
 
-	public int getId(){
-        return ID;
+    /** @return id*/
+    @Override
+    public int getId() {
+        return this.id;
     }
-    public void setID(int ID){
-        this.ID = ID;
+
+    /** @param id id*/
+    public void setId(int id) {
+        this.id = id;
     }
-    
-	public String getName(){
-        return name;
+
+    /** @return 叠加数量*/
+    public int getStack() {
+        return this.stack;
     }
-    public void setName(String name){
-        this.name = name;
-    }
-    
-	public int getStack(){
-        return stack;
-    }
-    public void setStack(int stack){
+
+    /** @param stack 叠加数量*/
+    public void setStack(int stack) {
         this.stack = stack;
     }
-    
-	public int getQuality(){
-        return quality;
+
+    /** @return 品质*/
+    public int getQuality() {
+        return this.quality;
     }
-    public void setQuality(int quality){
+
+    /** @param quality 品质*/
+    public void setQuality(int quality) {
         this.quality = quality;
     }
-    
-	public int getEffectType(){
-        return effectType;
-    }
-    public void setEffectType(int effectType){
-        this.effectType = effectType;
-    }
-    
-	public int getEffectParameter(){
-        return effectParameter;
-    }
-    public void setEffectParameter(int effectParameter){
-        this.effectParameter = effectParameter;
-    }
-    
 
-	////////////////////// 特殊扩展 //////////////
-    
-    public static int COMPOSE = 0;
-    public static int DECOMPOSE = 1;
-	
-//	public void parse(){
-//		
-//		
-//		
-//		this.parseExt();
-//    }
-//	
-	
-	/////////UserDefine Begin///////////
-	private void parseExt(){
-	}
-	
-	/////////UserDefine End/////////////
-	
+    /** @return 道具效果*/
+    public int getEffect() {
+        return this.effect;
+    }
+
+    /** @param effect 道具效果*/
+    public void setEffect(int effect) {
+        this.effect = effect;
+    }
+
+    /** @return 道具效果参数*/
+    public String getEffectParam() {
+        return this.effectParam;
+    }
+
+    /** @param effectParam 道具效果参数*/
+    public void setEffectParam(String effectParam) {
+        this.effectParam = effectParam;
+    }
+
 }

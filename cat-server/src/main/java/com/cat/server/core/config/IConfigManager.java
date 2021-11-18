@@ -8,6 +8,15 @@ import com.cat.server.core.config.container.IGameConfig;
 public interface IConfigManager {
 	
 	/**
+	 * 判断是否存在此配置
+	 * @param <T>
+	 * @param clazz 配置类
+	 * @param id 配置id
+	 * @return true: 存在此配置, false: 不存在
+	 */
+	 public <T extends IGameConfig> boolean contains(Class<T> clazz, int id);
+	
+	/**
 	 * 根据id获取配置
 	 * @param <T>
 	 * @param clazz

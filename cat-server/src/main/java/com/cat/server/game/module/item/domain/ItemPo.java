@@ -43,8 +43,8 @@ public abstract class ItemPo extends BasePo {
 	protected int configId;
 	/** 物品数量*/
 	protected int count;
-	/** 获得时间*/
-	protected int recieveTime;
+	/** 获得的时间戳*/
+	protected long recieveTime;
 	
 	public ItemPo(){
 	}
@@ -85,12 +85,12 @@ public abstract class ItemPo extends BasePo {
 		this.count = count;
 	}
 	
-	/** 获得时间 **/
-	public int getRecieveTime(){
+	/** 获得的时间戳 **/
+	public long getRecieveTime(){
 		return this.recieveTime;
 	}
 	
-	public void setRecieveTime(int recieveTime){
+	public void setRecieveTime(long recieveTime){
 		this.recieveTime = recieveTime;
 	}
 	
@@ -131,7 +131,7 @@ public abstract class ItemPo extends BasePo {
 	public String[] keyAndIndexColumn() {
 		return KEY_AND_INDEX_COLUMN;
 	}
-
+	
 	@Override
 	public Object[] keyAndIndexValues() {
 		return new Object[] {

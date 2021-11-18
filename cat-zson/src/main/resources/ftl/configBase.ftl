@@ -13,9 +13,7 @@ import ${importType};
 /**
  * ${fileName}<br>
  * ${name}.json<br>
- * 
  * @author auto gen
- *
  */
 public class ${javaClazzSimpleName}Base implements ${javaSuperSimpleClazz} {
 
@@ -29,15 +27,10 @@ public class ${javaClazzSimpleName}Base implements ${javaSuperSimpleClazz} {
      */
 </#if>
     private ${param.type.fieldClazz} ${param.key};
-    
 </#list>
 
 <#list javaParams as param>
-    /**
-     * get ${param.name}
-     *
-     * @return
-     */
+    /** @return ${param.name}*/
 <#if param.key=='id'>
     @Override
 </#if>
@@ -45,11 +38,7 @@ public class ${javaClazzSimpleName}Base implements ${javaSuperSimpleClazz} {
         return this.${param.key};
     }
 
-    /**
-     * set ${param.name}
-     *
-     * @param ${param.key}
-     */
+    /** @param ${param.key} ${param.name}*/
     public void set${param.key?cap_first}(${param.type.fieldClazz} ${param.key}) {
         this.${param.key} = ${param.key};
     }

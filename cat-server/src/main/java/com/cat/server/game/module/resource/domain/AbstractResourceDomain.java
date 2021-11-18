@@ -2,8 +2,10 @@ package com.cat.server.game.module.resource.domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,11 +33,8 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	 */
 	protected List<V> deleteList = new ArrayList<>();
 	
-//	AbstractResourceDomain() {
-//		this.beanMap = new HashMap<>();
-//		this.updateItemList = new ArrayList<>();
-//		this.deleteItemList = new ArrayList<>();
-//	}
+	AbstractResourceDomain() {
+	}
 	
 	AbstractResourceDomain(long playerId) {
 		this.playerId = playerId;
@@ -153,6 +152,19 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 			return false;//没有此实体消耗失败
 		}
 		return deduct(v, count);
+	}
+	
+	@Override
+	public void clearExpire(int configId) {
+		Iterator<Entry<K, V>> iter = beanMap.entrySet().iterator();
+		while (iter.hasNext()) {
+			Entry<K, V> entry = (Entry<K, V>) iter.next();
+			V v = entry.getValue();
+			if (v.getConfigId() == configId) {
+				iter.remove();
+				deleteList.add(v);
+			}
+		}
 	}
 
 	/**

@@ -73,9 +73,9 @@ public interface IResourceService {
 	default public void notify(long playerId) {}
 	
 	/**
-	 * 清理过期资源
+	 * 清理过期资源, 只要配置id符合configId, 就清理掉
 	 * @return void  
 	 * @date 2021年11月16日下午10:49:44
 	 */
-	default public void clearExpire(int configId) {}
+	default public void clearExpire(long playerId, int configId) {}
 }

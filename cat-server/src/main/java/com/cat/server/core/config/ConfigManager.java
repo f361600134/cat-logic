@@ -52,6 +52,11 @@ public class ConfigManager implements IConfigManager, ILifecycle {
 		return container.getAllConfigs();
 	}
 	
+	@Override
+	public <T extends IGameConfig> boolean contains(Class<T> clazz, int id) {
+		return getConfig(clazz, id) != null;
+	}
+	
 	 /**
      * 获取满足条件的配置
      * @param <T>
