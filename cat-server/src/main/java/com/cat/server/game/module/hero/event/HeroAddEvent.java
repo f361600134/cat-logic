@@ -3,7 +3,7 @@ package com.cat.server.game.module.hero.event;
 import com.cat.server.core.event.PlayerBaseEvent;
 
 /**
- * 新增物品事件
+ * 新增武将事件
  */
 public class HeroAddEvent extends PlayerBaseEvent {
 	

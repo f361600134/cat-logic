@@ -11,7 +11,8 @@
 	<module>cat-api</module>
 	<module>cat-battle</module>
 	<module>cat-server</module>
-</modules>
+      <module>cat-rank</module>
+  </modules>
 
 <properties>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
