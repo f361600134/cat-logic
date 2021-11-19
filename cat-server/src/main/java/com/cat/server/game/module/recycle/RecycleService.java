@@ -65,6 +65,7 @@ class RecycleService implements IRecycleService {
 		//清理移除掉的资源
 		Collection<Integer> ret = domain.clearResource(activityTypeId);
 		resourceGroupService.clearExpire(playerId, ret);
+		this.responseRecycleInfo(domain);
     }
     
     /**
@@ -85,6 +86,7 @@ class RecycleService implements IRecycleService {
 			return;
 		}
 		domain.addRecycle(uniqueId, configId);
+		this.responseRecycleInfo(domain);
     }
 	
 	/**
@@ -141,7 +143,10 @@ class RecycleService implements IRecycleService {
 			//没有域, 不能回收
 			return;
 		}
-		domain.doRecycle(uniqueId, configid);
+		boolean bool = domain.doRecycle(uniqueId, configid);
+		if (bool) {
+			this.responseRecycleInfo(domain);
+		}
 	}
 	
 }

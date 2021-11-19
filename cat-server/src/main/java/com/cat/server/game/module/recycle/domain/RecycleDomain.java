@@ -112,14 +112,14 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 	 * @param configId 资源配置id
 	 * @return true: 可以被回收, false不可以被回收
 	 */
-	public void doRecycle(long uniqueId, int configId) {
+	public boolean doRecycle(long uniqueId, int configId) {
 		ConfigRecycle config = ConfigManager.getInstance().getConfig(ConfigRecycle.class, configId);
 		if (config == null) {
-			return;
+			return false;
 		}
 		Recycle recycle = getBean(uniqueId);
 		if (recycle == null) {
-			return;
+			return false;
 		}
 		//在存档中,判断存档是否可以被回收
 		long recycleTime = config.getStrategy().calculateTimePoint(recycle.getRecieveTime());
@@ -127,7 +127,9 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 			//当前时间大于存档时间, 表示可以被回收
 			recycle.delete();
 			beanMap.remove(recycle.getResourceId());
+			return true;
 		}
+		return false;
 	}
 	
 }
