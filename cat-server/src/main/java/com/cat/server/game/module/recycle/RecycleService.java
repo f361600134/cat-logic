@@ -55,6 +55,7 @@ class RecycleService implements IRecycleService {
 	/**
 	 * 当活动结束, 此活动相关的资源全部回收
 	 * @param playerId
+	 *  @param 活动类型id
 	 */
     public void onActivityClose(long playerId, int activityTypeId){
     	RecycleDomain domain = recycleManager.getDomain(playerId);
@@ -115,6 +116,9 @@ class RecycleService implements IRecycleService {
 			if (domain == null) {
 				return;
 			}
+			//清理过期资源
+			domain.clearResource();
+			//下发客户端
 			this.responseRecycleInfo(domain);
 		} catch (Exception e) {
 			e.printStackTrace();

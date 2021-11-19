@@ -81,6 +81,29 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 	}
 	
 	/**
+	 * 检测所有存档是否有需要清掉的存档
+	 * @return
+	 */
+	public void clearResource() {
+		ConfigRecycle config = null;
+		Iterator<Entry<Long, Recycle>> iter = getBeanMap().entrySet().iterator();
+		while (iter.hasNext()) {
+			Entry<Long, Recycle> entry = iter.next();
+			Recycle recycle = entry.getValue();
+			config = ConfigManager.getInstance().getConfig(ConfigRecycle.class, recycle.getConfigId());
+			if (config == null) {
+				continue;
+			}
+			long expireTime = config.getStrategy().calculateTimePoint(recycle.getRecieveTime());
+			if (TimeUtil.now() >= expireTime) {
+				//表示过期, 处理移除
+				recycle.delete();
+				iter.remove();
+			}
+		}
+	}
+	
+	/**
 	 * 检测指定资源id是否可以被回收
 	 * @param uniqueId 唯一id
 	 * @param configId 资源配置id
