@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.helper.log.NatureEnum;
-import com.cat.server.game.module.recycle.IRecycleService;
 import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.resource.IResourceService;
@@ -32,8 +31,6 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 	private static final Logger log = LoggerFactory.getLogger(ResourceGroupService.class);
 
 	@Autowired private List<IResourceService> resourceServices;
-	
-	@Autowired private IRecycleService recycleService;
 	
 	private Map<Integer, IResourceService> serviceMap;
 

@@ -3,14 +3,13 @@ package com.cat.server.game.module.recycle.strategy.impl;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.module.activity.IActivityService;
 import com.cat.server.game.module.activity.type.IActivityType;
-import com.cat.server.game.module.recycle.strategy.IRecycleStrategy;
 
 /**
  * 依赖活动的回收策略
  * @author Jeremy
  *
  */
-public class ActivityRecycleStrategy extends DateRecycleStrategy implements IRecycleStrategy {
+public class ActivityRecycleStrategy extends DateRecycleStrategy {
 	
 	/**
 	 * 依赖的活动id
