@@ -9,7 +9,7 @@ import com.cat.server.common.ClassManager;
 import com.cat.server.common.ServerConstant;
 
 /**
- * Hello, game world!
+ * Hello, Game world!
  */
 public class App 
 {
@@ -22,6 +22,6 @@ public class App
     	AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("xml/spring-context.xml");
 		ctx.registerShutdownHook();
 		ctx.start();
-    	logger.info("Start server successful， cost time:{}ms", (System.currentTimeMillis() - startTime));
+    	logger.info("Hello, Game World! Start server successful, cost time:{}ms", (System.currentTimeMillis() - startTime));
     }
 }

@@ -1,4 +1,4 @@
-package com.cat.server.game.module.playermail.domain;
+package com.cat.server.game.module.mail.domain;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -14,19 +14,19 @@ import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.data.proto.PBMail;
+import com.cat.server.game.data.proto.PBPlayerMail;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
-import com.cat.server.game.module.mail.IMail;
-import com.cat.server.game.module.mail.assist.MailState;
+import com.cat.server.game.module.mail.assist.MailConstant;
 import com.cat.server.game.module.mail.proto.PBMailInfoBuilder;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
 import com.cat.server.utils.DateUtils;
-import com.cat.server.utils.TimeUtil;
+import com.cat.server.utils.TimeUtil; 
 
 /**
 * @author Jeremy
 */
-@PO(name = "player_mail")
-public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
+@PO(name = "mail")
+public class Mail extends MailPo implements IPersistence{
 
 	/**
 	 * 
@@ -35,11 +35,11 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 	
 	private Map<Integer, Integer> rewardMap;
 
-	public PlayerMail() {
+	public Mail() {
 		
 	}
 	
-	public PlayerMail(long playerId) {
+	public Mail(long playerId) {
 		this.playerId = playerId;
 	}
 	
@@ -62,9 +62,9 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 	 * @param rewards 奖励内容
 	 * @return 邮件对象
 	 */
-	public static PlayerMail create(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
+	public static Mail create(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
 		SnowflakeGenerator generator = SpringContextHolder.getBean(SnowflakeGenerator.class);
-		PlayerMail mail = new PlayerMail(playerId);
+		Mail mail = new Mail(playerId);
 		//邮件id唯一,使用雪花生成器生成
 		mail.setId(generator.nextId());
 		mail.setTitle(title);
@@ -108,7 +108,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 	 * @return true:已领奖
 	 */
 	public boolean isRewarded() {
-		return this.getState() == MailState.REWARD.getState();
+		return this.getState() == MailConstant.REWARD;
 	}
 	
 	/**
@@ -125,7 +125,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 	 * @return true:可删除
 	 */
 	public boolean canDel() {
-		if (this.getState() == MailState.READ.getState() && this.getRewardMap().isEmpty()) {
+		if (this.getState() == MailConstant.READ && this.getRewardMap().isEmpty()) {
 			//状态为已读,并且没有奖励配置 可以删除
 			return true;
 		}else if (this.isRewarded()) {
