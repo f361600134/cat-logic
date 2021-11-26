@@ -1,64 +1,72 @@
-package com.cat.server.game.module.playermail;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.cat.server.game.data.proto.PBMail.PBMailInfo;
-import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.mail.IMail;
-import com.cat.server.game.module.mail.IMailServiceContainer;
-import com.cat.server.game.module.mail.assist.MailState;
-import com.cat.server.game.module.playermail.domain.PlayerMail;
-import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
-import com.cat.server.game.module.resource.IResourceGroupService;
-
-
-/**
- * PlayerMail控制器
- */
-@Service
-public class PlayerMailService implements IPlayerMailService, IMailServiceContainer{
-	
-	private static final Logger log = LoggerFactory.getLogger(PlayerMailService.class);
-	
+//package com.cat.server.game.module.playermail;
+//
+//import java.util.ArrayList;
+//import java.util.Collection;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
+//
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.stereotype.Service;
+//
+//import com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete;
+//import com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead;
+//import com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward;
+//import com.cat.server.game.helper.log.NatureEnum;
+//import com.cat.server.game.helper.result.ErrorCode;
+//import com.cat.server.game.module.player.IPlayerService;
+//import com.cat.server.game.module.playermail.assist.PlayerMailConstant;
+//import com.cat.server.game.module.playermail.domain.PlayerMail;
+//import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
+//import com.cat.server.game.module.playermail.proto.RespMailDeleteBuilder;
+//import com.cat.server.game.module.playermail.proto.RespMailListBuilder;
+//import com.cat.server.game.module.playermail.proto.RespMailReadBuilder;
+//import com.cat.server.game.module.playermail.proto.RespMailRewardBuilder;
+//import com.cat.server.game.module.resource.IResourceGroupService;
+//import com.cat.server.game.module.resource.helper.ResourceHelper;
+//import com.google.common.collect.Lists;
+//
+//
+///**
+// * PlayerMail控制器
+// */
+//@Service
+//public class PlayerMailService2 implements IPlayerMailService {
+//	
+//	private static final Logger log = LoggerFactory.getLogger(PlayerMailService2.class);
+//	
 //	@Autowired 
 //	private IPlayerService playerService;
-	
-	@Autowired 
-	private PlayerMailManager playerMailManager;
-	
-	@Autowired 
-	private IResourceGroupService resourceGroupService;
-	
-	/**
-	 * 登陆,  下发所有邮件
-	 * 邮件模块不同于其他模块, 邮件的触发不仅仅由玩家触发,所以登录后就得发送所有邮件
-	 */
-	public void onLogin(long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		Collection<PlayerMail> beans = domain.getBeans();
-		log.info("邮件内容:{}",beans);
-		//FSC todo somthing...
-		//Codes for proto
-		//playerService.sendMessage(playerId, ack);
-	}
-	
-	/**
-	 * 当玩家离线,移除掉道具模块数据
-	 * @param playerId
-	 */
-	public void onLogout(long playerId) {
-		playerMailManager.remove(playerId);
-	}
-	
+//	
+//	@Autowired 
+//	private PlayerMailManager playerMailManager;
+//	
+//	@Autowired 
+//	private IResourceGroupService resourceGroupService;
+//	
+//	/**
+//	 * 登陆,  下发所有邮件
+//	 * 邮件模块不同于其他模块, 邮件的触发不仅仅由玩家触发,所以登录后就得发送所有邮件
+//	 */
+//	public void onLogin(long playerId) {
+//		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
+//		Collection<PlayerMail> beans = domain.getBeans();
+//		log.info("邮件内容:{}",beans);
+//		//FSC todo somthing...
+//		//Codes for proto
+//		//playerService.sendMessage(playerId, ack);
+//	}
+//	
+//	/**
+//	 * 当玩家离线,移除掉道具模块数据
+//	 * @param playerId
+//	 */
+//	public void onLogout(long playerId) {
+//		playerMailManager.remove(playerId);
+//	}
+//	
 //	/**
 //	 * 更新信息
 //	 */
@@ -76,7 +84,7 @@ public class PlayerMailService implements IPlayerMailService, IMailServiceContai
 //			log.error("responsePlayerMailInfo error, e:", e);
 //		}
 //	}
-	
+//	
 //	/**
 //	 * 更新信息, 通知客户端多封新邮件
 //	 */
@@ -94,9 +102,9 @@ public class PlayerMailService implements IPlayerMailService, IMailServiceContai
 //			log.error("responsePlayerMailInfo error, e:", e);
 //		}
 //	}
-	
-	/////////////业务逻辑//////////////////
-	
+//	
+//	/////////////业务逻辑//////////////////
+//	
 //	/**
 //	 *获取邮件列表
 //	 */
@@ -107,7 +115,7 @@ public class PlayerMailService implements IPlayerMailService, IMailServiceContai
 //		}
 //		this.responsePlayerMailInfos(domain);
 //	}
-	
+//	
 //	/**
 //	* 请求邮件列表
 //	* @param long playerId
@@ -117,7 +125,7 @@ public class PlayerMailService implements IPlayerMailService, IMailServiceContai
 //	public void reqMailList(long playerId){
 //		this.responsePlayerMailInfo(playerId);
 //	}
-	
+//	
 //	/***
 //	 * 请求阅读邮件
 //	 * @param playerId
@@ -223,7 +231,7 @@ public class PlayerMailService implements IPlayerMailService, IMailServiceContai
 //		ack.addAllRewards(ResourceHelper.toPairProto(rewardMap));
 //		return ErrorCode.SUCCESS;
 //	}
-	
+//	
 //	/***
 //	 * 请求删除邮件
 //	 * @param playerId
@@ -281,11 +289,11 @@ public class PlayerMailService implements IPlayerMailService, IMailServiceContai
 //		//log
 //		return ErrorCode.SUCCESS;
 //	}
-	
-	
-	
-	/////////////接口方法////////////////////////
-
+//	
+//	
+//	
+//	/////////////接口方法////////////////////////
+//
 //	@Override
 //	public void sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args) {
 //		// TODO 从邮件配置获取邮件信息
@@ -306,149 +314,5 @@ public class PlayerMailService implements IPlayerMailService, IMailServiceContai
 //		//	通知玩家
 //		responsePlayerMailInfo(domain, Lists.newArrayList(playerMail.getId()));
 //	}
-	
-	@Override
-	public ErrorCode sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args) {
-		// TODO 从邮件配置获取邮件信息
-		String title = "测试邮件", content = "这是一封测试邮件忽略内容";
-		int expireDays = 1;
-		this.sendMail(playerId, title, content, expireDays, rewards);
-		return ErrorCode.SUCCESS;
-	}
-
-	@Override
-	public ErrorCode sendMail(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		if (domain == null) {
-			return ErrorCode.MAIL_BOX_NOT_FOUND;
-		}
-		//	创建邮件加入玩家对象
-		PlayerMail playerMail = PlayerMail.create(playerId, title, content, expiredDays, rewards);
-		domain.putBean(playerMail.getId(), playerMail);
-		//	通知玩家
-//		responsePlayerMailInfo(domain, Lists.newArrayList(playerMail.getId()));
-		return ErrorCode.SUCCESS;
-	}
-
-	@Override
-	public int mailType() {
-		return PLAYER_MAIL;
-	}
-
-	@Override
-	public ErrorCode deleteMail(long mailId, long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		if (domain == null) {
-			return ErrorCode.MAIL_BOX_NOT_FOUND;
-		}
-		PlayerMail mail = domain.getBean(mailId);
-		if (mail == null) {
-			return ErrorCode.MAIL_NOT_FOUND;
-		}
-		mail.delete();
-		return ErrorCode.SUCCESS;
-	}
-
-	@Override
-	public ErrorCode updateMail(long mailId, long playerId, String title, String content, int expiredDays,
-			Map<Integer, Integer> rewards) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		if (domain == null) {
-			return ErrorCode.MAIL_BOX_NOT_FOUND;
-		}
-		PlayerMail mail = domain.getBean(mailId);
-		if (mail == null) {
-			return ErrorCode.MAIL_NOT_FOUND;
-		}
-		domain.updateMail(mailId, title, content, expiredDays, rewards);
-		return ErrorCode.SUCCESS;
-	}
-
-	@Override
-	public ErrorCode markeAsRead(long mailId, long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		if (domain == null) {
-			return ErrorCode.MAIL_BOX_NOT_FOUND;
-		}
-		PlayerMail mail = domain.getBean(mailId);
-		if (mail == null) {
-			return ErrorCode.MAIL_NOT_FOUND;
-		}
-		mail.setState((byte)MailState.READ.getState());
-		mail.update();
-		return ErrorCode.SUCCESS;
-	}
-
-	@Override
-	public ErrorCode markAsReward(long mailId, long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		if (domain == null) {
-			return ErrorCode.MAIL_BOX_NOT_FOUND;
-		}
-		PlayerMail mail = domain.getBean(mailId);
-		if (mail == null) {
-			return ErrorCode.MAIL_NOT_FOUND;
-		}
-		mail.setState((byte)MailState.REWARD.getState());
-		mail.update();
-		return ErrorCode.SUCCESS;
-	}
-
-	@Override
-	public Map<Integer, Integer> getReward(long mailId, long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		if (domain == null) {
-			return Collections.emptyMap();
-		}
-		PlayerMail mail = domain.getBean(mailId);
-		if (mail == null) {
-			return Collections.emptyMap();
-		}
-		return mail.getRewardMap();
-	}
-
-	@Override
-	public ErrorCode markeForRemoval(long mailId, long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		if (domain == null) {
-			return ErrorCode.MAIL_BOX_NOT_FOUND;
-		}
-		PlayerMail mail = domain.getBean(mailId);
-		if (mail == null) {
-			return ErrorCode.MAIL_NOT_FOUND;
-		}
-		mail.setState((byte)MailState.DELETE.getState());
-		mail.delete();
-		return ErrorCode.SUCCESS;
-	}
-
-	@Override
-	public Collection<PBMailInfo> toProto(long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		if (domain == null) {
-			return Collections.emptyList();
-		}
-		List<PBMailInfo> ret = new ArrayList<>();
-		for (PlayerMail playerMail : domain.getBeans()) {
-			ret.add(playerMail.toProto());
-		}
-		return ret;
-	}
-
-	@Override
-	public int getState(long mailId, long playerId) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public IMail getMail(long mailId, long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		if (domain == null) {
-			return null;
-		}
-		return domain.getBean(playerId);
-	}
-
-	
-}
+//	
+//}

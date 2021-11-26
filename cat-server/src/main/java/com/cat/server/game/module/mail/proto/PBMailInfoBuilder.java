@@ -1,11 +1,11 @@
-package com.cat.server.game.module.playermail.proto;
+package com.cat.server.game.module.mail.proto;
 
 import java.util.Collection;
 
 import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBItem.PBPairInfo;
 //import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo;
+import com.cat.server.game.data.proto.PBMail.PBMailInfo;
 
 /**
 * PBMailInfoBuilder
@@ -54,10 +54,6 @@ public class PBMailInfoBuilder extends AbstractProtocol {
 	/** yyyy-MM-dd**/
 	public void setDate(String value){
 		this.builder.setDate(value);
-	}
-	/** 邮件类型**/
-	public void setMailType(int value){
-		this.builder.setMailType(value);
 	}
 	
 	@Override

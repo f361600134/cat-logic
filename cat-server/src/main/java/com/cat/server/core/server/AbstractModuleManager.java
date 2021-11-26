@@ -90,5 +90,5 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 		}
 		return null;
 	}
-
+	
 }
