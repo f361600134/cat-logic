@@ -48,17 +48,17 @@ public interface IMailServiceContainer {
 	 * @param mailId
 	 */
 	public ErrorCode updateMail(long mailId, long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards);
-
-	/**
-	 * 标记为已读<br>
-	 */
-	public ErrorCode markeAsRead(long mailId, long playerId);
-	
-	/**
-	 * 标记为已领取奖励<br>
-	 * 这里判断并返回奖励内容
-	 */
-	public ErrorCode markAsReward(long mailId, long playerId);
+//
+//	/**
+//	 * 标记为已读<br>
+//	 */
+//	public ErrorCode markeAsRead(long mailId, long playerId);
+//	
+//	/**
+//	 * 标记为已领取奖励<br>
+//	 * 这里判断并返回奖励内容
+//	 */
+//	public ErrorCode markAsReward(long mailId, long playerId);
 	
 	/**
 	 * 获取邮件奖励<br>
@@ -66,37 +66,36 @@ public interface IMailServiceContainer {
 	 */
 	public Map<Integer, Integer> getReward(long mailId, long playerId);
 	
-	/**
-	 * 获取邮件奖励<br>
-	 * 这里判断并返回奖励内容
-	 */
-	public Map<Integer, Integer> getAllReward(long playerId);
+//	/**
+//	 * 标记为删除<br>
+//	 */
+//	public ErrorCode markForRemoval(long mailId, long playerId);
 	
-	/**
-	 * 标记为删除<br>
-	 */
-	public ErrorCode markeForRemoval(long mailId, long playerId);
-	
-	/**
-	 * 返回状态, 实际上应该可以返回一个mail obj
-	 * 封装一个Imail 由其他类去实现吧
-	 */
-	public int getState(long mailId, long playerId);
+//	/**
+//	 * 返回状态, 实际上应该可以返回一个mail obj
+//	 * 封装一个Imail 由其他类去实现吧
+//	 */
+//	public int getState(long mailId, long playerId);
 	
 	/**
 	 * 返回一封邮件
 	 */
 	public IMail getMail(long mailId, long playerId);
 	
-	
 	/**
-	 * 序列化唯proto对象<br>
+	 * 返回所有邮件
 	 */
-	public Collection<PBMailInfo> toProto(long playerId);
+	public Collection<? extends IMail> getMails(long playerId);
 	
-	/**
-	 * 序列化唯proto对象<br>
-	 */
-	public Collection<PBMailInfo> toProto(long playerId, List<Long> mailIds);
+	
+//	/**
+//	 * 序列化唯proto对象<br>
+//	 */
+//	public Collection<PBMailInfo> toProto(long playerId);
+//	
+//	/**
+//	 * 序列化唯proto对象<br>
+//	 */
+//	public Collection<PBMailInfo> toProto(long playerId, List<Long> mailIds);
 
 }

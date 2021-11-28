@@ -10,7 +10,7 @@ import com.cat.server.core.context.SpringContextHolder;
 public interface IPersistence extends IBasePo{
 	
 	/**
-	 * 保存
+	 * 保存至数据库
 	 * @param po
 	 */
 	default public void save() {
@@ -20,7 +20,7 @@ public interface IPersistence extends IBasePo{
 	}
 	
 	/**
-	 * 修改
+	 * 修改至数据库
 	 * @param po
 	 */
 	default public void update() {
@@ -30,7 +30,7 @@ public interface IPersistence extends IBasePo{
 	}
 	
 	/**
-	 * 替换或修改
+	 * 替换或修改至数据库
 	 * @param po
 	 */
 	default public void replace() {
@@ -40,7 +40,7 @@ public interface IPersistence extends IBasePo{
 	}
 	
 	/**
-	 * 删除
+	 *  从数据库内删除
 	 */
 	default public void delete() {
 		IDataProcess processor =  SpringContextHolder.getBean(IDataProcess.class);

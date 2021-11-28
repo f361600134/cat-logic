@@ -16,7 +16,7 @@ import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.data.proto.PBMail;
 import com.cat.server.game.data.proto.PBPlayerMail;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
-import com.cat.server.game.module.mail.assist.MailConstant;
+import com.cat.server.game.module.mail.assist.MailState;
 import com.cat.server.game.module.mail.proto.PBMailInfoBuilder;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
 import com.cat.server.utils.DateUtils;
@@ -108,7 +108,7 @@ public class Mail extends MailPo implements IPersistence{
 	 * @return true:已领奖
 	 */
 	public boolean isRewarded() {
-		return this.getState() == MailConstant.REWARD;
+		return this.getState() == MailState.REWARD.getState();
 	}
 	
 	/**
@@ -125,7 +125,7 @@ public class Mail extends MailPo implements IPersistence{
 	 * @return true:可删除
 	 */
 	public boolean canDel() {
-		if (this.getState() == MailConstant.READ && this.getRewardMap().isEmpty()) {
+		if (this.getState() == MailState.READ.getState() && this.getRewardMap().isEmpty()) {
 			//状态为已读,并且没有奖励配置 可以删除
 			return true;
 		}else if (this.isRewarded()) {

@@ -1,25 +1,17 @@
 package com.cat.server.game.module.playermail.domain;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
-
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.cat.orm.core.annotation.PO;
+import com.cat.orm.util.StateUtils;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IPersistence;
-import com.cat.server.game.data.proto.PBMail;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.assist.MailState;
-import com.cat.server.game.module.mail.proto.PBMailInfoBuilder;
-import com.cat.server.game.module.resource.helper.ResourceHelper;
-import com.cat.server.utils.DateUtils;
 import com.cat.server.utils.TimeUtil;
 
 /**
@@ -85,57 +77,20 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 		return rewardMap;
 	}
 
-	/**
-	 * 实体对象转协议对象
-	 * @return 邮件序列化成消息对象
-	 */
-	public PBMail.PBMailInfo toProto() {
-		PBMailInfoBuilder builder = PBMailInfoBuilder.newInstance();
-		builder.setMailId(this.getId());
-		builder.setState(this.getState());
-		builder.setContent(this.getContent());
-		builder.setTitle(this.getTitle());
-		//格式化日期
-		String createDate = DateFormatUtils.format(Calendar.getInstance().getTime(), DateUtils.PATTERN_NORMAL);
-		builder.setDate(createDate);
-		//奖励格式化
-		builder.addAllRewards(ResourceHelper.toPairProto(rewardMap));
-		return builder.build();
-	}
-	
-	/**
-	 * 是否已经领取
-	 * @return true:已领奖
-	 */
-	public boolean isRewarded() {
-		return this.getState() == MailState.REWARD.getState();
-	}
-	
-	/**
-	 * 是否过期
-	 * @return true:已过期
-	 */
-	public boolean isExpired() {
-		//截止时间大于当前时间,表示过期
-		return (TimeUnit.MILLISECONDS.toSeconds(TimeUtil.now())) >= this.getExpireTime();
+	@Override
+	public int getState(long playerId) {
+		return getState();
 	}
 
-	/**
-	 * 是否可以删除
-	 * @return true:可删除
-	 */
-	public boolean canDel() {
-		if (this.getState() == MailState.READ.getState() && this.getRewardMap().isEmpty()) {
-			//状态为已读,并且没有奖励配置 可以删除
-			return true;
-		}else if (this.isRewarded()) {
-			//领过奖,可以删除
-			return true;
-		}else if (this.isExpired()) {
-			//过期可以删除
-			return true;
-		}
-		return false;
+	@Override
+	public void addState(MailState state, long playerId) {
+		this.state = (byte)StateUtils.addState(this.state, state.getState());
+		this.update();
+	}
+
+	@Override
+	public void deleteMail(long playerId) {
+		this.delete();
 	}
 	
 	@Override
@@ -146,5 +101,5 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 			this.rewardMap = new HashMap<>();
 		}
 	}
-	
+
 }

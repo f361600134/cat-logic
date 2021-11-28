@@ -54,38 +54,38 @@ class GroupMailService implements IGroupMailService, IMailServiceContainer{
 		return errorCode;
 	}
 
-	@Override
-	public ErrorCode markeAsRead(long mailId, long playerId) {
-		ResultCodeData<GroupMail> ret = groupMailManager.getGroupMail(serverConfig.getServerId(), mailId);
-		ErrorCode errorCode = ret.getErrorCode();
-		if (!errorCode.isSuccess()) {
-			return ret.getErrorCode();
-		}
-		ret.getData().mark(playerId, MailState.READ);
-		return ErrorCode.SUCCESS;
-	}
-
-	@Override
-	public ErrorCode markAsReward(long mailId, long playerId) {
-		ResultCodeData<GroupMail> ret = groupMailManager.getGroupMail(serverConfig.getServerId(), mailId);
-		ErrorCode errorCode = ret.getErrorCode();
-		if (!errorCode.isSuccess()) {
-			return ret.getErrorCode();
-		}
-		ret.getData().mark(playerId, MailState.REWARD);
-		return ErrorCode.SUCCESS;
-	}
-
-	@Override
-	public ErrorCode markeForRemoval(long mailId, long playerId) {
-		ResultCodeData<GroupMail> ret = groupMailManager.getGroupMail(serverConfig.getServerId(), mailId);
-		ErrorCode errorCode = ret.getErrorCode();
-		if (!errorCode.isSuccess()) {
-			return ret.getErrorCode();
-		}
-		ret.getData().mark(playerId, MailState.DELETE);
-		return ErrorCode.SUCCESS;
-	}
+//	@Override
+//	public ErrorCode markeAsRead(long mailId, long playerId) {
+//		ResultCodeData<GroupMail> ret = groupMailManager.getGroupMail(serverConfig.getServerId(), mailId);
+//		ErrorCode errorCode = ret.getErrorCode();
+//		if (!errorCode.isSuccess()) {
+//			return ret.getErrorCode();
+//		}
+//		ret.getData().mark(playerId, MailState.READ);
+//		return ErrorCode.SUCCESS;
+//	}
+//
+//	@Override
+//	public ErrorCode markAsReward(long mailId, long playerId) {
+//		ResultCodeData<GroupMail> ret = groupMailManager.getGroupMail(serverConfig.getServerId(), mailId);
+//		ErrorCode errorCode = ret.getErrorCode();
+//		if (!errorCode.isSuccess()) {
+//			return ret.getErrorCode();
+//		}
+//		ret.getData().mark(playerId, MailState.REWARD);
+//		return ErrorCode.SUCCESS;
+//	}
+//
+//	@Override
+//	public ErrorCode markForRemoval(long mailId, long playerId) {
+//		ResultCodeData<GroupMail> ret = groupMailManager.getGroupMail(serverConfig.getServerId(), mailId);
+//		ErrorCode errorCode = ret.getErrorCode();
+//		if (!errorCode.isSuccess()) {
+//			return ret.getErrorCode();
+//		}
+//		ret.getData().mark(playerId, MailState.DELETE);
+//		return ErrorCode.SUCCESS;
+//	}
 
 	@Override
 	public int mailType() {
@@ -129,56 +129,65 @@ class GroupMailService implements IGroupMailService, IMailServiceContainer{
 		return ret.getData().getRewardMap();
 	}
 
-	@Override
-	public Collection<PBMailInfo> toProto(long playerId) {
-		GroupMailDomain domain = groupMailManager.getDomain(serverConfig.getServerId());
-		if (domain == null) {
-			log.info("sendMail error, domain is null");
-			return Collections.emptyList();
-		}
-		List<PBMailInfo> ret = new ArrayList<>();
-		for (GroupMail mail : domain.getBeans()) {
-			ret.add(mail.toProto(playerId));
-		}
-		return ret;
-	}
-	
-	@Override
-	public int getState(long mailId, long playerId) {
-		ResultCodeData<GroupMail> ret = groupMailManager.getGroupMail(serverConfig.getServerId(), mailId);
-		ErrorCode errorCode = ret.getErrorCode();
-		if (!errorCode.isSuccess()) {
-			return 0;
-		}
-		return ret.getData().getState(playerId);
-	}
+//	@Override
+//	public Collection<PBMailInfo> toProto(long playerId) {
+//		GroupMailDomain domain = groupMailManager.getDomain(serverConfig.getServerId());
+//		if (domain == null) {
+//			log.info("sendMail error, domain is null");
+//			return Collections.emptyList();
+//		}
+//		List<PBMailInfo> ret = new ArrayList<>();
+//		for (GroupMail mail : domain.getBeans()) {
+//			ret.add(mail.toProto(playerId));
+//		}
+//		return ret;
+//	}
+//	
+//	@Override
+//	public int getState(long mailId, long playerId) {
+//		ResultCodeData<GroupMail> ret = groupMailManager.getGroupMail(serverConfig.getServerId(), mailId);
+//		ErrorCode errorCode = ret.getErrorCode();
+//		if (!errorCode.isSuccess()) {
+//			return 0;
+//		}
+//		return ret.getData().getState(playerId);
+//	}
 	
 	@Override
 	public IMail getMail(long mailId, long playerId) {
 		return groupMailManager.getGroupMail(serverConfig.getServerId(), mailId).getData();
 	}
 
-	@Override
-	public Map<Integer, Integer> getAllReward(long playerId) {
-		GroupMailDomain domain = groupMailManager.getDomain(serverConfig.getServerId());
-		if (domain == null) {
-			log.info("sendMail error, domain is null");
-			return Collections.emptyMap();
-		}
-		Map<Integer, Integer> rewardMap = new HashMap<>();
-		for (GroupMail mail : domain.getBeans()) {
-			if (mail.isRewarded(playerId) || mail.isExpired()) {
-				continue;
-			}
-			ResourceHelper.mergeToMap(mail.getRewardMap(), rewardMap);
-		}
-		return rewardMap;
-	}
+//	@Override
+//	public Map<Integer, Integer> getAllReward(long playerId) {
+//		GroupMailDomain domain = groupMailManager.getDomain(serverConfig.getServerId());
+//		if (domain == null) {
+//			log.info("sendMail error, domain is null");
+//			return Collections.emptyMap();
+//		}
+//		Map<Integer, Integer> rewardMap = new HashMap<>();
+//		for (GroupMail mail : domain.getBeans()) {
+//			if (mail.isRewarded(playerId) || mail.isExpired()) {
+//				continue;
+//			}
+//			ResourceHelper.mergeToMap(mail.getRewardMap(), rewardMap);
+//		}
+//		return rewardMap;
+//	}
+
+//	@Override
+//	public Collection<PBMailInfo> toProto(long playerId, List<Long> mailIds) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
-	public Collection<PBMailInfo> toProto(long playerId, List<Long> mailIds) {
-		// TODO Auto-generated method stub
-		return null;
+	public Collection<? extends IMail> getMails(long playerId) {
+		ResultCodeData<Collection<GroupMail>> ret = groupMailManager.getGroupMails(serverConfig.getServerId());
+		if (!ret.getErrorCode().isSuccess()) {
+			return Collections.emptyList();
+		}
+		return ret.getData();
 	}
 }
  

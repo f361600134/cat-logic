@@ -1,8 +1,5 @@
 package com.cat.server.game.module.mail;
 
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -17,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mail.proto.*;
-//import com.cat.server.game.data.proto.*;
 import com.cat.server.game.data.proto.PBMail.*;
 
 /**
