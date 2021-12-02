@@ -1,55 +1,28 @@
 package com.cat.server.game.module.playermail;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cat.server.game.data.proto.PBMail.PBMailInfo;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.IMailServiceContainer;
-import com.cat.server.game.module.mail.assist.MailState;
 import com.cat.server.game.module.playermail.domain.PlayerMail;
 import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
-import com.cat.server.game.module.resource.IResourceGroupService;
 
 
 /**
  * PlayerMail控制器
  */
 @Service
-public class PlayerMailService implements IPlayerMailService, IMailServiceContainer{
+public class PlayerMailService implements IMailServiceContainer{
 	
-	private static final Logger log = LoggerFactory.getLogger(PlayerMailService.class);
-	
-//	@Autowired 
-//	private IPlayerService playerService;
+//	private static final Logger log = LoggerFactory.getLogger(PlayerMailService.class);
 	
 	@Autowired 
 	private PlayerMailManager playerMailManager;
-	
-	@Autowired 
-	private IResourceGroupService resourceGroupService;
-	
-	/**
-	 * 登陆,  下发所有邮件
-	 * 邮件模块不同于其他模块, 邮件的触发不仅仅由玩家触发,所以登录后就得发送所有邮件
-	 */
-	public void onLogin(long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		Collection<PlayerMail> beans = domain.getBeans();
-		log.info("邮件内容:{}",beans);
-		//FSC todo somthing...
-		//Codes for proto
-		//playerService.sendMessage(playerId, ack);
-	}
 	
 	/**
 	 * 当玩家离线,移除掉道具模块数据
@@ -59,7 +32,13 @@ public class PlayerMailService implements IPlayerMailService, IMailServiceContai
 		playerMailManager.remove(playerId);
 	}
 	
-	/////////////业务逻辑//////////////////
+	/////////////接口方法//////////////////
+	
+
+	@Override
+	public int mailType() {
+		return PLAYER_MAIL;
+	}
 	
 	@Override
 	public ErrorCode sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args) {
@@ -80,13 +59,7 @@ public class PlayerMailService implements IPlayerMailService, IMailServiceContai
 		PlayerMail playerMail = PlayerMail.create(playerId, title, content, expiredDays, rewards);
 		domain.putBean(playerMail.getId(), playerMail);
 		//	通知玩家
-//		responsePlayerMailInfo(domain, Lists.newArrayList(playerMail.getId()));
 		return ErrorCode.SUCCESS;
-	}
-
-	@Override
-	public int mailType() {
-		return PLAYER_MAIL;
 	}
 
 	@Override
@@ -116,20 +89,6 @@ public class PlayerMailService implements IPlayerMailService, IMailServiceContai
 		}
 		domain.updateMail(mailId, title, content, expiredDays, rewards);
 		return ErrorCode.SUCCESS;
-	}
-
-
-	@Override
-	public Map<Integer, Integer> getReward(long mailId, long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		if (domain == null) {
-			return Collections.emptyMap();
-		}
-		PlayerMail mail = domain.getBean(mailId);
-		if (mail == null) {
-			return Collections.emptyMap();
-		}
-		return mail.getRewardMap();
 	}
 
 	@Override

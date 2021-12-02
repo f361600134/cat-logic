@@ -46,7 +46,6 @@ public class GroupMailDomain extends AbstractModuleMultiDomain<Integer, Long, Gr
 	public void updateMail(long mailId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
 		GroupMail mail = getBean(mailId);
 		if (mail != null) {
-//			mail.update(title, content, expiredDays, rewards);
 			mail.setTitle(title);
 			mail.setContent(content);
 			//计算过期时间
@@ -57,18 +56,5 @@ public class GroupMailDomain extends AbstractModuleMultiDomain<Integer, Long, Gr
 			mail.update();
 		}
 	}
-	
-//	/**
-//	 * 标记状态, 用于玩家行为操作
-//	 * @param mailId
-//	 * @param playerId
-//	 * @param state
-//	 */
-//	public void mark(GroupMail mail, long playerId, MailState mailState) {
-//		int state = mail.getStateMap().getOrDefault(playerId, MailState.NONE.getState());
-//		state = (int)StateUtils.addState(state, mailState.getState());
-//		mail.getStateMap().put(playerId, state);
-//		mail.update();
-//	}
 	
 }

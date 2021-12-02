@@ -1,13 +1,12 @@
 package com.cat.server.game.module.playermail.domain;
 
-import com.cat.server.core.server.AbstractModuleMultiDomain;
-import com.cat.server.game.module.groupmail.domain.GroupMail;
-import com.cat.server.utils.TimeUtil;
-
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.cat.server.core.server.AbstractModuleMultiDomain;
+import com.cat.server.utils.TimeUtil;
 
 
 /**

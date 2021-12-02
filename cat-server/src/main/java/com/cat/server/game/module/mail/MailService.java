@@ -39,7 +39,7 @@ public class MailService implements IMailService {
 	
 	@Autowired private IResourceGroupService resourceGroupService;
 	
-	@Autowired private MailResourceService mailResourceService;
+	@Autowired private MailManager mailManager;
 	
 	/**
 	 * 登陆,  下发所有邮件
@@ -49,19 +49,19 @@ public class MailService implements IMailService {
 		this.responseMailInfos(playerId);
 	}
 	
-	/**
-	 * 当玩家离线,移除掉道具模块数据
-	 * @param playerId
-	 */
-	public void onLogout(long playerId) {
-	}
+//	/**
+//	 * 当玩家离线,移除掉道具模块数据
+//	 * @param playerId
+//	 */
+//	public void onLogout(long playerId) {
+//	}
 	
 	/**
 	 * 更新信息
 	 */
 	public void responseMailInfos(long playerId) {
 		RespMailListBuilder resp = RespMailListBuilder.newInstance(); 
-		Collection<IMail> beans = mailResourceService.getMails(playerId);
+		Collection<IMail> beans = mailManager.getMails(playerId);
 		try {
 			for (IMail mail : beans) {
 				resp.addMails(mail.toProto(playerId));
@@ -83,7 +83,7 @@ public class MailService implements IMailService {
 		try {
 			IMail mail = null;
 			for (Long mailId : mailIds) {
-				mail = mailResourceService.getMail(mailId, playerId);
+				mail = mailManager.getMail(mailId, playerId);
 				if (mail == null) {
 					continue;
 				}
@@ -122,12 +122,12 @@ public class MailService implements IMailService {
 	 */
 	public ErrorCode reqMailRead(long playerId, ReqMailRead req, RespMailReadBuilder resp) {
 		final long mailId = req.getMailId();
-		IMail mail = mailResourceService.getMail(mailId, playerId);
+		IMail mail = mailManager.getMail(mailId, playerId);
 		if (mail == null) {
 			return ErrorCode.MAIL_NOT_FOUND;
 		}
 		if (mail.getState(playerId) != MailState.NONE.getState()) {
-			mail.addState(MailState.READ, playerId);
+			mail.addState(playerId, MailState.READ);
 			mail.update();
 		}
 		return ErrorCode.SUCCESS;
@@ -156,7 +156,7 @@ public class MailService implements IMailService {
 	 * @return
 	 */
 	private ErrorCode receiveOne(long playerId, long mailId, RespMailRewardBuilder ack) {
-		IMail mail = mailResourceService.getMail(mailId, playerId);
+		IMail mail = mailManager.getMail(mailId, playerId);
 		if (mail == null) {
 			return ErrorCode.MAIL_NOT_FOUND;
 		}
@@ -165,7 +165,7 @@ public class MailService implements IMailService {
 		}else if (mail.isExpired()) {
 			return ErrorCode.MAIL_ALREADY_REWARD;
 		}
-		mail.addState(MailState.REWARD, playerId);
+		mail.addState(playerId, MailState.REWARD);
 		mail.update();
 		//领取附件
 		resourceGroupService.reward(playerId, mail.getRewardMap(), NatureEnum.MailReward);
@@ -184,7 +184,7 @@ public class MailService implements IMailService {
 	private ErrorCode receiveAll(long playerId, long mailId, RespMailRewardBuilder ack) {
 		List<Long> mailIds = new ArrayList<>();
 		Map<Integer, Integer> rewardMap = new HashMap<>();
-		Collection<IMail> cols = mailResourceService.getMails(playerId);
+		Collection<IMail> cols = mailManager.getMails(playerId);
 		for (IMail mail : cols) {
 			if (mail == null || mail.isExpired() || mail.isRewarded(playerId))
 				continue;
@@ -193,7 +193,7 @@ public class MailService implements IMailService {
 			ResourceHelper.mergeToMap(mail.getRewardMap(), rewardMap);
 			mailIds.add(mail.getId());
 			
-			mail.addState(MailState.REWARD, playerId);
+			mail.addState(playerId, MailState.REWARD);
 			mail.update();
 		}
 		//没有可领取奖励
@@ -229,7 +229,7 @@ public class MailService implements IMailService {
 	 * @return
 	 */
 	private ErrorCode deleteOne(long playerId, long mailId, RespMailDeleteBuilder resp) {
-		IMail mail = mailResourceService.getMail(mailId, playerId);
+		IMail mail = mailManager.getMail(mailId, playerId);
 		if (mail == null) {
 			return ErrorCode.MAIL_NOT_FOUND;
 		}
@@ -248,7 +248,7 @@ public class MailService implements IMailService {
 	 */
 	private ErrorCode deleteAll(long playerId, long mailId, RespMailDeleteBuilder resp) {
 		List<Long> dels = new ArrayList<>();
-		Collection<IMail> mails = mailResourceService.getMails(playerId);
+		Collection<IMail> mails = mailManager.getMails(playerId);
 		for (IMail mail : mails) {
 			if (mail.canDel(playerId)) {
 				mail.deleteMail(playerId);
@@ -260,7 +260,20 @@ public class MailService implements IMailService {
 		return ErrorCode.SUCCESS;
 	}
 	
-	
-	
 	/////////////接口方法////////////////////////
+
+	@Override
+	public ErrorCode sendMail(int mailType, long playerId, int configID, Map<Integer, Integer> rewards,
+			Object... args) {
+		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
+		return mailContainer.sendMail(playerId, configID, rewards, args);
+	}
+
+	@Override
+	public ErrorCode sendMail(int mailType, long playerId, String title, String content, int expiredDays,
+			Map<Integer, Integer> rewards) {
+		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
+		return mailContainer.sendMail(playerId, title, content, expiredDays, rewards);
+	}
+
 }

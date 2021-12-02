@@ -83,7 +83,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 	}
 
 	@Override
-	public void addState(MailState state, long playerId) {
+	public void addState(long playerId, MailState state) {
 		this.state = (byte)StateUtils.addState(this.state, state.getState());
 		this.update();
 	}

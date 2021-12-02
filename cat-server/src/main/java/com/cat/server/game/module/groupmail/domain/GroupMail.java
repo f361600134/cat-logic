@@ -75,27 +75,34 @@ public class GroupMail extends GroupMailPo implements IPersistence, IMail {
 		return mail;
 	}
 
-	/**
-	 * 标记状态, 用于玩家行为操作
-	 * 
-	 * @param mailId
-	 * @param playerId
-	 * @param state
-	 */
-	public void mark(long playerId, MailState mailState) {
-		int state = stateMap.getOrDefault(playerId, MailState.NONE.getState());
-		state = (int) StateUtils.addState(state, mailState.getState());
-		stateMap.put(playerId, state);
-		this.update();
-	}
+//	/**
+//	 * 标记状态, 用于玩家行为操作
+//	 * @param playerId 玩家id
+//	 * @param mailState 状态
+//	 */
+//	public void mark(long playerId, MailState mailState) {
+//		int state = stateMap.getOrDefault(playerId, MailState.NONE.getState());
+//		state = (int) StateUtils.addState(state, mailState.getState());
+//		stateMap.put(playerId, state);
+//		this.update();
+//	}
 
+	/**
+	 * 根据玩家获取当前群邮件状态
+	 * @param playerId 玩家id
+	 */
 	@Override
 	public int getState(long playerId) {
 		return stateMap.getOrDefault(playerId, MailState.NONE.getState());
 	}
 
+	/**
+	 * 添加状态
+	 * @param playerId 玩家id
+	 * @param mailState 状态
+	 */
 	@Override
-	public void addState(MailState state, long playerId) {
+	public void addState(long playerId, MailState state) {
 		int oldState = stateMap.getOrDefault(playerId, MailState.NONE.getState());
 		int newState = (int) StateUtils.addState(oldState, state.getState());
 		stateMap.put(playerId, newState);

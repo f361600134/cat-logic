@@ -66,7 +66,7 @@ public interface IMail extends IPersistence{
 	 * @return void  
 	 * @date 2021年11月28日上午9:09:24
 	 */
-	public void addState(MailState state, long playerId);
+	public void addState(long playerId, MailState state);
 	
 	/**
 	 * 是否获取奖励了
