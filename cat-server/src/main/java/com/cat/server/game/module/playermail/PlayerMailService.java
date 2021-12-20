@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.IMailServiceContainer;
+import com.cat.server.game.module.mail.assist.MailType;
 import com.cat.server.game.module.playermail.domain.PlayerMail;
 import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
 
@@ -18,8 +19,6 @@ import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
  */
 @Service
 public class PlayerMailService implements IMailServiceContainer{
-	
-//	private static final Logger log = LoggerFactory.getLogger(PlayerMailService.class);
 	
 	@Autowired 
 	private PlayerMailManager playerMailManager;
@@ -37,7 +36,7 @@ public class PlayerMailService implements IMailServiceContainer{
 
 	@Override
 	public int mailType() {
-		return PLAYER_MAIL;
+		return MailType.PLAYER_MAIL.getMailType();
 	}
 	
 	@Override

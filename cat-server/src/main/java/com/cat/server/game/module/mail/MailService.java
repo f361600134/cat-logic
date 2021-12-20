@@ -2,6 +2,7 @@ package com.cat.server.game.module.mail;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -266,6 +267,9 @@ public class MailService implements IMailService {
 	public ErrorCode sendMail(int mailType, long playerId, int configID, Map<Integer, Integer> rewards,
 			Object... args) {
 		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
+		if (mailContainer == null) {
+			return ErrorCode.MAIL_BOX_NOT_FOUND;
+		}
 		return mailContainer.sendMail(playerId, configID, rewards, args);
 	}
 
@@ -273,7 +277,47 @@ public class MailService implements IMailService {
 	public ErrorCode sendMail(int mailType, long playerId, String title, String content, int expiredDays,
 			Map<Integer, Integer> rewards) {
 		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
+		if (mailContainer == null) {
+			return ErrorCode.MAIL_BOX_NOT_FOUND;
+		}
 		return mailContainer.sendMail(playerId, title, content, expiredDays, rewards);
+	}
+
+	@Override
+	public ErrorCode deleteMail(int mailType, long mailId, long playerId) {
+		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
+		if (mailContainer == null) {
+			return ErrorCode.MAIL_BOX_NOT_FOUND;
+		}
+		return mailContainer.deleteMail(mailId, playerId);
+	}
+
+	@Override
+	public ErrorCode updateMail(int mailType, long mailId, long playerId, String title, String content, int expiredDays,
+			Map<Integer, Integer> rewards) {
+		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
+		if (mailContainer == null) {
+			return ErrorCode.MAIL_BOX_NOT_FOUND;
+		}
+		return mailContainer.updateMail(mailId, playerId, title, content, expiredDays, rewards);
+	}
+
+	@Override
+	public IMail getMail(int mailType, long mailId, long playerId) {
+		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
+		if (mailContainer == null) {
+			return null;
+		}
+		return mailContainer.getMail(mailId, playerId);
+	}
+
+	@Override
+	public Collection<? extends IMail> getMails(int mailType, long playerId) {
+		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
+		if (mailContainer == null) {
+			return Collections.emptyList();
+		}
+		return mailContainer.getMails(playerId);
 	}
 
 }

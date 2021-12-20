@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 * @author Jeremy
 */
 @Component
-public class MailManager {
+class MailManager {
 	
 	
 	/**

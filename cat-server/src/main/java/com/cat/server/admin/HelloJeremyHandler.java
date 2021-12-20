@@ -17,7 +17,7 @@ import io.netty.util.CharsetUtil;
 
 @Controller
 @RequestMapping("/hello")
-public class HelloJeremyController {
+public class HelloJeremyHandler {
 	
 	//http://localhost:8001/hello/index
 	@RequestMapping("/index")

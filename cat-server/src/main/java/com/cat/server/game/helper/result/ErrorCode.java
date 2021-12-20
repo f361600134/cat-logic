@@ -1,6 +1,6 @@
 package com.cat.server.game.helper.result;
 
-import com.cat.server.game.data.proto.PBCommon.RespTips;
+import com.cat.server.core.result.CodeEnum;
 import com.cat.server.game.module.common.proto.RespTipsBuilder;
 
 /**
@@ -8,7 +8,7 @@ import com.cat.server.game.module.common.proto.RespTipsBuilder;
  * 需要生成excel提供给客户端读取
  * @author Jeremy
  */
-public enum ErrorCode implements ModuleDefines {
+public enum ErrorCode implements ModuleDefines, CodeEnum{
     /**
      *	成功消息
      */
@@ -120,6 +120,10 @@ public enum ErrorCode implements ModuleDefines {
 
     public int getCode() {
         return code;
+    }
+    
+    public int getStatus(){
+    	return getCode();
     }
     
     /*通常不需要此描述, 仅用于服务器*/

@@ -3,16 +3,13 @@ package com.cat.server.game.module.chat.type.impl;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.cat.server.game.data.proto.PBChat.PBChatInfo;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.chat.assist.ChannelType;
 import com.cat.server.game.module.chat.domain.Chat;
 import com.cat.server.game.module.chat.domain.ChatDetail;
 import com.cat.server.game.module.chat.type.AbstractChatType;
-import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
 import com.cat.server.utils.Pair;
 import com.google.common.cache.Cache;

@@ -16,6 +16,7 @@ import com.cat.server.game.module.groupmail.domain.GroupMail;
 import com.cat.server.game.module.groupmail.domain.GroupMailDomain;
 import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.IMailServiceContainer;
+import com.cat.server.game.module.mail.assist.MailType;
 
 
 /**
@@ -51,7 +52,7 @@ class GroupMailService implements IMailServiceContainer{
 
 	@Override
 	public int mailType() {
-		return GROUP_MAIL;
+		return MailType.GROUP_MAIL.getMailType();
 	}
 
 	@Override

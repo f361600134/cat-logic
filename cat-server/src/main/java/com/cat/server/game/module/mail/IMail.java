@@ -125,7 +125,7 @@ public interface IMail extends IPersistence{
 	}
 	
 	/**
-	 * 删除邮件
+	 * 删除邮件, 群邮件删除和个人玩家邮件删除处理方式不同
 	 * @param playerId  
 	 * @return void  
 	 * @date 2021年11月28日上午10:00:59
