@@ -1,6 +1,8 @@
 package com.cat.server.game.module.groupmail.domain;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
@@ -24,7 +26,7 @@ public class GroupMail extends GroupMailPo implements IPersistence, IMail {
 	private static final long serialVersionUID = -3215406404369917418L;
 
 	@Column(value = PROP_REWARDS)
-	private Map<Integer, Integer> rewardMap;
+	private Map<Integer, Integer> rewardMap = new HashMap<>();
 
 	/**
 	 * 邮件状态信息<br>
@@ -35,7 +37,7 @@ public class GroupMail extends GroupMailPo implements IPersistence, IMail {
 	 * 4: 已领奖
 	 */
 	@Column(value = PROP_EXTENDSTR)
-	private Map<Long, Integer> stateMap;
+	private Map<Long, Integer> stateMap = new ConcurrentHashMap<>();
 
 	public GroupMail() {
 

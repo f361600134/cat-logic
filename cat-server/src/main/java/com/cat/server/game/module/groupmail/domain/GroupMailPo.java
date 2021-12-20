@@ -15,7 +15,6 @@ public abstract class GroupMailPo extends BasePo {
 	public static final String PROP_CREATETIME = "createTime";
 	public static final String PROP_EXPIRETIME = "expireTime";
 	public static final String PROP_EXTENDSTR = "extendStr";
-	public static final String PROP_OPTMAILID = "optMailId";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
@@ -26,7 +25,6 @@ public abstract class GroupMailPo extends BasePo {
 			PROP_CREATETIME,
 			PROP_EXPIRETIME,
 			PROP_EXTENDSTR,
-			PROP_OPTMAILID,
 			};
 			
 	/** 所有主键索引字段数组*/
@@ -36,6 +34,7 @@ public abstract class GroupMailPo extends BasePo {
 		
 	/** 所有索引字段数组*/
 	public static final String[] INDEX_ALL = new String[] {
+			PROP_ID,
 			};
 	
 	
@@ -53,8 +52,6 @@ public abstract class GroupMailPo extends BasePo {
 	protected long expireTime;
 	/** 额外信息,包含已读,已领取玩家id列表*/
 	protected String extendStr;
-	/** 运营邮件id,后台发出的邮件,携带后台那边的邮件id*/
-	protected long optMailId;
 	
 	public GroupMailPo(){
 		this.title = "";
@@ -68,7 +65,7 @@ public abstract class GroupMailPo extends BasePo {
 		return this.id;
 	}
 	
-	void setId(long id){
+	public void setId(long id){
 		this.id = id;
 	}
 	
@@ -77,7 +74,7 @@ public abstract class GroupMailPo extends BasePo {
 		return this.title;
 	}
 	
-	void setTitle(String title){
+	public void setTitle(String title){
 		this.title = title;
 	}
 	
@@ -86,7 +83,7 @@ public abstract class GroupMailPo extends BasePo {
 		return this.content;
 	}
 	
-	void setContent(String content){
+	public void setContent(String content){
 		this.content = content;
 	}
 	
@@ -95,7 +92,7 @@ public abstract class GroupMailPo extends BasePo {
 		return this.rewards;
 	}
 	
-	void setRewards(String rewards){
+	public void setRewards(String rewards){
 		this.rewards = rewards;
 	}
 	
@@ -104,7 +101,7 @@ public abstract class GroupMailPo extends BasePo {
 		return this.createTime;
 	}
 	
-	void setCreateTime(long createTime){
+	public void setCreateTime(long createTime){
 		this.createTime = createTime;
 	}
 	
@@ -113,7 +110,7 @@ public abstract class GroupMailPo extends BasePo {
 		return this.expireTime;
 	}
 	
-	void setExpireTime(long expireTime){
+	public void setExpireTime(long expireTime){
 		this.expireTime = expireTime;
 	}
 	
@@ -122,24 +119,15 @@ public abstract class GroupMailPo extends BasePo {
 		return this.extendStr;
 	}
 	
-	void setExtendStr(String extendStr){
+	public void setExtendStr(String extendStr){
 		this.extendStr = extendStr;
-	}
-	
-	/** 运营邮件id,后台发出的邮件,携带后台那边的邮件id **/
-	public long getOptMailId(){
-		return this.optMailId;
-	}
-	
-	void setOptMailId(long optMailId){
-		this.optMailId = optMailId;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "GroupMail [id= "+ id +", title= "+ title +", content= "+ content +", rewards= "+ rewards +", createTime= "+ createTime
-				 +", expireTime= "+ expireTime +", extendStr= "+ extendStr +", optMailId= "+ optMailId+"]";
+				 +", expireTime= "+ expireTime +", extendStr= "+ extendStr+"]";
 	}
 	
 	@Override
@@ -157,7 +145,6 @@ public abstract class GroupMailPo extends BasePo {
 		getCreateTime(),
 		getExpireTime(),
 		getExtendStr(),
-		getOptMailId(),
 		};
 	}
 	
@@ -191,6 +178,7 @@ public abstract class GroupMailPo extends BasePo {
 	@Override
 	public String[] indexValues() {
 		return new String[] {
+			PROP_ID,
 		};
 	}
 	

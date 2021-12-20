@@ -46,6 +46,12 @@ public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain>
 
 	@Override
 	public PlayerMailDomain getDomain(Long playerId) {
+		return domains.getIfPresent(playerId);
+	}
+
+
+	@Override
+	public PlayerMailDomain loadDomain(Long playerId) {
 		PlayerMailDomain domain = domains.getIfPresent(playerId);
 		if (domain == null) {
 			domain = getFromDb(playerId);
@@ -53,7 +59,7 @@ public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain>
 		}
 		return domain;
 	}
-
+	
 	@Override
 	public void remove(Long id) {
 		domains.invalidate(id);
@@ -81,4 +87,5 @@ public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain>
 		}
 		return null;
 	}
+
 }

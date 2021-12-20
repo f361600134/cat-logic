@@ -41,6 +41,6 @@ class FamilyManager extends AbstractModuleManager<Integer, FamilyDomain> {
     @Override
     public void init() {
         //初始化, 加载一次, 初始化所有活动数据
-        getFromDb(serverConfig.getServerId());
+    	loadDomain(serverConfig.getServerId());
     }
 }

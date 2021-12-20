@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
+import com.cat.server.game.module.activity.type.IActivityType;
+import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunityDomain;
 import com.cat.server.game.module.hero.domain.Hero;
 import com.cat.server.game.module.hero.domain.HeroDomain;
 import com.cat.server.game.module.resource.IResourceService;
@@ -17,6 +19,18 @@ class HeroService implements IHeroService, IResourceService{
 	private static final Logger log = LoggerFactory.getLogger(HeroService.class);
 	
 	@Autowired private HeroManager heroManager;
+	
+	/**
+	 * 登陆
+	 */
+	public void onLogin(long playerId) {
+		HeroDomain domain = heroManager.loadDomain(playerId);
+		if (domain == null) {
+			log.info("HeroService error, domain is null");
+			return;
+		}
+		//下发玩家武将列表
+	}
 	
 	
 	/////////////业务逻辑/////////////

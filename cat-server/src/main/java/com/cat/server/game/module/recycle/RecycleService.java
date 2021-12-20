@@ -35,7 +35,7 @@ class RecycleService implements IRecycleService {
 	 * 登陆
 	 */
 	public void onLogin(long playerId) {
-		RecycleDomain domain = recycleManager.getDomain(playerId);
+		RecycleDomain domain = recycleManager.loadDomain(playerId);
 		if (domain == null) {
 			log.info("onLogin error, domain is null, playerId:{}", playerId);
 			return;

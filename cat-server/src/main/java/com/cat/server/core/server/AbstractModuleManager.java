@@ -49,11 +49,13 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 		return domains.values();
 	}
 	
-	/**
-	 * 获取数据, 获取不到从数据库获取
-	 */
 	@Override
 	public T getDomain(I id) {
+		return domains.get(id);
+	}
+	
+	@Override
+	public T loadDomain(I id) {
 		T domain = domains.get(id);
 		if (domain == null) {
 			domain = getFromDb(id);

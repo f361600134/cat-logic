@@ -44,7 +44,7 @@ class ChatService {
 	public void onLogin(long playerId) {
 		try {
 			for (ChannelType chatEnum : ChannelType.values()) {
-				ChatDomain chatDomain = chatManager.getDomain(chatEnum.getChannel());
+				ChatDomain chatDomain = chatManager.loadDomain(chatEnum.getChannel());
 				if (chatDomain == null) {
 					continue;
 				}

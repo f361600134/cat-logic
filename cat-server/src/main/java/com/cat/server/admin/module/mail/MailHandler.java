@@ -14,6 +14,10 @@ import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.IMailService;
 
+/**
+ * 统一使用玩家线程去处理
+ * @author Jeremy
+ */
 @Controller
 @RequestMapping("/mail")
 public class MailHandler {
@@ -22,7 +26,7 @@ public class MailHandler {
 	
 	/**
 	 * 发送个人邮件
-	 * http://localhost:8001/mail/sendMail?mailType=1&title=test&context=testcontext&expireDays=7
+	 * http://localhost:8001/mail/sendMail?mailType=2&title=test&context=testcontext&expireDays=7
 	 */
 	@RequestMapping("/sendMail")
 	public IResult sendMail(BackstageMail mail) {
@@ -39,6 +43,7 @@ public class MailHandler {
 	
 	/**
 	 * 删除个人邮件/删除群邮件
+	 * http://localhost:8001/mail/deleteMail?mailType=2&mailId=786344627299946496
 	 */
 	@RequestMapping("/deleteMail")
 	public IResult deletePersonMail(BackstageMail mail) {
@@ -51,6 +56,7 @@ public class MailHandler {
 	
 	/**
 	 * 修改个人邮件
+	 * http://localhost:8001/mail/updateMail?mailType=2&mailId=786344627299946496&title=testtesttest&context=testtesttest&expireDays=10
 	 */
 	@RequestMapping("/updateMail")
 	public IResult updatePersonMail(BackstageMail mail) {

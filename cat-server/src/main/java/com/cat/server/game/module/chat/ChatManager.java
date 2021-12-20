@@ -28,6 +28,12 @@ class ChatManager implements IModuleManager<Integer, ChatDomain>{
 	 */
 	@Override
 	public ChatDomain getDomain(Integer id) {
+		return domains.get(id);
+	}
+	
+
+	@Override
+	public ChatDomain loadDomain(Integer id) {
 		ChatDomain domain = domains.get(id);
 		if (domain == null) {
 			domain = new ChatDomain(id);

@@ -30,7 +30,7 @@ class ArtifactService {
 	 */
 	public void onEvent(PlayerBaseEvent event) {
 		long playerId = event.getPlayerId();
-		ArtifactDomain domain = manager.getDomain(playerId);
+		ArtifactDomain domain = manager.loadDomain(playerId);
 		if (domain  == null) {
 			log.info("onEvent error, playerId:{}", playerId);
 			return;
