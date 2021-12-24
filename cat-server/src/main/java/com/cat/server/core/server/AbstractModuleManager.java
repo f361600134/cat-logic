@@ -51,10 +51,10 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 	
 	@Override
 	public T getDomain(I id) {
-		T domain = domains.get(id);
-//		if (domain == null) {
+ 		T domain = domains.get(id);
+		if (domain == null) {
 			domain = getFromDb(id);
-//		}
+		}
 		return domain;
 	}
 	

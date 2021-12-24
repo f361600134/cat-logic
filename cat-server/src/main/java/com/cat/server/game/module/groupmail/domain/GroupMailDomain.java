@@ -20,7 +20,7 @@ public class GroupMailDomain extends AbstractModuleMultiDomain<Integer, Long, Gr
 
 	private static final Logger log = LoggerFactory.getLogger(GroupMailDomain.class);
 	
-	GroupMailDomain(){
+	public GroupMailDomain(){
 	}
 
 	////////////业务代码////////////////////
