@@ -24,7 +24,7 @@ class RankManager extends AbstractModuleManager<Integer, RankDomain>{
 	 * 获取数据, 获取不到从数据库获取
 	 */
 	@Override
-    public synchronized RankDomain loadDomain(Integer id) {
+    public synchronized RankDomain getDomain(Integer id) {
 		RankDomain domain = domains.get(id);
 		if (domain == null) {
 			domain = getFromDb(id);

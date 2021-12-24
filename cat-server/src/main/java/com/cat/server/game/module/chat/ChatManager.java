@@ -28,12 +28,6 @@ class ChatManager implements IModuleManager<Integer, ChatDomain>{
 	 */
 	@Override
 	public ChatDomain getDomain(Integer id) {
-		return domains.get(id);
-	}
-	
-
-	@Override
-	public ChatDomain loadDomain(Integer id) {
 		ChatDomain domain = domains.get(id);
 		if (domain == null) {
 			domain = new ChatDomain(id);
@@ -41,7 +35,7 @@ class ChatManager implements IModuleManager<Integer, ChatDomain>{
 		}
 		return domain;
 	}
-
+	
 	/**
 	 * 停服时执行,其他情况无需执行
 	 * @param id 频道域
@@ -76,5 +70,5 @@ class ChatManager implements IModuleManager<Integer, ChatDomain>{
 	public Collection<ChatDomain> getAllDomain() {
 		return domains.values();
 	}
-	
+
 }

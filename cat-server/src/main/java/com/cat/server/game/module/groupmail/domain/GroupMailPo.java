@@ -15,6 +15,10 @@ public abstract class GroupMailPo extends BasePo {
 	public static final String PROP_CREATETIME = "createTime";
 	public static final String PROP_EXPIRETIME = "expireTime";
 	public static final String PROP_EXTENDSTR = "extendStr";
+	public static final String PROP_CURSERVERID = "curServerId";
+	public static final String PROP_INITSERVERID = "initServerId";
+	public static final String PROP_BACKSTAGEID = "backstageId";
+	public static final String PROP_SERVERIDSTR = "serverIdStr";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
@@ -25,16 +29,21 @@ public abstract class GroupMailPo extends BasePo {
 			PROP_CREATETIME,
 			PROP_EXPIRETIME,
 			PROP_EXTENDSTR,
+			PROP_CURSERVERID,
+			PROP_INITSERVERID,
+			PROP_BACKSTAGEID,
+			PROP_SERVERIDSTR,
 			};
 			
 	/** 所有主键索引字段数组*/
 	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
 			PROP_ID,
+			PROP_CURSERVERID,
 			};
 		
 	/** 所有索引字段数组*/
 	public static final String[] INDEX_ALL = new String[] {
-			PROP_ID,
+			PROP_CURSERVERID,
 			};
 	
 	
@@ -52,12 +61,21 @@ public abstract class GroupMailPo extends BasePo {
 	protected long expireTime;
 	/** 额外信息,包含已读,已领取玩家id列表*/
 	protected String extendStr;
+	/** 当前服务器Id*/
+	protected int curServerId;
+	/** 原始服务器Id*/
+	protected int initServerId;
+	/** 后台生成的邮件id，用于合服时数据合并*/
+	protected long backstageId;
+	/** 邮件发送的服务器组*/
+	protected String serverIdStr;
 	
 	public GroupMailPo(){
 		this.title = "";
 		this.content = "";
 		this.rewards = "";
 		this.extendStr = "";
+		this.serverIdStr = "";
 	}
 	
 	/** 邮件唯一ID,本服唯一邮件id **/
@@ -123,11 +141,48 @@ public abstract class GroupMailPo extends BasePo {
 		this.extendStr = extendStr;
 	}
 	
+	/** 当前服务器Id **/
+	public int getCurServerId(){
+		return this.curServerId;
+	}
+	
+	public void setCurServerId(int curServerId){
+		this.curServerId = curServerId;
+	}
+	
+	/** 原始服务器Id **/
+	public int getInitServerId(){
+		return this.initServerId;
+	}
+	
+	public void setInitServerId(int initServerId){
+		this.initServerId = initServerId;
+	}
+	
+	/** 后台生成的邮件id，用于合服时数据合并 **/
+	public long getBackstageId(){
+		return this.backstageId;
+	}
+	
+	public void setBackstageId(long backstageId){
+		this.backstageId = backstageId;
+	}
+	
+	/** 邮件发送的服务器组 **/
+	public String getServerIdStr(){
+		return this.serverIdStr;
+	}
+	
+	public void setServerIdStr(String serverIdStr){
+		this.serverIdStr = serverIdStr;
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "GroupMail [id= "+ id +", title= "+ title +", content= "+ content +", rewards= "+ rewards +", createTime= "+ createTime
-				 +", expireTime= "+ expireTime +", extendStr= "+ extendStr+"]";
+				 +", expireTime= "+ expireTime +", extendStr= "+ extendStr +", curServerId= "+ curServerId +", initServerId= "+ initServerId +", backstageId= "+ backstageId
+				 +", serverIdStr= "+ serverIdStr+"]";
 	}
 	
 	@Override
@@ -145,6 +200,10 @@ public abstract class GroupMailPo extends BasePo {
 		getCreateTime(),
 		getExpireTime(),
 		getExtendStr(),
+		getCurServerId(),
+		getInitServerId(),
+		getBackstageId(),
+		getServerIdStr(),
 		};
 	}
 	
@@ -167,6 +226,7 @@ public abstract class GroupMailPo extends BasePo {
 	public Object[] keyAndIndexValues() {
 		return new Object[] {
 			getId(),
+			getCurServerId(),
 		};
 	}
 	
@@ -178,7 +238,7 @@ public abstract class GroupMailPo extends BasePo {
 	@Override
 	public String[] indexValues() {
 		return new String[] {
-			PROP_ID,
+			PROP_CURSERVERID,
 		};
 	}
 	

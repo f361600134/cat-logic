@@ -80,6 +80,7 @@ public enum ErrorCode implements ModuleDefines, CodeEnum{
     MAIL_ALREADY_REWARD(MAIL, 3, "邮件已领取"),
     MAIL_ALREADY_EXPIRED(MAIL, 4, "邮件已过期"),
     MAIL_ALREADY_NO_REWARD(MAIL, 5, "没有可以领取的邮件"),
+    MAIL_NOT_FOUND_PLAYER(MAIL, 6, "邮件发送失败没有这个玩家"),
     
     // -----------------家族---------------------
     FAMILY_NAME_EXIST(FAMILY, 1, "家族名被占用"),

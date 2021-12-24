@@ -25,6 +25,10 @@ public class ResultCodeData<T> {
 		return data;
 	}
 	
+	public boolean isSuccess() {
+		return errorCode.isSuccess();
+	}
+	
 	public static <T> ResultCodeData<T> of(ErrorCode errorCode, T data) {
 		return new ResultCodeData<>(errorCode, data);
 	}

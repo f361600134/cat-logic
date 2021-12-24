@@ -38,7 +38,7 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 	 * 登陆
 	 */
 	public void onLogin(long playerId) {
-		LearnCommunityDomain domain = manager.loadDomain(playerId);
+		LearnCommunityDomain domain = manager.getDomain(playerId);
 		if (domain == null) {
 			log.info("LearnCommunityService error, domain is null");
 			return;

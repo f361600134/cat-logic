@@ -1,6 +1,8 @@
 package com.cat.server.admin.module.mail;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +32,7 @@ public class MailHandler {
 	 */
 	@RequestMapping("/sendMail")
 	public IResult sendMail(BackstageMail mail) {
-		final int mailType = mail.getMailType();
-		final long playerId = mail.getPlayerId();
-		final String title = mail.getTitle();
-		final String context = mail.getContext();
-		final int expireDays = mail.getExpireDays();
-		final Map<Integer, Integer> reward= mail.getReward();
-		
-		ErrorCode errorCode = mailService.sendMail(mailType, playerId, title, context, expireDays, reward);
-		return SystemResult.build(errorCode);
+		return SystemResult.build(mailService.sendMail(mail));
 	}
 	
 	/**
@@ -64,21 +58,28 @@ public class MailHandler {
 		final long playerId = mail.getPlayerId();
 		final long mailId = mail.getMailId();
 		final String title = mail.getTitle();
-		final String context = mail.getContext();
+		final String content = mail.getContent();
 		final int expireDays = mail.getExpireDays();
 		final Map<Integer, Integer> reward= mail.getReward();
-		ErrorCode errorCode = mailService.updateMail(mailType, mailId, playerId, title, context, expireDays, reward);
+		ErrorCode errorCode = mailService.updateMail(mailType, mailId, playerId, title, content, expireDays, reward);
 		return SystemResult.build(errorCode);
 	}
 	
 	/**
 	 * 查看玩家邮件列表
+	 * http://localhost:8001/mail/selectMails?mailType=2&playerId=0
 	 */
 	@RequestMapping("/selectMails")
 	public IResult selectPersonMails(BackstageMail mail) {
 		final int mailType = mail.getMailType();
 		final long playerId = mail.getPlayerId();
-		Collection<? extends IMail> rets = mailService.getMails(mailType, playerId);
+		
+		//游戏邮件转后台邮件
+		List<BackstageMail> rets = new ArrayList<>();
+		Collection<? extends IMail> gameMails = mailService.getMails(mailType, playerId);
+		for (IMail gameMail : gameMails) {
+			rets.add(BackstageMail.create(gameMail));
+		}
 		return SystemResult.build(SystemCodeEnum.SUCCESS, rets);
 	}
 

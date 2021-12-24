@@ -3,16 +3,22 @@ package com.cat.server.game.module.playermail;
 import java.util.Collection;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.IMailServiceContainer;
+import com.cat.server.game.module.mail.MailService;
 import com.cat.server.game.module.mail.assist.MailType;
 import com.cat.server.game.module.playermail.domain.PlayerMail;
 import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
-
+import com.cat.server.game.module.shadow.IShadowService;
+import com.cat.server.game.module.shadow.domain.Shadow;
 
 /**
  * PlayerMail控制器
@@ -20,8 +26,13 @@ import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
 @Service
 public class PlayerMailService implements IMailServiceContainer{
 	
+	private static final Logger log = LoggerFactory.getLogger(MailService.class);
+	
 	@Autowired 
 	private PlayerMailManager playerMailManager;
+	
+	@Autowired 
+	private IShadowService shadowService;
 	
 	/**
 	 * 当玩家离线,移除掉道具模块数据
@@ -32,7 +43,6 @@ public class PlayerMailService implements IMailServiceContainer{
 	}
 	
 	/////////////接口方法//////////////////
-	
 
 	@Override
 	public int mailType() {
@@ -40,25 +50,32 @@ public class PlayerMailService implements IMailServiceContainer{
 	}
 	
 	@Override
-	public ErrorCode sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args) {
+	public ResultCodeData<Long> sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args) {
 		// TODO 从邮件配置获取邮件信息
 		String title = "测试邮件", content = "这是一封测试邮件忽略内容";
 		int expireDays = 1;
-		this.sendMail(playerId, title, content, expireDays, rewards);
-		return ErrorCode.SUCCESS;
+		return this.sendMail(playerId, title, content, expireDays, rewards);
 	}
 
 	@Override
-	public ErrorCode sendMail(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
+	public ResultCodeData<Long> sendMail(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
+		//发送邮件, 先判断是否有这个玩家
+		Shadow shadow = shadowService.get(playerId);
+		if (shadow == null) {
+			return ResultCodeData.of(ErrorCode.MAIL_NOT_FOUND_PLAYER);
+		}
+		//获取到邮箱, 发送邮件
 		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
 		if (domain == null) {
-			return ErrorCode.MAIL_BOX_NOT_FOUND;
+			return ResultCodeData.of(ErrorCode.MAIL_BOX_NOT_FOUND);
 		}
 		//	创建邮件加入玩家对象
 		PlayerMail playerMail = PlayerMail.create(playerId, title, content, expiredDays, rewards);
 		domain.putBean(playerMail.getId(), playerMail);
-		//	通知玩家
-		return ErrorCode.SUCCESS;
+		//	FIXME 是否有必要同步给玩家新邮件? 还是发送红点消息, 让玩家重新请求邮件?
+		//TODO 发送红点消息, 通知客户端有新邮件
+//		responsePlayerMail(playerId, Lists.newArrayList(playerMail));
+		return ResultCodeData.of(ErrorCode.SUCCESS, playerMail.getId());
 	}
 
 	@Override
@@ -96,7 +113,7 @@ public class PlayerMailService implements IMailServiceContainer{
 		if (domain == null) {
 			return null;
 		}
-		return domain.getBean(playerId);
+		return domain.getBean(mailId);
 	}
 
 	@Override
@@ -106,6 +123,19 @@ public class PlayerMailService implements IMailServiceContainer{
 			return null;
 		}
 		return domain.getBeans();
+	}
+
+	/**
+	 * 玩家收到后台邮件, 只要有此玩家, 不管是否在线, 都视为可以收到邮件
+	 */
+	@Override
+	public ResultCodeData<Long> sendMail(BackstageMail backstageMail) {
+		final long playerId = backstageMail.getPlayerId();
+		final String title = backstageMail.getTitle();
+		final String content = backstageMail.getContent();
+		final int expiredDays = backstageMail.getExpireDays();
+		final Map<Integer, Integer> rewards = backstageMail.getReward();
+		return this.sendMail(playerId, title, content, expiredDays, rewards);
 	}
 
 }

@@ -1,10 +1,12 @@
 package com.cat.server.game.module.groupmail.domain;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.core.server.AbstractModuleMultiDomain;
 import com.cat.server.utils.TimeUtil;
 
@@ -18,7 +20,7 @@ public class GroupMailDomain extends AbstractModuleMultiDomain<Integer, Long, Gr
 
 	private static final Logger log = LoggerFactory.getLogger(GroupMailDomain.class);
 	
-	public GroupMailDomain(){
+	GroupMailDomain(){
 	}
 
 	////////////业务代码////////////////////
@@ -30,10 +32,31 @@ public class GroupMailDomain extends AbstractModuleMultiDomain<Integer, Long, Gr
 	 * @param expiredDays 过期天数
 	 * @param rewards 奖励
 	 */
-	public void createMail(String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
+	public GroupMail createMail(BackstageMail backstageMail) {
+		String title = backstageMail.getTitle();
+		String content = backstageMail.getContent();
+		int expiredDays = backstageMail.getExpireDays();
+		long backstageId = backstageMail.getBackstageId();
+		Map<Integer, Integer> rewards = backstageMail.getReward();
+		List<Integer> serverIds = backstageMail.getServerIds();
 		//创建新邮件
-		GroupMail groupMail = GroupMail.create(title, content, expiredDays, rewards);
+		GroupMail groupMail = GroupMail.create(title, content, expiredDays, backstageId, rewards, serverIds);
 		putBean(groupMail.getId(), groupMail);
+		return groupMail;
+	}
+	
+	/**
+	 * 创建邮件
+	 * @param title 标题
+	 * @param content 内容
+	 * @param expiredDays 过期天数
+	 * @param rewards 奖励
+	 */
+	public GroupMail createMail(String title, String content, int expiredDays, long backstageId, Map<Integer, Integer> rewards, List<Integer> serverIds) {
+		//创建新邮件
+		GroupMail groupMail = GroupMail.create(title, content, expiredDays, backstageId, rewards, serverIds);
+		putBean(groupMail.getId(), groupMail);
+		return groupMail;
 	}
 	
 	/**

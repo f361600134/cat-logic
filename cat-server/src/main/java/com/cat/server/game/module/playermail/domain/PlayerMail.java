@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.cat.orm.core.annotation.PO;
 import com.cat.orm.util.StateUtils;
+import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
@@ -43,6 +44,21 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 	@Override
 	public String keyColumn() {
 		return PROP_PLAYERID;
+	}
+	
+	
+	/**
+	 * 根据后台邮件创建游戏邮件对象
+	 * @param backstageMail 后台邮件
+	 * @return 游戏邮件
+	 */
+	public static PlayerMail create(BackstageMail backstageMail) {
+		final long playerId = backstageMail.getPlayerId();
+		final String title = backstageMail.getTitle();
+		final String content = backstageMail.getContent();
+		final int expiredDays = backstageMail.getExpireDays();
+		final Map<Integer, Integer> rewards = backstageMail.getReward();
+		return create(playerId, title, content, expiredDays, rewards);
 	}
 	
 	/**

@@ -12,11 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.game.data.proto.PBMail.ReqMailDelete;
 import com.cat.server.game.data.proto.PBMail.ReqMailRead;
 import com.cat.server.game.data.proto.PBMail.ReqMailReward;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.mail.assist.MailState;
 import com.cat.server.game.module.mail.proto.RespMailDeleteBuilder;
 import com.cat.server.game.module.mail.proto.RespMailListBuilder;
@@ -49,13 +51,6 @@ public class MailService implements IMailService {
 	public void onLogin(long playerId) {
 		this.responseMailInfos(playerId);
 	}
-	
-//	/**
-//	 * 当玩家离线,移除掉道具模块数据
-//	 * @param playerId
-//	 */
-//	public void onLogout(long playerId) {
-//	}
 	
 	/**
 	 * 更新信息
@@ -142,7 +137,7 @@ public class MailService implements IMailService {
 	* @param RespMailRewardResp ack 响应消息
 	*/
 	public ErrorCode reqMailReward(long playerId, ReqMailReward req, RespMailRewardBuilder ack){
-		final long mailId = req.getMailId();
+		final long mailId = req.getMailId(); 
 		if (mailId < 0) {
 			return receiveAll(playerId, mailId, ack);
 		}else {
@@ -262,15 +257,25 @@ public class MailService implements IMailService {
 	}
 	
 	/////////////接口方法////////////////////////
+	
+	@Override
+	public ErrorCode sendMail(BackstageMail backstageMail) {
+		IMailServiceContainer mailContainer = mailManager.getMailContainer(backstageMail.getMailType());
+		if (mailContainer == null) {
+			return ErrorCode.MAIL_BOX_NOT_FOUND;
+		}
+		ResultCodeData<Long> resultCodeData = mailContainer.sendMail(backstageMail);
+		return resultCodeData.getErrorCode();
+	}
 
 	@Override
-	public ErrorCode sendMail(int mailType, long playerId, int configID, Map<Integer, Integer> rewards,
-			Object... args) {
+	public ErrorCode sendMail(int mailType, long playerId, int configID, Map<Integer, Integer> rewards, Object... args) {
 		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
 		if (mailContainer == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
 		}
-		return mailContainer.sendMail(playerId, configID, rewards, args);
+		ResultCodeData<Long> resultCodeData = mailContainer.sendMail(playerId, configID, rewards, args);
+		return resultCodeData.getErrorCode();
 	}
 
 	@Override
@@ -280,7 +285,8 @@ public class MailService implements IMailService {
 		if (mailContainer == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
 		}
-		return mailContainer.sendMail(playerId, title, content, expiredDays, rewards);
+		ResultCodeData<Long> resultCodeData = mailContainer.sendMail(playerId, title, content, expiredDays, rewards);
+		return resultCodeData.getErrorCode();
 	}
 
 	@Override

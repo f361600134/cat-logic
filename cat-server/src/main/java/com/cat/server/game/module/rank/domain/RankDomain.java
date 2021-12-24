@@ -26,8 +26,6 @@ import com.cat.server.game.data.proto.PBRank.PBRankDto;
 import com.cat.server.game.module.rank.type.IRankType;
 import com.google.common.collect.Sets;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
-
 
 /**
  * 公共数据, key排行榜类型, value作为排行榜

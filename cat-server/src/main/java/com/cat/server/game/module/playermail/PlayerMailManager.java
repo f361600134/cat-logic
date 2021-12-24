@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cat.orm.core.db.process.IDataProcess;
+import com.cat.server.core.server.IModuleDbManager;
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.module.playermail.domain.PlayerMail;
 import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
@@ -22,7 +23,7 @@ import com.google.common.cache.CacheBuilder;
 * @author Jeremy
 */
 @Component
-public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain> {
+public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain>, IModuleDbManager<Long, PlayerMailDomain> {
 	
 	public static Logger logger = LoggerFactory.getLogger(PlayerMailManager.class); 
 	
@@ -46,31 +47,20 @@ public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain>
 
 	@Override
 	public PlayerMailDomain getDomain(Long playerId) {
-		return domains.getIfPresent(playerId);
-	}
-
-
-	@Override
-	public PlayerMailDomain loadDomain(Long playerId) {
 		PlayerMailDomain domain = domains.getIfPresent(playerId);
 		if (domain == null) {
 			domain = getFromDb(playerId);
-			domains.put(playerId, domain);
 		}
 		return domain;
 	}
-	
+
 	@Override
 	public void remove(Long id) {
 		domains.invalidate(id);
 	}
 	
-	/**
-	 * 这里的getFromDB方法, 可以通过获取到domain反射获取pojo对象
-	 * @param id 持有者id
-	 * @return T domain对象
-	 */
-	public PlayerMailDomain getFromDb(long playerId) {
+	@Override
+	public PlayerMailDomain getFromDb(Long playerId) {
 		try {
 			PlayerMailDomain domain = new PlayerMailDomain();
 			List<PlayerMail> list = process.selectByIndex(domain.getBasePoClazz(), new Object[] {playerId});
@@ -81,11 +71,27 @@ public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain>
 				//	有数据初始化
 				domain.initData(playerId, list);
 			}
+			domains.put(playerId, domain);
 			return domain;
 		}catch (Exception e) {
 			logger.error("getFromDb error", e);
 		}
 		return null;
 	}
+	
+//	/**
+//	 * 获取邮件列表
+//	 * @param playerId
+//	 * @return  
+//	 * @return Collecion<IMail>  
+//	 * @date 2021年11月28日下午10:05:44
+//	 */
+//	public Collection<IMail> getMails(long playerId) {
+//		List<IMail> rets = new ArrayList<>();
+//		for (IMailServiceContainer mailServiceContainer : mailServiceContainer) {
+//			rets.addAll(mailServiceContainer.getMails(playerId));
+//		}
+//		return rets;
+//	}
 
 }

@@ -3,6 +3,7 @@ package com.cat.server.game.module.mail;
 import java.util.Collection;
 import java.util.Map;
 
+import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.game.helper.result.ErrorCode;
 
 /**
@@ -10,6 +11,15 @@ import com.cat.server.game.helper.result.ErrorCode;
  * @author Jeremy
  */
 public interface IMailService {
+	
+	/**
+	 * 发送一封后台邮件
+	 * @param playerId 玩家id
+	 * @param configID 配置id
+	 * @param rewards 奖励
+	 * @param args 模板参数
+	 */
+	public ErrorCode sendMail(BackstageMail backstageMail);
 	
 	/**
 	 * 发送一封邮件模板内的邮件

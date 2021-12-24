@@ -24,7 +24,7 @@ class HeroService implements IHeroService, IResourceService{
 	 * 登陆
 	 */
 	public void onLogin(long playerId) {
-		HeroDomain domain = heroManager.loadDomain(playerId);
+		HeroDomain domain = heroManager.getDomain(playerId);
 		if (domain == null) {
 			log.info("HeroService error, domain is null");
 			return;

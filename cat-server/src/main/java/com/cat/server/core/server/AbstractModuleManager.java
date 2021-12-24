@@ -51,23 +51,49 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 	
 	@Override
 	public T getDomain(I id) {
-		return domains.get(id);
-	}
-	
-	@Override
-	public T loadDomain(I id) {
 		T domain = domains.get(id);
-		if (domain == null) {
+//		if (domain == null) {
 			domain = getFromDb(id);
-			domains.put(id, domain);
-		}
+//		}
 		return domain;
 	}
+	
+//	@Override
+//	public T getOrCreateDomain(I id) {
+//		T domain = domains.get(id);
+//		if (domain == null) {
+//			domain = getOrCreateFromDb(id);
+//		}
+//		return domain;
+//	}
 	
 	@Override
 	public void remove(I id) {
 		domains.remove(id);
 	}
+	
+//	/**
+//	 * 这里的getFromDB方法, 可以通过获取到domain反射获取pojo对象
+//	 * @param id 持有者id
+//	 * @return T domain对象
+//	 */
+//	@SuppressWarnings({ "rawtypes", "unchecked" })
+//	public T getFromDb(I id) {
+//		try {
+//			T domain = clazz.newInstance();
+//			List list = process.selectByIndex(domain.getBasePoClazz(), new Object[] {id});
+//			if (list.isEmpty()) {
+//				return null;
+//			}
+//			//	有数据初始化
+//			domain.initData(id, list);
+//			domains.put(id, domain);
+//			return domain;
+//		}catch (Exception e) {
+//			logger.error("getFromDb error", e);
+//		}
+//		return null;
+//	}
 	
 	/**
 	 * 这里的getFromDB方法, 可以通过获取到domain反射获取pojo对象
@@ -86,6 +112,7 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 				//	有数据初始化
 				domain.initData(id, list);
 			}
+			domains.put(id, domain);
 			return domain;
 		}catch (Exception e) {
 			logger.error("getFromDb error", e);

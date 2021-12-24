@@ -3,7 +3,9 @@ package com.cat.server.game.module.mail;
 import java.util.Collection;
 import java.util.Map;
 
+import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.helper.result.ResultCodeData;
 
 /**
  * 邮件通用容器接口
@@ -18,6 +20,16 @@ public interface IMailServiceContainer {
 	public int mailType();
 
 	/**
+	 * 发送一封后台邮件
+	 * @param playerId 玩家id
+	 * @param title 标题
+	 * @param content 内容
+	 * @param expiredDays 过期天数
+	 * @param rewards 奖励
+	 */
+	public ResultCodeData<Long> sendMail(BackstageMail backstageMail);
+	
+	/**
 	 * 发送一封邮件, 带邮件模板
 	 * @param playerId 玩家id
 	 * @param title 标题
@@ -25,7 +37,7 @@ public interface IMailServiceContainer {
 	 * @param expiredDays 过期天数
 	 * @param rewards 奖励
 	 */
-	public ErrorCode sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args);
+	public ResultCodeData<Long> sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args);
 	/**
 	 * 发送一封带文本, 奖励的邮件
 	 * @param playerId 玩家id
@@ -33,8 +45,9 @@ public interface IMailServiceContainer {
 	 * @param content 内容
 	 * @param expiredDays 过期天数
 	 * @param rewards 奖励
+	 * @return ResultCodeData<Long> 发送成功后, 携带邮件id
 	 */
-	public ErrorCode sendMail(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards);
+	public ResultCodeData<Long> sendMail(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards);
 	
 	/**
 	 * 根据邮件id删掉一封邮件, 真正意义上的删除, 从数据库删除

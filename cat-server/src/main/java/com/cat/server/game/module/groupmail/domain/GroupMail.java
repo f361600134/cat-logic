@@ -1,6 +1,8 @@
 package com.cat.server.game.module.groupmail.domain;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -38,6 +40,9 @@ public class GroupMail extends GroupMailPo implements IPersistence, IMail {
 	 */
 	@Column(value = PROP_EXTENDSTR)
 	private Map<Long, Integer> stateMap = new ConcurrentHashMap<>();
+	
+	@Column(value = PROP_SERVERIDSTR)
+	private List<Integer> serverIds = new ArrayList<>();
 
 	public GroupMail() {
 
@@ -50,6 +55,14 @@ public class GroupMail extends GroupMailPo implements IPersistence, IMail {
 	Map<Long, Integer> getStateMap() {
 		return stateMap;
 	}
+	
+	public List<Integer> getServerIds() {
+		return serverIds;
+	}
+	
+	void setServerIds(List<Integer> serverIds){
+		this.serverIds = serverIds;
+	}
 
 	/**
 	 * 创建邮件对象
@@ -61,13 +74,15 @@ public class GroupMail extends GroupMailPo implements IPersistence, IMail {
 	 * @param rewards 奖励内容
 	 * @return 邮件对象
 	 */
-	public static GroupMail create(String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
+	public static GroupMail create(String title, String content, int expiredDays, long backstageId, Map<Integer, Integer> rewards, List<Integer> serverIds) {
 		SnowflakeGenerator generator = SpringContextHolder.getBean(SnowflakeGenerator.class);
 		GroupMail mail = new GroupMail();
 		// 邮件id唯一,使用雪花生成器生成
 		mail.setId(generator.nextId());
 		mail.setTitle(title);
 		mail.setContent(content);
+		mail.setBackstageId(backstageId);
+		mail.setServerIds(serverIds);
 		long now = TimeUtil.now();
 		mail.setCreateTime(now);
 		// 计算过期时间
@@ -76,18 +91,6 @@ public class GroupMail extends GroupMailPo implements IPersistence, IMail {
 		mail.save();
 		return mail;
 	}
-
-//	/**
-//	 * 标记状态, 用于玩家行为操作
-//	 * @param playerId 玩家id
-//	 * @param mailState 状态
-//	 */
-//	public void mark(long playerId, MailState mailState) {
-//		int state = stateMap.getOrDefault(playerId, MailState.NONE.getState());
-//		state = (int) StateUtils.addState(state, mailState.getState());
-//		stateMap.put(playerId, state);
-//		this.update();
-//	}
 
 	/**
 	 * 根据玩家获取当前群邮件状态

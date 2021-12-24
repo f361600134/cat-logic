@@ -35,7 +35,7 @@ class ItemService implements IItemService, IResourceService{
 	 * 当登陆成功,下发物品列表
 	 */
 	public void onLogin(long playerId) {
-		ItemDomain domain = itemManager.loadDomain(playerId);
+		ItemDomain domain = itemManager.getDomain(playerId);
 		Collection<Item> items = domain.getBeans();
 		//登陆成功,下发背包信息
 		RespItemUpdateBuilder ack = RespItemUpdateBuilder.newInstance();
