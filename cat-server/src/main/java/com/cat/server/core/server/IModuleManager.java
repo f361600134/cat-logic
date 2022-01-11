@@ -38,6 +38,11 @@ public interface IModuleManager<I, T> {
 	default public void init(){}
 	
 	/**
+	 * 销毁, 用于停服时的处理
+	 */
+	default public void destory(){}
+	
+	/**
 	 * 从数据库获取数据
 	 * @param id
 	 * @return

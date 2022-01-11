@@ -121,7 +121,7 @@ public class GameEventBus implements ILifecycle{
 		if (!this.running) {
 			return;
 		}
-		//这里是为数不多的地方, 框架层依赖了业务层代码
+		//FIXME 这里是为数不多的地方, 框架层依赖了业务层代码
 		//实际上可以把事件丢到业务层,当成一个服务去做
 		IPlayerService playerService = SpringContextHolder.getBean(IPlayerService.class);
 		Collection<Long> playerIds = playerService.getOnlinePlayerIds();

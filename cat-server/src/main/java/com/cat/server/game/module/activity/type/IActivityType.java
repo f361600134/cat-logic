@@ -1,11 +1,12 @@
 package com.cat.server.game.module.activity.type;
 
 import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
+import com.cat.server.game.data.proto.PBActivity.PBActivityInfo;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.status.IActivityStatus;
 
 /**
- * 活动容器接口
+ * 活动容器接口/活动代理接口
  * @author Jeremy
  */
 public interface IActivityType {
@@ -145,5 +146,10 @@ public interface IActivityType {
      */
     int getStatus();
     
-
+    /**
+     * 活动对象序列化协议对象
+     * @return
+     */
+    PBActivityInfo toProto();
+    
 }

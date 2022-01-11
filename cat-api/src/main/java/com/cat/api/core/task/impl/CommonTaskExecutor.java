@@ -162,4 +162,14 @@ public class CommonTaskExecutor {
         DefaultTaskHandle taskHandle = new DefaultTaskHandle(scheduleTask);
         return taskHandle;
     }
+    
+    /**
+     * 线程池优雅关闭
+     */
+    public void shutdown() {
+    	if (this.executor != null) {
+			return;
+		}
+    	this.executor.shutdown();
+    }
 }

@@ -1,6 +1,8 @@
 package com.cat.server.game.module.recycle;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,11 +12,15 @@ import org.springframework.stereotype.Service;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ConfigRecycle;
 import com.cat.server.game.data.proto.PBRecycle.ReqResourceRecycleInfo;
+import com.cat.server.game.module.mail.IMailService;
+import com.cat.server.game.module.mail.assist.MailTemplate;
+import com.cat.server.game.module.mail.assist.MailType;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.recycle.domain.Recycle;
 import com.cat.server.game.module.recycle.domain.RecycleDomain;
 import com.cat.server.game.module.recycle.proto.RespResourceRecycleInfoBuilder;
 import com.cat.server.game.module.resource.IResourceGroupService;
+import com.cat.server.game.module.resource.helper.ResourceHelper;
 
 /**
  * Recycle控制器
@@ -30,6 +36,8 @@ class RecycleService implements IRecycleService {
 	@Autowired private RecycleManager recycleManager;
 	
 	@Autowired private IResourceGroupService resourceGroupService;
+	
+	@Autowired private IMailService mailService;
  
 	/**
 	 * 登陆
@@ -65,8 +73,32 @@ class RecycleService implements IRecycleService {
 		}
 		//清理移除掉的资源
 		Collection<Integer> ret = domain.clearResource(activityTypeId);
+		if (ret.isEmpty()) {
+			return;
+		}
+		//回收资源map
+		Map<Integer, Integer> reward = new HashMap<>();
+		for (Integer configId : ret) {
+			ConfigRecycle config = ConfigManager.getInstance().getConfig(ConfigRecycle.class, configId);
+			if (config == null) {
+				continue;
+			}
+			int number = resourceGroupService.getCount(playerId, configId);
+			int realNum = ResourceHelper.percentage(number, config.getResRate());
+			reward.put(config.getResId(), realNum);
+		}
+		//邮件通知
+		mailService.sendMail(MailType.PLAYER_MAIL.getMailType(), playerId, MailTemplate.ACTIVITY_ITEM_RECYCLE.getMailConfigId(), reward);
+		//清空背包
 		resourceGroupService.clearExpire(playerId, ret);
 		this.responseRecycleInfo(domain);
+    }
+    
+    /**
+     * 检测邮件回收
+     */
+    public void checkItemRecycle() {
+    	
     }
     
     /**

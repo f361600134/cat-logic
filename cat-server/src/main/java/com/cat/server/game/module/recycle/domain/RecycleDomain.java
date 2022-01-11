@@ -144,15 +144,15 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 		if (recycle == null) {
 			return false;
 		}
-		//在存档中,判断存档是否可以被回收
-		long recycleTime = config.getStrategy().calculateTimePoint(recycle.getRecieveTime());
-		if (TimeUtil.now() >= recycleTime) {
+//		//在存档中,判断存档是否可以被回收
+//		long recycleTime = config.getStrategy().calculateTimePoint(recycle.getRecieveTime());
+//		if (TimeUtil.now() >= recycleTime) {
 			//当前时间大于存档时间, 表示可以被回收
 			recycle.delete();
 			beanMap.remove(recycle.getResourceId());
 			return true;
-		}
-		return false;
+//		}
+//		return false;
 	}
 	
 }

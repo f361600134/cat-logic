@@ -18,6 +18,14 @@ public interface IResourceService {
 	public int resType();
 	
 	/**
+	 * 获取资源数量
+	 * @param playerId 玩家id
+	 * @param configId 资源id
+	 * @return 数量
+	 */
+	public int getCount(long playerId, Integer configId);
+	
+	/**
 	 * 检测是否可以添加
 	 * @param playerId 玩家id
 	 * @param configId 配置id
@@ -32,7 +40,6 @@ public interface IResourceService {
 	 * @param value 值为正整数
 	 */
 	public boolean checkEnough(long playerId, Integer configId, Integer value);
-	
 	
 	/**
 	 * 奖励,根据配置id,奖励指定数量物品

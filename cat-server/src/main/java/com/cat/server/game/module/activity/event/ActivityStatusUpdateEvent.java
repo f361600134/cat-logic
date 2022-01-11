@@ -1,5 +1,6 @@
 package com.cat.server.game.module.activity.event;
 
+import com.cat.server.core.event.BaseEvent;
 import com.cat.server.core.event.PlayerBaseEvent;
 
 /**

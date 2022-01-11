@@ -144,5 +144,15 @@ class ItemService implements IItemService, IResourceService{
 		}
 		domain.clearExpire(configId);
 	}
+
+	@Override
+	public int getCount(long playerId, Integer configId) {
+		ItemDomain domain = itemManager.getDomain(playerId);
+		if (domain == null) {
+			return 0;
+		}
+		IItem item = domain.getBeanByConfigId(configId);
+		return item == null ? 0 : item.getCount();
+	}
 	
 }

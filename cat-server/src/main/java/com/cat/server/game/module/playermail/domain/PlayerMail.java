@@ -12,6 +12,7 @@ import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 import com.cat.server.game.module.mail.IMail;
+import com.cat.server.game.module.mail.assist.MailConstant;
 import com.cat.server.game.module.mail.assist.MailState;
 import com.cat.server.utils.TimeUtil;
 
@@ -80,6 +81,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 		long now = TimeUtil.now();
 		mail.setCreateTime(now);
 		//计算过期时间
+		expiredDays = expiredDays <= 0 ? MailConstant.expiredDays : expiredDays;
 		long expireTime = now + TimeUtil.DAY_MILLISECONDS * expiredDays;
 		mail.setExpireTime(expireTime);
 		mail.save();

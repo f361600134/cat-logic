@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.math3.util.MathUtils;
+
 import com.cat.server.game.data.proto.PBItem.PBPairInfo;
 import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
 import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
@@ -83,6 +85,16 @@ public class ResourceHelper {
             temp.put(configId, newValue);
         }
         return temp;
+    }
+    
+    /**
+     * 百分比
+     * @param dividend 利率
+     * @param divisor 除数
+     * @return 不改变原对象, 返回一个新的对象
+     */
+    public static int percentage(int number, int dividend) {
+    	return number * dividend / 100;
     }
 
     /**

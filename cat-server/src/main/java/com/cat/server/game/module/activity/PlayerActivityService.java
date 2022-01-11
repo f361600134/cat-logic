@@ -27,10 +27,10 @@ public class PlayerActivityService {
 	 */
 	public void responseActivityInfo(long playerId) {
 		RespActivityInfoBuilder resp = RespActivityInfoBuilder.newInstance();
-		Collection<Activity> beans = activityService.getAllActivitys();
+		Collection<? extends IActivityType> activityTypes = activityService.getAllActivityTypes();
 		try {
-			for (Activity activity : beans) {
-				resp.addActivitys(activity.toProto());
+			for (IActivityType activityType : activityTypes) {
+				resp.addActivitys(activityType.toProto());
 			}
 			playerService.sendMessage(playerId, resp);
 		} catch (Exception e) {

@@ -79,8 +79,12 @@ public class ExcelReader {
         List<TableData> tableList = new ArrayList<>();
         for (File excelFile : excelFiles) {
             try {
+            	// 表过滤,非字母开头的表不进行生成
+                if (StringUtils.countMatches(excelFile.getName(), ".") <= 1) {
+                	logger.info("Illegal table format:{}", excelFile.getName());
+					continue;
+				}
                 TableData tableData = ExcelReader.parseExcel(excelFile);
-
                 // excel重名检查
                 if (tableNameSet.contains(tableData.getName())) {
                     logger.error("exist same tableName:" + tableData.getName());
@@ -89,7 +93,7 @@ public class ExcelReader {
                 tableNameSet.add(tableData.getName());
 
                 tableList.add(tableData);
-                logger.info("reading [{}] size[{}]", excelFile.getName(), tableData.getConfigList().size());
+                logger.info("reading [{}], sheetName:{}, size:[{}]", excelFile.getName(), tableData.getName(),tableData.getConfigList().size());
             } catch (Exception e) {
                 logger.error("read excel[" + excelFile.getName() + "] error.", e);
                 throw e;

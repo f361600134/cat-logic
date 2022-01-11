@@ -1,13 +1,5 @@
 package com.cat.server.game.module.shadow;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
@@ -17,6 +9,13 @@ import com.cat.server.game.module.shadow.domain.Shadow;
 import com.cat.server.game.module.shadow.proto.RespShadowInfoBuilder;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 /**

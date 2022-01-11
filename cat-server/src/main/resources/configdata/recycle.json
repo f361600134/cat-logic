@@ -1,13 +1,25 @@
 [ {
-  "id" : 100101,
-  "recycleStrategy" : "1d"
+  "id" : 200002,
+  "recycleStrategy" : "1d",
+  "refresh" : true,
+  "resId" : 10001,
+  "resRate" : 150
 }, {
-  "id" : 100102,
-  "recycleStrategy" : "1d_3h"
+  "id" : 200003,
+  "recycleStrategy" : "1d_3h",
+  "refresh" : true,
+  "resId" : 10001,
+  "resRate" : 80
 }, {
-  "id" : 100103,
-  "recycleStrategy" : "1501a"
+  "id" : 200004,
+  "recycleStrategy" : "1001a",
+  "refresh" : false,
+  "resId" : 10001,
+  "resRate" : 180
 }, {
-  "id" : 100104,
-  "recycleStrategy" : "1501a_1d"
+  "id" : 200005,
+  "recycleStrategy" : "1001a_1d",
+  "refresh" : false,
+  "resId" : 10001,
+  "resRate" : 280
 } ]

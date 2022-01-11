@@ -25,6 +25,13 @@ public interface IResourceDomain<K, V>{
 //	public Collection<V> getBeansByConfigId(int configId);
 	
 	/**
+	 * 根据配置id获取数量
+	 * @param configId
+	 * @return
+	 */
+	public int getCount(int configId);
+	
+	/**
 	 * 校验是否可以添加指定配置id的物资
 	 * @param configId
 	 * @param count

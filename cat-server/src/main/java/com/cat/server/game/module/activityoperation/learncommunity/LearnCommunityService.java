@@ -9,11 +9,12 @@ import com.cat.server.core.event.PlayerBaseEvent;
 import com.cat.server.game.data.proto.PBLearnCommunity.ReqLearnCommunityInfo;
 import com.cat.server.game.data.proto.PBLearnCommunity.ReqLearnCommunityReward;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.helper.result.ResultCodeData;
+import com.cat.server.game.module.activity.IActivityService;
 import com.cat.server.game.module.activity.event.ActivityStatusUpdateEvent;
 import com.cat.server.game.module.activity.status.IActivityStatus;
 import com.cat.server.game.module.activity.type.ActivityTypeEnum;
-import com.cat.server.game.module.activity.type.IActivityType;
-import com.cat.server.game.module.activity.type.IPlayerActivityService;
+import com.cat.server.game.module.activity.type.impl.LearnCommunityActivityType;
 import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunity;
 import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunityDomain;
 import com.cat.server.game.module.activityoperation.learncommunity.proto.RespLearnCommunityInfoBuilder;
@@ -26,7 +27,7 @@ import com.cat.server.game.module.player.IPlayerService;
  * @author Jeremy
  */
 @Service
-public class LearnCommunityService implements ILearnCommunityService, IPlayerActivityService{
+public class LearnCommunityService implements ILearnCommunityService{
 	
 	private static final Logger log = LoggerFactory.getLogger(LearnCommunityService.class);
 	
@@ -34,21 +35,21 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 	
 	@Autowired private LearnCommunityManager manager;
 	
+	@Autowired private IActivityService activityService;
+	
 	/**
 	 * 登陆
 	 */
 	public void onLogin(long playerId) {
+		//检测活动结束
+		ResultCodeData<LearnCommunityActivityType> resultData = 
+				activityService.getUsableActivityType(ActivityTypeEnum.LEARN_COMMUNITY, LearnCommunityActivityType.class);
+		if (!resultData.isSuccess()) {
+			return;
+		}
 		LearnCommunityDomain domain = manager.getDomain(playerId);
 		if (domain == null) {
 			log.info("LearnCommunityService error, domain is null");
-			return;
-		}
-		//检测活动结束
-		IActivityType activityType = getActivityType();
-		int activityId = activityType.getActivity().getConfigId();
-		if (activityId != domain.getBean().getActivityId()) {
-			//玩家保存的活动id跟当前活动id不一致, 表示活动已经结束,处理活动结束
-			onActivityClose(domain);
 			return;
 		}
 		//检测每日重置
@@ -58,19 +59,25 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 	}
 	
 	/**
-	 * 当玩家离线,移除掉道具模块数据
+	 * 当玩家离线,不做处理,模块数据常驻,由活动代理处理
 	 * @param playerId
 	 */
 	public void onLogout(long playerId) {
-		manager.remove(playerId);
+		
 	}
 	
 	/**
-	 * 当活动状态变化
+	 * 当收到事件, 触发任务
 	 * @param event
 	 */
 	public void onEvent(PlayerBaseEvent event){
 		long playerId = event.getPlayerId();
+		//检测活动结束
+		ResultCodeData<LearnCommunityActivityType> resultData = 
+				activityService.getUsableActivityType(ActivityTypeEnum.LEARN_COMMUNITY, LearnCommunityActivityType.class);
+		if (!resultData.isSuccess()) {
+			return;
+		}
 		LearnCommunityDomain domain = manager.getDomain(playerId);
 		if (domain == null) {
 			log.info("onEvent error, playerId:{}", playerId);
@@ -84,13 +91,14 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 	 * @param event
 	 */
 	public void onActivityStatusUpdate(ActivityStatusUpdateEvent event){
-		LearnCommunityDomain domain = manager.getDomain(event.getPlayerId());
-		if (domain == null) {
+		ResultCodeData<LearnCommunityActivityType> resultData = 
+				activityService.getUsableActivityType(event.getActivityTypeId(), LearnCommunityActivityType.class);
+		if (!resultData.isSuccess()) {
 			return;
 		}
 		if (event.getStatus() == IActivityStatus.CLOSE) {
 			//研习社活动结束, 计算奖励, 发送邮件
-			onActivityClose(domain);
+			onActivityClose();
 		}
 	}
 	
@@ -99,10 +107,14 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 	 * //1. 发送邮件领取未领取的奖励
 	 * //2. 清除当前研习社所有数据,保存
 	 */
-	public void onActivityClose(LearnCommunityDomain domain) {
+	public void onActivityClose() {
 		//邮件通知
+		for (LearnCommunityDomain domain : manager.getAllDomain()) {
+			LearnCommunity bean = domain.getBean();
+			
+		}
 		//清理数据
-		domain.clear();
+//		domain.clear();
 	}
   
 	/**
@@ -134,14 +146,18 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 	*/
 	public ErrorCode reqLearnCommunityInfo(long playerId, ReqLearnCommunityInfo req, RespLearnCommunityInfoBuilder ack){
 		try {
+			ResultCodeData<LearnCommunityActivityType> resultData = 
+					activityService.getUsableActivityType(ActivityTypeEnum.LEARN_COMMUNITY, LearnCommunityActivityType.class);
+			ErrorCode errorCode = resultData.getErrorCode();
+			if (!errorCode.isSuccess()) {
+				return errorCode;
+			}
+			
 			LearnCommunityDomain domain = manager.getDomain(playerId);
 			if (domain == null) {
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
-			ErrorCode errorCode = isInCycle();
-			if (!errorCode.isSuccess()) {
-				return errorCode;
-			}
+			
 			this.responseLearnCommunityInfo(domain);
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {
@@ -159,13 +175,15 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 	*/
 	public ErrorCode reqLearnCommunityReward(long playerId, ReqLearnCommunityReward req, RespLearnCommunityRewardBuilder ack){
 		try {
+			ResultCodeData<LearnCommunityActivityType> resultData = 
+					activityService.getUsableActivityType(ActivityTypeEnum.LEARN_COMMUNITY, LearnCommunityActivityType.class);
+			ErrorCode errorCode = resultData.getErrorCode();
+			if (!errorCode.isSuccess()) {
+				return errorCode;
+			}
 			LearnCommunityDomain domain = manager.getDomain(playerId);
 			if (domain == null) {
 				return ErrorCode.DOMAIN_IS_NULL;
-			}
-			ErrorCode errorCode = isInCycle();
-			if (!errorCode.isSuccess()) {
-				return errorCode;
 			}
 			//TODO Somthing.
 			this.responseLearnCommunityInfo(domain);
@@ -178,10 +196,10 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 		}
 	}
 
-	@Override
-	public int activityType() {
-		return ActivityTypeEnum.LEARN_COMMUNITY.getValue();
-	}
+//	@Override
+//	public int activityType() {
+//		return ActivityTypeEnum.LEARN_COMMUNITY.getValue();
+//	}
 	
 	/////////////接口方法////////////////////////
 	

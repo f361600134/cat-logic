@@ -38,6 +38,13 @@ public interface IResourceGroupService {
 	public void cost(long playerId, Map<Integer, Integer> costMap, NatureEnum nEnum);
 	
 	/**
+	 * 获取资源数量
+	 * @param configId 资源配置id
+	 * @return 数量
+	 */
+	public int getCount(long playerId, int configId);
+	
+	/**
 	 * 清理过期资源
 	 * @return void
 	 * @date 2021年11月16日下午10:49:44

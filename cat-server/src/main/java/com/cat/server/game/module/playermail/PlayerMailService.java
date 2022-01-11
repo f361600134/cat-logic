@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.server.admin.module.mail.BackstageMail;
+import com.cat.server.core.config.ConfigManager;
+import com.cat.server.game.data.config.local.ConfigMail;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.mail.IMail;
@@ -52,8 +54,13 @@ public class PlayerMailService implements IMailServiceContainer{
 	@Override
 	public ResultCodeData<Long> sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args) {
 		// TODO 从邮件配置获取邮件信息
-		String title = "测试邮件", content = "这是一封测试邮件忽略内容";
-		int expireDays = 1;
+		ConfigMail config = ConfigManager.getInstance().getConfig(ConfigMail.class, configID);
+		if(config == null) {
+			return ResultCodeData.of(ErrorCode.CONFIG_NOT_EXISTS);
+		}
+		final String title = config.getTitle();
+		final String content = config.getContent();
+		final int expireDays = config.getExpiredDays();
 		return this.sendMail(playerId, title, content, expireDays, rewards);
 	}
 

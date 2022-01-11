@@ -168,6 +168,11 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 		}
 	}
 	
+	@Override
+	public int getCount(int configId) {
+		return this.getTotalCountByConfigId(configId);
+	}
+	
 	/**
 	 * 减少物品数量
 	 * @param v

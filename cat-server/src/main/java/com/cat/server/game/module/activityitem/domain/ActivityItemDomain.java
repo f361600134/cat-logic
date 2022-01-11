@@ -84,4 +84,9 @@ public class ActivityItemDomain extends AbstractModuleMultiDomain<Long, Long, Ac
 	public void clearExpire(int configId) {
 		resourceDomainProxy.clearExpire(configId);
 	}
+
+	@Override
+	public int getCount(int configId) {
+		return resourceDomainProxy.getCount(configId);
+	}
 }

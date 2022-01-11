@@ -1,14 +1,16 @@
 package com.cat.server.game.module.activity.type.impl;
 
+import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.type.AbstractActivityType;
+import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunityDomain;
 
 /**
- * 仅用于测试
+ * 研习社活动代理类
  * @author Jeremy
  */
 public class LearnCommunityActivityType extends AbstractActivityType{
-
+	
 	public LearnCommunityActivityType(Activity activity) {
 		super(activity);
 	}
@@ -43,5 +45,32 @@ public class LearnCommunityActivityType extends AbstractActivityType{
 		//TODO 不发送邮件, 直接在当前模块获取所有在线玩家, 处理???
 	}
 
+//	@Override
+//	public LearnCommunityData onInitData(Activity activity) {
+//		LearnCommunityData data = null;
+//		byte[] bytes = activity.getCustomData();
+//		if (bytes == null) {
+//			data = JSON.parseObject(activity.getCustomData(), LearnCommunityData.class);
+//		}
+//		if(data == null) {
+//			data = new LearnCommunityData();
+//		}
+//		return data;
+//	}
 	
+//	/**
+//	 * 获取玩家数据
+//	 */
+//	public LearnCommunityDomain getPlayerData(long playerId) {
+//		LearnCommunityDomain domain = this.manager.getDomain(playerId);
+//		return domain;
+//	}
+
+//	@SuppressWarnings("unchecked")
+//	@Override
+//	public <T extends IModuleDomain<?, ?>> T getModuleDomain(long playerId) {
+//		LearnCommunityDomain domain = this.manager.getDomain(playerId);
+//		return (T) domain;
+//	}
+
 }

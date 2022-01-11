@@ -88,7 +88,7 @@ class ActivityManager extends AbstractModuleManager<Integer, ActivityDomain> {
 			ActivityDomain domain = new ActivityDomain();
 			if (activity != null) {
 				// 如果不为null, 表示加载的旧活动
-				domain.initData(activity.getId(), Lists.newArrayList(activity));
+				domain.initData(typeId, Lists.newArrayList(activity));
 			} else {
 				// 如果为null, 表示初始化的新活动
 				domain.initData(typeId);
@@ -97,6 +97,19 @@ class ActivityManager extends AbstractModuleManager<Integer, ActivityDomain> {
 		}
 		// 开始定时任务
 		commonExecutor.scheduleTaskStartAtNextMinute(new ActivityTickTask(), ActivityConstant.TICK_INTERVAL);
+	}
+	
+	@Override
+	public void destory() {
+		logger.info("=====Activity manager start to destory=====");
+		//销毁时, 为了避免出现线程安全问题, 提交一个存储的任务给公共线程池立刻处理
+		commonExecutor.scheduleTask(()->{
+			logger.info("=====Activity manager is destroying =====");
+			Collection<ActivityDomain> activityTypes = getAllDomain();
+			for (ActivityDomain activityDomain : activityTypes) {
+				activityDomain.getActivity().update();
+			}
+		});
 	}
 
 	private Activity findActivity(int typeId, List<Activity> activitys) {

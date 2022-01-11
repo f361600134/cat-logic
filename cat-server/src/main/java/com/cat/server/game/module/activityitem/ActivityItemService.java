@@ -120,6 +120,15 @@ public class ActivityItemService implements IActivityItemService , IResourceServ
 		 */
 		domain.costById(id, 1);
 	}
+
+	@Override
+	public int getCount(long playerId, Integer configId) {
+		ActivityItemDomain domain = activityItemManager.getDomain(playerId);
+		if (domain == null) {
+			return 0;
+		}
+		return domain.getCount(configId);
+	}
 }
  
  

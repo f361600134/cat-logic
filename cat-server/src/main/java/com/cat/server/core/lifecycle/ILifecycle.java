@@ -37,7 +37,7 @@ public interface ILifecycle {
 	 * @return
 	 */
 	default int priority() {
-		return Priority.LOGIC_INITIALIZATION.getPriority();
+		return Priority.LOWEST.getPriority();
 	}
 
 }

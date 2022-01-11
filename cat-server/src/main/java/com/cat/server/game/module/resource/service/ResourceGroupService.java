@@ -187,4 +187,14 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 		return Priority.LOGIC.getPriority();
 	}
 
+	@Override
+	public int getCount(long playerId, int configId) {
+		int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
+		IResourceService service = serviceMap.get(resourceType);
+		if (service == null) {
+			throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
+		}
+		return service.getCount(playerId, configId);
+	}
+
 }

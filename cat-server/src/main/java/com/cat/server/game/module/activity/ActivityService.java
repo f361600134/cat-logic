@@ -1,8 +1,6 @@
 package com.cat.server.game.module.activity;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
-import com.cat.server.game.module.activity.domain.Activity;
-import com.cat.server.game.module.activity.domain.ActivityDomain;
-import com.cat.server.game.module.activity.type.ActivityTypeEnum;
 import com.cat.server.game.module.activity.type.IActivityType;
 
 
@@ -30,12 +25,8 @@ class ActivityService implements IActivityService, ILifecycle{
 	private ActivityManager activityManager;
 	
 	@Override
-	public Collection<Activity> getAllActivitys() {
-		List<Activity> activitys = new ArrayList<>();
-		for (ActivityDomain activityDomain : activityManager.getAllDomain()) {
-			activitys.add(activityDomain.getActivity());
-		}
-		return activitys;
+	public Collection<? extends IActivityType> getAllActivityTypes() {
+		return activityManager.getAllDomain();
 	}
 
 	@Override
@@ -44,13 +35,13 @@ class ActivityService implements IActivityService, ILifecycle{
 	}
 	
 	@Override
-	public IActivityType getActivityType(ActivityTypeEnum activityType) {
-		return activityManager.getDomain(activityType.getValue());
+	public void start() throws Throwable {
+		activityManager.init();
 	}
 	
 	@Override
-	public void start() throws Throwable {
-		activityManager.init();
+	public void stop() throws Throwable {
+		activityManager.destory();
 	}
 	
 	@Override

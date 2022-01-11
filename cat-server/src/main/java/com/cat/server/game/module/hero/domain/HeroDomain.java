@@ -78,5 +78,10 @@ public class HeroDomain extends AbstractModuleMultiDomain<Long, Long, Hero> impl
 	public void clearExpire(int configId) {
 		resourceDomainProxy.clearExpire(configId);
 	}
+
+	@Override
+	public int getCount(int configId) {
+		return resourceDomainProxy.getCount(configId);
+	}
 }
 

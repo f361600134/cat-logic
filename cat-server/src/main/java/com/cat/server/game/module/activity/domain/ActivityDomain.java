@@ -7,6 +7,7 @@ import com.cat.server.common.ServerConfig;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.AbstractModuleDomain;
 import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
+import com.cat.server.game.data.proto.PBActivity.PBActivityInfo;
 import com.cat.server.game.module.activity.type.ActivityTypeEnum;
 import com.cat.server.game.module.activity.type.IActivityType;
 
@@ -121,6 +122,11 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 	@Override
 	public int getStatus() {
 		return activityType.getStatus();
+	}
+
+	@Override
+	public PBActivityInfo toProto() {
+		return activityType.toProto();
 	}
 
 	////////////业务代码////////////////////

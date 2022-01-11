@@ -83,6 +83,11 @@ public class ItemDomain extends AbstractModuleMultiDomain<Long, Long, Item> impl
 	public void clearExpire(int configId) {
 		resourceDomainProxy.clearExpire(configId);
 	}
+
+	@Override
+	public int getCount(int configId) {
+		return resourceDomainProxy.getCount(configId);
+	}
 	
 }
 

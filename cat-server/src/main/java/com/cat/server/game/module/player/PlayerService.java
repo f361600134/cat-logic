@@ -477,4 +477,11 @@ class PlayerService implements IPlayerService, IResourceService {
 		throw new UnsupportedOperationException("玩家属性不支持该操作");
 	}
 
+	@Override
+	public int getCount(long playerId, Integer configId) {
+		final PlayerContext playerContext = getPlayerContext(playerId);
+		final Player player = playerContext.getPlayer();
+		return player.getProperties(configId);
+	}
+
 }

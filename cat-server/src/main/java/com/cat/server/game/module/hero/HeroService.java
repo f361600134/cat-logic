@@ -93,4 +93,14 @@ class HeroService implements IHeroService, IResourceService{
 		domain.costById(uniqueId, 1);
 	}
 
+
+	@Override
+	public int getCount(long playerId, Integer configId) {
+		HeroDomain domain = heroManager.getDomain(playerId);
+		if (domain == null) {
+			return 0;
+		}
+		return domain.getCount(configId);
+	}
+
 }
