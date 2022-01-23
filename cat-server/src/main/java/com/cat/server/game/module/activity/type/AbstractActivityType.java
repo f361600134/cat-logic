@@ -5,19 +5,14 @@ import static com.cat.server.game.module.activity.status.IActivityStatus.CLOSE;
 import static com.cat.server.game.module.activity.status.IActivityStatus.PREPARE;
 import static com.cat.server.game.module.activity.status.IActivityStatus.SETTLE;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.orm.core.base.IBasePo;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.event.GameEventBus;
-import com.cat.server.core.server.IModuleDomain;
-import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
 import com.cat.server.game.data.proto.PBActivity.PBActivityInfo;
 import com.cat.server.game.module.activity.PlayerActivityService;
@@ -45,18 +40,10 @@ public abstract class AbstractActivityType implements IActivityType{
 	 * 活动状态管理
 	 */
 	private final ActivityStatusManager statusManager;
-	
-//	private final IModuleManager<?, ?> manager;
-//	private final Class<T> managerClazz;
 
 	public AbstractActivityType(Activity activity) {
 		this.activity = activity;
 		this.statusManager =  new ActivityStatusManager(this);
-		
-//		Type superClass = getClass().getGenericSuperclass();
-//		this.managerClazz = (Class<T>)(((ParameterizedType) superClass).getActualTypeArguments()[0]);
-//		
-//		this.manager = SpringContextHolder.getBean(this.managerClazz); 
 	}
 	
 	@Override
@@ -270,7 +257,4 @@ public abstract class AbstractActivityType implements IActivityType{
 		return this.activity.toProto();
 	}
 	
-//	public <I extends IModuleDomain<?, ?>> I getModuleDomain(long playerId) {
-//		return (I)this.manager.getDomain(playerId);
-//	}
 }

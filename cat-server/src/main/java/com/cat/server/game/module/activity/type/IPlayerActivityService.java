@@ -1,12 +1,15 @@
 package com.cat.server.game.module.activity.type;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import com.cat.server.game.helper.result.ErrorCode;
 
 /**
  * 玩家个人活动类service接口, 用于处理个人活动模块的数据, 封装一些公共判断
  * @author Jeremy
  */
-public interface IPlayerActivityService<T extends IActivityType> {
+public interface IPlayerActivityService<T extends IActivityType, D extends IActivityPlayerData> {
 	
 	/**
 	 * 活动类型
@@ -42,6 +45,10 @@ public interface IPlayerActivityService<T extends IActivityType> {
 			return ErrorCode.ACTIVITY_NOT_IN_ACTIVITY_TIME;
 		}
 		return ErrorCode.SUCCESS;
+	}
+	
+	default public Collection<D> geAllPlayerData() {
+		return Collections.emptyList();
 	}
 	
 }

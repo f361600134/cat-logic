@@ -17,12 +17,4 @@ public interface IActivityPlayerData {
 	 */
 	public long getPlayerId();
 	
-//	/**
-//	 * 获取玩家背包
-//	 * @param activityId 活动id
-//	 * @param planId 方案id,为了兼容旧版本活动加的
-//	 * @return
-//	 */
-//	public ActivityBag getOrCreateActivityBag(int activityId, int planId);
-	
 }

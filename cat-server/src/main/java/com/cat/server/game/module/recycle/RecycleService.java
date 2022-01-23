@@ -59,7 +59,7 @@ class RecycleService implements IRecycleService {
 		recycleManager.remove(playerId);
 	}
 	
-	
+
 	/**
 	 * 当活动结束, 此活动相关的资源全部回收
 	 * @param playerId

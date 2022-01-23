@@ -1,9 +1,7 @@
 package com.cat.server.game.module.activity.type.impl;
 
-import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.type.AbstractActivityType;
-import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunityDomain;
 
 /**
  * 研习社活动代理类
@@ -43,6 +41,7 @@ public class LearnCommunityActivityType extends AbstractActivityType{
 		super.onClose(now);
 		log.info("=====研习社活动进入[关闭]状态=======");
 		//TODO 不发送邮件, 直接在当前模块获取所有在线玩家, 处理???
+		
 	}
 
 //	@Override
@@ -72,5 +71,14 @@ public class LearnCommunityActivityType extends AbstractActivityType{
 //		LearnCommunityDomain domain = this.manager.getDomain(playerId);
 //		return (T) domain;
 //	}
+	
+	public void recycleBag() {
+//		ILearnCommunityService service = SpringContextHolder.getBean(ILearnCommunityService.class);
+//		Collection<LearnCommunity> cols = service.geAllPlayerData();
+//		for (LearnCommunity learnCommunity : cols) {
+//			//TODO
+//		}
+		
+	}
 
 }
