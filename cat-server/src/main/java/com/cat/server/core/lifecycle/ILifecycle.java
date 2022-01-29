@@ -28,7 +28,7 @@ public interface ILifecycle {
 	 * 关闭方法, 需要控制关闭顺序时实现
 	 * @throws Throwable
 	 */
-	default void stop() throws Throwable {
+	default void stop() throws Exception {
 
 	}
 	

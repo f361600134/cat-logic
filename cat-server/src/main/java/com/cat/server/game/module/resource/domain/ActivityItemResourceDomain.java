@@ -77,5 +77,10 @@ public class ActivityItemResourceDomain extends AbstractResourceDomain<Long, Act
 		domain.setBeanMap(beanMap);
 		return domain;
 	}
+
+	@Override
+	public void doClearExpire(ActivityItem v) {
+		// TODO Auto-generated method stub
+	}
 	
 }

@@ -47,7 +47,7 @@ public class LearnCommunityService implements ILearnCommunityService{
 		if (!resultData.isSuccess()) {
 			return;
 		}
-		LearnCommunityDomain domain = manager.getDomain(playerId);
+		LearnCommunityDomain domain = manager.getOrLoadDomain(playerId);
 		if (domain == null) {
 			log.info("LearnCommunityService error, domain is null");
 			return;
@@ -196,10 +196,15 @@ public class LearnCommunityService implements ILearnCommunityService{
 		}
 	}
 
-//	@Override
-//	public int activityType() {
-//		return ActivityTypeEnum.LEARN_COMMUNITY.getValue();
-//	}
+	@Override
+	public LearnCommunityActivityType getActivityType() {
+		return activityService.getActivityType(activityType(), LearnCommunityActivityType.class);
+	}
+
+	@Override
+	public ActivityTypeEnum activityType() {
+		return ActivityTypeEnum.LEARN_COMMUNITY;
+	}
 	
 	/////////////接口方法////////////////////////
 	

@@ -1,11 +1,9 @@
-package com.cat.server.game.module.mail.event;
+package com.cat.server.game.module.mail;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cat.server.core.event.IObserver;
-import com.cat.server.game.module.mail.MailService;
-import com.cat.server.game.module.player.event.PlayerLeaveGameEvent;
 import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
 import com.google.common.eventbus.Subscribe;
 

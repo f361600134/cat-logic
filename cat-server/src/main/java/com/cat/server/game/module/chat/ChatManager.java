@@ -1,15 +1,14 @@
 package com.cat.server.game.module.chat;
 
+import com.cat.server.core.server.IModuleManager;
+import com.cat.server.game.module.chat.domain.ChatDomain;
+import com.cat.server.game.module.chat.domain.ChatRule;
+import org.springframework.stereotype.Component;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import org.springframework.stereotype.Component;
-
-import com.cat.server.core.server.IModuleManager;
-import com.cat.server.game.module.chat.domain.ChatDomain;
-import com.cat.server.game.module.chat.domain.ChatRule;
 
 @Component
 class ChatManager implements IModuleManager<Integer, ChatDomain>{
@@ -27,7 +26,7 @@ class ChatManager implements IModuleManager<Integer, ChatDomain>{
 	 * 获取数据, 获取不到从数据库获取
 	 */
 	@Override
-	public ChatDomain getDomain(Integer id) {
+	public ChatDomain getOrLoadDomain(Integer id) {
 		ChatDomain domain = domains.get(id);
 		if (domain == null) {
 			domain = new ChatDomain(id);
@@ -69,6 +68,11 @@ class ChatManager implements IModuleManager<Integer, ChatDomain>{
 	@Override
 	public Collection<ChatDomain> getAllDomain() {
 		return domains.values();
+	}
+
+	@Override
+	public ChatDomain getDomain(Integer id) {
+		return domains.get(id);
 	}
 
 }

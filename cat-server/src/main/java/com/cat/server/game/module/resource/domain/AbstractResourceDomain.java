@@ -1,17 +1,12 @@
 package com.cat.server.game.module.resource.domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
+import com.cat.server.game.module.resource.IResource;
+import com.cat.server.game.module.resource.IResourceDomain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.server.game.module.resource.IResource;
-import com.cat.server.game.module.resource.IResourceDomain;
+import java.util.*;
+import java.util.Map.Entry;
 
 abstract class AbstractResourceDomain<K, V extends IResource> implements IResourceDomain<K, V>{
 	
@@ -161,6 +156,7 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 			Entry<K, V> entry = (Entry<K, V>) iter.next();
 			V v = entry.getValue();
 			if (v.getConfigId() == configId) {
+				this.doClearExpire(v);
 				v.delete();
 				iter.remove();
 				deleteList.add(v);
@@ -192,5 +188,11 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	 * @return
 	 */
 	public abstract int getTotalLimit();
+	
+	/**
+	 * 处理资源清除细节操作, 对比有消耗类的资源回收, 子类根据需要去处理
+	 * @param v
+	 */
+	public abstract void doClearExpire(V v);
 	
 }

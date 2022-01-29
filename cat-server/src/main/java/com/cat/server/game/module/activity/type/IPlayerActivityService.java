@@ -16,7 +16,7 @@ public interface IPlayerActivityService<T extends IActivityType, D extends IActi
 	 * @return int 活动类型
 	 * @date 2021年9月30日上午8:03:46
 	 */
-	public int activityType();
+	public ActivityTypeEnum activityType();
 	
 //	/**
 //	 * 活动类型

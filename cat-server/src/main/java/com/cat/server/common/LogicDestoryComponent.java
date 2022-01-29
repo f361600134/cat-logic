@@ -29,7 +29,7 @@ public class LogicDestoryComponent implements ILifecycle{
 	}
 	
 	@Override
-	public void stop() throws Throwable {
+	public void stop() throws Exception {
 		ILifecycle.super.stop();
 		destory();
 	}

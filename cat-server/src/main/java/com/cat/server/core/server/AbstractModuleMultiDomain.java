@@ -75,13 +75,21 @@ public abstract class AbstractModuleMultiDomain<I, K, T extends IBasePo> impleme
     }
 
     /**
-     * 获取域内的实体map
+     * 获取域内的实体bean
      *
      * @return
      */
     public T getBean(K key) {
         return beanMap.get(key);
     }
+    
+   /**
+     * 删除掉域内的实体bean
+    * @return
+    */
+   public T removeBean(K key) {
+       return beanMap.remove(key);
+   }
 
     /**
      * 获取域内的实体map

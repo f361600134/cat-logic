@@ -1,14 +1,5 @@
 package com.cat.server.game.module.recycle;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ConfigRecycle;
 import com.cat.server.game.data.proto.PBRecycle.ReqResourceRecycleInfo;
@@ -19,8 +10,18 @@ import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.recycle.domain.Recycle;
 import com.cat.server.game.module.recycle.domain.RecycleDomain;
 import com.cat.server.game.module.recycle.proto.RespResourceRecycleInfoBuilder;
+import com.cat.server.game.module.recycle.strategy.impl.ActivityRecycleStrategy;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Recycle控制器
@@ -62,8 +63,8 @@ class RecycleService implements IRecycleService {
 
 	/**
 	 * 当活动结束, 此活动相关的资源全部回收
-	 * @param playerId
-	 *  @param 活动类型id
+	 * @param playerId 玩家id
+	 *  @param activityTypeId 活动类型id
 	 */
     public void onActivityClose(long playerId, int activityTypeId){
     	RecycleDomain domain = recycleManager.getDomain(playerId);
@@ -72,13 +73,13 @@ class RecycleService implements IRecycleService {
 			return;
 		}
 		//清理移除掉的资源
-		Collection<Integer> ret = domain.clearResource(activityTypeId);
-		if (ret.isEmpty()) {
+		Collection<Integer> removeRes = domain.clearResource(activityTypeId);
+		if (removeRes.isEmpty()) {
 			return;
 		}
-		//回收资源map
+		//回收资源转化
 		Map<Integer, Integer> reward = new HashMap<>();
-		for (Integer configId : ret) {
+		for (Integer configId : removeRes) {
 			ConfigRecycle config = ConfigManager.getInstance().getConfig(ConfigRecycle.class, configId);
 			if (config == null) {
 				continue;
@@ -90,9 +91,24 @@ class RecycleService implements IRecycleService {
 		//邮件通知
 		mailService.sendMail(MailType.PLAYER_MAIL.getMailType(), playerId, MailTemplate.ACTIVITY_ITEM_RECYCLE.getMailConfigId(), reward);
 		//清空背包
-		resourceGroupService.clearExpire(playerId, ret);
+		resourceGroupService.clearExpire(playerId, removeRes);
 		this.responseRecycleInfo(domain);
     }
+
+	/**
+	 * 当活动结束,回收模块检测是否有可回收资源
+	 *  @param activityTypeId 活动类型id
+	 */
+	public void onActivityClose(int activityTypeId){
+		//统计相关资源
+		Set<Integer> configIds = ConfigManager.getInstance().getConfigs(ConfigRecycle.class, c->
+				(c.getStrategy() instanceof ActivityRecycleStrategy)
+						&& ((ActivityRecycleStrategy)(c.getStrategy())).getActivityTypeId() == activityTypeId)
+				.keySet();
+		//获取指定活动玩家列表,进行回收
+
+
+	}
     
     /**
      * 检测邮件回收
@@ -133,14 +149,12 @@ class RecycleService implements IRecycleService {
 		playerService.sendMessage(domain.getId(), resp);
 	}
 	
-	
 	/////////////业务逻辑//////////////////
 	
 	/**
 	* 请求资源回收信息
-	* @param long playerId
-	* @param ReqResourceRecycleInfo req
-	* @param RespResourceRecycleInfoResp ack
+	* @param playerId 玩家id
+	* @param req 请求消息
 	*/
 	public void reqResourceRecycleInfo(long playerId, ReqResourceRecycleInfo req){
 		try {
@@ -186,5 +200,3 @@ class RecycleService implements IRecycleService {
 	}
 	
 }
- 
- 

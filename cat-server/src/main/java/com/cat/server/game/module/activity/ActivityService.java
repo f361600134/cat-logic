@@ -1,15 +1,14 @@
 package com.cat.server.game.module.activity;
 
-import java.util.Collection;
-
+import com.cat.server.core.lifecycle.ILifecycle;
+import com.cat.server.core.lifecycle.Priority;
+import com.cat.server.game.module.activity.type.IActivityType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cat.server.core.lifecycle.ILifecycle;
-import com.cat.server.core.lifecycle.Priority;
-import com.cat.server.game.module.activity.type.IActivityType;
+import java.util.Collection;
 
 
 /**
@@ -31,7 +30,7 @@ class ActivityService implements IActivityService, ILifecycle{
 
 	@Override
 	public IActivityType getActivityType(int typeId) {
-		return activityManager.getDomain(typeId);
+		return activityManager.getOrLoadDomain(typeId);
 	}
 	
 	@Override
@@ -40,7 +39,7 @@ class ActivityService implements IActivityService, ILifecycle{
 	}
 	
 	@Override
-	public void stop() throws Throwable {
+	public void stop() throws Exception{
 		activityManager.destory();
 	}
 	

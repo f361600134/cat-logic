@@ -1,17 +1,5 @@
 package com.cat.server.game.module.mail;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.game.data.proto.PBMail.ReqMailDelete;
 import com.cat.server.game.data.proto.PBMail.ReqMailRead;
@@ -28,13 +16,19 @@ import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
 import com.google.common.collect.Lists;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
 
 
 /**
  * Mail控制器
  */
 @Service
-public class MailService implements IMailService {
+class MailService implements IMailService {
 	
 	private static final Logger log = LoggerFactory.getLogger(MailService.class);
 	

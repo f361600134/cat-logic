@@ -107,7 +107,7 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 			return ErrorCode.CONTENT_INVALID_NAME;
 		}
 		//TODO 敏感字判断,特殊字符,长度判断
-		PlayerFamilyDomain domain = playerFamilyManager.getDomain(playerId);
+		PlayerFamilyDomain domain = playerFamilyManager.getOrLoadDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.DOMAIN_IS_NULL;
 		}
@@ -149,7 +149,7 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 	 * @date 2021年5月10日下午11:19:24
 	 */
 	public ErrorCode applyJoinFamily(long playerId, long familyId) {
-		PlayerFamilyDomain domain = playerFamilyManager.getDomain(playerId);
+		PlayerFamilyDomain domain = playerFamilyManager.getOrLoadDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.DOMAIN_IS_NULL;
 		}
@@ -173,7 +173,7 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 	 * @date 2021年5月10日下午11:19:24
 	 */
 	public ErrorCode exitFamily(long playerId) {
-		PlayerFamilyDomain domain = playerFamilyManager.getDomain(playerId);
+		PlayerFamilyDomain domain = playerFamilyManager.getOrLoadDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.DOMAIN_IS_NULL;
 		}

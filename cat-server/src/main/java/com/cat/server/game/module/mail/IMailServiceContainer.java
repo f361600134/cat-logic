@@ -39,7 +39,8 @@ public interface IMailServiceContainer {
 	 */
 	public ResultCodeData<Long> sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args);
 	/**
-	 * 发送一封带文本, 奖励的邮件
+	 * 发送一封带文本, 奖励的邮件<br>
+	 * 只要玩家存在, 不管玩家是否在线, 都应该发送成功<br>
 	 * @param playerId 玩家id
 	 * @param title 标题
 	 * @param content 内容
