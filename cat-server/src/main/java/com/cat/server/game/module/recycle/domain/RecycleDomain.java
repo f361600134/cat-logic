@@ -1,20 +1,15 @@
 package com.cat.server.game.module.recycle.domain;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.server.AbstractModuleMultiDomain;
 import com.cat.server.game.data.config.local.ConfigRecycle;
 import com.cat.server.game.module.recycle.strategy.impl.ActivityRecycleStrategy;
 import com.cat.server.utils.TimeUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
 * RecycleDomain
@@ -56,6 +51,7 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 	/**
 	 * 清理资源
 	 * @return 存档的资源数据, 被删除的资源配置id列表
+	 * @deprecated 处理的不太好, 偶尔比较严重
 	 */
 	public Collection<Integer> clearResource(int activityTypeId) {
 		//筛选符合条件的配置id列表
@@ -144,15 +140,10 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 		if (recycle == null) {
 			return false;
 		}
-//		//在存档中,判断存档是否可以被回收
-//		long recycleTime = config.getStrategy().calculateTimePoint(recycle.getRecieveTime());
-//		if (TimeUtil.now() >= recycleTime) {
-			//当前时间大于存档时间, 表示可以被回收
-			recycle.delete();
-			beanMap.remove(recycle.getResourceId());
-			return true;
-//		}
-//		return false;
+		//当前时间大于存档时间, 表示可以被回收
+		recycle.delete();
+		beanMap.remove(recycle.getResourceId());
+		return true;
 	}
 	
 }

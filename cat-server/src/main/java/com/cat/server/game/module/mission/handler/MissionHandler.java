@@ -1,12 +1,5 @@
 package com.cat.server.game.module.mission.handler;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.event.IEvent;
 import com.cat.server.game.data.proto.PBMission;
@@ -21,6 +14,12 @@ import com.cat.server.game.module.resource.IResourceGroupService;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * 任务处理器, 每个任务模块维护自己的任务. 以及任务类型对应的id集合 注意:因为处理器代理处理任务逻辑, 任务内的所有状态变化,
@@ -88,16 +87,16 @@ public class MissionHandler<T extends IMission> implements IMissionHandler{
 
 	/**
 	 * 
-	 * @param <V>
 	 * @param listener
 	 * @return void
 	 * @date 2021年2月28日下午10:24:28
 	 */
-	public MissionHandler<T> afterRewarded(IMissionListener<MissionTypeData<T>> listener) {
+	public MissionHandler<T> setListener(IMissionListener<MissionTypeData<T>> listener) {
 		this.afterRewardedListener = listener;
 		return this;
 	}
 
+	@Override
 	public Collection<PBMission.PBMissionInfo> toProto() {
 		List<PBMission.PBMissionInfo> colls = new ArrayList<PBMission.PBMissionInfo>();
 		for (IMission mission : getMissions()) {
@@ -118,6 +117,7 @@ public class MissionHandler<T extends IMission> implements IMissionHandler{
 	 * 
 	 * @return
 	 */
+	@Override
 	public ErrorCode onProcess(IEvent event) {
 		// TODO 这里不想每次都通过spring去获取manager, 看看怎么优化
 		MissionProcessManager manager =  SpringContextHolder.getBean(MissionProcessManager.class);

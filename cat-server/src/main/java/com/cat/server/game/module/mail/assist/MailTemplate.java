@@ -17,6 +17,10 @@ public enum MailTemplate {
 	 * 活动道具回收
 	 */
 	ACTIVITY_ITEM_RECYCLE(1004),
+	/**
+	 * 武将资源回收
+	 */
+	HERO_RECYCLE(1005),
 	;
 	private final int mailConfigId;
 	private MailTemplate(int mailConfigId) {

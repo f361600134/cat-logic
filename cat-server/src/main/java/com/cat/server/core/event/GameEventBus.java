@@ -153,7 +153,7 @@ public class GameEventBus implements ILifecycle{
 	}
 	
 	@Override
-	public void stop() throws Throwable {
+	public void stop() throws Exception {
 		this.running = false;
 	}
 	

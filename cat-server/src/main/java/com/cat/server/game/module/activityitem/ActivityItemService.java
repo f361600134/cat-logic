@@ -1,18 +1,19 @@
 package com.cat.server.game.module.activityitem;
 
-import java.util.Collection;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.cat.server.core.lifecycle.ILifecycle;
+import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.activityitem.domain.ActivityItem;
 import com.cat.server.game.module.activityitem.domain.ActivityItemDomain;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 
 /**
@@ -20,7 +21,7 @@ import com.cat.server.game.module.resource.IResourceService;
  * @author Jeremy
  */
 @Service
-public class ActivityItemService implements IActivityItemService , IResourceService{
+public class ActivityItemService implements IActivityItemService, IResourceService, ILifecycle{
 	
 	private static final Logger log = LoggerFactory.getLogger(ActivityItemService.class);
 	
@@ -33,7 +34,7 @@ public class ActivityItemService implements IActivityItemService , IResourceServ
 	 * 登陆
 	 */
 	public void onLogin(long playerId) {
-		ActivityItemDomain domain = activityItemManager.getDomain(playerId);
+		ActivityItemDomain domain = activityItemManager.getOrLoadDomain(playerId);
 		Collection<ActivityItem> beans = domain.getBeans();
 		//FSC todo somthing...
 		//Codes for proto
@@ -45,7 +46,8 @@ public class ActivityItemService implements IActivityItemService , IResourceServ
 	 * @param playerId
 	 */
 	public void onLogout(long playerId) {
-		activityItemManager.remove(playerId);
+		//活动道具缓存内容不释放, 用于活动结束后回收
+		//activityItemManager.remove(playerId);
 	}
   
 	
@@ -128,6 +130,25 @@ public class ActivityItemService implements IActivityItemService , IResourceServ
 			return 0;
 		}
 		return domain.getCount(configId);
+	}
+	
+	@Override
+	public void clearExpire(long playerId, int configId) {
+		ActivityItemDomain domain = activityItemManager.getDomain(playerId);
+		if (domain == null) {
+			return;
+		}
+		domain.clearExpire(configId);
+	}
+	
+	@Override
+	public void start() throws Throwable {
+		activityItemManager.init();
+	}
+
+	@Override
+	public int priority() {
+		return Priority.LOGIC.getPriority();
 	}
 }
  

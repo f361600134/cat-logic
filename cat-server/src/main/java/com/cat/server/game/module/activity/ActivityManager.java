@@ -1,13 +1,5 @@
 package com.cat.server.game.module.activity;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.cat.api.core.task.Task;
 import com.cat.api.core.task.impl.CommonTaskExecutor;
 import com.cat.server.common.ServerConfig;
@@ -20,6 +12,13 @@ import com.cat.server.game.module.activity.domain.ActivityDomain;
 import com.cat.server.game.module.activity.type.ActivityTypeEnum;
 import com.cat.server.utils.TimeUtil;
 import com.google.common.collect.Lists;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * 活动初始化, 默认根据typeId进行初始化, 如果获取不到domain 从数据库获取 对于活动来说, 当启动服务器的时候,
@@ -151,7 +150,7 @@ class ActivityManager extends AbstractModuleManager<Integer, ActivityDomain> {
 					.getAllConfigs(ConfigActivityScheduleTime.class);
 			for (ConfigActivityScheduleTime config : scheduleTimeConfigMap.values()) {
 				int type = config.getType();
-				ActivityDomain activityDomain = getDomain(type);
+				ActivityDomain activityDomain = getOrLoadDomain(type);
 				if (activityDomain == null) {
 					logger.warn("activity[{}] tick fail.activity is null.schedule config id[{}]", type, config.getId());
 					continue;

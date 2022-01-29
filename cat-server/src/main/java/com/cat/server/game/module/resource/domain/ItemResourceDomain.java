@@ -1,15 +1,13 @@
 package com.cat.server.game.module.resource.domain;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ConfigItem;
 import com.cat.server.game.module.item.domain.Item;
 import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 	
@@ -137,6 +135,11 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 		ItemResourceDomain domain = new ItemResourceDomain(playerId);
 		domain.addBeanMap(beanMap);
 		return domain;
+	}
+
+	@Override
+	public void doClearExpire(Item v) {
+		// TODO Auto-generated method stub
 	}
 
 }

@@ -136,7 +136,7 @@ public class NetworkComponent implements ILifecycle{
 		localNetService.startup();
 	}
 	@Override
-	public void stop() throws Throwable {
+	public void stop() throws Exception {
 		localNetService.shutdown();
 	}
 	

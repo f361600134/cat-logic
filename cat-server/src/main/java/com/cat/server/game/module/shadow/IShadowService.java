@@ -30,7 +30,7 @@ public interface IShadowService {
 	 * 当玩家的信息发生了修改, 影子数据对应变动<br>
 	 * 这里玩家数据直接覆盖影子数据内容, 在内存中操作<br>
 	 * 数据不需要立刻保存,被挤出缓存时/或停服时保存
-	 * @param Player 玩家对象
+	 * @param player 玩家对象
 	 * @date 2021年10月21日上午10:20:57
 	 */
 	public void onPlayerUpdate(Player player);

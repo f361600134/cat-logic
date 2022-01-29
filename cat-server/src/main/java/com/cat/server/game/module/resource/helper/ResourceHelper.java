@@ -1,19 +1,17 @@
 package com.cat.server.game.module.resource.helper;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import org.apache.commons.math3.util.MathUtils;
-
 import com.cat.server.game.data.proto.PBItem.PBPairInfo;
 import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
 import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
 import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
 import com.cat.server.game.module.item.proto.RespRewardsBuilder;
 import com.google.common.collect.Maps;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * 没有想打合适的办法把资源类, 在配置里反序列化成ResourceMap<br>
@@ -89,8 +87,8 @@ public class ResourceHelper {
     
     /**
      * 百分比
-     * @param dividend 利率
-     * @param divisor 除数
+     * @param number 原始值
+     * @param dividend 倍数(百分比后)
      * @return 不改变原对象, 返回一个新的对象
      */
     public static int percentage(int number, int dividend) {

@@ -3,7 +3,13 @@ package com.cat.server.game.module.resource.domain;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.game.module.family.IPlayerFamilyService;
 import com.cat.server.game.module.hero.domain.Hero;
+import com.cat.server.game.module.mail.IMailService;
+import com.cat.server.game.module.mail.assist.MailTemplate;
+import com.cat.server.game.module.mail.assist.MailType;
 
 /**
  * 武将资源处理代理类
@@ -63,5 +69,16 @@ public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 		//如需要, 通过配置获取到此类物品的最大限制
 		return LIMIT;
 	}
-
+	
+	/**
+	 * 武将回收, 赠送给玩家有时效性的武将, 可以进行任意培养, 回收时消耗资源进行回收. 邮件通知给玩家.
+	 */
+	@Override
+	public void doClearExpire(Hero hero) {
+		Map<Integer, Integer> resource = hero.getUsedMaterials();
+		//Send an email to the player notifying that the recycling was completed.
+		long playerId = hero.getPlayerId();
+		IMailService mailService = SpringContextHolder.getBean(IMailService.class);
+		mailService.sendMail(MailType.PLAYER_MAIL.getMailType(), playerId, MailTemplate.HERO_RECYCLE.getMailConfigId(), resource, hero.getConfigId());
+	}
 }

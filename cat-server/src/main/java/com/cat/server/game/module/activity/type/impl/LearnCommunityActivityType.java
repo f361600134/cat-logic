@@ -1,7 +1,12 @@
 package com.cat.server.game.module.activity.type.impl;
 
+import java.util.Collection;
+
+import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.type.AbstractActivityType;
+import com.cat.server.game.module.activityoperation.learncommunity.ILearnCommunityService;
+import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunity;
 
 /**
  * 研习社活动代理类
@@ -73,11 +78,12 @@ public class LearnCommunityActivityType extends AbstractActivityType{
 //	}
 	
 	public void recycleBag() {
-//		ILearnCommunityService service = SpringContextHolder.getBean(ILearnCommunityService.class);
-//		Collection<LearnCommunity> cols = service.geAllPlayerData();
-//		for (LearnCommunity learnCommunity : cols) {
-//			//TODO
-//		}
+		ILearnCommunityService service = SpringContextHolder.getBean(ILearnCommunityService.class);
+		Collection<LearnCommunity> cols = service.geAllPlayerData();
+		for (LearnCommunity learnCommunity : cols) {
+			//TODO
+			
+		}
 		
 	}
 

@@ -98,7 +98,8 @@ public abstract class AbstractMissionHandler<T extends IMission> implements IMis
 		return this;
 	}
 
-	public Collection<PBMission.PBMissionInfo> toProto() {
+	@Override
+    public Collection<PBMission.PBMissionInfo> toProto() {
 		List<PBMission.PBMissionInfo> colls = new ArrayList<PBMission.PBMissionInfo>();
 		for (IMission mission : getMissions()) {
 			colls.add(mission.toProto());
@@ -118,6 +119,7 @@ public abstract class AbstractMissionHandler<T extends IMission> implements IMis
 	 * 
 	 * @return
 	 */
+	@Override
 	public ErrorCode onProcess(IEvent event) {
 		// TODO 这里不想每次都通过spring去获取manager, 看看怎么优化
 		MissionProcessManager manager =  SpringContextHolder.getBean(MissionProcessManager.class);

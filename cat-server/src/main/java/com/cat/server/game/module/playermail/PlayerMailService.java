@@ -1,13 +1,5 @@
 package com.cat.server.game.module.playermail;
 
-import java.util.Collection;
-import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ConfigMail;
@@ -15,12 +7,18 @@ import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.IMailServiceContainer;
-import com.cat.server.game.module.mail.MailService;
 import com.cat.server.game.module.mail.assist.MailType;
 import com.cat.server.game.module.playermail.domain.PlayerMail;
 import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
 import com.cat.server.game.module.shadow.IShadowService;
 import com.cat.server.game.module.shadow.domain.Shadow;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * PlayerMail控制器
@@ -28,7 +26,7 @@ import com.cat.server.game.module.shadow.domain.Shadow;
 @Service
 public class PlayerMailService implements IMailServiceContainer{
 	
-	private static final Logger log = LoggerFactory.getLogger(MailService.class);
+	private static final Logger log = LoggerFactory.getLogger(PlayerMailService.class);
 	
 	@Autowired 
 	private PlayerMailManager playerMailManager;
@@ -71,14 +69,14 @@ public class PlayerMailService implements IMailServiceContainer{
 		if (shadow == null) {
 			return ResultCodeData.of(ErrorCode.MAIL_NOT_FOUND_PLAYER);
 		}
+		//创建邮件,保存至数据库
+		PlayerMail playerMail = PlayerMail.create(playerId, title, content, expiredDays, rewards);
 		//获取到邮箱, 发送邮件
 		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
-		if (domain == null) {
-			return ResultCodeData.of(ErrorCode.MAIL_BOX_NOT_FOUND);
+		if (domain != null) {
+//			创建邮件加入玩家对象
+			domain.putBean(playerMail.getId(), playerMail);
 		}
-		//	创建邮件加入玩家对象
-		PlayerMail playerMail = PlayerMail.create(playerId, title, content, expiredDays, rewards);
-		domain.putBean(playerMail.getId(), playerMail);
 		//	FIXME 是否有必要同步给玩家新邮件? 还是发送红点消息, 让玩家重新请求邮件?
 		//TODO 发送红点消息, 通知客户端有新邮件
 //		responsePlayerMail(playerId, Lists.newArrayList(playerMail));
@@ -87,11 +85,11 @@ public class PlayerMailService implements IMailServiceContainer{
 
 	@Override
 	public ErrorCode deleteMail(long mailId, long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
+		PlayerMailDomain domain = playerMailManager.getOrLoadDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
 		}
-		PlayerMail mail = domain.getBean(mailId);
+		PlayerMail mail = domain.removeBean(mailId);
 		if (mail == null) {
 			return ErrorCode.MAIL_NOT_FOUND;
 		}
@@ -102,7 +100,7 @@ public class PlayerMailService implements IMailServiceContainer{
 	@Override
 	public ErrorCode updateMail(long mailId, long playerId, String title, String content, int expiredDays,
 			Map<Integer, Integer> rewards) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
+		PlayerMailDomain domain = playerMailManager.getOrLoadDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
 		}
@@ -116,7 +114,7 @@ public class PlayerMailService implements IMailServiceContainer{
 
 	@Override
 	public IMail getMail(long mailId, long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
+		PlayerMailDomain domain = playerMailManager.getOrLoadDomain(playerId);
 		if (domain == null) {
 			return null;
 		}
@@ -125,7 +123,7 @@ public class PlayerMailService implements IMailServiceContainer{
 
 	@Override
 	public Collection<? extends IMail> getMails(long playerId) {
-		PlayerMailDomain domain = playerMailManager.getDomain(playerId);
+		PlayerMailDomain domain = playerMailManager.getOrLoadDomain(playerId);
 		if (domain == null) {
 			return null;
 		}

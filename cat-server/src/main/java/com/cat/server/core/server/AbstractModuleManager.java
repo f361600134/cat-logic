@@ -26,8 +26,14 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 	
 	@Autowired protected IDataProcess process;
 	
-	/**域缓存*/
+	/**
+	 * 域缓存
+	 * 之前使用ConcurrentHashMap作为显示调用缓存, 玩家个人模块的缓存数据绑定玩家声明周期<br>
+	 * 后续为了支持, 玩家不在线情况, 依旧可以操作器数据, 所以修改为Cache作为缓存, 玩家不在线也可以load出模块数据进行修改<br>
+	 * 修改后在指定时间内没有读写, 则被从缓存中移除掉.<br>
+	 * */
 	protected final Map<I, T> domains = new ConcurrentHashMap<>();
+
 	protected Class<T> clazz;
 	
 	@SuppressWarnings("unchecked")
@@ -50,7 +56,7 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 	}
 	
 	@Override
-	public T getDomain(I id) {
+	public T getOrLoadDomain(I id) {
  		T domain = domains.get(id);
 		if (domain == null) {
 			domain = getFromDb(id);
@@ -58,48 +64,22 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 		return domain;
 	}
 	
-//	@Override
-//	public T getOrCreateDomain(I id) {
-//		T domain = domains.get(id);
-//		if (domain == null) {
-//			domain = getOrCreateFromDb(id);
-//		}
-//		return domain;
-//	}
+	@Override
+	public T getDomain(I id) {
+		return domains.get(id);
+	}
 	
 	@Override
 	public void remove(I id) {
 		domains.remove(id);
 	}
 	
-//	/**
-//	 * 这里的getFromDB方法, 可以通过获取到domain反射获取pojo对象
-//	 * @param id 持有者id
-//	 * @return T domain对象
-//	 */
-//	@SuppressWarnings({ "rawtypes", "unchecked" })
-//	public T getFromDb(I id) {
-//		try {
-//			T domain = clazz.newInstance();
-//			List list = process.selectByIndex(domain.getBasePoClazz(), new Object[] {id});
-//			if (list.isEmpty()) {
-//				return null;
-//			}
-//			//	有数据初始化
-//			domain.initData(id, list);
-//			domains.put(id, domain);
-//			return domain;
-//		}catch (Exception e) {
-//			logger.error("getFromDb error", e);
-//		}
-//		return null;
-//	}
-	
 	/**
 	 * 这里的getFromDB方法, 可以通过获取到domain反射获取pojo对象
 	 * @param id 持有者id
 	 * @return T domain对象
 	 */
+	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public T getFromDb(I id) {
 		try {

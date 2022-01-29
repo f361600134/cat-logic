@@ -44,12 +44,16 @@ class ShadowService implements IShadowService, ILifecycle {
 	
 	
 	/**
-	 * 缓存的影子数据
+	 * 缓存的影子数据<br>
+	 * 1. 在给定时间内没有被读/写访问,则清除, 目前设置60分钟<br>
+	 * 2. 最大容量2000<br>
+	 * 3. 初始数量512<br>
+	 * 4. 当影子数据被移除时, 保存至数据库
 	 */
-	private Cache<Long, Shadow> cache = CacheBuilder.newBuilder()
-			.expireAfterAccess(60, TimeUnit.MINUTES)// 在给定时间内没有被读/写访问,则清除
-			.maximumSize(MAXNUM)// 最大容量
-			.initialCapacity(INITNUM)// 初始容量
+	private final Cache<Long, Shadow> cache = CacheBuilder.newBuilder()
+			.expireAfterAccess(60, TimeUnit.MINUTES)
+			.maximumSize(MAXNUM)
+			.initialCapacity(INITNUM)
 			.removalListener(notification->{
 				Shadow shadow = (Shadow)notification.getValue();
 				shadow.update();
@@ -132,7 +136,7 @@ class ShadowService implements IShadowService, ILifecycle {
 	
 	@Override
 	public void start() throws Throwable {
-		load();
+		this.load();
 	}
 	
 	@Override
@@ -141,8 +145,8 @@ class ShadowService implements IShadowService, ILifecycle {
 	}
 	
 	@Override
-	public void stop() throws Throwable {
-		save();
+	public void stop() throws Exception {
+		this.save();
 	}
 
 }

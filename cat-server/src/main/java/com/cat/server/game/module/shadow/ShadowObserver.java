@@ -14,5 +14,10 @@ public class ShadowObserver implements IObserver{
 	@Autowired
     private ShadowService shadowService;
 
+	//TODO 当玩家数据变化,影子数据变化
+
+    //TODO 当玩家装备数据变化,影子数据变化
+
+    //TODO 当玩家宠物数据变化,影子数据变化
 
 }

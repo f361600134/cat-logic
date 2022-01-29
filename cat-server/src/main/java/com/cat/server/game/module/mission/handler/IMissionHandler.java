@@ -1,13 +1,13 @@
 package com.cat.server.game.module.mission.handler;
 
-import java.util.Collection;
-import java.util.List;
-
 import com.cat.server.core.event.IEvent;
 import com.cat.server.game.data.proto.PBMission;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mission.type.IMission;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * 	任务处理类接口
@@ -18,7 +18,7 @@ public interface IMissionHandler {
 	
 	/**
 	 * 获取到玩家id
-	 * @return
+	 * @return 玩家id
 	 */
 	public long getPlayerId();
 	

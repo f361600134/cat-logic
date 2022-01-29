@@ -1,21 +1,19 @@
 package com.cat.server.game.module.playermail;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.cat.orm.core.db.process.IDataProcess;
-import com.cat.server.core.server.IModuleDbManager;
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.module.playermail.domain.PlayerMail;
 import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 玩家个人邮件管理, 因为要支持离线玩家邮件查询, 查询后不能释放掉邮箱内容, 所以要特殊的支持
@@ -23,7 +21,7 @@ import com.google.common.cache.CacheBuilder;
 * @author Jeremy
 */
 @Component
-public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain>, IModuleDbManager<Long, PlayerMailDomain> {
+public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain> {
 	
 	public static Logger logger = LoggerFactory.getLogger(PlayerMailManager.class); 
 	
@@ -46,7 +44,7 @@ public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain>
 	}
 
 	@Override
-	public PlayerMailDomain getDomain(Long playerId) {
+	public PlayerMailDomain getOrLoadDomain(Long playerId) {
 		PlayerMailDomain domain = domains.getIfPresent(playerId);
 		if (domain == null) {
 			domain = getFromDb(playerId);
@@ -77,6 +75,11 @@ public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain>
 			logger.error("getFromDb error", e);
 		}
 		return null;
+	}
+
+	@Override
+	public PlayerMailDomain getDomain(Long id) {
+		return domains.getIfPresent(id);
 	}
 	
 //	/**
