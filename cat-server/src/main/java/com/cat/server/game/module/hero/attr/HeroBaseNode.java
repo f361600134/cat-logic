@@ -6,19 +6,14 @@ import com.cat.server.game.module.attribute.domain.AttributeDictionary;
 import com.cat.server.game.module.hero.domain.Hero;
 
 /**
- * 	武将基础属性节点
- * @author Administrator
- *
+ * 武将基础属性节点
+ * 武将属性树节点名字
+ * @author Jeremy
  */
 public class HeroBaseNode extends AbstractHeroAttrNode {
 
     public HeroBaseNode(Hero hero) {
         super(hero);
-    }
-
-    @Override
-    public String getName() {
-        return "Base";
     }
 
     /**

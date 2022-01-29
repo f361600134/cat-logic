@@ -1,5 +1,7 @@
 package com.cat.server.game.module.resource;
 
+import java.util.List;
+
 import com.cat.server.game.helper.log.NatureEnum;
 
 /**

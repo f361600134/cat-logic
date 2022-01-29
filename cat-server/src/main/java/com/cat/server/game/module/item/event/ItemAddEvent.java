@@ -1,9 +1,11 @@
 package com.cat.server.game.module.item.event;
 
 import com.cat.server.core.event.PlayerBaseEvent;
+import com.cat.server.game.module.resource.IResource;
 
 /**
  * 新增物品事件
+ * @deprecated 弃用,统一使用ResourceAddEvent
  */
 public class ItemAddEvent extends PlayerBaseEvent {
 	
@@ -20,6 +22,20 @@ public class ItemAddEvent extends PlayerBaseEvent {
         this.configId = configId;
         this.count = count;
         this.quality = quality;
+    }
+    
+    /**
+     * 构建资源新增事件
+     * @param resource
+     * @return
+     */
+    public static ItemAddEvent create(IResource resource){
+        return new ItemAddEvent(
+        		resource.getPlayerId(), 
+        		resource.getUniqueId(), 
+        		resource.getConfigId(), 
+        		resource.getCount(), 
+        		resource.getQuality());
     }
 
     public static ItemAddEvent create(long itemId, long playerId, int configId, int count, int quality){

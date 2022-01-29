@@ -44,11 +44,11 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	}
 
 	public Map<K, V> getBeanMap() {
-		return beanMap;
+		return this.beanMap;
 	}
 	
 	public void addBeanMap(Map<K, V> beanMap) {
-		beanMap.putAll(beanMap);
+		this.beanMap.putAll(beanMap);
 	}
 
 	@Override

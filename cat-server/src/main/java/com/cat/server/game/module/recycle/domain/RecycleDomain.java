@@ -25,12 +25,31 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 	
 	////////////业务代码////////////////////
 	
+//	/**
+//	 * 添加一个回收信息对象
+//	 */
+//	public void addRecycle(long uniqueId, int configId, int number) {
+//		Recycle recycle = Recycle.create(getId(), uniqueId, configId);
+//		beanMap.put(recycle.getResourceId(), recycle);
+//	}
+	
 	/**
 	 * 添加一个回收信息对象
+	 * @param uniqueId 唯一id
+	 * @param configId 配置id
+	 * @param number 当前数量
 	 */
-	public void addRecycle(long uniqueId, int configId) {
-		Recycle recycle = Recycle.create(getId(), uniqueId, configId);
-		beanMap.put(recycle.getResourceId(), recycle);
+	public void updateRecycle(long uniqueId, int configId, int number) {
+		//如果数量小于等于0, 则表示移除此道具
+		if (number <= 0) {
+			beanMap.remove(uniqueId);
+		}else {
+			Recycle recycle = beanMap.get(uniqueId);
+			if (recycle == null) {//表示创建回收对象
+				recycle = Recycle.create(getId(), uniqueId, configId);
+			}
+			recycle.setNumber(number);
+		}
 	}
 	
 	/**
@@ -51,7 +70,7 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 	/**
 	 * 清理资源
 	 * @return 存档的资源数据, 被删除的资源配置id列表
-	 * @deprecated 处理的不太好, 偶尔比较严重
+	 * @deprecated 处理的不太好, 耦合比较严重
 	 */
 	public Collection<Integer> clearResource(int activityTypeId) {
 		//筛选符合条件的配置id列表

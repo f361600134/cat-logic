@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.orm.core.annotation.PO;
+import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.game.data.config.local.ConfigItem;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 
 /**
@@ -16,6 +18,7 @@ public class Item extends ItemPo implements IItem{
 	 * 
 	 */
 	private static final long serialVersionUID = 9085231092692832763L;
+	
 	private final static Logger log = LoggerFactory.getLogger(Item.class);
 
 	public Item() {
@@ -67,14 +70,17 @@ public class Item extends ItemPo implements IItem{
 		return expect;
 	}
 	
-//	@Override
-//	public Class<?> clazz() {
-//		return Item.class;
-//	}
-
 	@Override
 	public long getUniqueId() {
 		return getItemId();
 	}
-
+	
+	@Override
+	public int getQuality() {
+		ConfigItem config = ConfigManager.getInstance().getConfig(ConfigItem.class, getConfigId());
+		if (config == null) {
+			return 0;
+		}
+		return config.getQuality();
+	}
 }

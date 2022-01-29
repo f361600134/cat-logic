@@ -12,6 +12,7 @@ import com.cat.server.game.module.activity.status.IActivityStatus;
 import com.cat.server.game.module.hero.event.HeroAddEvent;
 import com.cat.server.game.module.item.event.ItemAddEvent;
 import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.resource.event.ResourceAddEvent;
 import com.google.common.eventbus.Subscribe;
 
 /**
@@ -54,7 +55,15 @@ public class RecycleObserver implements IObserver{
 	 */
 	@Subscribe
 	public void onItemAddEvent(ItemAddEvent event) {
-		service.onResourceAddEvent(event.getPlayerId(), event.getItemId(), event.getConfigId());
+		service.onResourceAddEvent(event.getPlayerId(), event.getItemId(), event.getConfigId(), 0);
+	}
+	
+	/**
+	 * 当监听到新增道具
+	 */
+	@Subscribe
+	public void onResourceAddEvent(ResourceAddEvent event) {
+		service.onResourceAddEvent(event.getPlayerId(), event.getItemId(), event.getConfigId(), event.getCurCount());
 	}
 	
 	/**

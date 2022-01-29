@@ -123,7 +123,7 @@ class RecycleService implements IRecycleService {
 	 * @param uniqueId 唯一id
 	 * @param configId 配置id
 	 */
-    public void onResourceAddEvent(long playerId, long uniqueId, int configId){
+    public void onResourceAddEvent(long playerId, long uniqueId, int configId, int number){
 		//如果属于回收道具, 存档
 		boolean bool = ConfigManager.getInstance().contains(ConfigRecycle.class, configId);
 		if (!bool) {
@@ -134,7 +134,7 @@ class RecycleService implements IRecycleService {
 			log.info("onLogin error, domain is null, playerId:{}", playerId);
 			return;
 		}
-		domain.addRecycle(uniqueId, configId);
+		domain.updateRecycle(uniqueId, configId, number);
 		this.responseRecycleInfo(domain);
     }
 	

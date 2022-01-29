@@ -11,14 +11,9 @@ import com.cat.server.game.module.hero.domain.Hero;
  *
  */
 public class HeroLevelNode extends AbstractHeroAttrNode {
-
+	
     public HeroLevelNode(Hero hero) {
         super(hero);
-    }
-
-    @Override
-    public String getName() {
-        return "level";
     }
 
     /**

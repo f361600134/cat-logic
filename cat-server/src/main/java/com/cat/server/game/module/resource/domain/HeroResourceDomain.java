@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.module.family.IPlayerFamilyService;
 import com.cat.server.game.module.hero.domain.Hero;
 import com.cat.server.game.module.mail.IMailService;
 import com.cat.server.game.module.mail.assist.MailTemplate;
 import com.cat.server.game.module.mail.assist.MailType;
+import com.cat.server.game.module.resource.event.ResourceAddEvent;
 
 /**
  * 武将资源处理代理类
@@ -48,6 +50,8 @@ public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 			beanMap.put(hero.getId(), hero);
 			heros.add(hero);
 			updateList.add(hero);
+			//发送事件
+			GameEventBus.getInstance().post(ResourceAddEvent.create(hero, 1));
 		}
 		return heros;
 	}

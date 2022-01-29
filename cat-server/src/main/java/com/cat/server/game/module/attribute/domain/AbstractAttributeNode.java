@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 import com.cat.server.game.helper.log.NatureEnum;
 
 public abstract class AbstractAttributeNode implements IAttributeNode {
-
+	
     /**
      * 父节点
      */
@@ -27,7 +27,7 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
      * 属性是否需要计算
      */
     protected volatile boolean change = true;
-
+    
     @Override
     public boolean isRoot() {
         return false;

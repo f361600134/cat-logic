@@ -12,6 +12,7 @@ public abstract class RecyclePo extends BasePo {
 	public static final String PROP_RESOURCEID = "resourceId";
 	public static final String PROP_CONFIGID = "configId";
 	public static final String PROP_RECIEVETIME = "recieveTime";
+	public static final String PROP_NUMBER = "number";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
@@ -19,6 +20,7 @@ public abstract class RecyclePo extends BasePo {
 			PROP_RESOURCEID,
 			PROP_CONFIGID,
 			PROP_RECIEVETIME,
+			PROP_NUMBER,
 			};
 			
 	/** 所有主键索引字段数组*/
@@ -41,6 +43,8 @@ public abstract class RecyclePo extends BasePo {
 	protected int configId;
 	/** 获得的时间戳*/
 	protected long recieveTime;
+	/** 当前数量*/
+	protected int number;
 	
 	public RecyclePo(){
 	}
@@ -81,10 +85,20 @@ public abstract class RecyclePo extends BasePo {
 		this.recieveTime = recieveTime;
 	}
 	
+	/** 当前数量 **/
+	public int getNumber(){
+		return this.number;
+	}
+	
+	public void setNumber(int number){
+		this.number = number;
+	}
+	
 	
 	@Override
 	public String toString() {
-		return "Recycle [playerId= "+ playerId +", resourceId= "+ resourceId +", configId= "+ configId +", recieveTime= "+ recieveTime+"]";
+		return "Recycle [playerId= "+ playerId +", resourceId= "+ resourceId +", configId= "+ configId +", recieveTime= "+ recieveTime +", number= "+ number
+				+"]";
 	}
 	
 	@Override
@@ -99,6 +113,7 @@ public abstract class RecyclePo extends BasePo {
 		getResourceId(),
 		getConfigId(),
 		getRecieveTime(),
+		getNumber(),
 		};
 	}
 	

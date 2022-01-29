@@ -460,7 +460,8 @@ class PlayerService implements IPlayerService, IResourceService {
 		final Player player = playerContext.getPlayer();
 		player.addProperties(configId, value);
 		// PropertiesType.getType(configId).add(player, value);
-		process.update(player);
+//		process.update(player);
+		player.update();
 	}
 
 	@Override
@@ -469,7 +470,8 @@ class PlayerService implements IPlayerService, IResourceService {
 		final Player player = playerContext.getPlayer();
 		// PropertiesType.getType(configId).reduce(player, value);
 		player.reduceProperties(configId, value);
-		process.update(player);
+//		process.update(player);
+		player.update();
 	}
 
 	@Override

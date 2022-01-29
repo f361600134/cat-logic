@@ -1,5 +1,12 @@
 package com.cat.server.game.module.item;
 
+import java.util.Collection;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.item.domain.IItem;
@@ -9,12 +16,6 @@ import com.cat.server.game.module.item.proto.RespItemDeleteBuilder;
 import com.cat.server.game.module.item.proto.RespItemUpdateBuilder;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 
 /**
  * 资源服务
@@ -92,7 +93,9 @@ class ItemService implements IItemService, IResourceService{
 	@Override
 	public void reward(long playerId, Integer configId, Integer value, NatureEnum nEnum) {
 		ItemDomain domain = itemManager.getDomain(playerId);
-		if (domain == null)	return;
+		if (domain == null) {
+			return;
+		}
 		//背包加入普通道具
 		domain.add(configId, value);
 	}

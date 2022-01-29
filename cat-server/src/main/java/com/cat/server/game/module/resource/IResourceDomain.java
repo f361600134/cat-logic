@@ -8,7 +8,7 @@ import java.util.List;
  * V: 资源配置id
  * @author Jeremy
  */
-public interface IResourceDomain<K, V>{
+public interface IResourceDomain<K, V extends IResource>{
 	
 	/**
 	 * 	通过配置id获取到实体, 默认返回查找到的第一个

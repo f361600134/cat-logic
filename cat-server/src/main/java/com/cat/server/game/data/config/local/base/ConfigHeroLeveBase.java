@@ -177,6 +177,7 @@ public class ConfigHeroLeveBase implements IGameConfig{
 	
 	/**
 	 * 获取改配置下的武将基础属性,可以为0
+	 * 仅仅测试用
 	 * @param configId
 	 * @return
 	 */

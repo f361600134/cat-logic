@@ -55,7 +55,7 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 			if (service == null) {
 				throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
 			}
-			//service校验通过后, 资源开始加入被包
+			//service校验通过后, 资源开始加入背包
 			resourceMap.forEach((configId, number)->{
 				if (number < 0) {
 					log.info("Negative item reward, playerId:{}, value:{}, nEnum:{}", playerId, number, nEnum);

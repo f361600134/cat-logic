@@ -1,13 +1,16 @@
 package com.cat.server.game.module.resource.domain;
 
-import com.cat.server.core.config.ConfigManager;
-import com.cat.server.game.data.config.local.ConfigItem;
-import com.cat.server.game.module.item.domain.Item;
-import com.google.common.collect.Lists;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import com.cat.server.core.config.ConfigManager;
+import com.cat.server.core.event.GameEventBus;
+import com.cat.server.game.data.config.local.ConfigItem;
+import com.cat.server.game.module.item.domain.Item;
+import com.cat.server.game.module.item.event.ItemAddEvent;
+import com.cat.server.game.module.resource.event.ResourceAddEvent;
+import com.google.common.collect.Lists;
 
 public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 	
@@ -56,11 +59,11 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 			int curCount = item.deductCount(count);
 			item.update();
 			if (curCount > 0) 
-				updateList.add(item);
+				this.updateList.add(item);
 			else {
 				//已删除物品移除缓存
-				beanMap.remove(item.getUniqueId());
-				deleteList.add(item);
+				this.beanMap.remove(item.getUniqueId());
+				this.deleteList.add(item);
 			}
 		}
 		return true;
@@ -69,36 +72,38 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 	@Override
 	public List<Item> add(int configId, int count) {
 		List<Item> items = null;
-		if (isStack(configId)) {
+		if (this.isStack(configId)) {
 			//可叠加道具
-			items = addNormalItem(configId, count);
-		}else {
+			items = this.addNormalItem(configId, count);
+		} else {
 			//不可叠加道具
-			items = addUniqueItem(configId, count);
+			items = this.addUniqueItem(configId, count);
 		}
-		updateList.addAll(items);
+		this.updateList.addAll(items);
 		return items;
 	}
 	
 	/**
 	 * 添加普通可叠加道具 
 	 * @param configId 配置id
-	 * @param count 数量
+	 * @param count 增加的数量
 	 * @return List<Item>  返回生成的道具列表
 	 * @date 2021年11月16日下午9:36:30
 	 */
 	private List<Item> addNormalItem(int configId, int count){
 		//背包加入普通道具
-		Item item = getBeanByConfigId(configId);
+		Item item = this.getBeanByConfigId(configId);
 		if (count <= 0) return Lists.newArrayList(item);
 		if(item == null) {//没有此物品,创建
-			item = Item.create(playerId, configId, count);
-			beanMap.put(item.getItemId(), item);
+			item = Item.create(this.playerId, configId, count);
+			this.beanMap.put(item.getItemId(), item);
 		}else {
 			//有此物品,增加数量
 			item.addCount(count);
 			item.update();
 		}
+		//发送事件
+		GameEventBus.getInstance().post(ResourceAddEvent.create(item, count));
 		return Lists.newArrayList(item);
 	}
 	
@@ -114,9 +119,11 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 		List<Item> items = new ArrayList<>();
 		Item item = null;
 		for (int i = 0; i < count; i++) {
-			item = Item.create(playerId, configId, 1);
-			beanMap.put(item.getItemId(), item);
+			item = Item.create(this.playerId, configId, 1);
+			this.beanMap.put(item.getItemId(), item);
 			items.add(item);
+			//发送事件
+			GameEventBus.getInstance().post(ResourceAddEvent.create(item, 1));
 		}
 		return items;
 	}
