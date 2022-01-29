@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.event.GameEventBus;
-import com.cat.server.game.module.family.IPlayerFamilyService;
 import com.cat.server.game.module.hero.domain.Hero;
 import com.cat.server.game.module.mail.IMailService;
 import com.cat.server.game.module.mail.assist.MailTemplate;

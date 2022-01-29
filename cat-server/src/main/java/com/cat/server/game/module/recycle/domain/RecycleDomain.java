@@ -70,7 +70,11 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 	/**
 	 * 清理资源
 	 * @return 存档的资源数据, 被删除的资源配置id列表
+<<<<<<< HEAD
 	 * @deprecated 处理的不太好, 耦合比较严重
+=======
+	 * @deprecated 处理的不太好, 偶尔比较严重
+>>>>>>> branch 'master' of https://gitee.com/fatiny/cat-logic.git
 	 */
 	public Collection<Integer> clearResource(int activityTypeId) {
 		//筛选符合条件的配置id列表

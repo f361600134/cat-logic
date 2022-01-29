@@ -8,7 +8,6 @@ import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.data.config.local.ConfigItem;
 import com.cat.server.game.module.item.domain.Item;
-import com.cat.server.game.module.item.event.ItemAddEvent;
 import com.cat.server.game.module.resource.event.ResourceAddEvent;
 import com.google.common.collect.Lists;
 

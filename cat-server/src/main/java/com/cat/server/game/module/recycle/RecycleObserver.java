@@ -66,12 +66,4 @@ public class RecycleObserver implements IObserver{
 		service.onResourceAddEvent(event.getPlayerId(), event.getItemId(), event.getConfigId(), event.getCurCount());
 	}
 	
-	/**
-	 * 当监听到新增武将
-	 */
-	@Subscribe
-	public void onHeroAddEvent(HeroAddEvent event) {
-		service.onResourceAddEvent(event.getPlayerId(), event.getHeroId(), event.getConfigId());
-	}
-	
 }
