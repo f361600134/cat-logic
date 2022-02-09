@@ -113,8 +113,7 @@ public abstract class AbstractModuleMultiDomain<I, K, T extends IBasePo> impleme
             e.afterLoad();
             beanMap.put((K) e.key(), e);
         });
-        //this.afterCreate();
-        //this.afterInit();
+        this.afterInit();
     }
 
     @Override

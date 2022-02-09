@@ -69,10 +69,10 @@ public abstract class AbstractModuleDomain<I extends Number, T extends IBasePo> 
 	 * 如果数据为空, 则初始化新的一条数据
 	 */
 	@Override
-	public void initData(I id,List<T> v) {
+	public void initData(I id, List<T> vs) {
 		this.id = id;
-		if (v.size() == 1) {
-			this.bean = v.get(0);
+		if (vs.size() == 1) {
+			this.bean = vs.get(0);
 			this.bean.afterLoad();
 			this.afterInit();
 		}

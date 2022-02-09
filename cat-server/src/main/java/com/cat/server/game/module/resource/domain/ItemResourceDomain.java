@@ -19,6 +19,10 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 		super(playerId);
 	}
 	
+	private ItemResourceDomain(long playerId, Map<Long, Item> itemMap) {
+		super(playerId, itemMap);
+	}
+	
 	public int getLimit() {
 		return LIMIT;
 	}
@@ -61,7 +65,7 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 				this.updateList.add(item);
 			else {
 				//已删除物品移除缓存
-				this.beanMap.remove(item.getUniqueId());
+				this.getBeanMap().remove(item.getUniqueId());
 				this.deleteList.add(item);
 			}
 		}
@@ -95,7 +99,7 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 		if (count <= 0) return Lists.newArrayList(item);
 		if(item == null) {//没有此物品,创建
 			item = Item.create(this.playerId, configId, count);
-			this.beanMap.put(item.getItemId(), item);
+			this.getBeanMap().put(item.getItemId(), item);
 		}else {
 			//有此物品,增加数量
 			item.addCount(count);
@@ -119,7 +123,7 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 		Item item = null;
 		for (int i = 0; i < count; i++) {
 			item = Item.create(this.playerId, configId, 1);
-			this.beanMap.put(item.getItemId(), item);
+			this.getBeanMap().put(item.getItemId(), item);
 			items.add(item);
 			//发送事件
 			GameEventBus.getInstance().post(ResourceAddEvent.create(item, 1));
@@ -138,13 +142,12 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 	}
 
 	public static ItemResourceDomain create(long playerId, Map<Long, Item> beanMap) {
-		ItemResourceDomain domain = new ItemResourceDomain(playerId);
-		domain.addBeanMap(beanMap);
+		ItemResourceDomain domain = new ItemResourceDomain(playerId, beanMap);
 		return domain;
 	}
 
 	@Override
-	public void doClearExpire(Item v) {
+	public void beforeClearExpire(Item v) {
 		// TODO Auto-generated method stub
 	}
 

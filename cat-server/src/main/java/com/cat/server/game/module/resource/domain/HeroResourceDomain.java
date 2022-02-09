@@ -24,10 +24,12 @@ public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 		super(playerId);
 	}
 	
+	HeroResourceDomain(long playerId, Map<Long, Hero> heroMap) {
+		super(playerId, heroMap);
+	}
 	
 	public static HeroResourceDomain create(long playerId, Map<Long, Hero> beanMap) {
-		HeroResourceDomain domain = new HeroResourceDomain(playerId);
-		domain.setBeanMap(beanMap);
+		HeroResourceDomain domain = new HeroResourceDomain(playerId, beanMap);
 		return domain;
 	}
 	
@@ -46,7 +48,7 @@ public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 		//	生成一个武将,需要唯一id
 		for (int i = 0; i < count; i++) {
 			hero = Hero.create(playerId, configId);
-			beanMap.put(hero.getId(), hero);
+			getBeanMap().put(hero.getId(), hero);
 			heros.add(hero);
 			updateList.add(hero);
 			//发送事件
@@ -58,7 +60,7 @@ public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 	@Override
 	public boolean deduct(Hero hero, int count) {
 		hero.delete();
-		beanMap.remove(hero.getId());
+		getBeanMap().remove(hero.getId());
 		return true;
 	}
 	
@@ -77,7 +79,7 @@ public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 	 * 武将回收, 赠送给玩家有时效性的武将, 可以进行任意培养, 回收时消耗资源进行回收. 邮件通知给玩家.
 	 */
 	@Override
-	public void doClearExpire(Hero hero) {
+	public void beforeClearExpire(Hero hero) {
 		Map<Integer, Integer> resource = hero.getUsedMaterials();
 		//Send an email to the player notifying that the recycling was completed.
 		long playerId = hero.getPlayerId();

@@ -37,6 +37,7 @@ public class Recycle extends RecyclePo implements IPersistence{
 		Recycle recycle = new Recycle(playerId);
 		recycle.setResourceId(resouceId);
 		recycle.setConfigId(configId);
+		recycle.save();
 		return recycle;
 	}
 	
@@ -60,6 +61,7 @@ public class Recycle extends RecyclePo implements IPersistence{
 	 */
 	public PBResourceRecycle toProto() {
 		PBResourceRecycleBuilder builder = PBResourceRecycleBuilder.newInstance();
+		builder.setUniqueId(resourceId);
 		builder.setConfigId(configId);
 		builder.setRecycleTime(getRecucleTime(configId));
 		builder.setUniqueId(resourceId);

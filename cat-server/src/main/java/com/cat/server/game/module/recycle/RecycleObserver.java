@@ -39,15 +39,16 @@ public class RecycleObserver implements IObserver{
 			return;
 		}
 		//丟到玩家玩家线程池
-		for (Long playerId : playerService.getOnlinePlayerIds()) {
-			DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(playerService.getSessionId(playerId),()->{
-				try {
-					service.onActivityClose(playerId, event.getActivityTypeId());
-				} catch (Exception e) {
-					log.error("DisruptorDispatchTask error", e);
-				}
-			});
-		}
+//		for (Long playerId : playerService.getOnlinePlayerIds()) {
+//			DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(playerService.getSessionId(playerId),()->{
+//				try {
+//					service.onActivityClose(playerId, event.getActivityTypeId());
+//				} catch (Exception e) {
+//					log.error("DisruptorDispatchTask error", e);
+//				}
+//			});
+//		}
+		service.onActivityClose(event.getActivityTypeId());
     }
 	
 	/**

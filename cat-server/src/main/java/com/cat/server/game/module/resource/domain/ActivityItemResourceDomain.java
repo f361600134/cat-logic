@@ -17,6 +17,10 @@ public class ActivityItemResourceDomain extends AbstractResourceDomain<Long, Act
 		super(playerId);
 	}
 	
+	ActivityItemResourceDomain(long playerId, Map<Long, ActivityItem> itemMap) {
+		super(playerId, itemMap);
+	}
+	
 	@Override
 	public int getTotalLimit() {
 		return LIMIT;
@@ -38,7 +42,7 @@ public class ActivityItemResourceDomain extends AbstractResourceDomain<Long, Act
 					updateList.add(item);
 				else {
 					//已删除物品移除缓存
-					beanMap.remove(item.getUniqueId());
+					getBeanMap().remove(item.getUniqueId());
 					deleteList.add(item);
 				}
 			}
@@ -57,7 +61,7 @@ public class ActivityItemResourceDomain extends AbstractResourceDomain<Long, Act
 			if (count <= 0) return Lists.newArrayList(item);
 			if(item == null) {//没有此物品,创建
 				item = ActivityItem.create(playerId, configId, count);
-				beanMap.put(item.getItemId(), item);
+				getBeanMap().put(item.getItemId(), item);
 				item.save();
 			}else {
 				//有此物品,增加数量
@@ -73,13 +77,12 @@ public class ActivityItemResourceDomain extends AbstractResourceDomain<Long, Act
 	}
 	
 	public static ActivityItemResourceDomain create(long playerId, Map<Long, ActivityItem> beanMap) {
-		ActivityItemResourceDomain domain = new ActivityItemResourceDomain(playerId);
-		domain.setBeanMap(beanMap);
+		ActivityItemResourceDomain domain = new ActivityItemResourceDomain(playerId, beanMap);
 		return domain;
 	}
 
 	@Override
-	public void doClearExpire(ActivityItem v) {
+	public void beforeClearExpire(ActivityItem v) {
 		// TODO Auto-generated method stub
 	}
 	

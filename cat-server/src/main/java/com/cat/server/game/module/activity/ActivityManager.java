@@ -92,6 +92,7 @@ class ActivityManager extends AbstractModuleManager<Integer, ActivityDomain> {
 				// 如果为null, 表示初始化的新活动
 				domain.initData(typeId);
 			}
+			domain.afterInit();
 			domains.put(domain.getId(), domain);
 		}
 		// 开始定时任务

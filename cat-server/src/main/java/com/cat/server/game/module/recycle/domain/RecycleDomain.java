@@ -3,7 +3,8 @@ package com.cat.server.game.module.recycle.domain;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.server.AbstractModuleMultiDomain;
 import com.cat.server.game.data.config.local.ConfigRecycle;
-import com.cat.server.game.module.recycle.strategy.impl.ActivityRecycleStrategy;
+import com.cat.server.game.module.resource.helper.ResourceHelper;
+import com.cat.server.utils.Pair;
 import com.cat.server.utils.TimeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,9 @@ import java.util.Map.Entry;
 /**
 * RecycleDomain
 * @author Jeremy
+* @param Long playerId
+* @param Long ResourceId,等同于RecycleId
+* @param Recycle 可以回收的资源快照 
 */
 public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle> {
 
@@ -25,14 +29,6 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 	
 	////////////业务代码////////////////////
 	
-//	/**
-//	 * 添加一个回收信息对象
-//	 */
-//	public void addRecycle(long uniqueId, int configId, int number) {
-//		Recycle recycle = Recycle.create(getId(), uniqueId, configId);
-//		beanMap.put(recycle.getResourceId(), recycle);
-//	}
-	
 	/**
 	 * 添加一个回收信息对象
 	 * @param uniqueId 唯一id
@@ -42,13 +38,15 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 	public void updateRecycle(long uniqueId, int configId, int number) {
 		//如果数量小于等于0, 则表示移除此道具
 		if (number <= 0) {
-			beanMap.remove(uniqueId);
+			Recycle recycle = beanMap.remove(uniqueId);
+			recycle.delete();
 		}else {
 			Recycle recycle = beanMap.get(uniqueId);
-			if (recycle == null) {//表示创建回收对象
+			if (recycle == null) {//创建回收对象
 				recycle = Recycle.create(getId(), uniqueId, configId);
 			}
 			recycle.setNumber(number);
+			recycle.update();
 		}
 	}
 	
@@ -68,21 +66,13 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 	}
 	
 	/**
-	 * 清理资源
-	 * @return 存档的资源数据, 被删除的资源配置id列表
-<<<<<<< HEAD
-	 * @deprecated 处理的不太好, 耦合比较严重
-=======
-	 * @deprecated 处理的不太好, 偶尔比较严重
->>>>>>> branch 'master' of https://gitee.com/fatiny/cat-logic.git
+	 * 清除资源,回收资源
+	 * @param configIds 需要回收的资源ids
+	 * @return void  
+	 * @date 2022年2月9日下午12:44:06
 	 */
-	public Collection<Integer> clearResource(int activityTypeId) {
-		//筛选符合条件的配置id列表
-		Set<Integer> configIds = ConfigManager.getInstance().getConfigs(ConfigRecycle.class, c-> 
-				(c.getStrategy() instanceof ActivityRecycleStrategy) 
-				&& ((ActivityRecycleStrategy)(c.getStrategy())).getActivityTypeId() == activityTypeId)
-				.keySet();
-		//要清理的回收资源id
+	public Map<Integer, Integer> clearResource(Collection<Integer> configIds) {
+		Map<Integer, Integer> reward = new HashMap<>();
 		configIds.forEach((configId)->{
 			Iterator<Entry<Long, Recycle>> iter = getBeanMap().entrySet().iterator();
 			while (iter.hasNext()) {
@@ -93,17 +83,29 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 					recycle.delete();
 					//缓存中删除
 					iter.remove();
+					//奖励转化
+					ConfigRecycle config = ConfigManager.getInstance().getConfig(ConfigRecycle.class, configId);
+					if (config == null) {
+						continue;
+					}
+					//转换奖励
+					int realNum = ResourceHelper.percentage(recycle.getNumber(), config.getResRate());
+					int number = reward.getOrDefault(configId, 0);
+					number = number + realNum;
+					reward.put(configId, number);
 				}
 			}
 		});
-		return configIds;
+		return reward;
 	}
 	
 	/**
 	 * 检测所有存档是否有需要清掉的存档
-	 * @return
+	 * @return Pair key:可回收资源id列表, value:回收转化资源map
 	 */
-	public void clearResource() {
+	public Pair<Set<Integer>, Map<Integer, Integer>> clearResource() {
+		Set<Integer> ret = new HashSet<>();
+		Map<Integer, Integer> rewardMap = new HashMap<Integer, Integer>();
 		ConfigRecycle config = null;
 		Iterator<Entry<Long, Recycle>> iter = getBeanMap().entrySet().iterator();
 		while (iter.hasNext()) {
@@ -111,15 +113,24 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 			Recycle recycle = entry.getValue();
 			config = ConfigManager.getInstance().getConfig(ConfigRecycle.class, recycle.getConfigId());
 			if (config == null) {
+				//FIXME 如果配置为null,则清理掉过期资源???
 				continue;
 			}
 			long expireTime = config.getStrategy().calculateTimePoint(recycle.getRecieveTime());
 			if (TimeUtil.now() >= expireTime) {
+				//统计回收资源
+				ret.add(config.getId());
+				//回收资源转换奖励
+				int realNum = ResourceHelper.percentage(recycle.getNumber(), config.getResRate());
+				int number = rewardMap.getOrDefault(config.getId(), 0);
+				number = number + realNum;
+				rewardMap.put(config.getId(), number);
 				//表示过期, 处理移除
 				recycle.delete();
 				iter.remove();
 			}
 		}
+		return Pair.of(ret, rewardMap);
 	}
 	
 	/**

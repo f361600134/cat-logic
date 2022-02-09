@@ -1,5 +1,7 @@
 package com.cat.server.game.module.resource.domain;
 
+import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.game.module.recycle.IRecycleService;
 import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceDomain;
 import org.slf4j.Logger;
@@ -8,6 +10,11 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.Map.Entry;
 
+/**
+ * 资源管理类域代理, 处理资源公共操作逻辑封装
+ * @auth Jeremy
+ * @date 2022年2月9日下午7:42:15
+ */
 abstract class AbstractResourceDomain<K, V extends IResource> implements IResourceDomain<K, V>{
 	
 	protected final Logger log = LoggerFactory.getLogger(getClass());
@@ -17,7 +24,7 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	 * key: 资源唯一id
 	 * value: 资源
 	 */
-	protected Map<K, V> beanMap = new HashMap<>();
+	private Map<K, V> beanMap;
 	
 	/**
 	 * 有变动的资源列表, 当外部获取后,清空此集合
@@ -28,29 +35,37 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	 */
 	protected List<V> deleteList = new ArrayList<>();
 	
+	protected IRecycleService recycleService;
+	
 	AbstractResourceDomain() {
 	}
 	
 	AbstractResourceDomain(long playerId) {
 		this.playerId = playerId;
+		this.beanMap = new HashMap<>();
+		this.recycleService = SpringContextHolder.getBean(IRecycleService.class);
+	}
+	
+	AbstractResourceDomain(long playerId, Map<K, V> itemMap) {
+		this.playerId = playerId;
+		this.beanMap = itemMap;
+		this.recycleService = SpringContextHolder.getBean(IRecycleService.class);
+		this.afterInit();
 	}
 	
 	public long getPlayerId() {
 		return playerId;
 	}
 	
-	public void setBeanMap(Map<K, V> beanMap) {
-		this.beanMap = beanMap;
-	}
+//	public void setBeanMap(Map<K, V> beanMap) {
+//		this.beanMap = beanMap;
+//		this.afterInit();
+//	}
 
 	public Map<K, V> getBeanMap() {
 		return this.beanMap;
 	}
 	
-	public void addBeanMap(Map<K, V> beanMap) {
-		this.beanMap.putAll(beanMap);
-	}
-
 	@Override
 	public List<V> getAndClearUpdateList() {
 		List<V> ret = new ArrayList<>(updateList);
@@ -156,7 +171,7 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 			Entry<K, V> entry = (Entry<K, V>) iter.next();
 			V v = entry.getValue();
 			if (v.getConfigId() == configId) {
-				this.doClearExpire(v);
+				this.beforeClearExpire(v);
 				v.delete();
 				iter.remove();
 				deleteList.add(v);
@@ -167,6 +182,27 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	@Override
 	public int getCount(int configId) {
 		return this.getTotalCountByConfigId(configId);
+	}
+	
+	/**
+	 * 初始化后的操作
+	 * @return void  
+	 * @date 2022年2月9日下午7:43:13
+	 */
+	public void afterInit() {
+		Iterator<Entry<K, V>> iter = beanMap.entrySet().iterator();
+		while (iter.hasNext()) {
+			V res = iter.next().getValue();
+			long playerId = res.getPlayerId();
+			long uniqueId = res.getUniqueId();
+			int configId = res.getConfigId();
+			boolean bool = this.recycleService.checkRecycle(playerId, uniqueId, configId);
+			if (bool) {
+				//true表示可以被回收,并且已经被回收了
+				this.beforeClearExpire(res);
+				iter.remove();
+			}
+		}
 	}
 	
 	/**
@@ -190,9 +226,9 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	public abstract int getTotalLimit();
 	
 	/**
-	 * 处理资源清除细节操作, 对比有消耗类的资源回收, 子类根据需要去处理
+	 * 处理资源清除后的操作, 对比有消耗类的资源回收, 子类根据需要去处理
 	 * @param v
 	 */
-	public abstract void doClearExpire(V v);
+	public abstract void beforeClearExpire(V v);
 	
 }

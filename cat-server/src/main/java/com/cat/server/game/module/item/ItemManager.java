@@ -12,6 +12,4 @@ import org.springframework.stereotype.Component;
 @Component
 class ItemManager extends AbstractModuleManager<Long,ItemDomain>{
 	
-	
-	
 }

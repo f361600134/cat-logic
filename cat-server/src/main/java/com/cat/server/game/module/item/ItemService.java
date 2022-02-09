@@ -15,6 +15,7 @@ import com.cat.server.game.module.item.domain.ItemDomain;
 import com.cat.server.game.module.item.proto.RespItemDeleteBuilder;
 import com.cat.server.game.module.item.proto.RespItemUpdateBuilder;
 import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.recycle.IRecycleService;
 import com.cat.server.game.module.resource.IResourceService;
 
 /**
@@ -29,6 +30,8 @@ class ItemService implements IItemService, IResourceService{
 	@Autowired private IPlayerService playerService;
 	
 	@Autowired private ItemManager itemManager;
+	
+	@Autowired private IRecycleService recycleService;
 
 	/**
 	 * 当登陆成功,下发物品列表

@@ -1,5 +1,6 @@
 package com.cat.server.game.module.recycle;
 
+import com.cat.net.core.executor.DisruptorStrategy;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ConfigRecycle;
 import com.cat.server.game.data.proto.PBRecycle.ReqResourceRecycleInfo;
@@ -12,14 +13,14 @@ import com.cat.server.game.module.recycle.domain.RecycleDomain;
 import com.cat.server.game.module.recycle.proto.RespResourceRecycleInfoBuilder;
 import com.cat.server.game.module.recycle.strategy.impl.ActivityRecycleStrategy;
 import com.cat.server.game.module.resource.IResourceGroupService;
-import com.cat.server.game.module.resource.helper.ResourceHelper;
+import com.cat.server.utils.Pair;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -61,61 +62,73 @@ class RecycleService implements IRecycleService {
 	}
 	
 
-	/**
-	 * 当活动结束, 此活动相关的资源全部回收
-	 * @param playerId 玩家id
-	 *  @param activityTypeId 活动类型id
-	 */
-    public void onActivityClose(long playerId, int activityTypeId){
-    	RecycleDomain domain = recycleManager.getDomain(playerId);
-		if (domain == null) {
-			log.info("onLogin error, domain is null, playerId:{}", playerId);
-			return;
-		}
-		//清理移除掉的资源
-		Collection<Integer> removeRes = domain.clearResource(activityTypeId);
-		if (removeRes.isEmpty()) {
-			return;
-		}
-		//回收资源转化
-		Map<Integer, Integer> reward = new HashMap<>();
-		for (Integer configId : removeRes) {
-			ConfigRecycle config = ConfigManager.getInstance().getConfig(ConfigRecycle.class, configId);
-			if (config == null) {
-				continue;
-			}
-			int number = resourceGroupService.getCount(playerId, configId);
-			int realNum = ResourceHelper.percentage(number, config.getResRate());
-			reward.put(config.getResId(), realNum);
-		}
-		//邮件通知
-		mailService.sendMail(MailType.PLAYER_MAIL.getMailType(), playerId, MailTemplate.ACTIVITY_ITEM_RECYCLE.getMailConfigId(), reward);
-		//清空背包
-		resourceGroupService.clearExpire(playerId, removeRes);
-		this.responseRecycleInfo(domain);
-    }
+//	/**
+//	 * 当活动结束, 此活动相关的资源全部回收
+//	 * @param playerId 玩家id
+//	 *  @param activityTypeId 活动类型id
+//	 */
+//    public void onActivityClose(long playerId, int activityTypeId){
+//    	RecycleDomain domain = recycleManager.getDomain(playerId);
+//		if (domain == null) {
+//			log.info("onLogin error, domain is null, playerId:{}", playerId);
+//			return;
+//		}
+//		//清理移除掉的资源
+//		Collection<Integer> removeRes = domain.clearResource(activityTypeId);
+//		if (removeRes.isEmpty()) {
+//			return;
+//		}
+//		//回收资源转化
+//		Map<Integer, Integer> reward = new HashMap<>();
+//		for (Integer configId : removeRes) {
+//			ConfigRecycle config = ConfigManager.getInstance().getConfig(ConfigRecycle.class, configId);
+//			if (config == null) {
+//				continue;
+//			}
+//			int number = resourceGroupService.getCount(playerId, configId);
+//			int realNum = ResourceHelper.percentage(number, config.getResRate());
+//			reward.put(config.getResId(), realNum);
+//		}
+//		//邮件通知
+//		mailService.sendMail(MailType.PLAYER_MAIL.getMailType(), playerId, MailTemplate.ACTIVITY_ITEM_RECYCLE.getMailConfigId(), reward);
+//		//清空背包
+//		resourceGroupService.clearExpire(playerId, removeRes);
+//		this.responseRecycleInfo(domain);
+//    }
 
 	/**
-	 * 当活动结束,回收模块检测是否有可回收资源
+	 * 当活动结束,回收模块检测是否有可回收资源<br>
+	 * 在线玩家当资源回收后，通知背包系统清理资源
+	 * 离线玩家当资源回收后，登录时进行资源过滤
 	 *  @param activityTypeId 活动类型id
 	 */
 	public void onActivityClose(int activityTypeId){
-		//统计相关资源
+		//统计可回收的相关资源
 		Set<Integer> configIds = ConfigManager.getInstance().getConfigs(ConfigRecycle.class, c->
 				(c.getStrategy() instanceof ActivityRecycleStrategy)
 						&& ((ActivityRecycleStrategy)(c.getStrategy())).getActivityTypeId() == activityTypeId)
 				.keySet();
 		//获取指定活动玩家列表,进行回收
-
-
+		Collection<RecycleDomain> domains = recycleManager.getAllDomain();
+		for (RecycleDomain domain : domains) {
+			long playerId = domain.getId();
+			//不管是否在线, 丢到玩家线程处理资源回收
+			DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(playerService.getSessionId(playerId),()->{
+				try {
+					Map<Integer, Integer> rewardMap = domain.clearResource(configIds);
+					if (rewardMap.isEmpty()) {
+						return;
+					}
+					//邮件通知
+					mailService.sendMail(MailType.PLAYER_MAIL.getMailType(), playerId, MailTemplate.ACTIVITY_ITEM_RECYCLE.getMailConfigId(), rewardMap);
+					//清空背包
+					resourceGroupService.clearExpire(playerId, configIds);
+				} catch (Exception e) {
+					log.error("DisruptorDispatchTask error", e);
+				}
+			});
+		}
 	}
-    
-    /**
-     * 检测邮件回收
-     */
-    public void checkItemRecycle() {
-    	
-    }
     
     /**
 	 * 当新增加资源
@@ -163,7 +176,13 @@ class RecycleService implements IRecycleService {
 				return;
 			}
 			//清理过期资源
-			domain.clearResource();
+			Pair<Set<Integer>, Map<Integer, Integer>> ret = domain.clearResource();
+			//如果清理的资源存在奖励, 应该先发奖励邮件. 然后通知其他背包系统清理过期资源
+			if (!ret.getValue().isEmpty()) {
+				//邮件通知
+				mailService.sendMail(MailType.PLAYER_MAIL.getMailType(), playerId, MailTemplate.ACTIVITY_ITEM_RECYCLE.getMailConfigId(), ret.getValue());
+			}
+			resourceGroupService.clearExpire(playerId, ret.getKey());
 			//下发客户端
 			this.responseRecycleInfo(domain);
 		} catch (Exception e) {
