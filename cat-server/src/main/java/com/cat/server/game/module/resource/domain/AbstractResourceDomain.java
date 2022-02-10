@@ -229,6 +229,6 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	 * 处理资源清除后的操作, 对比有消耗类的资源回收, 子类根据需要去处理
 	 * @param v
 	 */
-	public abstract void beforeClearExpire(V v);
+	public void beforeClearExpire(V v) {}
 	
 }

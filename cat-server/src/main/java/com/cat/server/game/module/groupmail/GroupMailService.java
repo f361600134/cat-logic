@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSON;
 import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.common.ServerConfig;
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.groupmail.domain.GroupMail;
@@ -27,7 +28,7 @@ import com.cat.server.game.module.player.IPlayerService;
  * @author Jeremy
  */
 @Service
-class GroupMailService implements IMailServiceContainer{
+class GroupMailService implements IMailServiceContainer, ILifecycle{
 	
 	private static final Logger log = LoggerFactory.getLogger(GroupMailService.class);
 	
@@ -98,9 +99,11 @@ class GroupMailService implements IMailServiceContainer{
 		return groupMailManager.getGroupMails(serverConfig.getServerId()).getData();
 	}
 	
-	public static void main(String[] args) {
-		Map<Integer, Integer> map = new HashMap<>();
-		map.put(10001, 1);
-		System.out.println(JSON.toJSON(map));
+	
+	@Override
+	public void start() throws Throwable {
+		this.groupMailManager.init();
 	}
+	
+	
 }

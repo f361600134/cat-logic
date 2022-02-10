@@ -110,7 +110,7 @@ public class LearnCommunityService implements ILearnCommunityService{
 	public void onActivityClose() {
 		//邮件通知
 		for (LearnCommunityDomain domain : manager.getAllDomain()) {
-			LearnCommunity bean = domain.getBean();
+			//LearnCommunity bean = domain.getBean();
 			
 		}
 		//清理数据

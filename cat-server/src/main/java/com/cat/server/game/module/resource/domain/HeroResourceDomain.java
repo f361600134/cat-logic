@@ -10,7 +10,7 @@ import com.cat.server.game.module.hero.domain.Hero;
 import com.cat.server.game.module.mail.IMailService;
 import com.cat.server.game.module.mail.assist.MailTemplate;
 import com.cat.server.game.module.mail.assist.MailType;
-import com.cat.server.game.module.resource.event.ResourceAddEvent;
+import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
 
 /**
  * 武将资源处理代理类
@@ -52,7 +52,7 @@ public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 			heros.add(hero);
 			updateList.add(hero);
 			//发送事件
-			GameEventBus.getInstance().post(ResourceAddEvent.create(hero, 1));
+			GameEventBus.getInstance().post(ResourceUpdateEvent.create(hero, 1));
 		}
 		return heros;
 	}

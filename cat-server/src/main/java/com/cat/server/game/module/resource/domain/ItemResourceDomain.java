@@ -8,7 +8,7 @@ import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.data.config.local.ConfigItem;
 import com.cat.server.game.module.item.domain.Item;
-import com.cat.server.game.module.resource.event.ResourceAddEvent;
+import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
 import com.google.common.collect.Lists;
 
 public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
@@ -106,7 +106,7 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 			item.update();
 		}
 		//发送事件
-		GameEventBus.getInstance().post(ResourceAddEvent.create(item, count));
+		GameEventBus.getInstance().post(ResourceUpdateEvent.create(item, count));
 		return Lists.newArrayList(item);
 	}
 	
@@ -126,7 +126,7 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 			this.getBeanMap().put(item.getItemId(), item);
 			items.add(item);
 			//发送事件
-			GameEventBus.getInstance().post(ResourceAddEvent.create(item, 1));
+			GameEventBus.getInstance().post(ResourceUpdateEvent.create(item, 1));
 		}
 		return items;
 	}
@@ -144,11 +144,6 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 	public static ItemResourceDomain create(long playerId, Map<Long, Item> beanMap) {
 		ItemResourceDomain domain = new ItemResourceDomain(playerId, beanMap);
 		return domain;
-	}
-
-	@Override
-	public void beforeClearExpire(Item v) {
-		// TODO Auto-generated method stub
 	}
 
 }

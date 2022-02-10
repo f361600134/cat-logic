@@ -45,11 +45,11 @@ public class Recycle extends RecyclePo implements IPersistence{
 	 * 计算回收时间<br>
 	 * 如果依赖活动, 则获取活动结束时间<br>
 	 * 如果限时类的道具, 则获取限时时间戳, 计算回收时间<br>
-	 *  如果即依赖活动, 又限时, 那么限时时长截止时间戳, 大于活动结束时间戳时, 以活动结束时间戳为准
+	 * 如果即依赖活动, 又限时, 那么限时时长截止时间戳, 大于活动结束时间戳时, 以活动结束时间戳为准
 	 * @param configId
 	 * @return
 	 */
-	public long getRecucleTime(int configId) {
+	public long getRecycleTime(int configId) {
 		ConfigRecycle config = ConfigManager.getInstance().getConfig(ConfigRecycle.class, configId);
 		IRecycleStrategy strategy = config.getStrategy();
 		return strategy.calculateTimePoint(recieveTime);
@@ -63,7 +63,7 @@ public class Recycle extends RecyclePo implements IPersistence{
 		PBResourceRecycleBuilder builder = PBResourceRecycleBuilder.newInstance();
 		builder.setUniqueId(resourceId);
 		builder.setConfigId(configId);
-		builder.setRecycleTime(getRecucleTime(configId));
+		builder.setRecycleTime(getRecycleTime(configId));
 		builder.setUniqueId(resourceId);
 		return builder.build();
 	} 

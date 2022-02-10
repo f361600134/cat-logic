@@ -5,14 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.cat.net.core.executor.DisruptorStrategy;
 import com.cat.server.core.event.IObserver;
 import com.cat.server.game.module.activity.event.ActivityStatusUpdateEvent;
 import com.cat.server.game.module.activity.status.IActivityStatus;
-import com.cat.server.game.module.hero.event.HeroAddEvent;
-import com.cat.server.game.module.item.event.ItemAddEvent;
-import com.cat.server.game.module.player.IPlayerService;
-import com.cat.server.game.module.resource.event.ResourceAddEvent;
+import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
 import com.google.common.eventbus.Subscribe;
 
 /**
@@ -26,9 +22,6 @@ public class RecycleObserver implements IObserver{
 	@Autowired
     private RecycleService service;
 	
-	@Autowired
-    private IPlayerService playerService;
-	
 	/**
 	 * 这里监听的是活动结束, 活动结束后所有清掉所有在线玩家的某个活动数据, 所以所有在线玩家的处理, 要丢进玩家线程池处理
 	 * @param event
@@ -38,32 +31,14 @@ public class RecycleObserver implements IObserver{
 		if (event.getStatus() != IActivityStatus.CLOSE) {
 			return;
 		}
-		//丟到玩家玩家线程池
-//		for (Long playerId : playerService.getOnlinePlayerIds()) {
-//			DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(playerService.getSessionId(playerId),()->{
-//				try {
-//					service.onActivityClose(playerId, event.getActivityTypeId());
-//				} catch (Exception e) {
-//					log.error("DisruptorDispatchTask error", e);
-//				}
-//			});
-//		}
 		service.onActivityClose(event.getActivityTypeId());
     }
 	
 	/**
-	 * 当监听到新增道具
+	 * 资源数量变化
 	 */
 	@Subscribe
-	public void onItemAddEvent(ItemAddEvent event) {
-		service.onResourceAddEvent(event.getPlayerId(), event.getItemId(), event.getConfigId(), 0);
-	}
-	
-	/**
-	 * 当监听到新增道具
-	 */
-	@Subscribe
-	public void onResourceAddEvent(ResourceAddEvent event) {
+	public void onResourceUpdateEvent(ResourceUpdateEvent event) {
 		service.onResourceAddEvent(event.getPlayerId(), event.getItemId(), event.getConfigId(), event.getCurCount());
 	}
 	

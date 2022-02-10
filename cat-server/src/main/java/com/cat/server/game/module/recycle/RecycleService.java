@@ -135,6 +135,7 @@ class RecycleService implements IRecycleService {
 	 * @param playerId 玩家id
 	 * @param uniqueId 唯一id
 	 * @param configId 配置id
+	 * @param number 当前数量
 	 */
     public void onResourceAddEvent(long playerId, long uniqueId, int configId, int number){
 		//如果属于回收道具, 存档

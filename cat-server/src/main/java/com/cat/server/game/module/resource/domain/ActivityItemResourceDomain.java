@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 
 /**
 * @author Jeremy
+* @deprecated 弃用活动背包
 */
 public class ActivityItemResourceDomain extends AbstractResourceDomain<Long, ActivityItem>{
 	
