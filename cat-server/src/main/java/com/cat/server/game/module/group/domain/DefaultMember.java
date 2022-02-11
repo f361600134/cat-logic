@@ -15,7 +15,6 @@ public class DefaultMember implements IMember {
 	
 	/**
 	 * 职位, 可以根据职位获取到权限
-	 * 0:默认成员,无职位
 	 */
 	private int position;
 	

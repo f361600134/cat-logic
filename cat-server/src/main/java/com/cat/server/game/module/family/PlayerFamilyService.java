@@ -1,11 +1,14 @@
 package com.cat.server.game.module.family;
 
+import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
 import com.cat.server.game.module.family.domain.PlayerFamily;
 import com.cat.server.game.module.family.domain.PlayerFamilyDomain;
 import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.resource.service.ResourceGroupService;
 import com.cat.server.utils.TimeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -14,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -25,6 +30,8 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 	private static final Logger log = LoggerFactory.getLogger(PlayerFamilyService.class);
 	
 	@Autowired private IPlayerService playerService;
+	
+	@Autowired private ResourceGroupService resourceGroupService;
 	
 	@Autowired private FamilyService familyService;
 	
@@ -79,18 +86,28 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 			return ErrorCode.CONTENT_INVALID_NAME;
 		}
 		//TODO 敏感字判断,特殊字符,长度判断
+		//TODO 判断消耗
+		Map<Integer, Integer> costMap = new HashMap<Integer, Integer>();
+		if (!resourceGroupService.check(playerId, costMap)) {
+			return ErrorCode.AMOUNT_NOT_ENOUGH;
+		}
+		// 判断重复进入家族
+		long familyId = familyService.getPlayerFamilyId(playerId);
+		if (familyId > 0) {
+			return ErrorCode.FAMILY_ALREADY_IN_FAMILY;
+		}
 		try {
-			ErrorCode errorCode = familyService.createFamily(playerId, name);
-			if (!errorCode.isSuccess()){
-				return errorCode;
+			ResultCodeData<Family> resultCode = familyService.createFamily(playerId, name);
+			if (!resultCode.isSuccess()){
+				return resultCode.getErrorCode();
 			}
-			Family family = familyService.getFamilyByPlayerId(playerId);
+			Family family = resultCode.getData();
 			//	下发家族信息
 			this.responsePlayerFamilyInfo(playerId, family);
 			//	返回创建家族成功信息
 		} catch (Exception e) {
 			e.printStackTrace();
-			log.error("createFamily error");
+			log.error("createFamily error, playerId:{}, name:{}, e:{}", playerId, name, e);
 		}
 		return ErrorCode.SUCCESS;
 	}
@@ -107,7 +124,7 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 			return ErrorCode.CONTENT_INVALID_NAME;
 		}
 		//TODO 敏感字判断,特殊字符,长度判断
-		PlayerFamilyDomain domain = playerFamilyManager.getOrLoadDomain(playerId);
+		PlayerFamilyDomain domain = playerFamilyManager.getDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.DOMAIN_IS_NULL;
 		}
@@ -149,7 +166,7 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 	 * @date 2021年5月10日下午11:19:24
 	 */
 	public ErrorCode applyJoinFamily(long playerId, long familyId) {
-		PlayerFamilyDomain domain = playerFamilyManager.getOrLoadDomain(playerId);
+		PlayerFamilyDomain domain = playerFamilyManager.getDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.DOMAIN_IS_NULL;
 		}
@@ -173,7 +190,7 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 	 * @date 2021年5月10日下午11:19:24
 	 */
 	public ErrorCode exitFamily(long playerId) {
-		PlayerFamilyDomain domain = playerFamilyManager.getOrLoadDomain(playerId);
+		PlayerFamilyDomain domain = playerFamilyManager.getDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.DOMAIN_IS_NULL;
 		}

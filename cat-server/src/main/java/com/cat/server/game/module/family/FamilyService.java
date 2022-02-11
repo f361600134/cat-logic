@@ -11,15 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.api.core.task.TokenTaskQueueExecutor;
+import com.cat.net.core.executor.DisruptorStrategy;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.family.assist.FamilyPosition;
 import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
 import com.cat.server.game.module.family.domain.FamilyDomain;
 import com.cat.server.game.module.group.domain.DefaultApply;
+import com.cat.server.game.module.player.IPlayerService;
 
 
 /**
@@ -37,6 +40,9 @@ class FamilyService implements IFamilyService, ILifecycle{
 	@Autowired
 	private FamilyManager familyManager;
 	
+	@Autowired
+	private IPlayerService playerService;
+	
 	/**	公共的线程池处理器*/
 	@Autowired
 	private TokenTaskQueueExecutor defaultExecutor;
@@ -44,15 +50,15 @@ class FamilyService implements IFamilyService, ILifecycle{
 	/**
 	 * 创建家族
 	 */
-	public ErrorCode createFamily(long playerId, String name) throws Exception{
+	public ResultCodeData<Family> createFamily(long playerId, String name) throws Exception{
 		FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
-		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
+		Future<ResultCodeData<Family>> future = defaultExecutor.submit(0, ()->{
 			if (domain.containsName(name)){
-				return ErrorCode.FAMILY_NAME_EXIST;
+				return ResultCodeData.of(ErrorCode.FAMILY_NAME_EXIST);
 			}
-			domain.create(playerId, name);
-			//	生成家族日志
-			return ErrorCode.SUCCESS;
+			Family family = domain.create(playerId, name);
+			//TODO	生成家族日志
+			return ResultCodeData.of(ErrorCode.SUCCESS, family);
 		});
 		return future.get();
 	}
@@ -133,9 +139,19 @@ class FamilyService implements IFamilyService, ILifecycle{
 				return ErrorCode.FAMILY_NO_FAMILY;
 			}
 			//TODO	判断是否符合进入家族的条件
-			//	请求加入申请列表,有权限的人审批后, 把指定玩家加入到家族内, 并通知该玩家.
+			// 请求加入申请列表,有权限的人审批后, 把指定玩家加入到家族内, 并通知该玩家.
 			DefaultApply familyApply = DefaultApply.create(playerId);
 			family.getApplys().put(familyApply.getPlayerId(), familyApply);
+			// 申请成功, 发送事件通知长老,族长进行审批, 通过红点系统通知
+			family.getMembers().forEach((memberId, member) ->{
+				if (member.getPosition() == FamilyPosition.PATRIARCH.getValue()
+						|| member.getPosition() == FamilyPosition.DEPUTY.getValue()
+						|| member.getPosition() == FamilyPosition.ELDERS.getValue()) {
+					DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(playerService.getSessionId(memberId), ()->{
+						//TODO 发送红点事件,通知家族新申请
+					});
+				}
+			});
 			return ErrorCode.SUCCESS;
 		});
 		return future.get();

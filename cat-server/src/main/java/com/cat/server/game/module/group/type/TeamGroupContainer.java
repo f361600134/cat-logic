@@ -1,6 +1,5 @@
 package com.cat.server.game.module.group.type;
 
-import com.cat.server.game.module.family.domain.Family;
 import com.cat.server.game.module.group.AbstractGroupContainer;
 import com.cat.server.game.module.team.domain.Team;
 
