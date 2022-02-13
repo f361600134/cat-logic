@@ -1,7 +1,11 @@
 package com.cat.server.game.module.group.type;
 
+import com.cat.net.core.executor.DisruptorStrategy;
+import com.cat.server.game.module.family.assist.FamilyPosition;
+import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
 import com.cat.server.game.module.group.AbstractGroupContainer;
+import com.cat.server.game.module.group.domain.DefaultApply;
 
 import java.util.List;
 import java.util.ArrayList;

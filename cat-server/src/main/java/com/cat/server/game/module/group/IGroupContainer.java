@@ -81,5 +81,5 @@ public interface IGroupContainer<T> {
      * @return 符合关键字的团体对象
      */
     public Collection<T> searchGroup(String keyword);
-
+    
 }

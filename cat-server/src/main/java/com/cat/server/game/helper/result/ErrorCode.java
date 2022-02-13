@@ -21,7 +21,7 @@ public enum ErrorCode implements ModuleDefines, CodeEnum{
     RESOURCE_USE_NUM_ERROR(COMMON, 5, "资源使用数量错误，有些资源必须消耗或者增加必须是特定的数量"),
     RESOURCE_CANNOT_CONSUME(COMMON, 6, "该资源不能被消耗"),
     NO_GM_PERMISSION(COMMON, 7, "没有GM权限"),
-    AMOUNT_NOT_ENOUGH(COMMON, 8, "数量不足"),// 对于非资源数据，数量不足的通用描述
+    AMOUNT_NOT_ENOUGH(COMMON, 8, "资源数量不足"),// 对于非资源数据，数量不足的通用描述
     FORMULA_NOT_EXIST(COMMON, 9, "公式不存在"),
     CONTENT_EXIST_BAD_WORD(COMMON, 10, "输入的内容包含敏感字"),
     CONTENT_UNSUPPORT_OPERATION(COMMON, 11, "不支持的操作"),

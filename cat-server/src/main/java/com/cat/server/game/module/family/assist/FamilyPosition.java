@@ -6,7 +6,10 @@ import java.util.Map;
 import com.cat.orm.util.StateUtils;
 
 public enum FamilyPosition {
-	
+	/**
+	 * 普通成员
+	 */
+	NOMAL(0),
 	/**
 	 * 族长
 	 */
@@ -23,10 +26,7 @@ public enum FamilyPosition {
 	 * 自定义职位
 	 */
 	DEFINE(7),
-	/**
-	 * 普通成员
-	 */
-	NOMAL(9),
+	
 	;
 	
 	private final int value;
@@ -86,9 +86,11 @@ public enum FamilyPosition {
     	
     	System.out.println("族长踢人："+StateUtils.check(patriarch, FamilyPrivilege.FIRE.getPrivilege()));
     	System.out.println("长老踢人："+StateUtils.check(elders, FamilyPrivilege.FIRE.getPrivilege()));
+    	System.out.println("普通成员踢人："+StateUtils.check(nomal, FamilyPrivilege.FIRE.getPrivilege()));
     	
     	System.out.println("族长改名："+StateUtils.check(patriarch, FamilyPrivilege.RENAME.getPrivilege()));
     	System.out.println("长老改名："+StateUtils.check(elders, FamilyPrivilege.RENAME.getPrivilege()));
+    	System.out.println("普通成员改名："+StateUtils.check(nomal, FamilyPrivilege.RENAME.getPrivilege()));
     	
 	}
 	

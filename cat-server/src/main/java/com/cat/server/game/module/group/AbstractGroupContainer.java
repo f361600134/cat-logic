@@ -81,7 +81,7 @@ public abstract class AbstractGroupContainer <T extends IGroup> implements IGrou
 	@Override
 	public T create(long memberId, String groupName) {
 		long id = this.generator.nextId();
-		T t = newGroup(id, groupName);
+		T t = this.newGroup(id, groupName);
 		this.groupMap.put(id, t);
 		this.groupNameMap.put(groupName, id);
 		//创建领导者对象

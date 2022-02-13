@@ -1,5 +1,7 @@
 package com.cat.server.game.module.group.domain;
 
+import com.cat.server.utils.TimeUtil;
+
 /**
  * 进入家族申请信息
  * @auth Jeremy
@@ -19,6 +21,7 @@ public class DefaultApply {
 
 	public DefaultApply(long playerId) {
 		this.playerId = playerId;
+		this.createTime = TimeUtil.now();
 	}
 	
 	public long getPlayerId() {
