@@ -10,7 +10,6 @@ import com.cat.server.game.module.chat.assist.ChannelType;
 import com.cat.server.game.module.chat.domain.Chat;
 import com.cat.server.game.module.chat.type.AbstractChatType;
 import com.cat.server.game.module.family.IFamilyService;
-import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.utils.Pair;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;

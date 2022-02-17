@@ -8,6 +8,9 @@ public enum SystemCodeEnum implements ModuleDefines, CodeEnum{
 	UNKNOW(0,-1, "未知异常"),
 	SUCCESS(0, 0, "SUCCESS"),
 	
+	//玩家
+	PLAYER_NOT_FOUND(PLAYER, 1, "玩家不存在"),
+	
 	//邮件
 	MAIL_TYPE_UNDEFINE(MAIL, 1, "未定义的邮件类型"),
 	

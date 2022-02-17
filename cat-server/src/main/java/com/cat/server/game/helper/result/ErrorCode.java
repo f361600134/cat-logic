@@ -36,7 +36,7 @@ public enum ErrorCode implements ModuleDefines, CodeEnum{
     ACCOUNT_NOT_FOUNT(ACCOUNT, 6, "无该玩家数据"),
     // ---------------登录-------------------
     
- // ---------------玩家-------------------
+    // ---------------玩家-------------------
     INVALID_PLAYER_NAME(PLAYER, 1, "无效玩家名"),
     PLAYER_NAME_TOO_LENGTH(PLAYER, 2, "玩家名过长"),
     EXISTS_SAME_PLAYER_NAME(PLAYER, 3, "存在相同的玩家名"),

@@ -8,7 +8,7 @@ import com.cat.server.game.module.mail.IMail;
 import com.cat.server.utils.TimeUtil;
 
 /**
- * 后台邮件
+ * 后台邮件Dto
  * @author Jeremy
  */
 public class BackstageMail {
