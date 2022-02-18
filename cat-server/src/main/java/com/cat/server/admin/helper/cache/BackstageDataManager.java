@@ -10,6 +10,8 @@ import com.cat.orm.core.db.process.IDataProcess;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
+import ch.qos.logback.core.joran.conditional.IfAction;
+
 /**
  * 后台数据管理, 用于缓存后台查询的离线数据
  * @author Jeremy
@@ -42,7 +44,9 @@ public class BackstageDataManager {
 		IBasePo data = cache.getIfPresent(uniqueId);
 		if (data == null) {
 			data = dataProcess.selectByPrimaryKey(clazz, uniqueId);
-			cache.put(uniqueId, data);
+			if(data != null) {
+				cache.put(uniqueId, data);
+			}
 		}
 		return (T) data;
 	} 
