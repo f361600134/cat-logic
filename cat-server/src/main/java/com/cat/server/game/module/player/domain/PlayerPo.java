@@ -70,9 +70,9 @@ public abstract class PlayerPo extends BasePo {
 	/** 渠道Id*/
 	protected int channel;
 	/** 注册时间*/
-	protected java.util.Date regTime;
+	protected long regTime;
 	/** 最后登陆时间*/
-	protected java.util.Date lastTime;
+	protected long lastTime;
 	/** 当前服务器Id*/
 	protected int curServerId;
 	/** 玩家创角时的,最原始服务器Id*/
@@ -143,20 +143,20 @@ public abstract class PlayerPo extends BasePo {
 	}
 	
 	/** 注册时间 **/
-	public java.util.Date getRegTime(){
+	public long getRegTime(){
 		return this.regTime;
 	}
 	
-	public void setRegTime(java.util.Date regTime){
+	public void setRegTime(long regTime){
 		this.regTime = regTime;
 	}
 	
 	/** 最后登陆时间 **/
-	public java.util.Date getLastTime(){
+	public long getLastTime(){
 		return this.lastTime;
 	}
 	
-	public void setLastTime(java.util.Date lastTime){
+	public void setLastTime(long lastTime){
 		this.lastTime = lastTime;
 	}
 	

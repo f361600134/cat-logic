@@ -104,14 +104,14 @@ public class BackstageMail {
 		this.serverIds = serverIds;
 	}
 
-	public static BackstageMail create(IMail mail) {
-		BackstageMail backMail = new BackstageMail();
-		backMail.setMailId(mail.getId());
-		backMail.setTitle(mail.getTitle());
-		backMail.setContent(mail.getContent());
-		backMail.setExpireDays(TimeUtil.getDifferDay(mail.getCreateTime(), mail.getExpireTime()));
-		backMail.setReward(mail.getRewardMap());
-		return backMail;
-	}
+//	public static BackstageMail create(IMail mail) {
+//		BackstageMail backMail = new BackstageMail();
+//		backMail.setMailId(mail.getId());
+//		backMail.setTitle(mail.getTitle());
+//		backMail.setContent(mail.getContent());
+//		backMail.setExpireDays(TimeUtil.getDifferDay(mail.getCreateTime(), mail.getExpireTime()));
+//		backMail.setReward(mail.getRewardMap());
+//		return backMail;
+//	}
 	
 }

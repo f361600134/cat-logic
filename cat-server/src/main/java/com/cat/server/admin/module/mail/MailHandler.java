@@ -1,8 +1,6 @@
 package com.cat.server.admin.module.mail;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import com.cat.server.admin.helper.result.IResult;
 import com.cat.server.admin.helper.result.SystemCodeEnum;
 import com.cat.server.admin.helper.result.SystemResult;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.IMailService;
 
 /**
@@ -25,6 +22,8 @@ import com.cat.server.game.module.mail.IMailService;
 public class MailHandler {
 	
 	@Autowired private IMailService mailService;
+	
+	@Autowired private IMailMapper mailMapper;
 	
 	/**
 	 * 发送个人邮件
@@ -75,11 +74,12 @@ public class MailHandler {
 		final long playerId = mail.getPlayerId();
 		
 		//游戏邮件转后台邮件
-		List<BackstageMail> rets = new ArrayList<>();
-		Collection<? extends IMail> gameMails = mailService.getMails(mailType, playerId);
-		for (IMail gameMail : gameMails) {
-			rets.add(BackstageMail.create(gameMail));
-		}
+//		List<BackstageMail> rets = new ArrayList<>();
+//		Collection<? extends IMail> gameMails = mailService.getMails(mailType, playerId);
+//		for (IMail gameMail : gameMails) {
+//			rets.add(BackstageMail.create(gameMail));
+//		}
+		Collection<BackstageMail> rets = mailMapper.toDto(mailService.getMails(mailType, playerId));
 		return SystemResult.build(SystemCodeEnum.SUCCESS, rets);
 	}
 

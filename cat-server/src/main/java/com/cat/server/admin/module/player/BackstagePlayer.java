@@ -1,7 +1,5 @@
 package com.cat.server.admin.module.player;
 
-import com.cat.server.game.module.player.domain.Player;
-
 /**
  * 后台玩家数据Dto
  * @author Jeremy
@@ -130,10 +128,4 @@ public class BackstagePlayer {
 	public void setPropertieStr(String propertieStr) {
 		this.propertieStr = propertieStr;
 	}
-	
-	public static BackstagePlayer create(Player player) {
-		BackstagePlayer backPlayer = new BackstagePlayer();
-		return backPlayer;
-	}
-	
 }

@@ -1,24 +1,16 @@
 package com.cat.server.admin.module.player;
 
-import java.math.BigInteger;
-import java.util.concurrent.TimeUnit;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.cat.net.http.annatation.RequestMapping;
-import com.cat.orm.core.db.process.IDataProcess;
 import com.cat.server.admin.helper.cache.BackstageDataManager;
 import com.cat.server.admin.helper.result.IResult;
 import com.cat.server.admin.helper.result.SystemCodeEnum;
 import com.cat.server.admin.helper.result.SystemResult;
-import com.cat.server.game.module.chat.domain.Chat;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 /**
  * @author Jeremy
@@ -31,9 +23,11 @@ public class PlayerHandler {
 	
 	@Autowired private BackstageDataManager dataManager;
 	
+	@Autowired private IPlayerMapper playerMapper;
+	
 	/**
 	 * 查看玩家信息
-	 * http://localhost:8001/mail/selectPlayer?playerId=10001
+	 * http://localhost:8001/player/selectPlayer?playerId=1
 	 */
 	@RequestMapping("/selectPlayer")
 	public IResult selectPlayer(long playerId) {
@@ -49,7 +43,7 @@ public class PlayerHandler {
 		if (player == null) {
 			return SystemResult.build(SystemCodeEnum.PLAYER_NOT_FOUND);
 		}
-		BackstagePlayer backPlayer = BackstagePlayer.create(player);
+		BackstagePlayer backPlayer = playerMapper.toDto(player);
 		//离线玩家数据封装成DTO,返回给后台
 		return SystemResult.build(SystemCodeEnum.SUCCESS, backPlayer);
 	}
