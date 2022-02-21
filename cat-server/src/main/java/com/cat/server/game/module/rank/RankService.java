@@ -28,7 +28,7 @@ import com.rpc.core.client.RequesterManager;
  * Rank控制器
  */
 @Service
-class RankService implements IRankService {
+class RankService implements IRankService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(RankService.class);
 	

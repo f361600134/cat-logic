@@ -22,9 +22,12 @@ public class App
     	BannerManager.banner();
     	//扫描配置环境
     	ClassManager.instance().loadClasses(ServerConstant.scanPath);
-    	AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("xml/spring-context.xml");
+    	
+    	@SuppressWarnings("resource")
+		AbstractApplicationContext ctx = new ClassPathXmlApplicationContext("xml/spring-context.xml");
 		ctx.registerShutdownHook();
 		ctx.start();
+		
     	logger.info("Hello, Game World! Start server successful, cost time:{}ms", (System.currentTimeMillis() - startTime));
     }
 }

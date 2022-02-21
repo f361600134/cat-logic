@@ -20,6 +20,12 @@ class RankManager extends AbstractModuleManager<Integer, RankDomain>{
 	
 	@Autowired private ServerConfig serverConfig;
 	
+	
+	@Override
+	public RankDomain getDomain(Integer id) {
+		return this.getOrLoadDomain(id);
+	}
+	
 	/**
 	 * 获取数据, 获取不到从数据库获取
 	 */

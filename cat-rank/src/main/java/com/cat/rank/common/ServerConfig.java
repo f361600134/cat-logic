@@ -13,31 +13,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ServerConfig {
 
-	/**
-	 * 后台地址
-	 */
-	@Value("${cat.game.server.backstageUrl}")
-	private String backstageUrl;
-	/**
-	 * 后台地址
-	 */
-	@Value("${cat.game.server.remoteUrl}")
-	private String remoteUrl;
-
-	public String getBackstageUrl() {
-		return backstageUrl;
-	}
-
-	public void setBackstageUrl(String backstageUrl) {
-		this.backstageUrl = backstageUrl;
-	}
-
-	public String getRemoteUrl() {
-		return remoteUrl;
-	}
-
-	public void setRemoteUrl(String remoteUrl) {
-		this.remoteUrl = remoteUrl;
-	}
 
 }
