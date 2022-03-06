@@ -7,6 +7,10 @@ import com.cat.server.game.module.console.type.IConsole;
 import com.cat.server.game.module.shadow.IShadowService;
 import com.cat.server.game.module.shadow.domain.Shadow;
 
+/**
+ * 创建测试影子信息
+ * @author Jeremy
+ */
 @Console("shadow")
 public class ConsoleShadow implements IConsole {
 

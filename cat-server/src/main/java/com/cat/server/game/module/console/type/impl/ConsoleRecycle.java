@@ -1,15 +1,18 @@
 package com.cat.server.game.module.console.type.impl;
 
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ConfigRecycle;
 import com.cat.server.game.module.console.annotation.Console;
 import com.cat.server.game.module.console.type.IConsole;
 import com.cat.server.game.module.recycle.IRecycleService;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Map;
+
+/**
+ * 回收信息
+ * @author Jeremy
+ */
 @Console("recycle")
 public class ConsoleRecycle implements IConsole {
 

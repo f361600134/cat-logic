@@ -6,6 +6,10 @@ import org.slf4j.LoggerFactory;
 import com.cat.server.game.module.console.annotation.Console;
 import com.cat.server.game.module.console.type.IConsole;
 
+/**
+ * 退出应用程序
+ * @author Jeremy
+ */
 @Console("exit")
 public class ConsoleExit implements IConsole{
 	
