@@ -21,9 +21,9 @@ public class ServerConfig {
 	// 后台地址
 	@Value("${cat.game.server.backstageUrl}")
 	private String backstageUrl;
-	// 后台地址
-	@Value("${cat.game.server.remoteUrl}")
-	private String remoteUrl;
+//	// 后台地址
+//	@Value("${cat.game.server.remoteUrl}")
+//	private String remoteUrl;
 	// 登录地址
 	@Value("${cat.game.server.loginUrl}")
 	private String loginUrl;
@@ -47,13 +47,13 @@ public class ServerConfig {
 		this.backstageUrl = backstageUrl;
 	}
 
-	public String getRemoteUrl() {
-		return remoteUrl;
-	}
-
-	public void setRemoteUrl(String remoteUrl) {
-		this.remoteUrl = remoteUrl;
-	}
+//	public String getRemoteUrl() {
+//		return remoteUrl;
+//	}
+//
+//	public void setRemoteUrl(String remoteUrl) {
+//		this.remoteUrl = remoteUrl;
+//	}
 
 	public String getLoginUrl() {
 		return loginUrl;
