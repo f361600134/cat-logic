@@ -30,7 +30,7 @@ public class ServerConfig {
 	// 开服时间-此值从后台的配置获取是否会更加的合适
 	@Value("#{T(java.time.LocalDate).parse('${cat.game.server.openDate}')}")
 	private LocalDate openDate;
-
+	
 	public int getServerId() {
 		return serverId;
 	}
@@ -70,5 +70,5 @@ public class ServerConfig {
 	public void setOpenDate(LocalDate openDate) {
 		this.openDate = openDate;
 	}
-	
+
 }
