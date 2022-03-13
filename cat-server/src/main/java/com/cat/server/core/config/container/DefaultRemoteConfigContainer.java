@@ -37,7 +37,7 @@ public class DefaultRemoteConfigContainer<T extends IGameConfig> extends Abstrac
 	@Override
 	protected String readContent() throws IOException {
 		ServerConfig config = SpringContextHolder.getBean(ServerConfig.class);
-		String url = config.getRemoteUrl() + getFileName();
+		String url = config.getBackstageUrl() + getFileName();
 		if (StringUtils.isEmpty(url)) {
             logger.error("config[{}] read url[{}] error.url is empty.", configClazz.getName(), url);
             throw new NullPointerException("config[" + configClazz.getName() + "] url is empty.");
