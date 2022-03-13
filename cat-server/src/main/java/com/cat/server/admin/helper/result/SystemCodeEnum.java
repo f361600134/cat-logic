@@ -12,7 +12,7 @@ public enum SystemCodeEnum implements ModuleDefines, CodeEnum{
 	PLAYER_NOT_FOUND(PLAYER, 1, "玩家不存在"),
 	
 	//邮件
-	MAIL_TYPE_UNDEFINE(MAIL, 1, "未定义的邮件类型"),
+	MAIL_TYPE_UNDEFINE(PLAYERMAIL, 1, "未定义的邮件类型"),
 	
 	;
 	

@@ -36,7 +36,7 @@ public class RespMailReadBuilder extends AbstractProtocol {
 	
 	@Override
 	public int protocol() {
-		return PBProtocol.RespMailRead_VALUE;
+		return PBProtocol.RespPlayerMailRead_VALUE;
 	}
 
 	@Override

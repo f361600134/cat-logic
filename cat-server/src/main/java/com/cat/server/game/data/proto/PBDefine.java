@@ -31,42 +31,6 @@ public final class PBDefine {
     DEFAULTID(0),
     /**
      * <pre>
-     *PlayerMail
-     * </pre>
-     *
-     * <code>RespMailRead = 103201;</code>
-     */
-    RespMailRead(103201),
-    /**
-     * <code>ReqMailReward = 103101;</code>
-     */
-    ReqMailReward(103101),
-    /**
-     * <code>RespMailDelete = 103202;</code>
-     */
-    RespMailDelete(103202),
-    /**
-     * <code>ReqMailRead = 103102;</code>
-     */
-    ReqMailRead(103102),
-    /**
-     * <code>ReqMailList = 103103;</code>
-     */
-    ReqMailList(103103),
-    /**
-     * <code>RespMailReward = 103203;</code>
-     */
-    RespMailReward(103203),
-    /**
-     * <code>RespMailList = 103204;</code>
-     */
-    RespMailList(103204),
-    /**
-     * <code>ReqMailDelete = 103104;</code>
-     */
-    ReqMailDelete(103104),
-    /**
-     * <pre>
      *Player
      * </pre>
      *
@@ -125,6 +89,42 @@ public final class PBDefine {
      * <code>ReqPlayerHeart = 101105;</code>
      */
     ReqPlayerHeart(101105),
+    /**
+     * <pre>
+     *PlayerMail
+     * </pre>
+     *
+     * <code>ReqPlayerMailRead = 103101;</code>
+     */
+    ReqPlayerMailRead(103101),
+    /**
+     * <code>RespPlayerMailDelete = 103201;</code>
+     */
+    RespPlayerMailDelete(103201),
+    /**
+     * <code>ReqPlayerMailDelete = 103102;</code>
+     */
+    ReqPlayerMailDelete(103102),
+    /**
+     * <code>ReqPlayerMailReward = 103103;</code>
+     */
+    ReqPlayerMailReward(103103),
+    /**
+     * <code>RespPlayerMailList = 103202;</code>
+     */
+    RespPlayerMailList(103202),
+    /**
+     * <code>RespPlayerMailReward = 103203;</code>
+     */
+    RespPlayerMailReward(103203),
+    /**
+     * <code>ReqPlayerMailList = 103104;</code>
+     */
+    ReqPlayerMailList(103104),
+    /**
+     * <code>RespPlayerMailRead = 103204;</code>
+     */
+    RespPlayerMailRead(103204),
     /**
      * <pre>
      *Activity
@@ -223,6 +223,34 @@ public final class PBDefine {
     RespItemSell(102205),
     /**
      * <pre>
+     *Shop
+     * </pre>
+     *
+     * <code>RespShopBuy = 110201;</code>
+     */
+    RespShopBuy(110201),
+    /**
+     * <code>RespShopQuickBuy = 110202;</code>
+     */
+    RespShopQuickBuy(110202),
+    /**
+     * <code>RespShopInfo = 110203;</code>
+     */
+    RespShopInfo(110203),
+    /**
+     * <code>ReqShopBuy = 110101;</code>
+     */
+    ReqShopBuy(110101),
+    /**
+     * <code>ReqShopQuickBuy = 110102;</code>
+     */
+    ReqShopQuickBuy(110102),
+    /**
+     * <code>ReqShopInfo = 110103;</code>
+     */
+    ReqShopInfo(110103),
+    /**
+     * <pre>
      *LearnCommunity
      * </pre>
      *
@@ -267,6 +295,14 @@ public final class PBDefine {
     ReqChat(104101),
     /**
      * <pre>
+     *GroupMail
+     * </pre>
+     *
+     * <code>ReqGroupMailInfo = 900101;</code>
+     */
+    ReqGroupMailInfo(900101),
+    /**
+     * <pre>
      *ActivityItem
      * </pre>
      *
@@ -288,42 +324,6 @@ public final class PBDefine {
      * <code>DEFAULTID = 0;</code>
      */
     public static final int DEFAULTID_VALUE = 0;
-    /**
-     * <pre>
-     *PlayerMail
-     * </pre>
-     *
-     * <code>RespMailRead = 103201;</code>
-     */
-    public static final int RespMailRead_VALUE = 103201;
-    /**
-     * <code>ReqMailReward = 103101;</code>
-     */
-    public static final int ReqMailReward_VALUE = 103101;
-    /**
-     * <code>RespMailDelete = 103202;</code>
-     */
-    public static final int RespMailDelete_VALUE = 103202;
-    /**
-     * <code>ReqMailRead = 103102;</code>
-     */
-    public static final int ReqMailRead_VALUE = 103102;
-    /**
-     * <code>ReqMailList = 103103;</code>
-     */
-    public static final int ReqMailList_VALUE = 103103;
-    /**
-     * <code>RespMailReward = 103203;</code>
-     */
-    public static final int RespMailReward_VALUE = 103203;
-    /**
-     * <code>RespMailList = 103204;</code>
-     */
-    public static final int RespMailList_VALUE = 103204;
-    /**
-     * <code>ReqMailDelete = 103104;</code>
-     */
-    public static final int ReqMailDelete_VALUE = 103104;
     /**
      * <pre>
      *Player
@@ -384,6 +384,42 @@ public final class PBDefine {
      * <code>ReqPlayerHeart = 101105;</code>
      */
     public static final int ReqPlayerHeart_VALUE = 101105;
+    /**
+     * <pre>
+     *PlayerMail
+     * </pre>
+     *
+     * <code>ReqPlayerMailRead = 103101;</code>
+     */
+    public static final int ReqPlayerMailRead_VALUE = 103101;
+    /**
+     * <code>RespPlayerMailDelete = 103201;</code>
+     */
+    public static final int RespPlayerMailDelete_VALUE = 103201;
+    /**
+     * <code>ReqPlayerMailDelete = 103102;</code>
+     */
+    public static final int ReqPlayerMailDelete_VALUE = 103102;
+    /**
+     * <code>ReqPlayerMailReward = 103103;</code>
+     */
+    public static final int ReqPlayerMailReward_VALUE = 103103;
+    /**
+     * <code>RespPlayerMailList = 103202;</code>
+     */
+    public static final int RespPlayerMailList_VALUE = 103202;
+    /**
+     * <code>RespPlayerMailReward = 103203;</code>
+     */
+    public static final int RespPlayerMailReward_VALUE = 103203;
+    /**
+     * <code>ReqPlayerMailList = 103104;</code>
+     */
+    public static final int ReqPlayerMailList_VALUE = 103104;
+    /**
+     * <code>RespPlayerMailRead = 103204;</code>
+     */
+    public static final int RespPlayerMailRead_VALUE = 103204;
     /**
      * <pre>
      *Activity
@@ -482,6 +518,34 @@ public final class PBDefine {
     public static final int RespItemSell_VALUE = 102205;
     /**
      * <pre>
+     *Shop
+     * </pre>
+     *
+     * <code>RespShopBuy = 110201;</code>
+     */
+    public static final int RespShopBuy_VALUE = 110201;
+    /**
+     * <code>RespShopQuickBuy = 110202;</code>
+     */
+    public static final int RespShopQuickBuy_VALUE = 110202;
+    /**
+     * <code>RespShopInfo = 110203;</code>
+     */
+    public static final int RespShopInfo_VALUE = 110203;
+    /**
+     * <code>ReqShopBuy = 110101;</code>
+     */
+    public static final int ReqShopBuy_VALUE = 110101;
+    /**
+     * <code>ReqShopQuickBuy = 110102;</code>
+     */
+    public static final int ReqShopQuickBuy_VALUE = 110102;
+    /**
+     * <code>ReqShopInfo = 110103;</code>
+     */
+    public static final int ReqShopInfo_VALUE = 110103;
+    /**
+     * <pre>
      *LearnCommunity
      * </pre>
      *
@@ -526,6 +590,14 @@ public final class PBDefine {
     public static final int ReqChat_VALUE = 104101;
     /**
      * <pre>
+     *GroupMail
+     * </pre>
+     *
+     * <code>ReqGroupMailInfo = 900101;</code>
+     */
+    public static final int ReqGroupMailInfo_VALUE = 900101;
+    /**
+     * <pre>
      *ActivityItem
      * </pre>
      *
@@ -567,14 +639,6 @@ public final class PBDefine {
     public static PBProtocol forNumber(int value) {
       switch (value) {
         case 0: return DEFAULTID;
-        case 103201: return RespMailRead;
-        case 103101: return ReqMailReward;
-        case 103202: return RespMailDelete;
-        case 103102: return ReqMailRead;
-        case 103103: return ReqMailList;
-        case 103203: return RespMailReward;
-        case 103204: return RespMailList;
-        case 103104: return ReqMailDelete;
         case 101201: return RespPlayerCreateRole;
         case 101101: return ReqPlayerCreateRole;
         case 101102: return ReqPlayerReLogin;
@@ -589,6 +653,14 @@ public final class PBDefine {
         case 101209: return RespUpdatePlayerInfo;
         case 101104: return ReqPlayerLogin;
         case 101105: return ReqPlayerHeart;
+        case 103101: return ReqPlayerMailRead;
+        case 103201: return RespPlayerMailDelete;
+        case 103102: return ReqPlayerMailDelete;
+        case 103103: return ReqPlayerMailReward;
+        case 103202: return RespPlayerMailList;
+        case 103203: return RespPlayerMailReward;
+        case 103104: return ReqPlayerMailList;
+        case 103204: return RespPlayerMailRead;
         case 105101: return ReqActivityInfo;
         case 105201: return RespActivityInfo;
         case 105202: return RespActivityInfoUpdate;
@@ -607,6 +679,12 @@ public final class PBDefine {
         case 102102: return ReqItemSell;
         case 102204: return RespRewards;
         case 102205: return RespItemSell;
+        case 110201: return RespShopBuy;
+        case 110202: return RespShopQuickBuy;
+        case 110203: return RespShopInfo;
+        case 110101: return ReqShopBuy;
+        case 110102: return ReqShopQuickBuy;
+        case 110103: return ReqShopInfo;
         case 200201: return RespLearnCommunityInfo;
         case 200202: return RespLearnCommunityReward;
         case 200101: return ReqLearnCommunityInfo;
@@ -615,6 +693,7 @@ public final class PBDefine {
         case 108201: return RespResourceRecycleInfo;
         case 104201: return RespChat;
         case 104101: return ReqChat;
+        case 900101: return ReqGroupMailInfo;
         case 201201: return RespActivityItemDelete;
         case 201202: return RespActivityItemsInfo;
         case 201203: return RespActivityItemsUpdate;
@@ -679,39 +758,44 @@ public final class PBDefine {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020PBProtocol.proto\022\010Protocol*\302\t\n\nPBProto" +
-      "col\022\r\n\tDEFAULTID\020\000\022\022\n\014RespMailRead\020\241\246\006\022\023" +
-      "\n\rReqMailReward\020\275\245\006\022\024\n\016RespMailDelete\020\242\246" +
-      "\006\022\021\n\013ReqMailRead\020\276\245\006\022\021\n\013ReqMailList\020\277\245\006\022" +
-      "\024\n\016RespMailReward\020\243\246\006\022\022\n\014RespMailList\020\244\246" +
-      "\006\022\023\n\rReqMailDelete\020\300\245\006\022\032\n\024RespPlayerCrea" +
-      "teRole\020\321\226\006\022\031\n\023ReqPlayerCreateRole\020\355\225\006\022\026\n" +
-      "\020ReqPlayerReLogin\020\356\225\006\022\025\n\017RespPlayerHeart" +
-      "\020\322\226\006\022\030\n\022RespInitPlayerInfo\020\323\226\006\022\030\n\022RespPl" +
-      "ayerRandName\020\324\226\006\022\032\n\024RespPlayerDisconnect" +
-      "\020\325\226\006\022\031\n\023RespPlayerEnterGame\020\326\226\006\022\027\n\021RespP" +
-      "layerReLogin\020\327\226\006\022\025\n\017RespPlayerLogin\020\330\226\006\022" +
-      "\027\n\021ReqPlayerRandName\020\357\225\006\022\032\n\024RespUpdatePl" +
-      "ayerInfo\020\331\226\006\022\024\n\016ReqPlayerLogin\020\360\225\006\022\024\n\016Re" +
-      "qPlayerHeart\020\361\225\006\022\025\n\017ReqActivityInfo\020\215\265\006\022" +
-      "\026\n\020RespActivityInfo\020\361\265\006\022\034\n\026RespActivityI" +
-      "nfoUpdate\020\362\265\006\022\024\n\016RespShadowInfo\020\301\305\006\022\023\n\rR" +
-      "eqShadowInfo\020\335\304\006\022\021\n\013ReqRankInfo\020\365\274\006\022\022\n\014R" +
-      "espRankInfo\020\331\275\006\022\016\n\010ReqLogin\020\205\216\006\022\021\n\013ReqRa" +
-      "ndName\020\206\216\006\022\023\n\rReqCreateRole\020\207\216\006\022\r\n\010RespT" +
-      "ips\020\261\t\022\020\n\nReqItemUse\020\325\235\006\022\024\n\016RespItemUpda" +
-      "te\020\271\236\006\022\021\n\013RespItemUse\020\272\236\006\022\024\n\016RespItemDel" +
-      "ete\020\273\236\006\022\021\n\013ReqItemSell\020\326\235\006\022\021\n\013RespReward" +
-      "s\020\274\236\006\022\022\n\014RespItemSell\020\275\236\006\022\034\n\026RespLearnCo" +
-      "mmunityInfo\020\211\234\014\022\036\n\030RespLearnCommunityRew" +
-      "ard\020\212\234\014\022\033\n\025ReqLearnCommunityInfo\020\245\233\014\022\035\n\027" +
-      "ReqLearnCommunityReward\020\246\233\014\022\034\n\026ReqResour" +
-      "ceRecycleInfo\020\305\314\006\022\035\n\027RespResourceRecycle" +
-      "Info\020\251\315\006\022\016\n\010RespChat\020\211\256\006\022\r\n\007ReqChat\020\245\255\006\022" +
-      "\034\n\026RespActivityItemDelete\020\361\243\014\022\033\n\025RespAct" +
-      "ivityItemsInfo\020\362\243\014\022\035\n\027RespActivityItemsU" +
-      "pdate\020\363\243\014B*\n\036com.cat.server.game.data.pr" +
-      "otoB\010PBDefineb\006proto3"
+      "\n\020PBProtocol.proto\022\010Protocol*\205\013\n\nPBProto" +
+      "col\022\r\n\tDEFAULTID\020\000\022\032\n\024RespPlayerCreateRo" +
+      "le\020\321\226\006\022\031\n\023ReqPlayerCreateRole\020\355\225\006\022\026\n\020Req" +
+      "PlayerReLogin\020\356\225\006\022\025\n\017RespPlayerHeart\020\322\226\006" +
+      "\022\030\n\022RespInitPlayerInfo\020\323\226\006\022\030\n\022RespPlayer" +
+      "RandName\020\324\226\006\022\032\n\024RespPlayerDisconnect\020\325\226\006" +
+      "\022\031\n\023RespPlayerEnterGame\020\326\226\006\022\027\n\021RespPlaye" +
+      "rReLogin\020\327\226\006\022\025\n\017RespPlayerLogin\020\330\226\006\022\027\n\021R" +
+      "eqPlayerRandName\020\357\225\006\022\032\n\024RespUpdatePlayer" +
+      "Info\020\331\226\006\022\024\n\016ReqPlayerLogin\020\360\225\006\022\024\n\016ReqPla" +
+      "yerHeart\020\361\225\006\022\027\n\021ReqPlayerMailRead\020\275\245\006\022\032\n" +
+      "\024RespPlayerMailDelete\020\241\246\006\022\031\n\023ReqPlayerMa" +
+      "ilDelete\020\276\245\006\022\031\n\023ReqPlayerMailReward\020\277\245\006\022" +
+      "\030\n\022RespPlayerMailList\020\242\246\006\022\032\n\024RespPlayerM" +
+      "ailReward\020\243\246\006\022\027\n\021ReqPlayerMailList\020\300\245\006\022\030" +
+      "\n\022RespPlayerMailRead\020\244\246\006\022\025\n\017ReqActivityI" +
+      "nfo\020\215\265\006\022\026\n\020RespActivityInfo\020\361\265\006\022\034\n\026RespA" +
+      "ctivityInfoUpdate\020\362\265\006\022\024\n\016RespShadowInfo\020" +
+      "\301\305\006\022\023\n\rReqShadowInfo\020\335\304\006\022\021\n\013ReqRankInfo\020" +
+      "\365\274\006\022\022\n\014RespRankInfo\020\331\275\006\022\016\n\010ReqLogin\020\205\216\006\022" +
+      "\021\n\013ReqRandName\020\206\216\006\022\023\n\rReqCreateRole\020\207\216\006\022" +
+      "\r\n\010RespTips\020\261\t\022\020\n\nReqItemUse\020\325\235\006\022\024\n\016Resp" +
+      "ItemUpdate\020\271\236\006\022\021\n\013RespItemUse\020\272\236\006\022\024\n\016Res" +
+      "pItemDelete\020\273\236\006\022\021\n\013ReqItemSell\020\326\235\006\022\021\n\013Re" +
+      "spRewards\020\274\236\006\022\022\n\014RespItemSell\020\275\236\006\022\021\n\013Res" +
+      "pShopBuy\020\371\334\006\022\026\n\020RespShopQuickBuy\020\372\334\006\022\022\n\014" +
+      "RespShopInfo\020\373\334\006\022\020\n\nReqShopBuy\020\225\334\006\022\025\n\017Re" +
+      "qShopQuickBuy\020\226\334\006\022\021\n\013ReqShopInfo\020\227\334\006\022\034\n\026" +
+      "RespLearnCommunityInfo\020\211\234\014\022\036\n\030RespLearnC" +
+      "ommunityReward\020\212\234\014\022\033\n\025ReqLearnCommunityI" +
+      "nfo\020\245\233\014\022\035\n\027ReqLearnCommunityReward\020\246\233\014\022\034" +
+      "\n\026ReqResourceRecycleInfo\020\305\314\006\022\035\n\027RespReso" +
+      "urceRecycleInfo\020\251\315\006\022\016\n\010RespChat\020\211\256\006\022\r\n\007R" +
+      "eqChat\020\245\255\006\022\026\n\020ReqGroupMailInfo\020\205\3706\022\034\n\026Re" +
+      "spActivityItemDelete\020\361\243\014\022\033\n\025RespActivity" +
+      "ItemsInfo\020\362\243\014\022\035\n\027RespActivityItemsUpdate" +
+      "\020\363\243\014B*\n\036com.cat.server.game.data.protoB\010" +
+      "PBDefineb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

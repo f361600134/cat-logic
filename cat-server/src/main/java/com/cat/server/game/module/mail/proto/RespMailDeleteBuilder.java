@@ -44,7 +44,7 @@ public class RespMailDeleteBuilder extends AbstractProtocol {
 	
 	@Override
 	public int protocol() {
-		return PBProtocol.RespMailDelete_VALUE;
+		return PBProtocol.RespPlayerMailDelete_VALUE;
 	}
 
 	@Override

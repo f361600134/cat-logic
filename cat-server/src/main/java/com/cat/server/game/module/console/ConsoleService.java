@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.server.core.lifecycle.ILifecycle;
+import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.module.console.annotation.Console;
 import com.cat.server.game.module.console.type.IConsole;
 
@@ -77,6 +78,11 @@ class ConsoleService implements ILifecycle {
 		consoleThread.setName("os_console_thread");
 		consoleThread.setDaemon(true);
 		consoleThread.start();
+	}
+	
+	@Override
+	public int priority() {
+		return Priority.LOGIC.getPriority();
 	}
 
 }

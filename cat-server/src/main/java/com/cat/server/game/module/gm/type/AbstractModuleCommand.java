@@ -7,6 +7,7 @@ import java.util.Map;
 import com.cat.net.core.reflect.MethodInvoker;
 import com.cat.net.network.base.ISession;
 import com.cat.server.core.lifecycle.ILifecycle;
+import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.module.gm.annotation.Command;
 
 /**
@@ -50,6 +51,11 @@ public abstract class AbstractModuleCommand implements ICommand, ILifecycle{
 			MethodInvoker invoker = MethodInvoker.create(this, method);
 			this.commandMap.put(method.getName(), invoker);
 		}
+	}
+	
+	@Override
+	public int priority() {
+		return Priority.LOGIC.getPriority();
 	}
 	
 }

@@ -7,38 +7,56 @@ package com.cat.server.game.helper.result;
 public interface ModuleDefines {
 	
 	int UNDEFINE = -1;
-//    /** 内连接 服务端之间的连接 */
-//    int INNER = 101;
-//    /** 远程调用 服务端之间的连接 */
-//    int RPC = 102;
-
     // ----------------玩家------------------------
+	/**登录*/
+	int LOGIN = 100;
+	/** 玩家/角色 */
+    int PLAYER = 101;
+	/** 道具 */
+	int ITEM = 102;
+	/** 邮件 */
+	int PLAYERMAIL = 103;
+	/** 聊天 */
+    int CHAT = 104;
+	/** 活动 */
+	int ACTIVITY = 105;
+	/** 排行榜 */
+	int RANK = 106;
+	/** 影子 */
+	int SHADOW = 107;
+	/** 资源回收*/
+	int RECYCLE = 108;
+	/** 商店*/
+	int SHOP = 110;
+	/** 研习社*/
+	int LEARNCOMMUNITY = 200;
+	/** 活动物品*/
+	int ActivityItem = 201;
+	/** 群邮件*/
+	int	GROUPMAIL = 900;
+	
+	//--------------------未定义功能id模块
+    /** 家族 */
+    int FAMILY = 137;
+    /** 组队 */
+    int TEAM = 138;
     /** 公共模块 */
     int COMMON = 110;
     /** 账号 */
     int ACCOUNT = 111;
-    /** 登陆 */
-    int LOGIN = 112;
-    /** 玩家/角色 */
-    int PLAYER = 113;
     /** 充值 */
     int RECHARGE = 114;
     /** 功能开启 */
     int FUNCTION = 115;
+    /** 任务 */
+    int MISSION = 143;
     // ------------道具相关--------------------
-//    /** 道具 */
-//    int ITEM = 122;
-//    /** 邮件 */
-    int MAIL = 123;
 //    /** 货币 */
 //    int CURRENCY = 124;
 //    /** 资源 */
 //    int RESOURCE = 126;
 //    /** 杂货 */
 //    int SUNDRY = 127;
-//
-//    /** 商店 */
-//    int SHOP = 128;
 //
 //    // -------------装扮-------------------
 //    /** 个人装扮 */
@@ -47,21 +65,9 @@ public interface ModuleDefines {
 //    int BUILD = 132;
 //
 //    // ------------社交---------------------
-    /** 聊天 */
-    int CHAT = 135;
 //    /** 好友 */
 //    int FRIEND = 136;
-    /** 家族 */
-    int FAMILY = 137;
-    /** 组队 */
-    int TEAM = 138;
 //    // -----------公共模块---------------------
-//    /** 活动 */
-    int ACTIVITY = 200;
-//    /** 排行榜 */
-    int RANK = 142;
-    /** 任务 */
-    int MISSION = 143;
 //    /** 战斗 */
 //    int BATTLE = 144;
 //    // --------------玩法模块---------------------
@@ -97,12 +103,10 @@ public interface ModuleDefines {
 //    int PET = 167;
 //    /** 地牢 */
 //    int DUNGEON = 168;
-//
 //    /** 七天乐 */
 //    int HAPPY_WEEK = 170;
 //    /** 神迹 */
 //    int GOD_LIKE = 171;
-//
 //    /** 成长基金 */
 //    int GROWTH_FUND = 173;
 //    /** 知己换装 */

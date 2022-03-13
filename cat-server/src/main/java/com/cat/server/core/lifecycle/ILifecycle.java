@@ -33,11 +33,11 @@ public interface ILifecycle {
 	}
 	
 	/**
-	 * 优先级
+	 * 优先级-默认
 	 * @return
 	 */
 	default int priority() {
-		return Priority.LOWEST.getPriority();
+		return Priority.DEFAULT.getPriority();
 	}
 
 }

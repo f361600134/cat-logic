@@ -75,12 +75,12 @@ public enum ErrorCode implements ModuleDefines, CodeEnum{
     MISSION_NOT_EXIST(MISSION, 3, "任务奖励已领取"),
     
     // -----------------邮件---------------------
-    MAIL_BOX_NOT_FOUND(MAIL, 1, "邮箱不存在"),
-    MAIL_NOT_FOUND(MAIL, 2, "邮件不存在"),
-    MAIL_ALREADY_REWARD(MAIL, 3, "邮件已领取"),
-    MAIL_ALREADY_EXPIRED(MAIL, 4, "邮件已过期"),
-    MAIL_ALREADY_NO_REWARD(MAIL, 5, "没有可以领取的邮件"),
-    MAIL_NOT_FOUND_PLAYER(MAIL, 6, "邮件发送失败没有这个玩家"),
+    MAIL_BOX_NOT_FOUND(PLAYERMAIL, 1, "邮箱不存在"),
+    MAIL_NOT_FOUND(PLAYERMAIL, 2, "邮件不存在"),
+    MAIL_ALREADY_REWARD(PLAYERMAIL, 3, "邮件已领取"),
+    MAIL_ALREADY_EXPIRED(PLAYERMAIL, 4, "邮件已过期"),
+    MAIL_ALREADY_NO_REWARD(PLAYERMAIL, 5, "没有可以领取的邮件"),
+    MAIL_NOT_FOUND_PLAYER(PLAYERMAIL, 6, "邮件发送失败没有这个玩家"),
     
     // -----------------家族---------------------
     FAMILY_NAME_EXIST(FAMILY, 1, "家族名被占用"),
@@ -105,8 +105,16 @@ public enum ErrorCode implements ModuleDefines, CodeEnum{
     RANK_NOT_EXIST(TEAM, 1, "排行榜不存在"),
     
     // -----------------活动---------------------
-    ACTIVITY_NOT_EXIST(ACTIVITY, 1, "活动不存在"),
-    ACTIVITY_NOT_IN_ACTIVITY_TIME(ACTIVITY, 2, "未处于活动时间"),
+    ACTIVITY_NOT_EXIST(SHOP, 1, "活动不存在"),
+    ACTIVITY_NOT_IN_ACTIVITY_TIME(SHOP, 2, "未处于活动时间"),
+    
+    
+    // -----------------商店---------------------
+    SHOP_NOT_EXIST(SHOP, 1, "商店不存在"),
+    SHOP_ITEM_LIMIT(SHOP, 2, "已到达限购次数"),
+    SHOP_COST_NOT_ENOUGH(SHOP, 3, "购买所需资源不足"),
+    SHOP_ACTIVITY_NOT_OPEN(SHOP, 4, "活动未开启商店不可以购买"),
+    
     ;
 	
 	

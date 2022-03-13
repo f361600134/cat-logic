@@ -18,6 +18,9 @@ public enum Priority {
 	/** 业务级别, 业务内公共模块数据初始化, 纯业务级别的顺序*/
 	LOGIC(200),
 	
+	/** 默认级别*/
+	DEFAULT(300),
+	
 	/** 优先级最低  */
 	LOWEST(Integer.MAX_VALUE),
 	;

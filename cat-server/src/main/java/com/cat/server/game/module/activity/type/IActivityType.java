@@ -72,11 +72,11 @@ public interface IActivityType {
     
 //    ActivityConfig getConfig();
 //    
-//    /**
-//     * 获取当前活动配置id
-//     * @return
-//     */
-//    int getConfigId();
+    /**
+     * 获取当前活动配置id, 同activityId
+     * @return
+     */
+    int getConfigId();
 //
 //    /**
 //     * 获取当前活动配置类型

@@ -59,16 +59,8 @@ public enum NatureEnum implements ModuleDefines {
 //	GenInitCard(3003, "酒馆倒计时10连抽"),
 //	GenScoreCard(3004, "酒馆积分10连抽"),
 //	//4:商店
-//	ShopBuyTreasure(4001,"秘宝商店购买"),
-//	ShopBuyBattle(4002,"战功商店购买"),
-//	ShopBuyJade(4003,"玉璧商店购买"),
-//	ShopBuyMilitary(4004,"军功商店购买"),
-//	ShopTreasureRefresh(4005,"秘宝商店刷新"),
-//	ShopBuyFamily(4006,"家族商店购买"),
-//	ShopBuyStable(4007,"马场商店购买"),
-//	ShopBuyDiamond(4008,"元宝商店购买"),
-//	ShopBuyLuckStar(4009,"吉星商店购买"),
-//	ShopLuckStarRefresh(4010,"吉星商店刷新"),
+	ShopBuy(SHOP, 1,"商店购买"),
+	ShopQuickBuy(SHOP, 1,"商店一键购买"),
 //	//5:武将
 //	HeroActiveStar(5001,"武将升星"),
 //	HeroRelation(5002,"武将羁绊"),
@@ -187,9 +179,9 @@ public enum NatureEnum implements ModuleDefines {
 //	HorseAccelerateLevelUp(12014,"马场加速升级"),
 //	VaultProduce(12015,"金库产出"),
 	//13:邮件
-	MailReward(MAIL, 1, "邮件奖励"),
-	MailSend(MAIL, 2, "邮件发送"),
-	MailRead(MAIL, 3, "邮件查看"),
+	MailReward(PLAYERMAIL, 1, "邮件奖励"),
+	MailSend(PLAYERMAIL, 2, "邮件发送"),
+	MailRead(PLAYERMAIL, 3, "邮件查看"),
 //	//14:玩家登陆登出
 //	Login(14001, "角色登陆"),
 //	Logout(14002, "角色登出"),

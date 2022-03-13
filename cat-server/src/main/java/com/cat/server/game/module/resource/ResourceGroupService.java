@@ -1,4 +1,4 @@
-package com.cat.server.game.module.resource.service;
+package com.cat.server.game.module.resource;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -13,11 +13,7 @@ import org.springframework.stereotype.Service;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.helper.log.NatureEnum;
-import com.cat.server.game.module.resource.IResource;
-import com.cat.server.game.module.resource.IResourceGroupService;
-import com.cat.server.game.module.resource.IResourceService;
 import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 
 /**
@@ -26,26 +22,19 @@ import com.google.common.collect.Multimap;
  * @author Jeremy
  */
 @Service
-public class ResourceGroupService implements IResourceGroupService, ILifecycle {
+class ResourceGroupService implements IResourceGroupService, ILifecycle {
 
 	private static final Logger log = LoggerFactory.getLogger(ResourceGroupService.class);
 
-	@Autowired private List<IResourceService> resourceServices;
+	private Map<Integer, IResourceService> serviceMap = new HashMap<>();
 	
-	private Map<Integer, IResourceService> serviceMap;
+	@Autowired
+	public void initServiceMap(List<IResourceService> resourceServices) {
+		for (IResourceService service : resourceServices) {
+			this.serviceMap.put(service.resType(), service);
+		}
+	}
 
-	/**
-	 * 奖励
-	 * 
-	 * @param playerId
-	 *            玩家id
-	 * @param rewardMap
-	 *            value值为正整数
-	 * @param nEnum
-	 *            资源枚举
-	 * @param desc
-	 *            其他描述
-	 */
 	@Override
 	public void reward(long playerId, Map<Integer, Integer> rewardMap, NatureEnum nEnum) {
 		Map<Integer, Map<Integer, Integer>> resourceTypeMap = splitByType(rewardMap);
@@ -68,18 +57,6 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 		});
 	}
 
-	/**
-	 * 消耗
-	 *
-	 * @param playerId
-	 *            玩家id
-	 * @param costMap
-	 *            value值为正整数
-	 * @param nEnum
-	 *            资源枚举
-	 * @param desc
-	 *            其他描述
-	 */
 	@Override
 	public void cost(long playerId, Map<Integer, Integer> costMap, NatureEnum nEnum) {
 		Map<Integer, Map<Integer, Integer>> resourceTypeMap = splitByType(costMap);
@@ -99,14 +76,6 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 		});
 	}
 
-	/**
-	 * 检查数量是否足够
-	 *
-	 * @param playerId
-	 *            玩家id
-	 * @param costMap
-	 *            消耗map, value值为正整数. 逐个判断, 全部满足返回true, 否则返回false
-	 */
 	@Override
     public boolean check(long playerId, Map<Integer, Integer> costMap) {
 		Map<Integer, Map<Integer, Integer>> resourceTypeMap = splitByType(costMap);
@@ -130,6 +99,15 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 	}
 	
 	@Override
+	public boolean checkAndCost(long playerId, Map<Integer, Integer> costMap, NatureEnum nEnum) {
+		if (this.check(playerId, costMap)) {
+			this.cost(playerId, costMap, nEnum);
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
 	public void clearExpire(long playerId,  Collection<Integer> configIds) {
 		Multimap<Integer, Integer> resourceTypeMap = splitByType(configIds);
 		for (Integer resourceType : resourceTypeMap.keySet()) {
@@ -143,6 +121,16 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 			});
 			service.notify(playerId);
 		}
+	}
+	
+	@Override
+	public int getCount(long playerId, int configId) {
+		int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
+		IResourceService service = serviceMap.get(resourceType);
+		if (service == null) {
+			throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
+		}
+		return service.getCount(playerId, configId);
 	}
 	
 	/**
@@ -175,26 +163,8 @@ public class ResourceGroupService implements IResourceGroupService, ILifecycle {
 	}
 	
 	@Override
-	public void start() throws Exception {
-		this.serviceMap = Maps.newConcurrentMap();
-		for (IResourceService service : resourceServices) {
-			this.serviceMap.put(service.resType(), service);
-		}
-	}
-
-	@Override
 	public int priority() {
 		return Priority.LOGIC.getPriority();
-	}
-
-	@Override
-	public int getCount(long playerId, int configId) {
-		int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
-		IResourceService service = serviceMap.get(resourceType);
-		if (service == null) {
-			throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
-		}
-		return service.getCount(playerId, configId);
 	}
 
 }

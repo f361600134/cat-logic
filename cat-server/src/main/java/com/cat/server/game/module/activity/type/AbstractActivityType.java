@@ -50,6 +50,11 @@ public abstract class AbstractActivityType implements IActivityType{
 	public Activity getActivity() {
 		return activity;
 	}
+	
+	@Override
+	public int getConfigId() {
+		return activity.getConfigId();
+	}
 
 	@Override
 	public boolean isBegin() {

@@ -8,7 +8,7 @@ import com.cat.server.game.module.family.domain.Family;
 import com.cat.server.game.module.family.domain.PlayerFamily;
 import com.cat.server.game.module.family.domain.PlayerFamilyDomain;
 import com.cat.server.game.module.player.IPlayerService;
-import com.cat.server.game.module.resource.service.ResourceGroupService;
+import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.utils.TimeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -31,7 +31,7 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 	
 	@Autowired private IPlayerService playerService;
 	
-	@Autowired private ResourceGroupService resourceGroupService;
+	@Autowired private IResourceGroupService resourceGroupService;
 	
 	@Autowired private FamilyService familyService;
 	

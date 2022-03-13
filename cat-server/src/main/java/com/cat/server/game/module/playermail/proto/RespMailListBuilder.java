@@ -40,7 +40,7 @@ public class RespMailListBuilder extends AbstractProtocol {
 	
 	@Override
 	public int protocol() {
-		return PBProtocol.RespMailList_VALUE;
+		return PBProtocol.RespPlayerMailList_VALUE;
 	}
 
 	@Override

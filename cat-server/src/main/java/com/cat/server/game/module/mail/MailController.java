@@ -33,7 +33,7 @@ public class MailController {
 	/*
 	*获取邮件附件
 	*/
-	@Cmd(value = PBProtocol.ReqMailReward_VALUE)
+	@Cmd(value = PBProtocol.ReqPlayerMailReward_VALUE)
 	public void reqMailReward(ISession session, ReqMailReward req) {
 		long playerId = session.getUserData();
 		RespMailRewardBuilder ack = RespMailRewardBuilder.newInstance();
@@ -45,7 +45,7 @@ public class MailController {
 	/*
 	*请求读取邮件
 	*/
-	@Cmd(value = PBProtocol.ReqMailRead_VALUE)
+	@Cmd(value = PBProtocol.ReqPlayerMailRead_VALUE)
 	public void reqMailRead(ISession session, ReqMailRead req) {
 		long playerId = session.getUserData();
 		RespMailReadBuilder ack = RespMailReadBuilder.newInstance();
@@ -57,7 +57,7 @@ public class MailController {
 	/*
 	*请求邮件列表
 	*/
-	@Cmd(value = PBProtocol.ReqMailList_VALUE)
+	@Cmd(value = PBProtocol.ReqPlayerMailList_VALUE)
 	public void reqMailList(ISession session, ReqMailList req) {
 		long playerId = session.getUserData();
 		mailService.reqMailList(playerId);
@@ -66,7 +66,7 @@ public class MailController {
 	/*
 	*请求删除邮件
 	*/
-	@Cmd(value = PBProtocol.ReqMailDelete_VALUE)
+	@Cmd(value = PBProtocol.ReqPlayerMailDelete_VALUE)
 	public void reqMailDelete(ISession session, ReqMailDelete req) {
 		long playerId = session.getUserData();
 		RespMailDeleteBuilder ack = RespMailDeleteBuilder.newInstance();

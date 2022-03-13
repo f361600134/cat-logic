@@ -21,14 +21,6 @@ public interface IResourceGroupService {
 	public boolean check(long playerId, Map<Integer, Integer> costMap);
 	
 	/**
-	 * 奖励
-	 * @param playerId 玩家id
-	 * @param rewardMap value值为正整数
-	 * @param nEnum 资源枚举
-	 */
-	public void reward(long playerId, Map<Integer, Integer> rewardMap, NatureEnum nEnum);
-	
-	/**
 	 * 消耗
 	 * @param playerId 玩家id
 	 * @param costMap value值为正整数
@@ -36,6 +28,22 @@ public interface IResourceGroupService {
 	 * @param desc 其他描述
 	 */
 	public void cost(long playerId, Map<Integer, Integer> costMap, NatureEnum nEnum);
+	
+	/**
+	 * 检查数量是否足够, 足够则消耗, 但凡有一个资源不满足, 就不能消耗
+	 * @param playerId 玩家id
+	 * @param costMap  消耗map, value值为正整数. 逐个判断, 全部满足返回true, 否则返回false
+	 * @return true 表示满足, 否则不满足
+	 */
+	public boolean checkAndCost(long playerId, Map<Integer, Integer> costMap, NatureEnum nEnum);
+	
+	/**
+	 * 奖励
+	 * @param playerId 玩家id
+	 * @param rewardMap value值为正整数
+	 * @param nEnum 资源枚举
+	 */
+	public void reward(long playerId, Map<Integer, Integer> rewardMap, NatureEnum nEnum);
 	
 	/**
 	 * 获取资源数量

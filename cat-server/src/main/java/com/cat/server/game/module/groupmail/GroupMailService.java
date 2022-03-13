@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSON;
 import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.lifecycle.ILifecycle;
+import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.groupmail.domain.GroupMail;
@@ -105,5 +106,9 @@ class GroupMailService implements IMailServiceContainer, ILifecycle{
 		this.groupMailManager.init();
 	}
 	
+	@Override
+	public int priority() {
+		return Priority.LOGIC.getPriority();
+	}
 	
 }

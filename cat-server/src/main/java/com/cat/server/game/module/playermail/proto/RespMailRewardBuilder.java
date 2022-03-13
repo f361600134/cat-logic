@@ -43,7 +43,7 @@ public class RespMailRewardBuilder extends AbstractProtocol {
 	
 	@Override
 	public int protocol() {
-		return PBProtocol.RespMailReward_VALUE;
+		return PBProtocol.RespPlayerMailReward_VALUE;
 	}
 
 	@Override

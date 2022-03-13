@@ -43,6 +43,11 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 	public Activity getActivity() {
 		return activityType.getActivity();
 	}
+	
+	@Override
+	public int getConfigId() {
+		return activityType.getConfigId();
+	}
 
 	@Override
 	public boolean isBegin() {
