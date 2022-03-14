@@ -1,10 +1,7 @@
 package com.cat.server.core.server;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.cat.net.network.base.ISession;
 import com.cat.net.network.controller.IController;
-import com.cat.server.game.module.faction.IFactionService;
 
 /**
  * 抽象控制器
@@ -13,18 +10,16 @@ import com.cat.server.game.module.faction.IFactionService;
  */
 public abstract class AbstractController implements IController{
 	
-	@Autowired IFactionService factionService;
 	
 	@Override
 	public boolean verify(ISession session) {
-		long playerId = session.getUserData();
-		return factionService.checkOpen(playerId, this.getFactionId());
+		return getService().checkModuleOpen(session.getUserData());
 	}
 	
 	/**
-	 * 获取功能id
+	 * 获取service层级
 	 * @return int 功能id
 	 */
-	public abstract int getFactionId();
+	public abstract IModuleService getService();
 
 }

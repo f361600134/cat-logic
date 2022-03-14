@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 
 import com.cat.net.network.annotation.Cmd;
 import com.cat.net.network.base.ISession;
-import com.cat.server.core.annotation.ModuleController;
 import com.cat.server.core.server.AbstractController;
+import com.cat.server.core.server.IModuleService;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 
 import org.slf4j.Logger;
@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.helper.result.ModuleDefines;
 import com.cat.server.game.module.shop.proto.*;
 import com.cat.server.game.data.proto.PBShop.*;
 
@@ -67,10 +66,10 @@ public class ShopController extends AbstractController{
 		ack.setCode(code.getCode());
 		playerService.sendMessage(playerId, ack);
 	}
-	
+
 	@Override
-	public int getFactionId() {
-		return ModuleDefines.SHOP;
+	public IModuleService getService() {
+		return shopService;
 	}
 
 }

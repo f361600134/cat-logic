@@ -1,4 +1,4 @@
-package com.cat.server.game.module.faction;
+package com.cat.server.game.module.functioncontrol;
 
 /**
  * 功能的开启关闭, 由策划配置以及后台控制
@@ -7,7 +7,7 @@ package com.cat.server.game.module.faction;
  * @auth Jeremy
  * @date 2022年3月13日下午9:37:45
  */
-public interface IFactionService {
+public interface IFunctionControlService {
 	
 	/**
 	 * 检查功能是否开启

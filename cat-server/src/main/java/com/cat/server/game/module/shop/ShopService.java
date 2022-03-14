@@ -10,14 +10,17 @@ import com.cat.server.game.module.shop.domain.ShopDomain;
 import com.cat.server.game.module.shop.ShopManager;
 import com.cat.server.game.module.shop.proto.*;
 import com.cat.server.game.module.shop.type.IShopType;
+import com.cat.server.game.module.functioncontrol.AbstractPlayerModuleService;
 import com.cat.server.game.module.player.IPlayerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.helper.result.ModuleDefines;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
+import com.cat.server.core.server.AbstractModuleService;
 import com.cat.server.game.data.proto.PBShop.*;
 
 
@@ -26,7 +29,7 @@ import com.cat.server.game.data.proto.PBShop.*;
  * @author Jeremy
  */
 @Service
-public class ShopService implements IShopService, ILifecycle {
+public class ShopService extends AbstractPlayerModuleService implements IShopService, ILifecycle {
 	
 	private static final Logger log = LoggerFactory.getLogger(ShopService.class);
 	
@@ -166,5 +169,24 @@ public class ShopService implements IShopService, ILifecycle {
 	public int priority() {
 		return Priority.LOGIC.getPriority();
 	}
+
+	@Override
+	public int getModuleId() {
+		return ModuleDefines.SHOP;
+	}
+
+//	@Override
+//	public long getResetTime(long playerId) {
+//		ShopDomain domain = shopManager.getDomain(playerId);
+//		if (domain == null) {
+//			return 0L;
+//		}
+//		return domain.getBean(key);
+//	}
+//
+//	@Override
+//	public void setResetTime(long playerId, long now) {
+//		
+//	}
 	
 }
