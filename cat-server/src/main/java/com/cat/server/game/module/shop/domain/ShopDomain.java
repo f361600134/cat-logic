@@ -43,5 +43,7 @@ public class ShopDomain extends AbstractModuleMultiDomain<Long, Integer, Shop> {
 		int realNum = shop.getBuyedMap().getOrDefault(configId, 0);
 		realNum += number;
 		shop.getBuyedMap().put(configId, realNum);
+		shop.update();
 	}
+	
 }

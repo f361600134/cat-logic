@@ -13,6 +13,7 @@ import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.functioncontrol.AbstractPlayerModuleService;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
 import com.cat.server.game.module.shop.domain.ShopDomain;
@@ -134,6 +135,12 @@ public abstract class AbstractShopType<T extends IGameConfig> implements IShopTy
 		if (domain.getBuyCount(this.getShopType(), config.getId()) + number >= this.getLimitCount(config)) {
 			return ErrorCode.SHOP_ITEM_LIMIT;
 		}
+		return ErrorCode.SUCCESS;
+	}
+	
+	@Override
+	public ErrorCode refresh(ShopDomain domain) {
+		
 		return ErrorCode.SUCCESS;
 	}
 	

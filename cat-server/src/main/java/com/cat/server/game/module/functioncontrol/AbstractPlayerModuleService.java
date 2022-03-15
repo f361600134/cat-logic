@@ -33,5 +33,12 @@ public abstract class AbstractPlayerModuleService extends AbstractModuleService 
 //	 * @param now 
 //	 */
 //	public abstract void setResetTime(long playerId, long now);
+	
+	/**
+	 * 设置玩家的重置时间
+	 * @param playerId
+	 * @param now 
+	 */
+	public abstract void checkAndReset(long playerId, long now);
 
 }
