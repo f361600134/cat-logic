@@ -28,5 +28,12 @@ public interface IShopType {
 	 * @date 2022年3月12日下午3:01:34
 	 */
 	ErrorCode quickBuy(ShopDomain domain);
-
+	
+	/**
+	 * 商店刷新
+	 * @param domain
+	 * @return
+	 */
+	ErrorCode refresh(ShopDomain domain);
+	
 }

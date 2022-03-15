@@ -4,24 +4,28 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.cat.server.game.module.shop.IShopService;
-import com.cat.server.game.module.shop.domain.Shop;
-import com.cat.server.game.module.shop.domain.ShopDomain;
-import com.cat.server.game.module.shop.ShopManager;
-import com.cat.server.game.module.shop.proto.*;
-import com.cat.server.game.module.shop.type.IShopType;
-import com.cat.server.game.module.functioncontrol.AbstractPlayerModuleService;
-import com.cat.server.game.module.player.IPlayerService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.helper.result.ModuleDefines;
+
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
-import com.cat.server.core.server.AbstractModuleService;
-import com.cat.server.game.data.proto.PBShop.*;
+import com.cat.server.game.data.proto.PBShop.ReqShopBuy;
+import com.cat.server.game.data.proto.PBShop.ReqShopInfo;
+import com.cat.server.game.data.proto.PBShop.ReqShopQuickBuy;
+import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.helper.result.ModuleDefines;
+import com.cat.server.game.module.functioncontrol.AbstractPlayerModuleService;
+import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.shop.domain.Shop;
+import com.cat.server.game.module.shop.domain.ShopDomain;
+import com.cat.server.game.module.shop.proto.RespShopBuyBuilder;
+import com.cat.server.game.module.shop.proto.RespShopInfoBuilder;
+import com.cat.server.game.module.shop.proto.RespShopQuickBuyBuilder;
+import com.cat.server.game.module.shop.type.IShopType;
+import com.cat.server.utils.TimeUtil;
 
 
 /**
@@ -188,5 +192,18 @@ public class ShopService extends AbstractPlayerModuleService implements IShopSer
 //	public void setResetTime(long playerId, long now) {
 //		
 //	}
+	
+	@Override
+	public void checkAndReset(long playerId, long now) {
+//		ShopDomain domain = shopManager.getDomain(playerId);
+//		if (domain == null) {
+//			return;
+//		}
+//		for (Shop shop : domain.getBeans()) {
+//			if (!TimeUtil.isSameDay(shop.getRefreshTime(), now)) {
+//				shop.
+//			}
+//		}
+	}
 	
 }
