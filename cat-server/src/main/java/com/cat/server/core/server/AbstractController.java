@@ -10,8 +10,6 @@ import com.cat.net.network.controller.IController;
  */
 public abstract class AbstractController implements IController{
 	
-	
-	@Override
 	public boolean verify(ISession session) {
 		return getService().checkModuleOpen(session.getUserData());
 	}

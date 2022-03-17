@@ -1,5 +1,6 @@
 package com.cat.server.game.module.shop.type;
 
+import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.shop.domain.ShopDomain;
 import com.cat.server.game.module.shop.proto.PBShopInfoBuilder;
@@ -8,7 +9,7 @@ import com.cat.server.game.module.shop.proto.PBShopInfoBuilder;
  * 商店类型处理
  * @author Jeremy
  */
-public interface IShopType {
+public interface IShopType extends ILifecycle{
 	
 	/**
 	 * 获取商店类型
