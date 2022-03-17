@@ -109,4 +109,5 @@ public class ShopDomain extends AbstractModuleMultiDomain<Long, Integer, Shop> {
 		}
 		shop.reset(maxFreeRefreshNum, maxRedRefreshNum, commodities);
 	}
+
 }

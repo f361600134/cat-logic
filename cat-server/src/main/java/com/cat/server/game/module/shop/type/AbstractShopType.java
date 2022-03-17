@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cat.server.core.config.ConfigManager;
+import com.cat.server.game.data.config.local.ConfigShopControl;
 import com.cat.server.game.data.config.local.ext.IConfigShop;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
@@ -26,14 +27,14 @@ public abstract class AbstractShopType<T extends IConfigShop> implements IShopTy
 	protected Class<T> shopConfigClazz;
 	
 	@Autowired protected IResourceGroupService resourceGroupService;
+	@Autowired protected ConfigManager configManager;
 	
 	protected IRefreshStrategy refreshStrategy;
 
     @SuppressWarnings("unchecked")
-	protected AbstractShopType() {
+    public AbstractShopType() {
     	Type superClass = getClass().getGenericSuperclass();
 		this.shopConfigClazz = (Class<T>) (((ParameterizedType) superClass).getActualTypeArguments()[0]);
-		this.refreshStrategy = RefreshStrategyEnum.valueOf(getShopType()).newStrategy(this);
     }
 	
 	@Override
@@ -160,6 +161,20 @@ public abstract class AbstractShopType<T extends IConfigShop> implements IShopTy
 	@Override
 	public ErrorCode checkAndReset(ShopDomain domain, long now) {
 		return this.refreshStrategy.checkAndReset(domain, now);
+	}
+	
+	/**
+	 * 获取刷新策略
+	 * @return 刷新策略id
+	 */
+	public int getRefreshStrategy() {
+		ConfigShopControl config = configManager.getConfig(ConfigShopControl.class, this.getShopType());
+		return config == null ? 0 : config.getRefreshStrategy();
+	}
+	
+	@Override
+	public void start() throws Throwable {
+		this.refreshStrategy = RefreshStrategyEnum.valueOf(getRefreshStrategy()).newStrategy(this);
 	}
 	
 }

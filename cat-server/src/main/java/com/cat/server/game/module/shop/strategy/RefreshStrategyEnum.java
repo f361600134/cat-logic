@@ -1,14 +1,22 @@
 package com.cat.server.game.module.shop.strategy;
 
+import com.cat.server.game.data.config.local.ext.IConfigShop;
 import com.cat.server.game.module.shop.strategy.impl.NonRefreshStrategy;
+import com.cat.server.game.module.shop.strategy.impl.ResRefreshNoLimitStrategy;
 import com.cat.server.game.module.shop.type.AbstractShopType;
 
 public enum RefreshStrategyEnum {
 	
 	NonRefreshStrategy(1) {
 		@Override
-		public IRefreshStrategy newStrategy(AbstractShopType<?> shopType) {
+		public IRefreshStrategy newStrategy(AbstractShopType<? extends IConfigShop> shopType) {
 			return new NonRefreshStrategy(shopType);
+		}
+	},
+	ResRefreshNoLimitStrategy(2) {
+		@Override
+		public IRefreshStrategy newStrategy(AbstractShopType<? extends IConfigShop> shopType) {
+			return new ResRefreshNoLimitStrategy(shopType);
 		}
 	},
 	;
@@ -23,7 +31,7 @@ public enum RefreshStrategyEnum {
 		this.type = type;
 	}
 	
-	public abstract IRefreshStrategy newStrategy(AbstractShopType<?> shopType);
+	public abstract IRefreshStrategy newStrategy(AbstractShopType<? extends IConfigShop> shopType);
 	
 	public static RefreshStrategyEnum valueOf(int type) {
 		for (RefreshStrategyEnum renum : values()) {

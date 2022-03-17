@@ -1,17 +1,15 @@
 package com.cat.server.game.module.shop;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
+import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.data.proto.PBShop.ReqShopBuy;
 import com.cat.server.game.data.proto.PBShop.ReqShopInfo;
 import com.cat.server.game.data.proto.PBShop.ReqShopQuickBuy;
@@ -19,13 +17,11 @@ import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ModuleDefines;
 import com.cat.server.game.module.functioncontrol.AbstractPlayerModuleService;
 import com.cat.server.game.module.player.IPlayerService;
-import com.cat.server.game.module.shop.domain.Shop;
 import com.cat.server.game.module.shop.domain.ShopDomain;
 import com.cat.server.game.module.shop.proto.RespShopBuyBuilder;
 import com.cat.server.game.module.shop.proto.RespShopInfoBuilder;
 import com.cat.server.game.module.shop.proto.RespShopQuickBuyBuilder;
 import com.cat.server.game.module.shop.type.IShopType;
-import com.cat.server.utils.TimeUtil;
 
 
 /**
@@ -33,9 +29,7 @@ import com.cat.server.utils.TimeUtil;
  * @author Jeremy
  */
 @Service
-public class ShopService extends AbstractPlayerModuleService implements IShopService, ILifecycle {
-	
-	private static final Logger log = LoggerFactory.getLogger(ShopService.class);
+public class ShopService extends AbstractPlayerModuleService<Long, ShopDomain> implements IShopService, ILifecycle {
 	
 	@Autowired private IPlayerService playerService;
 	
@@ -51,33 +45,13 @@ public class ShopService extends AbstractPlayerModuleService implements IShopSer
 	}
 	
 	/**
-	 * 登陆, 检测重置
-	 * 可以新增IResetDomain接口, 专用于处理游戏内的充值业务
-	 */
-	public void onLogin(long playerId) {
-		ShopDomain domain = shopManager.getOrLoadDomain(playerId);
-		Collection<Shop> beans = domain.getBeans();
-		this.checkAndReset(playerId, TimeUtil.now());
-		//FSC todo somthing...
-		//Codes for proto
-		//playerService.sendMessage(playerId, ack);
-	}
-	
-	/**
-	 * 当玩家离线,移除掉道具模块数据
-	 * @param playerId
-	 */
-	public void onLogout(long playerId) {
-		shopManager.remove(playerId);
-	}
-  
-	/**
 	 * 更新信息
 	 */
 	public void responseShopInfo(ShopDomain domain, int shopId) {
 		try {
 			IShopType shopType = this.shopMap.get(shopId);
 			if (shopType == null) {
+				log.info("responseShopInfo error, shopType is null, shopId:{}", shopId);
 				return;
 			}
 			playerService.sendMessage(domain.getId(), shopType.toProto(domain));
@@ -86,8 +60,16 @@ public class ShopService extends AbstractPlayerModuleService implements IShopSer
 		}
 	}
 	
-	/////////////业务逻辑//////////////////
+	@Override
+	public void responseAllInfo(ShopDomain domain) {
+		//TODO 下发所有商店信息
+		//这里可以组装所有商店信息到一个消息下发给玩家
+		shopMap.forEach((k,v)->{
+			playerService.sendMessage(domain.getId(), v.toProto(domain));
+		});
+	}
 	
+	/////////////业务逻辑//////////////////
 	
 	/**
 	* 请求商店购买
@@ -173,6 +155,11 @@ public class ShopService extends AbstractPlayerModuleService implements IShopSer
 	/////////////接口方法////////////////////////
 	
 	@Override
+	public IModuleManager<Long, ShopDomain> getModuleManager() {
+		return shopManager;
+	}
+	
+	@Override
 	public int priority() {
 		return Priority.LOGIC.getPriority();
 	}
@@ -183,11 +170,7 @@ public class ShopService extends AbstractPlayerModuleService implements IShopSer
 	}
 
 	@Override
-	public void checkAndReset(long playerId, long now) {
-		ShopDomain domain = shopManager.getDomain(playerId);
-		if (domain == null) {
-			return;
-		}
+	public void checkAndReset(ShopDomain domain, long now) {
 		shopMap.forEach((k,v)->{
 			v.checkAndReset(domain, now);
 		});

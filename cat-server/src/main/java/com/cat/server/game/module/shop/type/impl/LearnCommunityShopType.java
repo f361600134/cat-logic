@@ -2,6 +2,7 @@ package com.cat.server.game.module.shop.type.impl;
 
 import org.springframework.stereotype.Component;
 
+import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.data.config.local.ConfigShopLearnCommunity;
 import com.cat.server.game.module.activity.type.ActivityTypeEnum;
 import com.cat.server.game.module.activity.type.impl.LearnCommunityActivityType;
@@ -14,7 +15,7 @@ import com.cat.server.game.module.shop.type.AbstractActivityShopType;
  * @date 2022年3月13日下午12:18:39
  */
 @Component
-public class LearnCommunityShopType extends AbstractActivityShopType<ConfigShopLearnCommunity, LearnCommunityActivityType>{
+public class LearnCommunityShopType extends AbstractActivityShopType<ConfigShopLearnCommunity, LearnCommunityActivityType> {
 
 	@Override
 	public int getShopType() {
@@ -29,6 +30,11 @@ public class LearnCommunityShopType extends AbstractActivityShopType<ConfigShopL
 	@Override
 	public int getConfigActivityId(ConfigShopLearnCommunity config) {
 		return config.getActivityId();
+	}
+	
+	@Override
+	public int priority() {
+		return Priority.LOWEST.getPriority();
 	}
 
 }

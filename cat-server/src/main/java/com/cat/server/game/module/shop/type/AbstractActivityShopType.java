@@ -13,20 +13,21 @@ import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.activity.IActivityService;
 import com.cat.server.game.module.activity.type.IActivityType;
 import com.cat.server.game.module.shop.domain.ShopDomain;
+import com.cat.server.game.module.shop.strategy.RefreshStrategyEnum;
 
 /**
  * 活动类型抽象商店
  * @auth Jeremy
  * @date 2022年3月13日上午11:20:54
  */
-public abstract class AbstractActivityShopType<T extends IConfigShop, A extends IActivityType> extends AbstractShopType<T>{
+public abstract class AbstractActivityShopType<T extends IConfigShop, A extends IActivityType> extends AbstractShopType<T> {
 	
 	protected Class<A> activityClazz;
 	
 	@Autowired protected IActivityService activityService;
 	
     @SuppressWarnings("unchecked")
-	protected AbstractActivityShopType() {
+    public AbstractActivityShopType() {
     	Type superClass = getClass().getGenericSuperclass();
 		this.shopConfigClazz = (Class<T>) (((ParameterizedType) superClass).getActualTypeArguments()[0]);
 		this.activityClazz = (Class<A>) (((ParameterizedType) superClass).getActualTypeArguments()[1]);
