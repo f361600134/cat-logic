@@ -1,5 +1,10 @@
 package com.cat.battle.service.module.player;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import com.cat.api.ProtocolId;
 import com.cat.api.module.battle.request.ReqIdentityAuthenticate;
 import com.cat.api.module.battle.response.RespIdentityAuthenticate;
@@ -11,10 +16,6 @@ import com.cat.net.network.tcp.RpcServerStarter;
 import com.cat.net.terminal.IServer;
 import com.rpc.common.RpcConfig;
 import com.rpc.core.server.RpcNetService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 @Controller
 public class PlayerController implements IRpcController {

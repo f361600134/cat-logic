@@ -1,10 +1,8 @@
 package com.cat.server.game.module.shop.type.impl;
 
-import java.util.Map;
-
 import org.springframework.stereotype.Component;
 
-import com.cat.server.game.data.config.local.ConfigMainShop;
+import com.cat.server.game.data.config.local.ConfigShopMain;
 import com.cat.server.game.module.shop.assist.ShopTypeEnum;
 import com.cat.server.game.module.shop.type.AbstractShopType;
 
@@ -14,31 +12,11 @@ import com.cat.server.game.module.shop.type.AbstractShopType;
  * @date 2022年3月13日下午12:19:56
  */
 @Component
-public class MainShopType extends AbstractShopType<ConfigMainShop>{
+public class MainShopType extends AbstractShopType<ConfigShopMain>{
 
 	@Override
 	public int getShopType() {
 		return ShopTypeEnum.MAIN_SHOP.getValue();
-	}
-
-	@Override
-	public Map<Integer, Integer> getCost(ConfigMainShop config) {
-		return config.getPrice().getDictionary();
-	}
-
-	@Override
-	public Map<Integer, Integer> getItems(ConfigMainShop config) {
-		return config.getItem().getDictionary();
-	}
-
-	@Override
-	public int getLimitCount(ConfigMainShop config) {
-		return config.getLimit();
-	}
-
-	@Override
-	public boolean isQuickBuy(ConfigMainShop config) {
-		return config.getQuickBuy() == 1;
 	}
 
 }

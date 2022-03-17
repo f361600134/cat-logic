@@ -7,10 +7,10 @@ import com.cat.server.core.config.annotation.ConfigPath;
 
 /**
  * sd.商店-主界面商店.xlsx<br>
- * main_shop.json<br>
+ * shop_main.json<br>
  * @author auto gen
  */
-public class ConfigMainShopBase implements IGameConfig {
+public class ConfigShopMainBase implements IGameConfig {
 
     /**
      * 唯一id
@@ -49,6 +49,10 @@ public class ConfigMainShopBase implements IGameConfig {
      * 1.是
      */
     private int quickBuy;
+    /**
+     * 权重
+     */
+    private int weight;
 
     /** @return 唯一id*/
     @Override
@@ -119,6 +123,16 @@ public class ConfigMainShopBase implements IGameConfig {
     /** @param quickBuy 一键购买*/
     public void setQuickBuy(int quickBuy) {
         this.quickBuy = quickBuy;
+    }
+
+    /** @return 权重*/
+    public int getWeight() {
+        return this.weight;
+    }
+
+    /** @param weight 权重*/
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
 }

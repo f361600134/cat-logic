@@ -14,9 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 时间工具类
- * 
  * @author hdh
- *
  */
 public class TimeUtil {
 

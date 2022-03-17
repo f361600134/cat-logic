@@ -114,7 +114,10 @@ public enum ErrorCode implements ModuleDefines, CodeEnum{
     SHOP_ITEM_LIMIT(SHOP, 2, "已到达限购次数"),
     SHOP_COST_NOT_ENOUGH(SHOP, 3, "购买所需资源不足"),
     SHOP_ACTIVITY_NOT_OPEN(SHOP, 4, "活动未开启商店不可以购买"),
-    
+    SHOP_NO_REFRESH(SHOP, 5, "刷新次数不足"),
+    SHOP_COST_NO_ENOUGH(SHOP, 6, "刷新需要资源不足"),
+    SHOP_REFRESH_CANNOT(SHOP, 7, "商店不可以刷新"),
+    SHOP_REFRESH_NOT_IN_TIME(SHOP, 8, "未到达重置时间"),
     ;
 	
 	

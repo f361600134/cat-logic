@@ -3,15 +3,15 @@ package com.cat.server.game.data.config.local;
 import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.game.module.resource.domain.ResourceMap;
 import com.cat.server.core.config.annotation.ConfigPath;
-import com.cat.server.game.data.config.local.base.ConfigMainShopBase;
+import com.cat.server.game.data.config.local.base.ConfigShopControlBase;
 
 
 /**
- * sd.商店-主界面商店.xlsx<br>
- * main_shop.json<br>
+ * sd.商店总表.xlsx<br>
+ * shop_control.json<br>
  * @author auto gen
  */
-@ConfigPath("main_shop.json")
-public class ConfigMainShop extends ConfigMainShopBase {
+@ConfigPath("shop_control.json")
+public class ConfigShopControl extends ConfigShopControlBase {
 
 }

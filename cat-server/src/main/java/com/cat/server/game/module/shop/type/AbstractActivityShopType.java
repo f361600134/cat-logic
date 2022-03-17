@@ -8,7 +8,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cat.server.core.config.ConfigManager;
-import com.cat.server.core.config.container.IGameConfig;
+import com.cat.server.game.data.config.local.ext.IConfigShop;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.activity.IActivityService;
 import com.cat.server.game.module.activity.type.IActivityType;
@@ -19,7 +19,7 @@ import com.cat.server.game.module.shop.domain.ShopDomain;
  * @auth Jeremy
  * @date 2022年3月13日上午11:20:54
  */
-public abstract class AbstractActivityShopType<T extends IGameConfig, A extends IActivityType> extends AbstractShopType<T>{
+public abstract class AbstractActivityShopType<T extends IConfigShop, A extends IActivityType> extends AbstractShopType<T>{
 	
 	protected Class<A> activityClazz;
 	

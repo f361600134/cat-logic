@@ -10,24 +10,30 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cat.server.core.config.ConfigManager;
-import com.cat.server.core.config.container.IGameConfig;
+import com.cat.server.game.data.config.local.ext.IConfigShop;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.functioncontrol.AbstractPlayerModuleService;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
+import com.cat.server.game.module.shop.domain.Shop;
 import com.cat.server.game.module.shop.domain.ShopDomain;
+import com.cat.server.game.module.shop.proto.PBShopInfoBuilder;
+import com.cat.server.game.module.shop.strategy.IRefreshStrategy;
+import com.cat.server.game.module.shop.strategy.RefreshStrategyEnum;
 
-public abstract class AbstractShopType<T extends IGameConfig> implements IShopType{
+public abstract class AbstractShopType<T extends IConfigShop> implements IShopType{
 	
 	protected Class<T> shopConfigClazz;
 	
 	@Autowired protected IResourceGroupService resourceGroupService;
+	
+	protected IRefreshStrategy refreshStrategy;
 
     @SuppressWarnings("unchecked")
 	protected AbstractShopType() {
     	Type superClass = getClass().getGenericSuperclass();
 		this.shopConfigClazz = (Class<T>) (((ParameterizedType) superClass).getActualTypeArguments()[0]);
+		this.refreshStrategy = RefreshStrategyEnum.valueOf(getShopType()).newStrategy(this);
     }
 	
 	@Override
@@ -42,11 +48,11 @@ public abstract class AbstractShopType<T extends IGameConfig> implements IShopTy
 			return errorCode;
 		}
 		//判断消耗
-		if (!resourceGroupService.checkAndCost(domain.getId(), this.getCost(config), NatureEnum.ShopBuy)) {
+		if (!resourceGroupService.checkAndCost(domain.getId(), config.getCost(), NatureEnum.ShopBuy)) {
 			return ErrorCode.SHOP_COST_NOT_ENOUGH;
 		}
 		//增加到背包
-		resourceGroupService.reward(domain.getId(), this.getItems(config), NatureEnum.ShopBuy);
+		resourceGroupService.reward(domain.getId(), config.getItems(), NatureEnum.ShopBuy);
 		//记录购买次数
 		domain.addBuyCount(this.getShopType(), configId, number);
 		//TODO log 看记录需要, 最好是分表记录, 不同商店购买日志记录在不同商店
@@ -64,15 +70,15 @@ public abstract class AbstractShopType<T extends IGameConfig> implements IShopTy
 		//筛选出可以被一键购买的商品列表
 		Collection<T> configs = this.getConfigs()
 				.values().stream()
-				.filter((c)->this.isQuickBuy(c))
+				.filter((c)->c.isQuickBuy())
 				.filter((c)-> this.checkCanBuy(domain, c, getRemainNumber(domain, c)).isSuccess())
 				.collect(Collectors.toList());
 		
 		Map<Integer, Integer> costMap = new HashMap<>();
 		Map<Integer, Integer> itemMap = new HashMap<>();
 		for (T config : configs) {
-			ResourceHelper.mergeToMap(this.getCost(config), costMap);
-			ResourceHelper.mergeToMap(this.getItems(config), itemMap);
+			ResourceHelper.mergeToMap(config.getCost(), costMap);
+			ResourceHelper.mergeToMap(config.getItems(), itemMap);
 		}
 		//判断消耗
 		if (!resourceGroupService.checkAndCost(domain.getId(), costMap, NatureEnum.ShopQuickBuy)) {
@@ -88,13 +94,26 @@ public abstract class AbstractShopType<T extends IGameConfig> implements IShopTy
 		return ErrorCode.SUCCESS;
 	}
 	
+	@Override
+	public PBShopInfoBuilder toProto(ShopDomain domain) {
+		Shop shop = domain.getBean(this.getShopType());
+		PBShopInfoBuilder builder = PBShopInfoBuilder.newInstance();
+		builder.setShopId(this.getShopType());
+		builder.setResRefreshNum(shop.getResRefreshNum());
+		builder.setFreeRefreshNum(shop.getFreeRefreshNum());
+		builder.setFreeRefreshTime(shop.getFreeRefreshTime());
+		builder.addAllItemRecord(ResourceHelper.toPairProto(shop.getBuyedMap()));
+		builder.addAllCommodities(this.refreshStrategy.getCurCommodities(domain));
+		return builder;
+	}
+	
 	/**
 	 * 获取商品剩余数量
 	 * @return int 剩余数量
 	 * @date 2022年3月13日上午10:59:30
 	 */
 	public int getRemainNumber(ShopDomain domain, T config) {
-		int limitNum = this.getLimitCount(config);
+		int limitNum = config.getLimitCount();
 		int buyedCount = domain.getBuyCount(this.getShopType(), config.getId());
 		int remain = limitNum - buyedCount;
 		return remain;
@@ -132,44 +151,15 @@ public abstract class AbstractShopType<T extends IGameConfig> implements IShopTy
 			return ErrorCode.INVALID_PARAM;
 		}
 		//判断限购
-		if (domain.getBuyCount(this.getShopType(), config.getId()) + number >= this.getLimitCount(config)) {
+		if (domain.getBuyCount(this.getShopType(), config.getId()) + number >= config.getLimitCount()) {
 			return ErrorCode.SHOP_ITEM_LIMIT;
 		}
 		return ErrorCode.SUCCESS;
 	}
 	
 	@Override
-	public ErrorCode refresh(ShopDomain domain) {
-		
-		return ErrorCode.SUCCESS;
+	public ErrorCode checkAndReset(ShopDomain domain, long now) {
+		return this.refreshStrategy.checkAndReset(domain, now);
 	}
-	
-	/**
-	 * 获取价格
-	 * @return Map<Integer,Integer>  价格map
-	 * @date 2022年3月12日下午3:14:48
-	 */
-	public abstract Map<Integer, Integer> getCost(T config);
-	
-	/**
-	 * 获取购买所得
-	 * @return  
-	 * @return Map<Integer,Integer>  购买所得
-	 * @date 2022年3月12日下午3:14:48
-	 */
-	public abstract Map<Integer, Integer> getItems(T config);
-	
-	/**
-	 * 判断限购次数,有些商店的商品如果是vip可以多购买一次
-	 * @return  
-	 * @return Map<Integer,Integer>  购买所得
-	 * @date 2022年3月12日下午3:14:48
-	 */
-	public abstract int getLimitCount(T config);
-	
-	/**
-	 * 是否可以被一键购买
-	 */
-	public abstract boolean isQuickBuy(T config);
 	
 }

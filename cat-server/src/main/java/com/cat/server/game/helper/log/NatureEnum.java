@@ -60,7 +60,9 @@ public enum NatureEnum implements ModuleDefines {
 //	GenScoreCard(3004, "酒馆积分10连抽"),
 //	//4:商店
 	ShopBuy(SHOP, 1,"商店购买"),
-	ShopQuickBuy(SHOP, 1,"商店一键购买"),
+	ShopQuickBuy(SHOP, 2,"商店一键购买"),
+	ShopRefresh(SHOP, 3,"商店刷新"),
+	ShopAutoRestore(SHOP, 4,"商店自动恢复免费次数"),
 //	//5:武将
 //	HeroActiveStar(5001,"武将升星"),
 //	HeroRelation(5002,"武将羁绊"),

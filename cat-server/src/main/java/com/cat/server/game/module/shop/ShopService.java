@@ -52,10 +52,12 @@ public class ShopService extends AbstractPlayerModuleService implements IShopSer
 	
 	/**
 	 * 登陆, 检测重置
+	 * 可以新增IResetDomain接口, 专用于处理游戏内的充值业务
 	 */
 	public void onLogin(long playerId) {
 		ShopDomain domain = shopManager.getOrLoadDomain(playerId);
 		Collection<Shop> beans = domain.getBeans();
+		this.checkAndReset(playerId, TimeUtil.now());
 		//FSC todo somthing...
 		//Codes for proto
 		//playerService.sendMessage(playerId, ack);
@@ -74,10 +76,11 @@ public class ShopService extends AbstractPlayerModuleService implements IShopSer
 	 */
 	public void responseShopInfo(ShopDomain domain, int shopId) {
 		try {
-			Shop shop = domain.getBean(shopId);
-			if (shop != null) {
-				playerService.sendMessage(domain.getId(), shop.toProto());
+			IShopType shopType = this.shopMap.get(shopId);
+			if (shopType == null) {
+				return;
 			}
+			playerService.sendMessage(domain.getId(), shopType.toProto(domain));
 		} catch (Exception e) {
 			log.error("responseShopInfo error, playerId:{}, shopId:{}", domain.getId(), shopId, e);
 		}
@@ -158,8 +161,8 @@ public class ShopService extends AbstractPlayerModuleService implements IShopSer
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
 			req.getShopIdList().forEach(shopId->{
-				Shop shop = domain.getBean(shopId);
-				ack.addShopInfos(shop.toProto().build());
+				IShopType shopType = shopMap.get(shopId);
+				ack.addShopInfos(shopType.toProto(domain).build());
 			});
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {
@@ -179,31 +182,15 @@ public class ShopService extends AbstractPlayerModuleService implements IShopSer
 		return ModuleDefines.SHOP;
 	}
 
-//	@Override
-//	public long getResetTime(long playerId) {
-//		ShopDomain domain = shopManager.getDomain(playerId);
-//		if (domain == null) {
-//			return 0L;
-//		}
-//		return domain.getBean(key);
-//	}
-//
-//	@Override
-//	public void setResetTime(long playerId, long now) {
-//		
-//	}
-	
 	@Override
 	public void checkAndReset(long playerId, long now) {
-//		ShopDomain domain = shopManager.getDomain(playerId);
-//		if (domain == null) {
-//			return;
-//		}
-//		for (Shop shop : domain.getBeans()) {
-//			if (!TimeUtil.isSameDay(shop.getRefreshTime(), now)) {
-//				shop.
-//			}
-//		}
+		ShopDomain domain = shopManager.getDomain(playerId);
+		if (domain == null) {
+			return;
+		}
+		shopMap.forEach((k,v)->{
+			v.checkAndReset(domain, now);
+		});
 	}
 	
 }

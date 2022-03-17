@@ -10,17 +10,23 @@ public abstract class ShopPo extends BasePo {
 
 	public static final String PROP_PLAYERID = "playerId";
 	public static final String PROP_SHOPID = "shopId";
-	public static final String PROP_REFRESHTIME = "refreshTime";
-	public static final String PROP_REFRESHNUM = "refreshNum";
+	public static final String PROP_FREEREFRESHNUM = "freeRefreshNum";
+	public static final String PROP_FREEREFRESHTIME = "freeRefreshTime";
+	public static final String PROP_RESREFRESHNUM = "resRefreshNum";
 	public static final String PROP_BUYEDSTR = "buyedStr";
+	public static final String PROP_COMMODITIESSTR = "commoditiesStr";
+	public static final String PROP_RESETTIME = "resetTime";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
 			PROP_PLAYERID,
 			PROP_SHOPID,
-			PROP_REFRESHTIME,
-			PROP_REFRESHNUM,
+			PROP_FREEREFRESHNUM,
+			PROP_FREEREFRESHTIME,
+			PROP_RESREFRESHNUM,
 			PROP_BUYEDSTR,
+			PROP_COMMODITIESSTR,
+			PROP_RESETTIME,
 			};
 			
 	/** 所有主键索引字段数组*/
@@ -38,15 +44,22 @@ public abstract class ShopPo extends BasePo {
 	protected long playerId;
 	/** 商店类型id*/
 	protected int shopId;
-	/** 商店刷新时间*/
-	protected long refreshTime;
-	/** 商店刷新次数*/
-	protected short refreshNum;
+	/** 商店免费刷新次数*/
+	protected short freeRefreshNum;
+	/** 商店免费刷新时间*/
+	protected long freeRefreshTime;
+	/** 商店资源刷新次数*/
+	protected short resRefreshNum;
 	/** 已购买列表*/
 	protected String buyedStr;
+	/** 当前商品列表,随机商品列表时使用*/
+	protected String commoditiesStr;
+	/** 最后重置时间,用于每日重置*/
+	protected long resetTime;
 	
 	public ShopPo(){
 		this.buyedStr = "";
+		this.commoditiesStr = "";
 	}
 	
 	/** 玩家id **/
@@ -67,22 +80,31 @@ public abstract class ShopPo extends BasePo {
 		this.shopId = shopId;
 	}
 	
-	/** 商店刷新时间 **/
-	public long getRefreshTime(){
-		return this.refreshTime;
+	/** 商店免费刷新次数 **/
+	public short getFreeRefreshNum(){
+		return this.freeRefreshNum;
 	}
 	
-	public void setRefreshTime(long refreshTime){
-		this.refreshTime = refreshTime;
+	public void setFreeRefreshNum(short freeRefreshNum){
+		this.freeRefreshNum = freeRefreshNum;
 	}
 	
-	/** 商店刷新次数 **/
-	public short getRefreshNum(){
-		return this.refreshNum;
+	/** 商店免费刷新时间 **/
+	public long getFreeRefreshTime(){
+		return this.freeRefreshTime;
 	}
 	
-	public void setRefreshNum(short refreshNum){
-		this.refreshNum = refreshNum;
+	public void setFreeRefreshTime(long freeRefreshTime){
+		this.freeRefreshTime = freeRefreshTime;
+	}
+	
+	/** 商店资源刷新次数 **/
+	public short getResRefreshNum(){
+		return this.resRefreshNum;
+	}
+	
+	public void setResRefreshNum(short resRefreshNum){
+		this.resRefreshNum = resRefreshNum;
 	}
 	
 	/** 已购买列表 **/
@@ -94,11 +116,29 @@ public abstract class ShopPo extends BasePo {
 		this.buyedStr = buyedStr;
 	}
 	
+	/** 当前商品列表,随机商品列表时使用 **/
+	public String getCommoditiesStr(){
+		return this.commoditiesStr;
+	}
+	
+	public void setCommoditiesStr(String commoditiesStr){
+		this.commoditiesStr = commoditiesStr;
+	}
+	
+	/** 最后重置时间,用于每日重置 **/
+	public long getResetTime(){
+		return this.resetTime;
+	}
+	
+	public void setResetTime(long resetTime){
+		this.resetTime = resetTime;
+	}
+	
 	
 	@Override
 	public String toString() {
-		return "Shop [playerId= "+ playerId +", shopId= "+ shopId +", refreshTime= "+ refreshTime +", refreshNum= "+ refreshNum +", buyedStr= "+ buyedStr
-				+"]";
+		return "Shop [playerId= "+ playerId +", shopId= "+ shopId +", freeRefreshNum= "+ freeRefreshNum +", freeRefreshTime= "+ freeRefreshTime +", resRefreshNum= "+ resRefreshNum
+				 +", buyedStr= "+ buyedStr +", commoditiesStr= "+ commoditiesStr +", resetTime= "+ resetTime+"]";
 	}
 	
 	@Override
@@ -111,9 +151,12 @@ public abstract class ShopPo extends BasePo {
 		return new Object[] { 
 		getPlayerId(),
 		getShopId(),
-		getRefreshTime(),
-		getRefreshNum(),
+		getFreeRefreshNum(),
+		getFreeRefreshTime(),
+		getResRefreshNum(),
 		getBuyedStr(),
+		getCommoditiesStr(),
+		getResetTime(),
 		};
 	}
 	

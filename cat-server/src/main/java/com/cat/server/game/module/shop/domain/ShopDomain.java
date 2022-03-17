@@ -1,8 +1,12 @@
 package com.cat.server.game.module.shop.domain;
 
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.cat.server.core.server.AbstractModuleMultiDomain;
+import com.cat.server.utils.TimeUtil;
 
 
 
@@ -32,6 +36,16 @@ public class ShopDomain extends AbstractModuleMultiDomain<Long, Integer, Shop> {
 	}
 	
 	/**
+	 * 获取商品列表购买数量
+	 * @param shopId 商店id
+	 * @return configId 商品id
+	 */
+	public Collection<Integer> getCommodities(int shopId) {
+		Shop shop = this.getBean(shopId);
+		return shop.getCommodities();
+	}
+	
+	/**
 	 * 增加商品购买数量
 	 * @param shopId 商店id
 	 * @param configId 商品id
@@ -46,4 +60,53 @@ public class ShopDomain extends AbstractModuleMultiDomain<Long, Integer, Shop> {
 		shop.update();
 	}
 	
+	/**
+	 * 增加已使用资源刷新次数
+	 * @param shopId 商店id
+	 */
+	public void addResRefreshNum(int shopId) {
+		Shop shop = this.getBean(shopId);
+		shop.setResRefreshNum((short)(shop.getResRefreshNum()+1));
+		shop.update();
+	}
+	
+	/**
+	 * 增加已使用免费刷新次数
+	 * @param shopId 商店id
+	 */
+	public void addFreeRefreshNum(int shopId) {
+		Shop shop = this.getBean(shopId);
+		shop.setFreeRefreshNum((short)(shop.getFreeRefreshNum()+1));
+		if (shop.getFreeRefreshNum() > 0) {
+			//刷新次数不为0, 开始恢复
+			shop.setFreeRefreshTime(TimeUtil.now());
+		}
+		shop.update();
+	}
+	
+//	/**
+//	 * 重置商店数据
+//	 * @param shopId
+//	 */
+//	public void init(int shopId, int maxFreeRefreshNum, int maxRedRefreshNum, Collection<Integer> commodities) {
+//		Shop shop = this.getBean(shopId);
+//		if (shop == null) {
+//			log.info("reset error, shop:[{}] is null", shopId);
+//			return;
+//		}
+//		shop.init(maxFreeRefreshNum, maxRedRefreshNum, commodities);
+//	}
+	
+	/**
+	 * 重置商店数据
+	 * @param shopId
+	 */
+	public void reset(int shopId, int maxFreeRefreshNum, int maxRedRefreshNum, Collection<Integer> commodities) {
+		Shop shop = this.getBean(shopId);
+		if (shop == null) {
+			log.info("reset error, shop:[{}] is null", shopId);
+			return;
+		}
+		shop.reset(maxFreeRefreshNum, maxRedRefreshNum, commodities);
+	}
 }

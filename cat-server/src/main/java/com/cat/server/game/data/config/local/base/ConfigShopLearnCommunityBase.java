@@ -7,10 +7,10 @@ import com.cat.server.core.config.annotation.ConfigPath;
 
 /**
  * sd.商店-研习社(活动).xlsx<br>
- * learn_community_shop.json<br>
+ * shop_learn_community.json<br>
  * @author auto gen
  */
-public class ConfigLearnCommunityShopBase implements IGameConfig {
+public class ConfigShopLearnCommunityBase implements IGameConfig {
 
     /**
      * 唯一id
@@ -26,7 +26,7 @@ public class ConfigLearnCommunityShopBase implements IGameConfig {
     private int activityId;
     /**
      * 购买所得<br>
-     * [id,num]<br>
+     * id_num<br>
      * 资源ID，数量
      */
     private ResourceMap item;
@@ -53,6 +53,10 @@ public class ConfigLearnCommunityShopBase implements IGameConfig {
      * 1.是
      */
     private int quickBuy;
+    /**
+     * 权重
+     */
+    private int weight;
 
     /** @return 唯一id*/
     @Override
@@ -133,6 +137,16 @@ public class ConfigLearnCommunityShopBase implements IGameConfig {
     /** @param quickBuy 一键购买*/
     public void setQuickBuy(int quickBuy) {
         this.quickBuy = quickBuy;
+    }
+
+    /** @return 权重*/
+    public int getWeight() {
+        return this.weight;
+    }
+
+    /** @param weight 权重*/
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
 }

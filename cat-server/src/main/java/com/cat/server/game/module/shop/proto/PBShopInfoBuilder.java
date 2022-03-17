@@ -34,13 +34,13 @@ public class PBShopInfoBuilder extends AbstractProtocol {
 	public void setShopId(int value){
 		this.builder.setShopId(value);
 	}
-	/** 最后刷新时间**/
-	public void setRefreshTime(long value){
-		this.builder.setRefreshTime(value);
+	/** 免费刷新的最后刷新时间**/
+	public void setFreeRefreshTime(long value){
+		this.builder.setFreeRefreshTime(value);
 	}
-	/** 刷新次数**/
-	public void setRefreshNum(int value){
-		this.builder.setRefreshNum(value);
+	/** 免费刷新已刷新次数**/
+	public void setFreeRefreshNum(int value){
+		this.builder.setFreeRefreshNum(value);
 	}
 	/** 商品购买记录**/
 	public void addItemRecord(PBPairInfo value){
@@ -49,6 +49,18 @@ public class PBShopInfoBuilder extends AbstractProtocol {
 	
 	public void addAllItemRecord(Collection<PBPairInfo> value){
 		this.builder.addAllItemRecord(value);
+	}
+	/** 资源刷新已刷新次数**/
+	public void setResRefreshNum(int value){
+		this.builder.setResRefreshNum(value);
+	}
+	/** 当前商品id列表**/
+	public void addCommodities(int value){
+		this.builder.addCommodities(value);
+	}
+	
+	public void addAllCommodities(Collection<java.lang.Integer> value){
+		this.builder.addAllCommodities(value);
 	}
 	
 	@Override
