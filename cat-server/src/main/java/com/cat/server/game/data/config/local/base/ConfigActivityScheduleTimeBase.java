@@ -1,14 +1,13 @@
 package com.cat.server.game.data.config.local.base;
 
 import com.cat.server.core.config.container.IGameConfig;
+import com.cat.server.core.config.annotation.ConfigPath;
 
 
 /**
  * hd.活动时间表.xlsx<br>
  * activity_schedule_time.json<br>
- * 
  * @author auto gen
- *
  */
 public class ConfigActivityScheduleTimeBase implements IGameConfig {
 
@@ -16,18 +15,15 @@ public class ConfigActivityScheduleTimeBase implements IGameConfig {
      * 活动 id
      */
     private int id;
-    
     /**
      * 活动类型
      */
     private int type;
-    
     /**
      * 活动方案<br>
      * 填0则为默认方案id，此功能尽量少用，如果需要使用，需要在对应的活动表中做好备注
      */
     private int planId;
-    
     /**
      * 起始时间点<br>
      * 如果活动是循环活动，开始时间需要填循环时间和循环次数，如7天循环一次的活动，共循环3次，则需要在时间出加_7c_3ct。如果是无限循环的活动，则不需要填循环次数<br>
@@ -50,7 +46,6 @@ public class ConfigActivityScheduleTimeBase implements IGameConfig {
      * 5.5o_12h_30mi_20c_3ct表示开服第5天12点30分0秒,开启活动后20天又开启一次本活动，共循环开启3次
      */
     private String startTime;
-    
     /**
      * 准备时间<br>
      * 单位:秒<br>
@@ -61,7 +56,6 @@ public class ConfigActivityScheduleTimeBase implements IGameConfig {
      * 填-1表示不确定时间，需要读日历或者通过其他方式计算时间，一般只用于月循环的活动
      */
     private int prepareDuration;
-    
     /**
      * 开始持续时间<br>
      * 单位:秒<br>
@@ -70,7 +64,6 @@ public class ConfigActivityScheduleTimeBase implements IGameConfig {
      * 填-1表示不确定时间，需要读日历或者通过其他方式计算时间，一般只用于月循环的活动
      */
     private int beginDuration;
-    
     /**
      * 结算持续时间<br>
      * 单位：秒<br>
@@ -80,131 +73,74 @@ public class ConfigActivityScheduleTimeBase implements IGameConfig {
      * 填-1表示不确定时间，需要读日历或者通过其他方式计算时间，一般只用于月循环的活动
      */
     private int settleDuration;
-    
 
-    /**
-     * get 活动 id
-     *
-     * @return
-     */
+    /** @return 活动 id*/
     @Override
     public int getId() {
         return this.id;
     }
 
-    /**
-     * set 活动 id
-     *
-     * @param id
-     */
+    /** @param id 活动 id*/
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * get 活动类型
-     *
-     * @return
-     */
+    /** @return 活动类型*/
     public int getType() {
         return this.type;
     }
 
-    /**
-     * set 活动类型
-     *
-     * @param type
-     */
+    /** @param type 活动类型*/
     public void setType(int type) {
         this.type = type;
     }
 
-    /**
-     * get 活动方案
-     *
-     * @return
-     */
+    /** @return 活动方案*/
     public int getPlanId() {
         return this.planId;
     }
 
-    /**
-     * set 活动方案
-     *
-     * @param planId
-     */
+    /** @param planId 活动方案*/
     public void setPlanId(int planId) {
         this.planId = planId;
     }
 
-    /**
-     * get 起始时间点
-     *
-     * @return
-     */
+    /** @return 起始时间点*/
     public String getStartTime() {
         return this.startTime;
     }
 
-    /**
-     * set 起始时间点
-     *
-     * @param startTime
-     */
+    /** @param startTime 起始时间点*/
     public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    /**
-     * get 准备时间
-     *
-     * @return
-     */
+    /** @return 准备时间*/
     public int getPrepareDuration() {
         return this.prepareDuration;
     }
 
-    /**
-     * set 准备时间
-     *
-     * @param prepareDuration
-     */
+    /** @param prepareDuration 准备时间*/
     public void setPrepareDuration(int prepareDuration) {
         this.prepareDuration = prepareDuration;
     }
 
-    /**
-     * get 开始持续时间
-     *
-     * @return
-     */
+    /** @return 开始持续时间*/
     public int getBeginDuration() {
         return this.beginDuration;
     }
 
-    /**
-     * set 开始持续时间
-     *
-     * @param beginDuration
-     */
+    /** @param beginDuration 开始持续时间*/
     public void setBeginDuration(int beginDuration) {
         this.beginDuration = beginDuration;
     }
 
-    /**
-     * get 结算持续时间
-     *
-     * @return
-     */
+    /** @return 结算持续时间*/
     public int getSettleDuration() {
         return this.settleDuration;
     }
 
-    /**
-     * set 结算持续时间
-     *
-     * @param settleDuration
-     */
+    /** @param settleDuration 结算持续时间*/
     public void setSettleDuration(int settleDuration) {
         this.settleDuration = settleDuration;
     }

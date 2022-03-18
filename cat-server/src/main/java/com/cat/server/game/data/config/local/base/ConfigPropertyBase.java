@@ -5,11 +5,11 @@ import com.cat.server.core.config.annotation.ConfigPath;
 
 
 /**
- * dj.道具.xlsx<br>
- * item.json<br>
+ * zy.资源代币.xlsx<br>
+ * property.json<br>
  * @author auto gen
  */
-public class ConfigItemBase implements IGameConfig {
+public class ConfigPropertyBase implements IGameConfig {
 
     /**
      * id<br>

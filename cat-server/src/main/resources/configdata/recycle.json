@@ -2,14 +2,14 @@
   "id" : 200002,
   "recycleStrategy" : "1d",
   "refresh" : true,
-  "resId" : 10001,
-  "resRate" : 150
+  "resId" : 0,
+  "resRate" : 0
 }, {
   "id" : 200003,
   "recycleStrategy" : "1d_3h",
   "refresh" : true,
-  "resId" : 10001,
-  "resRate" : 80
+  "resId" : 0,
+  "resRate" : 0
 }, {
   "id" : 200004,
   "recycleStrategy" : "1001a",

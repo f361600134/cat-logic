@@ -1,7 +1,7 @@
 package com.cat.server.game.data.config.local.base;
 
+import java.util.Map;
 import com.cat.server.core.config.container.IGameConfig;
-import com.cat.server.game.module.resource.domain.ResourceMap;
 import com.cat.server.core.config.annotation.ConfigPath;
 
 
@@ -25,13 +25,13 @@ public class ConfigShopMainBase implements IGameConfig {
      * [id,num]<br>
      * 资源ID，数量
      */
-    private ResourceMap item;
+    private Map<Integer, Integer> items;
     /**
      * 价格<br>
      * [id,num]<br>
      * 资源ID，数量
      */
-    private ResourceMap price;
+    private Map<Integer, Integer> price;
     /**
      * 限购数<br>
      * 不限购为-1
@@ -76,22 +76,22 @@ public class ConfigShopMainBase implements IGameConfig {
     }
 
     /** @return 购买所得*/
-    public ResourceMap getItem() {
-        return this.item;
+    public Map<Integer, Integer> getItems() {
+        return this.items;
     }
 
-    /** @param item 购买所得*/
-    public void setItem(ResourceMap item) {
-        this.item = item;
+    /** @param items 购买所得*/
+    public void setItems(Map<Integer, Integer> items) {
+        this.items = items;
     }
 
     /** @return 价格*/
-    public ResourceMap getPrice() {
+    public Map<Integer, Integer> getPrice() {
         return this.price;
     }
 
     /** @param price 价格*/
-    public void setPrice(ResourceMap price) {
+    public void setPrice(Map<Integer, Integer> price) {
         this.price = price;
     }
 

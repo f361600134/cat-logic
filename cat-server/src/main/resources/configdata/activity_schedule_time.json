@@ -10,16 +10,16 @@
   "id" : 150102,
   "type" : 1501,
   "planId" : 1,
-  "startTime" : "2021y_10mo_20d_30c",
-  "prepareDuration" : 86400,
-  "beginDuration" : 604800,
-  "settleDuration" : 86400
+  "startTime" : "2021y_9mo_9d",
+  "prepareDuration" : 0,
+  "beginDuration" : 2592000,
+  "settleDuration" : 0
 }, {
   "id" : 150103,
   "type" : 1501,
   "planId" : -1,
   "startTime" : "2021y_10mo_9d_30c",
-  "prepareDuration" : 86400,
-  "beginDuration" : 604800,
-  "settleDuration" : 86400
+  "prepareDuration" : 0,
+  "beginDuration" : 2592000,
+  "settleDuration" : 0
 } ]

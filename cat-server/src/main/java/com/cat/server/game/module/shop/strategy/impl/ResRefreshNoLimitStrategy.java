@@ -4,7 +4,6 @@ import com.cat.server.game.data.config.local.ConfigShopControl;
 import com.cat.server.game.data.config.local.ext.IConfigShop;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.resource.domain.ResourceMap;
 import com.cat.server.game.module.shop.domain.ShopDomain;
 import com.cat.server.game.module.shop.strategy.AbstractRefreshStrategy;
 import com.cat.server.game.module.shop.type.AbstractShopType;
@@ -24,8 +23,7 @@ public class ResRefreshNoLimitStrategy extends AbstractRefreshStrategy{
 	 */
 	@Override
 	public ErrorCode checkRefresh(ConfigShopControl config, ShopDomain domain) {
-		ResourceMap resourceMap = config.getRefreshCost();
-		boolean bool = resourceGroupService.check(domain.getId(), resourceMap.getDictionary());
+		boolean bool = resourceGroupService.check(domain.getId(), config.getRefreshCost());
 		if (!bool) {
 			return ErrorCode.AMOUNT_NOT_ENOUGH;
 		}
@@ -34,7 +32,7 @@ public class ResRefreshNoLimitStrategy extends AbstractRefreshStrategy{
 
 	@Override
 	public void afterRefresh(ConfigShopControl config, ShopDomain domain) {
-		resourceGroupService.cost(domain.getId(), config.getRefreshCost().getDictionary(), NatureEnum.ShopRefresh);
+		resourceGroupService.cost(domain.getId(), config.getRefreshCost(), NatureEnum.ShopRefresh);
 	}
 
 

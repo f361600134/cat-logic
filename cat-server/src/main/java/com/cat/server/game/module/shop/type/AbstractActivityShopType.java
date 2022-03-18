@@ -4,16 +4,13 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ext.IConfigShop;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.activity.IActivityService;
 import com.cat.server.game.module.activity.type.IActivityType;
 import com.cat.server.game.module.shop.domain.ShopDomain;
-import com.cat.server.game.module.shop.strategy.RefreshStrategyEnum;
 
 /**
  * 活动类型抽象商店

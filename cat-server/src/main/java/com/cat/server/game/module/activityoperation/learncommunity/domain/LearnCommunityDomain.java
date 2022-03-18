@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.IEvent;
 import com.cat.server.core.server.AbstractModuleDomain;
-import com.cat.server.game.data.config.local.ConfigLearnCommunityMission;
+import com.cat.server.game.data.config.local.ConfigMissionLearnCommunity;
 import com.cat.server.game.data.proto.PBMission.PBMissionInfo;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
@@ -77,7 +77,7 @@ public class LearnCommunityDomain extends AbstractModuleDomain<Long, LearnCommun
 	@Override
 	public void afterCreate() {
 		//默认接取所有任务
-		Map<Integer, ConfigLearnCommunityMission> configs = ConfigManager.getInstance().getAllConfigs(ConfigLearnCommunityMission.class);
+		Map<Integer, ConfigMissionLearnCommunity> configs = ConfigManager.getInstance().getAllConfigs(ConfigMissionLearnCommunity.class);
 		configs.forEach((configId, config)->{
 			LearnCommunityMissionType mission = LearnCommunityMissionType.create(configId);
 			bean.getMissionData().addMissionPojo(mission);

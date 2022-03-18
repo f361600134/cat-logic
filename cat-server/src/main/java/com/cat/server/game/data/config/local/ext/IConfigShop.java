@@ -15,7 +15,7 @@ public interface IConfigShop extends IGameConfig{
 	 * @return Map<Integer,Integer>  价格map
 	 * @date 2022年3月12日下午3:14:48
 	 */
-	public Map<Integer, Integer> getCost();
+	public Map<Integer, Integer> getPrice();
 	
 	/**
 	 * 获取购买所得
@@ -31,7 +31,7 @@ public interface IConfigShop extends IGameConfig{
 	 * @return Map<Integer,Integer>  购买所得
 	 * @date 2022年3月12日下午3:14:48
 	 */
-	public int getLimitCount();
+	public int getLimit();
 	
 	/**
 	 * 获取权重

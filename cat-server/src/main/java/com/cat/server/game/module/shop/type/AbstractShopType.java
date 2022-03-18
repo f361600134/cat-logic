@@ -49,7 +49,7 @@ public abstract class AbstractShopType<T extends IConfigShop> implements IShopTy
 			return errorCode;
 		}
 		//判断消耗
-		if (!resourceGroupService.checkAndCost(domain.getId(), config.getCost(), NatureEnum.ShopBuy)) {
+		if (!resourceGroupService.checkAndCost(domain.getId(), config.getPrice(), NatureEnum.ShopBuy)) {
 			return ErrorCode.SHOP_COST_NOT_ENOUGH;
 		}
 		//增加到背包
@@ -78,7 +78,7 @@ public abstract class AbstractShopType<T extends IConfigShop> implements IShopTy
 		Map<Integer, Integer> costMap = new HashMap<>();
 		Map<Integer, Integer> itemMap = new HashMap<>();
 		for (T config : configs) {
-			ResourceHelper.mergeToMap(config.getCost(), costMap);
+			ResourceHelper.mergeToMap(config.getPrice(), costMap);
 			ResourceHelper.mergeToMap(config.getItems(), itemMap);
 		}
 		//判断消耗
@@ -97,8 +97,11 @@ public abstract class AbstractShopType<T extends IConfigShop> implements IShopTy
 	
 	@Override
 	public PBShopInfoBuilder toProto(ShopDomain domain) {
-		Shop shop = domain.getBean(this.getShopType());
 		PBShopInfoBuilder builder = PBShopInfoBuilder.newInstance();
+		Shop shop = domain.getBean(this.getShopType());
+		if (shop == null) {
+			return builder;
+		}
 		builder.setShopId(this.getShopType());
 		builder.setResRefreshNum(shop.getResRefreshNum());
 		builder.setFreeRefreshNum(shop.getFreeRefreshNum());
@@ -114,7 +117,7 @@ public abstract class AbstractShopType<T extends IConfigShop> implements IShopTy
 	 * @date 2022年3月13日上午10:59:30
 	 */
 	public int getRemainNumber(ShopDomain domain, T config) {
-		int limitNum = config.getLimitCount();
+		int limitNum = config.getLimit();
 		int buyedCount = domain.getBuyCount(this.getShopType(), config.getId());
 		int remain = limitNum - buyedCount;
 		return remain;
@@ -152,7 +155,7 @@ public abstract class AbstractShopType<T extends IConfigShop> implements IShopTy
 			return ErrorCode.INVALID_PARAM;
 		}
 		//判断限购
-		if (domain.getBuyCount(this.getShopType(), config.getId()) + number >= config.getLimitCount()) {
+		if (domain.getBuyCount(this.getShopType(), config.getId()) + number >= config.getLimit()) {
 			return ErrorCode.SHOP_ITEM_LIMIT;
 		}
 		return ErrorCode.SUCCESS;

@@ -98,6 +98,20 @@ public class ShopDomain extends AbstractModuleMultiDomain<Long, Integer, Shop> {
 //	}
 	
 	/**
+	 * 刷新商品列表
+	 * @param shopId
+	 * @param commodities
+	 */
+	public void refresh(int shopId, Collection<Integer> commodities) {
+		Shop shop = this.getBean(shopId);
+		if (shop == null) {
+			log.info("reset error, shop:[{}] is null", shopId);
+			return;
+		}
+		shop.refresh(commodities);
+	}
+	
+	/**
 	 * 重置商店数据
 	 * @param shopId
 	 */

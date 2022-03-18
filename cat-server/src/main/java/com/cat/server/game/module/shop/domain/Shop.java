@@ -94,7 +94,8 @@ public class Shop extends ShopPo implements RestorableValue, IPersistence{
 //	}
 	
 	/**
-	 * 玩家商店初始化
+	 * 玩家商店重置<br>
+	 * 每日重置时, 重置所有数据
 	 * @param 新商品列表
 	 */
 	public void reset(int maxFreeRefreshNum, int maxRedRefreshNum, Collection<Integer> newCommodities) {
@@ -104,6 +105,18 @@ public class Shop extends ShopPo implements RestorableValue, IPersistence{
 		this.commodities.clear();
 		this.commodities.addAll(newCommodities);
 		this.setResetTime(TimeUtil.now());
+		this.update();
+	}
+	
+	/**
+	 * 玩家商店刷新<br>
+	 * 不管是自动刷新, 还是每日刷新, 仅刷新成新的商品列表, 清除掉商店购买记录
+	 * @param 新商品列表
+	 */
+	public void refresh(Collection<Integer> newCommodities) {
+		this.getBuyedMap().clear();
+		this.commodities.clear();
+		this.commodities.addAll(newCommodities);
 		this.update();
 	}
 

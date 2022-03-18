@@ -1,5 +1,6 @@
 package com.cat.zson.param;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -264,6 +265,46 @@ public enum ParamTypes implements ParamType {
      * 资源类型
      */
     RESOURCE_MAP(new String[] { "ResourceMap" }, "", "ResourceMap", "com.cat.server.game.module.resource.domain.ResourceMap") {
+    	/**
+    	 * 格式: 1_1,2_2
+    	 * 格式:[[1,2],[1,2]]
+    	 */
+        @Override
+        public Object parseValue0(String param) {
+        	if (param.indexOf("_") >= 0 && param.indexOf(",") >= 0) {
+                String[] params = param.split(",");
+                int length = params.length;
+                Map<Integer, Integer> arrMap = new HashMap<>();
+                for (int i = 0; i < length; i++) {
+                	String str = params[i];
+                	String [] strArr = str.split("_");
+                	arrMap.put(Integer.valueOf(strArr[0]), Integer.valueOf(strArr[1]));
+    			}
+                return arrMap;
+        	}
+        	if (param.indexOf("[") >= 0 && param.indexOf("]") >= 0) {
+        		try {
+        			int[][] value = JsonUtil.toObject(param, int[][].class);
+            		Map<Integer, Integer> arrMap = new HashMap<>();
+            		for (int i = 0; i < value.length; i++) {
+            			int [] temArr = value[i];
+            			if(temArr.length >= 2) {
+            				arrMap.put(temArr[0], temArr[1]);
+            			}
+    				}
+                    return arrMap;
+				} catch (Exception e) {
+					 throw new RuntimeException(e);
+				}
+        	}
+        	return null;
+        }
+		
+    },
+    /**
+     * 资源类型
+     */
+    MAP(new String[] { "Map","map" }, Collections.emptyMap(), "Map<Integer, Integer>", "java.util.Map") {
     	/**
     	 * 格式: 1_1,2_2
     	 * 格式:[[1,2],[1,2]]

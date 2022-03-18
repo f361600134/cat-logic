@@ -1,12 +1,12 @@
 package com.cat.server.game.data.config.local.base;
 
+import java.util.Map;
 import com.cat.server.core.config.container.IGameConfig;
-import com.cat.server.game.module.resource.domain.ResourceMap;
 import com.cat.server.core.config.annotation.ConfigPath;
 
 
 /**
- * sd.商店-研习社(活动).xlsx<br>
+ * sd.商店-研习社.xlsx<br>
  * shop_learn_community.json<br>
  * @author auto gen
  */
@@ -29,13 +29,13 @@ public class ConfigShopLearnCommunityBase implements IGameConfig {
      * id_num<br>
      * 资源ID，数量
      */
-    private ResourceMap item;
+    private Map<Integer, Integer> items;
     /**
      * 现价<br>
      * [id,num]<br>
      * 资源ID，数量
      */
-    private ResourceMap price;
+    private Map<Integer, Integer> price;
     /**
      * 限购数<br>
      * 不限购为-1
@@ -90,22 +90,22 @@ public class ConfigShopLearnCommunityBase implements IGameConfig {
     }
 
     /** @return 购买所得*/
-    public ResourceMap getItem() {
-        return this.item;
+    public Map<Integer, Integer> getItems() {
+        return this.items;
     }
 
-    /** @param item 购买所得*/
-    public void setItem(ResourceMap item) {
-        this.item = item;
+    /** @param items 购买所得*/
+    public void setItems(Map<Integer, Integer> items) {
+        this.items = items;
     }
 
     /** @return 现价*/
-    public ResourceMap getPrice() {
+    public Map<Integer, Integer> getPrice() {
         return this.price;
     }
 
     /** @param price 现价*/
-    public void setPrice(ResourceMap price) {
+    public void setPrice(Map<Integer, Integer> price) {
         this.price = price;
     }
 

@@ -1,8 +1,6 @@
 package com.cat.server.game.module.shop;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,38 +33,54 @@ public class ShopService extends AbstractPlayerModuleService<Long, ShopDomain> i
 	
 	@Autowired private ShopManager shopManager;
 	
-	private Map<Integer, IShopType> shopMap = new HashMap<>();
-	
-	@Autowired
-	public void initShopMap(List<IShopType> shopTypes) {
-		shopTypes.forEach(shopType->{
-			this.shopMap.put(shopType.getShopType(), shopType);
-		});
+	/**
+	 * 更新指定列表
+	 */
+	public void responseInfos(ShopDomain domain, Collection<Integer> shopIds) {
+		try {
+			RespShopInfoBuilder builder = RespShopInfoBuilder.newInstance();
+			for (Integer shopId : shopIds) {
+				IShopType shopType = this.shopManager.getShopType(shopId);
+				if (shopType == null) {
+					log.info("responseShopInfo error, shopType is null, shopId:{}", shopId);
+					return;
+				}
+				builder.addShopInfos(shopType.toProto(domain).build());
+			}
+			playerService.sendMessage(domain.getId(), builder);
+		} catch (Exception e) {
+			log.error("responseShopInfo error, playerId:{}, shopId:{}", domain.getId(), shopIds, e);
+		}
 	}
 	
 	/**
-	 * 更新信息
+	 * 更新指定id
 	 */
-	public void responseShopInfo(ShopDomain domain, int shopId) {
+	public void responseInfo(ShopDomain domain, int shopId) {
 		try {
-			IShopType shopType = this.shopMap.get(shopId);
+			RespShopInfoBuilder builder = RespShopInfoBuilder.newInstance();
+			IShopType shopType = this.shopManager.getShopType(shopId);
 			if (shopType == null) {
 				log.info("responseShopInfo error, shopType is null, shopId:{}", shopId);
 				return;
 			}
-			playerService.sendMessage(domain.getId(), shopType.toProto(domain));
+			builder.addShopInfos(shopType.toProto(domain).build());
+			playerService.sendMessage(domain.getId(), builder);
 		} catch (Exception e) {
 			log.error("responseShopInfo error, playerId:{}, shopId:{}", domain.getId(), shopId, e);
 		}
 	}
 	
+	/**
+	 * 更新所有
+	 */
 	@Override
 	public void responseAllInfo(ShopDomain domain) {
-		//TODO 下发所有商店信息
-		//这里可以组装所有商店信息到一个消息下发给玩家
-		shopMap.forEach((k,v)->{
-			playerService.sendMessage(domain.getId(), v.toProto(domain));
+		RespShopInfoBuilder builder = RespShopInfoBuilder.newInstance();
+		this.shopManager.getShopMap().forEach((k,shopType)->{
+			builder.addShopInfos(shopType.toProto(domain).build());
 		});
+		playerService.sendMessage(domain.getId(), builder);
 	}
 	
 	/////////////业务逻辑//////////////////
@@ -86,13 +100,13 @@ public class ShopService extends AbstractPlayerModuleService<Long, ShopDomain> i
 			final int shopId = req.getShopId();
 			final int configId = req.getConfigId();
 			final int number = req.getNumber();
-			IShopType shopType = this.shopMap.get(shopId);
+			IShopType shopType = this.shopManager.getShopType(shopId);
 			if (shopType == null) {
 				return ErrorCode.SHOP_NOT_EXIST;
 			}
 			ErrorCode errorCode = shopType.buy(domain, configId, number);
 			if (errorCode.isSuccess()) {
-				this.responseShopInfo(domain, shopId);
+				this.responseInfo(domain, shopId);
 			}
 			return errorCode;
 		} catch (Exception e) {
@@ -115,13 +129,13 @@ public class ShopService extends AbstractPlayerModuleService<Long, ShopDomain> i
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
 			final int shopId = req.getShopId();
-			IShopType shopType = this.shopMap.get(shopId);
+			IShopType shopType = this.shopManager.getShopType(shopId);
 			if (shopType == null) {
 				return ErrorCode.SHOP_NOT_EXIST;
 			}
 			ErrorCode errorCode = shopType.quickBuy(domain);
 			if (errorCode.isSuccess()) {
-				this.responseShopInfo(domain, shopId);
+				this.responseInfo(domain, shopId);
 			}
 			return errorCode;
 		} catch (Exception e) {
@@ -143,7 +157,7 @@ public class ShopService extends AbstractPlayerModuleService<Long, ShopDomain> i
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
 			req.getShopIdList().forEach(shopId->{
-				IShopType shopType = shopMap.get(shopId);
+				IShopType shopType = this.shopManager.getShopType(shopId);
 				ack.addShopInfos(shopType.toProto(domain).build());
 			});
 			return ErrorCode.SUCCESS;
@@ -171,7 +185,7 @@ public class ShopService extends AbstractPlayerModuleService<Long, ShopDomain> i
 
 	@Override
 	public void checkAndReset(ShopDomain domain, long now) {
-		shopMap.forEach((k,v)->{
+		this.shopManager.getShopMap().forEach((k,v)->{
 			v.checkAndReset(domain, now);
 		});
 	}

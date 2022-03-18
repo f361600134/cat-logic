@@ -1,0 +1,25 @@
+[ {
+  "id" : 100001,
+  "stack" : 9999999,
+  "quality" : 0,
+  "effect" : 0,
+  "effectParam" : ""
+}, {
+  "id" : 100002,
+  "stack" : 9999999,
+  "quality" : 0,
+  "effect" : 0,
+  "effectParam" : ""
+}, {
+  "id" : 100003,
+  "stack" : 9999999,
+  "quality" : 0,
+  "effect" : 0,
+  "effectParam" : ""
+}, {
+  "id" : 100004,
+  "stack" : 9999999,
+  "quality" : 0,
+  "effect" : 0,
+  "effectParam" : ""
+} ]

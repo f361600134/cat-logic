@@ -26,8 +26,8 @@ public class ConfigRecycleBase implements IGameConfig {
     private String recycleStrategy;
     /**
      * 是否主动刷新<br>
-     * 0:不主动刷新<br>
-     * 1:主动刷新<br>
+     * 0:不主动刷新,被动刷新,依赖其他模块状态或事件<br>
+     * 1:主动刷新,登录时检测或客户端请求刷新.<br>
      * 当配置主动刷新时,倒计时结束,客户端主动请求刷新最新的资源回收信息
      */
     private boolean refresh;

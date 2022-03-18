@@ -44,7 +44,8 @@ public abstract class AbstractRefreshStrategy implements IRefreshStrategy {
 		if (!errorCode.isSuccess()) {
 			return errorCode;
 		}
-		this.doRefresh(config, domain);
+		Collection<Integer> newCommodities = this.doRefresh(config, domain);
+		domain.refresh(shopType.getShopType(), newCommodities);
 		this.afterRefresh(config, domain);
 		return ErrorCode.SUCCESS;
 	}
@@ -59,7 +60,8 @@ public abstract class AbstractRefreshStrategy implements IRefreshStrategy {
 		if (config == null) {
 			return ErrorCode.CONFIG_NOT_EXISTS;
 		}
-		this.doRefresh(config, domain);
+		Collection<Integer> newCommodities = this.doRefresh(config, domain);
+		domain.reset(shopType.getShopType(), config.getFreeRefreshNum(), config.getResRefreshNum(), newCommodities);
 		return ErrorCode.SUCCESS;
 	}
 	
@@ -77,7 +79,7 @@ public abstract class AbstractRefreshStrategy implements IRefreshStrategy {
 	 * @param domain
 	 * @return
 	 */
-	public void doRefresh(ConfigShopControl config, ShopDomain domain) {
+	public Collection<Integer> doRefresh(ConfigShopControl config, ShopDomain domain) {
 		final int commoditiesNum = config.getCommoditiesNum();
 		Collection<? extends IConfigShop> configs = shopType.getConfigs().values();
 		//通过权重计算出随机商品列表
@@ -85,7 +87,7 @@ public abstract class AbstractRefreshStrategy implements IRefreshStrategy {
 				.stream()
 				.map(IConfigShop::getId)
 				.collect(Collectors.toList());
-		domain.reset(shopType.getShopType(), config.getFreeRefreshNum(), config.getResRefreshNum(), result);
+		return result;
 	}
 	
 	/**
