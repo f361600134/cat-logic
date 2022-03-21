@@ -2,6 +2,7 @@ package com.cat.server.game.module.mission2.type;
 
 import java.util.List;
 
+import com.cat.server.game.data.proto.PBMission;
 import com.cat.server.utils.TimeUtil;
 
 /**
@@ -19,18 +20,18 @@ public class Mission {
 	 * 任务接取时间
 	 */
 	protected long recvTime;
-	/**
-	 * 额外参数,部分任务会用上
-	 */
-	protected long additional;
 	 /**
 	  * 目标列表<br>
      */
     protected List<MissionGoal> goals;
     /**
+     * 任务状态
+     */
+    protected byte state;
+    /**
      * 任务来源，主线，支线，其他 
      */
-    protected int sourceType;
+    protected short sourceType;
 	
 	public Mission(int configId) {
 		this.configId = configId;
@@ -63,27 +64,34 @@ public class Mission {
 		this.goals = goals;
 	}
 
-	public void setAdditional(long additional) {
-		this.additional = additional;
-	}
-	
-	public long getAdditional() {
-		return additional;
-	}
-	
-	
-	
 	public int getSourceType() {
 		return sourceType;
 	}
 
-	public void setSourceType(int sourceType) {
+	public void setSourceType(short sourceType) {
 		this.sourceType = sourceType;
 	}
 
 	public int getState() {
-		//根据任务目标动态计算状态
-		return 0;
+		return state;
 	}
 
+	public void setState(byte state) {
+		this.state = state;
+	}
+	
+	/**
+	 * 转协议
+	 * @return
+	 */
+	public PBMission.PBMissionInfo toProto() {
+		PBMission.PBMissionInfo.Builder builder = PBMission.PBMissionInfo.newBuilder();
+		builder.setId(getConfigId());
+		builder.setType(getSourceType());
+		//builder.setState(getState());
+		for (MissionGoal goal : goals) {
+			builder.addGoals(goal.toProto().build());
+		}
+		return builder.build();
+	}
 }

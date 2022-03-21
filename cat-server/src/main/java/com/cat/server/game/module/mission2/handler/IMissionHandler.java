@@ -2,11 +2,10 @@ package com.cat.server.game.module.mission2.handler;
 
 import java.util.Map;
 
-import com.cat.server.core.event.GameEventBus;
 import com.cat.server.core.event.IEvent;
 import com.cat.server.game.data.config.local.ext.IConfigMission;
 import com.cat.server.game.helper.result.ResultCodeData;
-import com.cat.server.game.module.mission.domain.MissionTypeEnum;
+import com.cat.server.game.module.mission2.domain.GoalTypeEnum;
 import com.cat.server.game.module.mission2.type.Mission;
 
 /**
@@ -19,7 +18,7 @@ public interface IMissionHandler<T extends IConfigMission> {
 	 * 获取任务类型
 	 * @return MissionTypeEnum  
 	 */
-	MissionTypeEnum getMissionType();
+	GoalTypeEnum getMissionType();
 	
 	/**
 	 * 根据Id获取配置
@@ -67,7 +66,7 @@ public interface IMissionHandler<T extends IConfigMission> {
      * @param questId
      * @return
      */
-	ResultCodeData<Map<Integer, Integer>> submit(long playerId, int questId);
+	ResultCodeData<Map<Integer, Integer>> submit(long playerId, Mission mission);
 	
     /**
      * 放弃任务
