@@ -26,6 +26,12 @@ public class MissionGoal {
 	 * 当前进度
 	 */
 	private long progress;
+	
+	/**
+	 * 额外参数,部分任务会用上
+	 */
+	protected long additional;
+	
 	/**
 	 * 状态<br>
 	 * 
@@ -63,6 +69,14 @@ public class MissionGoal {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	
+	public void setAdditional(long additional) {
+		this.additional = additional;
+	}
+	
+	public long getAdditional() {
+		return additional;
 	}
 
 	/**

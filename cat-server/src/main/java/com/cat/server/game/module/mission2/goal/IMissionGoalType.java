@@ -21,8 +21,8 @@ public interface IMissionGoalType {
 	 * @param playerId
 	 * @param event 事件
 	 * @param goal目标对象
-	 * @param complateCondition 完成条件, 一个目标只能是一个条件
-	 * @param complateValue 完成值,一个目标只能是一个值
+	 * @param complateCondition 配置内的完成条件, 一个目标只能是一个条件
+	 * @param complateValue 配置内的完成值,一个目标只能是一个值
 	 * @return
 	 */
 	public boolean process(long playerId, IEvent event, MissionGoal goal, int complateCondition, int complateValue);

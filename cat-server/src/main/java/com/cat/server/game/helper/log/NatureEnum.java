@@ -151,11 +151,7 @@ public enum NatureEnum implements ModuleDefines {
 //	AreanFight(8038, "竞技场结算"),
 //	AreanBuy(8039, "竞技场购买"),
 //	//9:任务
-//	Mission(9001, "任务领取奖励"),
-//	MissionFinish(9002, "任务完成"),
-//	StrategyMission(9003, "锦囊任务领取奖励"),
-//	TalentMissionFinish(9004, "天赋任务完成"),
-//	TalentMission(9005, "天赋任务领取奖励"),
+	MISSION_REWARD(MISSION,1, "任务领取奖励"),
 //	//10:活动
 //	Activity(10001, "活动"),
 //	RaceBet(10002,"赛马下注"),
