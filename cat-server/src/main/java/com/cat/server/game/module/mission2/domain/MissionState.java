@@ -5,9 +5,21 @@ package com.cat.server.game.module.mission2.domain;
  * @author Jeremy
  */
 public enum MissionState{
-	STATE_NONE(0),		//未完成
-	STATE_COMPLETE(1),	//已完成
-	STATE_REWARDED(2),	//已領取
+	/**
+	 * 未完成<br>
+	 * 未领取行为 -> 未完成状态
+	 */
+	STATE_NONE(0),
+	/**
+	 * 已完成<br>
+	 * 完成任务行为 -> 已完成状态
+	 */
+	STATE_COMPLETE(1),
+	/**
+	 * 已領取<br>
+	 * 提交任务行为 -> 已领取状态
+	 */
+	STATE_REWARDED(2),	
 	;
 	private final int value;
 	private MissionState(int value) {

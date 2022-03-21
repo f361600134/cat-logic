@@ -1,12 +1,9 @@
 package com.cat.server.game.module.mission2.type;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import java.util.Set;
 
 /**
  * 任务类型数据, 对任务进行封装
@@ -24,7 +21,7 @@ public class MissionTypeData {
 	/**
 	 * 已完成任务Id列表, 对已经完成的任务, 在此记录
 	 */
-	private List<Integer> finishIds = new ArrayList<>();
+	private Set<Integer> finishIds = new HashSet<>();
 	
 	/**
 	 * 最后操作时间
@@ -32,8 +29,6 @@ public class MissionTypeData {
 	private long lastTime;
 
 	public MissionTypeData() {
-		this.missions = Maps.newHashMap();
-		this.finishIds = Lists.newArrayList();
 	}
 
 	public Map<Integer, Mission> getMissions() {
@@ -48,14 +43,18 @@ public class MissionTypeData {
 		this.missions.put(mission.getConfigId(), mission);
 	}
 	
-	public List<Integer> getFinishIds() {
-		return finishIds;
+//	public Set<Integer> getFinishIds() {
+//		return finishIds;
+//	}
+
+//	public void setFinishIds(Set<Integer> finishIds) {
+//		this.finishIds = finishIds;
+//	}
+
+	public void setMissions(Map<Integer, Mission> missions) {
+		this.missions = missions;
 	}
 
-	public void setFinishIds(List<Integer> finishIds) {
-		this.finishIds = finishIds;
-	}
-	
 	public Mission getMission(int configId) {
 		return missions.get(configId);
 	}
@@ -74,6 +73,14 @@ public class MissionTypeData {
 	 */
 	public boolean isFinished(int configId) {
 		return finishIds.contains(configId);
+	}
+	
+	/**
+	 * 添加完成任务
+	 * @param configId
+	 */
+	public void addFinishId(int configId) {
+		this.finishIds.add(configId);
 	}
 	
 	

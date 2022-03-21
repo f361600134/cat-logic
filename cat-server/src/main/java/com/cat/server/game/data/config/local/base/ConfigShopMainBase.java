@@ -1,8 +1,8 @@
 package com.cat.server.game.data.config.local.base;
 
 import java.util.Map;
+
 import com.cat.server.core.config.container.IGameConfig;
-import com.cat.server.core.config.annotation.ConfigPath;
 
 
 /**
