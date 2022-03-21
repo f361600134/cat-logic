@@ -26,6 +26,8 @@ import com.google.common.collect.Multimap;
  * 任务处理器, 每个任务模块维护自己的任务. 以及任务类型对应的id集合 注意:因为处理器代理处理任务逻辑, 任务内的所有状态变化,
  * 最后都需要显示的进行存储,
  * 
+ * @param C 策划配置mission
+ * @param T 任务对象
  * @author Jeremy
  */
 public abstract class AbstractMissionHandler<T extends IMission> implements IMissionHandler{

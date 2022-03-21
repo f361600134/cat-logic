@@ -76,8 +76,8 @@ public interface IMission {
 	default public PBMission.PBMissionInfo toProto() {
 		PBMission.PBMissionInfo.Builder builder = PBMission.PBMissionInfo.newBuilder();
 		builder.setId(getConfigId());
-		builder.setProgress(getProgress());
-		builder.setStatus(getState());
+//		builder.setProgress(getProgress());
+//		builder.setStatus(getState());
 		//builder.setType(value);
 		return builder.build();
 	}

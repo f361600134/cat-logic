@@ -1,0 +1,47 @@
+syntax = "proto3";
+package Protocol;
+option java_package = "com.cat.server.game.data.proto";
+option java_outer_classname = "PBShop";
+
+import "PBItem.proto";
+
+// 商店对象
+message PBShopInfo{
+    int32 shopId = 1;  //商店id
+    int64 refreshTime = 2;  //最后刷新时间
+    int32 refreshNum = 3;  //刷新次数
+    repeated PBPairInfo items = 4;  //商品购买记录
+}
+
+// 请求商店购买
+message ReqShopBuy{
+    int32 shopId = 1;  //商店id
+    int32 configId = 2;  //商品id
+    int32 number = 3;  //商品数量
+}
+
+// 请求商店一键购买
+message ReqShopQuickBuy{
+    int32 shopId = 1;  //商店id
+}
+
+// 请求商店信息
+message ReqShopInfo{
+    repeated int32 shopId = 1;  //商店id
+}
+
+// 响应商店购买
+message AckShopBuy{
+    int32 code = 1;  //错误码
+}
+
+// 响应商店一键购买
+message AckpShopQuickBuy{
+    int32 code = 1;  //错误码
+}
+
+// 响应商店信息
+message AckShopInfo{
+    repeated PBShopInfo shopInfoList = 1;  //商店列表
+}
+

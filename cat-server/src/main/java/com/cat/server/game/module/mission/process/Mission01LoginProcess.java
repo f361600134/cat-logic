@@ -1,7 +1,7 @@
 package com.cat.server.game.module.mission.process;
 
 import com.cat.server.core.event.IEvent;
-import com.cat.server.game.module.mission.domain.MissionEnum;
+import com.cat.server.game.module.mission.domain.MissionGoalEnum;
 import com.cat.server.game.module.mission.type.IMission;
 import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
 import com.cat.server.utils.TimeUtil;
@@ -19,7 +19,7 @@ public class Mission01LoginProcess extends AbstractMissionProcess{
 	 * 处理类型
 	 */
 	public int type() {
-		return MissionEnum.TYPE_LOGIN.getType();
+		return MissionGoalEnum.TYPE_LOGIN.getType();
 	}
 
 	@Override

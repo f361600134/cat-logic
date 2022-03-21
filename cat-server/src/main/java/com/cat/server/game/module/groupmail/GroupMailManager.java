@@ -37,7 +37,7 @@ public class GroupMailManager extends AbstractModuleManager<Integer, GroupMailDo
 		if (mail == null) {
 			return ResultCodeData.of(ErrorCode.MAIL_NOT_FOUND);
 		}
-		return ResultCodeData.of(ErrorCode.SUCCESS, mail);
+		return ResultCodeData.of(mail);
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class GroupMailManager extends AbstractModuleManager<Integer, GroupMailDo
 			logger.info("getGroupMail error, domain is null");
 			return ResultCodeData.of(ErrorCode.MAIL_BOX_NOT_FOUND, Collections.emptyList());
 		}
-		return ResultCodeData.of(ErrorCode.SUCCESS, domain.getBeans());
+		return ResultCodeData.of(domain.getBeans());
 	}
 	
 	@Override

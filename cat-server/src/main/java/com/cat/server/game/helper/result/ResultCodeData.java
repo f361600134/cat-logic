@@ -29,11 +29,36 @@ public class ResultCodeData<T> {
 		return errorCode.isSuccess();
 	}
 	
+	/**
+	 * 构建携带错误码，返回数据对象的ResultCodeData
+	 * @param errorCode
+	 * @param data
+	 */
 	public static <T> ResultCodeData<T> of(ErrorCode errorCode, T data) {
 		return new ResultCodeData<>(errorCode, data);
 	}
 	
+	/**
+	 * 构建携带错误码，不携带返回数据对象的ResultCodeData
+	 * @param <T>
+	 * @param errorCode
+	 * @return  
+	 * @return ResultCodeData<T>  
+	 * @date 2022年3月19日下午11:24:17
+	 */
 	public static <T> ResultCodeData<T> of(ErrorCode errorCode) {
 		return new ResultCodeData<>(errorCode, null);
+	}
+	
+	/**
+	 * 构建携带返回数据对象的ResultCodeData，错误码默认为SUCCESS
+	 * @param <T>
+	 * @param data
+	 * @return  
+	 * @return ResultCodeData<T>  
+	 * @date 2022年3月19日下午11:24:29
+	 */
+	public static <T> ResultCodeData<T> of(T data) {
+		return new ResultCodeData<>(ErrorCode.SUCCESS, data);
 	}
 }

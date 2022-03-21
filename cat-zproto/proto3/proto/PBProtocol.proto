@@ -20,6 +20,14 @@ enum PBProtocol {
    AckItemDelete=102204;
    AckItemUse=102205;
 
+   //Shop
+   ReqShopBuy=110101;
+   ReqShopQuickBuy=110102;
+   ReqShopInfo=110103;
+   AckShopBuy=110201;
+   AckpShopQuickBuy=110202;
+   AckShopInfo=110203;
+
    //Player
    AckPlayerDisconnect=101201;
    ReqPlayerCreateRole=101101;

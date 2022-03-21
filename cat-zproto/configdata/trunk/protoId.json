@@ -7,11 +7,14 @@
 	"AckPlayerEnterGame":101202,
 	"ReqRandName":100102,
 	"AckChat":104201,
+	"ReqShopBuy":110101,
 	"AckMailReward":103204,
+	"AckpShopQuickBuy":110202,
 	"AckItemDelete":102204,
 	"ReqItemUse":102101,
 	"AckMailDelete":103201,
 	"ReqMailReward":103101,
+	"ReqShopInfo":110103,
 	"AckRandName":100202,
 	"AckPlayerLogin":101205,
 	"AckItemSell":102202,
@@ -20,7 +23,9 @@
 	"ReqPlayerLogin":101104,
 	"ReqCreateRole":100103,
 	"AckItemUse":102205,
+	"AckShopInfo":110203,
 	"AckCreateRole":100201,
+	"AckShopBuy":110201,
 	"ReqPlayerCreateRole":101101,
 	"ReqLogin":100101,
 	"ReqMailRead":103102,
@@ -37,5 +42,6 @@
 	"AckMailRead":103203,
 	"AckPlayerCreateRole":101209,
 	"ReqMailList":103103,
-	"ReqPlayerHeart":101105
+	"ReqPlayerHeart":101105,
+	"ReqShopQuickBuy":110102
 }

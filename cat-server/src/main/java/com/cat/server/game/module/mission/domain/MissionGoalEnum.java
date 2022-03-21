@@ -5,7 +5,7 @@ package com.cat.server.game.module.mission.domain;
  * @author Jeremy
  *
  */
-public enum MissionEnum {
+public enum MissionGoalEnum {
 	//默认实现
 	TYPE_DEFAULT(0),
 	//登陆
@@ -14,7 +14,7 @@ public enum MissionEnum {
 	
 	private final int type;
 	
-	private MissionEnum(int type) {
+	private MissionGoalEnum(int type) {
 		this.type = type;
 	}
 
@@ -22,8 +22,8 @@ public enum MissionEnum {
 		return type;
 	}
 	
-	public static MissionEnum getEnum(int completeType) {
-		for(MissionEnum type:values()) {
+	public static MissionGoalEnum getEnum(int completeType) {
+		for(MissionGoalEnum type:values()) {
 			if(type.getType()==completeType)
 				return type;
 		}

@@ -1,6 +1,6 @@
 package com.cat.server.game.module.mission.type;
 
-import com.cat.server.game.module.mission.domain.MissionEnum;
+import com.cat.server.game.module.mission.domain.MissionGoalEnum;
 import com.cat.server.game.module.mission.domain.MissionState;
 
 /**
@@ -114,7 +114,7 @@ public abstract class AbstractMission implements IMission {
 	 * @return
 	 */
 	private boolean isMissionCanComplete(){
-		if(getCompleteType() == MissionEnum.TYPE_DEFAULT.getType() 
+		if(getCompleteType() == MissionGoalEnum.TYPE_DEFAULT.getType() 
 				&& getProgress()<getCompleteValue()) {
 			setProgress(getCompleteValue());	//无完成条件的,直接完成
 		}
