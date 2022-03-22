@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +17,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.IEvent;
 import com.cat.server.game.data.config.local.ext.IConfigMission;
+import com.cat.server.game.data.proto.PBMission.PBMissionInfo;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.mission2.domain.MissionState;
 import com.cat.server.game.module.mission2.goal.GoalTypeManager;
 import com.cat.server.game.module.mission2.goal.IMissionGoalType;
+import com.cat.server.game.module.mission2.proto.PBMissionInfoBuilder;
 import com.cat.server.game.module.mission2.proto.RespMissionInfoBuilder;
 import com.cat.server.game.module.mission2.type.Mission;
 import com.cat.server.game.module.mission2.type.MissionGoal;
