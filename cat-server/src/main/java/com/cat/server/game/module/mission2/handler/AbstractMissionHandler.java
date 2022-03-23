@@ -247,6 +247,7 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	 */
 	protected boolean completeMission(long playerId, Mission mission) {
 		mission.setState((byte) MissionState.STATE_COMPLETE.getValue());
+		this.afterCompleteMission(playerId, mission);
 		return true;
 	}
 

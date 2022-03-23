@@ -2,6 +2,7 @@ package com.cat.server.game.module.resource.domain;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,16 +22,16 @@ public class ResourceMap {
      * key:资源id，可以是属性，道具
      * value:值
      */
-    private final Map<Integer, Integer> dictionary = new HashMap<>();
-
-    public ResourceMap() {
-    }
+    private final Map<Integer, Integer> dictionary;
 
     public ResourceMap(Map<Integer, Integer> dictionary) {
         if (dictionary == null) {
             throw new NullPointerException();
         }
-        this.dictionary.putAll(dictionary);
+        //JDK
+        this.dictionary = Collections.unmodifiableMap(dictionary);
+        //Guava
+        //this.dictionary = ImmutableMap.copyOf(dictionary);
     }
 
     /**
@@ -55,7 +56,7 @@ public class ResourceMap {
      * @param added 增加的数量
      */
     public void addCount(int configId, Integer added) {
-        if(added == 0) return;
+        if(added <= 0) return;
         int count = getCount(configId);
         count+=added;
         dictionary.put(configId, count);
@@ -100,7 +101,7 @@ public class ResourceMap {
      * @param added 数量
      */
     public void subAttr(int configId, int added) {
-        if (added == 0) return;
+        if (added <= 0) return;
         int count = getCount(configId);
         count = count - added;
         if (count <= 0){
