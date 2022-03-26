@@ -34,6 +34,16 @@ class ActivityService implements IActivityService, ILifecycle{
 	}
 	
 	@Override
+	public <T extends IActivityType> T getActivityType(Class<T> clazz) {
+		for (IActivityType activityType : activityManager.getAllDomain()) {
+			if (clazz.isInstance(activityType)) {
+				return clazz.cast(activityType);
+			}
+		}
+		return null;
+	}
+	
+	@Override
 	public void start() throws Throwable {
 		activityManager.init();
 	}

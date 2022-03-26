@@ -2,7 +2,6 @@ package com.cat.server.game.module.artifact;
 
 import java.util.Collection;
 
-import com.cat.server.core.event.PlayerBaseEvent;
 import com.cat.server.game.module.artifact.domain.Artifact;
 import com.cat.server.game.module.artifact.domain.ArtifactDomain;
 import com.cat.server.game.module.artifact.proto.AckArtifactListResp;
@@ -25,18 +24,18 @@ class ArtifactService {
 	
 	private static final Logger log = LoggerFactory.getLogger(ArtifactService.class);
 	
-	/**
-	 * 当收到事件
-	 */
-	public void onEvent(PlayerBaseEvent event) {
-		long playerId = event.getPlayerId();
-		ArtifactDomain domain = manager.getOrLoadDomain(playerId);
-		if (domain  == null) {
-			log.info("onEvent error, playerId:{}", playerId);
-			return;
-		}
-		domain.onProcess(event);
-	}
+//	/**
+//	 * 当收到事件
+//	 */
+//	public void onEvent(PlayerBaseEvent event) {
+//		long playerId = event.getPlayerId();
+//		ArtifactDomain domain = manager.getOrLoadDomain(playerId);
+//		if (domain  == null) {
+//			log.info("onEvent error, playerId:{}", playerId);
+//			return;
+//		}
+//		domain.onProcess(event);
+//	}
 	
 	/**
 	 * 更新信息

@@ -7,8 +7,7 @@ import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.module.activity.type.IActivityPlayerData;
-import com.cat.server.game.module.mission.type.MissionTypeData;
-import com.cat.server.game.module.mission.type.impl.LearnCommunityMissionType;
+import com.cat.server.game.module.mission.domain.QuestTypeData;
 
 /**
 * @author Jeremy
@@ -25,7 +24,7 @@ public class LearnCommunity extends LearnCommunityPo implements IPersistence, IA
 	 * 任务数据
 	 */
 	@Column(PROP_QUESTTYPEDATASTR)
-	private MissionTypeData<LearnCommunityMissionType> missionData = new MissionTypeData<>();
+	private QuestTypeData questData = new QuestTypeData();
 	
 	/**
      * 活跃记录, 记录已领取的日活跃奖励
@@ -48,8 +47,8 @@ public class LearnCommunity extends LearnCommunityPo implements IPersistence, IA
 		this.playerId = playerId;
 	}
 
-	public MissionTypeData<LearnCommunityMissionType> getMissionData() {
-		return missionData;
+	public QuestTypeData getQuestTypeData() {
+		return questData;
 	}
 
 	public Map<Integer, LearnCommunityActiveData> getDailyActiveMap() {

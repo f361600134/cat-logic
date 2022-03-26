@@ -14,682 +14,8 @@ public final class PBMission {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface ReqMissionInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.ReqMissionInfo)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     *任务类型id
-     * </pre>
-     *
-     * <code>repeated int32 missionId = 1;</code>
-     * @return A list containing the missionId.
-     */
-    java.util.List<java.lang.Integer> getMissionIdList();
-    /**
-     * <pre>
-     *任务类型id
-     * </pre>
-     *
-     * <code>repeated int32 missionId = 1;</code>
-     * @return The count of missionId.
-     */
-    int getMissionIdCount();
-    /**
-     * <pre>
-     *任务类型id
-     * </pre>
-     *
-     * <code>repeated int32 missionId = 1;</code>
-     * @param index The index of the element to return.
-     * @return The missionId at the given index.
-     */
-    int getMissionId(int index);
-  }
-  /**
-   * <pre>
-   * 请求任务信息
-   * </pre>
-   *
-   * Protobuf type {@code Protocol.ReqMissionInfo}
-   */
-  public  static final class ReqMissionInfo extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.ReqMissionInfo)
-      ReqMissionInfoOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use ReqMissionInfo.newBuilder() to construct.
-    private ReqMissionInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private ReqMissionInfo() {
-      missionId_ = emptyIntList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new ReqMissionInfo();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ReqMissionInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                missionId_ = newIntList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              missionId_.addInt(input.readInt32());
-              break;
-            }
-            case 10: {
-              int length = input.readRawVarint32();
-              int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-                missionId_ = newIntList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              while (input.getBytesUntilLimit() > 0) {
-                missionId_.addInt(input.readInt32());
-              }
-              input.popLimit(limit);
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          missionId_.makeImmutable(); // C
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionInfo_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionInfo_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBMission.ReqMissionInfo.class, com.cat.server.game.data.proto.PBMission.ReqMissionInfo.Builder.class);
-    }
-
-    public static final int MISSIONID_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.IntList missionId_;
-    /**
-     * <pre>
-     *任务类型id
-     * </pre>
-     *
-     * <code>repeated int32 missionId = 1;</code>
-     * @return A list containing the missionId.
-     */
-    public java.util.List<java.lang.Integer>
-        getMissionIdList() {
-      return missionId_;
-    }
-    /**
-     * <pre>
-     *任务类型id
-     * </pre>
-     *
-     * <code>repeated int32 missionId = 1;</code>
-     * @return The count of missionId.
-     */
-    public int getMissionIdCount() {
-      return missionId_.size();
-    }
-    /**
-     * <pre>
-     *任务类型id
-     * </pre>
-     *
-     * <code>repeated int32 missionId = 1;</code>
-     * @param index The index of the element to return.
-     * @return The missionId at the given index.
-     */
-    public int getMissionId(int index) {
-      return missionId_.getInt(index);
-    }
-    private int missionIdMemoizedSerializedSize = -1;
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (getMissionIdList().size() > 0) {
-        output.writeUInt32NoTag(10);
-        output.writeUInt32NoTag(missionIdMemoizedSerializedSize);
-      }
-      for (int i = 0; i < missionId_.size(); i++) {
-        output.writeInt32NoTag(missionId_.getInt(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      {
-        int dataSize = 0;
-        for (int i = 0; i < missionId_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(missionId_.getInt(i));
-        }
-        size += dataSize;
-        if (!getMissionIdList().isEmpty()) {
-          size += 1;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        missionIdMemoizedSerializedSize = dataSize;
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.ReqMissionInfo)) {
-        return super.equals(obj);
-      }
-      com.cat.server.game.data.proto.PBMission.ReqMissionInfo other = (com.cat.server.game.data.proto.PBMission.ReqMissionInfo) obj;
-
-      if (!getMissionIdList()
-          .equals(other.getMissionIdList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getMissionIdCount() > 0) {
-        hash = (37 * hash) + MISSIONID_FIELD_NUMBER;
-        hash = (53 * hash) + getMissionIdList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.ReqMissionInfo prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 请求任务信息
-     * </pre>
-     *
-     * Protobuf type {@code Protocol.ReqMissionInfo}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.ReqMissionInfo)
-        com.cat.server.game.data.proto.PBMission.ReqMissionInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionInfo_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionInfo_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBMission.ReqMissionInfo.class, com.cat.server.game.data.proto.PBMission.ReqMissionInfo.Builder.class);
-      }
-
-      // Construct using com.cat.server.game.data.proto.PBMission.ReqMissionInfo.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        missionId_ = emptyIntList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionInfo_descriptor;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.ReqMissionInfo getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBMission.ReqMissionInfo.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.ReqMissionInfo build() {
-        com.cat.server.game.data.proto.PBMission.ReqMissionInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.ReqMissionInfo buildPartial() {
-        com.cat.server.game.data.proto.PBMission.ReqMissionInfo result = new com.cat.server.game.data.proto.PBMission.ReqMissionInfo(this);
-        int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          missionId_.makeImmutable();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.missionId_ = missionId_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBMission.ReqMissionInfo) {
-          return mergeFrom((com.cat.server.game.data.proto.PBMission.ReqMissionInfo)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.ReqMissionInfo other) {
-        if (other == com.cat.server.game.data.proto.PBMission.ReqMissionInfo.getDefaultInstance()) return this;
-        if (!other.missionId_.isEmpty()) {
-          if (missionId_.isEmpty()) {
-            missionId_ = other.missionId_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureMissionIdIsMutable();
-            missionId_.addAll(other.missionId_);
-          }
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.cat.server.game.data.proto.PBMission.ReqMissionInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBMission.ReqMissionInfo) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private com.google.protobuf.Internal.IntList missionId_ = emptyIntList();
-      private void ensureMissionIdIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          missionId_ = mutableCopy(missionId_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-      /**
-       * <pre>
-       *任务类型id
-       * </pre>
-       *
-       * <code>repeated int32 missionId = 1;</code>
-       * @return A list containing the missionId.
-       */
-      public java.util.List<java.lang.Integer>
-          getMissionIdList() {
-        return ((bitField0_ & 0x00000001) != 0) ?
-                 java.util.Collections.unmodifiableList(missionId_) : missionId_;
-      }
-      /**
-       * <pre>
-       *任务类型id
-       * </pre>
-       *
-       * <code>repeated int32 missionId = 1;</code>
-       * @return The count of missionId.
-       */
-      public int getMissionIdCount() {
-        return missionId_.size();
-      }
-      /**
-       * <pre>
-       *任务类型id
-       * </pre>
-       *
-       * <code>repeated int32 missionId = 1;</code>
-       * @param index The index of the element to return.
-       * @return The missionId at the given index.
-       */
-      public int getMissionId(int index) {
-        return missionId_.getInt(index);
-      }
-      /**
-       * <pre>
-       *任务类型id
-       * </pre>
-       *
-       * <code>repeated int32 missionId = 1;</code>
-       * @param index The index to set the value at.
-       * @param value The missionId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setMissionId(
-          int index, int value) {
-        ensureMissionIdIsMutable();
-        missionId_.setInt(index, value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *任务类型id
-       * </pre>
-       *
-       * <code>repeated int32 missionId = 1;</code>
-       * @param value The missionId to add.
-       * @return This builder for chaining.
-       */
-      public Builder addMissionId(int value) {
-        ensureMissionIdIsMutable();
-        missionId_.addInt(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *任务类型id
-       * </pre>
-       *
-       * <code>repeated int32 missionId = 1;</code>
-       * @param values The missionId to add.
-       * @return This builder for chaining.
-       */
-      public Builder addAllMissionId(
-          java.lang.Iterable<? extends java.lang.Integer> values) {
-        ensureMissionIdIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, missionId_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *任务类型id
-       * </pre>
-       *
-       * <code>repeated int32 missionId = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearMissionId() {
-        missionId_ = emptyIntList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Protocol.ReqMissionInfo)
-    }
-
-    // @@protoc_insertion_point(class_scope:Protocol.ReqMissionInfo)
-    private static final com.cat.server.game.data.proto.PBMission.ReqMissionInfo DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.ReqMissionInfo();
-    }
-
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<ReqMissionInfo>
-        PARSER = new com.google.protobuf.AbstractParser<ReqMissionInfo>() {
-      @java.lang.Override
-      public ReqMissionInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ReqMissionInfo(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<ReqMissionInfo> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ReqMissionInfo> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.cat.server.game.data.proto.PBMission.ReqMissionInfo getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface PBMissionGoalOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.PBMissionGoal)
+  public interface PBMissionQuestGoalOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.PBMissionQuestGoal)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -734,28 +60,28 @@ public final class PBMission {
   }
   /**
    * <pre>
-   * 任务目标对象
+   * 任务模块任务目标对象
    * </pre>
    *
-   * Protobuf type {@code Protocol.PBMissionGoal}
+   * Protobuf type {@code Protocol.PBMissionQuestGoal}
    */
-  public  static final class PBMissionGoal extends
+  public  static final class PBMissionQuestGoal extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.PBMissionGoal)
-      PBMissionGoalOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.PBMissionQuestGoal)
+      PBMissionQuestGoalOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use PBMissionGoal.newBuilder() to construct.
-    private PBMissionGoal(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use PBMissionQuestGoal.newBuilder() to construct.
+    private PBMissionQuestGoal(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private PBMissionGoal() {
+    private PBMissionQuestGoal() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new PBMissionGoal();
+      return new PBMissionQuestGoal();
     }
 
     @java.lang.Override
@@ -763,7 +89,7 @@ public final class PBMission {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private PBMissionGoal(
+    private PBMissionQuestGoal(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -822,15 +148,15 @@ public final class PBMission {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionGoal_descriptor;
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionQuestGoal_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionGoal_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionQuestGoal_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBMission.PBMissionGoal.class, com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder.class);
+              com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.class, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder.class);
     }
 
     public static final int INDEX_FIELD_NUMBER = 1;
@@ -950,10 +276,10 @@ public final class PBMission {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.PBMissionGoal)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBMission.PBMissionGoal other = (com.cat.server.game.data.proto.PBMission.PBMissionGoal) obj;
+      com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal other = (com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal) obj;
 
       if (getIndex()
           != other.getIndex()) return false;
@@ -988,69 +314,69 @@ public final class PBMission {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1063,7 +389,7 @@ public final class PBMission {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.PBMissionGoal prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1080,29 +406,29 @@ public final class PBMission {
     }
     /**
      * <pre>
-     * 任务目标对象
+     * 任务模块任务目标对象
      * </pre>
      *
-     * Protobuf type {@code Protocol.PBMissionGoal}
+     * Protobuf type {@code Protocol.PBMissionQuestGoal}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.PBMissionGoal)
-        com.cat.server.game.data.proto.PBMission.PBMissionGoalOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.PBMissionQuestGoal)
+        com.cat.server.game.data.proto.PBMission.PBMissionQuestGoalOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionGoal_descriptor;
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionQuestGoal_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionGoal_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionQuestGoal_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBMission.PBMissionGoal.class, com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder.class);
+                com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.class, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBMission.PBMissionGoal.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1134,17 +460,17 @@ public final class PBMission {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionGoal_descriptor;
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionQuestGoal_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.PBMissionGoal getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBMission.PBMissionGoal.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.PBMissionGoal build() {
-        com.cat.server.game.data.proto.PBMission.PBMissionGoal result = buildPartial();
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal build() {
+        com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1152,8 +478,8 @@ public final class PBMission {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.PBMissionGoal buildPartial() {
-        com.cat.server.game.data.proto.PBMission.PBMissionGoal result = new com.cat.server.game.data.proto.PBMission.PBMissionGoal(this);
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal buildPartial() {
+        com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal result = new com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal(this);
         result.index_ = index_;
         result.type_ = type_;
         result.progress_ = progress_;
@@ -1196,16 +522,16 @@ public final class PBMission {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBMission.PBMissionGoal) {
-          return mergeFrom((com.cat.server.game.data.proto.PBMission.PBMissionGoal)other);
+        if (other instanceof com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal) {
+          return mergeFrom((com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.PBMissionGoal other) {
-        if (other == com.cat.server.game.data.proto.PBMission.PBMissionGoal.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal other) {
+        if (other == com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.getDefaultInstance()) return this;
         if (other.getIndex() != 0) {
           setIndex(other.getIndex());
         }
@@ -1233,11 +559,11 @@ public final class PBMission {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBMission.PBMissionGoal parsedMessage = null;
+        com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBMission.PBMissionGoal) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1427,48 +753,1248 @@ public final class PBMission {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.PBMissionGoal)
+      // @@protoc_insertion_point(builder_scope:Protocol.PBMissionQuestGoal)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.PBMissionGoal)
-    private static final com.cat.server.game.data.proto.PBMission.PBMissionGoal DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.PBMissionQuestGoal)
+    private static final com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.PBMissionGoal();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal();
     }
 
-    public static com.cat.server.game.data.proto.PBMission.PBMissionGoal getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<PBMissionGoal>
-        PARSER = new com.google.protobuf.AbstractParser<PBMissionGoal>() {
+    private static final com.google.protobuf.Parser<PBMissionQuestGoal>
+        PARSER = new com.google.protobuf.AbstractParser<PBMissionQuestGoal>() {
       @java.lang.Override
-      public PBMissionGoal parsePartialFrom(
+      public PBMissionQuestGoal parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PBMissionGoal(input, extensionRegistry);
+        return new PBMissionQuestGoal(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<PBMissionGoal> parser() {
+    public static com.google.protobuf.Parser<PBMissionQuestGoal> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<PBMissionGoal> getParserForType() {
+    public com.google.protobuf.Parser<PBMissionQuestGoal> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBMission.PBMissionGoal getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface ReqMissionRewardOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.ReqMissionReward)
+  public interface ReqMissionInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.ReqMissionInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *任务类型id
+     * </pre>
+     *
+     * <code>int32 missionId = 1;</code>
+     * @return The missionId.
+     */
+    int getMissionId();
+  }
+  /**
+   * <pre>
+   * 请求指定任务模块信息,返回任务列表
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.ReqMissionInfo}
+   */
+  public  static final class ReqMissionInfo extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.ReqMissionInfo)
+      ReqMissionInfoOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReqMissionInfo.newBuilder() to construct.
+    private ReqMissionInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReqMissionInfo() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReqMissionInfo();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ReqMissionInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              missionId_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionInfo_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBMission.ReqMissionInfo.class, com.cat.server.game.data.proto.PBMission.ReqMissionInfo.Builder.class);
+    }
+
+    public static final int MISSIONID_FIELD_NUMBER = 1;
+    private int missionId_;
+    /**
+     * <pre>
+     *任务类型id
+     * </pre>
+     *
+     * <code>int32 missionId = 1;</code>
+     * @return The missionId.
+     */
+    public int getMissionId() {
+      return missionId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (missionId_ != 0) {
+        output.writeInt32(1, missionId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (missionId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, missionId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.ReqMissionInfo)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBMission.ReqMissionInfo other = (com.cat.server.game.data.proto.PBMission.ReqMissionInfo) obj;
+
+      if (getMissionId()
+          != other.getMissionId()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MISSIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getMissionId();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.ReqMissionInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 请求指定任务模块信息,返回任务列表
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.ReqMissionInfo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.ReqMissionInfo)
+        com.cat.server.game.data.proto.PBMission.ReqMissionInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionInfo_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBMission.ReqMissionInfo.class, com.cat.server.game.data.proto.PBMission.ReqMissionInfo.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBMission.ReqMissionInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        missionId_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionInfo_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBMission.ReqMissionInfo getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBMission.ReqMissionInfo.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBMission.ReqMissionInfo build() {
+        com.cat.server.game.data.proto.PBMission.ReqMissionInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBMission.ReqMissionInfo buildPartial() {
+        com.cat.server.game.data.proto.PBMission.ReqMissionInfo result = new com.cat.server.game.data.proto.PBMission.ReqMissionInfo(this);
+        result.missionId_ = missionId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBMission.ReqMissionInfo) {
+          return mergeFrom((com.cat.server.game.data.proto.PBMission.ReqMissionInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.ReqMissionInfo other) {
+        if (other == com.cat.server.game.data.proto.PBMission.ReqMissionInfo.getDefaultInstance()) return this;
+        if (other.getMissionId() != 0) {
+          setMissionId(other.getMissionId());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBMission.ReqMissionInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBMission.ReqMissionInfo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int missionId_ ;
+      /**
+       * <pre>
+       *任务类型id
+       * </pre>
+       *
+       * <code>int32 missionId = 1;</code>
+       * @return The missionId.
+       */
+      public int getMissionId() {
+        return missionId_;
+      }
+      /**
+       * <pre>
+       *任务类型id
+       * </pre>
+       *
+       * <code>int32 missionId = 1;</code>
+       * @param value The missionId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMissionId(int value) {
+        
+        missionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *任务类型id
+       * </pre>
+       *
+       * <code>int32 missionId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMissionId() {
+        
+        missionId_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.ReqMissionInfo)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.ReqMissionInfo)
+    private static final com.cat.server.game.data.proto.PBMission.ReqMissionInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.ReqMissionInfo();
+    }
+
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReqMissionInfo>
+        PARSER = new com.google.protobuf.AbstractParser<ReqMissionInfo>() {
+      @java.lang.Override
+      public ReqMissionInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ReqMissionInfo(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReqMissionInfo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReqMissionInfo> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBMission.ReqMissionInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface RespMissionSingleQuestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespMissionSingleQuest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *任务数据
+     * </pre>
+     *
+     * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+     * @return Whether the quest field is set.
+     */
+    boolean hasQuest();
+    /**
+     * <pre>
+     *任务数据
+     * </pre>
+     *
+     * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+     * @return The quest.
+     */
+    com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo getQuest();
+    /**
+     * <pre>
+     *任务数据
+     * </pre>
+     *
+     * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+     */
+    com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder getQuestOrBuilder();
+  }
+  /**
+   * <pre>
+   * 响应一条任务更新
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.RespMissionSingleQuest}
+   */
+  public  static final class RespMissionSingleQuest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.RespMissionSingleQuest)
+      RespMissionSingleQuestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RespMissionSingleQuest.newBuilder() to construct.
+    private RespMissionSingleQuest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RespMissionSingleQuest() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RespMissionSingleQuest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RespMissionSingleQuest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder subBuilder = null;
+              if (quest_ != null) {
+                subBuilder = quest_.toBuilder();
+              }
+              quest_ = input.readMessage(com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(quest_);
+                quest_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionSingleQuest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionSingleQuest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest.class, com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest.Builder.class);
+    }
+
+    public static final int QUEST_FIELD_NUMBER = 1;
+    private com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo quest_;
+    /**
+     * <pre>
+     *任务数据
+     * </pre>
+     *
+     * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+     * @return Whether the quest field is set.
+     */
+    public boolean hasQuest() {
+      return quest_ != null;
+    }
+    /**
+     * <pre>
+     *任务数据
+     * </pre>
+     *
+     * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+     * @return The quest.
+     */
+    public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo getQuest() {
+      return quest_ == null ? com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.getDefaultInstance() : quest_;
+    }
+    /**
+     * <pre>
+     *任务数据
+     * </pre>
+     *
+     * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+     */
+    public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder getQuestOrBuilder() {
+      return getQuest();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (quest_ != null) {
+        output.writeMessage(1, getQuest());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (quest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getQuest());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest other = (com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest) obj;
+
+      if (hasQuest() != other.hasQuest()) return false;
+      if (hasQuest()) {
+        if (!getQuest()
+            .equals(other.getQuest())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasQuest()) {
+        hash = (37 * hash) + QUEST_FIELD_NUMBER;
+        hash = (53 * hash) + getQuest().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 响应一条任务更新
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.RespMissionSingleQuest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.RespMissionSingleQuest)
+        com.cat.server.game.data.proto.PBMission.RespMissionSingleQuestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionSingleQuest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionSingleQuest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest.class, com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (questBuilder_ == null) {
+          quest_ = null;
+        } else {
+          quest_ = null;
+          questBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionSingleQuest_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest build() {
+        com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest buildPartial() {
+        com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest result = new com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest(this);
+        if (questBuilder_ == null) {
+          result.quest_ = quest_;
+        } else {
+          result.quest_ = questBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest) {
+          return mergeFrom((com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest other) {
+        if (other == com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest.getDefaultInstance()) return this;
+        if (other.hasQuest()) {
+          mergeQuest(other.getQuest());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo quest_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder> questBuilder_;
+      /**
+       * <pre>
+       *任务数据
+       * </pre>
+       *
+       * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+       * @return Whether the quest field is set.
+       */
+      public boolean hasQuest() {
+        return questBuilder_ != null || quest_ != null;
+      }
+      /**
+       * <pre>
+       *任务数据
+       * </pre>
+       *
+       * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+       * @return The quest.
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo getQuest() {
+        if (questBuilder_ == null) {
+          return quest_ == null ? com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.getDefaultInstance() : quest_;
+        } else {
+          return questBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       *任务数据
+       * </pre>
+       *
+       * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+       */
+      public Builder setQuest(com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo value) {
+        if (questBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          quest_ = value;
+          onChanged();
+        } else {
+          questBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       *任务数据
+       * </pre>
+       *
+       * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+       */
+      public Builder setQuest(
+          com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder builderForValue) {
+        if (questBuilder_ == null) {
+          quest_ = builderForValue.build();
+          onChanged();
+        } else {
+          questBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       *任务数据
+       * </pre>
+       *
+       * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+       */
+      public Builder mergeQuest(com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo value) {
+        if (questBuilder_ == null) {
+          if (quest_ != null) {
+            quest_ =
+              com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.newBuilder(quest_).mergeFrom(value).buildPartial();
+          } else {
+            quest_ = value;
+          }
+          onChanged();
+        } else {
+          questBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       *任务数据
+       * </pre>
+       *
+       * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+       */
+      public Builder clearQuest() {
+        if (questBuilder_ == null) {
+          quest_ = null;
+          onChanged();
+        } else {
+          quest_ = null;
+          questBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       *任务数据
+       * </pre>
+       *
+       * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder getQuestBuilder() {
+        
+        onChanged();
+        return getQuestFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       *任务数据
+       * </pre>
+       *
+       * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder getQuestOrBuilder() {
+        if (questBuilder_ != null) {
+          return questBuilder_.getMessageOrBuilder();
+        } else {
+          return quest_ == null ?
+              com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.getDefaultInstance() : quest_;
+        }
+      }
+      /**
+       * <pre>
+       *任务数据
+       * </pre>
+       *
+       * <code>.Protocol.PBMissionQuestInfo quest = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder> 
+          getQuestFieldBuilder() {
+        if (questBuilder_ == null) {
+          questBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder>(
+                  getQuest(),
+                  getParentForChildren(),
+                  isClean());
+          quest_ = null;
+        }
+        return questBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.RespMissionSingleQuest)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.RespMissionSingleQuest)
+    private static final com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest();
+    }
+
+    public static com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RespMissionSingleQuest>
+        PARSER = new com.google.protobuf.AbstractParser<RespMissionSingleQuest>() {
+      @java.lang.Override
+      public RespMissionSingleQuest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RespMissionSingleQuest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RespMissionSingleQuest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RespMissionSingleQuest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBMission.RespMissionSingleQuest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ReqMissionQuestRewardOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.ReqMissionQuestReward)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -1486,25 +2012,25 @@ public final class PBMission {
    * 领取任务奖励
    * </pre>
    *
-   * Protobuf type {@code Protocol.ReqMissionReward}
+   * Protobuf type {@code Protocol.ReqMissionQuestReward}
    */
-  public  static final class ReqMissionReward extends
+  public  static final class ReqMissionQuestReward extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.ReqMissionReward)
-      ReqMissionRewardOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.ReqMissionQuestReward)
+      ReqMissionQuestRewardOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ReqMissionReward.newBuilder() to construct.
-    private ReqMissionReward(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ReqMissionQuestReward.newBuilder() to construct.
+    private ReqMissionQuestReward(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ReqMissionReward() {
+    private ReqMissionQuestReward() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new ReqMissionReward();
+      return new ReqMissionQuestReward();
     }
 
     @java.lang.Override
@@ -1512,7 +2038,7 @@ public final class PBMission {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ReqMissionReward(
+    private ReqMissionQuestReward(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1556,15 +2082,15 @@ public final class PBMission {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionReward_descriptor;
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionQuestReward_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionReward_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionQuestReward_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBMission.ReqMissionReward.class, com.cat.server.game.data.proto.PBMission.ReqMissionReward.Builder.class);
+              com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward.class, com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
@@ -1621,10 +2147,10 @@ public final class PBMission {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.ReqMissionReward)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBMission.ReqMissionReward other = (com.cat.server.game.data.proto.PBMission.ReqMissionReward) obj;
+      com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward other = (com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward) obj;
 
       if (getId()
           != other.getId()) return false;
@@ -1646,69 +2172,69 @@ public final class PBMission {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1721,7 +2247,7 @@ public final class PBMission {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.ReqMissionReward prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1741,26 +2267,26 @@ public final class PBMission {
      * 领取任务奖励
      * </pre>
      *
-     * Protobuf type {@code Protocol.ReqMissionReward}
+     * Protobuf type {@code Protocol.ReqMissionQuestReward}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.ReqMissionReward)
-        com.cat.server.game.data.proto.PBMission.ReqMissionRewardOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.ReqMissionQuestReward)
+        com.cat.server.game.data.proto.PBMission.ReqMissionQuestRewardOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionReward_descriptor;
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionQuestReward_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionReward_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionQuestReward_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBMission.ReqMissionReward.class, com.cat.server.game.data.proto.PBMission.ReqMissionReward.Builder.class);
+                com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward.class, com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBMission.ReqMissionReward.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1786,17 +2312,17 @@ public final class PBMission {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionReward_descriptor;
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_ReqMissionQuestReward_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.ReqMissionReward getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBMission.ReqMissionReward.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.ReqMissionReward build() {
-        com.cat.server.game.data.proto.PBMission.ReqMissionReward result = buildPartial();
+      public com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward build() {
+        com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1804,8 +2330,8 @@ public final class PBMission {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.ReqMissionReward buildPartial() {
-        com.cat.server.game.data.proto.PBMission.ReqMissionReward result = new com.cat.server.game.data.proto.PBMission.ReqMissionReward(this);
+      public com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward buildPartial() {
+        com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward result = new com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward(this);
         result.id_ = id_;
         onBuilt();
         return result;
@@ -1845,16 +2371,16 @@ public final class PBMission {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBMission.ReqMissionReward) {
-          return mergeFrom((com.cat.server.game.data.proto.PBMission.ReqMissionReward)other);
+        if (other instanceof com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward) {
+          return mergeFrom((com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.ReqMissionReward other) {
-        if (other == com.cat.server.game.data.proto.PBMission.ReqMissionReward.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward other) {
+        if (other == com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward.getDefaultInstance()) return this;
         if (other.getId() != 0) {
           setId(other.getId());
         }
@@ -1873,11 +2399,11 @@ public final class PBMission {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBMission.ReqMissionReward parsedMessage = null;
+        com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBMission.ReqMissionReward) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1941,2128 +2467,48 @@ public final class PBMission {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.ReqMissionReward)
+      // @@protoc_insertion_point(builder_scope:Protocol.ReqMissionQuestReward)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.ReqMissionReward)
-    private static final com.cat.server.game.data.proto.PBMission.ReqMissionReward DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.ReqMissionQuestReward)
+    private static final com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.ReqMissionReward();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward();
     }
 
-    public static com.cat.server.game.data.proto.PBMission.ReqMissionReward getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ReqMissionReward>
-        PARSER = new com.google.protobuf.AbstractParser<ReqMissionReward>() {
+    private static final com.google.protobuf.Parser<ReqMissionQuestReward>
+        PARSER = new com.google.protobuf.AbstractParser<ReqMissionQuestReward>() {
       @java.lang.Override
-      public ReqMissionReward parsePartialFrom(
+      public ReqMissionQuestReward parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ReqMissionReward(input, extensionRegistry);
+        return new ReqMissionQuestReward(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ReqMissionReward> parser() {
+    public static com.google.protobuf.Parser<ReqMissionQuestReward> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ReqMissionReward> getParserForType() {
+    public com.google.protobuf.Parser<ReqMissionQuestReward> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBMission.ReqMissionReward getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface PBMissionInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.PBMissionInfo)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     *任务配置id
-     * </pre>
-     *
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    int getId();
-
-    /**
-     * <pre>
-     *任务类型 1主线 2剧情 3支线 4成就 5日常
-     * </pre>
-     *
-     * <code>int32 type = 2;</code>
-     * @return The type.
-     */
-    int getType();
-
-    /**
-     * <pre>
-     *任务目标i列表
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-     */
-    java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionGoal> 
-        getGoalsList();
-    /**
-     * <pre>
-     *任务目标i列表
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-     */
-    com.cat.server.game.data.proto.PBMission.PBMissionGoal getGoals(int index);
-    /**
-     * <pre>
-     *任务目标i列表
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-     */
-    int getGoalsCount();
-    /**
-     * <pre>
-     *任务目标i列表
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-     */
-    java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionGoalOrBuilder> 
-        getGoalsOrBuilderList();
-    /**
-     * <pre>
-     *任务目标i列表
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-     */
-    com.cat.server.game.data.proto.PBMission.PBMissionGoalOrBuilder getGoalsOrBuilder(
-        int index);
-  }
-  /**
-   * <pre>
-   * 任务协议对象
-   * </pre>
-   *
-   * Protobuf type {@code Protocol.PBMissionInfo}
-   */
-  public  static final class PBMissionInfo extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.PBMissionInfo)
-      PBMissionInfoOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use PBMissionInfo.newBuilder() to construct.
-    private PBMissionInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private PBMissionInfo() {
-      goals_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new PBMissionInfo();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private PBMissionInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              id_ = input.readInt32();
-              break;
-            }
-            case 16: {
-
-              type_ = input.readInt32();
-              break;
-            }
-            case 26: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                goals_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBMission.PBMissionGoal>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              goals_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBMission.PBMissionGoal.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          goals_ = java.util.Collections.unmodifiableList(goals_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionInfo_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionInfo_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBMission.PBMissionInfo.class, com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder.class);
-    }
-
-    public static final int ID_FIELD_NUMBER = 1;
-    private int id_;
-    /**
-     * <pre>
-     *任务配置id
-     * </pre>
-     *
-     * <code>int32 id = 1;</code>
-     * @return The id.
-     */
-    public int getId() {
-      return id_;
-    }
-
-    public static final int TYPE_FIELD_NUMBER = 2;
-    private int type_;
-    /**
-     * <pre>
-     *任务类型 1主线 2剧情 3支线 4成就 5日常
-     * </pre>
-     *
-     * <code>int32 type = 2;</code>
-     * @return The type.
-     */
-    public int getType() {
-      return type_;
-    }
-
-    public static final int GOALS_FIELD_NUMBER = 3;
-    private java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionGoal> goals_;
-    /**
-     * <pre>
-     *任务目标i列表
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-     */
-    public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionGoal> getGoalsList() {
-      return goals_;
-    }
-    /**
-     * <pre>
-     *任务目标i列表
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-     */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionGoalOrBuilder> 
-        getGoalsOrBuilderList() {
-      return goals_;
-    }
-    /**
-     * <pre>
-     *任务目标i列表
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-     */
-    public int getGoalsCount() {
-      return goals_.size();
-    }
-    /**
-     * <pre>
-     *任务目标i列表
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-     */
-    public com.cat.server.game.data.proto.PBMission.PBMissionGoal getGoals(int index) {
-      return goals_.get(index);
-    }
-    /**
-     * <pre>
-     *任务目标i列表
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-     */
-    public com.cat.server.game.data.proto.PBMission.PBMissionGoalOrBuilder getGoalsOrBuilder(
-        int index) {
-      return goals_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (id_ != 0) {
-        output.writeInt32(1, id_);
-      }
-      if (type_ != 0) {
-        output.writeInt32(2, type_);
-      }
-      for (int i = 0; i < goals_.size(); i++) {
-        output.writeMessage(3, goals_.get(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (id_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, id_);
-      }
-      if (type_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, type_);
-      }
-      for (int i = 0; i < goals_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, goals_.get(i));
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.PBMissionInfo)) {
-        return super.equals(obj);
-      }
-      com.cat.server.game.data.proto.PBMission.PBMissionInfo other = (com.cat.server.game.data.proto.PBMission.PBMissionInfo) obj;
-
-      if (getId()
-          != other.getId()) return false;
-      if (getType()
-          != other.getType()) return false;
-      if (!getGoalsList()
-          .equals(other.getGoalsList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ID_FIELD_NUMBER;
-      hash = (53 * hash) + getId();
-      hash = (37 * hash) + TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getType();
-      if (getGoalsCount() > 0) {
-        hash = (37 * hash) + GOALS_FIELD_NUMBER;
-        hash = (53 * hash) + getGoalsList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.PBMissionInfo prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 任务协议对象
-     * </pre>
-     *
-     * Protobuf type {@code Protocol.PBMissionInfo}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.PBMissionInfo)
-        com.cat.server.game.data.proto.PBMission.PBMissionInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionInfo_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionInfo_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBMission.PBMissionInfo.class, com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder.class);
-      }
-
-      // Construct using com.cat.server.game.data.proto.PBMission.PBMissionInfo.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getGoalsFieldBuilder();
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        id_ = 0;
-
-        type_ = 0;
-
-        if (goalsBuilder_ == null) {
-          goals_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          goalsBuilder_.clear();
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionInfo_descriptor;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.PBMissionInfo getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBMission.PBMissionInfo.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.PBMissionInfo build() {
-        com.cat.server.game.data.proto.PBMission.PBMissionInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.PBMissionInfo buildPartial() {
-        com.cat.server.game.data.proto.PBMission.PBMissionInfo result = new com.cat.server.game.data.proto.PBMission.PBMissionInfo(this);
-        int from_bitField0_ = bitField0_;
-        result.id_ = id_;
-        result.type_ = type_;
-        if (goalsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            goals_ = java.util.Collections.unmodifiableList(goals_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.goals_ = goals_;
-        } else {
-          result.goals_ = goalsBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBMission.PBMissionInfo) {
-          return mergeFrom((com.cat.server.game.data.proto.PBMission.PBMissionInfo)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.PBMissionInfo other) {
-        if (other == com.cat.server.game.data.proto.PBMission.PBMissionInfo.getDefaultInstance()) return this;
-        if (other.getId() != 0) {
-          setId(other.getId());
-        }
-        if (other.getType() != 0) {
-          setType(other.getType());
-        }
-        if (goalsBuilder_ == null) {
-          if (!other.goals_.isEmpty()) {
-            if (goals_.isEmpty()) {
-              goals_ = other.goals_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureGoalsIsMutable();
-              goals_.addAll(other.goals_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.goals_.isEmpty()) {
-            if (goalsBuilder_.isEmpty()) {
-              goalsBuilder_.dispose();
-              goalsBuilder_ = null;
-              goals_ = other.goals_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              goalsBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getGoalsFieldBuilder() : null;
-            } else {
-              goalsBuilder_.addAllMessages(other.goals_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.cat.server.game.data.proto.PBMission.PBMissionInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBMission.PBMissionInfo) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int id_ ;
-      /**
-       * <pre>
-       *任务配置id
-       * </pre>
-       *
-       * <code>int32 id = 1;</code>
-       * @return The id.
-       */
-      public int getId() {
-        return id_;
-      }
-      /**
-       * <pre>
-       *任务配置id
-       * </pre>
-       *
-       * <code>int32 id = 1;</code>
-       * @param value The id to set.
-       * @return This builder for chaining.
-       */
-      public Builder setId(int value) {
-        
-        id_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *任务配置id
-       * </pre>
-       *
-       * <code>int32 id = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearId() {
-        
-        id_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int type_ ;
-      /**
-       * <pre>
-       *任务类型 1主线 2剧情 3支线 4成就 5日常
-       * </pre>
-       *
-       * <code>int32 type = 2;</code>
-       * @return The type.
-       */
-      public int getType() {
-        return type_;
-      }
-      /**
-       * <pre>
-       *任务类型 1主线 2剧情 3支线 4成就 5日常
-       * </pre>
-       *
-       * <code>int32 type = 2;</code>
-       * @param value The type to set.
-       * @return This builder for chaining.
-       */
-      public Builder setType(int value) {
-        
-        type_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *任务类型 1主线 2剧情 3支线 4成就 5日常
-       * </pre>
-       *
-       * <code>int32 type = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearType() {
-        
-        type_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionGoal> goals_ =
-        java.util.Collections.emptyList();
-      private void ensureGoalsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          goals_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBMission.PBMissionGoal>(goals_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBMission.PBMissionGoal, com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder, com.cat.server.game.data.proto.PBMission.PBMissionGoalOrBuilder> goalsBuilder_;
-
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionGoal> getGoalsList() {
-        if (goalsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(goals_);
-        } else {
-          return goalsBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public int getGoalsCount() {
-        if (goalsBuilder_ == null) {
-          return goals_.size();
-        } else {
-          return goalsBuilder_.getCount();
-        }
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public com.cat.server.game.data.proto.PBMission.PBMissionGoal getGoals(int index) {
-        if (goalsBuilder_ == null) {
-          return goals_.get(index);
-        } else {
-          return goalsBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public Builder setGoals(
-          int index, com.cat.server.game.data.proto.PBMission.PBMissionGoal value) {
-        if (goalsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureGoalsIsMutable();
-          goals_.set(index, value);
-          onChanged();
-        } else {
-          goalsBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public Builder setGoals(
-          int index, com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder builderForValue) {
-        if (goalsBuilder_ == null) {
-          ensureGoalsIsMutable();
-          goals_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          goalsBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public Builder addGoals(com.cat.server.game.data.proto.PBMission.PBMissionGoal value) {
-        if (goalsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureGoalsIsMutable();
-          goals_.add(value);
-          onChanged();
-        } else {
-          goalsBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public Builder addGoals(
-          int index, com.cat.server.game.data.proto.PBMission.PBMissionGoal value) {
-        if (goalsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureGoalsIsMutable();
-          goals_.add(index, value);
-          onChanged();
-        } else {
-          goalsBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public Builder addGoals(
-          com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder builderForValue) {
-        if (goalsBuilder_ == null) {
-          ensureGoalsIsMutable();
-          goals_.add(builderForValue.build());
-          onChanged();
-        } else {
-          goalsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public Builder addGoals(
-          int index, com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder builderForValue) {
-        if (goalsBuilder_ == null) {
-          ensureGoalsIsMutable();
-          goals_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          goalsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public Builder addAllGoals(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBMission.PBMissionGoal> values) {
-        if (goalsBuilder_ == null) {
-          ensureGoalsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, goals_);
-          onChanged();
-        } else {
-          goalsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public Builder clearGoals() {
-        if (goalsBuilder_ == null) {
-          goals_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          goalsBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public Builder removeGoals(int index) {
-        if (goalsBuilder_ == null) {
-          ensureGoalsIsMutable();
-          goals_.remove(index);
-          onChanged();
-        } else {
-          goalsBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder getGoalsBuilder(
-          int index) {
-        return getGoalsFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public com.cat.server.game.data.proto.PBMission.PBMissionGoalOrBuilder getGoalsOrBuilder(
-          int index) {
-        if (goalsBuilder_ == null) {
-          return goals_.get(index);  } else {
-          return goalsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionGoalOrBuilder> 
-           getGoalsOrBuilderList() {
-        if (goalsBuilder_ != null) {
-          return goalsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(goals_);
-        }
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder addGoalsBuilder() {
-        return getGoalsFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBMission.PBMissionGoal.getDefaultInstance());
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder addGoalsBuilder(
-          int index) {
-        return getGoalsFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBMission.PBMissionGoal.getDefaultInstance());
-      }
-      /**
-       * <pre>
-       *任务目标i列表
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionGoal goals = 3;</code>
-       */
-      public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder> 
-           getGoalsBuilderList() {
-        return getGoalsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBMission.PBMissionGoal, com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder, com.cat.server.game.data.proto.PBMission.PBMissionGoalOrBuilder> 
-          getGoalsFieldBuilder() {
-        if (goalsBuilder_ == null) {
-          goalsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBMission.PBMissionGoal, com.cat.server.game.data.proto.PBMission.PBMissionGoal.Builder, com.cat.server.game.data.proto.PBMission.PBMissionGoalOrBuilder>(
-                  goals_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          goals_ = null;
-        }
-        return goalsBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Protocol.PBMissionInfo)
-    }
-
-    // @@protoc_insertion_point(class_scope:Protocol.PBMissionInfo)
-    private static final com.cat.server.game.data.proto.PBMission.PBMissionInfo DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.PBMissionInfo();
-    }
-
-    public static com.cat.server.game.data.proto.PBMission.PBMissionInfo getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<PBMissionInfo>
-        PARSER = new com.google.protobuf.AbstractParser<PBMissionInfo>() {
-      @java.lang.Override
-      public PBMissionInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PBMissionInfo(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<PBMissionInfo> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<PBMissionInfo> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.cat.server.game.data.proto.PBMission.PBMissionInfo getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface RespMissionInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.RespMissionInfo)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     *任务目标类型
-     * </pre>
-     *
-     * <code>int32 type = 1;</code>
-     * @return The type.
-     */
-    int getType();
-
-    /**
-     * <pre>
-     *任务列表数据
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-     */
-    java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionInfo> 
-        getMissionInfosList();
-    /**
-     * <pre>
-     *任务列表数据
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-     */
-    com.cat.server.game.data.proto.PBMission.PBMissionInfo getMissionInfos(int index);
-    /**
-     * <pre>
-     *任务列表数据
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-     */
-    int getMissionInfosCount();
-    /**
-     * <pre>
-     *任务列表数据
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-     */
-    java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionInfoOrBuilder> 
-        getMissionInfosOrBuilderList();
-    /**
-     * <pre>
-     *任务列表数据
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-     */
-    com.cat.server.game.data.proto.PBMission.PBMissionInfoOrBuilder getMissionInfosOrBuilder(
-        int index);
-  }
-  /**
-   * <pre>
-   * 响应任务信息
-   * </pre>
-   *
-   * Protobuf type {@code Protocol.RespMissionInfo}
-   */
-  public  static final class RespMissionInfo extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.RespMissionInfo)
-      RespMissionInfoOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RespMissionInfo.newBuilder() to construct.
-    private RespMissionInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RespMissionInfo() {
-      missionInfos_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RespMissionInfo();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RespMissionInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              type_ = input.readInt32();
-              break;
-            }
-            case 18: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                missionInfos_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBMission.PBMissionInfo>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              missionInfos_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBMission.PBMissionInfo.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          missionInfos_ = java.util.Collections.unmodifiableList(missionInfos_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionInfo_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionInfo_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBMission.RespMissionInfo.class, com.cat.server.game.data.proto.PBMission.RespMissionInfo.Builder.class);
-    }
-
-    public static final int TYPE_FIELD_NUMBER = 1;
-    private int type_;
-    /**
-     * <pre>
-     *任务目标类型
-     * </pre>
-     *
-     * <code>int32 type = 1;</code>
-     * @return The type.
-     */
-    public int getType() {
-      return type_;
-    }
-
-    public static final int MISSIONINFOS_FIELD_NUMBER = 2;
-    private java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionInfo> missionInfos_;
-    /**
-     * <pre>
-     *任务列表数据
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-     */
-    public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionInfo> getMissionInfosList() {
-      return missionInfos_;
-    }
-    /**
-     * <pre>
-     *任务列表数据
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-     */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionInfoOrBuilder> 
-        getMissionInfosOrBuilderList() {
-      return missionInfos_;
-    }
-    /**
-     * <pre>
-     *任务列表数据
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-     */
-    public int getMissionInfosCount() {
-      return missionInfos_.size();
-    }
-    /**
-     * <pre>
-     *任务列表数据
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-     */
-    public com.cat.server.game.data.proto.PBMission.PBMissionInfo getMissionInfos(int index) {
-      return missionInfos_.get(index);
-    }
-    /**
-     * <pre>
-     *任务列表数据
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-     */
-    public com.cat.server.game.data.proto.PBMission.PBMissionInfoOrBuilder getMissionInfosOrBuilder(
-        int index) {
-      return missionInfos_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (type_ != 0) {
-        output.writeInt32(1, type_);
-      }
-      for (int i = 0; i < missionInfos_.size(); i++) {
-        output.writeMessage(2, missionInfos_.get(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (type_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, type_);
-      }
-      for (int i = 0; i < missionInfos_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, missionInfos_.get(i));
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.RespMissionInfo)) {
-        return super.equals(obj);
-      }
-      com.cat.server.game.data.proto.PBMission.RespMissionInfo other = (com.cat.server.game.data.proto.PBMission.RespMissionInfo) obj;
-
-      if (getType()
-          != other.getType()) return false;
-      if (!getMissionInfosList()
-          .equals(other.getMissionInfosList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TYPE_FIELD_NUMBER;
-      hash = (53 * hash) + getType();
-      if (getMissionInfosCount() > 0) {
-        hash = (37 * hash) + MISSIONINFOS_FIELD_NUMBER;
-        hash = (53 * hash) + getMissionInfosList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.RespMissionInfo prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 响应任务信息
-     * </pre>
-     *
-     * Protobuf type {@code Protocol.RespMissionInfo}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.RespMissionInfo)
-        com.cat.server.game.data.proto.PBMission.RespMissionInfoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionInfo_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionInfo_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBMission.RespMissionInfo.class, com.cat.server.game.data.proto.PBMission.RespMissionInfo.Builder.class);
-      }
-
-      // Construct using com.cat.server.game.data.proto.PBMission.RespMissionInfo.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getMissionInfosFieldBuilder();
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        type_ = 0;
-
-        if (missionInfosBuilder_ == null) {
-          missionInfos_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          missionInfosBuilder_.clear();
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionInfo_descriptor;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.RespMissionInfo getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBMission.RespMissionInfo.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.RespMissionInfo build() {
-        com.cat.server.game.data.proto.PBMission.RespMissionInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.RespMissionInfo buildPartial() {
-        com.cat.server.game.data.proto.PBMission.RespMissionInfo result = new com.cat.server.game.data.proto.PBMission.RespMissionInfo(this);
-        int from_bitField0_ = bitField0_;
-        result.type_ = type_;
-        if (missionInfosBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            missionInfos_ = java.util.Collections.unmodifiableList(missionInfos_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.missionInfos_ = missionInfos_;
-        } else {
-          result.missionInfos_ = missionInfosBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBMission.RespMissionInfo) {
-          return mergeFrom((com.cat.server.game.data.proto.PBMission.RespMissionInfo)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.RespMissionInfo other) {
-        if (other == com.cat.server.game.data.proto.PBMission.RespMissionInfo.getDefaultInstance()) return this;
-        if (other.getType() != 0) {
-          setType(other.getType());
-        }
-        if (missionInfosBuilder_ == null) {
-          if (!other.missionInfos_.isEmpty()) {
-            if (missionInfos_.isEmpty()) {
-              missionInfos_ = other.missionInfos_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureMissionInfosIsMutable();
-              missionInfos_.addAll(other.missionInfos_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.missionInfos_.isEmpty()) {
-            if (missionInfosBuilder_.isEmpty()) {
-              missionInfosBuilder_.dispose();
-              missionInfosBuilder_ = null;
-              missionInfos_ = other.missionInfos_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              missionInfosBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getMissionInfosFieldBuilder() : null;
-            } else {
-              missionInfosBuilder_.addAllMessages(other.missionInfos_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.cat.server.game.data.proto.PBMission.RespMissionInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBMission.RespMissionInfo) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int type_ ;
-      /**
-       * <pre>
-       *任务目标类型
-       * </pre>
-       *
-       * <code>int32 type = 1;</code>
-       * @return The type.
-       */
-      public int getType() {
-        return type_;
-      }
-      /**
-       * <pre>
-       *任务目标类型
-       * </pre>
-       *
-       * <code>int32 type = 1;</code>
-       * @param value The type to set.
-       * @return This builder for chaining.
-       */
-      public Builder setType(int value) {
-        
-        type_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *任务目标类型
-       * </pre>
-       *
-       * <code>int32 type = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearType() {
-        
-        type_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionInfo> missionInfos_ =
-        java.util.Collections.emptyList();
-      private void ensureMissionInfosIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          missionInfos_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBMission.PBMissionInfo>(missionInfos_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBMission.PBMissionInfo, com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder, com.cat.server.game.data.proto.PBMission.PBMissionInfoOrBuilder> missionInfosBuilder_;
-
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionInfo> getMissionInfosList() {
-        if (missionInfosBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(missionInfos_);
-        } else {
-          return missionInfosBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public int getMissionInfosCount() {
-        if (missionInfosBuilder_ == null) {
-          return missionInfos_.size();
-        } else {
-          return missionInfosBuilder_.getCount();
-        }
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public com.cat.server.game.data.proto.PBMission.PBMissionInfo getMissionInfos(int index) {
-        if (missionInfosBuilder_ == null) {
-          return missionInfos_.get(index);
-        } else {
-          return missionInfosBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public Builder setMissionInfos(
-          int index, com.cat.server.game.data.proto.PBMission.PBMissionInfo value) {
-        if (missionInfosBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureMissionInfosIsMutable();
-          missionInfos_.set(index, value);
-          onChanged();
-        } else {
-          missionInfosBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public Builder setMissionInfos(
-          int index, com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder builderForValue) {
-        if (missionInfosBuilder_ == null) {
-          ensureMissionInfosIsMutable();
-          missionInfos_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          missionInfosBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public Builder addMissionInfos(com.cat.server.game.data.proto.PBMission.PBMissionInfo value) {
-        if (missionInfosBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureMissionInfosIsMutable();
-          missionInfos_.add(value);
-          onChanged();
-        } else {
-          missionInfosBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public Builder addMissionInfos(
-          int index, com.cat.server.game.data.proto.PBMission.PBMissionInfo value) {
-        if (missionInfosBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureMissionInfosIsMutable();
-          missionInfos_.add(index, value);
-          onChanged();
-        } else {
-          missionInfosBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public Builder addMissionInfos(
-          com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder builderForValue) {
-        if (missionInfosBuilder_ == null) {
-          ensureMissionInfosIsMutable();
-          missionInfos_.add(builderForValue.build());
-          onChanged();
-        } else {
-          missionInfosBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public Builder addMissionInfos(
-          int index, com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder builderForValue) {
-        if (missionInfosBuilder_ == null) {
-          ensureMissionInfosIsMutable();
-          missionInfos_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          missionInfosBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public Builder addAllMissionInfos(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBMission.PBMissionInfo> values) {
-        if (missionInfosBuilder_ == null) {
-          ensureMissionInfosIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, missionInfos_);
-          onChanged();
-        } else {
-          missionInfosBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public Builder clearMissionInfos() {
-        if (missionInfosBuilder_ == null) {
-          missionInfos_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          missionInfosBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public Builder removeMissionInfos(int index) {
-        if (missionInfosBuilder_ == null) {
-          ensureMissionInfosIsMutable();
-          missionInfos_.remove(index);
-          onChanged();
-        } else {
-          missionInfosBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder getMissionInfosBuilder(
-          int index) {
-        return getMissionInfosFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public com.cat.server.game.data.proto.PBMission.PBMissionInfoOrBuilder getMissionInfosOrBuilder(
-          int index) {
-        if (missionInfosBuilder_ == null) {
-          return missionInfos_.get(index);  } else {
-          return missionInfosBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionInfoOrBuilder> 
-           getMissionInfosOrBuilderList() {
-        if (missionInfosBuilder_ != null) {
-          return missionInfosBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(missionInfos_);
-        }
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder addMissionInfosBuilder() {
-        return getMissionInfosFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBMission.PBMissionInfo.getDefaultInstance());
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder addMissionInfosBuilder(
-          int index) {
-        return getMissionInfosFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBMission.PBMissionInfo.getDefaultInstance());
-      }
-      /**
-       * <pre>
-       *任务列表数据
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMissionInfo missionInfos = 2;</code>
-       */
-      public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder> 
-           getMissionInfosBuilderList() {
-        return getMissionInfosFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBMission.PBMissionInfo, com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder, com.cat.server.game.data.proto.PBMission.PBMissionInfoOrBuilder> 
-          getMissionInfosFieldBuilder() {
-        if (missionInfosBuilder_ == null) {
-          missionInfosBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBMission.PBMissionInfo, com.cat.server.game.data.proto.PBMission.PBMissionInfo.Builder, com.cat.server.game.data.proto.PBMission.PBMissionInfoOrBuilder>(
-                  missionInfos_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          missionInfos_ = null;
-        }
-        return missionInfosBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Protocol.RespMissionInfo)
-    }
-
-    // @@protoc_insertion_point(class_scope:Protocol.RespMissionInfo)
-    private static final com.cat.server.game.data.proto.PBMission.RespMissionInfo DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.RespMissionInfo();
-    }
-
-    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RespMissionInfo>
-        PARSER = new com.google.protobuf.AbstractParser<RespMissionInfo>() {
-      @java.lang.Override
-      public RespMissionInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RespMissionInfo(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RespMissionInfo> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RespMissionInfo> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.cat.server.game.data.proto.PBMission.RespMissionInfo getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface RespMissionRewardOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.RespMissionReward)
+  public interface RespMissionQuestRewardOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespMissionQuestReward)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -4124,18 +2570,18 @@ public final class PBMission {
    * 返回领取奖励
    * </pre>
    *
-   * Protobuf type {@code Protocol.RespMissionReward}
+   * Protobuf type {@code Protocol.RespMissionQuestReward}
    */
-  public  static final class RespMissionReward extends
+  public  static final class RespMissionQuestReward extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.RespMissionReward)
-      RespMissionRewardOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.RespMissionQuestReward)
+      RespMissionQuestRewardOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RespMissionReward.newBuilder() to construct.
-    private RespMissionReward(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RespMissionQuestReward.newBuilder() to construct.
+    private RespMissionQuestReward(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RespMissionReward() {
+    private RespMissionQuestReward() {
       rewards_ = java.util.Collections.emptyList();
     }
 
@@ -4143,7 +2589,7 @@ public final class PBMission {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RespMissionReward();
+      return new RespMissionQuestReward();
     }
 
     @java.lang.Override
@@ -4151,7 +2597,7 @@ public final class PBMission {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RespMissionReward(
+    private RespMissionQuestReward(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4208,15 +2654,15 @@ public final class PBMission {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionReward_descriptor;
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionQuestReward_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionReward_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionQuestReward_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBMission.RespMissionReward.class, com.cat.server.game.data.proto.PBMission.RespMissionReward.Builder.class);
+              com.cat.server.game.data.proto.PBMission.RespMissionQuestReward.class, com.cat.server.game.data.proto.PBMission.RespMissionQuestReward.Builder.class);
     }
 
     public static final int CODE_FIELD_NUMBER = 1;
@@ -4335,10 +2781,10 @@ public final class PBMission {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.RespMissionReward)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.RespMissionQuestReward)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBMission.RespMissionReward other = (com.cat.server.game.data.proto.PBMission.RespMissionReward) obj;
+      com.cat.server.game.data.proto.PBMission.RespMissionQuestReward other = (com.cat.server.game.data.proto.PBMission.RespMissionQuestReward) obj;
 
       if (getCode()
           != other.getCode()) return false;
@@ -4366,69 +2812,69 @@ public final class PBMission {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4441,7 +2887,7 @@ public final class PBMission {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.RespMissionReward prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.RespMissionQuestReward prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -4461,26 +2907,26 @@ public final class PBMission {
      * 返回领取奖励
      * </pre>
      *
-     * Protobuf type {@code Protocol.RespMissionReward}
+     * Protobuf type {@code Protocol.RespMissionQuestReward}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.RespMissionReward)
-        com.cat.server.game.data.proto.PBMission.RespMissionRewardOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.RespMissionQuestReward)
+        com.cat.server.game.data.proto.PBMission.RespMissionQuestRewardOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionReward_descriptor;
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionQuestReward_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionReward_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionQuestReward_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBMission.RespMissionReward.class, com.cat.server.game.data.proto.PBMission.RespMissionReward.Builder.class);
+                com.cat.server.game.data.proto.PBMission.RespMissionQuestReward.class, com.cat.server.game.data.proto.PBMission.RespMissionQuestReward.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBMission.RespMissionReward.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBMission.RespMissionQuestReward.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4513,17 +2959,17 @@ public final class PBMission {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionReward_descriptor;
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionQuestReward_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.RespMissionReward getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBMission.RespMissionReward.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBMission.RespMissionQuestReward getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBMission.RespMissionQuestReward.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.RespMissionReward build() {
-        com.cat.server.game.data.proto.PBMission.RespMissionReward result = buildPartial();
+      public com.cat.server.game.data.proto.PBMission.RespMissionQuestReward build() {
+        com.cat.server.game.data.proto.PBMission.RespMissionQuestReward result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -4531,8 +2977,8 @@ public final class PBMission {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.RespMissionReward buildPartial() {
-        com.cat.server.game.data.proto.PBMission.RespMissionReward result = new com.cat.server.game.data.proto.PBMission.RespMissionReward(this);
+      public com.cat.server.game.data.proto.PBMission.RespMissionQuestReward buildPartial() {
+        com.cat.server.game.data.proto.PBMission.RespMissionQuestReward result = new com.cat.server.game.data.proto.PBMission.RespMissionQuestReward(this);
         int from_bitField0_ = bitField0_;
         result.code_ = code_;
         if (rewardsBuilder_ == null) {
@@ -4582,16 +3028,16 @@ public final class PBMission {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBMission.RespMissionReward) {
-          return mergeFrom((com.cat.server.game.data.proto.PBMission.RespMissionReward)other);
+        if (other instanceof com.cat.server.game.data.proto.PBMission.RespMissionQuestReward) {
+          return mergeFrom((com.cat.server.game.data.proto.PBMission.RespMissionQuestReward)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.RespMissionReward other) {
-        if (other == com.cat.server.game.data.proto.PBMission.RespMissionReward.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.RespMissionQuestReward other) {
+        if (other == com.cat.server.game.data.proto.PBMission.RespMissionQuestReward.getDefaultInstance()) return this;
         if (other.getCode() != 0) {
           setCode(other.getCode());
         }
@@ -4636,11 +3082,11 @@ public final class PBMission {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBMission.RespMissionReward parsedMessage = null;
+        com.cat.server.game.data.proto.PBMission.RespMissionQuestReward parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBMission.RespMissionReward) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBMission.RespMissionQuestReward) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -5017,104 +3463,139 @@ public final class PBMission {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.RespMissionReward)
+      // @@protoc_insertion_point(builder_scope:Protocol.RespMissionQuestReward)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.RespMissionReward)
-    private static final com.cat.server.game.data.proto.PBMission.RespMissionReward DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.RespMissionQuestReward)
+    private static final com.cat.server.game.data.proto.PBMission.RespMissionQuestReward DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.RespMissionReward();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.RespMissionQuestReward();
     }
 
-    public static com.cat.server.game.data.proto.PBMission.RespMissionReward getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBMission.RespMissionQuestReward getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RespMissionReward>
-        PARSER = new com.google.protobuf.AbstractParser<RespMissionReward>() {
+    private static final com.google.protobuf.Parser<RespMissionQuestReward>
+        PARSER = new com.google.protobuf.AbstractParser<RespMissionQuestReward>() {
       @java.lang.Override
-      public RespMissionReward parsePartialFrom(
+      public RespMissionQuestReward parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RespMissionReward(input, extensionRegistry);
+        return new RespMissionQuestReward(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RespMissionReward> parser() {
+    public static com.google.protobuf.Parser<RespMissionQuestReward> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RespMissionReward> getParserForType() {
+    public com.google.protobuf.Parser<RespMissionQuestReward> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBMission.RespMissionReward getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBMission.RespMissionQuestReward getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface RespMissionDelOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.RespMissionDel)
+  public interface PBMissionQuestInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.PBMissionQuestInfo)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     *要删除的任务id
+     *任务配置id
      * </pre>
      *
-     * <code>repeated int32 id = 1;</code>
-     * @return A list containing the id.
+     * <code>int32 id = 1;</code>
+     * @return The id.
      */
-    java.util.List<java.lang.Integer> getIdList();
+    int getId();
+
     /**
      * <pre>
-     *要删除的任务id
+     *任务类型 1主线 2剧情 3支线 4成就 5日常
      * </pre>
      *
-     * <code>repeated int32 id = 1;</code>
-     * @return The count of id.
+     * <code>int32 type = 2;</code>
+     * @return The type.
      */
-    int getIdCount();
+    int getType();
+
     /**
      * <pre>
-     *要删除的任务id
+     *任务目标列表
      * </pre>
      *
-     * <code>repeated int32 id = 1;</code>
-     * @param index The index of the element to return.
-     * @return The id at the given index.
+     * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
      */
-    int getId(int index);
+    java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal> 
+        getGoalsList();
+    /**
+     * <pre>
+     *任务目标列表
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+     */
+    com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal getGoals(int index);
+    /**
+     * <pre>
+     *任务目标列表
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+     */
+    int getGoalsCount();
+    /**
+     * <pre>
+     *任务目标列表
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+     */
+    java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionQuestGoalOrBuilder> 
+        getGoalsOrBuilderList();
+    /**
+     * <pre>
+     *任务目标列表
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+     */
+    com.cat.server.game.data.proto.PBMission.PBMissionQuestGoalOrBuilder getGoalsOrBuilder(
+        int index);
   }
   /**
    * <pre>
-   * 删除任务列表
+   * 任务模块任务协议对象
    * </pre>
    *
-   * Protobuf type {@code Protocol.RespMissionDel}
+   * Protobuf type {@code Protocol.PBMissionQuestInfo}
    */
-  public  static final class RespMissionDel extends
+  public  static final class PBMissionQuestInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.RespMissionDel)
-      RespMissionDelOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.PBMissionQuestInfo)
+      PBMissionQuestInfoOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RespMissionDel.newBuilder() to construct.
-    private RespMissionDel(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use PBMissionQuestInfo.newBuilder() to construct.
+    private PBMissionQuestInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RespMissionDel() {
-      id_ = emptyIntList();
+    private PBMissionQuestInfo() {
+      goals_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RespMissionDel();
+      return new PBMissionQuestInfo();
     }
 
     @java.lang.Override
@@ -5122,7 +3603,7 @@ public final class PBMission {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RespMissionDel(
+    private PBMissionQuestInfo(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5142,24 +3623,22 @@ public final class PBMission {
               done = true;
               break;
             case 8: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                id_ = newIntList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              id_.addInt(input.readInt32());
+
+              id_ = input.readInt32();
               break;
             }
-            case 10: {
-              int length = input.readRawVarint32();
-              int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-                id_ = newIntList();
+            case 16: {
+
+              type_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                goals_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal>();
                 mutable_bitField0_ |= 0x00000001;
               }
-              while (input.getBytesUntilLimit() > 0) {
-                id_.addInt(input.readInt32());
-              }
-              input.popLimit(limit);
+              goals_.add(
+                  input.readMessage(com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -5178,7 +3657,7 @@ public final class PBMission {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          id_.makeImmutable(); // C
+          goals_ = java.util.Collections.unmodifiableList(goals_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -5186,55 +3665,99 @@ public final class PBMission {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionDel_descriptor;
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionQuestInfo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionDel_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionQuestInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBMission.RespMissionDel.class, com.cat.server.game.data.proto.PBMission.RespMissionDel.Builder.class);
+              com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.class, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder.class);
     }
 
     public static final int ID_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.IntList id_;
+    private int id_;
     /**
      * <pre>
-     *要删除的任务id
+     *任务配置id
      * </pre>
      *
-     * <code>repeated int32 id = 1;</code>
-     * @return A list containing the id.
+     * <code>int32 id = 1;</code>
+     * @return The id.
      */
-    public java.util.List<java.lang.Integer>
-        getIdList() {
+    public int getId() {
       return id_;
     }
+
+    public static final int TYPE_FIELD_NUMBER = 2;
+    private int type_;
     /**
      * <pre>
-     *要删除的任务id
+     *任务类型 1主线 2剧情 3支线 4成就 5日常
      * </pre>
      *
-     * <code>repeated int32 id = 1;</code>
-     * @return The count of id.
+     * <code>int32 type = 2;</code>
+     * @return The type.
      */
-    public int getIdCount() {
-      return id_.size();
+    public int getType() {
+      return type_;
+    }
+
+    public static final int GOALS_FIELD_NUMBER = 3;
+    private java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal> goals_;
+    /**
+     * <pre>
+     *任务目标列表
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+     */
+    public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal> getGoalsList() {
+      return goals_;
     }
     /**
      * <pre>
-     *要删除的任务id
+     *任务目标列表
      * </pre>
      *
-     * <code>repeated int32 id = 1;</code>
-     * @param index The index of the element to return.
-     * @return The id at the given index.
+     * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
      */
-    public int getId(int index) {
-      return id_.getInt(index);
+    public java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionQuestGoalOrBuilder> 
+        getGoalsOrBuilderList() {
+      return goals_;
     }
-    private int idMemoizedSerializedSize = -1;
+    /**
+     * <pre>
+     *任务目标列表
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+     */
+    public int getGoalsCount() {
+      return goals_.size();
+    }
+    /**
+     * <pre>
+     *任务目标列表
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+     */
+    public com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal getGoals(int index) {
+      return goals_.get(index);
+    }
+    /**
+     * <pre>
+     *任务目标列表
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+     */
+    public com.cat.server.game.data.proto.PBMission.PBMissionQuestGoalOrBuilder getGoalsOrBuilder(
+        int index) {
+      return goals_.get(index);
+    }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
@@ -5250,13 +3773,14 @@ public final class PBMission {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
-      if (getIdList().size() > 0) {
-        output.writeUInt32NoTag(10);
-        output.writeUInt32NoTag(idMemoizedSerializedSize);
+      if (id_ != 0) {
+        output.writeInt32(1, id_);
       }
-      for (int i = 0; i < id_.size(); i++) {
-        output.writeInt32NoTag(id_.getInt(i));
+      if (type_ != 0) {
+        output.writeInt32(2, type_);
+      }
+      for (int i = 0; i < goals_.size(); i++) {
+        output.writeMessage(3, goals_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -5267,19 +3791,17 @@ public final class PBMission {
       if (size != -1) return size;
 
       size = 0;
-      {
-        int dataSize = 0;
-        for (int i = 0; i < id_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(id_.getInt(i));
-        }
-        size += dataSize;
-        if (!getIdList().isEmpty()) {
-          size += 1;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        idMemoizedSerializedSize = dataSize;
+      if (id_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, id_);
+      }
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, type_);
+      }
+      for (int i = 0; i < goals_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, goals_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -5291,13 +3813,17 @@ public final class PBMission {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.RespMissionDel)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBMission.RespMissionDel other = (com.cat.server.game.data.proto.PBMission.RespMissionDel) obj;
+      com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo other = (com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo) obj;
 
-      if (!getIdList()
-          .equals(other.getIdList())) return false;
+      if (getId()
+          != other.getId()) return false;
+      if (getType()
+          != other.getType()) return false;
+      if (!getGoalsList()
+          .equals(other.getGoalsList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -5309,78 +3835,82 @@ public final class PBMission {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getIdCount() > 0) {
-        hash = (37 * hash) + ID_FIELD_NUMBER;
-        hash = (53 * hash) + getIdList().hashCode();
+      hash = (37 * hash) + ID_FIELD_NUMBER;
+      hash = (53 * hash) + getId();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
+      if (getGoalsCount() > 0) {
+        hash = (37 * hash) + GOALS_FIELD_NUMBER;
+        hash = (53 * hash) + getGoalsList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel parseFrom(
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5393,7 +3923,7 @@ public final class PBMission {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.RespMissionDel prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -5410,29 +3940,29 @@ public final class PBMission {
     }
     /**
      * <pre>
-     * 删除任务列表
+     * 任务模块任务协议对象
      * </pre>
      *
-     * Protobuf type {@code Protocol.RespMissionDel}
+     * Protobuf type {@code Protocol.PBMissionQuestInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.RespMissionDel)
-        com.cat.server.game.data.proto.PBMission.RespMissionDelOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.PBMissionQuestInfo)
+        com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionDel_descriptor;
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionQuestInfo_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionDel_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionQuestInfo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBMission.RespMissionDel.class, com.cat.server.game.data.proto.PBMission.RespMissionDel.Builder.class);
+                com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.class, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBMission.RespMissionDel.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -5445,30 +3975,39 @@ public final class PBMission {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getGoalsFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        id_ = emptyIntList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = 0;
+
+        type_ = 0;
+
+        if (goalsBuilder_ == null) {
+          goals_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          goalsBuilder_.clear();
+        }
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionDel_descriptor;
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_PBMissionQuestInfo_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.RespMissionDel getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBMission.RespMissionDel.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.RespMissionDel build() {
-        com.cat.server.game.data.proto.PBMission.RespMissionDel result = buildPartial();
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo build() {
+        com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -5476,14 +4015,20 @@ public final class PBMission {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBMission.RespMissionDel buildPartial() {
-        com.cat.server.game.data.proto.PBMission.RespMissionDel result = new com.cat.server.game.data.proto.PBMission.RespMissionDel(this);
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo buildPartial() {
+        com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo result = new com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo(this);
         int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          id_.makeImmutable();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
         result.id_ = id_;
+        result.type_ = type_;
+        if (goalsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            goals_ = java.util.Collections.unmodifiableList(goals_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.goals_ = goals_;
+        } else {
+          result.goals_ = goalsBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -5522,25 +4067,47 @@ public final class PBMission {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBMission.RespMissionDel) {
-          return mergeFrom((com.cat.server.game.data.proto.PBMission.RespMissionDel)other);
+        if (other instanceof com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo) {
+          return mergeFrom((com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.RespMissionDel other) {
-        if (other == com.cat.server.game.data.proto.PBMission.RespMissionDel.getDefaultInstance()) return this;
-        if (!other.id_.isEmpty()) {
-          if (id_.isEmpty()) {
-            id_ = other.id_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureIdIsMutable();
-            id_.addAll(other.id_);
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo other) {
+        if (other == com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.getDefaultInstance()) return this;
+        if (other.getId() != 0) {
+          setId(other.getId());
+        }
+        if (other.getType() != 0) {
+          setType(other.getType());
+        }
+        if (goalsBuilder_ == null) {
+          if (!other.goals_.isEmpty()) {
+            if (goals_.isEmpty()) {
+              goals_ = other.goals_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureGoalsIsMutable();
+              goals_.addAll(other.goals_);
+            }
+            onChanged();
           }
-          onChanged();
+        } else {
+          if (!other.goals_.isEmpty()) {
+            if (goalsBuilder_.isEmpty()) {
+              goalsBuilder_.dispose();
+              goalsBuilder_ = null;
+              goals_ = other.goals_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              goalsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getGoalsFieldBuilder() : null;
+            } else {
+              goalsBuilder_.addAllMessages(other.goals_);
+            }
+          }
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5557,11 +4124,11 @@ public final class PBMission {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBMission.RespMissionDel parsedMessage = null;
+        com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBMission.RespMissionDel) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -5572,111 +4139,400 @@ public final class PBMission {
       }
       private int bitField0_;
 
-      private com.google.protobuf.Internal.IntList id_ = emptyIntList();
-      private void ensureIdIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          id_ = mutableCopy(id_);
-          bitField0_ |= 0x00000001;
-         }
-      }
+      private int id_ ;
       /**
        * <pre>
-       *要删除的任务id
+       *任务配置id
        * </pre>
        *
-       * <code>repeated int32 id = 1;</code>
-       * @return A list containing the id.
+       * <code>int32 id = 1;</code>
+       * @return The id.
        */
-      public java.util.List<java.lang.Integer>
-          getIdList() {
-        return ((bitField0_ & 0x00000001) != 0) ?
-                 java.util.Collections.unmodifiableList(id_) : id_;
+      public int getId() {
+        return id_;
       }
       /**
        * <pre>
-       *要删除的任务id
+       *任务配置id
        * </pre>
        *
-       * <code>repeated int32 id = 1;</code>
-       * @return The count of id.
-       */
-      public int getIdCount() {
-        return id_.size();
-      }
-      /**
-       * <pre>
-       *要删除的任务id
-       * </pre>
-       *
-       * <code>repeated int32 id = 1;</code>
-       * @param index The index of the element to return.
-       * @return The id at the given index.
-       */
-      public int getId(int index) {
-        return id_.getInt(index);
-      }
-      /**
-       * <pre>
-       *要删除的任务id
-       * </pre>
-       *
-       * <code>repeated int32 id = 1;</code>
-       * @param index The index to set the value at.
+       * <code>int32 id = 1;</code>
        * @param value The id to set.
        * @return This builder for chaining.
        */
-      public Builder setId(
-          int index, int value) {
-        ensureIdIsMutable();
-        id_.setInt(index, value);
+      public Builder setId(int value) {
+        
+        id_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *要删除的任务id
+       *任务配置id
        * </pre>
        *
-       * <code>repeated int32 id = 1;</code>
-       * @param value The id to add.
-       * @return This builder for chaining.
-       */
-      public Builder addId(int value) {
-        ensureIdIsMutable();
-        id_.addInt(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *要删除的任务id
-       * </pre>
-       *
-       * <code>repeated int32 id = 1;</code>
-       * @param values The id to add.
-       * @return This builder for chaining.
-       */
-      public Builder addAllId(
-          java.lang.Iterable<? extends java.lang.Integer> values) {
-        ensureIdIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, id_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *要删除的任务id
-       * </pre>
-       *
-       * <code>repeated int32 id = 1;</code>
+       * <code>int32 id = 1;</code>
        * @return This builder for chaining.
        */
       public Builder clearId() {
-        id_ = emptyIntList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        
+        id_ = 0;
         onChanged();
         return this;
+      }
+
+      private int type_ ;
+      /**
+       * <pre>
+       *任务类型 1主线 2剧情 3支线 4成就 5日常
+       * </pre>
+       *
+       * <code>int32 type = 2;</code>
+       * @return The type.
+       */
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <pre>
+       *任务类型 1主线 2剧情 3支线 4成就 5日常
+       * </pre>
+       *
+       * <code>int32 type = 2;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(int value) {
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *任务类型 1主线 2剧情 3支线 4成就 5日常
+       * </pre>
+       *
+       * <code>int32 type = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal> goals_ =
+        java.util.Collections.emptyList();
+      private void ensureGoalsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          goals_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal>(goals_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoalOrBuilder> goalsBuilder_;
+
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal> getGoalsList() {
+        if (goalsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(goals_);
+        } else {
+          return goalsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public int getGoalsCount() {
+        if (goalsBuilder_ == null) {
+          return goals_.size();
+        } else {
+          return goalsBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal getGoals(int index) {
+        if (goalsBuilder_ == null) {
+          return goals_.get(index);
+        } else {
+          return goalsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public Builder setGoals(
+          int index, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal value) {
+        if (goalsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureGoalsIsMutable();
+          goals_.set(index, value);
+          onChanged();
+        } else {
+          goalsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public Builder setGoals(
+          int index, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder builderForValue) {
+        if (goalsBuilder_ == null) {
+          ensureGoalsIsMutable();
+          goals_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          goalsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public Builder addGoals(com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal value) {
+        if (goalsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureGoalsIsMutable();
+          goals_.add(value);
+          onChanged();
+        } else {
+          goalsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public Builder addGoals(
+          int index, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal value) {
+        if (goalsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureGoalsIsMutable();
+          goals_.add(index, value);
+          onChanged();
+        } else {
+          goalsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public Builder addGoals(
+          com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder builderForValue) {
+        if (goalsBuilder_ == null) {
+          ensureGoalsIsMutable();
+          goals_.add(builderForValue.build());
+          onChanged();
+        } else {
+          goalsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public Builder addGoals(
+          int index, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder builderForValue) {
+        if (goalsBuilder_ == null) {
+          ensureGoalsIsMutable();
+          goals_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          goalsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public Builder addAllGoals(
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal> values) {
+        if (goalsBuilder_ == null) {
+          ensureGoalsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, goals_);
+          onChanged();
+        } else {
+          goalsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public Builder clearGoals() {
+        if (goalsBuilder_ == null) {
+          goals_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          goalsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public Builder removeGoals(int index) {
+        if (goalsBuilder_ == null) {
+          ensureGoalsIsMutable();
+          goals_.remove(index);
+          onChanged();
+        } else {
+          goalsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder getGoalsBuilder(
+          int index) {
+        return getGoalsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestGoalOrBuilder getGoalsOrBuilder(
+          int index) {
+        if (goalsBuilder_ == null) {
+          return goals_.get(index);  } else {
+          return goalsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionQuestGoalOrBuilder> 
+           getGoalsOrBuilderList() {
+        if (goalsBuilder_ != null) {
+          return goalsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(goals_);
+        }
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder addGoalsBuilder() {
+        return getGoalsFieldBuilder().addBuilder(
+            com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder addGoalsBuilder(
+          int index) {
+        return getGoalsFieldBuilder().addBuilder(
+            index, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *任务目标列表
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestGoal goals = 3;</code>
+       */
+      public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder> 
+           getGoalsBuilderList() {
+        return getGoalsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoalOrBuilder> 
+          getGoalsFieldBuilder() {
+        if (goalsBuilder_ == null) {
+          goalsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoal.Builder, com.cat.server.game.data.proto.PBMission.PBMissionQuestGoalOrBuilder>(
+                  goals_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          goals_ = null;
+        }
+        return goalsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -5691,81 +4547,1077 @@ public final class PBMission {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.RespMissionDel)
+      // @@protoc_insertion_point(builder_scope:Protocol.PBMissionQuestInfo)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.RespMissionDel)
-    private static final com.cat.server.game.data.proto.PBMission.RespMissionDel DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.PBMissionQuestInfo)
+    private static final com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.RespMissionDel();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo();
     }
 
-    public static com.cat.server.game.data.proto.PBMission.RespMissionDel getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RespMissionDel>
-        PARSER = new com.google.protobuf.AbstractParser<RespMissionDel>() {
+    private static final com.google.protobuf.Parser<PBMissionQuestInfo>
+        PARSER = new com.google.protobuf.AbstractParser<PBMissionQuestInfo>() {
       @java.lang.Override
-      public RespMissionDel parsePartialFrom(
+      public PBMissionQuestInfo parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RespMissionDel(input, extensionRegistry);
+        return new PBMissionQuestInfo(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RespMissionDel> parser() {
+    public static com.google.protobuf.Parser<PBMissionQuestInfo> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RespMissionDel> getParserForType() {
+    public com.google.protobuf.Parser<PBMissionQuestInfo> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBMission.RespMissionDel getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface RespMissionInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespMissionInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *任务类型id
+     * </pre>
+     *
+     * <code>int32 type = 1;</code>
+     * @return The type.
+     */
+    int getType();
+
+    /**
+     * <pre>
+     *任务列表数据,包含已完成,未完成任务数据
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+     */
+    java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo> 
+        getQuestsList();
+    /**
+     * <pre>
+     *任务列表数据,包含已完成,未完成任务数据
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+     */
+    com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo getQuests(int index);
+    /**
+     * <pre>
+     *任务列表数据,包含已完成,未完成任务数据
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+     */
+    int getQuestsCount();
+    /**
+     * <pre>
+     *任务列表数据,包含已完成,未完成任务数据
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+     */
+    java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder> 
+        getQuestsOrBuilderList();
+    /**
+     * <pre>
+     *任务列表数据,包含已完成,未完成任务数据
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+     */
+    com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder getQuestsOrBuilder(
+        int index);
+  }
+  /**
+   * <pre>
+   * 响应任务信息
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.RespMissionInfo}
+   */
+  public  static final class RespMissionInfo extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.RespMissionInfo)
+      RespMissionInfoOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RespMissionInfo.newBuilder() to construct.
+    private RespMissionInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RespMissionInfo() {
+      quests_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RespMissionInfo();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RespMissionInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              type_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                quests_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              quests_.add(
+                  input.readMessage(com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          quests_ = java.util.Collections.unmodifiableList(quests_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionInfo_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBMission.RespMissionInfo.class, com.cat.server.game.data.proto.PBMission.RespMissionInfo.Builder.class);
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 1;
+    private int type_;
+    /**
+     * <pre>
+     *任务类型id
+     * </pre>
+     *
+     * <code>int32 type = 1;</code>
+     * @return The type.
+     */
+    public int getType() {
+      return type_;
+    }
+
+    public static final int QUESTS_FIELD_NUMBER = 2;
+    private java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo> quests_;
+    /**
+     * <pre>
+     *任务列表数据,包含已完成,未完成任务数据
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+     */
+    public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo> getQuestsList() {
+      return quests_;
+    }
+    /**
+     * <pre>
+     *任务列表数据,包含已完成,未完成任务数据
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+     */
+    public java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder> 
+        getQuestsOrBuilderList() {
+      return quests_;
+    }
+    /**
+     * <pre>
+     *任务列表数据,包含已完成,未完成任务数据
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+     */
+    public int getQuestsCount() {
+      return quests_.size();
+    }
+    /**
+     * <pre>
+     *任务列表数据,包含已完成,未完成任务数据
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+     */
+    public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo getQuests(int index) {
+      return quests_.get(index);
+    }
+    /**
+     * <pre>
+     *任务列表数据,包含已完成,未完成任务数据
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+     */
+    public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder getQuestsOrBuilder(
+        int index) {
+      return quests_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (type_ != 0) {
+        output.writeInt32(1, type_);
+      }
+      for (int i = 0; i < quests_.size(); i++) {
+        output.writeMessage(2, quests_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (type_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, type_);
+      }
+      for (int i = 0; i < quests_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, quests_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBMission.RespMissionInfo)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBMission.RespMissionInfo other = (com.cat.server.game.data.proto.PBMission.RespMissionInfo) obj;
+
+      if (getType()
+          != other.getType()) return false;
+      if (!getQuestsList()
+          .equals(other.getQuestsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + getType();
+      if (getQuestsCount() > 0) {
+        hash = (37 * hash) + QUESTS_FIELD_NUMBER;
+        hash = (53 * hash) + getQuestsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBMission.RespMissionInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 响应任务信息
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.RespMissionInfo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.RespMissionInfo)
+        com.cat.server.game.data.proto.PBMission.RespMissionInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionInfo_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBMission.RespMissionInfo.class, com.cat.server.game.data.proto.PBMission.RespMissionInfo.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBMission.RespMissionInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getQuestsFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        type_ = 0;
+
+        if (questsBuilder_ == null) {
+          quests_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          questsBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBMission.internal_static_Protocol_RespMissionInfo_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBMission.RespMissionInfo getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBMission.RespMissionInfo.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBMission.RespMissionInfo build() {
+        com.cat.server.game.data.proto.PBMission.RespMissionInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBMission.RespMissionInfo buildPartial() {
+        com.cat.server.game.data.proto.PBMission.RespMissionInfo result = new com.cat.server.game.data.proto.PBMission.RespMissionInfo(this);
+        int from_bitField0_ = bitField0_;
+        result.type_ = type_;
+        if (questsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            quests_ = java.util.Collections.unmodifiableList(quests_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.quests_ = quests_;
+        } else {
+          result.quests_ = questsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBMission.RespMissionInfo) {
+          return mergeFrom((com.cat.server.game.data.proto.PBMission.RespMissionInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBMission.RespMissionInfo other) {
+        if (other == com.cat.server.game.data.proto.PBMission.RespMissionInfo.getDefaultInstance()) return this;
+        if (other.getType() != 0) {
+          setType(other.getType());
+        }
+        if (questsBuilder_ == null) {
+          if (!other.quests_.isEmpty()) {
+            if (quests_.isEmpty()) {
+              quests_ = other.quests_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureQuestsIsMutable();
+              quests_.addAll(other.quests_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.quests_.isEmpty()) {
+            if (questsBuilder_.isEmpty()) {
+              questsBuilder_.dispose();
+              questsBuilder_ = null;
+              quests_ = other.quests_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              questsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getQuestsFieldBuilder() : null;
+            } else {
+              questsBuilder_.addAllMessages(other.quests_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBMission.RespMissionInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBMission.RespMissionInfo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int type_ ;
+      /**
+       * <pre>
+       *任务类型id
+       * </pre>
+       *
+       * <code>int32 type = 1;</code>
+       * @return The type.
+       */
+      public int getType() {
+        return type_;
+      }
+      /**
+       * <pre>
+       *任务类型id
+       * </pre>
+       *
+       * <code>int32 type = 1;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(int value) {
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *任务类型id
+       * </pre>
+       *
+       * <code>int32 type = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo> quests_ =
+        java.util.Collections.emptyList();
+      private void ensureQuestsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          quests_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo>(quests_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder> questsBuilder_;
+
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo> getQuestsList() {
+        if (questsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(quests_);
+        } else {
+          return questsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public int getQuestsCount() {
+        if (questsBuilder_ == null) {
+          return quests_.size();
+        } else {
+          return questsBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo getQuests(int index) {
+        if (questsBuilder_ == null) {
+          return quests_.get(index);
+        } else {
+          return questsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public Builder setQuests(
+          int index, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo value) {
+        if (questsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureQuestsIsMutable();
+          quests_.set(index, value);
+          onChanged();
+        } else {
+          questsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public Builder setQuests(
+          int index, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder builderForValue) {
+        if (questsBuilder_ == null) {
+          ensureQuestsIsMutable();
+          quests_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          questsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public Builder addQuests(com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo value) {
+        if (questsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureQuestsIsMutable();
+          quests_.add(value);
+          onChanged();
+        } else {
+          questsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public Builder addQuests(
+          int index, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo value) {
+        if (questsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureQuestsIsMutable();
+          quests_.add(index, value);
+          onChanged();
+        } else {
+          questsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public Builder addQuests(
+          com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder builderForValue) {
+        if (questsBuilder_ == null) {
+          ensureQuestsIsMutable();
+          quests_.add(builderForValue.build());
+          onChanged();
+        } else {
+          questsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public Builder addQuests(
+          int index, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder builderForValue) {
+        if (questsBuilder_ == null) {
+          ensureQuestsIsMutable();
+          quests_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          questsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public Builder addAllQuests(
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo> values) {
+        if (questsBuilder_ == null) {
+          ensureQuestsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, quests_);
+          onChanged();
+        } else {
+          questsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public Builder clearQuests() {
+        if (questsBuilder_ == null) {
+          quests_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          questsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public Builder removeQuests(int index) {
+        if (questsBuilder_ == null) {
+          ensureQuestsIsMutable();
+          quests_.remove(index);
+          onChanged();
+        } else {
+          questsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder getQuestsBuilder(
+          int index) {
+        return getQuestsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder getQuestsOrBuilder(
+          int index) {
+        if (questsBuilder_ == null) {
+          return quests_.get(index);  } else {
+          return questsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public java.util.List<? extends com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder> 
+           getQuestsOrBuilderList() {
+        if (questsBuilder_ != null) {
+          return questsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(quests_);
+        }
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder addQuestsBuilder() {
+        return getQuestsFieldBuilder().addBuilder(
+            com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder addQuestsBuilder(
+          int index) {
+        return getQuestsFieldBuilder().addBuilder(
+            index, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *任务列表数据,包含已完成,未完成任务数据
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBMissionQuestInfo quests = 2;</code>
+       */
+      public java.util.List<com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder> 
+           getQuestsBuilderList() {
+        return getQuestsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder> 
+          getQuestsFieldBuilder() {
+        if (questsBuilder_ == null) {
+          questsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfo.Builder, com.cat.server.game.data.proto.PBMission.PBMissionQuestInfoOrBuilder>(
+                  quests_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          quests_ = null;
+        }
+        return questsBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.RespMissionInfo)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.RespMissionInfo)
+    private static final com.cat.server.game.data.proto.PBMission.RespMissionInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBMission.RespMissionInfo();
+    }
+
+    public static com.cat.server.game.data.proto.PBMission.RespMissionInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RespMissionInfo>
+        PARSER = new com.google.protobuf.AbstractParser<RespMissionInfo>() {
+      @java.lang.Override
+      public RespMissionInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RespMissionInfo(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RespMissionInfo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RespMissionInfo> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBMission.RespMissionInfo getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_PBMissionQuestGoal_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_PBMissionQuestGoal_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_ReqMissionInfo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_ReqMissionInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_PBMissionGoal_descriptor;
+    internal_static_Protocol_RespMissionSingleQuest_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_PBMissionGoal_fieldAccessorTable;
+      internal_static_Protocol_RespMissionSingleQuest_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_ReqMissionReward_descriptor;
+    internal_static_Protocol_ReqMissionQuestReward_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_ReqMissionReward_fieldAccessorTable;
+      internal_static_Protocol_ReqMissionQuestReward_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_PBMissionInfo_descriptor;
+    internal_static_Protocol_RespMissionQuestReward_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_PBMissionInfo_fieldAccessorTable;
+      internal_static_Protocol_RespMissionQuestReward_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_PBMissionQuestInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_PBMissionQuestInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_RespMissionInfo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_RespMissionInfo_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_RespMissionReward_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_RespMissionReward_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_RespMissionDel_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_RespMissionDel_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -5776,66 +5628,68 @@ public final class PBMission {
   static {
     java.lang.String[] descriptorData = {
       "\n\017PBMission.proto\022\010Protocol\032\014PBItem.prot" +
-      "o\"#\n\016ReqMissionInfo\022\021\n\tmissionId\030\001 \003(\005\"M" +
-      "\n\rPBMissionGoal\022\r\n\005index\030\001 \001(\005\022\014\n\004type\030\002" +
-      " \001(\005\022\020\n\010progress\030\003 \001(\003\022\r\n\005state\030\004 \001(\005\"\036\n" +
-      "\020ReqMissionReward\022\n\n\002id\030\001 \001(\005\"Q\n\rPBMissi" +
-      "onInfo\022\n\n\002id\030\001 \001(\005\022\014\n\004type\030\002 \001(\005\022&\n\005goal" +
-      "s\030\003 \003(\0132\027.Protocol.PBMissionGoal\"N\n\017Resp" +
-      "MissionInfo\022\014\n\004type\030\001 \001(\005\022-\n\014missionInfo" +
-      "s\030\002 \003(\0132\027.Protocol.PBMissionInfo\"J\n\021Resp" +
-      "MissionReward\022\014\n\004code\030\001 \001(\005\022\'\n\007rewards\030\002" +
-      " \003(\0132\026.Protocol.PBRewardInfo\"\034\n\016RespMiss" +
-      "ionDel\022\n\n\002id\030\001 \003(\005B+\n\036com.cat.server.gam" +
-      "e.data.protoB\tPBMissionb\006proto3"
+      "o\"R\n\022PBMissionQuestGoal\022\r\n\005index\030\001 \001(\005\022\014" +
+      "\n\004type\030\002 \001(\005\022\020\n\010progress\030\003 \001(\003\022\r\n\005state\030" +
+      "\004 \001(\005\"#\n\016ReqMissionInfo\022\021\n\tmissionId\030\001 \001" +
+      "(\005\"E\n\026RespMissionSingleQuest\022+\n\005quest\030\001 " +
+      "\001(\0132\034.Protocol.PBMissionQuestInfo\"#\n\025Req" +
+      "MissionQuestReward\022\n\n\002id\030\001 \001(\005\"O\n\026RespMi" +
+      "ssionQuestReward\022\014\n\004code\030\001 \001(\005\022\'\n\007reward" +
+      "s\030\002 \003(\0132\026.Protocol.PBRewardInfo\"[\n\022PBMis" +
+      "sionQuestInfo\022\n\n\002id\030\001 \001(\005\022\014\n\004type\030\002 \001(\005\022" +
+      "+\n\005goals\030\003 \003(\0132\034.Protocol.PBMissionQuest" +
+      "Goal\"M\n\017RespMissionInfo\022\014\n\004type\030\001 \001(\005\022,\n" +
+      "\006quests\030\002 \003(\0132\034.Protocol.PBMissionQuestI" +
+      "nfoB+\n\036com.cat.server.game.data.protoB\tP" +
+      "BMissionb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.cat.server.game.data.proto.PBItem.getDescriptor(),
         });
-    internal_static_Protocol_ReqMissionInfo_descriptor =
+    internal_static_Protocol_PBMissionQuestGoal_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_Protocol_PBMissionQuestGoal_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_PBMissionQuestGoal_descriptor,
+        new java.lang.String[] { "Index", "Type", "Progress", "State", });
+    internal_static_Protocol_ReqMissionInfo_descriptor =
+      getDescriptor().getMessageTypes().get(1);
     internal_static_Protocol_ReqMissionInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqMissionInfo_descriptor,
         new java.lang.String[] { "MissionId", });
-    internal_static_Protocol_PBMissionGoal_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_Protocol_PBMissionGoal_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_PBMissionGoal_descriptor,
-        new java.lang.String[] { "Index", "Type", "Progress", "State", });
-    internal_static_Protocol_ReqMissionReward_descriptor =
+    internal_static_Protocol_RespMissionSingleQuest_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_Protocol_ReqMissionReward_fieldAccessorTable = new
+    internal_static_Protocol_RespMissionSingleQuest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_ReqMissionReward_descriptor,
-        new java.lang.String[] { "Id", });
-    internal_static_Protocol_PBMissionInfo_descriptor =
+        internal_static_Protocol_RespMissionSingleQuest_descriptor,
+        new java.lang.String[] { "Quest", });
+    internal_static_Protocol_ReqMissionQuestReward_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_Protocol_PBMissionInfo_fieldAccessorTable = new
+    internal_static_Protocol_ReqMissionQuestReward_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_PBMissionInfo_descriptor,
+        internal_static_Protocol_ReqMissionQuestReward_descriptor,
+        new java.lang.String[] { "Id", });
+    internal_static_Protocol_RespMissionQuestReward_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_Protocol_RespMissionQuestReward_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_RespMissionQuestReward_descriptor,
+        new java.lang.String[] { "Code", "Rewards", });
+    internal_static_Protocol_PBMissionQuestInfo_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_Protocol_PBMissionQuestInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_PBMissionQuestInfo_descriptor,
         new java.lang.String[] { "Id", "Type", "Goals", });
     internal_static_Protocol_RespMissionInfo_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_Protocol_RespMissionInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_RespMissionInfo_descriptor,
-        new java.lang.String[] { "Type", "MissionInfos", });
-    internal_static_Protocol_RespMissionReward_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_Protocol_RespMissionReward_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_RespMissionReward_descriptor,
-        new java.lang.String[] { "Code", "Rewards", });
-    internal_static_Protocol_RespMissionDel_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_Protocol_RespMissionDel_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_RespMissionDel_descriptor,
-        new java.lang.String[] { "Id", });
+        new java.lang.String[] { "Type", "Quests", });
     com.cat.server.game.data.proto.PBItem.getDescriptor();
   }
 

@@ -6,8 +6,8 @@ import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.module.artifact.attr.ArtifactAttrNode;
 import com.cat.server.game.module.attribute.domain.IAttributeEntity;
 import com.cat.server.game.module.attribute.domain.IAttributeNode;
-import com.cat.server.game.module.mission.type.MissionTypeData;
-import com.cat.server.game.module.mission.type.impl.ArtifactMissionType;
+//import com.cat.server.game.module.mission.type.MissionTypeData;
+//import com.cat.server.game.module.mission.type.impl.ArtifactMissionType;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +22,8 @@ public class Artifact extends ArtifactPo implements IPersistence , IAttributeEnt
 	
 	private static final Logger log = LoggerFactory.getLogger(Artifact.class);
 	
-	@Column(PROP_MISSIONSTR)
-	private MissionTypeData<ArtifactMissionType> missionData;
+//	@Column(PROP_MISSIONSTR)
+//	private MissionTypeData<ArtifactMissionType> missionData;
 	
 	/**
 	 * 武将属性根节点
@@ -31,13 +31,13 @@ public class Artifact extends ArtifactPo implements IPersistence , IAttributeEnt
 	private transient ArtifactAttrNode artifactAttrNode;
 	
 	public Artifact() {
-		this.missionData = new MissionTypeData<>();
+//		this.missionData = new MissionTypeData<>();
 		artifactAttrNode = new ArtifactAttrNode(this);
 	}
 	
-	public MissionTypeData<ArtifactMissionType> getMissionData() {
-		return missionData;
-	}
+//	public MissionTypeData<ArtifactMissionType> getMissionData() {
+//		return missionData;
+//	}
 	
 	/**
 	 * 生成一个神器
