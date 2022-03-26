@@ -1,10 +1,13 @@
 package com.cat.server.game.module.activity.type;
 
+import com.cat.server.core.annotation.NotUse;
+
 /**
  * 活动玩家数据
- * 
  * @author Jeremy
  */
+@NotUse
+@Deprecated
 public abstract class AbstractActivityPlayerData implements IActivityPlayerData {
 
 	/**

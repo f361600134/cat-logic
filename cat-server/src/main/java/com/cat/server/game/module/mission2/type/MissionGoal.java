@@ -37,7 +37,7 @@ public class MissionGoal {
 	 * 
 	 * {@link MissionState}
 	 */
-	private int status;
+	private byte state;
 
 	public int getIndex() {
 		return index;
@@ -63,12 +63,12 @@ public class MissionGoal {
 		this.progress = progress;
 	}
 
-	public int getStatus() {
-		return status;
+	public byte getState() {
+		return state;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	public void setState(byte state) {
+		this.state = state;
 	}
 	
 	public void setAdditional(long additional) {
@@ -88,7 +88,7 @@ public class MissionGoal {
 		PBMissionGoalBuilder builder = PBMissionGoalBuilder.newInstance();
 		builder.setIndex(this.getIndex());
 		builder.setProgress(this.getProgress());
-		builder.setState(this.getStatus());
+		builder.setState(this.getState());
 		builder.setType(this.getType());
 		return builder;
 	}

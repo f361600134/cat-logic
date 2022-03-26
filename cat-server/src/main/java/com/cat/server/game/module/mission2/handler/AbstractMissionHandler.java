@@ -20,6 +20,8 @@ import com.cat.server.game.module.mission2.domain.MissionState;
 import com.cat.server.game.module.mission2.goal.GoalTypeManager;
 import com.cat.server.game.module.mission2.goal.IMissionGoalType;
 import com.cat.server.game.module.mission2.proto.RespMissionInfoBuilder;
+import com.cat.server.game.module.mission2.reset.IMissionReset;
+import com.cat.server.game.module.mission2.reset.MissionResetManager;
 import com.cat.server.game.module.mission2.type.Mission;
 import com.cat.server.game.module.mission2.type.MissionGoal;
 import com.cat.server.game.module.mission2.type.MissionTypeData;
@@ -35,6 +37,8 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	private IPlayerService playerService;
 	@Autowired
 	private IResourceGroupService resourceGroupService;
+	@Autowired
+	private MissionResetManager missionResetManager;
 
 	private Class<T> missionConfigClazz;
 
@@ -55,9 +59,54 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	}
 
 	@Override
-	public boolean checkAndRefresh(long playerId, long now, boolean notify) {
-		// TODO Auto-generated method stub
-		return false;
+	public void checkAndReset(long playerId, long now, boolean notify) {
+		if (!isNeedReset(playerId, now)) {
+            return;
+        }
+        this.reset(playerId, now, notify);
+	}
+	
+	/**
+	 * 判断是否需要重置
+	 * @param playerId 玩家id
+	 * @param now 
+	 * @return
+	 */
+	protected boolean isNeedReset(long playerId, long now) {
+		MissionTypeData missionTypeData = this.getMissionTypeData(playerId, false);
+        if (missionTypeData == null) {
+            return false;
+        }
+        long lastTime = missionTypeData.getLastTime();
+        return lastTime <= 0 || !TimeUtil.isSameDay(lastTime, now);
+	}
+	
+	/**
+	 * 任务刷新操作<br>
+	 * 如果有这个任务, 且已完成, 则移除掉次任务, 重新接取
+	 * 如果没有这个任务, 则直接重新接取
+	 * @param playerId 玩家id
+	 * @param now 时间戳
+	 * @param notify 是否通知玩家更新
+	 */
+	protected void reset(long playerId, long now, boolean notify) {
+		MissionTypeData missionTypeData = this.getMissionTypeData(playerId, true);
+		missionTypeData.setLastTime(now);
+		Map<Integer, T> configs = this.getConfigs();
+		for (T config : configs.values()) {
+			final int configId = config.getId();
+			Mission mission = missionTypeData.getMission(configId);
+			if (mission == null) {
+				//无此任务,可能已经完成,也可能是策划新增任务
+				//从已完成列表尝试移除, 然后直接帮玩家接这个任务
+				this.clear(playerId, configId);
+				this.accept(playerId, configId, now);
+				continue;
+			}
+			//有此任务, 则判断是否符合重置条件, 每日重置/每周重置,符合则重新接取
+			IMissionReset missionResetType = missionResetManager.getMissionResetType(config.getResetType());
+			missionResetType.checkAndReset(playerId, mission, this);
+		}
 	}
 
 	@Override
@@ -74,26 +123,41 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 		if (mission == null) {
 			return ResultCodeData.of(ErrorCode.CONFIG_NOT_EXISTS);
 		}
-		// 领取任务 注册事件
+		// 领取任务
 		doAcceptMission(playerId, mission, now);
 		return ResultCodeData.of(mission);
 	}
 
 	/**
 	 * 检测是否可以接任务
-	 * 
 	 * @param playerId  玩家id
 	 * @param missionId 任务配置id
 	 * @param now       当前时间
 	 * @return ErrorCode
 	 */
 	protected ErrorCode checkAccept(long playerId, int missionId, long now) {
+		MissionTypeData missionTypeData = this.getMissionTypeData(playerId, false);
+        if (missionTypeData == null) {
+            return null;
+        }
+        this.checkAndReset(playerId, now, false);
+        // 判断是否已经领取了任务
+//        Map<Integer, Mission> missions = missionTypeData.getMissions();
+//        if (missions.containsKey(missionId)) {
+//            return ErrorCode.MISSION_WAS_ACCEPTED;
+//        }
+        if (missionTypeData.hasMission(missionId)) {
+        	return ErrorCode.MISSION_WAS_ACCEPTED;
+		}
+        // 判断是否完成过任务
+        if (missionTypeData.isFinished(missionId)) {
+            return ErrorCode.MISSION_REWARDES;
+        }
 		return ErrorCode.SUCCESS;
 	}
-
+	
 	/**
 	 * 构建任务对象
-	 * 
 	 * @return
 	 * @return Mission
 	 * @date 2022年3月19日下午7:06:08
@@ -107,7 +171,7 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 			MissionGoal goal = new MissionGoal();
 			goal.setIndex(0);
 			goal.setType(completeType);
-			goal.setStatus(MissionState.STATE_NONE.getValue());
+			goal.setState(MissionState.STATE_NONE.getValue());
 			goalList.add(goal);
 		}
 		Mission mission = new Mission(config.getId());
@@ -116,25 +180,19 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 		return mission;
 	}
 
-//	protected Mission buildMission(T missionConfig) {
-//		Mission mission = new Mission();
-//		mission.setId(missionConfig.getSid());
-//		mission.setSourceType(getKey());
-//		mission.setStatus(MissionStatus.ACCEPT);
-//		int goalType = this.getConfigTargetType(missionConfig);
-
-//		List<MissionGoal> goalList = new ArrayList<>();
-//		goalList.add(goal);
-//		mission.setGoals(goalList);
-//		return mission;
-//	}
-
+	/**
+	 * 处理接取任务
+	 * @param playerId
+	 * @param mission
+	 * @param now
+	 */
 	protected void doAcceptMission(long playerId, Mission mission, long now) {
 		// 记录
-		MissionTypeData missionSourceTypeData = this.getMissionTypeData(playerId, true);
-		Map<Integer, Mission> missions = missionSourceTypeData.getMissions();
-		missions.put(mission.getConfigId(), mission);
-		missionSourceTypeData.setLastTime(now);
+		MissionTypeData missionTypeData = this.getMissionTypeData(playerId, true);
+//		Map<Integer, Mission> missions = missionTypeData.getMissions();
+//		missions.put(mission.getConfigId(), mission);
+		missionTypeData.addMission(mission);
+		missionTypeData.setLastTime(now);
 		// 尝试刷新任务状态
 		refreshMission(playerId, mission);
 	}
@@ -157,24 +215,24 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 		boolean allGoalComplete = true;
 		for (int i = 0; i < goals.size(); i++) {
 			MissionGoal goal = goals.get(i);
-			if (goal.getStatus() == MissionState.STATE_COMPLETE.getValue()) {
+			if (goal.getState() == MissionState.STATE_COMPLETE.getValue()) {
 				continue;
 			}
-//            int goalType = goal.getType();
-//            MissionGoalTypeLogic goalTypeLogic = getGoalTypeLogic(goalType);
-//            if (goalTypeLogic == null) {
-//                allGoalComplete = false;
-//                continue;
-//            }
-//            int goalValue = getGoalValue(missionConfig, i);
-//            int[] goalArgs = getGoalArgs(missionConfig, i);
-//            change |= goalTypeLogic.refreshMissionGoal(player, goal, goalValue, goalArgs);
-//            if (goal.getStatus() != MissionStatus.COMPLETE) {
-//                allGoalComplete = false;
-//            }
+            int goalType = goal.getType();
+            IMissionGoalType goalTypeLogic = goalTypeManager.getGoalType(goalType);
+            if (goalTypeLogic == null) {
+                allGoalComplete = false;
+                continue;
+            }
+            int completeCondition = missionConfig.getCompleteCondition()[i];
+			int completeValue = missionConfig.getCompleteValue()[i];
+            change |= goalTypeLogic.refresh(playerId, goal, completeCondition, completeValue);
+            if (goal.getState() != MissionState.STATE_COMPLETE.getValue()) {
+                allGoalComplete = false;
+            }
 		}
 		if (allGoalComplete) {
-//            completeMission(player, mission);
+            completeMission(playerId, mission);
 		}
 		return change;
 	}
@@ -188,10 +246,39 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	public abstract MissionTypeData getMissionTypeData(long playerId, boolean createIfAbsent);
 
 	@Override
-	public void abort(long playerId, int questId) {
-		// TODO Auto-generated method stub
-
+	public void abort(long playerId, int missionId) {
+		MissionTypeData missionTypeData = this.getMissionTypeData(playerId, false);
+		if (missionTypeData == null) {
+            return;
+        }
+		//Map<Integer, Mission> missions = missionTypeData.getMissions();
+		// 移除任务
+        Mission mission = missionTypeData.removeMission(missionId);
+        if (mission == null) {
+            return;
+        }
+        // 任务设置为失败状态
+        mission.setState(MissionState.STATE_FAILD.getValue());
+        mission.setGoals(null);
 	}
+	
+	@Override
+	public void clear(long playerId, int missionId) {
+		MissionTypeData missionTypeData = this.getMissionTypeData(playerId, false);
+		if (missionTypeData == null) {
+            return;
+        }
+		missionTypeData.removeFinishId(missionId);
+	}
+	
+//	@Override
+//	public void clearAll(long playerId) {
+//		MissionTypeData missionTypeData = this.getMissionTypeData(playerId, false);
+//		if (missionTypeData == null) {
+//            return;
+//        }
+//		missionTypeData.removeAllFinish();
+//	}
 
 	@Override
 	public boolean handleEvent(long playerId, Mission mission, IEvent event) {
@@ -213,7 +300,7 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 		String eventId = event.getEventId();
 		for (int i = 0; i < goals.size(); i++) {
 			MissionGoal goal = goals.get(i);
-			if (goal.getStatus() == MissionState.STATE_COMPLETE.getValue()) {
+			if (goal.getState() == MissionState.STATE_COMPLETE.getValue()) {
 				continue;
 			}
 			int goalType = goal.getType();
@@ -229,7 +316,7 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 			int completeCondition = missionConfig.getCompleteCondition()[i];
 			int completeValue = missionConfig.getCompleteValue()[i];
 			change |= goalTypeLogic.process(playerId, event, goal, completeCondition, completeValue);
-			if (goal.getStatus() != MissionState.STATE_COMPLETE.getValue()) {
+			if (goal.getState() != MissionState.STATE_COMPLETE.getValue()) {
 				allGoalComplete = false;
 			}
 		}
@@ -246,7 +333,7 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	 * @param mission  任务对象
 	 */
 	protected boolean completeMission(long playerId, Mission mission) {
-		mission.setState((byte) MissionState.STATE_COMPLETE.getValue());
+		mission.setState(MissionState.STATE_COMPLETE.getValue());
 		this.afterCompleteMission(playerId, mission);
 		return true;
 	}
@@ -282,7 +369,6 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 
 	/**
 	 * 领取任务奖励
-	 * 
 	 * @param playerId 玩家id
 	 * @param mission  任务对象
 	 * @return 奖励map, 返回的引用, 禁止对其内容进行修改.避免造成灾难性的后果
@@ -308,7 +394,7 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	 */
 	protected ErrorCode checkSubmit(long playerId, Mission mission) {
 		long now = TimeUtil.now();
-		this.checkAndRefresh(playerId, now, false);
+		this.checkAndReset(playerId, now, false);
 		if (mission.getState() == MissionState.STATE_REWARDED.getValue()) {
 			return ErrorCode.MISSION_REWARDES;
 		}
@@ -329,9 +415,9 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	protected void doSubmitMission(long playerId, Mission mission) {
 		MissionTypeData sourceTypeData = this.getMissionTypeData(playerId, true);
 		// 移除任务
-		mission.setState((byte) MissionState.STATE_REWARDED.getValue());
+		mission.setState(MissionState.STATE_REWARDED.getValue());
 		int missionId = mission.getConfigId();
-		sourceTypeData.getMissions().remove(missionId);
+		sourceTypeData.removeMission(missionId);
 		// 记录完成的任务id
 		sourceTypeData.addFinishId(missionId);
 		sourceTypeData.setLastTime(TimeUtil.now());
@@ -342,7 +428,9 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	 * @param playerId 玩家id 
 	 * @param mission 任务对象
 	 */
-	protected abstract void afterSubmitMission(long playerId, Mission mission);
+	protected void afterSubmitMission(long playerId, Mission mission) {
+		
+	}
 
 	/**
 	 * 通知玩家任务更新

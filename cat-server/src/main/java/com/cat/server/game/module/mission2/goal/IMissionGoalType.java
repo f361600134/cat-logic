@@ -17,8 +17,20 @@ public interface IMissionGoalType {
 	public MissionGoalEnum getMissionGoal();
 	
 	/**
-	 *	处理任务目标逻辑
-	 * @param playerId
+	 * 刷新任务目标, 当策划配置任务改变, 非玩家行为/事件触发任务完成的任务 
+	 * @param playerId 玩家id
+	 * @param goal目标对象
+	 * @param complateCondition 配置内的完成条件, 一个目标只能是一个条件
+	 * @param complateValue 配置内的完成值,一个目标只能是一个值
+	 * @return
+	 */
+	default public boolean refresh(long playerId, MissionGoal goal, int complateCondition, int complateValue) {
+		return false;
+	}
+	
+	/**
+	 * 监听事件, 处理任务目标逻辑
+	 * @param playerId 玩家id
 	 * @param event 事件
 	 * @param goal目标对象
 	 * @param complateCondition 配置内的完成条件, 一个目标只能是一个条件

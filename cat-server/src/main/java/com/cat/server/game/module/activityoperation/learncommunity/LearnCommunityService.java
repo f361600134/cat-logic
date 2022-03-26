@@ -152,12 +152,10 @@ public class LearnCommunityService implements ILearnCommunityService{
 			if (!errorCode.isSuccess()) {
 				return errorCode;
 			}
-			
 			LearnCommunityDomain domain = manager.getDomain(playerId);
 			if (domain == null) {
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
-			
 			this.responseLearnCommunityInfo(domain);
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {

@@ -3,16 +3,19 @@ package com.cat.server.game.module.activity.type;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.cat.server.core.annotation.NotUse;
+
 /**
  * 活动数据抽象类
  * @author Jeremy
- *
  */
+@NotUse
+@Deprecated
 public abstract class AbstractActivityData<T extends IActivityPlayerData> implements IActivityData<T>{
 	/**
 	 * 活动背包
 	 * key: 活动id
-	 * value: 活动背包
+	 * value: 玩家数据
 	 */
 	private final Map<Long, T> dataMap = new ConcurrentHashMap<>(); 
 	

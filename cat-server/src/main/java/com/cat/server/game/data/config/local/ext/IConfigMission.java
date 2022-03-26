@@ -42,6 +42,6 @@ public interface IConfigMission extends IGameConfig{
 	 * 1: 每日重置<br>
 	 * 2: 每周重置
 	 */
-	public int resetType();
+	public int getResetType();
 
 }

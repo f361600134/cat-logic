@@ -31,24 +31,8 @@ public class MissionTypeData {
 	public MissionTypeData() {
 	}
 
-	public Map<Integer, Mission> getMissions() {
-		return missions;
-	}
-
-	public void setMissionPojos(Map<Integer, Mission> missions) {
-		this.missions = missions;
-	}
-	
-	public void addMissionPojo(Mission mission) {
-		this.missions.put(mission.getConfigId(), mission);
-	}
-	
-//	public Set<Integer> getFinishIds() {
-//		return finishIds;
-//	}
-
-//	public void setFinishIds(Set<Integer> finishIds) {
-//		this.finishIds = finishIds;
+//	public Map<Integer, Mission> getMissions() {
+//		return missions;
 //	}
 
 	public void setMissions(Map<Integer, Mission> missions) {
@@ -57,6 +41,14 @@ public class MissionTypeData {
 
 	public Mission getMission(int configId) {
 		return missions.get(configId);
+	}
+	
+	public long getLastTime() {
+		return lastTime;
+	}
+
+	public void setLastTime(long lastTime) {
+		this.lastTime = lastTime;
 	}
 	
 	/**
@@ -83,33 +75,46 @@ public class MissionTypeData {
 		this.finishIds.add(configId);
 	}
 	
+	/**
+	 * 移除掉已完成的任务id
+	 * @param configId 任务id
+	 */
+	public void removeFinishId(int configId) {
+		this.finishIds.remove(configId);
+	}
 	
-//	/**
-//	 * 当完成任务, 
-//	 * 已完成任务Id列表加入次任务, 当前已接取任务移除掉该任务
-//	 */
-//	public void onFinished(int configId) {
-//		Mission t = getMission(configId);
-//		if (t == null) {//FIXME 无该任务,继续移除?
-//			return;
-//		}
-//		if (t.isRewarded()) {
-//			finishIds.add(configId);
-//			missionPojos.remove(configId);
-//		}
-//	}
-
-	public long getLastTime() {
-		return lastTime;
+	/**
+	 * 移除掉所有的已完成任务
+	 * @param configId 任务id
+	 */
+	public void removeAllFinish() {
+		this.finishIds.clear();
 	}
 
-	public void setLastTime(long lastTime) {
-		this.lastTime = lastTime;
+	/**
+	 * 添加新任务
+	 */
+	public void addMission(Mission mission) {
+		this.missions.put(mission.getConfigId(), mission);
 	}
-
+	
+	/**
+	 * 是否存在指定任务
+	 */
+	public boolean hasMission(int configId) {
+		return this.missions.containsKey(configId);
+	}
+	
+	/**
+	 * 移除掉指定任务
+	 */
+	public Mission removeMission(int configId) {
+		return this.missions.remove(configId);
+	}
+	
 	@Override
 	public String toString() {
 		return "MissionTypeData [missions=" + missions + ", finishIds=" + finishIds + "]";
 	}
-
+	
 }

@@ -2,10 +2,11 @@ package com.cat.server.game.module.mission.domain;
 
 public enum MissionTypeEnum {
 
-	// 默认实现
-	MAIN(0),
+	// 主线
+	MAIN(1),
 	// 登陆
-	LEARN_COMMUNITY(1),;
+	LEARN_COMMUNITY(2),
+	;
 
 	private final int type;
 

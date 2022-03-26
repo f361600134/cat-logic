@@ -1,9 +1,10 @@
 package com.cat.server.game.data.config.local;
 
 import java.util.Map;
-import com.cat.server.core.config.container.IGameConfig;
+
 import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.game.data.config.local.base.ConfigMissionMainBase;
+import com.cat.server.game.data.config.local.ext.IConfigMission;
 
 
 /**
@@ -12,6 +13,16 @@ import com.cat.server.game.data.config.local.base.ConfigMissionMainBase;
  * @author auto gen
  */
 @ConfigPath("mission_main.json")
-public class ConfigMissionMain extends ConfigMissionMainBase {
+public class ConfigMissionMain extends ConfigMissionMainBase implements IConfigMission{
+
+	@Override
+	public Map<Integer, Integer> getMissionReward() {
+		return this.getReward();
+	}
+
+	@Override
+	public boolean autoSubmit() {
+		return this.getAutoSubmit() == 1;
+	}
 
 }

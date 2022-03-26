@@ -19,7 +19,7 @@ public class Mission {
 	/**
 	 * 任务接取时间
 	 */
-	protected long recvTime;
+	protected long acceptTime;
 	 /**
 	  * 目标列表<br>
      */
@@ -35,7 +35,7 @@ public class Mission {
 	
 	public Mission(int configId) {
 		this.configId = configId;
-		this.recvTime = TimeUtil.now();
+		this.acceptTime = TimeUtil.now();
 	}
 	
 	/** 任务ID **/
@@ -47,17 +47,16 @@ public class Mission {
 		this.configId = configId;
 	}
 	
-	/** 任务接取时间 **/
-	public long getRecvTime(){
-		return this.recvTime;
-	}
-	
-	public void setRecvTime(long recvTime){
-		this.recvTime = recvTime;
-	}
-	
 	public List<MissionGoal> getGoals() {
 		return goals;
+	}
+
+	public long getAcceptTime() {
+		return acceptTime;
+	}
+
+	public void setAcceptTime(long acceptTime) {
+		this.acceptTime = acceptTime;
 	}
 
 	public void setGoals(List<MissionGoal> goals) {
@@ -72,7 +71,7 @@ public class Mission {
 		this.sourceType = sourceType;
 	}
 
-	public int getState() {
+	public byte getState() {
 		return state;
 	}
 
