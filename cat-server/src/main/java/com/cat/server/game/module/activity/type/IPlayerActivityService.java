@@ -8,6 +8,7 @@ import com.cat.server.game.helper.result.ErrorCode;
 /**
  * 玩家个人活动类service接口, 用于处理个人活动模块的数据, 封装一些公共判断
  * @author Jeremy
+ * @deprecated
  */
 public interface IPlayerActivityService<T extends IActivityType, D extends IActivityPlayerData> {
 	

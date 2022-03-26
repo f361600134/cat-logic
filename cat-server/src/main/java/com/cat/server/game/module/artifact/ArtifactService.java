@@ -2,7 +2,6 @@ package com.cat.server.game.module.artifact;
 
 import java.util.Collection;
 
-import com.cat.server.core.event.PlayerBaseEvent;
 import com.cat.server.game.module.artifact.domain.Artifact;
 import com.cat.server.game.module.artifact.domain.ArtifactDomain;
 import com.cat.server.game.module.artifact.proto.AckArtifactListResp;
@@ -18,25 +17,25 @@ import org.springframework.stereotype.Service;
  * Artifact控制器
  */
 @Service
-class ArtifactService {
+class ArtifactService implements IArtifactService{
 	
 	@Autowired private IPlayerService playerService;
 	@Autowired private ArtifactManager manager;
 	
 	private static final Logger log = LoggerFactory.getLogger(ArtifactService.class);
 	
-	/**
-	 * 当收到事件
-	 */
-	public void onEvent(PlayerBaseEvent event) {
-		long playerId = event.getPlayerId();
-		ArtifactDomain domain = manager.getOrLoadDomain(playerId);
-		if (domain  == null) {
-			log.info("onEvent error, playerId:{}", playerId);
-			return;
-		}
-		domain.onProcess(event);
-	}
+//	/**
+//	 * 当收到事件
+//	 */
+//	public void onEvent(PlayerBaseEvent event) {
+//		long playerId = event.getPlayerId();
+//		ArtifactDomain domain = manager.getOrLoadDomain(playerId);
+//		if (domain  == null) {
+//			log.info("onEvent error, playerId:{}", playerId);
+//			return;
+//		}
+//		domain.onProcess(event);
+//	}
 	
 	/**
 	 * 更新信息
@@ -52,6 +51,30 @@ class ArtifactService {
 //			resp.addArtifactlist(artifact.toProto());
 		}
 		playerService.sendMessage(playerId, resp);
+	}
+
+	@Override
+	public boolean checkArtifactActive(long playerId, int artifactId) {
+		ArtifactDomain domain = manager.getDomain(playerId);
+		if (domain == null) {
+			return false;
+		}
+		Artifact artifact = domain.getBean(artifactId);
+		//存在神器对象, 表示已经激活
+		return artifact == null;
+	}
+
+	@Override
+	public void artifactActive(long playerId, int artifactId) {
+		ArtifactDomain domain = manager.getDomain(playerId);
+		if (domain == null) {
+			return;
+		}
+		Artifact artifact = domain.getBean(artifactId);
+		if (artifact != null) {
+			return;
+		}
+		domain.active(artifactId);
 	}
 	
 	/////////////业务逻辑//////////////////

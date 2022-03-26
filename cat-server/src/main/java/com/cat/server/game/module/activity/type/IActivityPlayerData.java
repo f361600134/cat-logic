@@ -3,6 +3,7 @@ package com.cat.server.game.module.activity.type;
 /**
  * 玩家活动数据结构
  * @author Jeremy
+ * @deprecated
  */
 public interface IActivityPlayerData {
 	

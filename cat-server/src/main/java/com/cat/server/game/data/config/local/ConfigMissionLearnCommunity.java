@@ -4,6 +4,8 @@ import java.util.Map;
 import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.game.data.config.local.base.ConfigMissionLearnCommunityBase;
+import com.cat.server.game.data.config.local.ext.IConfigActivityMission;
+import com.cat.server.game.data.config.local.ext.IConfigMission;
 
 
 /**
@@ -12,6 +14,22 @@ import com.cat.server.game.data.config.local.base.ConfigMissionLearnCommunityBas
  * @author auto gen
  */
 @ConfigPath("mission_learn_community.json")
-public class ConfigMissionLearnCommunity extends ConfigMissionLearnCommunityBase {
+public class ConfigMissionLearnCommunity extends ConfigMissionLearnCommunityBase implements IConfigActivityMission{
+
+	@Override
+	public Map<Integer, Integer> getMissionReward() {
+		return this.getReward();
+	}
+
+	@Override
+	public boolean autoSubmit() {
+		return this.getAutoSubmit() == 1;
+	}
+
+	@Override
+	public int getActivityId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

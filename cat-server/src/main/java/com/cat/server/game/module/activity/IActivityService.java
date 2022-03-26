@@ -25,6 +25,12 @@ public interface IActivityService {
 	public IActivityType getActivityType(int typeId);
 	
 	/**
+	 * 根据指定的活动class,获取到活动
+	 * @return 活动实现类类型
+	 */
+	public <T extends IActivityType> T getActivityType(Class<T> clazz);
+	
+	/**
 	 * 获取指定类型枚举类获得的活动域
 	 * @return 活动实现类类型
 	 */
@@ -61,7 +67,7 @@ public interface IActivityService {
 		else if (!activityType.isInCycle()) {
 			return ResultCodeData.of(ErrorCode.ACTIVITY_NOT_IN_ACTIVITY_TIME);
 		}
-		return ResultCodeData.of(ErrorCode.SUCCESS, activityType);
+		return ResultCodeData.of(activityType);
 	}
 	
 	/**

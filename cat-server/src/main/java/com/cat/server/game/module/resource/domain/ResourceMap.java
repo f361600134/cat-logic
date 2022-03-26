@@ -22,7 +22,9 @@ public class ResourceMap {
      * key:资源id，可以是属性，道具
      * value:值
      */
-    private final Map<Integer, Integer> dictionary;
+    private Map<Integer, Integer> dictionary;
+    
+    public ResourceMap() {}
 
     public ResourceMap(Map<Integer, Integer> dictionary) {
         if (dictionary == null) {

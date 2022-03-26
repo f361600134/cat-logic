@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cat.server.core.event.PlayerBaseEvent;
 import com.cat.server.game.data.proto.PBLearnCommunity.ReqLearnCommunityInfo;
 import com.cat.server.game.data.proto.PBLearnCommunity.ReqLearnCommunityReward;
 import com.cat.server.game.helper.result.ErrorCode;
@@ -19,6 +18,7 @@ import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnC
 import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunityDomain;
 import com.cat.server.game.module.activityoperation.learncommunity.proto.RespLearnCommunityInfoBuilder;
 import com.cat.server.game.module.activityoperation.learncommunity.proto.RespLearnCommunityRewardBuilder;
+import com.cat.server.game.module.mission.domain.QuestTypeData;
 import com.cat.server.game.module.player.IPlayerService;
 
 
@@ -32,9 +32,7 @@ public class LearnCommunityService implements ILearnCommunityService{
 	private static final Logger log = LoggerFactory.getLogger(LearnCommunityService.class);
 	
 	@Autowired private IPlayerService playerService;
-	
 	@Autowired private LearnCommunityManager manager;
-	
 	@Autowired private IActivityService activityService;
 	
 	/**
@@ -67,26 +65,6 @@ public class LearnCommunityService implements ILearnCommunityService{
 	}
 	
 	/**
-	 * 当收到事件, 触发任务
-	 * @param event
-	 */
-	public void onEvent(PlayerBaseEvent event){
-		long playerId = event.getPlayerId();
-		//检测活动结束
-		ResultCodeData<LearnCommunityActivityType> resultData = 
-				activityService.getUsableActivityType(ActivityTypeEnum.LEARN_COMMUNITY, LearnCommunityActivityType.class);
-		if (!resultData.isSuccess()) {
-			return;
-		}
-		LearnCommunityDomain domain = manager.getDomain(playerId);
-		if (domain == null) {
-			log.info("onEvent error, playerId:{}", playerId);
-			return;
-		}
-		domain.onProcess(event);
-	}
-	
-	/**
 	 * 当活动状态变化
 	 * @param event
 	 */
@@ -99,7 +77,7 @@ public class LearnCommunityService implements ILearnCommunityService{
 		if (event.getStatus() == IActivityStatus.CLOSE) {
 			//研习社活动结束, 计算奖励, 发送邮件
 			onActivityClose();
-		}
+		} 
 	}
 	
 	/**
@@ -111,7 +89,6 @@ public class LearnCommunityService implements ILearnCommunityService{
 		//邮件通知
 		for (LearnCommunityDomain domain : manager.getAllDomain()) {
 			//LearnCommunity bean = domain.getBean();
-			
 		}
 		//清理数据
 //		domain.clear();
@@ -130,9 +107,7 @@ public class LearnCommunityService implements ILearnCommunityService{
 			
 			playerService.sendMessage(domain.getId(), resp);
 		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("responseLearnCommunityInfo error, playerId:{}", domain.getId());
-			log.error("responseLearnCommunityInfo error, e:", e);
+			log.info("responseLearnCommunityInfo error, playerId:{}", domain.getId(), e);
 		}
 	}
 	
@@ -159,9 +134,7 @@ public class LearnCommunityService implements ILearnCommunityService{
 			this.responseLearnCommunityInfo(domain);
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("reqLearnCommunityInfo error, playerId:{}", playerId);
-			log.error("reqLearnCommunityInfo error, e:", e);
+			log.error("reqLearnCommunityInfo error, playerId:{}", playerId, e);
 			return ErrorCode.UNKNOWN_ERROR;
 		}
 	}
@@ -183,29 +156,25 @@ public class LearnCommunityService implements ILearnCommunityService{
 			if (domain == null) {
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
-			//TODO Somthing.
 			this.responseLearnCommunityInfo(domain);
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {
-			e.printStackTrace();
-			log.info("reqLearnCommunityReward error, playerId:{}", playerId);
-			log.error("reqLearnCommunityReward error, e:", e);
+			log.error("reqLearnCommunityReward error,playerId:{}", playerId, e);
 			return ErrorCode.UNKNOWN_ERROR;
 		}
 	}
-
-	@Override
-	public LearnCommunityActivityType getActivityType() {
-		return activityService.getActivityType(activityType(), LearnCommunityActivityType.class);
-	}
-
-	@Override
-	public ActivityTypeEnum activityType() {
-		return ActivityTypeEnum.LEARN_COMMUNITY;
-	}
-	
 	/////////////接口方法////////////////////////
 	
+	@Override
+	public QuestTypeData getQuestTypeData(long playerId) {
+		LearnCommunityDomain domain = manager.getOrLoadDomain(playerId);
+		if (domain == null) {
+			log.info("LearnCommunityService error, domain is null");
+			return null;
+		}
+		LearnCommunity learnCommunity = domain.getBean();
+		return learnCommunity.getQuestTypeData();
+	}
 }
  
  
