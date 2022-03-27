@@ -140,7 +140,7 @@ public class MissionService implements IMissionService, ILifecycle{
 	public int priority() {
 		return Priority.LOGIC.getPriority();
 	}
-	
+
 }
  
  

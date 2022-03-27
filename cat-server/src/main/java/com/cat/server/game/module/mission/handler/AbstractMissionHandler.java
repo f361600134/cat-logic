@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +36,9 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired protected MissionManager missionManager;
+	
 	@Autowired protected IPlayerService playerService;
 	@Autowired protected IResourceGroupService resourceGroupService;
-	
 	@Autowired protected MissionService missionService;
 
 	protected Class<T> missionConfigClazz;
@@ -279,9 +276,9 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 		if (missionConfig == null) {
 			return false;
 		}
-		
 		boolean change = false;
 		boolean allGoalComplete = true;
+		//FIXME
 		String eventId = event.getEventId();
 		for (int i = 0; i < goals.size(); i++) {
 			QuestGoal goal = goals.get(i);
@@ -290,26 +287,23 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 			}
 			int goalType = goal.getType();
 			IQuestGoalType goalTypeLogic = missionManager.getGoalType(goalType);
-			if (goalTypeLogic == null) {
-				allGoalComplete = false;
-				continue;
-			}
-			if (StringUtils.containsAny(eventId, goalTypeLogic.focusEvents())) {
-				allGoalComplete = false;
-				continue;
-			}
-			int completeCondition = missionConfig.getCompleteCondition()[i];
+            if (goalTypeLogic == null) {
+                allGoalComplete = false;
+                continue;
+            }
+            int completeCondition = missionConfig.getCompleteCondition()[i];
 			int completeValue = missionConfig.getCompleteValue()[i];
-			change |= goalTypeLogic.process(playerId, event, goal, completeCondition, completeValue);
-			if (goal.getState() != QuestState.STATE_COMPLETE.getValue()) {
-				allGoalComplete = false;
-			}
+            change |= goalTypeLogic.refresh(playerId, goal, completeCondition, completeValue);
+            if (goal.getState() != QuestState.STATE_COMPLETE.getValue()) {
+                allGoalComplete = false;
+            }
 		}
 		if (allGoalComplete) {
-			completeQuest(playerId, quest);
+            completeQuest(playerId, quest);
 		}
 		return change;
 	}
+
 
 	/**
 	 * 完成任务, 所有任务目标均为完成状态, 任务才算完成
@@ -412,6 +406,9 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	 * 处理提交任务后的操作
 	 * @param playerId 玩家id 
 	 * @param quest 任务对象
+	 * 处理提交任务
+	 * @param playerId
+	 * @param quest
 	 */
 	protected void afterSubmitMission(long playerId, Quest quest) {
 		

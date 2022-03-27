@@ -7,7 +7,6 @@ encoding//src/main/resources/application_demo.properties=UTF-8
 encoding//src/main/resources/configdata=UTF-8
 encoding//src/main/resources/configdata/ConfigMail.json=UTF-8
 encoding//src/main/resources/configdata/activity_schedule_time.json=UTF-8
-encoding//src/main/resources/configdata/learn_community_mission.json=UTF-8
 encoding//src/main/resources/configdata/mail.json=UTF-8
 encoding//src/main/resources/configdata/recycle.json=UTF-8
 encoding//src/test/java=UTF-8

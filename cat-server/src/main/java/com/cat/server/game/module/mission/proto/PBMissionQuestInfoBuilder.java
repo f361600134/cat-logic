@@ -49,7 +49,6 @@ public class PBMissionQuestInfoBuilder extends AbstractProtocol {
 	public void setState(int value){
 		this.builder.setState(value);
 	}
-	
 	@Override
 	public int protocol() {
 		return 0;

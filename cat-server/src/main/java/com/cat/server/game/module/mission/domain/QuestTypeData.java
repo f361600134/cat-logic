@@ -134,17 +134,4 @@ public class QuestTypeData {
 		}
 	}
 	
-//	public PBMissionQuestInfoBuilder toProto(int configId) {
-//		PBMissionQuestInfoBuilder builder = PBMissionQuestInfoBuilder.newInstance();
-//		builder.setId(configId);
-//		
-//		//builder.setType();
-//		
-//	}
-	
-	@Override
-	public String toString() {
-		return "MissionTypeData [quests=" + quests + ", finishIds=" + finishIds + "]";
-	}
-	
 }

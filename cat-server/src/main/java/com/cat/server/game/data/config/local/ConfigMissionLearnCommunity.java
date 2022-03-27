@@ -31,5 +31,4 @@ public class ConfigMissionLearnCommunity extends ConfigMissionLearnCommunityBase
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.IEvent;
 import com.cat.server.game.data.config.local.ext.IConfigActivityMission;
-import com.cat.server.game.data.config.local.ext.IConfigMission;
 import com.cat.server.game.module.activity.IActivityService;
 import com.cat.server.game.module.activity.type.IActivityType;
 import com.cat.server.game.module.mission.domain.Quest;
@@ -68,5 +67,4 @@ public abstract class AbstractActivityMissionHandler<T extends IConfigActivityMi
     	 .values().stream().filter(c->c.getActivityId() == activity.getConfigId())
     	 .collect(Collectors.toMap(IConfigActivityMission::getId, Function.identity()));
     }
-    
 }

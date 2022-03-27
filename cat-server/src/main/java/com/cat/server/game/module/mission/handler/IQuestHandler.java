@@ -108,5 +108,4 @@ public interface IQuestHandler<T extends IConfigMission> {
      * @date 2022年3月27日下午11:09:04
      */
     RespMissionInfoBuilder toProto(long playerId);
-    
 }
