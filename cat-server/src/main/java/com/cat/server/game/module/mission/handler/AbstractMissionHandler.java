@@ -324,12 +324,13 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 		T missionConfig = this.getConfig(quest.getConfigId());
 		if (missionConfig.autoSubmit()) {
 			// 如果自动提交任务, 则帮玩家领取任务奖励
-			this.submit(playerId, quest);
+			this.submit(playerId, quest.getConfigId());
 		}
 	}
 
 	@Override
-	public ResultCodeData<Map<Integer, Integer>> submit(long playerId, Quest quest) {
+	public ResultCodeData<Map<Integer, Integer>> submit(long playerId, int configId) {
+		Quest quest = this.getQuest(playerId, configId);
 		ErrorCode resultCode = checkSubmit(playerId, quest);
 		if (!resultCode.isSuccess()) {
 			return ResultCodeData.of(resultCode);
@@ -458,6 +459,17 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 			}
 		}
 		return missionBuilder;
+	}
+	
+	/**
+	 * 获取一个任务对象
+	 * @param playerId 玩家id
+	 * @param configId 配置id
+	 * @return
+	 */
+	protected Quest getQuest(long playerId, int configId) {
+		QuestTypeData questTypeData = this.getQuestTypeData(playerId, true);
+		return questTypeData.getQuest(configId);
 	}
 
 }

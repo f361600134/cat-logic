@@ -1,22 +1,26 @@
 package com.cat.server.game.module.mission;
 
-import java.util.Collection;
-
-import com.cat.server.game.module.mission.domain.Mission;
-import com.cat.server.game.module.mission.domain.MissionDomain;
-import com.cat.server.game.module.mission.domain.QuestTypeData;
-import com.cat.server.game.module.mission.manager.MissionManager;
-import com.cat.server.game.module.mission.proto.RespMissionInfoBuilder;
-import com.cat.server.game.module.mission.proto.RespMissionQuestRewardBuilder;
-import com.cat.server.game.module.player.IPlayerService;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
-import com.cat.server.game.data.proto.PBMission.*;
+import com.cat.server.core.server.IModuleManager;
+import com.cat.server.game.data.proto.PBMission.ReqMissionInfo;
+import com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward;
+import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.helper.result.ModuleDefines;
+import com.cat.server.game.helper.result.ResultCodeData;
+import com.cat.server.game.module.functioncontrol.AbstractPlayerModuleService;
+import com.cat.server.game.module.mission.domain.MissionDomain;
+import com.cat.server.game.module.mission.domain.QuestTypeData;
+import com.cat.server.game.module.mission.handler.IQuestHandler;
+import com.cat.server.game.module.mission.manager.MissionManager;
+import com.cat.server.game.module.mission.proto.RespMissionInfoBuilder;
+import com.cat.server.game.module.mission.proto.RespMissionQuestRewardBuilder;
+import com.cat.server.game.module.player.IPlayerService;
 
 
 /**
@@ -24,7 +28,7 @@ import com.cat.server.game.data.proto.PBMission.*;
  * @author Jeremy
  */
 @Service
-public class MissionService implements IMissionService, ILifecycle{
+public class MissionService extends AbstractPlayerModuleService<Long, MissionDomain> implements IMissionService, ILifecycle{
 	
 	private static final Logger log = LoggerFactory.getLogger(MissionService.class);
 	
@@ -32,40 +36,17 @@ public class MissionService implements IMissionService, ILifecycle{
 	
 	@Autowired private MissionManager missionManager;
 	
- 
-	/**
-	 * 登陆
-	 */
-	public void onLogin(long playerId) {
-		MissionDomain domain = missionManager.getDomain(playerId);
-		Collection<Mission> beans = domain.getBeans();
-		//FSC todo somthing...
-		//Codes for proto
-		//playerService.sendMessage(playerId, ack);
-	}
-	
-	/**
-	 * 当玩家离线,移除掉道具模块数据
-	 * @param playerId
-	 */
-	public void onLogout(long playerId) {
-		missionManager.remove(playerId);
-	}
-  
-	
 	/**
 	 * 更新信息
 	 */
-	public void responseMissionInfo(MissionDomain domain) {
-		Collection<Mission> beans = domain.getBeans();
-		try {
-			for (Mission mission : beans) {
-				//resp.addArtifactlist(mission.toProto());
-			}
-			//playerService.sendMessage(playerId, resp);
-		} catch (Exception e) {
-			log.error("responseMissionInfo error, playerId:{}", domain.getId(), e);
-		}
+	public void responseMissionInfo(MissionDomain domain, int missionType) {
+//		IQuestHandler<?> handler = questHandlers.stream()
+//				.filter(h->h.getMissionType().getType() == missionType)
+//				.findFirst()
+//				.get();
+		IQuestHandler<?> handler = this.missionManager.getQuestHandler(missionType);
+		RespMissionInfoBuilder builder = handler.toProto(domain.getId());
+		playerService.sendMessage(domain.getId(), builder);
 	}
 	
 	/**
@@ -89,18 +70,16 @@ public class MissionService implements IMissionService, ILifecycle{
 	
 	/**
 	* 请求指定任务模块信息,返回任务列表
-	* @param long playerId
-	* @param ReqMissionInfo req
-	* @param RespMissionInfoResp ack
+	* @param playerId 玩家id
+	* @param req 请求
 	*/
-	public ErrorCode reqMissionInfo(long playerId, ReqMissionInfo req, RespMissionInfoBuilder ack){
+	public ErrorCode reqMissionInfo(long playerId, ReqMissionInfo req){
 		try {
 			MissionDomain domain = missionManager.getDomain(playerId);
 			if (domain == null) {
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
-			//TODO Somthing.
-			this.responseMissionInfo(domain);
+			this.responseMissionInfo(domain, req.getMissionId());
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {
 			log.error("reqMissionInfo error, playerId:{}", playerId, e);
@@ -109,9 +88,9 @@ public class MissionService implements IMissionService, ILifecycle{
 	}
 	/**
 	* 领取任务奖励
-	* @param long playerId
-	* @param ReqMissionQuestReward req
-	* @param RespMissionQuestRewardResp ack
+	* @param playerId 玩家id
+	* @param req 请求
+	* @param ack 响应
 	*/
 	public ErrorCode reqMissionQuestReward(long playerId, ReqMissionQuestReward req, RespMissionQuestRewardBuilder ack){
 		try {
@@ -119,15 +98,15 @@ public class MissionService implements IMissionService, ILifecycle{
 			if (domain == null) {
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
-			//TODO Somthing.
-			this.responseMissionInfo(domain);
-			return ErrorCode.SUCCESS;
+			int missionType = 0;
+			IQuestHandler<?> handler = this.missionManager.getQuestHandler(missionType);
+			ResultCodeData<Map<Integer, Integer>> result = handler.submit(playerId, req.getId());
+			return result.getErrorCode();
 		} catch (Exception e) {
 			log.error("reqMissionQuestReward error, playerId:{}", playerId, e);
 			return ErrorCode.UNKNOWN_ERROR;
 		}
 	}
-  
 	
 	/////////////接口方法////////////////////////
 	
@@ -141,6 +120,29 @@ public class MissionService implements IMissionService, ILifecycle{
 		return Priority.LOGIC.getPriority();
 	}
 
+	@Override
+	public void checkAndReset(MissionDomain domain, long now) {
+		for (IQuestHandler<?> handler : this.missionManager.getQuestHandlers()) {
+			handler.checkAndReset(now, now, true);
+		}
+	}
+
+	@Override
+	public void responseAllInfo(MissionDomain domain) {
+		for (IQuestHandler<?> handler : this.missionManager.getQuestHandlers()) {
+			RespMissionInfoBuilder builder = handler.toProto(domain.getId());
+			playerService.sendMessage(domain.getId(), builder);
+		}
+	}
+
+	@Override
+	public IModuleManager<Long, MissionDomain> getModuleManager() {
+		return missionManager;
+	}
+
+	@Override
+	public int getModuleId() {
+		return ModuleDefines.MISSION;
+	}
+
 }
- 
- 

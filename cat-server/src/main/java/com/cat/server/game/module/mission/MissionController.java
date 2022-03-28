@@ -41,9 +41,9 @@ public class MissionController {
 	@Cmd(value = PBProtocol.ReqMissionInfo_VALUE)
 	public void reqMissionInfo(ISession session, ReqMissionInfo req) {
 		long playerId = session.getUserData();
-		RespMissionInfoBuilder ack = RespMissionInfoBuilder.newInstance();
-		missionService.reqMissionInfo(playerId, req, ack);
-		playerService.sendMessage(playerId, ack);
+		//RespMissionInfoBuilder ack = RespMissionInfoBuilder.newInstance();
+		missionService.reqMissionInfo(playerId, req);
+		//playerService.sendMessage(playerId, ack);
 	}
 	
 	/*

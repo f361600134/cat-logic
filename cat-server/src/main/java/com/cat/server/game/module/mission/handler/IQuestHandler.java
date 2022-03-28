@@ -72,10 +72,10 @@ public interface IQuestHandler<T extends IConfigMission> {
      * 提交任务<br>
      * 移除任务 领取奖励
      * @param playerId 玩家id
-     * @param quest 任务对象
+     * @param configId 任务id
      * @return
      */
-	ResultCodeData<Map<Integer, Integer>> submit(long playerId, Quest quest);
+	ResultCodeData<Map<Integer, Integer>> submit(long playerId, int configId);
 	
     /**
      * 放弃任务
