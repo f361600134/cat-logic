@@ -12,5 +12,9 @@ import com.cat.server.game.data.config.local.base.ConfigFunctionBase;
  */
 @ConfigPath("function.json")
 public class ConfigFunction extends ConfigFunctionBase {
+	
+	public long getTime(long now) {
+		return 0L;
+	}
 
 }

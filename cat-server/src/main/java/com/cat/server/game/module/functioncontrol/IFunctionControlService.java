@@ -16,4 +16,29 @@ public interface IFunctionControlService {
 	 */
 	boolean checkOpen(long playerId, int moduleId);
 	
+	/**
+	 * 获取功能的最后重置时间
+	 * @param playerId
+	 * @param moduleId
+	 * @return long  最后重置时间
+	 * @date 2022年3月28日下午10:18:34
+	 */
+	long getLastResetTime(long playerId, int moduleId);
+	
+	/**
+	 * 设置功能的最后重置时间
+	 * @param playerId
+	 * @param moduleId
+	 * @return long  最后重置时间
+	 * @date 2022年3月28日下午10:18:34
+	 */
+	void setLastResetTime(long playerId, int moduleId, long now);
+	
+//	/**
+//	 * 检测是否存在红点
+//	 * @param playerId 玩家id
+//	 * @return int 红点数量,大于0客户端则显示红点
+//	 */
+//	int checkReddot(long playerId);
+	
 }

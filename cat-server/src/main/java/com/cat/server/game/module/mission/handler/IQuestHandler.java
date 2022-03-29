@@ -5,6 +5,7 @@ import java.util.Map;
 import com.cat.server.core.event.IEvent;
 import com.cat.server.game.data.config.local.ext.IConfigMission;
 import com.cat.server.game.helper.result.ResultCodeData;
+import com.cat.server.game.module.functioncontrol.IFunctionReset;
 import com.cat.server.game.module.mission.define.MissionTypeEnum;
 import com.cat.server.game.module.mission.domain.Quest;
 import com.cat.server.game.module.mission.proto.RespMissionInfoBuilder;
@@ -13,7 +14,7 @@ import com.cat.server.game.module.mission.proto.RespMissionInfoBuilder;
  * 	任务处理类接口
  * @author Jeremy
  */
-public interface IQuestHandler<T extends IConfigMission> {
+public interface IQuestHandler<T extends IConfigMission> extends IFunctionReset{
 	
 	/**
 	 * 获取任务类型

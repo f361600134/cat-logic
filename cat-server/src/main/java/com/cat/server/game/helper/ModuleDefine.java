@@ -26,13 +26,19 @@ public enum ModuleDefine {
 	/** 资源回收*/
 	RECYCLE(108),
 	/** 商店*/
-	SHOP(110),
+	SHOP(109),
 	/** 商店-主界面 */
 	MAIN_SHOP(SHOP, 1),
-	/** 商店-研习社*/
-	LEARNCOMMUNITY_SHOP(SHOP, 2),
+	/**任务*/
+	MISSION(110),
+	/**主线任务*/
+	MISSION_MAIN(MISSION, 1),
 	/** 研习社*/
 	LEARNCOMMUNITY(200),
+	/** 研习社*/
+	LEARNCOMMUNITY_SHOP(LEARNCOMMUNITY, 1),
+	/** 研习社*/
+	LEARNCOMMUNITY_MISSION(LEARNCOMMUNITY, 2),
 	/** 活动物品*/
 	ActivityItem(201),
 	/** 群邮件*/
@@ -54,6 +60,12 @@ public enum ModuleDefine {
 	
 	public int getModuleId() {
 		return moduleId;
+	}
+	
+	public static void main(String[] args) {
+		for (ModuleDefine md : ModuleDefine.values()) {
+			System.out.println(md +"---->"+ md.getModuleId());
+		}
 	}
 	
 }

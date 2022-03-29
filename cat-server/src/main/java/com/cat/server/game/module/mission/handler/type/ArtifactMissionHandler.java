@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cat.server.core.event.IEvent;
 import com.cat.server.game.data.config.local.ConfigMissionArtifact;
+import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.module.artifact.IArtifactService;
 import com.cat.server.game.module.mission.define.MissionTypeEnum;
 import com.cat.server.game.module.mission.define.QuestState;
@@ -128,6 +129,11 @@ public class ArtifactMissionHandler extends AbstractMissionHandler<ConfigMission
 			}
 		}
 		return missionBuilder;
+	}
+	
+	@Override
+	public ModuleDefine getFunctionId() {
+		return ModuleDefine.UNDEFINE;
 	}
 
 }

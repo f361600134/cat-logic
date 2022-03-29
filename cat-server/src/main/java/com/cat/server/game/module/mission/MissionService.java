@@ -10,6 +10,7 @@ import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.data.proto.PBMission.ReqMissionInfo;
 import com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward;
+import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ModuleDefines;
 import com.cat.server.game.helper.result.ResultCodeData;
@@ -28,7 +29,7 @@ import com.cat.server.game.module.player.IPlayerService;
  * @author Jeremy
  */
 @Service
-public class MissionService extends AbstractPlayerModuleService<Long, MissionDomain> implements IMissionService, ILifecycle{
+public class MissionService extends AbstractPlayerModuleService<MissionDomain> implements IMissionService{
 	
 	private static final Logger log = LoggerFactory.getLogger(MissionService.class);
 	
@@ -110,18 +111,11 @@ public class MissionService extends AbstractPlayerModuleService<Long, MissionDom
 	
 	/////////////接口方法////////////////////////
 	
+	/**
+	 * 对于任务管理类, 只负责任务逻辑的统一实现, 是否重置, 则由子类完成
+	 */
 	@Override
-	public void start() throws Throwable {
-		this.missionManager.init();
-	}
-	
-	@Override
-	public int priority() {
-		return Priority.LOGIC.getPriority();
-	}
-
-	@Override
-	public void checkAndReset(MissionDomain domain, long now) {
+	public void checkAndReset(long playerId, long now) {
 		for (IQuestHandler<?> handler : this.missionManager.getQuestHandlers()) {
 			handler.checkAndReset(now, now, true);
 		}
@@ -142,7 +136,23 @@ public class MissionService extends AbstractPlayerModuleService<Long, MissionDom
 
 	@Override
 	public int getModuleId() {
-		return ModuleDefines.MISSION;
+		return ModuleDefine.MISSION.getModuleId();
+	}
+	
+	@Override
+	public void start() throws Throwable {
+		this.missionManager.init();
+	}
+	
+	@Override
+	public int priority() {
+		return Priority.LOGIC.getPriority();
+	}
+
+	@Override
+	public void doReset(long playerId, long now) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

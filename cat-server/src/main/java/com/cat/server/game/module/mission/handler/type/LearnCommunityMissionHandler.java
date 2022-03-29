@@ -3,6 +3,7 @@ package com.cat.server.game.module.mission.handler.type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.cat.server.game.data.config.local.ConfigMissionLearnCommunity;
+import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.module.activity.type.impl.LearnCommunityActivityType;
 import com.cat.server.game.module.activityoperation.learncommunity.ILearnCommunityService;
 import com.cat.server.game.module.mission.define.MissionTypeEnum;
@@ -27,5 +28,10 @@ public class LearnCommunityMissionHandler extends AbstractActivityMissionHandler
 	@Override
 	public QuestTypeData getQuestTypeData(long playerId, boolean createIfAbsent) {
 		return learnCommunityService.getQuestTypeData(playerId);
+	}
+
+	@Override
+	public ModuleDefine getFunctionId() {
+		return ModuleDefine.LEARNCOMMUNITY_MISSION;
 	}
 }

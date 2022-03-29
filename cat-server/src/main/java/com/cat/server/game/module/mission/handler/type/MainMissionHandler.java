@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Component;
 import com.cat.server.game.data.config.local.ConfigMissionMain;
+import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.mission.define.MissionTypeEnum;
 import com.cat.server.game.module.mission.domain.Quest;
@@ -80,6 +81,11 @@ public class MainMissionHandler extends AbstractMissionHandler<ConfigMissionMain
             return 0;
         }
         return lastConfig.getNextId();
+	}
+
+	@Override
+	public int getFunctionId() {
+		return ModuleDefine.MISSION_MAIN.getModuleId();
 	}
 	
 }
