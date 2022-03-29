@@ -14,6 +14,7 @@ import com.cat.server.game.data.proto.PBShop.ReqShopQuickBuy;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ModuleDefines;
 import com.cat.server.game.module.functioncontrol.AbstractPlayerModuleService;
+import com.cat.server.game.module.functioncontrol.IPlayerModuleService;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.shop.domain.ShopDomain;
 import com.cat.server.game.module.shop.proto.RespShopBuyBuilder;
@@ -27,7 +28,7 @@ import com.cat.server.game.module.shop.type.IShopType;
  * @author Jeremy
  */
 @Service
-public class ShopService extends AbstractPlayerModuleService<ShopDomain> implements IShopService, ILifecycle {
+public class ShopService implements IShopService, IPlayerModuleService, ILifecycle {
 	
 	@Autowired private IPlayerService playerService;
 	
@@ -75,12 +76,13 @@ public class ShopService extends AbstractPlayerModuleService<ShopDomain> impleme
 	 * 更新所有
 	 */
 	@Override
-	public void responseAllInfo(ShopDomain domain) {
+	public void responseAllInfo(long playerId) {
+		ShopDomain domain = this.shopManager.getDomain(playerId);
 		RespShopInfoBuilder builder = RespShopInfoBuilder.newInstance();
 		this.shopManager.getShopMap().forEach((k,shopType)->{
 			builder.addShopInfos(shopType.toProto(domain).build());
 		});
-		playerService.sendMessage(domain.getId(), builder);
+		playerService.sendMessage(playerId, builder);
 	}
 	
 	/////////////业务逻辑//////////////////
@@ -197,5 +199,5 @@ public class ShopService extends AbstractPlayerModuleService<ShopDomain> impleme
 		// TODO nothing...
 		// 
 	}
-	
+
 }

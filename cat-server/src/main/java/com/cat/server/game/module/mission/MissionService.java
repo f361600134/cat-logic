@@ -14,7 +14,7 @@ import com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward;
 import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
-import com.cat.server.game.module.functioncontrol.AbstractPlayerModuleService;
+import com.cat.server.game.module.functioncontrol.IPlayerModuleService;
 import com.cat.server.game.module.mission.domain.MissionDomain;
 import com.cat.server.game.module.mission.domain.QuestTypeData;
 import com.cat.server.game.module.mission.handler.IQuestHandler;
@@ -29,7 +29,7 @@ import com.cat.server.game.module.player.IPlayerService;
  * @author Jeremy
  */
 @Service
-public class MissionService extends AbstractPlayerModuleService<MissionDomain> implements IMissionService{
+public class MissionService implements IMissionService, IPlayerModuleService{
 	
 	private static final Logger log = LoggerFactory.getLogger(MissionService.class);
 	
@@ -119,10 +119,10 @@ public class MissionService extends AbstractPlayerModuleService<MissionDomain> i
 	}
 
 	@Override
-	public void responseAllInfo(MissionDomain domain) {
+	public void responseAllInfo(long playerId) {
 		for (IQuestHandler<?> handler : this.missionManager.getQuestHandlers()) {
-			RespMissionInfoBuilder builder = handler.toProto(domain.getId());
-			playerService.sendMessage(domain.getId(), builder);
+			RespMissionInfoBuilder builder = handler.toProto(playerId);
+			playerService.sendMessage(playerId, builder);
 		}
 	}
 

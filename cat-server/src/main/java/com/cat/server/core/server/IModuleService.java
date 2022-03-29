@@ -12,5 +12,11 @@ public interface IModuleService {
 	 * @return long 持有者id
 	 */
 	boolean checkModuleOpen(long playerId);
+	
+	/**
+	 * 获取功能id
+	 * @return int  
+	 */
+	public int getModuleId();
 
 }
