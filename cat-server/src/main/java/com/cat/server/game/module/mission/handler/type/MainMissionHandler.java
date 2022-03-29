@@ -84,7 +84,7 @@ public class MainMissionHandler extends AbstractMissionHandler<ConfigMissionMain
 	}
 
 	@Override
-	public int getFunctionId() {
+	public int getModuleId() {
 		return ModuleDefine.MISSION_MAIN.getModuleId();
 	}
 	

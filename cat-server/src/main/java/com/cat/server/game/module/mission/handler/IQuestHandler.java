@@ -36,14 +36,6 @@ public interface IQuestHandler<T extends IConfigMission> extends IFunctionReset{
 	 */
 	Map<Integer, T> getConfigs();
 	
-//	/**
-//	 * 检查刷新任务
-//	 * @param playerId 玩家id
-//	 * @param now 刷新时间
-//	 * @param notify  是否通知
-//	 */
-//	boolean checkAndRefresh(long playerId, long now, boolean notify);
-	
 	/**
 	 * 刷新任务，如果有可以完成但是没有改变任务状态的任务，刷新
 	 * @param playerId 玩家id

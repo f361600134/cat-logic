@@ -1,18 +1,18 @@
 package com.cat.server.game.module.mission;
 
 import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.cat.server.core.lifecycle.ILifecycle;
+
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.data.proto.PBMission.ReqMissionInfo;
 import com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward;
 import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.helper.result.ModuleDefines;
 import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.functioncontrol.AbstractPlayerModuleService;
 import com.cat.server.game.module.mission.domain.MissionDomain;
@@ -41,10 +41,6 @@ public class MissionService extends AbstractPlayerModuleService<MissionDomain> i
 	 * 更新信息
 	 */
 	public void responseMissionInfo(MissionDomain domain, int missionType) {
-//		IQuestHandler<?> handler = questHandlers.stream()
-//				.filter(h->h.getMissionType().getType() == missionType)
-//				.findFirst()
-//				.get();
 		IQuestHandler<?> handler = this.missionManager.getQuestHandler(missionType);
 		RespMissionInfoBuilder builder = handler.toProto(domain.getId());
 		playerService.sendMessage(domain.getId(), builder);
@@ -115,10 +111,11 @@ public class MissionService extends AbstractPlayerModuleService<MissionDomain> i
 	 * 对于任务管理类, 只负责任务逻辑的统一实现, 是否重置, 则由子类完成
 	 */
 	@Override
-	public void checkAndReset(long playerId, long now) {
+	public boolean checkAndReset(long playerId, long now) {
 		for (IQuestHandler<?> handler : this.missionManager.getQuestHandlers()) {
 			handler.checkAndReset(now, now, true);
 		}
+		return true;
 	}
 
 	@Override
@@ -152,7 +149,6 @@ public class MissionService extends AbstractPlayerModuleService<MissionDomain> i
 	@Override
 	public void doReset(long playerId, long now) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -477,16 +477,4 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 		this.reset(playerId, now, true);
 	}
 	
-	@Override
-	public long getLastResetTime(long playerId) {
-		QuestTypeData questTypeData = this.getQuestTypeData(playerId, true);
-		return questTypeData.getLastTime();
-	}
-
-	@Override
-	public void setLastResetTime(long playerId, long now) {
-		QuestTypeData questTypeData = this.getQuestTypeData(playerId, true);
-		questTypeData.setLastTime(now);
-	}
-
 }

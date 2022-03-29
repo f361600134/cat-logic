@@ -15,13 +15,13 @@ import com.cat.server.core.server.IModuleManager;
  * @auth Jeremy
  * @date 2022年3月14日上午7:36:16
  */
-public abstract class AbstractPlayerModuleService<T extends IModuleDomain<Long, ? extends IBasePo>> extends AbstractModuleService implements IFunctionReset {
+public abstract class AbstractPlayerModuleService<T extends IModuleDomain<Long, ? extends IBasePo>> extends AbstractModuleService implements IFunctionReset{
 
 	protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private IFunctionControlService functionControlService;
-
+	
 	@Override
 	public boolean checkModuleOpen(long playerId) {
 		return functionControlService.checkOpen(playerId, this.getModuleId());
@@ -77,15 +77,4 @@ public abstract class AbstractPlayerModuleService<T extends IModuleDomain<Long, 
 		return 0;
 	}
 	
-	@Override
-	public long getLastResetTime(long playerId) {
-		return this.functionControlService.getLastResetTime(playerId, this.getModuleId());
-	}
-	
-	@Override
-	public void setLastResetTime(long playerId, long now) {
-		this.functionControlService.setLastResetTime(playerId, this.getModuleId(), now);
-	}
-	
-
 }

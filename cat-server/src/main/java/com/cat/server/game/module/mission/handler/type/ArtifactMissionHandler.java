@@ -132,8 +132,8 @@ public class ArtifactMissionHandler extends AbstractMissionHandler<ConfigMission
 	}
 	
 	@Override
-	public ModuleDefine getFunctionId() {
-		return ModuleDefine.UNDEFINE;
+	public int getModuleId() {
+		return ModuleDefine.UNDEFINE.getModuleId();
 	}
 
 }

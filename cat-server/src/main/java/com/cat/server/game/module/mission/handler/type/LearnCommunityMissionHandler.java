@@ -31,7 +31,7 @@ public class LearnCommunityMissionHandler extends AbstractActivityMissionHandler
 	}
 
 	@Override
-	public ModuleDefine getFunctionId() {
-		return ModuleDefine.LEARNCOMMUNITY_MISSION;
+	public int getModuleId() {
+		return ModuleDefine.LEARNCOMMUNITY_MISSION.getModuleId();
 	}
 }

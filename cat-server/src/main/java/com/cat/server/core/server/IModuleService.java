@@ -11,6 +11,6 @@ public interface IModuleService {
 	 * 检测功能是否开启,协议层阻断消息
 	 * @return long 持有者id
 	 */
-	public abstract boolean checkModuleOpen(long playerId);
+	boolean checkModuleOpen(long playerId);
 
 }

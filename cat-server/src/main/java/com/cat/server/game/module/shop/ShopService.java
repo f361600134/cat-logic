@@ -27,7 +27,7 @@ import com.cat.server.game.module.shop.type.IShopType;
  * @author Jeremy
  */
 @Service
-public class ShopService extends AbstractPlayerModuleService<Long, ShopDomain> implements IShopService, ILifecycle {
+public class ShopService extends AbstractPlayerModuleService<ShopDomain> implements IShopService, ILifecycle {
 	
 	@Autowired private IPlayerService playerService;
 	
@@ -184,10 +184,18 @@ public class ShopService extends AbstractPlayerModuleService<Long, ShopDomain> i
 	}
 
 	@Override
-	public void checkAndReset(ShopDomain domain, long now) {
+	public boolean checkAndReset(long playerId, long now) {
+		ShopDomain domain = shopManager.getDomain(playerId);
 		this.shopManager.getShopMap().forEach((k,v)->{
 			v.checkAndReset(domain, now);
 		});
+		return true;
+	}
+
+	@Override
+	public void doReset(long playerId, long now) {
+		// TODO nothing...
+		// 
 	}
 	
 }
