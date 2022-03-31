@@ -1,0 +1,61 @@
+[ {
+  "id" : 10001,
+  "artifactId" : 1,
+  "completeType" : [ 1 ],
+  "completeCondition" : [ 0 ],
+  "completeValue" : [ 1 ],
+  "reward" : { },
+  "quickCompleteCost" : { },
+  "autoSubmit" : 0,
+  "resetType" : 0
+}, {
+  "id" : 10002,
+  "artifactId" : 1,
+  "completeType" : [ 2 ],
+  "completeCondition" : [ 0 ],
+  "completeValue" : [ 1 ],
+  "reward" : { },
+  "quickCompleteCost" : { },
+  "autoSubmit" : 0,
+  "resetType" : 0
+}, {
+  "id" : 10003,
+  "artifactId" : 2,
+  "completeType" : [ 3 ],
+  "completeCondition" : [ 0 ],
+  "completeValue" : [ 1 ],
+  "reward" : { },
+  "quickCompleteCost" : { },
+  "autoSubmit" : 0,
+  "resetType" : 0
+}, {
+  "id" : 10004,
+  "artifactId" : 2,
+  "completeType" : [ 4 ],
+  "completeCondition" : [ 0 ],
+  "completeValue" : [ 1 ],
+  "reward" : { },
+  "quickCompleteCost" : { },
+  "autoSubmit" : 0,
+  "resetType" : 0
+}, {
+  "id" : 10005,
+  "artifactId" : 3,
+  "completeType" : [ 5 ],
+  "completeCondition" : [ 0 ],
+  "completeValue" : [ 1 ],
+  "reward" : { },
+  "quickCompleteCost" : { },
+  "autoSubmit" : 0,
+  "resetType" : 0
+}, {
+  "id" : 10006,
+  "artifactId" : 3,
+  "completeType" : [ 6, 7 ],
+  "completeCondition" : [ 0, 0 ],
+  "completeValue" : [ 1, 1 ],
+  "reward" : { },
+  "quickCompleteCost" : { },
+  "autoSubmit" : 0,
+  "resetType" : 0
+} ]

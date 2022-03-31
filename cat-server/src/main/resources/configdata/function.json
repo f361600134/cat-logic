@@ -7,26 +7,26 @@
   "id" : 101,
   "shield" : 0,
   "unlock" : "",
-  "reset" : "d_0,8,16"
+  "reset" : "h_0_8_16"
 }, {
   "id" : 102,
   "shield" : 0,
   "unlock" : "",
-  "reset" : "w_1,3,5|d_0"
+  "reset" : "dw_1_3_5|h_0"
 }, {
   "id" : 103,
   "shield" : 0,
   "unlock" : "",
-  "reset" : "w_1,3,5|d_0"
+  "reset" : "dw_2_4_6"
 }, {
   "id" : 104,
   "shield" : 0,
   "unlock" : "1:20",
-  "reset" : ""
+  "reset" : "dw_2_4_6|h_0_8_16"
 }, {
   "id" : 105,
   "shield" : 0,
-  "unlock" : "",
+  "unlock" : "1:20,2:10010",
   "reset" : ""
 }, {
   "id" : 106,
@@ -47,21 +47,36 @@
   "id" : 109,
   "shield" : 0,
   "unlock" : "",
-  "reset" : ""
+  "reset" : "h_0"
 }, {
   "id" : 10901,
   "shield" : 0,
   "unlock" : "",
-  "reset" : "d_0"
+  "reset" : ""
 }, {
-  "id" : 10902,
+  "id" : 110,
   "shield" : 0,
   "unlock" : "",
-  "reset" : "w_1,3,5,7|d_0,8,16"
+  "reset" : ""
+}, {
+  "id" : 11001,
+  "shield" : 0,
+  "unlock" : "",
+  "reset" : ""
 }, {
   "id" : 200,
   "shield" : 0,
-  "unlock" : "1:20,2:10010",
+  "unlock" : "",
+  "reset" : "h_0"
+}, {
+  "id" : 20001,
+  "shield" : 0,
+  "unlock" : "",
+  "reset" : "dw_1_3_5_7|h_0_8_16"
+}, {
+  "id" : 20002,
+  "shield" : 0,
+  "unlock" : "",
   "reset" : ""
 }, {
   "id" : 201,

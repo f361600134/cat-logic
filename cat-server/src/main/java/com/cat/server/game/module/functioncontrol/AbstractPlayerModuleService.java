@@ -14,8 +14,8 @@ import com.cat.server.core.server.IModuleManager;
  * 
  * @auth Jeremy
  * @date 2022年3月14日上午7:36:16
- * @deprecated
  */
+@Deprecated
 public abstract class AbstractPlayerModuleService<T extends IModuleDomain<Long, ? extends IBasePo>> extends AbstractModuleService implements IFunctionReset{
 
 	protected final Logger log = LoggerFactory.getLogger(this.getClass());

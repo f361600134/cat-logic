@@ -1,0 +1,31 @@
+[ {
+  "id" : 1,
+  "next" : 2,
+  "maxLevel" : 24,
+  "maxSkillLevel" : 12,
+  "maxRefineLevel" : 72
+}, {
+  "id" : 2,
+  "next" : 3,
+  "maxLevel" : 24,
+  "maxSkillLevel" : 12,
+  "maxRefineLevel" : 72
+}, {
+  "id" : 3,
+  "next" : 4,
+  "maxLevel" : 24,
+  "maxSkillLevel" : 12,
+  "maxRefineLevel" : 72
+}, {
+  "id" : 4,
+  "next" : 5,
+  "maxLevel" : 24,
+  "maxSkillLevel" : 12,
+  "maxRefineLevel" : 72
+}, {
+  "id" : 5,
+  "next" : -1,
+  "maxLevel" : 24,
+  "maxSkillLevel" : 12,
+  "maxRefineLevel" : 72
+} ]

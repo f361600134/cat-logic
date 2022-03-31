@@ -685,9 +685,9 @@ public class DateUtils {
 	 * @param time
 	 * @return
 	 */
-	public static int getWeekDay(Date time) {
+	public static int getWeekDay(long time) {
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(time);
+		cal.setTimeInMillis(time);
 		int weekDay = cal.get(Calendar.DAY_OF_WEEK);
 		if (weekDay == Calendar.SUNDAY) {
 			return 7;

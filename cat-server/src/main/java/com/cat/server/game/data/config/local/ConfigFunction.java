@@ -1,8 +1,10 @@
 package com.cat.server.game.data.config.local;
 
-import com.cat.server.core.config.container.IGameConfig;
+import com.alibaba.fastjson.annotation.JSONField;
 import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.game.data.config.local.base.ConfigFunctionBase;
+import com.cat.server.game.module.functioncontrol.time.parse.ResetTimePointParser;
+import com.cat.server.game.module.functioncontrol.time.point.IResetTimePoint;
 
 
 /**
@@ -13,8 +15,16 @@ import com.cat.server.game.data.config.local.base.ConfigFunctionBase;
 @ConfigPath("function.json")
 public class ConfigFunction extends ConfigFunctionBase {
 	
-	public long getTime(long now) {
-		return 0L;
+	
+	@JSONField(name="reset", deserializeUsing = ResetTimePointParser.class)
+	private IResetTimePoint resetTimePoint;
+
+	public IResetTimePoint getResetTimePoint() {
+		return resetTimePoint;
+	}
+
+	public void setResetTimePoint(IResetTimePoint resetTimePoint) {
+		this.resetTimePoint = resetTimePoint;
 	}
 
 }

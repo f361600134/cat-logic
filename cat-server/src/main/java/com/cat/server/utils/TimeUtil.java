@@ -153,20 +153,6 @@ public class TimeUtil {
 		return (int) seconds;
 	}
 
-	/**
-	 * 毫秒转为秒
-	 * 
-	 * @param milliseconds
-	 * @return
-	 */
-	public static int ms2s(long milliseconds) {
-		if (milliseconds == 0) {
-			return 0;
-		}
-		long seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds);
-		return (int) seconds;
-	}
-
 	public static ZonedDateTime timestamp2DateTime(long time) {
 		Instant instant = Instant.ofEpochMilli(time);
 		ZonedDateTime dateTime = ZonedDateTime.ofInstant(instant, ZoneId.systemDefault());
