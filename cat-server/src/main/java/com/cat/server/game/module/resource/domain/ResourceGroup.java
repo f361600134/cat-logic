@@ -13,29 +13,33 @@ import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
 import com.cat.server.game.module.item.proto.RespRewardsBuilder;
 
 /**
- * Map类型的资源
+ * 资源组
  */
-@NotUse
-@Deprecated
-public class ResourceMap {
+public class ResourceGroup {
 
     /**
      * key:资源id，可以是属性，道具
      * value:值
      */
-    private Map<Integer, Integer> dictionary;
+    protected Map<Integer, Integer> dictionary;
     
-    public ResourceMap() {}
-
-    public ResourceMap(Map<Integer, Integer> dictionary) {
-        if (dictionary == null) {
-            throw new NullPointerException();
-        }
-        //JDK
-        this.dictionary = Collections.unmodifiableMap(dictionary);
-        //Guava
-        //this.dictionary = ImmutableMap.copyOf(dictionary);
+    public ResourceGroup() {
+    	this.dictionary = new HashMap<>();
     }
+    
+    public ResourceGroup(Map<Integer, Integer> dictionary) {
+    	this.dictionary = dictionary;
+    }
+
+//    public ResourceGroup(Map<Integer, Integer> dictionary) {
+//        if (dictionary == null) {
+//            throw new NullPointerException();
+//        }
+//        //JDK
+//        this.dictionary = Collections.unmodifiableMap(dictionary);
+//        //Guava
+//        //this.dictionary = ImmutableMap.copyOf(dictionary);
+//    }
 
     /**
      * 	获取奖励字典
@@ -58,7 +62,7 @@ public class ResourceMap {
      * @param configId 资源id
      * @param added 增加的数量
      */
-    public void addCount(int configId, Integer added) {
+    public void addCount(int configId, int added) {
         if(added <= 0) return;
         int count = getCount(configId);
         count+=added;
@@ -79,8 +83,8 @@ public class ResourceMap {
      * 	其他字典合并到此字典
      * @param otherReward 其他奖励字典
      */
-    public void merge(ResourceMap otherReward) {
-        if (otherReward == null || otherReward.isEmpty()) {
+    public void merge(ResourceGroup otherReward) {
+        if (otherReward == null || otherReward.empty()) {
             return;
         }
         this.merge(otherReward.getDictionary());
@@ -136,7 +140,7 @@ public class ResourceMap {
      * 	判断字典是否为空
      * @return
      */
-    public boolean isEmpty() {
+    public boolean empty() {
         return dictionary.isEmpty();
     }
     
@@ -170,12 +174,7 @@ public class ResourceMap {
         return ret;
     }
     
-    @Override
-	public String toString() {
-		return "ResourceMap [dictionary=" + dictionary + "]";
-	}
-
-	public static void main(String[] args) {
+    public static void main(String[] args) {
     	Map<Integer, Integer> ret = new HashMap<>();
     	ret.put(1, 1);
     	ret.put(2, 2);
@@ -186,8 +185,15 @@ public class ResourceMap {
 //    	json = JSON.toJSONString(map);
 //    	System.out.println(json);
     	
-    	ResourceMap map = JSON.parseObject(json, ResourceMap.class);
+    	ResourceGroup map = JSON.parseObject(json, ResourceGroup.class);
     	System.out.println(map);
 	}
+
+	@Override
+	public String toString() {
+		return "ResourceGroup [dictionary=" + dictionary + "]";
+	}
+    
+    
 
 }

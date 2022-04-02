@@ -188,26 +188,46 @@ public enum ParamTypes implements ParamType {
 //        }
 //
 //    },
-//    RESOURCE_GROUP(new String[] { "itemlist", "resourcegroup", "itemgroup", "cost", "reward" }, new long[0][], "ResourceGroup",
-//            "com.game.module.resource.structs.ResourceGroup") {
-//        @Override
-//        public Object parseValue0(String param) throws ParamParseException {
-//            try {
-//                // 强行兼容， ;
-//                if (param.indexOf("，") >= 0 || param.indexOf(";") >= 0) {
-//                    logger.warn("错误的数字2维数组: {}", param);
-//                    param = param.replaceAll("，", ",");
-//                    param = param.replaceAll(";", ",");
-//                }
-//                // [[1,3,5],[3,6]]
-//                long[][] value = JsonUtil.toObject(param, long[][].class);
-//                return value;
-//            } catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
-//
-//    },
+    RESOURCE_GROUP(new String[] {"reward", "cost", "ResourceGroup"}, new long[0][], "ResourceGroup", "com.cat.server.game.module.resource.domain.ResourceGroup") {
+    	/**
+    	 * 格式: 1_1,2_2
+    	 * 格式:[[1,2],[1,2]]
+    	 */
+        @Override
+        public Object parseValue0(String param) {
+        	if (param.indexOf("_") >= 0 && param.indexOf(",") >= 0) {
+                String[] params = param.split(",");
+                int length = params.length;
+                Map<Integer, Integer> arrMap = new HashMap<>();
+                for (int i = 0; i < length; i++) {
+                	String str = params[i];
+                	String [] strArr = str.split("_");
+                	arrMap.put(Integer.valueOf(strArr[0]), Integer.valueOf(strArr[1]));
+    			}
+                Map<String, Map<Integer, Integer>> ret = new HashMap<>();
+                ret.put("dictionary", arrMap);
+                return ret;
+        	}
+        	if (param.indexOf("[") >= 0 && param.indexOf("]") >= 0) {
+        		try {
+        			int[][] value = JsonUtil.toObject(param, int[][].class);
+            		Map<Integer, Integer> arrMap = new HashMap<>();
+            		for (int i = 0; i < value.length; i++) {
+            			int [] temArr = value[i];
+            			if(temArr.length >= 2) {
+            				arrMap.put(temArr[0], temArr[1]);
+            			}
+    				}
+            		Map<String, Map<Integer, Integer>> ret = new HashMap<>();
+                    ret.put("dictionary", arrMap);
+                    return ret;
+				} catch (Exception e) {
+					 throw new RuntimeException(e);
+				}
+        	}
+        	return null;
+        }
+    },
 //    ANY(new String[] { "any" }, "", "JsonNode", "com.fasterxml.jackson.databind.JsonNode") {
 //        @Override
 //        public Object parseValue0(String param) {
