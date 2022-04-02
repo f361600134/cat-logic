@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="73" started-at="2021-11-02T11:38:53 CST" finished-at="2021-11-02T11:38:54 CST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="73" started-at="2021-11-02T11:38:53 CST" finished-at="2021-11-02T11:38:54 CST">
+      <class name="com.cat.server.rank.RankTest0Interface">
+        <test-method status="PASS" signature="init()[pri:0, instance:com.cat.server.rank.RankTest0Interface@757942a1]" name="init" is-config="true" duration-ms="17" started-at="2021-11-02T11:38:53 CST" finished-at="2021-11-02T11:38:53 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="test()[pri:0, instance:com.cat.server.rank.RankTest0Interface@757942a1]" name="test" duration-ms="20" started-at="2021-11-02T11:38:54 CST" finished-at="2021-11-02T11:38:54 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test -->
+        <test-method status="PASS" signature="after()[pri:0, instance:com.cat.server.rank.RankTest0Interface@757942a1]" name="after" is-config="true" duration-ms="3" started-at="2021-11-02T11:38:54 CST" finished-at="2021-11-02T11:38:54 CST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- after -->
+      </class> <!-- com.cat.server.rank.RankTest0Interface -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

@@ -2,6 +2,7 @@ package com.cat.server.game.module.console.type.impl;
 
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ConfigFunction;
+import com.cat.server.game.data.config.local.ConfigTest;
 import com.cat.server.game.module.console.annotation.Console;
 import com.cat.server.game.module.console.type.IConsole;
 import com.cat.server.utils.TimeUtil;
@@ -23,10 +24,12 @@ public class ConsolePrinter implements IConsole {
 	@Override
 	public void process(String ...content) {
 		int value = Integer.parseInt(content[1]);
-		ConfigFunction config = ConfigManager.getInstance().getConfig(ConfigFunction.class, value);
-		System.out.println(config.getResetTimePoint().getResetTimePoint(TimeUtil.now()));
-		System.out.println(config.getReset());
-		System.out.println(config.getUnlock());
+//		ConfigFunction config = ConfigManager.getInstance().getConfig(ConfigFunction.class, value);
+//		System.out.println(config.getResetTimePoint().getResetTimePoint(TimeUtil.now()));
+//		System.out.println(config.getReset());
+//		System.out.println(config.getUnlock());
+		ConfigTest config = ConfigManager.getInstance().getConfig(ConfigTest.class, value);
+		System.out.println(config.getId()+", "+ config.getReward());
 	}
-
+	
 }

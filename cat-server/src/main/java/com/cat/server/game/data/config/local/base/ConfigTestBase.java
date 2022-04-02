@@ -1,5 +1,7 @@
 package com.cat.server.game.data.config.local.base;
 
+import com.cat.server.game.module.resource.domain.ResourceGroup;
+import java.util.Map;
 import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.game.module.resource.domain.ResourceMap;
 import com.cat.server.core.config.annotation.ConfigPath;
@@ -8,9 +10,7 @@ import com.cat.server.core.config.annotation.ConfigPath;
 /**
  * test.测试.xlsx<br>
  * Test.json<br>
- * 
  * @author auto gen
- *
  */
 public class ConfigTestBase implements IGameConfig {
 
@@ -18,115 +18,84 @@ public class ConfigTestBase implements IGameConfig {
      * id
      */
     private int id;
-    
     /**
      * int数组
      */
     private int[] intArr;
-    
     /**
      * 奖励
      */
-    private ResourceMap reward;
-    
+    private ResourceGroup reward;
     /**
      * 奖励
      */
     private ResourceMap cost;
-    
+    /**
+     * 奖励
+     */
+    private Map<Integer, Integer> reward2;
     /**
      * 时间点
      */
     private String timePoint;
-    
 
-    /**
-     * get id
-     *
-     * @return
-     */
+    /** @return id*/
     @Override
     public int getId() {
         return this.id;
     }
 
-    /**
-     * set id
-     *
-     * @param id
-     */
+    /** @param id id*/
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * get int数组
-     *
-     * @return
-     */
+    /** @return int数组*/
     public int[] getIntArr() {
         return this.intArr;
     }
 
-    /**
-     * set int数组
-     *
-     * @param intArr
-     */
+    /** @param intArr int数组*/
     public void setIntArr(int[] intArr) {
         this.intArr = intArr;
     }
 
-    /**
-     * get 奖励
-     *
-     * @return
-     */
-    public ResourceMap getReward() {
+    /** @return 奖励*/
+    public ResourceGroup getReward() {
         return this.reward;
     }
 
-    /**
-     * set 奖励
-     *
-     * @param reward
-     */
-    public void setReward(ResourceMap reward) {
+    /** @param reward 奖励*/
+    public void setReward(ResourceGroup reward) {
         this.reward = reward;
     }
 
-    /**
-     * get 奖励
-     *
-     * @return
-     */
+    /** @return 奖励*/
     public ResourceMap getCost() {
         return this.cost;
     }
 
-    /**
-     * set 奖励
-     *
-     * @param cost
-     */
+    /** @param cost 奖励*/
     public void setCost(ResourceMap cost) {
         this.cost = cost;
     }
 
-    /**
-     * get 时间点
-     *
-     * @return
-     */
+    /** @return 奖励*/
+    public Map<Integer, Integer> getReward2() {
+        return this.reward2;
+    }
+
+    /** @param reward2 奖励*/
+    public void setReward2(Map<Integer, Integer> reward2) {
+        this.reward2 = reward2;
+    }
+
+    /** @return 时间点*/
     public String getTimePoint() {
         return this.timePoint;
     }
 
-    /**
-     * set 时间点
-     *
-     * @param timePoint
-     */
+    /** @param timePoint 时间点*/
     public void setTimePoint(String timePoint) {
         this.timePoint = timePoint;
     }

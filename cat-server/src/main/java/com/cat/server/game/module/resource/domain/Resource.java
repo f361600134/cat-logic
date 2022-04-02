@@ -1,12 +1,14 @@
 package com.cat.server.game.module.resource.domain;
 
 import com.alibaba.fastjson.JSON;
+import com.cat.server.core.annotation.NotUse;
 
 /**
  * 游戏内的资源对象
  * @author Jeremy
- * @NotUse
  */
+@NotUse
+@Deprecated
 public class Resource {
 	
 	/**
