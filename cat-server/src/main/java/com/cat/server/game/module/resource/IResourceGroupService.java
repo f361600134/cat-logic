@@ -1,15 +1,16 @@
-
 package com.cat.server.game.module.resource;
 
 import java.util.Collection;
-import java.util.Map;
 
+import com.cat.server.core.annotation.NotUse;
 import com.cat.server.game.helper.log.NatureEnum;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 
 /**
  * 资源组接口
  * @author Jeremy
  */
+@NotUse
 public interface IResourceGroupService {
 	
 	/**
@@ -18,7 +19,7 @@ public interface IResourceGroupService {
 	 * @param costMap  消耗map, value值为正整数. 逐个判断, 全部满足返回true, 否则返回false
 	 * @return true 表示满足, 否则不满足
 	 */
-	public boolean check(long playerId, Map<Integer, Integer> costMap);
+	public boolean check(long playerId, ResourceGroup costMap);
 	
 	/**
 	 * 消耗
@@ -27,7 +28,7 @@ public interface IResourceGroupService {
 	 * @param nEnum 资源枚举
 	 * @param desc 其他描述
 	 */
-	public void cost(long playerId, Map<Integer, Integer> costMap, NatureEnum nEnum);
+	public void cost(long playerId, ResourceGroup costMap, NatureEnum nEnum);
 	
 	/**
 	 * 检查数量是否足够, 足够则消耗, 但凡有一个资源不满足, 就不能消耗
@@ -35,7 +36,7 @@ public interface IResourceGroupService {
 	 * @param costMap  消耗map, value值为正整数. 逐个判断, 全部满足返回true, 否则返回false
 	 * @return true 表示满足, 否则不满足
 	 */
-	public boolean checkAndCost(long playerId, Map<Integer, Integer> costMap, NatureEnum nEnum);
+	public boolean checkAndCost(long playerId, ResourceGroup costMap, NatureEnum nEnum);
 	
 	/**
 	 * 奖励
@@ -43,7 +44,7 @@ public interface IResourceGroupService {
 	 * @param rewardMap value值为正整数
 	 * @param nEnum 资源枚举
 	 */
-	public void reward(long playerId, Map<Integer, Integer> rewardMap, NatureEnum nEnum);
+	public void reward(long playerId, ResourceGroup rewardMap, NatureEnum nEnum);
 	
 	/**
 	 * 获取资源数量
@@ -58,4 +59,5 @@ public interface IResourceGroupService {
 	 * @date 2021年11月16日下午10:49:44
 	 */
 	public void clearExpire(long playerId, Collection<Integer> configIds);
+	
 }

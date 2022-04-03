@@ -17,18 +17,8 @@ import com.cat.server.game.data.config.local.ext.IConfigMission;
 public class ConfigMissionLearnCommunity extends ConfigMissionLearnCommunityBase implements IConfigActivityMission{
 
 	@Override
-	public Map<Integer, Integer> getMissionReward() {
-		return this.getReward();
-	}
-
-	@Override
 	public boolean autoSubmit() {
 		return this.getAutoSubmit() == 1;
 	}
 
-	@Override
-	public int getActivityId() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

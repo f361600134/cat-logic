@@ -12,6 +12,7 @@ import com.cat.server.game.module.attribute.domain.IAttributeEntity;
 import com.cat.server.game.module.attribute.domain.IAttributeNode;
 import com.cat.server.game.module.hero.attr.HeroRootNode;
 import com.cat.server.game.module.resource.IResource;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -33,7 +34,7 @@ public class Hero extends HeroPo implements IAttributeEntity, IPersistence, IRes
 	 * 	培养的消耗:{configId:num,configId:num}
 	 */
 	@Column(PROP_USEDMATERIALSTR)
-	private Map<Integer, Integer> usedMaterials;
+	private ResourceGroup usedMaterials;
 
 	/**
 	 * 	总星级 天赋index,从0开始
@@ -47,7 +48,7 @@ public class Hero extends HeroPo implements IAttributeEntity, IPersistence, IRes
 
 	public Hero() {
 		this.starIds = Lists.newArrayList();
-		this.usedMaterials = Maps.newHashMap();
+		this.usedMaterials = new ResourceGroup();
 		this.heroAttrNode = new HeroRootNode(this);
 	}
 	
@@ -56,7 +57,7 @@ public class Hero extends HeroPo implements IAttributeEntity, IPersistence, IRes
 		this.playerId = playerId;
 		this.configId = configId;
 		this.starIds = Lists.newArrayList();
-		this.usedMaterials = Maps.newHashMap();
+		this.usedMaterials = new ResourceGroup();
 		this.heroAttrNode = new HeroRootNode(this);
 	}
 
@@ -68,7 +69,7 @@ public class Hero extends HeroPo implements IAttributeEntity, IPersistence, IRes
 		return starLevel;
 	}
 	
-	public Map<Integer, Integer> getUsedMaterials() {
+	public ResourceGroup getUsedMaterials() {
 		return usedMaterials;
 	}
 

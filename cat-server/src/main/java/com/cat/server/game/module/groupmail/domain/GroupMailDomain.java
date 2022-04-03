@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.core.server.AbstractModuleMultiDomain;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.utils.TimeUtil;
 
 
@@ -37,7 +38,7 @@ public class GroupMailDomain extends AbstractModuleMultiDomain<Integer, Long, Gr
 		String content = backstageMail.getContent();
 		int expiredDays = backstageMail.getExpireDays();
 		long backstageId = backstageMail.getBackstageId();
-		Map<Integer, Integer> rewards = backstageMail.getReward();
+		ResourceGroup rewards = new ResourceGroup(backstageMail.getReward());
 		List<Integer> serverIds = backstageMail.getServerIds();
 		//创建新邮件
 		GroupMail groupMail = GroupMail.create(title, content, expiredDays, backstageId, rewards, serverIds);
@@ -52,7 +53,7 @@ public class GroupMailDomain extends AbstractModuleMultiDomain<Integer, Long, Gr
 	 * @param expiredDays 过期天数
 	 * @param rewards 奖励
 	 */
-	public GroupMail createMail(String title, String content, int expiredDays, long backstageId, Map<Integer, Integer> rewards, List<Integer> serverIds) {
+	public GroupMail createMail(String title, String content, int expiredDays, long backstageId, ResourceGroup rewards, List<Integer> serverIds) {
 		//创建新邮件
 		GroupMail groupMail = GroupMail.create(title, content, expiredDays, backstageId, rewards, serverIds);
 		putBean(groupMail.getId(), groupMail);
@@ -66,7 +67,7 @@ public class GroupMailDomain extends AbstractModuleMultiDomain<Integer, Long, Gr
 	 * @param expiredDays 过期天数
 	 * @param rewards 奖励
 	 */
-	public void updateMail(long mailId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
+	public void updateMail(long mailId, String title, String content, int expiredDays, ResourceGroup rewards) {
 		GroupMail mail = getBean(mailId);
 		if (mail != null) {
 			mail.setTitle(title);
@@ -75,7 +76,7 @@ public class GroupMailDomain extends AbstractModuleMultiDomain<Integer, Long, Gr
 			long expireTime = mail.getCreateTime() + TimeUtil.DAY_MILLISECONDS * expiredDays;
 			mail.setExpireTime(expireTime);
 			mail.getRewardMap().clear();
-			mail.getRewardMap().putAll(rewards);
+			mail.getRewardMap().merge(rewards);
 			mail.update();
 		}
 	}

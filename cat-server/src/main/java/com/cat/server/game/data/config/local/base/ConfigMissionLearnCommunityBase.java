@@ -1,6 +1,6 @@
 package com.cat.server.game.data.config.local.base;
 
-import java.util.Map;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.core.config.annotation.ConfigPath;
 
@@ -16,6 +16,10 @@ public class ConfigMissionLearnCommunityBase implements IGameConfig {
      * 唯一id
      */
     private int id;
+    /**
+     * 对应活动id
+     */
+    private int activityId;
     /**
      * 任务类型<br>
      * 支持多个任务条件组合
@@ -37,14 +41,14 @@ public class ConfigMissionLearnCommunityBase implements IGameConfig {
      * id_num,id_num<br>
      * 资源ID，数量
      */
-    private Map<Integer, Integer> reward;
+    private ResourceGroup reward;
     /**
      * 快速完成消耗<br>
      * [[id,num]]<br>
      * id_num,id_num<br>
      * 资源ID，数量
      */
-    private Map<Integer, Integer> quickCompleteCost;
+    private ResourceGroup quickCompleteCost;
     /**
      * 自动提交<br>
      * 0:否<br>
@@ -68,6 +72,16 @@ public class ConfigMissionLearnCommunityBase implements IGameConfig {
     /** @param id 唯一id*/
     public void setId(int id) {
         this.id = id;
+    }
+
+    /** @return 对应活动id*/
+    public int getActivityId() {
+        return this.activityId;
+    }
+
+    /** @param activityId 对应活动id*/
+    public void setActivityId(int activityId) {
+        this.activityId = activityId;
     }
 
     /** @return 任务类型*/
@@ -101,22 +115,22 @@ public class ConfigMissionLearnCommunityBase implements IGameConfig {
     }
 
     /** @return 完成奖励*/
-    public Map<Integer, Integer> getReward() {
+    public ResourceGroup getReward() {
         return this.reward;
     }
 
     /** @param reward 完成奖励*/
-    public void setReward(Map<Integer, Integer> reward) {
+    public void setReward(ResourceGroup reward) {
         this.reward = reward;
     }
 
     /** @return 快速完成消耗*/
-    public Map<Integer, Integer> getQuickCompleteCost() {
+    public ResourceGroup getQuickCompleteCost() {
         return this.quickCompleteCost;
     }
 
     /** @param quickCompleteCost 快速完成消耗*/
-    public void setQuickCompleteCost(Map<Integer, Integer> quickCompleteCost) {
+    public void setQuickCompleteCost(ResourceGroup quickCompleteCost) {
         this.quickCompleteCost = quickCompleteCost;
     }
 

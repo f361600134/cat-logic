@@ -1,4 +1,4 @@
-package com.cat.server.game.module.resource.parse;
+package com.cat.server.json.parse2;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ public class MapTest {
 
 		// ParserConfig.getGlobalInstance().putDeserializer(ResourceGroup.class, new
 		// ResourceGroupParser());
-		ParserConfig.getGlobalInstance().putDeserializer(Map.class, new MapParser());
+//		ParserConfig.getGlobalInstance().putDeserializer(Map.class, new MapParser());
 
 //		String json = "{\"group\" : {\"dictionary\" : {\"100001\" : 2, \"100002\" : 3} } }";
 		String json = "{\"group\" : {\"100001\" : 2,\"100002\" : 3}}";
@@ -24,7 +24,7 @@ public class MapTest {
 		//
 		Stu stu2 = JSON.parseObject(json, Stu.class);
 		System.out.println(stu2);
-		stu2.getGroup().put(2, 1);
+//		stu2.getGroup().put(2, 1);
 		System.out.println(stu2);
 
 	}

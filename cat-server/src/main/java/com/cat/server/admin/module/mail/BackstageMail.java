@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.cat.server.game.module.mail.IMail;
-import com.cat.server.utils.TimeUtil;
-
 /**
  * 后台邮件Dto
  * @author Jeremy
@@ -103,7 +100,7 @@ public class BackstageMail {
 	public void setServerIds(List<Integer> serverIds) {
 		this.serverIds = serverIds;
 	}
-
+	
 //	public static BackstageMail create(IMail mail) {
 //		BackstageMail backMail = new BackstageMail();
 //		backMail.setMailId(mail.getId());

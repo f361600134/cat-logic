@@ -3,7 +3,6 @@ package com.cat.server.game.module.mission.handler;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -29,6 +28,7 @@ import com.cat.server.game.module.mission.proto.RespMissionSingleQuestBuilder;
 import com.cat.server.game.module.mission.reset.IQuestReset;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceGroupService;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.utils.TimeUtil;
 
 public abstract class AbstractMissionHandler<T extends IConfigMission> implements IQuestHandler<T> {
@@ -329,14 +329,14 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	}
 
 	@Override
-	public ResultCodeData<Map<Integer, Integer>> submit(long playerId, int configId) {
+	public ResultCodeData<ResourceGroup> submit(long playerId, int configId) {
 		Quest quest = this.getQuest(playerId, configId);
 		ErrorCode resultCode = checkSubmit(playerId, quest);
 		if (!resultCode.isSuccess()) {
 			return ResultCodeData.of(resultCode);
 		}
 		// 1.发送奖励
-		Map<Integer, Integer> rewardMap = this.receiveReward(playerId, quest);
+		ResourceGroup rewardMap = this.receiveReward(playerId, quest);
 		// 2.处理提交任务
 		this.doSubmitMission(playerId, quest);
 		// 3.处理提交任务后的操作,如记录日志
@@ -353,16 +353,16 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 	 * @param quest  任务对象
 	 * @return 奖励map, 返回的引用, 禁止对其内容进行修改.避免造成灾难性的后果
 	 */
-	protected Map<Integer, Integer> receiveReward(long playerId, Quest quest) {
+	protected ResourceGroup receiveReward(long playerId, Quest quest) {
 		if (quest == null) {
-			return Collections.emptyMap();
+			return ResourceGroup.emptyGroup;
 		}
 		T config = this.getConfig(quest.getConfigId());
 		if (config == null) {
-			return Collections.emptyMap();
+			return ResourceGroup.emptyGroup;
 		}
-		resourceGroupService.reward(playerId, config.getMissionReward(), NatureEnum.MISSION_REWARD);
-		return config.getMissionReward();
+		resourceGroupService.reward(playerId, config.getReward(), NatureEnum.MISSION_REWARD);
+		return config.getReward();
 	}
 
 	/**

@@ -3,6 +3,7 @@ package com.cat.server.game.module.recycle.domain;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.server.AbstractModuleMultiDomain;
 import com.cat.server.game.data.config.local.ConfigRecycle;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
 import com.cat.server.utils.Pair;
 import com.cat.server.utils.TimeUtil;
@@ -71,8 +72,8 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 	 * @return void  
 	 * @date 2022年2月9日下午12:44:06
 	 */
-	public Map<Integer, Integer> clearResource(Collection<Integer> configIds) {
-		Map<Integer, Integer> reward = new HashMap<>();
+	public ResourceGroup clearResource(Collection<Integer> configIds) {
+		ResourceGroup reward = new ResourceGroup();
 		configIds.forEach((configId)->{
 			Iterator<Entry<Long, Recycle>> iter = getBeanMap().entrySet().iterator();
 			while (iter.hasNext()) {
@@ -90,9 +91,10 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 					}
 					//转换奖励
 					int realNum = ResourceHelper.percentage(recycle.getNumber(), config.getResRate());
-					int number = reward.getOrDefault(configId, 0);
-					number = number + realNum;
-					reward.put(configId, number);
+					reward.addCount(configId, realNum);
+//					int number = reward.getOrDefault(configId, 0);
+//					number = number + realNum;
+//					reward.put(configId, number);
 				}
 			}
 		});
@@ -103,9 +105,9 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 	 * 检测所有存档是否有需要清掉的存档
 	 * @return Pair key:可回收资源id列表, value:回收转化资源map
 	 */
-	public Pair<Set<Integer>, Map<Integer, Integer>> clearResource() {
+	public Pair<Set<Integer>, ResourceGroup> clearResource() {
 		Set<Integer> ret = new HashSet<>();
-		Map<Integer, Integer> rewardMap = new HashMap<Integer, Integer>();
+		ResourceGroup rewardMap = new ResourceGroup();
 		ConfigRecycle config = null;
 		Iterator<Entry<Long, Recycle>> iter = getBeanMap().entrySet().iterator();
 		while (iter.hasNext()) {
@@ -122,9 +124,10 @@ public class RecycleDomain extends AbstractModuleMultiDomain<Long, Long, Recycle
 				ret.add(config.getId());
 				//回收资源转换奖励
 				int realNum = ResourceHelper.percentage(recycle.getNumber(), config.getResRate());
-				int number = rewardMap.getOrDefault(config.getId(), 0);
-				number = number + realNum;
-				rewardMap.put(config.getId(), number);
+//				int number = rewardMap.getOrDefault(config.getId(), 0);
+//				number = number + realNum;
+//				rewardMap.put(config.getId(), number);
+				rewardMap.addCount(config.getId(), realNum);
 				//表示过期, 处理移除
 				recycle.delete();
 				iter.remove();

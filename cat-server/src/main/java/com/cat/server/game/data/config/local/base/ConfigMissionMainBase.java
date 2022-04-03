@@ -1,6 +1,6 @@
 package com.cat.server.game.data.config.local.base;
 
-import java.util.Map;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.core.config.annotation.ConfigPath;
 
@@ -41,14 +41,14 @@ public class ConfigMissionMainBase implements IGameConfig {
      * id_num,id_num<br>
      * 资源ID，数量
      */
-    private Map<Integer, Integer> reward;
+    private ResourceGroup reward;
     /**
      * 快速完成消耗<br>
      * [[id,num]]<br>
      * id_num,id_num<br>
      * 资源ID，数量
      */
-    private Map<Integer, Integer> quickCompleteCost;
+    private ResourceGroup quickCompleteCost;
     /**
      * 自动提交<br>
      * 0:否<br>
@@ -115,22 +115,22 @@ public class ConfigMissionMainBase implements IGameConfig {
     }
 
     /** @return 完成奖励*/
-    public Map<Integer, Integer> getReward() {
+    public ResourceGroup getReward() {
         return this.reward;
     }
 
     /** @param reward 完成奖励*/
-    public void setReward(Map<Integer, Integer> reward) {
+    public void setReward(ResourceGroup reward) {
         this.reward = reward;
     }
 
     /** @return 快速完成消耗*/
-    public Map<Integer, Integer> getQuickCompleteCost() {
+    public ResourceGroup getQuickCompleteCost() {
         return this.quickCompleteCost;
     }
 
     /** @param quickCompleteCost 快速完成消耗*/
-    public void setQuickCompleteCost(Map<Integer, Integer> quickCompleteCost) {
+    public void setQuickCompleteCost(ResourceGroup quickCompleteCost) {
         this.quickCompleteCost = quickCompleteCost;
     }
 

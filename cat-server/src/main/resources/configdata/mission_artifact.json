@@ -4,8 +4,8 @@
   "completeType" : [ 1 ],
   "completeCondition" : [ 0 ],
   "completeValue" : [ 1 ],
-  "reward" : { },
-  "quickCompleteCost" : { },
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
   "autoSubmit" : 0,
   "resetType" : 0
 }, {
@@ -14,8 +14,8 @@
   "completeType" : [ 2 ],
   "completeCondition" : [ 0 ],
   "completeValue" : [ 1 ],
-  "reward" : { },
-  "quickCompleteCost" : { },
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
   "autoSubmit" : 0,
   "resetType" : 0
 }, {
@@ -24,8 +24,8 @@
   "completeType" : [ 3 ],
   "completeCondition" : [ 0 ],
   "completeValue" : [ 1 ],
-  "reward" : { },
-  "quickCompleteCost" : { },
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
   "autoSubmit" : 0,
   "resetType" : 0
 }, {
@@ -34,8 +34,8 @@
   "completeType" : [ 4 ],
   "completeCondition" : [ 0 ],
   "completeValue" : [ 1 ],
-  "reward" : { },
-  "quickCompleteCost" : { },
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
   "autoSubmit" : 0,
   "resetType" : 0
 }, {
@@ -44,8 +44,8 @@
   "completeType" : [ 5 ],
   "completeCondition" : [ 0 ],
   "completeValue" : [ 1 ],
-  "reward" : { },
-  "quickCompleteCost" : { },
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
   "autoSubmit" : 0,
   "resetType" : 0
 }, {
@@ -54,8 +54,8 @@
   "completeType" : [ 6, 7 ],
   "completeCondition" : [ 0, 0 ],
   "completeValue" : [ 1, 1 ],
-  "reward" : { },
-  "quickCompleteCost" : { },
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
   "autoSubmit" : 0,
   "resetType" : 0
 } ]

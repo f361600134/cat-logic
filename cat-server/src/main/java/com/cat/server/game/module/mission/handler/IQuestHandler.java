@@ -9,6 +9,7 @@ import com.cat.server.game.module.functioncontrol.IFunctionReset;
 import com.cat.server.game.module.mission.define.MissionTypeEnum;
 import com.cat.server.game.module.mission.domain.Quest;
 import com.cat.server.game.module.mission.proto.RespMissionInfoBuilder;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 
 /**
  * 	任务处理类接口
@@ -68,7 +69,7 @@ public interface IQuestHandler<T extends IConfigMission> extends IFunctionReset{
      * @param configId 任务id
      * @return
      */
-	ResultCodeData<Map<Integer, Integer>> submit(long playerId, int configId);
+	ResultCodeData<ResourceGroup> submit(long playerId, int configId);
 	
     /**
      * 放弃任务

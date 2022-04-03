@@ -1,7 +1,5 @@
 package com.cat.server.game.data.config.local;
 
-import java.util.Map;
-import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.game.data.config.local.base.ConfigMissionArtifactBase;
 import com.cat.server.game.data.config.local.ext.IConfigMission;
@@ -15,10 +13,6 @@ import com.cat.server.game.data.config.local.ext.IConfigMission;
 @ConfigPath("mission_artifact.json")
 public class ConfigMissionArtifact extends ConfigMissionArtifactBase implements IConfigMission{
 
-	@Override
-	public Map<Integer, Integer> getMissionReward() {
-		return this.getMissionReward();
-	}
 
 	@Override
 	public boolean autoSubmit() {

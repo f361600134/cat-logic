@@ -80,7 +80,7 @@ public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 	 */
 	@Override
 	public void beforeClearExpire(Hero hero) {
-		Map<Integer, Integer> resource = hero.getUsedMaterials();
+		ResourceGroup resource = hero.getUsedMaterials();
 		//Send an email to the player notifying that the recycling was completed.
 		long playerId = hero.getPlayerId();
 		IMailService mailService = SpringContextHolder.getBean(IMailService.class);

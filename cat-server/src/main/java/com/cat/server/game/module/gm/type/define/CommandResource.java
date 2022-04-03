@@ -9,6 +9,7 @@ import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.gm.annotation.Command;
 import com.cat.server.game.module.gm.type.AbstractResourceCommand;
 import com.cat.server.game.module.resource.IResourceGroupService;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -27,16 +28,16 @@ public class CommandResource extends AbstractResourceCommand{
 	@Override
 	public boolean doProcess(long playerId, String params) {
 		List<Integer> paramList = this.formatIntegerList(params);
-		Map<Integer, Integer> addGoods = Maps.newHashMap();
-		Map<Integer, Integer> deductGoods = Maps.newHashMap();
+		ResourceGroup addGoods = new ResourceGroup();
+		ResourceGroup deductGoods = new ResourceGroup();
 		for(int i=1; i<paramList.size(); i=i+2)
 		{
 			int configId = paramList.get(i-1);
 			int count = paramList.get(i);
 			if (count > 0) {
-				addGoods.put(configId, count);
+				addGoods.addCount(configId, count);
 			}else {
-				deductGoods.put(configId, Math.abs(count));
+				deductGoods.addCount(configId, Math.abs(count));
 			}
 		} 
 		resourceGroupService.reward(playerId, addGoods, NatureEnum.GM);

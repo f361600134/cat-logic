@@ -1,9 +1,7 @@
 [ {
   "id" : 1001,
   "refreshStrategy" : 1,
-  "refreshCost" : {
-    "100001" : 50
-  },
+  "refreshCost" : [ [ 100001, 50 ] ],
   "commoditiesNum" : -1,
   "freeRefreshNum" : 0,
   "freeRefreshRecover" : 0,
@@ -12,9 +10,7 @@
 }, {
   "id" : 1002,
   "refreshStrategy" : 2,
-  "refreshCost" : {
-    "100001" : 50
-  },
+  "refreshCost" : [ [ 100001, 50 ] ],
   "commoditiesNum" : 6,
   "freeRefreshNum" : 0,
   "freeRefreshRecover" : 0,
@@ -23,9 +19,7 @@
 }, {
   "id" : 1003,
   "refreshStrategy" : 3,
-  "refreshCost" : {
-    "100001" : 50
-  },
+  "refreshCost" : [ [ 100001, 50 ] ],
   "commoditiesNum" : 6,
   "freeRefreshNum" : 3,
   "freeRefreshRecover" : 0,
@@ -34,9 +28,7 @@
 }, {
   "id" : 1004,
   "refreshStrategy" : 4,
-  "refreshCost" : {
-    "100001" : 50
-  },
+  "refreshCost" : [ [ 100001, 50 ] ],
   "commoditiesNum" : 6,
   "freeRefreshNum" : 3,
   "freeRefreshRecover" : 0,
@@ -45,9 +37,7 @@
 }, {
   "id" : 1005,
   "refreshStrategy" : 5,
-  "refreshCost" : {
-    "100001" : 50
-  },
+  "refreshCost" : [ [ 100001, 50 ] ],
   "commoditiesNum" : 6,
   "freeRefreshNum" : 3,
   "freeRefreshRecover" : 3,
@@ -56,9 +46,7 @@
 }, {
   "id" : 1006,
   "refreshStrategy" : 6,
-  "refreshCost" : {
-    "100001" : 50
-  },
+  "refreshCost" : [ [ 100001, 50 ] ],
   "commoditiesNum" : 6,
   "freeRefreshNum" : 0,
   "freeRefreshRecover" : 0,

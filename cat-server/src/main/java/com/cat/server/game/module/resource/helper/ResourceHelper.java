@@ -15,7 +15,7 @@ import java.util.Map.Entry;
 
 /**
  * 没有想打合适的办法把资源类, 在配置里反序列化成ResourceMap<br>
- *
+ * @deprecated
  * @author Jeremy
  */
 public class ResourceHelper {

@@ -12,6 +12,7 @@ import com.cat.server.admin.helper.result.SystemCodeEnum;
 import com.cat.server.admin.helper.result.SystemResult;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.mail.IMailService;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 
 /**
  * 统一使用玩家线程去处理
@@ -59,7 +60,7 @@ public class MailHandler {
 		final String title = mail.getTitle();
 		final String content = mail.getContent();
 		final int expireDays = mail.getExpireDays();
-		final Map<Integer, Integer> reward= mail.getReward();
+		final ResourceGroup reward = new ResourceGroup(mail.getReward());
 		ErrorCode errorCode = mailService.updateMail(mailType, mailId, playerId, title, content, expireDays, reward);
 		return SystemResult.build(errorCode);
 	}

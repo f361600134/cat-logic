@@ -10,15 +10,14 @@ import com.cat.server.game.module.mail.IMailServiceContainer;
 import com.cat.server.game.module.mail.assist.MailType;
 import com.cat.server.game.module.playermail.domain.PlayerMail;
 import com.cat.server.game.module.playermail.domain.PlayerMailDomain;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.game.module.shadow.IShadowService;
 import com.cat.server.game.module.shadow.domain.Shadow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Collection;
-import java.util.Map;
 
 /**
  * PlayerMail控制器
@@ -50,7 +49,7 @@ public class PlayerMailService implements IMailServiceContainer{
 	}
 	
 	@Override
-	public ResultCodeData<Long> sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args) {
+	public ResultCodeData<Long> sendMail(long playerId, int configID, ResourceGroup rewards, Object... args) {
 		// TODO 从邮件配置获取邮件信息
 		ConfigMail config = ConfigManager.getInstance().getConfig(ConfigMail.class, configID);
 		if(config == null) {
@@ -63,7 +62,7 @@ public class PlayerMailService implements IMailServiceContainer{
 	}
 
 	@Override
-	public ResultCodeData<Long> sendMail(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
+	public ResultCodeData<Long> sendMail(long playerId, String title, String content, int expiredDays, ResourceGroup rewards) {
 		//发送邮件, 先判断是否有这个玩家
 		Shadow shadow = shadowService.get(playerId);
 		if (shadow == null) {
@@ -99,7 +98,7 @@ public class PlayerMailService implements IMailServiceContainer{
 
 	@Override
 	public ErrorCode updateMail(long mailId, long playerId, String title, String content, int expiredDays,
-			Map<Integer, Integer> rewards) {
+			ResourceGroup rewards) {
 		PlayerMailDomain domain = playerMailManager.getOrLoadDomain(playerId);
 		if (domain == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
@@ -139,7 +138,7 @@ public class PlayerMailService implements IMailServiceContainer{
 		final String title = backstageMail.getTitle();
 		final String content = backstageMail.getContent();
 		final int expiredDays = backstageMail.getExpireDays();
-		final Map<Integer, Integer> rewards = backstageMail.getReward();
+		final ResourceGroup rewards = new ResourceGroup(backstageMail.getReward());
 		return this.sendMail(playerId, title, content, expiredDays, rewards);
 	}
 

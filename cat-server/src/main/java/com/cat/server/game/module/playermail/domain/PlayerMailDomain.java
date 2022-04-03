@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.server.core.server.AbstractModuleMultiDomain;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.utils.TimeUtil;
 
 
@@ -16,7 +17,6 @@ import com.cat.server.utils.TimeUtil;
 public class PlayerMailDomain extends AbstractModuleMultiDomain<Long, Long, PlayerMail> {
 
 	private static final Logger log = LoggerFactory.getLogger(PlayerMailDomain.class);
-	
 	
 	public PlayerMailDomain(){
 		
@@ -32,7 +32,7 @@ public class PlayerMailDomain extends AbstractModuleMultiDomain<Long, Long, Play
 	 * @param expiredDays 过期天数
 	 * @param rewards 奖励
 	 */
-	public void updateMail(long mailId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
+	public void updateMail(long mailId, String title, String content, int expiredDays, ResourceGroup rewards) {
 		PlayerMail mail = getBean(mailId);
 		if (mail != null) {
 			mail.setTitle(title);
@@ -41,7 +41,7 @@ public class PlayerMailDomain extends AbstractModuleMultiDomain<Long, Long, Play
 			long expireTime = mail.getCreateTime() + TimeUtil.DAY_MILLISECONDS * expiredDays;
 			mail.setExpireTime(expireTime);
 			mail.getRewardMap().clear();
-			mail.getRewardMap().putAll(rewards);
+			mail.getRewardMap().merge(rewards);
 			mail.update();
 		}
 	}

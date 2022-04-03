@@ -1,8 +1,7 @@
 package com.cat.server.game.data.config.local.ext;
 
-import java.util.Map;
-
 import com.cat.server.core.config.container.IGameConfig;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 
 /**
  * 游戏内的商店抽象配置处理类
@@ -15,7 +14,7 @@ public interface IConfigShop extends IGameConfig{
 	 * @return Map<Integer,Integer>  价格map
 	 * @date 2022年3月12日下午3:14:48
 	 */
-	public Map<Integer, Integer> getPrice();
+	public ResourceGroup getPrice();
 	
 	/**
 	 * 获取购买所得
@@ -23,7 +22,7 @@ public interface IConfigShop extends IGameConfig{
 	 * @return Map<Integer,Integer>  购买所得
 	 * @date 2022年3月12日下午3:14:48
 	 */
-	public Map<Integer, Integer> getItems();
+	public ResourceGroup getItems();
 	
 	/**
 	 * 判断限购次数,有些商店的商品如果是vip可以多购买一次

@@ -2,42 +2,60 @@
   "id" : 10001,
   "nextId" : 10002,
   "completeType" : [ 1 ],
-  "completeCondition" : [ ],
+  "completeCondition" : [ 0 ],
   "completeValue" : [ 1 ],
-  "reward" : { }
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
 }, {
   "id" : 10002,
   "nextId" : 10003,
   "completeType" : [ 2 ],
-  "completeCondition" : [ ],
+  "completeCondition" : [ 0 ],
   "completeValue" : [ 1 ],
-  "reward" : { }
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
 }, {
   "id" : 10003,
   "nextId" : 10004,
   "completeType" : [ 3 ],
-  "completeCondition" : [ ],
+  "completeCondition" : [ 0 ],
   "completeValue" : [ 1 ],
-  "reward" : { }
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
 }, {
   "id" : 10004,
   "nextId" : 10005,
   "completeType" : [ 4 ],
-  "completeCondition" : [ ],
+  "completeCondition" : [ 0 ],
   "completeValue" : [ 1 ],
-  "reward" : { }
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
 }, {
   "id" : 10005,
   "nextId" : 10006,
   "completeType" : [ 5 ],
-  "completeCondition" : [ ],
+  "completeCondition" : [ 0 ],
   "completeValue" : [ 1 ],
-  "reward" : { }
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
 }, {
   "id" : 10006,
   "nextId" : 10007,
   "completeType" : [ 6, 7 ],
-  "completeCondition" : [ ],
+  "completeCondition" : [ 0, 0 ],
   "completeValue" : [ 1, 1 ],
-  "reward" : { }
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
 } ]

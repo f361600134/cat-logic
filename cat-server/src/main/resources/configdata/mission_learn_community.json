@@ -1,31 +1,61 @@
 [ {
   "id" : 10001,
+  "activityId" : 150101,
   "completeType" : [ 1 ],
   "completeCondition" : [ ],
   "completeValue" : [ 1 ],
-  "reward" : { }
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
 }, {
   "id" : 10002,
+  "activityId" : 150101,
   "completeType" : [ 2 ],
   "completeCondition" : [ ],
   "completeValue" : [ 1 ],
-  "reward" : { }
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
 }, {
   "id" : 10003,
+  "activityId" : 150101,
   "completeType" : [ 3 ],
   "completeCondition" : [ ],
   "completeValue" : [ 1 ],
-  "reward" : { }
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
 }, {
   "id" : 10004,
+  "activityId" : 150101,
   "completeType" : [ 4 ],
   "completeCondition" : [ ],
   "completeValue" : [ 1 ],
-  "reward" : { }
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
 }, {
   "id" : 10005,
+  "activityId" : 150101,
   "completeType" : [ 5 ],
   "completeCondition" : [ ],
   "completeValue" : [ 1 ],
-  "reward" : { }
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
+}, {
+  "id" : 10006,
+  "activityId" : 150101,
+  "completeType" : [ 6, 7 ],
+  "completeCondition" : [ 0, 0 ],
+  "completeValue" : [ 1, 1 ],
+  "reward" : [ ],
+  "quickCompleteCost" : [ ],
+  "autoSubmit" : 0,
+  "resetType" : 0
 } ]

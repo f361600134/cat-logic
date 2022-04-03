@@ -13,6 +13,7 @@ import com.cat.server.game.module.recycle.domain.RecycleDomain;
 import com.cat.server.game.module.recycle.proto.RespResourceRecycleInfoBuilder;
 import com.cat.server.game.module.recycle.strategy.impl.ActivityRecycleStrategy;
 import com.cat.server.game.module.resource.IResourceGroupService;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.utils.Pair;
 
 import org.slf4j.Logger;
@@ -115,8 +116,8 @@ class RecycleService implements IRecycleService {
 			//不管是否在线, 丢到玩家线程处理资源回收
 			DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(playerService.getSessionId(playerId),()->{
 				try {
-					Map<Integer, Integer> rewardMap = domain.clearResource(configIds);
-					if (rewardMap.isEmpty()) {
+					ResourceGroup rewardMap = domain.clearResource(configIds);
+					if (rewardMap.empty()) {
 						return;
 					}
 					//邮件通知
@@ -177,9 +178,9 @@ class RecycleService implements IRecycleService {
 				return;
 			}
 			//清理过期资源
-			Pair<Set<Integer>, Map<Integer, Integer>> ret = domain.clearResource();
+			Pair<Set<Integer>, ResourceGroup> ret = domain.clearResource();
 			//如果清理的资源存在奖励, 应该先发奖励邮件. 然后通知其他背包系统清理过期资源
-			if (!ret.getValue().isEmpty()) {
+			if (!ret.getValue().empty()) {
 				//邮件通知
 				mailService.sendMail(MailType.PLAYER_MAIL.getMailType(), playerId, MailTemplate.ACTIVITY_ITEM_RECYCLE.getMailConfigId(), ret.getValue());
 			}

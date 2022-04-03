@@ -22,6 +22,7 @@ import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.IMailServiceContainer;
 import com.cat.server.game.module.mail.assist.MailType;
 import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 
 
 /**
@@ -65,7 +66,7 @@ class GroupMailService implements IMailServiceContainer, ILifecycle{
 	}
 
 	@Override
-	public ResultCodeData<Long> sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args) {
+	public ResultCodeData<Long> sendMail(long playerId, int configID, ResourceGroup rewards, Object... args) {
 		throw new UnsupportedOperationException("群邮件不支持配置发送");
 	}
 
@@ -75,12 +76,12 @@ class GroupMailService implements IMailServiceContainer, ILifecycle{
 	}
 
 	@Override
-	public ResultCodeData<Long> sendMail(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
+	public ResultCodeData<Long> sendMail(long playerId, String title, String content, int expiredDays, ResourceGroup rewards) {
 		throw new UnsupportedOperationException("群邮件不支持配置发送");
 	}
 
 	@Override
-	public ErrorCode updateMail(long mailId, long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
+	public ErrorCode updateMail(long mailId, long playerId, String title, String content, int expiredDays, ResourceGroup rewards) {
 		GroupMailDomain domain = groupMailManager.getDomain(serverConfig.getServerId());
 		if (domain == null) {
 			log.info("sendMail error, domain is null");

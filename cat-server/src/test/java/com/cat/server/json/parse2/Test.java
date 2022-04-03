@@ -1,4 +1,4 @@
-package com.cat.server.game.module.resource.parse;
+package com.cat.server.json.parse2;
 
 import java.util.Map;
 

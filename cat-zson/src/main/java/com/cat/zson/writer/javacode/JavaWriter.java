@@ -112,7 +112,7 @@ public class JavaWriter {
     
     private static File getJavaBaseFile(File projectDir, String clazzFullName) {
         //String clazzPath = projectDir.getPath() + File.separator + "src/main/java" + File.separator;
-    	String clazzPath = projectDir.getPath() + File.separator;
+    	String clazzPath = projectDir.getPath() + File.separator + "base" + File.separator;
         clazzPath += clazzFullName.replace('.', File.separatorChar);
         clazzPath = clazzPath + "Base.java";
         File clazzFile = new File(clazzPath);

@@ -6,6 +6,7 @@ import java.util.Map;
 import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 
 /**
  * 邮件通用容器接口
@@ -37,7 +38,7 @@ public interface IMailServiceContainer {
 	 * @param expiredDays 过期天数
 	 * @param rewards 奖励
 	 */
-	public ResultCodeData<Long> sendMail(long playerId, int configID, Map<Integer, Integer> rewards, Object... args);
+	public ResultCodeData<Long> sendMail(long playerId, int configID, ResourceGroup rewards, Object... args);
 	/**
 	 * 发送一封带文本, 奖励的邮件<br>
 	 * 只要玩家存在, 不管玩家是否在线, 都应该发送成功<br>
@@ -48,7 +49,7 @@ public interface IMailServiceContainer {
 	 * @param rewards 奖励
 	 * @return ResultCodeData<Long> 发送成功后, 携带邮件id
 	 */
-	public ResultCodeData<Long> sendMail(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards);
+	public ResultCodeData<Long> sendMail(long playerId, String title, String content, int expiredDays, ResourceGroup rewards);
 	
 	/**
 	 * 根据邮件id删掉一封邮件, 真正意义上的删除, 从数据库删除
@@ -66,7 +67,7 @@ public interface IMailServiceContainer {
 	 * @param expiredDays 过期天数
 	 * @param rewards 奖励
 	 */
-	public ErrorCode updateMail(long mailId, long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards);
+	public ErrorCode updateMail(long mailId, long playerId, String title, String content, int expiredDays, ResourceGroup rewards);
 	
 	/**
 	 * 获取邮件

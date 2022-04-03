@@ -2,13 +2,13 @@ package com.cat.server.game.module.resource.domain;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
-import com.cat.server.core.annotation.NotUse;
+import com.cat.server.game.data.proto.PBItem.PBPairInfo;
 import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
+import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
 import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
 import com.cat.server.game.module.item.proto.RespRewardsBuilder;
 
@@ -16,6 +16,11 @@ import com.cat.server.game.module.item.proto.RespRewardsBuilder;
  * 资源组
  */
 public class ResourceGroup {
+	
+	/**
+	 * 提供一个静态的,全局的,不可变的空资源组
+	 */
+	public static final ResourceGroup emptyGroup = new ImmutableResourceGroup();
 
     /**
      * key:资源id，可以是属性，道具
@@ -145,6 +150,14 @@ public class ResourceGroup {
     }
     
     /**
+     * 	清掉字典内容
+     * @return
+     */
+    public void clear() {
+        dictionary.clear();
+    }
+    
+    /**
      * 奖励序封装成奖励消息对象
      * @return 奖励消息对象
      */
@@ -157,6 +170,21 @@ public class ResourceGroup {
             resp.addRewards(builder.build());
         });
         return resp;
+    }
+    
+    /**
+     * 奖励序封装成奖励消息对象
+     * @return 奖励消息对象
+     */
+    public Collection<PBPairInfo> toCollPairProto(){
+    	Collection<PBPairInfo> ret = new ArrayList<>();
+        this.dictionary.forEach((key, val)->{
+            PBPairInfoBuilder builder = new PBPairInfoBuilder();
+            builder.setConfigId(key);
+            builder.setValue(val);
+            ret.add(builder.build());
+        });
+        return ret;
     }
     
     /**

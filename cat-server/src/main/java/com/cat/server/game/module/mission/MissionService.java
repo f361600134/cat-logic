@@ -22,6 +22,7 @@ import com.cat.server.game.module.mission.manager.MissionManager;
 import com.cat.server.game.module.mission.proto.RespMissionInfoBuilder;
 import com.cat.server.game.module.mission.proto.RespMissionQuestRewardBuilder;
 import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 
 
 /**
@@ -97,7 +98,7 @@ public class MissionService implements IMissionService, IPlayerModuleService{
 			}
 			int missionType = 0;
 			IQuestHandler<?> handler = this.missionManager.getQuestHandler(missionType);
-			ResultCodeData<Map<Integer, Integer>> result = handler.submit(playerId, req.getId());
+			ResultCodeData<ResourceGroup> result = handler.submit(playerId, req.getId());
 			return result.getErrorCode();
 		} catch (Exception e) {
 			log.error("reqMissionQuestReward error, playerId:{}", playerId, e);
