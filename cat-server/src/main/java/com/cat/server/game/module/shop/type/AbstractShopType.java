@@ -15,6 +15,7 @@ import com.cat.server.game.data.config.local.ext.IConfigShop;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.resource.IResourceGroupService;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
 import com.cat.server.game.module.shop.domain.Shop;
 import com.cat.server.game.module.shop.domain.ShopDomain;
@@ -75,11 +76,11 @@ public abstract class AbstractShopType<T extends IConfigShop> implements IShopTy
 				.filter((c)-> this.checkCanBuy(domain, c, getRemainNumber(domain, c)).isSuccess())
 				.collect(Collectors.toList());
 		
-		Map<Integer, Integer> costMap = new HashMap<>();
-		Map<Integer, Integer> itemMap = new HashMap<>();
+		ResourceGroup costMap = new ResourceGroup();
+		ResourceGroup itemMap = new ResourceGroup();
 		for (T config : configs) {
-			ResourceHelper.mergeToMap(config.getPrice(), costMap);
-			ResourceHelper.mergeToMap(config.getItems(), itemMap);
+			costMap.merge(config.getPrice());
+			itemMap.merge(config.getItems());
 		}
 		//判断消耗
 		if (!resourceGroupService.checkAndCost(domain.getId(), costMap, NatureEnum.ShopQuickBuy)) {

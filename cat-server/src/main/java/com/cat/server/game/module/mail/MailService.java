@@ -14,6 +14,7 @@ import com.cat.server.game.module.mail.proto.RespMailReadBuilder;
 import com.cat.server.game.module.mail.proto.RespMailRewardBuilder;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceGroupService;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
@@ -161,7 +162,7 @@ class MailService implements IMailService {
 		resourceGroupService.reward(playerId, mail.getRewardMap(), NatureEnum.MailReward);
 		//更新状态
 		this.responseMailInfo(playerId, Lists.newArrayList(mailId));
-		ack.addAllRewards(ResourceHelper.toPairProto(mail.getRewardMap()));
+		ack.addAllRewards(mail.getRewardMap().toCollPairProto());
 		return ErrorCode.SUCCESS;
 	}
 	
@@ -173,29 +174,30 @@ class MailService implements IMailService {
 	 */
 	private ErrorCode receiveAll(long playerId, long mailId, RespMailRewardBuilder ack) {
 		List<Long> mailIds = new ArrayList<>();
-		Map<Integer, Integer> rewardMap = new HashMap<>();
+		ResourceGroup group = new ResourceGroup();
 		Collection<IMail> cols = mailManager.getMails(playerId);
 		for (IMail mail : cols) {
 			if (mail == null || mail.isExpired() || mail.isRewarded(playerId))
 				continue;
 
 			//merge reward
-			ResourceHelper.mergeToMap(mail.getRewardMap(), rewardMap);
+			//ResourceHelper.mergeToMap(mail.getRewardMap(), rewardMap);
+			group.merge(mail.getRewardMap());
 			mailIds.add(mail.getId());
 			
 			mail.addState(playerId, MailState.REWARD);
 			mail.update();
 		}
 		//没有可领取奖励
-		if (rewardMap.isEmpty()) {
+		if (group.empty()) {
 			return ErrorCode.MAIL_ALREADY_NO_REWARD;
 		}
 		//奖励入背包
-		resourceGroupService.reward(playerId, rewardMap, NatureEnum.MailReward);
+		resourceGroupService.reward(playerId, group, NatureEnum.MailReward);
 		//更新状态
 		this.responseMailInfo(playerId, mailIds);
 		//更新奖励
-		ack.addAllRewards(ResourceHelper.toPairProto(rewardMap));
+		ack.addAllRewards(group.toCollPairProto());
 		return ErrorCode.SUCCESS;
 	}
 	
@@ -263,7 +265,7 @@ class MailService implements IMailService {
 	}
 
 	@Override
-	public ErrorCode sendMail(int mailType, long playerId, int configID, Map<Integer, Integer> rewards, Object... args) {
+	public ErrorCode sendMail(int mailType, long playerId, int configID, ResourceGroup rewards, Object... args) {
 		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
 		if (mailContainer == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
@@ -274,7 +276,7 @@ class MailService implements IMailService {
 
 	@Override
 	public ErrorCode sendMail(int mailType, long playerId, String title, String content, int expiredDays,
-			Map<Integer, Integer> rewards) {
+			ResourceGroup rewards) {
 		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
 		if (mailContainer == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;
@@ -294,7 +296,7 @@ class MailService implements IMailService {
 
 	@Override
 	public ErrorCode updateMail(int mailType, long mailId, long playerId, String title, String content, int expiredDays,
-			Map<Integer, Integer> rewards) {
+			ResourceGroup rewards) {
 		IMailServiceContainer mailContainer = mailManager.getMailContainer(mailType);
 		if (mailContainer == null) {
 			return ErrorCode.MAIL_BOX_NOT_FOUND;

@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.cat.zson.common.Config;
 import com.cat.zson.exception.ParamParseException;
 import com.cat.zson.util.JsonUtil;
 
@@ -198,29 +197,19 @@ public enum ParamTypes implements ParamType {
         	if (param.indexOf("_") >= 0 && param.indexOf(",") >= 0) {
                 String[] params = param.split(",");
                 int length = params.length;
-                Map<Integer, Integer> arrMap = new HashMap<>();
+                int [][] ret = new int[length][2];
                 for (int i = 0; i < length; i++) {
                 	String str = params[i];
                 	String [] strArr = str.split("_");
-                	arrMap.put(Integer.valueOf(strArr[0]), Integer.valueOf(strArr[1]));
+                	ret[i][0] = Integer.valueOf(strArr[0]);
+                	ret[i][1] = Integer.valueOf(strArr[1]);
     			}
-                Map<String, Map<Integer, Integer>> ret = new HashMap<>();
-                ret.put("dictionary", arrMap);
                 return ret;
         	}
         	if (param.indexOf("[") >= 0 && param.indexOf("]") >= 0) {
         		try {
         			int[][] value = JsonUtil.toObject(param, int[][].class);
-            		Map<Integer, Integer> arrMap = new HashMap<>();
-            		for (int i = 0; i < value.length; i++) {
-            			int [] temArr = value[i];
-            			if(temArr.length >= 2) {
-            				arrMap.put(temArr[0], temArr[1]);
-            			}
-    				}
-            		Map<String, Map<Integer, Integer>> ret = new HashMap<>();
-                    ret.put("dictionary", arrMap);
-                    return ret;
+                    return value;
 				} catch (Exception e) {
 					 throw new RuntimeException(e);
 				}

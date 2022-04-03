@@ -1,7 +1,5 @@
 package com.cat.server.game.module.playermail.domain;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
@@ -14,6 +12,7 @@ import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.assist.MailConstant;
 import com.cat.server.game.module.mail.assist.MailState;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.utils.TimeUtil;
 
 /**
@@ -27,7 +26,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 	 */
 	private static final long serialVersionUID = 2942618617969545324L;
 	
-	private Map<Integer, Integer> rewardMap;
+	private ResourceGroup rewardMap;
 
 	public PlayerMail() {
 		
@@ -58,7 +57,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 		final String title = backstageMail.getTitle();
 		final String content = backstageMail.getContent();
 		final int expiredDays = backstageMail.getExpireDays();
-		final Map<Integer, Integer> rewards = backstageMail.getReward();
+		final ResourceGroup rewards = new ResourceGroup(backstageMail.getReward());
 		return create(playerId, title, content, expiredDays, rewards);
 	}
 	
@@ -71,7 +70,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 	 * @param rewards 奖励内容
 	 * @return 邮件对象
 	 */
-	public static PlayerMail create(long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards) {
+	public static PlayerMail create(long playerId, String title, String content, int expiredDays, ResourceGroup rewards) {
 		SnowflakeGenerator generator = SpringContextHolder.getBean(SnowflakeGenerator.class);
 		PlayerMail mail = new PlayerMail(playerId);
 		//邮件id唯一,使用雪花生成器生成
@@ -91,7 +90,7 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 	/**
 	 * @return 邮件奖励列表
 	 */
-	public Map<Integer, Integer> getRewardMap() {
+	public ResourceGroup getRewardMap() {
 		return rewardMap;
 	}
 
@@ -114,9 +113,9 @@ public class PlayerMail extends PlayerMailPo implements IPersistence, IMail{
 	@Override
 	public void afterLoad() {
 		if (!StringUtils.isBlank(rewards)){
-			this.rewardMap = JSONObject.parseObject(rewards, new TypeReference<Map<Integer, Integer>>(){});
+			this.rewardMap = JSONObject.parseObject(rewards, new TypeReference<ResourceGroup>(){});
 		}else {
-			this.rewardMap = new HashMap<>();
+			this.rewardMap = new ResourceGroup();
 		}
 	}
 

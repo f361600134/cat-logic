@@ -22,7 +22,7 @@ public interface IMailMapper extends IBaseMapper<BackstageMail, IMail>{
 		@Mapping(target = "mailId", expression = "java(mail.getId())"),
 	  @Mapping(target = "content", expression = "java(mail.getContent())"),
 	  @Mapping(target = "expireDays", expression = "java(com.cat.server.utils.TimeUtil.getDifferDay(mail.getCreateTime(), mail.getExpireTime()))"),
-	  @Mapping(target = "reward", expression = "java(mail.getRewardMap())")
+	  @Mapping(target = "reward", expression = "java(mail.getRewardMap().getDictionary())")
 	})
 	public BackstageMail toDto(IMail mail);
 	

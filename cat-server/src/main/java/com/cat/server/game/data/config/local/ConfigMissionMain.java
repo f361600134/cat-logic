@@ -16,11 +16,6 @@ import com.cat.server.game.data.config.local.ext.IConfigMission;
 public class ConfigMissionMain extends ConfigMissionMainBase implements IConfigMission{
 
 	@Override
-	public Map<Integer, Integer> getMissionReward() {
-		return this.getReward();
-	}
-
-	@Override
 	public boolean autoSubmit() {
 		return this.getAutoSubmit() == 1;
 	}

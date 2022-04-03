@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 
 /**
  * 邮件通用接口
@@ -28,7 +29,7 @@ public interface IMailService {
 	 * @param rewards 奖励
 	 * @param args 模板参数
 	 */
-	public ErrorCode sendMail(int mailType, long playerId, int configID, Map<Integer, Integer> rewards, Object... args);
+	public ErrorCode sendMail(int mailType, long playerId, int configID, ResourceGroup rewards, Object... args);
 	
 	/**
 	 * 发送一封带文本, 奖励的邮件
@@ -38,7 +39,7 @@ public interface IMailService {
 	 * @param expiredDays 过期天数
 	 * @param rewards 奖励
 	 */
-	public ErrorCode sendMail(int mailType, long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards);
+	public ErrorCode sendMail(int mailType, long playerId, String title, String content, int expiredDays, ResourceGroup rewards);
 
 	/**
 	 * 根据邮件id删掉一封邮件, 真正意义上的删除, 从数据库删除
@@ -57,7 +58,7 @@ public interface IMailService {
 	 * @param rewards 奖励
 	 * @return
 	 */
-	public ErrorCode updateMail(int mailType, long mailId, long playerId, String title, String content, int expiredDays, Map<Integer, Integer> rewards);
+	public ErrorCode updateMail(int mailType, long mailId, long playerId, String title, String content, int expiredDays, ResourceGroup rewards);
 	
 	/**
 	 * 返回一封邮件

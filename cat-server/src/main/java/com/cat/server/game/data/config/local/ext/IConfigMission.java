@@ -3,6 +3,7 @@ package com.cat.server.game.data.config.local.ext;
 import java.util.Map;
 
 import com.cat.server.core.config.container.IGameConfig;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 
 public interface IConfigMission extends IGameConfig{
 	
@@ -28,7 +29,7 @@ public interface IConfigMission extends IGameConfig{
 	 * 奖励
 	 * @return 奖励Map
 	 */
-	public Map<Integer, Integer> getMissionReward();
+	public ResourceGroup getReward();
 	
 	/**
 	 * 是否自动提交<br>

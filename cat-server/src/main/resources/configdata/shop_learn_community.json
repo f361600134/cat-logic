@@ -2,8 +2,8 @@
   "id" : 10001,
   "shopId" : 1002,
   "activityId" : 150101,
-  "items" : { },
-  "price" : { },
+  "items" : [ ],
+  "price" : [ ],
   "limit" : -1,
   "resetType" : 0,
   "quickBuy" : 0,
@@ -12,12 +12,8 @@
   "id" : 10002,
   "shopId" : 1002,
   "activityId" : 150101,
-  "items" : {
-    "200002" : 1
-  },
-  "price" : {
-    "100001" : 30
-  },
+  "items" : [ [ 200002, 1 ] ],
+  "price" : [ [ 100001, 30 ] ],
   "limit" : -1,
   "resetType" : 0,
   "quickBuy" : 0,
@@ -26,8 +22,8 @@
   "id" : 10003,
   "shopId" : 1002,
   "activityId" : 150101,
-  "items" : { },
-  "price" : { },
+  "items" : [ ],
+  "price" : [ ],
   "limit" : 1,
   "resetType" : 0,
   "quickBuy" : 0,
@@ -36,12 +32,8 @@
   "id" : 10004,
   "shopId" : 1002,
   "activityId" : 150101,
-  "items" : {
-    "202002" : 1
-  },
-  "price" : {
-    "100002" : 3000
-  },
+  "items" : [ [ 202002, 1 ] ],
+  "price" : [ [ 100002, 3000 ] ],
   "limit" : 1,
   "resetType" : 0,
   "quickBuy" : 0,

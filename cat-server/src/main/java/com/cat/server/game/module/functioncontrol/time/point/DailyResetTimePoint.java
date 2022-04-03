@@ -6,8 +6,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.ArrayUtils;
-
 import com.cat.server.utils.TimeUtil;
 
 /**
@@ -39,7 +37,6 @@ public class DailyResetTimePoint implements IResetTimePoint{
 
 	@Override
 	public long getResetTimePoint(long now) {
-		System.out.println(hours);
 		if (CollectionUtils.isEmpty(hours)) {
 			return RESET_FREE;
 		}

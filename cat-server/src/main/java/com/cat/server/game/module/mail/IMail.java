@@ -10,6 +10,7 @@ import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.data.proto.PBMail;
 import com.cat.server.game.module.mail.assist.MailState;
 import com.cat.server.game.module.mail.proto.PBMailInfoBuilder;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
 import com.cat.server.utils.DateUtils;
 import com.cat.server.utils.TimeUtil;
@@ -46,7 +47,7 @@ public interface IMail extends IPersistence{
 	 * 奖励
 	 * @return
 	 */
-	public Map<Integer, Integer> getRewardMap();
+	public ResourceGroup getRewardMap();
 	
 	/**
 	 * 创建时间
@@ -93,7 +94,7 @@ public interface IMail extends IPersistence{
 	 * @return true:可删除
 	 */
 	default public boolean canDel(long playerId) {
-		if (this.getState(playerId) == MailState.READ.getState() && this.getRewardMap().isEmpty()) {
+		if (this.getState(playerId) == MailState.READ.getState() && this.getRewardMap().empty()) {
 			//状态为已读,并且没有奖励配置 可以删除
 			return true;
 		}else if (this.isRewarded(playerId)) {
@@ -120,7 +121,8 @@ public interface IMail extends IPersistence{
 		String createDate = DateFormatUtils.format(Calendar.getInstance().getTime(), DateUtils.PATTERN_NORMAL);
 		builder.setDate(createDate);
 		//奖励格式化
-		builder.addAllRewards(ResourceHelper.toPairProto(getRewardMap()));
+		//builder.addAllRewards(ResourceHelper.toPairProto(getRewardMap()));
+		builder.addAllRewards(getRewardMap().toCollPairProto());
 		return builder.build();
 	}
 	

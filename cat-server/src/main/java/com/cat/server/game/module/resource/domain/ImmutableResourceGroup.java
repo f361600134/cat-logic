@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 
-@Deprecated
 public final class ImmutableResourceGroup extends ResourceGroup {
 	
 	public ImmutableResourceGroup() {

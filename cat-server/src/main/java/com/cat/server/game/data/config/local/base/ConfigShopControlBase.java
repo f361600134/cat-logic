@@ -1,6 +1,6 @@
 package com.cat.server.game.data.config.local.base;
 
-import java.util.Map;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.core.config.annotation.ConfigPath;
 
@@ -30,7 +30,7 @@ public class ConfigShopControlBase implements IGameConfig {
      * 刷新消耗<br>
      * 资源ID，数量
      */
-    private Map<Integer, Integer> refreshCost;
+    private ResourceGroup refreshCost;
     /**
      * 商品数量<br>
      * 不限制:-1
@@ -81,12 +81,12 @@ public class ConfigShopControlBase implements IGameConfig {
     }
 
     /** @return 刷新消耗*/
-    public Map<Integer, Integer> getRefreshCost() {
+    public ResourceGroup getRefreshCost() {
         return this.refreshCost;
     }
 
     /** @param refreshCost 刷新消耗*/
-    public void setRefreshCost(Map<Integer, Integer> refreshCost) {
+    public void setRefreshCost(ResourceGroup refreshCost) {
         this.refreshCost = refreshCost;
     }
 

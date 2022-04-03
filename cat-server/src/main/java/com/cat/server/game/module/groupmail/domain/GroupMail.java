@@ -14,6 +14,7 @@ import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.assist.MailState;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.utils.TimeUtil;
 
 /**
@@ -28,7 +29,7 @@ public class GroupMail extends GroupMailPo implements IPersistence, IMail {
 	private static final long serialVersionUID = -3215406404369917418L;
 
 	@Column(value = PROP_REWARDS)
-	private Map<Integer, Integer> rewardMap = new HashMap<>();
+	private ResourceGroup resourceGroup = new ResourceGroup();
 
 	/**
 	 * 邮件状态信息<br>
@@ -48,8 +49,8 @@ public class GroupMail extends GroupMailPo implements IPersistence, IMail {
 
 	}
 
-	public Map<Integer, Integer> getRewardMap() {
-		return rewardMap;
+	public ResourceGroup getRewardMap() {
+		return resourceGroup;
 	}
 
 	Map<Long, Integer> getStateMap() {
@@ -74,7 +75,7 @@ public class GroupMail extends GroupMailPo implements IPersistence, IMail {
 	 * @param rewards 奖励内容
 	 * @return 邮件对象
 	 */
-	public static GroupMail create(String title, String content, int expiredDays, long backstageId, Map<Integer, Integer> rewards, List<Integer> serverIds) {
+	public static GroupMail create(String title, String content, int expiredDays, long backstageId, ResourceGroup rewards, List<Integer> serverIds) {
 		SnowflakeGenerator generator = SpringContextHolder.getBean(SnowflakeGenerator.class);
 		GroupMail mail = new GroupMail();
 		// 邮件id唯一,使用雪花生成器生成

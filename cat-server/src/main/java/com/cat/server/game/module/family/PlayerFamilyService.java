@@ -9,6 +9,7 @@ import com.cat.server.game.module.family.domain.PlayerFamily;
 import com.cat.server.game.module.family.domain.PlayerFamilyDomain;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceGroupService;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.utils.TimeUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -87,7 +88,7 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 		}
 		//TODO 敏感字判断,特殊字符,长度判断
 		//TODO 判断消耗
-		Map<Integer, Integer> costMap = new HashMap<Integer, Integer>();
+		ResourceGroup costMap = new ResourceGroup();
 		if (!resourceGroupService.check(playerId, costMap)) {
 			return ErrorCode.AMOUNT_NOT_ENOUGH;
 		}

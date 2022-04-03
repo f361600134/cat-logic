@@ -1,6 +1,6 @@
 package com.cat.server.game.data.config.local.base;
 
-import java.util.Map;
+import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.core.config.annotation.ConfigPath;
 
@@ -29,13 +29,13 @@ public class ConfigShopLearnCommunityBase implements IGameConfig {
      * id_num<br>
      * 资源ID，数量
      */
-    private Map<Integer, Integer> items;
+    private ResourceGroup items;
     /**
      * 现价<br>
      * [id,num]<br>
      * 资源ID，数量
      */
-    private Map<Integer, Integer> price;
+    private ResourceGroup price;
     /**
      * 限购数<br>
      * 不限购为-1
@@ -90,22 +90,22 @@ public class ConfigShopLearnCommunityBase implements IGameConfig {
     }
 
     /** @return 购买所得*/
-    public Map<Integer, Integer> getItems() {
+    public ResourceGroup getItems() {
         return this.items;
     }
 
     /** @param items 购买所得*/
-    public void setItems(Map<Integer, Integer> items) {
+    public void setItems(ResourceGroup items) {
         this.items = items;
     }
 
     /** @return 现价*/
-    public Map<Integer, Integer> getPrice() {
+    public ResourceGroup getPrice() {
         return this.price;
     }
 
     /** @param price 现价*/
-    public void setPrice(Map<Integer, Integer> price) {
+    public void setPrice(ResourceGroup price) {
         this.price = price;
     }
 

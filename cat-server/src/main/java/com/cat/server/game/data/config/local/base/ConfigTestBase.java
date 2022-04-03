@@ -3,7 +3,6 @@ package com.cat.server.game.data.config.local.base;
 import com.cat.server.game.module.resource.domain.ResourceGroup;
 import java.util.Map;
 import com.cat.server.core.config.container.IGameConfig;
-import com.cat.server.game.module.resource.domain.ResourceMap;
 import com.cat.server.core.config.annotation.ConfigPath;
 
 
@@ -29,7 +28,7 @@ public class ConfigTestBase implements IGameConfig {
     /**
      * 奖励
      */
-    private ResourceMap cost;
+    private ResourceGroup cost;
     /**
      * 奖励
      */
@@ -71,12 +70,12 @@ public class ConfigTestBase implements IGameConfig {
     }
 
     /** @return 奖励*/
-    public ResourceMap getCost() {
+    public ResourceGroup getCost() {
         return this.cost;
     }
 
     /** @param cost 奖励*/
-    public void setCost(ResourceMap cost) {
+    public void setCost(ResourceGroup cost) {
         this.cost = cost;
     }
 

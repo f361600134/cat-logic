@@ -1,11 +1,9 @@
 package com.cat.server.game.module.console.type.impl;
 
 import com.cat.server.core.config.ConfigManager;
-import com.cat.server.game.data.config.local.ConfigFunction;
 import com.cat.server.game.data.config.local.ConfigTest;
 import com.cat.server.game.module.console.annotation.Console;
 import com.cat.server.game.module.console.type.IConsole;
-import com.cat.server.utils.TimeUtil;
 
 /**
  * 控制台命令,更新指定排行榜
@@ -29,6 +27,8 @@ public class ConsolePrinter implements IConsole {
 //		System.out.println(config.getReset());
 //		System.out.println(config.getUnlock());
 		ConfigTest config = ConfigManager.getInstance().getConfig(ConfigTest.class, value);
+		System.out.println(config.getId()+", "+ config.getReward());
+		config.getReward().addCount(1, 2);
 		System.out.println(config.getId()+", "+ config.getReward());
 	}
 	
