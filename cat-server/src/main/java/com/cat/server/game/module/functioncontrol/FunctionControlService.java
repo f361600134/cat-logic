@@ -21,8 +21,7 @@ public class FunctionControlService implements IFunctionControlService{
 	@Override
 	public boolean checkOpen(long playerId, int moduleId) {
 		ConfigFunction config = ConfigManager.getInstance().getConfig(ConfigFunction.class, moduleId);
-		
-		return true;
+		return config.getCondition().accept(playerId);
 	}
 
 	@Override

@@ -1,20 +1,16 @@
 package com.cat.server.game.module.mission;
 
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.data.proto.PBMission.ReqMissionInfo;
 import com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward;
 import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
-import com.cat.server.game.module.functioncontrol.IPlayerModuleService;
 import com.cat.server.game.module.mission.domain.MissionDomain;
 import com.cat.server.game.module.mission.domain.QuestTypeData;
 import com.cat.server.game.module.mission.handler.IQuestHandler;
@@ -30,7 +26,7 @@ import com.cat.server.game.module.resource.domain.ResourceGroup;
  * @author Jeremy
  */
 @Service
-public class MissionService implements IMissionService, IPlayerModuleService{
+public class MissionService implements IMissionService{
 	
 	private static final Logger log = LoggerFactory.getLogger(MissionService.class);
 	
@@ -107,7 +103,6 @@ public class MissionService implements IMissionService, IPlayerModuleService{
 	}
 	
 	/////////////接口方法////////////////////////
-	
 	/**
 	 * 对于任务管理类, 只负责任务逻辑的统一实现, 是否重置, 则由子类完成
 	 */
@@ -142,11 +137,6 @@ public class MissionService implements IMissionService, IPlayerModuleService{
 		this.missionManager.init();
 	}
 	
-	@Override
-	public int priority() {
-		return Priority.LOGIC.getPriority();
-	}
-
 	@Override
 	public void doReset(long playerId, long now) {
 		// TODO Auto-generated method stub
