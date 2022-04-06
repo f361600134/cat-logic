@@ -2,8 +2,8 @@ package com.cat.server.game.module.functioncontrol;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.cat.server.core.context.SpringContextHolder;
-import com.cat.server.core.server.IModuleDomain;
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.core.server.IModuleService;
 
