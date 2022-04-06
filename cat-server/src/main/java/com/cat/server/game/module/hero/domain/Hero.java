@@ -1,7 +1,6 @@
 package com.cat.server.game.module.hero.domain;
 
 import java.util.List;
-import java.util.Map;
 
 import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
@@ -14,7 +13,6 @@ import com.cat.server.game.module.hero.attr.HeroRootNode;
 import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 /**	 武将实体类
  * @author Jeremy
