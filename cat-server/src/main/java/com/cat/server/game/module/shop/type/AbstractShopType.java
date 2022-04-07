@@ -3,7 +3,6 @@ package com.cat.server.game.module.shop.type;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -65,7 +64,7 @@ public abstract class AbstractShopType<T extends IConfigShop> implements IShopTy
 	 * 取配置表内, 可以被一键购买的配置, 统一购买
 	 * 一键购买规则有以下两种,当前选第一种
 	 * 1. 可一键购买的所有商品,当钱足够时, 方可购买成功.
-	 * 2.从第一件商品开始,钱够则卖,不够则中断.
+	 * 2. 从第一件商品开始,钱够则卖,不够则中断.
 	 */
 	@Override
 	public ErrorCode quickBuy(ShopDomain domain) {

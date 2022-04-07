@@ -16,7 +16,6 @@ public class FunctionControlService implements IFunctionControlService{
 
 	/**
 	 * 校验功能是否开启<br>
-	 * 
 	 */
 	@Override
 	public boolean checkOpen(long playerId, int moduleId) {

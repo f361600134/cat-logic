@@ -61,12 +61,4 @@ public interface IModuleManager<I, T> {
 		return null;
 	}
 	
-	/**
-	 * TODO 构建一个空对象
-	 * @return
-	 */
-	default public T build() {
-		return null;
-	}
-	
 }

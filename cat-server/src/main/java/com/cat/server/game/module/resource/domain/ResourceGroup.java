@@ -203,18 +203,20 @@ public class ResourceGroup {
     }
     
     public static void main(String[] args) {
-    	Map<Integer, Integer> ret = new HashMap<>();
-    	ret.put(1, 1);
-    	ret.put(2, 2);
-    	String json = JSON.toJSONString(ret);
-    	System.out.println(json);
+//    	Map<Integer, Integer> ret = new HashMap<>();
+//    	ret.put(1, 1);
+//    	ret.put(2, 2);
+//    	String json = JSON.toJSONString(ret);
+//    	System.out.println(json);
     	
 //    	ResourceMap map = new ResourceMap(ret);
 //    	json = JSON.toJSONString(map);
 //    	System.out.println(json);
     	
-    	ResourceGroup map = JSON.parseObject(json, ResourceGroup.class);
-    	System.out.println(map);
+//    	ResourceGroup map = JSON.parseObject(json, ResourceGroup.class);
+//    	System.out.println(map);
+//    	long exp = 100
+//    	System.out.println(exp);
 	}
 
 	@Override

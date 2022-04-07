@@ -5,7 +5,6 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.data.proto.PBShop.ReqShopBuy;
 import com.cat.server.game.data.proto.PBShop.ReqShopInfo;
