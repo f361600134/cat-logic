@@ -206,13 +206,13 @@ public final class PBDefine {
      */
     RespItemUse(102202),
     /**
-     * <code>RespItemDelete = 102203;</code>
-     */
-    RespItemDelete(102203),
-    /**
      * <code>ReqItemSell = 102102;</code>
      */
     ReqItemSell(102102),
+    /**
+     * <code>RespItemDelete = 102203;</code>
+     */
+    RespItemDelete(102203),
     /**
      * <code>RespRewards = 102204;</code>
      */
@@ -319,6 +319,14 @@ public final class PBDefine {
     RespMissionInfo(111203),
     /**
      * <pre>
+     *FunctionControl
+     * </pre>
+     *
+     * <code>ReqFunctionControl = 2101;</code>
+     */
+    ReqFunctionControl(2101),
+    /**
+     * <pre>
      *GroupMail
      * </pre>
      *
@@ -341,6 +349,34 @@ public final class PBDefine {
      * <code>RespActivityItemsUpdate = 201203;</code>
      */
     RespActivityItemsUpdate(201203),
+    /**
+     * <pre>
+     *Pet
+     * </pre>
+     *
+     * <code>ReqPetIdentify = 112101;</code>
+     */
+    ReqPetIdentify(112101),
+    /**
+     * <code>RespPetUpdate = 112201;</code>
+     */
+    RespPetUpdate(112201),
+    /**
+     * <code>RespPetIdentify = 112202;</code>
+     */
+    RespPetIdentify(112202),
+    /**
+     * <code>RespPetDelete = 112203;</code>
+     */
+    RespPetDelete(112203),
+    /**
+     * <code>RespPetActive = 112204;</code>
+     */
+    RespPetActive(112204),
+    /**
+     * <code>ReqPetActive = 112102;</code>
+     */
+    ReqPetActive(112102),
     UNRECOGNIZED(-1),
     ;
 
@@ -525,13 +561,13 @@ public final class PBDefine {
      */
     public static final int RespItemUse_VALUE = 102202;
     /**
-     * <code>RespItemDelete = 102203;</code>
-     */
-    public static final int RespItemDelete_VALUE = 102203;
-    /**
      * <code>ReqItemSell = 102102;</code>
      */
     public static final int ReqItemSell_VALUE = 102102;
+    /**
+     * <code>RespItemDelete = 102203;</code>
+     */
+    public static final int RespItemDelete_VALUE = 102203;
     /**
      * <code>RespRewards = 102204;</code>
      */
@@ -638,6 +674,14 @@ public final class PBDefine {
     public static final int RespMissionInfo_VALUE = 111203;
     /**
      * <pre>
+     *FunctionControl
+     * </pre>
+     *
+     * <code>ReqFunctionControl = 2101;</code>
+     */
+    public static final int ReqFunctionControl_VALUE = 2101;
+    /**
+     * <pre>
      *GroupMail
      * </pre>
      *
@@ -660,6 +704,34 @@ public final class PBDefine {
      * <code>RespActivityItemsUpdate = 201203;</code>
      */
     public static final int RespActivityItemsUpdate_VALUE = 201203;
+    /**
+     * <pre>
+     *Pet
+     * </pre>
+     *
+     * <code>ReqPetIdentify = 112101;</code>
+     */
+    public static final int ReqPetIdentify_VALUE = 112101;
+    /**
+     * <code>RespPetUpdate = 112201;</code>
+     */
+    public static final int RespPetUpdate_VALUE = 112201;
+    /**
+     * <code>RespPetIdentify = 112202;</code>
+     */
+    public static final int RespPetIdentify_VALUE = 112202;
+    /**
+     * <code>RespPetDelete = 112203;</code>
+     */
+    public static final int RespPetDelete_VALUE = 112203;
+    /**
+     * <code>RespPetActive = 112204;</code>
+     */
+    public static final int RespPetActive_VALUE = 112204;
+    /**
+     * <code>ReqPetActive = 112102;</code>
+     */
+    public static final int ReqPetActive_VALUE = 112102;
 
 
     public final int getNumber() {
@@ -723,8 +795,8 @@ public final class PBDefine {
         case 102101: return ReqItemUse;
         case 102201: return RespItemUpdate;
         case 102202: return RespItemUse;
-        case 102203: return RespItemDelete;
         case 102102: return ReqItemSell;
+        case 102203: return RespItemDelete;
         case 102204: return RespRewards;
         case 102205: return RespItemSell;
         case 110101: return ReqShopInfo;
@@ -746,10 +818,17 @@ public final class PBDefine {
         case 111102: return ReqMissionQuestReward;
         case 111202: return RespMissionQuestReward;
         case 111203: return RespMissionInfo;
+        case 2101: return ReqFunctionControl;
         case 900101: return ReqGroupMailInfo;
         case 201201: return RespActivityItemDelete;
         case 201202: return RespActivityItemsInfo;
         case 201203: return RespActivityItemsUpdate;
+        case 112101: return ReqPetIdentify;
+        case 112201: return RespPetUpdate;
+        case 112202: return RespPetIdentify;
+        case 112203: return RespPetDelete;
+        case 112204: return RespPetActive;
+        case 112102: return ReqPetActive;
         default: return null;
       }
     }
@@ -811,7 +890,7 @@ public final class PBDefine {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020PBProtocol.proto\022\010Protocol*\213\014\n\nPBProto" +
+      "\n\020PBProtocol.proto\022\010Protocol*\244\r\n\nPBProto" +
       "col\022\r\n\tDEFAULTID\020\000\022\032\n\024RespPlayerCreateRo" +
       "le\020\321\226\006\022\031\n\023ReqPlayerCreateRole\020\355\225\006\022\026\n\020Req" +
       "PlayerReLogin\020\356\225\006\022\025\n\017RespPlayerHeart\020\322\226\006" +
@@ -833,8 +912,8 @@ public final class PBDefine {
       "\365\274\006\022\022\n\014RespRankInfo\020\331\275\006\022\016\n\010ReqLogin\020\205\216\006\022" +
       "\021\n\013ReqRandName\020\206\216\006\022\023\n\rReqCreateRole\020\207\216\006\022" +
       "\r\n\010RespTips\020\261\t\022\020\n\nReqItemUse\020\325\235\006\022\024\n\016Resp" +
-      "ItemUpdate\020\271\236\006\022\021\n\013RespItemUse\020\272\236\006\022\024\n\016Res" +
-      "pItemDelete\020\273\236\006\022\021\n\013ReqItemSell\020\326\235\006\022\021\n\013Re" +
+      "ItemUpdate\020\271\236\006\022\021\n\013RespItemUse\020\272\236\006\022\021\n\013Req" +
+      "ItemSell\020\326\235\006\022\024\n\016RespItemDelete\020\273\236\006\022\021\n\013Re" +
       "spRewards\020\274\236\006\022\022\n\014RespItemSell\020\275\236\006\022\021\n\013Req" +
       "ShopInfo\020\225\334\006\022\022\n\014RespShopInfo\020\371\334\006\022\021\n\013Resp" +
       "ShopBuy\020\372\334\006\022\020\n\nReqShopBuy\020\226\334\006\022\026\n\020RespSho" +
@@ -847,11 +926,15 @@ public final class PBDefine {
       "eqChat\020\245\255\006\022\024\n\016ReqMissionInfo\020\375\343\006\022\034\n\026Resp" +
       "MissionSingleQuest\020\341\344\006\022\033\n\025ReqMissionQues" +
       "tReward\020\376\343\006\022\034\n\026RespMissionQuestReward\020\342\344" +
-      "\006\022\025\n\017RespMissionInfo\020\343\344\006\022\026\n\020ReqGroupMail" +
-      "Info\020\205\3706\022\034\n\026RespActivityItemDelete\020\361\243\014\022\033" +
-      "\n\025RespActivityItemsInfo\020\362\243\014\022\035\n\027RespActiv" +
-      "ityItemsUpdate\020\363\243\014B*\n\036com.cat.server.gam" +
-      "e.data.protoB\010PBDefineb\006proto3"
+      "\006\022\025\n\017RespMissionInfo\020\343\344\006\022\027\n\022ReqFunctionC" +
+      "ontrol\020\265\020\022\026\n\020ReqGroupMailInfo\020\205\3706\022\034\n\026Res" +
+      "pActivityItemDelete\020\361\243\014\022\033\n\025RespActivityI" +
+      "temsInfo\020\362\243\014\022\035\n\027RespActivityItemsUpdate\020" +
+      "\363\243\014\022\024\n\016ReqPetIdentify\020\345\353\006\022\023\n\rRespPetUpda" +
+      "te\020\311\354\006\022\025\n\017RespPetIdentify\020\312\354\006\022\023\n\rRespPet" +
+      "Delete\020\313\354\006\022\023\n\rRespPetActive\020\314\354\006\022\022\n\014ReqPe" +
+      "tActive\020\346\353\006B*\n\036com.cat.server.game.data." +
+      "protoB\010PBDefineb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

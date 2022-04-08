@@ -16,7 +16,9 @@ public enum ResourceType {
 	/** 英雄 */
 	Hero(4),
 	/**活动道具*/
-	ActivityItem(5),	
+	ActivityItem(5),
+	/**宠物*/
+	Pet(6),
 	;
 	private int type;
 	private ResourceType(int type) {

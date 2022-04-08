@@ -33,6 +33,8 @@ public enum ModuleDefine {
 	MISSION(110),
 	/**主线任务*/
 	MISSION_MAIN(MISSION, 1),
+	/**宠物*/
+	PET(111),
 	/** 研习社*/
 	LEARNCOMMUNITY(200),
 	/** 研习社*/
