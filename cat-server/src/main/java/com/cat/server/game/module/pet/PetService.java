@@ -1,12 +1,10 @@
 package com.cat.server.game.module.pet;
 
 import java.util.Collection;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.data.proto.PBPet.ReqPetActive;
 import com.cat.server.game.data.proto.PBPet.ReqPetIdentify;
@@ -18,11 +16,11 @@ import com.cat.server.game.module.functioncontrol.IPlayerModuleService;
 import com.cat.server.game.module.pet.domain.Pet;
 import com.cat.server.game.module.pet.domain.PetDomain;
 import com.cat.server.game.module.pet.proto.RespPetActiveBuilder;
+import com.cat.server.game.module.pet.proto.RespPetDeleteBuilder;
 import com.cat.server.game.module.pet.proto.RespPetIdentifyBuilder;
 import com.cat.server.game.module.pet.proto.RespPetUpdateBuilder;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceService;
-
 
 /**
  * Pet控制器
@@ -50,14 +48,34 @@ public class PetService implements IPetService, IResourceService, IPlayerModuleS
 		playerService.sendMessage(domain.getId(), pet.toProto());
 	}
 	
+	// 推送更新物品列表至前端
+	public void responseUpdateItemList(long playerId, Collection<Pet> petList) {
+		// 更新物品
+		if (!petList.isEmpty()) {
+			RespPetUpdateBuilder ack = RespPetUpdateBuilder.newInstance();
+			petList.forEach((pet)->{
+				ack.addPets(pet.toProto().build());
+			});
+			playerService.sendMessage(playerId, ack);
+		}
+	}
+	//推送删除物品列表至前端
+	public void responseDeleteItemList(long playerId, Collection<Long> petList){
+		//更新物品
+		if (!petList.isEmpty()) {
+			RespPetDeleteBuilder ack = RespPetDeleteBuilder.newInstance();
+			ack.addAllUniqueId(petList);
+			playerService.sendMessage(playerId, ack);
+		}
+	}
 	
 	/////////////业务逻辑//////////////////
 	
 	/**
 	* 请求宠物激活
-	* @param long playerId
-	* @param ReqPetActive req
-	* @param RespPetActiveResp ack
+	* @param playerId 玩家id
+	* @param req 消息请求
+	* @param ack 消息响应
 	*/
 	public ErrorCode reqPetActive(long playerId, ReqPetActive req, RespPetActiveBuilder ack){
 		try {
@@ -66,7 +84,14 @@ public class PetService implements IPetService, IResourceService, IPlayerModuleS
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
 			final long uniqueId = req.getUniqueId();
-			//TODO Somthing.
+			Pet pet = domain.getBean(uniqueId);
+			if (pet == null) {
+				return ErrorCode.INVALID_PARAM;
+			}
+			else if (pet.getActive()) {
+				return ErrorCode.PET_NOT_EXIST;
+			}
+			domain.active(uniqueId);
 			this.responsePetInfo(domain, uniqueId);
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {
@@ -77,9 +102,9 @@ public class PetService implements IPetService, IResourceService, IPlayerModuleS
 	
 	/**
 	* 宠物资质鉴定
-	* @param long playerId
-	* @param ReqPetIdentify req
-	* @param RespPetIdentifyResp ack
+	* @param playerId
+	* @param req
+	* @param ack
 	*/
 	public ErrorCode reqPetIdentify(long playerId, ReqPetIdentify req, RespPetIdentifyBuilder ack){
 		try {
@@ -88,7 +113,6 @@ public class PetService implements IPetService, IResourceService, IPlayerModuleS
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
 			final long uniqueId = req.getUniqueId();
-			
 			//TODO Somthing.
 			this.responsePetInfo(domain, uniqueId);
 			return ErrorCode.SUCCESS;
@@ -181,6 +205,18 @@ public class PetService implements IPetService, IResourceService, IPlayerModuleS
 			builder.addPets(pet.toProto().build());
 		}
 		playerService.sendMessage(playerId, builder);
+	}
+	
+	@Override
+	public void notify(long playerId) {
+		PetDomain domain = petManager.getDomain(playerId);
+		if (domain == null) {
+			return;
+		}
+		//	通知客户端数据变动
+		this.responseUpdateItemList(playerId, domain.getAndClearUpdateList());
+		//	通知客户端数据删除
+		this.responseDeleteItemList(playerId, domain.getAndClearDeleteList());
 	}
 }
  

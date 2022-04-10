@@ -9,8 +9,8 @@ import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.data.proto.PBShop.ReqShopBuy;
 import com.cat.server.game.data.proto.PBShop.ReqShopInfo;
 import com.cat.server.game.data.proto.PBShop.ReqShopQuickBuy;
+import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.helper.result.ModuleDefines;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.shop.domain.ShopDomain;
 import com.cat.server.game.module.shop.proto.RespShopBuyBuilder;
@@ -173,7 +173,7 @@ public class ShopService implements IShopService {
 	
 	@Override
 	public int getModuleId() {
-		return ModuleDefines.SHOP;
+		return ModuleDefine.SHOP.getModuleId();
 	}
 
 	@Override

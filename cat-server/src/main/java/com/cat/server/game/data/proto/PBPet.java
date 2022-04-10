@@ -269,6 +269,16 @@ public final class PBPet {
      * @return The active.
      */
     boolean getActive();
+
+    /**
+     * <pre>
+     *属性点,含等级属性点,前缀属性点
+     * </pre>
+     *
+     * <code>int32 attrPoint = 15;</code>
+     * @return The attrPoint.
+     */
+    int getAttrPoint();
   }
   /**
    * <pre>
@@ -405,6 +415,11 @@ public final class PBPet {
             case 112: {
 
               active_ = input.readBool();
+              break;
+            }
+            case 120: {
+
+              attrPoint_ = input.readInt32();
               break;
             }
             default: {
@@ -797,6 +812,20 @@ public final class PBPet {
       return active_;
     }
 
+    public static final int ATTRPOINT_FIELD_NUMBER = 15;
+    private int attrPoint_;
+    /**
+     * <pre>
+     *属性点,含等级属性点,前缀属性点
+     * </pre>
+     *
+     * <code>int32 attrPoint = 15;</code>
+     * @return The attrPoint.
+     */
+    public int getAttrPoint() {
+      return attrPoint_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -852,6 +881,9 @@ public final class PBPet {
       }
       if (active_ != false) {
         output.writeBool(14, active_);
+      }
+      if (attrPoint_ != 0) {
+        output.writeInt32(15, attrPoint_);
       }
       unknownFields.writeTo(output);
     }
@@ -917,6 +949,10 @@ public final class PBPet {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(14, active_);
       }
+      if (attrPoint_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(15, attrPoint_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -960,6 +996,8 @@ public final class PBPet {
           != other.getHungry()) return false;
       if (getActive()
           != other.getActive()) return false;
+      if (getAttrPoint()
+          != other.getAttrPoint()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1008,6 +1046,8 @@ public final class PBPet {
       hash = (37 * hash) + ACTIVE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getActive());
+      hash = (37 * hash) + ATTRPOINT_FIELD_NUMBER;
+      hash = (53 * hash) + getAttrPoint();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1188,6 +1228,8 @@ public final class PBPet {
 
         active_ = false;
 
+        attrPoint_ = 0;
+
         return this;
       }
 
@@ -1253,6 +1295,7 @@ public final class PBPet {
         result.trust_ = trust_;
         result.hungry_ = hungry_;
         result.active_ = active_;
+        result.attrPoint_ = attrPoint_;
         onBuilt();
         return result;
       }
@@ -1412,6 +1455,9 @@ public final class PBPet {
         }
         if (other.getActive() != false) {
           setActive(other.getActive());
+        }
+        if (other.getAttrPoint() != 0) {
+          setAttrPoint(other.getAttrPoint());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2891,6 +2937,48 @@ public final class PBPet {
       public Builder clearActive() {
         
         active_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int attrPoint_ ;
+      /**
+       * <pre>
+       *属性点,含等级属性点,前缀属性点
+       * </pre>
+       *
+       * <code>int32 attrPoint = 15;</code>
+       * @return The attrPoint.
+       */
+      public int getAttrPoint() {
+        return attrPoint_;
+      }
+      /**
+       * <pre>
+       *属性点,含等级属性点,前缀属性点
+       * </pre>
+       *
+       * <code>int32 attrPoint = 15;</code>
+       * @param value The attrPoint to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAttrPoint(int value) {
+        
+        attrPoint_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *属性点,含等级属性点,前缀属性点
+       * </pre>
+       *
+       * <code>int32 attrPoint = 15;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAttrPoint() {
+        
+        attrPoint_ = 0;
         onChanged();
         return this;
       }
@@ -6631,7 +6719,7 @@ public final class PBPet {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013PBPet.proto\022\010Protocol\032\014PBItem.proto\"\317\002" +
+      "\n\013PBPet.proto\022\010Protocol\032\014PBItem.proto\"\342\002" +
       "\n\010PBPetDto\022\020\n\010uniqueId\030\001 \001(\003\022\020\n\010configId" +
       "\030\002 \001(\005\022\020\n\010prefixId\030\003 \001(\005\022\r\n\005level\030\004 \001(\005\022" +
       "\013\n\003exp\030\005 \001(\003\022\020\n\010nickName\030\006 \001(\t\022\016\n\006gender" +
@@ -6640,14 +6728,14 @@ public final class PBPet {
       "\0220\n\022aptitudeAttributes\030\n \003(\0132\024.Protocol." +
       "PBPairInfo\022$\n\006skills\030\013 \003(\0132\024.Protocol.PB" +
       "PairInfo\022\r\n\005trust\030\014 \001(\005\022\016\n\006hungry\030\r \001(\005\022" +
-      "\016\n\006active\030\016 \001(\010\"\"\n\016ReqPetIdentify\022\020\n\010uni" +
-      "queId\030\001 \001(\003\"1\n\rRespPetUpdate\022 \n\004pets\030\001 \003" +
-      "(\0132\022.Protocol.PBPetDto\"\037\n\017RespPetIdentif" +
-      "y\022\014\n\004code\030\001 \001(\005\"!\n\rRespPetDelete\022\020\n\010uniq" +
-      "ueId\030\001 \003(\003\"\035\n\rRespPetActive\022\014\n\004code\030\001 \001(" +
-      "\005\" \n\014ReqPetActive\022\020\n\010uniqueId\030\001 \001(\003B\'\n\036c" +
-      "om.cat.server.game.data.protoB\005PBPetb\006pr" +
-      "oto3"
+      "\016\n\006active\030\016 \001(\010\022\021\n\tattrPoint\030\017 \001(\005\"\"\n\016Re" +
+      "qPetIdentify\022\020\n\010uniqueId\030\001 \001(\003\"1\n\rRespPe" +
+      "tUpdate\022 \n\004pets\030\001 \003(\0132\022.Protocol.PBPetDt" +
+      "o\"\037\n\017RespPetIdentify\022\014\n\004code\030\001 \001(\005\"!\n\rRe" +
+      "spPetDelete\022\020\n\010uniqueId\030\001 \003(\003\"\035\n\rRespPet" +
+      "Active\022\014\n\004code\030\001 \001(\005\" \n\014ReqPetActive\022\020\n\010" +
+      "uniqueId\030\001 \001(\003B\'\n\036com.cat.server.game.da" +
+      "ta.protoB\005PBPetb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -6659,7 +6747,7 @@ public final class PBPet {
     internal_static_Protocol_PBPetDto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_PBPetDto_descriptor,
-        new java.lang.String[] { "UniqueId", "ConfigId", "PrefixId", "Level", "Exp", "NickName", "Gender", "ReproductiveNumber", "BaseAttributes", "AptitudeAttributes", "Skills", "Trust", "Hungry", "Active", });
+        new java.lang.String[] { "UniqueId", "ConfigId", "PrefixId", "Level", "Exp", "NickName", "Gender", "ReproductiveNumber", "BaseAttributes", "AptitudeAttributes", "Skills", "Trust", "Hungry", "Active", "AttrPoint", });
     internal_static_Protocol_ReqPetIdentify_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Protocol_ReqPetIdentify_fieldAccessorTable = new

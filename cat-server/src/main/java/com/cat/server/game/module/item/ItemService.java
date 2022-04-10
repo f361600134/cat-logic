@@ -62,14 +62,15 @@ class ItemService implements IItemService, IResourceService{
 			playerService.sendMessage(playerId, ack);
 		}
 	}
+	
 	//推送删除物品列表至前端
-	public void responseDeleteItemList(long playerId, Collection<Item> itemList){
+	public void responseDeleteItemList(long playerId, Collection<Long> itemList){
 		//更新物品
 		if (!itemList.isEmpty()) {
 			RespItemDeleteBuilder ack = RespItemDeleteBuilder.newInstance();
-			for (IItem item : itemList) {
-				ack.addIds(item.getUniqueId());
-			}
+			itemList.forEach((uniqueId)->{
+				ack.addIds(uniqueId);
+			});
 			playerService.sendMessage(playerId, ack);
 		}
 	}
@@ -133,7 +134,7 @@ class ItemService implements IItemService, IResourceService{
 		//	通知客户端数据变动
 		this.responseUpdateItemList(playerId, domain.getAndClearUpdateList());
 		//	通知客户端数据删除
-		this.responseDeleteItemList(playerId, domain.getAndClearUpdateList());
+		this.responseDeleteItemList(playerId, domain.getAndClearDeleteList());
 	}
 	
 	@Override

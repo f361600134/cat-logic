@@ -2,17 +2,19 @@ package com.cat.server.game.helper.result;
 
 import com.cat.server.core.result.CodeEnum;
 import com.cat.server.game.module.common.proto.RespTipsBuilder;
+import com.cat.server.game.helper.ModuleDefine;
+import static com.cat.server.game.helper.ModuleDefine.*;
 
 /**
  * 错误码(返回码)<br>
  * 需要生成excel提供给客户端读取
  * @author Jeremy
  */
-public enum ErrorCode implements ModuleDefines, CodeEnum{
+public enum ErrorCode implements CodeEnum{
     /**
      *	成功消息
      */
-    SUCCESS(0, 0, "成功"),
+    SUCCESS(0, "成功"),
     // ---------------公共-------------------
     UNKNOWN_ERROR(COMMON, 1, "未知异常"),
     CONFIG_NOT_EXISTS(COMMON, 2, "配置不存在"),
@@ -105,12 +107,11 @@ public enum ErrorCode implements ModuleDefines, CodeEnum{
     TEAM_APPLY_EXPIRE(TEAM, 7, "该申请已过期"),
     
     // -----------------排行榜---------------------
-    RANK_NOT_EXIST(TEAM, 1, "排行榜不存在"),
+    RANK_NOT_EXIST(RANK, 1, "排行榜不存在"),
     
     // -----------------活动---------------------
-    ACTIVITY_NOT_EXIST(SHOP, 1, "活动不存在"),
-    ACTIVITY_NOT_IN_ACTIVITY_TIME(SHOP, 2, "未处于活动时间"),
-    
+    ACTIVITY_NOT_EXIST(ACTIVITY, 1, "活动不存在"),
+    ACTIVITY_NOT_IN_ACTIVITY_TIME(ACTIVITY, 2, "未处于活动时间"),
     
     // -----------------商店---------------------
     SHOP_NOT_EXIST(SHOP, 1, "商店不存在"),
@@ -121,6 +122,9 @@ public enum ErrorCode implements ModuleDefines, CodeEnum{
     SHOP_COST_NO_ENOUGH(SHOP, 6, "刷新需要资源不足"),
     SHOP_REFRESH_CANNOT(SHOP, 7, "商店不可以刷新"),
     SHOP_REFRESH_NOT_IN_TIME(SHOP, 8, "未到达重置时间"),
+    
+    // -----------------宠物---------------------
+    PET_NOT_EXIST(PET, 1, "宠物不存在"),
     ;
 	
 	
@@ -128,8 +132,13 @@ public enum ErrorCode implements ModuleDefines, CodeEnum{
     private final int code;
     private final String desc;
     
-    ErrorCode(int moduleId, int seq, String desc) {
-        this.code = moduleId * 100 + seq;
+    ErrorCode(int seq, String desc) {
+        this.code = seq;
+        this.desc = desc;
+    }
+    
+    ErrorCode(ModuleDefine module, int seq, String desc) {
+        this.code = module.getModuleId() * 100 + seq;
         this.desc = desc;
     }
 

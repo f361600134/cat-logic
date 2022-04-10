@@ -21,7 +21,7 @@ public class AttributeDictionary {
         }
         this.dictionary = dictionary;
     }
-
+    
     /**
      * 	获取字典
      * @return
@@ -73,7 +73,7 @@ public class AttributeDictionary {
      * @param attrType
      * @param value
      */
-    public <T extends Map<Integer, Integer>> void addAttr(T dictionary) {
+    public <T extends Map<Integer, ? extends Number>> void addAttr(T dictionary) {
         if (dictionary == null) {
             return;
         }
@@ -191,6 +191,21 @@ public class AttributeDictionary {
      */
     public boolean isEmpty() {
         return dictionary.isEmpty();
+    }    
+    
+    /**
+     * 按百分比替换资源<br>
+     * 向上取整
+     * @param per 百分比
+     */
+    public void rate(double per) {
+        for (Integer configId : dictionary.keySet()) {
+            long number = dictionary.getOrDefault(configId, 0L);
+            if (number == 0L) {
+				continue;
+			}
+            long newValue = (long)Math.ceil(number * per);
+            dictionary.put(configId, newValue);
+        }
     }
-
 }

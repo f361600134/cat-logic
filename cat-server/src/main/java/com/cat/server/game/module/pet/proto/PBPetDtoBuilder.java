@@ -1,11 +1,14 @@
 package com.cat.server.game.module.pet.proto;
 
-import java.util.Collection;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.cat.net.network.base.AbstractProtocol;
+import com.cat.server.game.data.proto.PBDefine.*;
 import com.cat.server.game.data.proto.PBItem.PBPairInfo;
 //import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBPet.PBPetDto;
+import com.cat.server.game.data.proto.PBPet.*;
+import java.util.Collection;
 
 /**
 * PBPetDtoBuilder
@@ -94,6 +97,10 @@ public class PBPetDtoBuilder extends AbstractProtocol {
 	/** 是否激活,true:是,激活后才下发详细信息**/
 	public void setActive(boolean value){
 		this.builder.setActive(value);
+	}
+	/** 属性点,含等级属性点,前缀属性点**/
+	public void setAttrPoint(int value){
+		this.builder.setAttrPoint(value);
 	}
 	
 	@Override

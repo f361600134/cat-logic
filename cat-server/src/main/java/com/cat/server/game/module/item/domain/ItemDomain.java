@@ -75,7 +75,7 @@ public class ItemDomain extends AbstractModuleMultiDomain<Long, Long, Item> impl
 	}
 
 	@Override
-	public List<Item> getAndClearDeleteList() {
+	public List<Long> getAndClearDeleteList() {
 		return resourceDomainProxy.getAndClearDeleteList();
 	}
 

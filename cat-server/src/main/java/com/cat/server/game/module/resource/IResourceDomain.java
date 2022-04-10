@@ -81,7 +81,7 @@ public interface IResourceDomain<K, V extends IResource>{
 	 * 获取被删除的物资集合
 	 * @return
 	 */
-	public List<V> getAndClearDeleteList();
+	public List<K> getAndClearDeleteList();
 	
 	/**
 	 * 通常情况下, 都是不可叠加的, 如果有可叠加道具, 具体域去实现

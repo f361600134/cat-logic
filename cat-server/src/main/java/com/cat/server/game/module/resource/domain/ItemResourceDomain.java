@@ -66,7 +66,7 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 			else {
 				//已删除物品移除缓存
 				this.getBeanMap().remove(item.getUniqueId());
-				this.deleteList.add(item);
+				this.deleteList.add(item.getUniqueId());
 			}
 		}
 		return true;

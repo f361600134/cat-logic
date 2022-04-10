@@ -1,0 +1,151 @@
+[ {
+  "id" : 1,
+  "type" : 101,
+  "value" : 180,
+  "weight" : 4000
+}, {
+  "id" : 2,
+  "type" : 101,
+  "value" : 240,
+  "weight" : 2000
+}, {
+  "id" : 3,
+  "type" : 101,
+  "value" : 319,
+  "weight" : 2000
+}, {
+  "id" : 4,
+  "type" : 101,
+  "value" : 380,
+  "weight" : 1500
+}, {
+  "id" : 5,
+  "type" : 101,
+  "value" : 396,
+  "weight" : 500
+}, {
+  "id" : 6,
+  "type" : 102,
+  "value" : 180,
+  "weight" : 4000
+}, {
+  "id" : 7,
+  "type" : 102,
+  "value" : 240,
+  "weight" : 2000
+}, {
+  "id" : 8,
+  "type" : 102,
+  "value" : 319,
+  "weight" : 2000
+}, {
+  "id" : 9,
+  "type" : 102,
+  "value" : 380,
+  "weight" : 1500
+}, {
+  "id" : 10,
+  "type" : 102,
+  "value" : 396,
+  "weight" : 500
+}, {
+  "id" : 11,
+  "type" : 103,
+  "value" : 180,
+  "weight" : 4000
+}, {
+  "id" : 12,
+  "type" : 103,
+  "value" : 240,
+  "weight" : 2000
+}, {
+  "id" : 13,
+  "type" : 103,
+  "value" : 319,
+  "weight" : 2000
+}, {
+  "id" : 14,
+  "type" : 103,
+  "value" : 380,
+  "weight" : 1500
+}, {
+  "id" : 15,
+  "type" : 103,
+  "value" : 396,
+  "weight" : 500
+}, {
+  "id" : 16,
+  "type" : 104,
+  "value" : 180,
+  "weight" : 4000
+}, {
+  "id" : 17,
+  "type" : 104,
+  "value" : 240,
+  "weight" : 2000
+}, {
+  "id" : 18,
+  "type" : 104,
+  "value" : 319,
+  "weight" : 2000
+}, {
+  "id" : 19,
+  "type" : 104,
+  "value" : 380,
+  "weight" : 1500
+}, {
+  "id" : 20,
+  "type" : 104,
+  "value" : 396,
+  "weight" : 500
+}, {
+  "id" : 21,
+  "type" : 105,
+  "value" : 180,
+  "weight" : 4000
+}, {
+  "id" : 22,
+  "type" : 105,
+  "value" : 240,
+  "weight" : 2000
+}, {
+  "id" : 23,
+  "type" : 105,
+  "value" : 319,
+  "weight" : 2000
+}, {
+  "id" : 24,
+  "type" : 105,
+  "value" : 380,
+  "weight" : 1500
+}, {
+  "id" : 25,
+  "type" : 105,
+  "value" : 396,
+  "weight" : 500
+}, {
+  "id" : 26,
+  "type" : 106,
+  "value" : 180,
+  "weight" : 4000
+}, {
+  "id" : 27,
+  "type" : 106,
+  "value" : 240,
+  "weight" : 2000
+}, {
+  "id" : 28,
+  "type" : 106,
+  "value" : 319,
+  "weight" : 2000
+}, {
+  "id" : 29,
+  "type" : 106,
+  "value" : 380,
+  "weight" : 1500
+}, {
+  "id" : 30,
+  "type" : 106,
+  "value" : 396,
+  "weight" : 500
+} ]

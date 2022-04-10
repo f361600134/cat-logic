@@ -1,13 +1,15 @@
 package com.cat.server.game.helper.log;
 
-import com.cat.server.game.helper.result.ModuleDefines;
+import static com.cat.server.game.helper.ModuleDefine.*;
+
+import com.cat.server.game.helper.ModuleDefine;
 
 /**
  * 资源类型, 资源描述
  * @auth Jeremy
  * @date 2019年6月28日下午3:55:10
  */
-public enum NatureEnum implements ModuleDefines {
+public enum NatureEnum {
 	
 	GM(-1, "GM"),
 	Unknown(0, "未声明来源"),
@@ -248,8 +250,8 @@ public enum NatureEnum implements ModuleDefines {
 		this.desc = desc;
 	}
 	
-	private NatureEnum(int moduleType, int logType, String desc) {
-		this.moduleType = moduleType;
+	private NatureEnum(ModuleDefine module, int logType, String desc) {
+		this.moduleType = module.getModuleId();
 		this.logType = logType;
 		this.desc = desc;
 	}

@@ -190,7 +190,7 @@ public class RandomUtil {
         T result = sourceList.get(randomIndex);
         return Optional.ofNullable(result);
     }
-
+    
     /**
      * 随机生成数组<br>
      * 数组元素在[min,max]中<br>

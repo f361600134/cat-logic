@@ -33,7 +33,7 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	/**
 	 * 有删除的资源列表, 当外部获取后,清空此集合
 	 */
-	protected List<V> deleteList = new ArrayList<>();
+	protected List<K> deleteList = new ArrayList<>();
 	
 	protected IRecycleService recycleService;
 	
@@ -74,8 +74,8 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	}
 
 	@Override
-	public List<V> getAndClearDeleteList() {
-		List<V> ret = new ArrayList<>(deleteList);
+	public List<K> getAndClearDeleteList() {
+		List<K> ret = new ArrayList<>(deleteList);
 		this.deleteList.clear();
 		return ret;
 	}
@@ -169,12 +169,13 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 		Iterator<Entry<K, V>> iter = beanMap.entrySet().iterator();
 		while (iter.hasNext()) {
 			Entry<K, V> entry = (Entry<K, V>) iter.next();
+			K k = entry.getKey();
 			V v = entry.getValue();
 			if (v.getConfigId() == configId) {
 				this.beforeClearExpire(v);
 				v.delete();
 				iter.remove();
-				deleteList.add(v);
+				deleteList.add(k);
 			}
 		}
 	}

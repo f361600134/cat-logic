@@ -1,0 +1,72 @@
+[ {
+  "id" : 1,
+  "rate" : 6800,
+  "attributePoint" : 0,
+  "addedAttribute" : { }
+}, {
+  "id" : 2,
+  "rate" : 400,
+  "attributePoint" : 0,
+  "addedAttribute" : { }
+}, {
+  "id" : 3,
+  "rate" : 400,
+  "attributePoint" : 0,
+  "addedAttribute" : { }
+}, {
+  "id" : 4,
+  "rate" : 400,
+  "attributePoint" : 0,
+  "addedAttribute" : { }
+}, {
+  "id" : 5,
+  "rate" : 400,
+  "attributePoint" : 0,
+  "addedAttribute" : { }
+}, {
+  "id" : 6,
+  "rate" : 400,
+  "attributePoint" : 0,
+  "addedAttribute" : { }
+}, {
+  "id" : 7,
+  "rate" : 400,
+  "attributePoint" : 0,
+  "addedAttribute" : { }
+}, {
+  "id" : 8,
+  "rate" : 200,
+  "attributePoint" : 1,
+  "addedAttribute" : {
+    "104" : 3,
+    "105" : 1
+  }
+}, {
+  "id" : 9,
+  "rate" : 200,
+  "attributePoint" : 1,
+  "addedAttribute" : {
+    "101" : 1,
+    "104" : 2
+  }
+}, {
+  "id" : 10,
+  "rate" : 200,
+  "attributePoint" : 1,
+  "addedAttribute" : {
+    "102" : 2,
+    "104" : 2
+  }
+}, {
+  "id" : 11,
+  "rate" : 200,
+  "attributePoint" : 2,
+  "addedAttribute" : {
+    "101" : 3,
+    "102" : 3,
+    "103" : 3,
+    "104" : 3,
+    "105" : 3,
+    "106" : 3
+  }
+} ]

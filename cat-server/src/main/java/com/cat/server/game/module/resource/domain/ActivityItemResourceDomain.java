@@ -44,7 +44,7 @@ public class ActivityItemResourceDomain extends AbstractResourceDomain<Long, Act
 				else {
 					//已删除物品移除缓存
 					getBeanMap().remove(item.getUniqueId());
-					deleteList.add(item);
+					deleteList.add(item.getUniqueId());
 				}
 			}
 			return true;

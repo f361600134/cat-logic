@@ -7,6 +7,8 @@ public enum ModuleDefine {
 	
 	UNDEFINE(-1),
     // ----------------玩家------------------------
+	/** 公共模块*/
+	COMMON(1),
 	/**登录*/
 	LOGIN(100),
 	/** 玩家/角色 */
@@ -45,6 +47,11 @@ public enum ModuleDefine {
 	ActivityItem(201),
 	/** 群邮件*/
 	GROUPMAIL(900),
+	
+	
+	FAMILY(901),
+	TEAM(902),
+	ACCOUNT(903),
 	;
 	
 	/**

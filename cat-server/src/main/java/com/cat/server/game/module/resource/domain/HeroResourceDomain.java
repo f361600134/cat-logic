@@ -61,6 +61,7 @@ public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 	public boolean deduct(Hero hero, int count) {
 		hero.delete();
 		getBeanMap().remove(hero.getId());
+		this.deleteList.add(hero.getUniqueId());
 		return true;
 	}
 	

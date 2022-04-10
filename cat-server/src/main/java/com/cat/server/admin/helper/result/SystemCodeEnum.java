@@ -1,12 +1,13 @@
 package com.cat.server.admin.helper.result;
 
 import com.cat.server.core.result.CodeEnum;
-import com.cat.server.game.helper.result.ModuleDefines;
+import com.cat.server.game.helper.ModuleDefine;
+import static com.cat.server.game.helper.ModuleDefine.*;
 
-public enum SystemCodeEnum implements ModuleDefines, CodeEnum{
+public enum SystemCodeEnum implements CodeEnum{
 	
-	UNKNOW(0,-1, "未知异常"),
-	SUCCESS(0, 0, "SUCCESS"),
+	UNKNOW(-1, "未知异常"),
+	SUCCESS(0, "SUCCESS"),
 	
 	//玩家
 	PLAYER_NOT_FOUND(PLAYER, 1, "玩家不存在"),
@@ -19,8 +20,13 @@ public enum SystemCodeEnum implements ModuleDefines, CodeEnum{
 	private int status;
 	private String desc;
 	
-	private SystemCodeEnum(int moduleId, int seq, String desc) {
-		this.status = moduleId * 100 + seq;
+	private SystemCodeEnum(int seq, String desc) {
+		this.status = seq;
+		this.desc = desc;
+	}
+	
+	private SystemCodeEnum(ModuleDefine module, int seq, String desc) {
+		this.status = module.getModuleId() * 100 + seq;
 		this.desc = desc;
 	}
 	

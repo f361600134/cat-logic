@@ -23,6 +23,9 @@ public abstract class PetPo extends BasePo {
 	public static final String PROP_PREFIXID = "prefixId";
 	public static final String PROP_REPRODUCTIVE = "reproductive";
 	public static final String PROP_ACTIVE = "active";
+	public static final String PROP_USEDATTRPOINTSTR = "usedAttrPointStr";
+	public static final String PROP_USEDATTRPREFIXPOINTSTR = "usedAttrPrefixPointStr";
+	public static final String PROP_SKILLPOOLTYPE = "skillPoolType";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
@@ -41,6 +44,9 @@ public abstract class PetPo extends BasePo {
 			PROP_PREFIXID,
 			PROP_REPRODUCTIVE,
 			PROP_ACTIVE,
+			PROP_USEDATTRPOINTSTR,
+			PROP_USEDATTRPREFIXPOINTSTR,
+			PROP_SKILLPOOLTYPE,
 			};
 			
 	/** 所有主键索引字段数组*/
@@ -85,11 +91,19 @@ public abstract class PetPo extends BasePo {
 	protected int reproductive;
 	/** 是否激活0:false,1:true*/
 	protected boolean active;
+	/** 已使用的属性点,玩家自定义属性记录*/
+	protected String usedAttrPointStr;
+	/** 已使用的前缀属性点,实际上根据属性额外记录的*/
+	protected String usedAttrPrefixPointStr;
+	/** 绑定的技能池类型*/
+	protected int skillPoolType;
 	
 	public PetPo(){
 		this.nickname = "";
 		this.aptitudeStr = "";
 		this.skillStr = "";
+		this.usedAttrPointStr = "";
+		this.usedAttrPrefixPointStr = "";
 	}
 	
 	/** 配置id **/
@@ -227,13 +241,40 @@ public abstract class PetPo extends BasePo {
 		this.active = active;
 	}
 	
+	/** 已使用的属性点,玩家自定义属性记录 **/
+	public String getUsedAttrPointStr(){
+		return this.usedAttrPointStr;
+	}
+	
+	public void setUsedAttrPointStr(String usedAttrPointStr){
+		this.usedAttrPointStr = usedAttrPointStr;
+	}
+	
+	/** 已使用的前缀属性点,实际上根据属性额外记录的 **/
+	public String getUsedAttrPrefixPointStr(){
+		return this.usedAttrPrefixPointStr;
+	}
+	
+	public void setUsedAttrPrefixPointStr(String usedAttrPrefixPointStr){
+		this.usedAttrPrefixPointStr = usedAttrPrefixPointStr;
+	}
+	
+	/** 绑定的技能池类型 **/
+	public int getSkillPoolType(){
+		return this.skillPoolType;
+	}
+	
+	public void setSkillPoolType(int skillPoolType){
+		this.skillPoolType = skillPoolType;
+	}
+	
 	
 	@Override
 	public String toString() {
 		return "Pet [configId= "+ configId +", uniqueId= "+ uniqueId +", nickname= "+ nickname +", birthDate= "+ birthDate +", hungry= "+ hungry
 				 +", trust= "+ trust +", aptitudeStr= "+ aptitudeStr +", gender= "+ gender +", level= "+ level +", skillStr= "+ skillStr
 				 +", playerId= "+ playerId +", exp= "+ exp +", prefixId= "+ prefixId +", reproductive= "+ reproductive +", active= "+ active
-				+"]";
+				 +", usedAttrPointStr= "+ usedAttrPointStr +", usedAttrPrefixPointStr= "+ usedAttrPrefixPointStr +", skillPoolType= "+ skillPoolType+"]";
 	}
 	
 	@Override
@@ -259,6 +300,9 @@ public abstract class PetPo extends BasePo {
 		getPrefixId(),
 		getReproductive(),
 		getActive(),
+		getUsedAttrPointStr(),
+		getUsedAttrPrefixPointStr(),
+		getSkillPoolType(),
 		};
 	}
 	

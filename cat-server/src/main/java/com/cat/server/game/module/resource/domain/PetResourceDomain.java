@@ -38,7 +38,7 @@ public class PetResourceDomain extends AbstractResourceDomain<Long, Pet>{
 	public List<Pet> add(int configId, int count) {
 		List<Pet> pets = new ArrayList<>();
 		Pet pet = null;
-		//	生成一个武将,需要唯一id
+		//	生成一个宠物,需要唯一id
 		for (int i = 0; i < count; i++) {
 			pet = Pet.create(playerId, configId);
 			getBeanMap().put(pet.getUniqueId(), pet);
@@ -54,6 +54,7 @@ public class PetResourceDomain extends AbstractResourceDomain<Long, Pet>{
 	public boolean deduct(Pet pet, int count) {
 		pet.delete();
 		getBeanMap().remove(pet.getUniqueId());
+		this.deleteList.add(pet.getUniqueId());
 		return true;
 	}
 	

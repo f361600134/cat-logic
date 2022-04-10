@@ -70,7 +70,7 @@ public class HeroDomain extends AbstractModuleMultiDomain<Long, Long, Hero> impl
 	}
 
 	@Override
-	public List<Hero> getAndClearDeleteList() {
+	public List<Long> getAndClearDeleteList() {
 		return resourceDomainProxy.getAndClearDeleteList();
 	}
 	

@@ -1,0 +1,101 @@
+[ {
+  "id" : 60001,
+  "name" : "小白兔",
+  "bear" : [ 20, 40, 60 ],
+  "gender" : [ 0, 1, 2 ],
+  "trainLimit" : 100,
+  "trustLimit" : 100,
+  "levelLimit" : 60,
+  "attribute" : { },
+  "skillPollId" : [ 1 ]
+}, {
+  "id" : 60002,
+  "name" : "粉粉兔",
+  "bear" : [ 20, 40, 60 ],
+  "gender" : [ 0, 1, 2 ],
+  "trainLimit" : 100,
+  "trustLimit" : 100,
+  "levelLimit" : 60,
+  "attribute" : { },
+  "skillPollId" : [ 1 ]
+}, {
+  "id" : 60003,
+  "name" : "兔王",
+  "bear" : [ ],
+  "gender" : [ 0 ],
+  "trainLimit" : 100,
+  "trustLimit" : 100,
+  "levelLimit" : 60,
+  "attribute" : { },
+  "skillPollId" : [ 3, 4 ]
+}, {
+  "id" : 60004,
+  "name" : "粉粉兔王",
+  "bear" : [ ],
+  "gender" : [ 0 ],
+  "trainLimit" : 100,
+  "trustLimit" : 100,
+  "levelLimit" : 60,
+  "attribute" : { },
+  "skillPollId" : [ 2, 3, 4, 5 ]
+}, {
+  "id" : 60005,
+  "name" : "小花狗",
+  "bear" : [ 20, 40, 60 ],
+  "gender" : [ 0, 1, 2 ],
+  "trainLimit" : 100,
+  "trustLimit" : 100,
+  "levelLimit" : 60,
+  "attribute" : { },
+  "skillPollId" : [ 1 ]
+}, {
+  "id" : 60006,
+  "name" : "藏獒",
+  "bear" : [ ],
+  "gender" : [ 0 ],
+  "trainLimit" : 100,
+  "trustLimit" : 100,
+  "levelLimit" : 60,
+  "attribute" : { },
+  "skillPollId" : [ 3, 4 ]
+}, {
+  "id" : 60007,
+  "name" : "黄金藏獒",
+  "bear" : [ ],
+  "gender" : [ 0 ],
+  "trainLimit" : 100,
+  "trustLimit" : 100,
+  "levelLimit" : 60,
+  "attribute" : { },
+  "skillPollId" : [ 2, 3, 4, 5 ]
+}, {
+  "id" : 60008,
+  "name" : "小水滴",
+  "bear" : [ 20, 40, 60 ],
+  "gender" : [ 0, 1, 2 ],
+  "trainLimit" : 100,
+  "trustLimit" : 100,
+  "levelLimit" : 60,
+  "attribute" : { },
+  "skillPollId" : [ 1 ]
+}, {
+  "id" : 60009,
+  "name" : "冰爽夏蓝",
+  "bear" : [ ],
+  "gender" : [ 0 ],
+  "trainLimit" : 100,
+  "trustLimit" : 100,
+  "levelLimit" : 60,
+  "attribute" : { },
+  "skillPollId" : [ 3, 4 ]
+}, {
+  "id" : 60010,
+  "name" : "清凉一夏",
+  "bear" : [ ],
+  "gender" : [ 0 ],
+  "trainLimit" : 100,
+  "trustLimit" : 100,
+  "levelLimit" : 60,
+  "attribute" : { },
+  "skillPollId" : [ 2, 3, 4, 5 ]
+} ]

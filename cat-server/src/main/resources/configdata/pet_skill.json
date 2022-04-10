@@ -1,0 +1,121 @@
+[ {
+  "id" : 1,
+  "type" : 1,
+  "startLv" : 0,
+  "levelLimit" : 30
+}, {
+  "id" : 2,
+  "type" : 1,
+  "startLv" : 0,
+  "levelLimit" : 30
+}, {
+  "id" : 3,
+  "type" : 1,
+  "startLv" : 0,
+  "levelLimit" : 30
+}, {
+  "id" : 4,
+  "type" : 1,
+  "startLv" : 0,
+  "levelLimit" : 25
+}, {
+  "id" : 5,
+  "type" : 1,
+  "startLv" : 0,
+  "levelLimit" : 25
+}, {
+  "id" : 6,
+  "type" : 1,
+  "startLv" : 0,
+  "levelLimit" : 25
+}, {
+  "id" : 7,
+  "type" : 1,
+  "startLv" : 0,
+  "levelLimit" : 25
+}, {
+  "id" : 8,
+  "type" : 1,
+  "startLv" : 0,
+  "levelLimit" : 25
+}, {
+  "id" : 9,
+  "type" : 2,
+  "startLv" : 0,
+  "levelLimit" : 50
+}, {
+  "id" : 10,
+  "type" : 2,
+  "startLv" : 0,
+  "levelLimit" : 50
+}, {
+  "id" : 11,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 30
+}, {
+  "id" : 12,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 30
+}, {
+  "id" : 13,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 30
+}, {
+  "id" : 14,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 30
+}, {
+  "id" : 15,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 30
+}, {
+  "id" : 16,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 30
+}, {
+  "id" : 17,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 30
+}, {
+  "id" : 18,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 30
+}, {
+  "id" : 19,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 20
+}, {
+  "id" : 20,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 20
+}, {
+  "id" : 21,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 20
+}, {
+  "id" : 22,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 20
+}, {
+  "id" : 23,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 20
+}, {
+  "id" : 24,
+  "type" : 2,
+  "startLv" : 30,
+  "levelLimit" : 20
+} ]
