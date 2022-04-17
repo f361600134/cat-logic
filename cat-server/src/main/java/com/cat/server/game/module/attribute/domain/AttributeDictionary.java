@@ -9,13 +9,13 @@ import java.util.Map.Entry;
  */
 public class AttributeDictionary {
 
-    private final Map<Integer, Long> dictionary;
+    private final Map<Integer, Integer> dictionary;
 
     public AttributeDictionary() {
         this.dictionary = new HashMap<>();
     }
 
-    public AttributeDictionary(Map<Integer, Long> dictionary) {
+    public AttributeDictionary(Map<Integer, Integer> dictionary) {
         if (dictionary == null) {
             throw new NullPointerException();
         }
@@ -26,7 +26,7 @@ public class AttributeDictionary {
      * 	获取字典
      * @return
      */
-    public Map<Integer, Long> getDictionary() {
+    public Map<Integer, Integer> getDictionary() {
         return dictionary;
     }
     
@@ -36,7 +36,7 @@ public class AttributeDictionary {
      * @param value
      */
     public long getAttr(int attrType) {
-        return dictionary.getOrDefault(attrType, 0l);
+        return dictionary.getOrDefault(attrType, 0);
     }
 
     /**
@@ -44,7 +44,7 @@ public class AttributeDictionary {
      * @param attrType
      * @param value
      */
-    public void setAttr(int attrType, long value) {
+    public void setAttr(int attrType, int value) {
         dictionary.put(attrType, value);
     }
     
@@ -53,7 +53,7 @@ public class AttributeDictionary {
      * @param attrType
      * @return
      */
-    public void setAttr(AttributeType attrType, long value) {
+    public void setAttr(AttributeType attrType, int value) {
         int id = attrType.getId();
         setAttr(id, value);
     }
@@ -73,12 +73,12 @@ public class AttributeDictionary {
      * @param attrType
      * @param value
      */
-    public <T extends Map<Integer, ? extends Number>> void addAttr(T dictionary) {
+    public void addAttr(Map<Integer, Integer> dictionary) {
         if (dictionary == null) {
             return;
         }
         dictionary.forEach((key, value)->{
-        	addAttr(key, (long)value);
+        	addAttr(key,  value);
         });
     }
     
@@ -87,12 +87,12 @@ public class AttributeDictionary {
      * @param attrType
      * @param value
      */
-    public void addAttr(int attrType, long value) {
+    public void addAttr(int attrType, int value) {
         if (value == 0) {
             return;
         }
-        long oldValue = dictionary.getOrDefault(attrType, 0l);
-        long newValue = oldValue + value;
+        int oldValue = dictionary.getOrDefault(attrType, 0);
+        int newValue = oldValue + value;
         dictionary.put(attrType, newValue);
     }
     
@@ -104,10 +104,10 @@ public class AttributeDictionary {
         if (otherAttrDic == null || otherAttrDic.isEmpty()) {
             return;
         }
-        Map<Integer, Long> otherDic = otherAttrDic.getDictionary();
-        for (Entry<Integer, Long> entry : otherDic.entrySet()) {
+        Map<Integer, Integer> otherDic = otherAttrDic.getDictionary();
+        for (Entry<Integer, Integer> entry : otherDic.entrySet()) {
             int attrType = entry.getKey();
-            long value = entry.getValue();
+            int value = entry.getValue();
             addAttr(attrType, value);
         }
     }
@@ -117,7 +117,7 @@ public class AttributeDictionary {
      * @param attrType
      * @param value
      */
-    public void addAttr(AttributeType attrType, long value) {
+    public void addAttr(AttributeType attrType, int value) {
         if (value == 0) {
             return;
         }
@@ -135,7 +135,7 @@ public class AttributeDictionary {
             return;
         }
         dictionary.forEach((key, value)->{
-        	subAttr(key, (long)value);
+        	subAttr(key, value);
         });
     }
 
@@ -144,12 +144,12 @@ public class AttributeDictionary {
      * @param attrType
      * @param value
      */
-    public void subAttr(int attrType, long value) {
+    public void subAttr(int attrType, int value) {
         if (value == 0) {
             return;
         }
-        long oldValue = dictionary.getOrDefault(attrType, 0l);
-        long newValue = oldValue - value;
+        int oldValue = dictionary.getOrDefault(attrType, 0);
+        int newValue = oldValue - value;
         dictionary.put(attrType, newValue);
     }
 
@@ -158,7 +158,7 @@ public class AttributeDictionary {
      * @param attrType
      * @param value
      */
-    public void subAttr(AttributeType attrType, long value) {
+    public void subAttr(AttributeType attrType, int value) {
         if (value == 0) {
             return;
         }
@@ -200,11 +200,11 @@ public class AttributeDictionary {
      */
     public void rate(double per) {
         for (Integer configId : dictionary.keySet()) {
-            long number = dictionary.getOrDefault(configId, 0L);
+            long number = dictionary.getOrDefault(configId, 0);
             if (number == 0L) {
 				continue;
 			}
-            long newValue = (long)Math.ceil(number * per);
+            int newValue = (int)Math.ceil(number * per);
             dictionary.put(configId, newValue);
         }
     }

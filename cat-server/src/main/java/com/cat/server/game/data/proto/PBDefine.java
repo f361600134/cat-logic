@@ -354,29 +354,45 @@ public final class PBDefine {
      *Pet
      * </pre>
      *
-     * <code>ReqPetIdentify = 112101;</code>
+     * <code>ReqPetLevelup = 112101;</code>
      */
-    ReqPetIdentify(112101),
+    ReqPetLevelup(112101),
     /**
-     * <code>RespPetUpdate = 112201;</code>
+     * <code>ReqPetIdentify = 112102;</code>
      */
-    RespPetUpdate(112201),
+    ReqPetIdentify(112102),
     /**
-     * <code>RespPetIdentify = 112202;</code>
+     * <code>RespPetUseAttrPoint = 112201;</code>
      */
-    RespPetIdentify(112202),
+    RespPetUseAttrPoint(112201),
     /**
-     * <code>RespPetDelete = 112203;</code>
+     * <code>RespPetLevelup = 112202;</code>
      */
-    RespPetDelete(112203),
+    RespPetLevelup(112202),
     /**
-     * <code>RespPetActive = 112204;</code>
+     * <code>RespPetUpdate = 112203;</code>
      */
-    RespPetActive(112204),
+    RespPetUpdate(112203),
     /**
-     * <code>ReqPetActive = 112102;</code>
+     * <code>RespPetIdentify = 112204;</code>
      */
-    ReqPetActive(112102),
+    RespPetIdentify(112204),
+    /**
+     * <code>RespPetDelete = 112205;</code>
+     */
+    RespPetDelete(112205),
+    /**
+     * <code>RespPetActive = 112206;</code>
+     */
+    RespPetActive(112206),
+    /**
+     * <code>ReqPetActive = 112103;</code>
+     */
+    ReqPetActive(112103),
+    /**
+     * <code>ReqPetUseAttrPoint = 112104;</code>
+     */
+    ReqPetUseAttrPoint(112104),
     UNRECOGNIZED(-1),
     ;
 
@@ -709,29 +725,45 @@ public final class PBDefine {
      *Pet
      * </pre>
      *
-     * <code>ReqPetIdentify = 112101;</code>
+     * <code>ReqPetLevelup = 112101;</code>
      */
-    public static final int ReqPetIdentify_VALUE = 112101;
+    public static final int ReqPetLevelup_VALUE = 112101;
     /**
-     * <code>RespPetUpdate = 112201;</code>
+     * <code>ReqPetIdentify = 112102;</code>
      */
-    public static final int RespPetUpdate_VALUE = 112201;
+    public static final int ReqPetIdentify_VALUE = 112102;
     /**
-     * <code>RespPetIdentify = 112202;</code>
+     * <code>RespPetUseAttrPoint = 112201;</code>
      */
-    public static final int RespPetIdentify_VALUE = 112202;
+    public static final int RespPetUseAttrPoint_VALUE = 112201;
     /**
-     * <code>RespPetDelete = 112203;</code>
+     * <code>RespPetLevelup = 112202;</code>
      */
-    public static final int RespPetDelete_VALUE = 112203;
+    public static final int RespPetLevelup_VALUE = 112202;
     /**
-     * <code>RespPetActive = 112204;</code>
+     * <code>RespPetUpdate = 112203;</code>
      */
-    public static final int RespPetActive_VALUE = 112204;
+    public static final int RespPetUpdate_VALUE = 112203;
     /**
-     * <code>ReqPetActive = 112102;</code>
+     * <code>RespPetIdentify = 112204;</code>
      */
-    public static final int ReqPetActive_VALUE = 112102;
+    public static final int RespPetIdentify_VALUE = 112204;
+    /**
+     * <code>RespPetDelete = 112205;</code>
+     */
+    public static final int RespPetDelete_VALUE = 112205;
+    /**
+     * <code>RespPetActive = 112206;</code>
+     */
+    public static final int RespPetActive_VALUE = 112206;
+    /**
+     * <code>ReqPetActive = 112103;</code>
+     */
+    public static final int ReqPetActive_VALUE = 112103;
+    /**
+     * <code>ReqPetUseAttrPoint = 112104;</code>
+     */
+    public static final int ReqPetUseAttrPoint_VALUE = 112104;
 
 
     public final int getNumber() {
@@ -823,12 +855,16 @@ public final class PBDefine {
         case 201201: return RespActivityItemDelete;
         case 201202: return RespActivityItemsInfo;
         case 201203: return RespActivityItemsUpdate;
-        case 112101: return ReqPetIdentify;
-        case 112201: return RespPetUpdate;
-        case 112202: return RespPetIdentify;
-        case 112203: return RespPetDelete;
-        case 112204: return RespPetActive;
-        case 112102: return ReqPetActive;
+        case 112101: return ReqPetLevelup;
+        case 112102: return ReqPetIdentify;
+        case 112201: return RespPetUseAttrPoint;
+        case 112202: return RespPetLevelup;
+        case 112203: return RespPetUpdate;
+        case 112204: return RespPetIdentify;
+        case 112205: return RespPetDelete;
+        case 112206: return RespPetActive;
+        case 112103: return ReqPetActive;
+        case 112104: return ReqPetUseAttrPoint;
         default: return null;
       }
     }
@@ -890,7 +926,7 @@ public final class PBDefine {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020PBProtocol.proto\022\010Protocol*\244\r\n\nPBProto" +
+      "\n\020PBProtocol.proto\022\010Protocol*\204\016\n\nPBProto" +
       "col\022\r\n\tDEFAULTID\020\000\022\032\n\024RespPlayerCreateRo" +
       "le\020\321\226\006\022\031\n\023ReqPlayerCreateRole\020\355\225\006\022\026\n\020Req" +
       "PlayerReLogin\020\356\225\006\022\025\n\017RespPlayerHeart\020\322\226\006" +
@@ -930,11 +966,13 @@ public final class PBDefine {
       "ontrol\020\265\020\022\026\n\020ReqGroupMailInfo\020\205\3706\022\034\n\026Res" +
       "pActivityItemDelete\020\361\243\014\022\033\n\025RespActivityI" +
       "temsInfo\020\362\243\014\022\035\n\027RespActivityItemsUpdate\020" +
-      "\363\243\014\022\024\n\016ReqPetIdentify\020\345\353\006\022\023\n\rRespPetUpda" +
-      "te\020\311\354\006\022\025\n\017RespPetIdentify\020\312\354\006\022\023\n\rRespPet" +
-      "Delete\020\313\354\006\022\023\n\rRespPetActive\020\314\354\006\022\022\n\014ReqPe" +
-      "tActive\020\346\353\006B*\n\036com.cat.server.game.data." +
-      "protoB\010PBDefineb\006proto3"
+      "\363\243\014\022\023\n\rReqPetLevelup\020\345\353\006\022\024\n\016ReqPetIdenti" +
+      "fy\020\346\353\006\022\031\n\023RespPetUseAttrPoint\020\311\354\006\022\024\n\016Res" +
+      "pPetLevelup\020\312\354\006\022\023\n\rRespPetUpdate\020\313\354\006\022\025\n\017" +
+      "RespPetIdentify\020\314\354\006\022\023\n\rRespPetDelete\020\315\354\006" +
+      "\022\023\n\rRespPetActive\020\316\354\006\022\022\n\014ReqPetActive\020\347\353" +
+      "\006\022\030\n\022ReqPetUseAttrPoint\020\350\353\006B*\n\036com.cat.s" +
+      "erver.game.data.protoB\010PBDefineb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

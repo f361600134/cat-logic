@@ -2,11 +2,14 @@ package com.cat.robot.module.login;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.cat.net.network.annotation.Cmd;
 import com.cat.net.network.base.ISession;
 import com.cat.net.network.controller.IController;
+import com.cat.robot.module.chat.proto.ReqChat;
+import com.cat.robot.module.robot.RobotManager;
 import com.cat.server.game.data.proto.PBDefine;
 import com.cat.server.game.data.proto.PBLogin;
 
@@ -15,6 +18,7 @@ public class LoginController implements IController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+	@Autowired private RobotManager robotManager;
 	/**
 	 * 响应登录, 开始获取随机名
 	 * 
@@ -38,6 +42,15 @@ public class LoginController implements IController {
 //				context.send(PBDefine.PBProtocol.ReqRandName_VALUE, newBuilder.build());
 			}
 		}
+		robotManager.getRobotMap().forEach((key, robot)->{
+			ReqChat req = ReqChat.create();
+			req.setChannel(0);
+			//req.setContent("@mail sendMail,1");
+			req.setContent("@resource 600001,1,600002,1");
+			req.setRecvId(-1);
+			robot.send(req);
+		});
+		
 	}
 
 	/**

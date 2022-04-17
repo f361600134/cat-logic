@@ -3,11 +3,14 @@ package com.cat.server.game.module.attribute.domain;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.function.Predicate;
 
+import com.cat.server.game.data.proto.PBItem.PBPairInfo;
 import com.cat.server.game.helper.log.NatureEnum;
+import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
 
 public abstract class AbstractAttributeNode implements IAttributeNode {
 	
@@ -195,7 +198,7 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
         sb.append(path).append("==");
         AttributeDictionary curAttrDic = getAttrDic();
         boolean first = true;
-        for (Entry<Integer, Long> entry : curAttrDic.getDictionary().entrySet()) {
+        for (Entry<Integer, Integer> entry : curAttrDic.getDictionary().entrySet()) {
             long value = entry.getValue();
             if (value == 0) {
                 continue;
@@ -227,4 +230,19 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
         }
         return sb.toString();
     }
+    
+	/**
+	 * 技能信息转协议对象
+	 * @return
+	 */
+	public Collection<PBPairInfo> toProto(){
+		List<PBPairInfo> ret = new ArrayList<>();
+		this.getAttrDic().getDictionary().forEach((attrId, value)->{
+			PBPairInfoBuilder builder = PBPairInfoBuilder.newInstance();
+			builder.setConfigId(attrId);
+			builder.setValue(value);
+			ret.add(builder.build());
+		});
+		return ret;
+	}
 }

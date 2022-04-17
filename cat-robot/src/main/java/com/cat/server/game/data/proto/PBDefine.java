@@ -31,38 +31,6 @@ public final class PBDefine {
     DEFAULTID(0),
     /**
      * <pre>
-     *Item
-     * </pre>
-     *
-     * <code>ReqItemUse = 102101;</code>
-     */
-    ReqItemUse(102101),
-    /**
-     * <code>RespItemUpdate = 102201;</code>
-     */
-    RespItemUpdate(102201),
-    /**
-     * <code>RespItemUse = 102202;</code>
-     */
-    RespItemUse(102202),
-    /**
-     * <code>RespItemDelete = 102203;</code>
-     */
-    RespItemDelete(102203),
-    /**
-     * <code>ReqItemSell = 102102;</code>
-     */
-    ReqItemSell(102102),
-    /**
-     * <code>RespRewards = 102204;</code>
-     */
-    RespRewards(102204),
-    /**
-     * <code>RespItemSell = 102205;</code>
-     */
-    RespItemSell(102205),
-    /**
-     * <pre>
      *Player
      * </pre>
      *
@@ -123,72 +91,40 @@ public final class PBDefine {
     ReqPlayerHeart(101105),
     /**
      * <pre>
-     *LearnCommunity
+     *PlayerMail
      * </pre>
      *
-     * <code>RespLearnCommunityInfo = 200201;</code>
+     * <code>ReqPlayerMailRead = 103101;</code>
      */
-    RespLearnCommunityInfo(200201),
+    ReqPlayerMailRead(103101),
     /**
-     * <code>RespLearnCommunityReward = 200202;</code>
+     * <code>RespPlayerMailDelete = 103201;</code>
      */
-    RespLearnCommunityReward(200202),
+    RespPlayerMailDelete(103201),
     /**
-     * <code>ReqLearnCommunityInfo = 200101;</code>
+     * <code>ReqPlayerMailDelete = 103102;</code>
      */
-    ReqLearnCommunityInfo(200101),
+    ReqPlayerMailDelete(103102),
     /**
-     * <code>ReqLearnCommunityReward = 200102;</code>
+     * <code>ReqPlayerMailReward = 103103;</code>
      */
-    ReqLearnCommunityReward(200102),
+    ReqPlayerMailReward(103103),
     /**
-     * <pre>
-     *Mail
-     * </pre>
-     *
-     * <code>RespMailRead = 103201;</code>
+     * <code>RespPlayerMailList = 103202;</code>
      */
-    RespMailRead(103201),
+    RespPlayerMailList(103202),
     /**
-     * <code>ReqMailReward = 103101;</code>
+     * <code>RespPlayerMailReward = 103203;</code>
      */
-    ReqMailReward(103101),
+    RespPlayerMailReward(103203),
     /**
-     * <code>RespMailDelete = 103202;</code>
+     * <code>ReqPlayerMailList = 103104;</code>
      */
-    RespMailDelete(103202),
+    ReqPlayerMailList(103104),
     /**
-     * <code>ReqMailRead = 103102;</code>
+     * <code>RespPlayerMailRead = 103204;</code>
      */
-    ReqMailRead(103102),
-    /**
-     * <code>ReqMailList = 103103;</code>
-     */
-    ReqMailList(103103),
-    /**
-     * <code>RespMailReward = 103203;</code>
-     */
-    RespMailReward(103203),
-    /**
-     * <code>RespMailList = 103204;</code>
-     */
-    RespMailList(103204),
-    /**
-     * <code>ReqMailDelete = 103104;</code>
-     */
-    ReqMailDelete(103104),
-    /**
-     * <pre>
-     *Chat
-     * </pre>
-     *
-     * <code>RespChat = 104201;</code>
-     */
-    RespChat(104201),
-    /**
-     * <code>ReqChat = 104101;</code>
-     */
-    ReqChat(104101),
+    RespPlayerMailRead(103204),
     /**
      * <pre>
      *Activity
@@ -247,6 +183,158 @@ public final class PBDefine {
     ReqCreateRole(100103),
     /**
      * <pre>
+     *Common
+     * </pre>
+     *
+     * <code>RespTips = 1201;</code>
+     */
+    RespTips(1201),
+    /**
+     * <pre>
+     *Item
+     * </pre>
+     *
+     * <code>ReqItemUse = 102101;</code>
+     */
+    ReqItemUse(102101),
+    /**
+     * <code>RespItemUpdate = 102201;</code>
+     */
+    RespItemUpdate(102201),
+    /**
+     * <code>RespItemUse = 102202;</code>
+     */
+    RespItemUse(102202),
+    /**
+     * <code>ReqItemSell = 102102;</code>
+     */
+    ReqItemSell(102102),
+    /**
+     * <code>RespItemDelete = 102203;</code>
+     */
+    RespItemDelete(102203),
+    /**
+     * <code>RespRewards = 102204;</code>
+     */
+    RespRewards(102204),
+    /**
+     * <code>RespItemSell = 102205;</code>
+     */
+    RespItemSell(102205),
+    /**
+     * <pre>
+     *Shop
+     * </pre>
+     *
+     * <code>ReqShopInfo = 110101;</code>
+     */
+    ReqShopInfo(110101),
+    /**
+     * <code>RespShopInfo = 110201;</code>
+     */
+    RespShopInfo(110201),
+    /**
+     * <code>RespShopBuy = 110202;</code>
+     */
+    RespShopBuy(110202),
+    /**
+     * <code>ReqShopBuy = 110102;</code>
+     */
+    ReqShopBuy(110102),
+    /**
+     * <code>RespShopQuickBuy = 110203;</code>
+     */
+    RespShopQuickBuy(110203),
+    /**
+     * <code>ReqShopQuickBuy = 110103;</code>
+     */
+    ReqShopQuickBuy(110103),
+    /**
+     * <pre>
+     *LearnCommunity
+     * </pre>
+     *
+     * <code>RespLearnCommunityInfo = 200201;</code>
+     */
+    RespLearnCommunityInfo(200201),
+    /**
+     * <code>RespLearnCommunityReward = 200202;</code>
+     */
+    RespLearnCommunityReward(200202),
+    /**
+     * <code>ReqLearnCommunityInfo = 200101;</code>
+     */
+    ReqLearnCommunityInfo(200101),
+    /**
+     * <code>ReqLearnCommunityReward = 200102;</code>
+     */
+    ReqLearnCommunityReward(200102),
+    /**
+     * <pre>
+     *Recycle
+     * </pre>
+     *
+     * <code>ReqResourceRecycleInfo = 108101;</code>
+     */
+    ReqResourceRecycleInfo(108101),
+    /**
+     * <code>RespResourceRecycleInfo = 108201;</code>
+     */
+    RespResourceRecycleInfo(108201),
+    /**
+     * <pre>
+     *Chat
+     * </pre>
+     *
+     * <code>RespChat = 104201;</code>
+     */
+    RespChat(104201),
+    /**
+     * <code>ReqChat = 104101;</code>
+     */
+    ReqChat(104101),
+    /**
+     * <pre>
+     *Mission
+     * </pre>
+     *
+     * <code>ReqMissionInfo = 111101;</code>
+     */
+    ReqMissionInfo(111101),
+    /**
+     * <code>RespMissionSingleQuest = 111201;</code>
+     */
+    RespMissionSingleQuest(111201),
+    /**
+     * <code>ReqMissionQuestReward = 111102;</code>
+     */
+    ReqMissionQuestReward(111102),
+    /**
+     * <code>RespMissionQuestReward = 111202;</code>
+     */
+    RespMissionQuestReward(111202),
+    /**
+     * <code>RespMissionInfo = 111203;</code>
+     */
+    RespMissionInfo(111203),
+    /**
+     * <pre>
+     *FunctionControl
+     * </pre>
+     *
+     * <code>ReqFunctionControl = 2101;</code>
+     */
+    ReqFunctionControl(2101),
+    /**
+     * <pre>
+     *GroupMail
+     * </pre>
+     *
+     * <code>ReqGroupMailInfo = 900101;</code>
+     */
+    ReqGroupMailInfo(900101),
+    /**
+     * <pre>
      *ActivityItem
      * </pre>
      *
@@ -263,12 +351,48 @@ public final class PBDefine {
     RespActivityItemsUpdate(201203),
     /**
      * <pre>
-     *Common
+     *Pet
      * </pre>
      *
-     * <code>RespTips = 1201;</code>
+     * <code>ReqPetLevelup = 112101;</code>
      */
-    RespTips(1201),
+    ReqPetLevelup(112101),
+    /**
+     * <code>ReqPetIdentify = 112102;</code>
+     */
+    ReqPetIdentify(112102),
+    /**
+     * <code>RespPetUseAttrPoint = 112201;</code>
+     */
+    RespPetUseAttrPoint(112201),
+    /**
+     * <code>RespPetLevelup = 112202;</code>
+     */
+    RespPetLevelup(112202),
+    /**
+     * <code>RespPetUpdate = 112203;</code>
+     */
+    RespPetUpdate(112203),
+    /**
+     * <code>RespPetIdentify = 112204;</code>
+     */
+    RespPetIdentify(112204),
+    /**
+     * <code>RespPetDelete = 112205;</code>
+     */
+    RespPetDelete(112205),
+    /**
+     * <code>RespPetActive = 112206;</code>
+     */
+    RespPetActive(112206),
+    /**
+     * <code>ReqPetActive = 112103;</code>
+     */
+    ReqPetActive(112103),
+    /**
+     * <code>ReqPetUseAttrPoint = 112104;</code>
+     */
+    ReqPetUseAttrPoint(112104),
     UNRECOGNIZED(-1),
     ;
 
@@ -276,38 +400,6 @@ public final class PBDefine {
      * <code>DEFAULTID = 0;</code>
      */
     public static final int DEFAULTID_VALUE = 0;
-    /**
-     * <pre>
-     *Item
-     * </pre>
-     *
-     * <code>ReqItemUse = 102101;</code>
-     */
-    public static final int ReqItemUse_VALUE = 102101;
-    /**
-     * <code>RespItemUpdate = 102201;</code>
-     */
-    public static final int RespItemUpdate_VALUE = 102201;
-    /**
-     * <code>RespItemUse = 102202;</code>
-     */
-    public static final int RespItemUse_VALUE = 102202;
-    /**
-     * <code>RespItemDelete = 102203;</code>
-     */
-    public static final int RespItemDelete_VALUE = 102203;
-    /**
-     * <code>ReqItemSell = 102102;</code>
-     */
-    public static final int ReqItemSell_VALUE = 102102;
-    /**
-     * <code>RespRewards = 102204;</code>
-     */
-    public static final int RespRewards_VALUE = 102204;
-    /**
-     * <code>RespItemSell = 102205;</code>
-     */
-    public static final int RespItemSell_VALUE = 102205;
     /**
      * <pre>
      *Player
@@ -370,72 +462,40 @@ public final class PBDefine {
     public static final int ReqPlayerHeart_VALUE = 101105;
     /**
      * <pre>
-     *LearnCommunity
+     *PlayerMail
      * </pre>
      *
-     * <code>RespLearnCommunityInfo = 200201;</code>
+     * <code>ReqPlayerMailRead = 103101;</code>
      */
-    public static final int RespLearnCommunityInfo_VALUE = 200201;
+    public static final int ReqPlayerMailRead_VALUE = 103101;
     /**
-     * <code>RespLearnCommunityReward = 200202;</code>
+     * <code>RespPlayerMailDelete = 103201;</code>
      */
-    public static final int RespLearnCommunityReward_VALUE = 200202;
+    public static final int RespPlayerMailDelete_VALUE = 103201;
     /**
-     * <code>ReqLearnCommunityInfo = 200101;</code>
+     * <code>ReqPlayerMailDelete = 103102;</code>
      */
-    public static final int ReqLearnCommunityInfo_VALUE = 200101;
+    public static final int ReqPlayerMailDelete_VALUE = 103102;
     /**
-     * <code>ReqLearnCommunityReward = 200102;</code>
+     * <code>ReqPlayerMailReward = 103103;</code>
      */
-    public static final int ReqLearnCommunityReward_VALUE = 200102;
+    public static final int ReqPlayerMailReward_VALUE = 103103;
     /**
-     * <pre>
-     *Mail
-     * </pre>
-     *
-     * <code>RespMailRead = 103201;</code>
+     * <code>RespPlayerMailList = 103202;</code>
      */
-    public static final int RespMailRead_VALUE = 103201;
+    public static final int RespPlayerMailList_VALUE = 103202;
     /**
-     * <code>ReqMailReward = 103101;</code>
+     * <code>RespPlayerMailReward = 103203;</code>
      */
-    public static final int ReqMailReward_VALUE = 103101;
+    public static final int RespPlayerMailReward_VALUE = 103203;
     /**
-     * <code>RespMailDelete = 103202;</code>
+     * <code>ReqPlayerMailList = 103104;</code>
      */
-    public static final int RespMailDelete_VALUE = 103202;
+    public static final int ReqPlayerMailList_VALUE = 103104;
     /**
-     * <code>ReqMailRead = 103102;</code>
+     * <code>RespPlayerMailRead = 103204;</code>
      */
-    public static final int ReqMailRead_VALUE = 103102;
-    /**
-     * <code>ReqMailList = 103103;</code>
-     */
-    public static final int ReqMailList_VALUE = 103103;
-    /**
-     * <code>RespMailReward = 103203;</code>
-     */
-    public static final int RespMailReward_VALUE = 103203;
-    /**
-     * <code>RespMailList = 103204;</code>
-     */
-    public static final int RespMailList_VALUE = 103204;
-    /**
-     * <code>ReqMailDelete = 103104;</code>
-     */
-    public static final int ReqMailDelete_VALUE = 103104;
-    /**
-     * <pre>
-     *Chat
-     * </pre>
-     *
-     * <code>RespChat = 104201;</code>
-     */
-    public static final int RespChat_VALUE = 104201;
-    /**
-     * <code>ReqChat = 104101;</code>
-     */
-    public static final int ReqChat_VALUE = 104101;
+    public static final int RespPlayerMailRead_VALUE = 103204;
     /**
      * <pre>
      *Activity
@@ -494,6 +554,158 @@ public final class PBDefine {
     public static final int ReqCreateRole_VALUE = 100103;
     /**
      * <pre>
+     *Common
+     * </pre>
+     *
+     * <code>RespTips = 1201;</code>
+     */
+    public static final int RespTips_VALUE = 1201;
+    /**
+     * <pre>
+     *Item
+     * </pre>
+     *
+     * <code>ReqItemUse = 102101;</code>
+     */
+    public static final int ReqItemUse_VALUE = 102101;
+    /**
+     * <code>RespItemUpdate = 102201;</code>
+     */
+    public static final int RespItemUpdate_VALUE = 102201;
+    /**
+     * <code>RespItemUse = 102202;</code>
+     */
+    public static final int RespItemUse_VALUE = 102202;
+    /**
+     * <code>ReqItemSell = 102102;</code>
+     */
+    public static final int ReqItemSell_VALUE = 102102;
+    /**
+     * <code>RespItemDelete = 102203;</code>
+     */
+    public static final int RespItemDelete_VALUE = 102203;
+    /**
+     * <code>RespRewards = 102204;</code>
+     */
+    public static final int RespRewards_VALUE = 102204;
+    /**
+     * <code>RespItemSell = 102205;</code>
+     */
+    public static final int RespItemSell_VALUE = 102205;
+    /**
+     * <pre>
+     *Shop
+     * </pre>
+     *
+     * <code>ReqShopInfo = 110101;</code>
+     */
+    public static final int ReqShopInfo_VALUE = 110101;
+    /**
+     * <code>RespShopInfo = 110201;</code>
+     */
+    public static final int RespShopInfo_VALUE = 110201;
+    /**
+     * <code>RespShopBuy = 110202;</code>
+     */
+    public static final int RespShopBuy_VALUE = 110202;
+    /**
+     * <code>ReqShopBuy = 110102;</code>
+     */
+    public static final int ReqShopBuy_VALUE = 110102;
+    /**
+     * <code>RespShopQuickBuy = 110203;</code>
+     */
+    public static final int RespShopQuickBuy_VALUE = 110203;
+    /**
+     * <code>ReqShopQuickBuy = 110103;</code>
+     */
+    public static final int ReqShopQuickBuy_VALUE = 110103;
+    /**
+     * <pre>
+     *LearnCommunity
+     * </pre>
+     *
+     * <code>RespLearnCommunityInfo = 200201;</code>
+     */
+    public static final int RespLearnCommunityInfo_VALUE = 200201;
+    /**
+     * <code>RespLearnCommunityReward = 200202;</code>
+     */
+    public static final int RespLearnCommunityReward_VALUE = 200202;
+    /**
+     * <code>ReqLearnCommunityInfo = 200101;</code>
+     */
+    public static final int ReqLearnCommunityInfo_VALUE = 200101;
+    /**
+     * <code>ReqLearnCommunityReward = 200102;</code>
+     */
+    public static final int ReqLearnCommunityReward_VALUE = 200102;
+    /**
+     * <pre>
+     *Recycle
+     * </pre>
+     *
+     * <code>ReqResourceRecycleInfo = 108101;</code>
+     */
+    public static final int ReqResourceRecycleInfo_VALUE = 108101;
+    /**
+     * <code>RespResourceRecycleInfo = 108201;</code>
+     */
+    public static final int RespResourceRecycleInfo_VALUE = 108201;
+    /**
+     * <pre>
+     *Chat
+     * </pre>
+     *
+     * <code>RespChat = 104201;</code>
+     */
+    public static final int RespChat_VALUE = 104201;
+    /**
+     * <code>ReqChat = 104101;</code>
+     */
+    public static final int ReqChat_VALUE = 104101;
+    /**
+     * <pre>
+     *Mission
+     * </pre>
+     *
+     * <code>ReqMissionInfo = 111101;</code>
+     */
+    public static final int ReqMissionInfo_VALUE = 111101;
+    /**
+     * <code>RespMissionSingleQuest = 111201;</code>
+     */
+    public static final int RespMissionSingleQuest_VALUE = 111201;
+    /**
+     * <code>ReqMissionQuestReward = 111102;</code>
+     */
+    public static final int ReqMissionQuestReward_VALUE = 111102;
+    /**
+     * <code>RespMissionQuestReward = 111202;</code>
+     */
+    public static final int RespMissionQuestReward_VALUE = 111202;
+    /**
+     * <code>RespMissionInfo = 111203;</code>
+     */
+    public static final int RespMissionInfo_VALUE = 111203;
+    /**
+     * <pre>
+     *FunctionControl
+     * </pre>
+     *
+     * <code>ReqFunctionControl = 2101;</code>
+     */
+    public static final int ReqFunctionControl_VALUE = 2101;
+    /**
+     * <pre>
+     *GroupMail
+     * </pre>
+     *
+     * <code>ReqGroupMailInfo = 900101;</code>
+     */
+    public static final int ReqGroupMailInfo_VALUE = 900101;
+    /**
+     * <pre>
      *ActivityItem
      * </pre>
      *
@@ -510,12 +722,48 @@ public final class PBDefine {
     public static final int RespActivityItemsUpdate_VALUE = 201203;
     /**
      * <pre>
-     *Common
+     *Pet
      * </pre>
      *
-     * <code>RespTips = 1201;</code>
+     * <code>ReqPetLevelup = 112101;</code>
      */
-    public static final int RespTips_VALUE = 1201;
+    public static final int ReqPetLevelup_VALUE = 112101;
+    /**
+     * <code>ReqPetIdentify = 112102;</code>
+     */
+    public static final int ReqPetIdentify_VALUE = 112102;
+    /**
+     * <code>RespPetUseAttrPoint = 112201;</code>
+     */
+    public static final int RespPetUseAttrPoint_VALUE = 112201;
+    /**
+     * <code>RespPetLevelup = 112202;</code>
+     */
+    public static final int RespPetLevelup_VALUE = 112202;
+    /**
+     * <code>RespPetUpdate = 112203;</code>
+     */
+    public static final int RespPetUpdate_VALUE = 112203;
+    /**
+     * <code>RespPetIdentify = 112204;</code>
+     */
+    public static final int RespPetIdentify_VALUE = 112204;
+    /**
+     * <code>RespPetDelete = 112205;</code>
+     */
+    public static final int RespPetDelete_VALUE = 112205;
+    /**
+     * <code>RespPetActive = 112206;</code>
+     */
+    public static final int RespPetActive_VALUE = 112206;
+    /**
+     * <code>ReqPetActive = 112103;</code>
+     */
+    public static final int ReqPetActive_VALUE = 112103;
+    /**
+     * <code>ReqPetUseAttrPoint = 112104;</code>
+     */
+    public static final int ReqPetUseAttrPoint_VALUE = 112104;
 
 
     public final int getNumber() {
@@ -543,13 +791,6 @@ public final class PBDefine {
     public static PBProtocol forNumber(int value) {
       switch (value) {
         case 0: return DEFAULTID;
-        case 102101: return ReqItemUse;
-        case 102201: return RespItemUpdate;
-        case 102202: return RespItemUse;
-        case 102203: return RespItemDelete;
-        case 102102: return ReqItemSell;
-        case 102204: return RespRewards;
-        case 102205: return RespItemSell;
         case 101201: return RespPlayerCreateRole;
         case 101101: return ReqPlayerCreateRole;
         case 101102: return ReqPlayerReLogin;
@@ -564,20 +805,14 @@ public final class PBDefine {
         case 101209: return RespUpdatePlayerInfo;
         case 101104: return ReqPlayerLogin;
         case 101105: return ReqPlayerHeart;
-        case 200201: return RespLearnCommunityInfo;
-        case 200202: return RespLearnCommunityReward;
-        case 200101: return ReqLearnCommunityInfo;
-        case 200102: return ReqLearnCommunityReward;
-        case 103201: return RespMailRead;
-        case 103101: return ReqMailReward;
-        case 103202: return RespMailDelete;
-        case 103102: return ReqMailRead;
-        case 103103: return ReqMailList;
-        case 103203: return RespMailReward;
-        case 103204: return RespMailList;
-        case 103104: return ReqMailDelete;
-        case 104201: return RespChat;
-        case 104101: return ReqChat;
+        case 103101: return ReqPlayerMailRead;
+        case 103201: return RespPlayerMailDelete;
+        case 103102: return ReqPlayerMailDelete;
+        case 103103: return ReqPlayerMailReward;
+        case 103202: return RespPlayerMailList;
+        case 103203: return RespPlayerMailReward;
+        case 103104: return ReqPlayerMailList;
+        case 103204: return RespPlayerMailRead;
         case 105101: return ReqActivityInfo;
         case 105201: return RespActivityInfo;
         case 105202: return RespActivityInfoUpdate;
@@ -588,10 +823,48 @@ public final class PBDefine {
         case 100101: return ReqLogin;
         case 100102: return ReqRandName;
         case 100103: return ReqCreateRole;
+        case 1201: return RespTips;
+        case 102101: return ReqItemUse;
+        case 102201: return RespItemUpdate;
+        case 102202: return RespItemUse;
+        case 102102: return ReqItemSell;
+        case 102203: return RespItemDelete;
+        case 102204: return RespRewards;
+        case 102205: return RespItemSell;
+        case 110101: return ReqShopInfo;
+        case 110201: return RespShopInfo;
+        case 110202: return RespShopBuy;
+        case 110102: return ReqShopBuy;
+        case 110203: return RespShopQuickBuy;
+        case 110103: return ReqShopQuickBuy;
+        case 200201: return RespLearnCommunityInfo;
+        case 200202: return RespLearnCommunityReward;
+        case 200101: return ReqLearnCommunityInfo;
+        case 200102: return ReqLearnCommunityReward;
+        case 108101: return ReqResourceRecycleInfo;
+        case 108201: return RespResourceRecycleInfo;
+        case 104201: return RespChat;
+        case 104101: return ReqChat;
+        case 111101: return ReqMissionInfo;
+        case 111201: return RespMissionSingleQuest;
+        case 111102: return ReqMissionQuestReward;
+        case 111202: return RespMissionQuestReward;
+        case 111203: return RespMissionInfo;
+        case 2101: return ReqFunctionControl;
+        case 900101: return ReqGroupMailInfo;
         case 201201: return RespActivityItemDelete;
         case 201202: return RespActivityItemsInfo;
         case 201203: return RespActivityItemsUpdate;
-        case 1201: return RespTips;
+        case 112101: return ReqPetLevelup;
+        case 112102: return ReqPetIdentify;
+        case 112201: return RespPetUseAttrPoint;
+        case 112202: return RespPetLevelup;
+        case 112203: return RespPetUpdate;
+        case 112204: return RespPetIdentify;
+        case 112205: return RespPetDelete;
+        case 112206: return RespPetActive;
+        case 112103: return ReqPetActive;
+        case 112104: return ReqPetUseAttrPoint;
         default: return null;
       }
     }
@@ -653,37 +926,53 @@ public final class PBDefine {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020PBProtocol.proto\022\010Protocol*\205\t\n\nPBProto" +
-      "col\022\r\n\tDEFAULTID\020\000\022\020\n\nReqItemUse\020\325\235\006\022\024\n\016" +
-      "RespItemUpdate\020\271\236\006\022\021\n\013RespItemUse\020\272\236\006\022\024\n" +
-      "\016RespItemDelete\020\273\236\006\022\021\n\013ReqItemSell\020\326\235\006\022\021" +
-      "\n\013RespRewards\020\274\236\006\022\022\n\014RespItemSell\020\275\236\006\022\032\n" +
-      "\024RespPlayerCreateRole\020\321\226\006\022\031\n\023ReqPlayerCr" +
-      "eateRole\020\355\225\006\022\026\n\020ReqPlayerReLogin\020\356\225\006\022\025\n\017" +
-      "RespPlayerHeart\020\322\226\006\022\030\n\022RespInitPlayerInf" +
-      "o\020\323\226\006\022\030\n\022RespPlayerRandName\020\324\226\006\022\032\n\024RespP" +
-      "layerDisconnect\020\325\226\006\022\031\n\023RespPlayerEnterGa" +
-      "me\020\326\226\006\022\027\n\021RespPlayerReLogin\020\327\226\006\022\025\n\017RespP" +
-      "layerLogin\020\330\226\006\022\027\n\021ReqPlayerRandName\020\357\225\006\022" +
-      "\032\n\024RespUpdatePlayerInfo\020\331\226\006\022\024\n\016ReqPlayer" +
-      "Login\020\360\225\006\022\024\n\016ReqPlayerHeart\020\361\225\006\022\034\n\026RespL" +
-      "earnCommunityInfo\020\211\234\014\022\036\n\030RespLearnCommun" +
-      "ityReward\020\212\234\014\022\033\n\025ReqLearnCommunityInfo\020\245" +
-      "\233\014\022\035\n\027ReqLearnCommunityReward\020\246\233\014\022\022\n\014Res" +
-      "pMailRead\020\241\246\006\022\023\n\rReqMailReward\020\275\245\006\022\024\n\016Re" +
-      "spMailDelete\020\242\246\006\022\021\n\013ReqMailRead\020\276\245\006\022\021\n\013R" +
-      "eqMailList\020\277\245\006\022\024\n\016RespMailReward\020\243\246\006\022\022\n\014" +
-      "RespMailList\020\244\246\006\022\023\n\rReqMailDelete\020\300\245\006\022\016\n" +
-      "\010RespChat\020\211\256\006\022\r\n\007ReqChat\020\245\255\006\022\025\n\017ReqActiv" +
-      "ityInfo\020\215\265\006\022\026\n\020RespActivityInfo\020\361\265\006\022\034\n\026R" +
-      "espActivityInfoUpdate\020\362\265\006\022\024\n\016RespShadowI" +
-      "nfo\020\301\305\006\022\023\n\rReqShadowInfo\020\335\304\006\022\021\n\013ReqRankI" +
-      "nfo\020\365\274\006\022\022\n\014RespRankInfo\020\331\275\006\022\016\n\010ReqLogin\020" +
-      "\205\216\006\022\021\n\013ReqRandName\020\206\216\006\022\023\n\rReqCreateRole\020" +
-      "\207\216\006\022\034\n\026RespActivityItemDelete\020\361\243\014\022\033\n\025Res" +
-      "pActivityItemsInfo\020\362\243\014\022\035\n\027RespActivityIt" +
-      "emsUpdate\020\363\243\014\022\r\n\010RespTips\020\261\tB*\n\036com.cat." +
-      "server.game.data.protoB\010PBDefineb\006proto3"
+      "\n\020PBProtocol.proto\022\010Protocol*\204\016\n\nPBProto" +
+      "col\022\r\n\tDEFAULTID\020\000\022\032\n\024RespPlayerCreateRo" +
+      "le\020\321\226\006\022\031\n\023ReqPlayerCreateRole\020\355\225\006\022\026\n\020Req" +
+      "PlayerReLogin\020\356\225\006\022\025\n\017RespPlayerHeart\020\322\226\006" +
+      "\022\030\n\022RespInitPlayerInfo\020\323\226\006\022\030\n\022RespPlayer" +
+      "RandName\020\324\226\006\022\032\n\024RespPlayerDisconnect\020\325\226\006" +
+      "\022\031\n\023RespPlayerEnterGame\020\326\226\006\022\027\n\021RespPlaye" +
+      "rReLogin\020\327\226\006\022\025\n\017RespPlayerLogin\020\330\226\006\022\027\n\021R" +
+      "eqPlayerRandName\020\357\225\006\022\032\n\024RespUpdatePlayer" +
+      "Info\020\331\226\006\022\024\n\016ReqPlayerLogin\020\360\225\006\022\024\n\016ReqPla" +
+      "yerHeart\020\361\225\006\022\027\n\021ReqPlayerMailRead\020\275\245\006\022\032\n" +
+      "\024RespPlayerMailDelete\020\241\246\006\022\031\n\023ReqPlayerMa" +
+      "ilDelete\020\276\245\006\022\031\n\023ReqPlayerMailReward\020\277\245\006\022" +
+      "\030\n\022RespPlayerMailList\020\242\246\006\022\032\n\024RespPlayerM" +
+      "ailReward\020\243\246\006\022\027\n\021ReqPlayerMailList\020\300\245\006\022\030" +
+      "\n\022RespPlayerMailRead\020\244\246\006\022\025\n\017ReqActivityI" +
+      "nfo\020\215\265\006\022\026\n\020RespActivityInfo\020\361\265\006\022\034\n\026RespA" +
+      "ctivityInfoUpdate\020\362\265\006\022\024\n\016RespShadowInfo\020" +
+      "\301\305\006\022\023\n\rReqShadowInfo\020\335\304\006\022\021\n\013ReqRankInfo\020" +
+      "\365\274\006\022\022\n\014RespRankInfo\020\331\275\006\022\016\n\010ReqLogin\020\205\216\006\022" +
+      "\021\n\013ReqRandName\020\206\216\006\022\023\n\rReqCreateRole\020\207\216\006\022" +
+      "\r\n\010RespTips\020\261\t\022\020\n\nReqItemUse\020\325\235\006\022\024\n\016Resp" +
+      "ItemUpdate\020\271\236\006\022\021\n\013RespItemUse\020\272\236\006\022\021\n\013Req" +
+      "ItemSell\020\326\235\006\022\024\n\016RespItemDelete\020\273\236\006\022\021\n\013Re" +
+      "spRewards\020\274\236\006\022\022\n\014RespItemSell\020\275\236\006\022\021\n\013Req" +
+      "ShopInfo\020\225\334\006\022\022\n\014RespShopInfo\020\371\334\006\022\021\n\013Resp" +
+      "ShopBuy\020\372\334\006\022\020\n\nReqShopBuy\020\226\334\006\022\026\n\020RespSho" +
+      "pQuickBuy\020\373\334\006\022\025\n\017ReqShopQuickBuy\020\227\334\006\022\034\n\026" +
+      "RespLearnCommunityInfo\020\211\234\014\022\036\n\030RespLearnC" +
+      "ommunityReward\020\212\234\014\022\033\n\025ReqLearnCommunityI" +
+      "nfo\020\245\233\014\022\035\n\027ReqLearnCommunityReward\020\246\233\014\022\034" +
+      "\n\026ReqResourceRecycleInfo\020\305\314\006\022\035\n\027RespReso" +
+      "urceRecycleInfo\020\251\315\006\022\016\n\010RespChat\020\211\256\006\022\r\n\007R" +
+      "eqChat\020\245\255\006\022\024\n\016ReqMissionInfo\020\375\343\006\022\034\n\026Resp" +
+      "MissionSingleQuest\020\341\344\006\022\033\n\025ReqMissionQues" +
+      "tReward\020\376\343\006\022\034\n\026RespMissionQuestReward\020\342\344" +
+      "\006\022\025\n\017RespMissionInfo\020\343\344\006\022\027\n\022ReqFunctionC" +
+      "ontrol\020\265\020\022\026\n\020ReqGroupMailInfo\020\205\3706\022\034\n\026Res" +
+      "pActivityItemDelete\020\361\243\014\022\033\n\025RespActivityI" +
+      "temsInfo\020\362\243\014\022\035\n\027RespActivityItemsUpdate\020" +
+      "\363\243\014\022\023\n\rReqPetLevelup\020\345\353\006\022\024\n\016ReqPetIdenti" +
+      "fy\020\346\353\006\022\031\n\023RespPetUseAttrPoint\020\311\354\006\022\024\n\016Res" +
+      "pPetLevelup\020\312\354\006\022\023\n\rRespPetUpdate\020\313\354\006\022\025\n\017" +
+      "RespPetIdentify\020\314\354\006\022\023\n\rRespPetDelete\020\315\354\006" +
+      "\022\023\n\rRespPetActive\020\316\354\006\022\022\n\014ReqPetActive\020\347\353" +
+      "\006\022\030\n\022ReqPetUseAttrPoint\020\350\353\006B*\n\036com.cat.s" +
+      "erver.game.data.protoB\010PBDefineb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

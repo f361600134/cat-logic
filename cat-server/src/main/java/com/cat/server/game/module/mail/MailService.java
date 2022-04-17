@@ -44,7 +44,7 @@ class MailService implements IMailService {
 	 * 邮件模块不同于其他模块, 邮件的触发不仅仅由玩家触发,所以登录后就得发送所有邮件
 	 */
 	public void onLogin(long playerId) {
-		this.responseMailInfos(playerId);
+//		this.responseMailInfos(playerId);
 	}
 	
 	/**

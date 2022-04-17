@@ -183,22 +183,22 @@ public class ConfigHeroLeveBase implements IGameConfig{
 	 */
 	public AttributeDictionary initBaseAttr() {
 		AttributeDictionary dictionary = new AttributeDictionary();
-		dictionary.addAttr(AttributeType.IdPropertyHp, (long)getHP());
-		dictionary.addAttr(AttributeType.IdPropertyAtk, (long)getAtk());
-		dictionary.addAttr(AttributeType.IdPropertySpeed, (long)getSpeed());
-		dictionary.addAttr(AttributeType.IdPropertyRage, (long)getRage());
-		dictionary.addAttr(AttributeType.IdPropertyAdDef, (long)getAdDef());
-		dictionary.addAttr(AttributeType.IdPropertyApDef, (long)getApDef());
-		dictionary.addAttr(AttributeType.IdPropertyHit, (long)getHit());
-		dictionary.addAttr(AttributeType.IdPropertyDodge, (long)getDodge());
-		dictionary.addAttr(AttributeType.IdPropertyCrit, (long)getCrit());
-		dictionary.addAttr(AttributeType.IdPropertyDeCrit, (long)getDeCrit());
-		dictionary.addAttr(AttributeType.IdPropertyParry, (long)getParry());
-		dictionary.addAttr(AttributeType.IdPropertyDeParry, (long)getDeParry());
-		dictionary.addAttr(AttributeType.IdPropertyDeDam, (long)getDeDam());
-		dictionary.addAttr(AttributeType.IdPropertyAddDam, (long)getAddDam());
-		dictionary.addAttr(AttributeType.IdPropertyDeCritValue, (long)getDeCritValue());
-		dictionary.addAttr(AttributeType.IdPropertyCare, (long)getCare());
+		dictionary.addAttr(AttributeType.IdPropertyHp, (int)getHP());
+		dictionary.addAttr(AttributeType.IdPropertyAtk, (int)getAtk());
+		dictionary.addAttr(AttributeType.IdPropertySpeed, (int)getSpeed());
+		dictionary.addAttr(AttributeType.IdPropertyRage, (int)getRage());
+		dictionary.addAttr(AttributeType.IdPropertyAdDef, (int)getAdDef());
+		dictionary.addAttr(AttributeType.IdPropertyApDef, (int)getApDef());
+		dictionary.addAttr(AttributeType.IdPropertyHit, (int)getHit());
+		dictionary.addAttr(AttributeType.IdPropertyDodge, (int)getDodge());
+		dictionary.addAttr(AttributeType.IdPropertyCrit, (int)getCrit());
+		dictionary.addAttr(AttributeType.IdPropertyDeCrit, (int)getDeCrit());
+		dictionary.addAttr(AttributeType.IdPropertyParry, (int)getParry());
+		dictionary.addAttr(AttributeType.IdPropertyDeParry, (int)getDeParry());
+		dictionary.addAttr(AttributeType.IdPropertyDeDam, (int)getDeDam());
+		dictionary.addAttr(AttributeType.IdPropertyAddDam, (int)getAddDam());
+		dictionary.addAttr(AttributeType.IdPropertyDeCritValue, (int)getDeCritValue());
+		dictionary.addAttr(AttributeType.IdPropertyCare, (int)getCare());
 		return dictionary;
 	}
 	

@@ -157,17 +157,24 @@ public final class PBPet {
      *属性资质
      * </pre>
      *
-     * <code>repeated int32 aptitudeAttributes = 10;</code>
-     * @return A list containing the aptitudeAttributes.
+     * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
      */
-    java.util.List<java.lang.Integer> getAptitudeAttributesList();
+    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+        getAptitudeAttributesList();
     /**
      * <pre>
      *属性资质
      * </pre>
      *
-     * <code>repeated int32 aptitudeAttributes = 10;</code>
-     * @return The count of aptitudeAttributes.
+     * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+     */
+    com.cat.server.game.data.proto.PBItem.PBPairInfo getAptitudeAttributes(int index);
+    /**
+     * <pre>
+     *属性资质
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
      */
     int getAptitudeAttributesCount();
     /**
@@ -175,11 +182,19 @@ public final class PBPet {
      *属性资质
      * </pre>
      *
-     * <code>repeated int32 aptitudeAttributes = 10;</code>
-     * @param index The index of the element to return.
-     * @return The aptitudeAttributes at the given index.
+     * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
      */
-    int getAptitudeAttributes(int index);
+    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+        getAptitudeAttributesOrBuilderList();
+    /**
+     * <pre>
+     *属性资质
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+     */
+    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getAptitudeAttributesOrBuilder(
+        int index);
 
     /**
      * <pre>
@@ -264,16 +279,6 @@ public final class PBPet {
      * @return The attrPoint.
      */
     int getAttrPoint();
-
-    /**
-     * <pre>
-     *是否休眠,true为休眠
-     * </pre>
-     *
-     * <code>bool dormancy = 16;</code>
-     * @return The dormancy.
-     */
-    boolean getDormancy();
   }
   /**
    * <pre>
@@ -294,7 +299,7 @@ public final class PBPet {
     private PBPetDto() {
       nickName_ = "";
       baseAttributes_ = java.util.Collections.emptyList();
-      aptitudeAttributes_ = emptyIntList();
+      aptitudeAttributes_ = java.util.Collections.emptyList();
       skills_ = java.util.Collections.emptyList();
     }
 
@@ -379,25 +384,13 @@ public final class PBPet {
                   input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
               break;
             }
-            case 80: {
-              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                aptitudeAttributes_ = newIntList();
-                mutable_bitField0_ |= 0x00000002;
-              }
-              aptitudeAttributes_.addInt(input.readInt32());
-              break;
-            }
             case 82: {
-              int length = input.readRawVarint32();
-              int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
-                aptitudeAttributes_ = newIntList();
+              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
+                aptitudeAttributes_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000002;
               }
-              while (input.getBytesUntilLimit() > 0) {
-                aptitudeAttributes_.addInt(input.readInt32());
-              }
-              input.popLimit(limit);
+              aptitudeAttributes_.add(
+                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             case 90: {
@@ -429,11 +422,6 @@ public final class PBPet {
               attrPoint_ = input.readInt32();
               break;
             }
-            case 128: {
-
-              dormancy_ = input.readBool();
-              break;
-            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -453,7 +441,7 @@ public final class PBPet {
           baseAttributes_ = java.util.Collections.unmodifiableList(baseAttributes_);
         }
         if (((mutable_bitField0_ & 0x00000002) != 0)) {
-          aptitudeAttributes_.makeImmutable(); // C
+          aptitudeAttributes_ = java.util.Collections.unmodifiableList(aptitudeAttributes_);
         }
         if (((mutable_bitField0_ & 0x00000004) != 0)) {
           skills_ = java.util.Collections.unmodifiableList(skills_);
@@ -673,17 +661,15 @@ public final class PBPet {
     }
 
     public static final int APTITUDEATTRIBUTES_FIELD_NUMBER = 10;
-    private com.google.protobuf.Internal.IntList aptitudeAttributes_;
+    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> aptitudeAttributes_;
     /**
      * <pre>
      *属性资质
      * </pre>
      *
-     * <code>repeated int32 aptitudeAttributes = 10;</code>
-     * @return A list containing the aptitudeAttributes.
+     * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
      */
-    public java.util.List<java.lang.Integer>
-        getAptitudeAttributesList() {
+    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getAptitudeAttributesList() {
       return aptitudeAttributes_;
     }
     /**
@@ -691,8 +677,18 @@ public final class PBPet {
      *属性资质
      * </pre>
      *
-     * <code>repeated int32 aptitudeAttributes = 10;</code>
-     * @return The count of aptitudeAttributes.
+     * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+     */
+    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+        getAptitudeAttributesOrBuilderList() {
+      return aptitudeAttributes_;
+    }
+    /**
+     * <pre>
+     *属性资质
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
      */
     public int getAptitudeAttributesCount() {
       return aptitudeAttributes_.size();
@@ -702,14 +698,22 @@ public final class PBPet {
      *属性资质
      * </pre>
      *
-     * <code>repeated int32 aptitudeAttributes = 10;</code>
-     * @param index The index of the element to return.
-     * @return The aptitudeAttributes at the given index.
+     * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
      */
-    public int getAptitudeAttributes(int index) {
-      return aptitudeAttributes_.getInt(index);
+    public com.cat.server.game.data.proto.PBItem.PBPairInfo getAptitudeAttributes(int index) {
+      return aptitudeAttributes_.get(index);
     }
-    private int aptitudeAttributesMemoizedSerializedSize = -1;
+    /**
+     * <pre>
+     *属性资质
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+     */
+    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getAptitudeAttributesOrBuilder(
+        int index) {
+      return aptitudeAttributes_.get(index);
+    }
 
     public static final int SKILLS_FIELD_NUMBER = 11;
     private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> skills_;
@@ -822,20 +826,6 @@ public final class PBPet {
       return attrPoint_;
     }
 
-    public static final int DORMANCY_FIELD_NUMBER = 16;
-    private boolean dormancy_;
-    /**
-     * <pre>
-     *是否休眠,true为休眠
-     * </pre>
-     *
-     * <code>bool dormancy = 16;</code>
-     * @return The dormancy.
-     */
-    public boolean getDormancy() {
-      return dormancy_;
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -850,7 +840,6 @@ public final class PBPet {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (uniqueId_ != 0L) {
         output.writeInt64(1, uniqueId_);
       }
@@ -878,12 +867,8 @@ public final class PBPet {
       for (int i = 0; i < baseAttributes_.size(); i++) {
         output.writeMessage(9, baseAttributes_.get(i));
       }
-      if (getAptitudeAttributesList().size() > 0) {
-        output.writeUInt32NoTag(82);
-        output.writeUInt32NoTag(aptitudeAttributesMemoizedSerializedSize);
-      }
       for (int i = 0; i < aptitudeAttributes_.size(); i++) {
-        output.writeInt32NoTag(aptitudeAttributes_.getInt(i));
+        output.writeMessage(10, aptitudeAttributes_.get(i));
       }
       for (int i = 0; i < skills_.size(); i++) {
         output.writeMessage(11, skills_.get(i));
@@ -899,9 +884,6 @@ public final class PBPet {
       }
       if (attrPoint_ != 0) {
         output.writeInt32(15, attrPoint_);
-      }
-      if (dormancy_ != false) {
-        output.writeBool(16, dormancy_);
       }
       unknownFields.writeTo(output);
     }
@@ -947,19 +929,9 @@ public final class PBPet {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(9, baseAttributes_.get(i));
       }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < aptitudeAttributes_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(aptitudeAttributes_.getInt(i));
-        }
-        size += dataSize;
-        if (!getAptitudeAttributesList().isEmpty()) {
-          size += 1;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        aptitudeAttributesMemoizedSerializedSize = dataSize;
+      for (int i = 0; i < aptitudeAttributes_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(10, aptitudeAttributes_.get(i));
       }
       for (int i = 0; i < skills_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -980,10 +952,6 @@ public final class PBPet {
       if (attrPoint_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(15, attrPoint_);
-      }
-      if (dormancy_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(16, dormancy_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1030,8 +998,6 @@ public final class PBPet {
           != other.getActive()) return false;
       if (getAttrPoint()
           != other.getAttrPoint()) return false;
-      if (getDormancy()
-          != other.getDormancy()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1082,9 +1048,6 @@ public final class PBPet {
           getActive());
       hash = (37 * hash) + ATTRPOINT_FIELD_NUMBER;
       hash = (53 * hash) + getAttrPoint();
-      hash = (37 * hash) + DORMANCY_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getDormancy());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1218,6 +1181,7 @@ public final class PBPet {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
           getBaseAttributesFieldBuilder();
+          getAptitudeAttributesFieldBuilder();
           getSkillsFieldBuilder();
         }
       }
@@ -1246,8 +1210,12 @@ public final class PBPet {
         } else {
           baseAttributesBuilder_.clear();
         }
-        aptitudeAttributes_ = emptyIntList();
-        bitField0_ = (bitField0_ & ~0x00000002);
+        if (aptitudeAttributesBuilder_ == null) {
+          aptitudeAttributes_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          aptitudeAttributesBuilder_.clear();
+        }
         if (skillsBuilder_ == null) {
           skills_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000004);
@@ -1261,8 +1229,6 @@ public final class PBPet {
         active_ = false;
 
         attrPoint_ = 0;
-
-        dormancy_ = false;
 
         return this;
       }
@@ -1308,11 +1274,15 @@ public final class PBPet {
         } else {
           result.baseAttributes_ = baseAttributesBuilder_.build();
         }
-        if (((bitField0_ & 0x00000002) != 0)) {
-          aptitudeAttributes_.makeImmutable();
-          bitField0_ = (bitField0_ & ~0x00000002);
+        if (aptitudeAttributesBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0)) {
+            aptitudeAttributes_ = java.util.Collections.unmodifiableList(aptitudeAttributes_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.aptitudeAttributes_ = aptitudeAttributes_;
+        } else {
+          result.aptitudeAttributes_ = aptitudeAttributesBuilder_.build();
         }
-        result.aptitudeAttributes_ = aptitudeAttributes_;
         if (skillsBuilder_ == null) {
           if (((bitField0_ & 0x00000004) != 0)) {
             skills_ = java.util.Collections.unmodifiableList(skills_);
@@ -1326,7 +1296,6 @@ public final class PBPet {
         result.hungry_ = hungry_;
         result.active_ = active_;
         result.attrPoint_ = attrPoint_;
-        result.dormancy_ = dormancy_;
         onBuilt();
         return result;
       }
@@ -1426,15 +1395,31 @@ public final class PBPet {
             }
           }
         }
-        if (!other.aptitudeAttributes_.isEmpty()) {
-          if (aptitudeAttributes_.isEmpty()) {
-            aptitudeAttributes_ = other.aptitudeAttributes_;
-            bitField0_ = (bitField0_ & ~0x00000002);
-          } else {
-            ensureAptitudeAttributesIsMutable();
-            aptitudeAttributes_.addAll(other.aptitudeAttributes_);
+        if (aptitudeAttributesBuilder_ == null) {
+          if (!other.aptitudeAttributes_.isEmpty()) {
+            if (aptitudeAttributes_.isEmpty()) {
+              aptitudeAttributes_ = other.aptitudeAttributes_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureAptitudeAttributesIsMutable();
+              aptitudeAttributes_.addAll(other.aptitudeAttributes_);
+            }
+            onChanged();
           }
-          onChanged();
+        } else {
+          if (!other.aptitudeAttributes_.isEmpty()) {
+            if (aptitudeAttributesBuilder_.isEmpty()) {
+              aptitudeAttributesBuilder_.dispose();
+              aptitudeAttributesBuilder_ = null;
+              aptitudeAttributes_ = other.aptitudeAttributes_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              aptitudeAttributesBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getAptitudeAttributesFieldBuilder() : null;
+            } else {
+              aptitudeAttributesBuilder_.addAllMessages(other.aptitudeAttributes_);
+            }
+          }
         }
         if (skillsBuilder_ == null) {
           if (!other.skills_.isEmpty()) {
@@ -1473,9 +1458,6 @@ public final class PBPet {
         }
         if (other.getAttrPoint() != 0) {
           setAttrPoint(other.getAttrPoint());
-        }
-        if (other.getDormancy() != false) {
-          setDormancy(other.getDormancy());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2209,64 +2191,79 @@ public final class PBPet {
         return baseAttributesBuilder_;
       }
 
-      private com.google.protobuf.Internal.IntList aptitudeAttributes_ = emptyIntList();
+      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> aptitudeAttributes_ =
+        java.util.Collections.emptyList();
       private void ensureAptitudeAttributesIsMutable() {
         if (!((bitField0_ & 0x00000002) != 0)) {
-          aptitudeAttributes_ = mutableCopy(aptitudeAttributes_);
+          aptitudeAttributes_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(aptitudeAttributes_);
           bitField0_ |= 0x00000002;
          }
       }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> aptitudeAttributesBuilder_;
+
       /**
        * <pre>
        *属性资质
        * </pre>
        *
-       * <code>repeated int32 aptitudeAttributes = 10;</code>
-       * @return A list containing the aptitudeAttributes.
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
        */
-      public java.util.List<java.lang.Integer>
-          getAptitudeAttributesList() {
-        return ((bitField0_ & 0x00000002) != 0) ?
-                 java.util.Collections.unmodifiableList(aptitudeAttributes_) : aptitudeAttributes_;
+      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getAptitudeAttributesList() {
+        if (aptitudeAttributesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(aptitudeAttributes_);
+        } else {
+          return aptitudeAttributesBuilder_.getMessageList();
+        }
       }
       /**
        * <pre>
        *属性资质
        * </pre>
        *
-       * <code>repeated int32 aptitudeAttributes = 10;</code>
-       * @return The count of aptitudeAttributes.
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
        */
       public int getAptitudeAttributesCount() {
-        return aptitudeAttributes_.size();
+        if (aptitudeAttributesBuilder_ == null) {
+          return aptitudeAttributes_.size();
+        } else {
+          return aptitudeAttributesBuilder_.getCount();
+        }
       }
       /**
        * <pre>
        *属性资质
        * </pre>
        *
-       * <code>repeated int32 aptitudeAttributes = 10;</code>
-       * @param index The index of the element to return.
-       * @return The aptitudeAttributes at the given index.
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
        */
-      public int getAptitudeAttributes(int index) {
-        return aptitudeAttributes_.getInt(index);
+      public com.cat.server.game.data.proto.PBItem.PBPairInfo getAptitudeAttributes(int index) {
+        if (aptitudeAttributesBuilder_ == null) {
+          return aptitudeAttributes_.get(index);
+        } else {
+          return aptitudeAttributesBuilder_.getMessage(index);
+        }
       }
       /**
        * <pre>
        *属性资质
        * </pre>
        *
-       * <code>repeated int32 aptitudeAttributes = 10;</code>
-       * @param index The index to set the value at.
-       * @param value The aptitudeAttributes to set.
-       * @return This builder for chaining.
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
        */
       public Builder setAptitudeAttributes(
-          int index, int value) {
-        ensureAptitudeAttributesIsMutable();
-        aptitudeAttributes_.setInt(index, value);
-        onChanged();
+          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+        if (aptitudeAttributesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAptitudeAttributesIsMutable();
+          aptitudeAttributes_.set(index, value);
+          onChanged();
+        } else {
+          aptitudeAttributesBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
@@ -2274,14 +2271,17 @@ public final class PBPet {
        *属性资质
        * </pre>
        *
-       * <code>repeated int32 aptitudeAttributes = 10;</code>
-       * @param value The aptitudeAttributes to add.
-       * @return This builder for chaining.
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
        */
-      public Builder addAptitudeAttributes(int value) {
-        ensureAptitudeAttributesIsMutable();
-        aptitudeAttributes_.addInt(value);
-        onChanged();
+      public Builder setAptitudeAttributes(
+          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+        if (aptitudeAttributesBuilder_ == null) {
+          ensureAptitudeAttributesIsMutable();
+          aptitudeAttributes_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          aptitudeAttributesBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
@@ -2289,16 +2289,95 @@ public final class PBPet {
        *属性资质
        * </pre>
        *
-       * <code>repeated int32 aptitudeAttributes = 10;</code>
-       * @param values The aptitudeAttributes to add.
-       * @return This builder for chaining.
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+       */
+      public Builder addAptitudeAttributes(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+        if (aptitudeAttributesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAptitudeAttributesIsMutable();
+          aptitudeAttributes_.add(value);
+          onChanged();
+        } else {
+          aptitudeAttributesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *属性资质
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+       */
+      public Builder addAptitudeAttributes(
+          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+        if (aptitudeAttributesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAptitudeAttributesIsMutable();
+          aptitudeAttributes_.add(index, value);
+          onChanged();
+        } else {
+          aptitudeAttributesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *属性资质
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+       */
+      public Builder addAptitudeAttributes(
+          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+        if (aptitudeAttributesBuilder_ == null) {
+          ensureAptitudeAttributesIsMutable();
+          aptitudeAttributes_.add(builderForValue.build());
+          onChanged();
+        } else {
+          aptitudeAttributesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *属性资质
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+       */
+      public Builder addAptitudeAttributes(
+          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+        if (aptitudeAttributesBuilder_ == null) {
+          ensureAptitudeAttributesIsMutable();
+          aptitudeAttributes_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          aptitudeAttributesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *属性资质
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
        */
       public Builder addAllAptitudeAttributes(
-          java.lang.Iterable<? extends java.lang.Integer> values) {
-        ensureAptitudeAttributesIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, aptitudeAttributes_);
-        onChanged();
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+        if (aptitudeAttributesBuilder_ == null) {
+          ensureAptitudeAttributesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, aptitudeAttributes_);
+          onChanged();
+        } else {
+          aptitudeAttributesBuilder_.addAllMessages(values);
+        }
         return this;
       }
       /**
@@ -2306,14 +2385,122 @@ public final class PBPet {
        *属性资质
        * </pre>
        *
-       * <code>repeated int32 aptitudeAttributes = 10;</code>
-       * @return This builder for chaining.
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
        */
       public Builder clearAptitudeAttributes() {
-        aptitudeAttributes_ = emptyIntList();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
+        if (aptitudeAttributesBuilder_ == null) {
+          aptitudeAttributes_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          aptitudeAttributesBuilder_.clear();
+        }
         return this;
+      }
+      /**
+       * <pre>
+       *属性资质
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+       */
+      public Builder removeAptitudeAttributes(int index) {
+        if (aptitudeAttributesBuilder_ == null) {
+          ensureAptitudeAttributesIsMutable();
+          aptitudeAttributes_.remove(index);
+          onChanged();
+        } else {
+          aptitudeAttributesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       *属性资质
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+       */
+      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getAptitudeAttributesBuilder(
+          int index) {
+        return getAptitudeAttributesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       *属性资质
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+       */
+      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getAptitudeAttributesOrBuilder(
+          int index) {
+        if (aptitudeAttributesBuilder_ == null) {
+          return aptitudeAttributes_.get(index);  } else {
+          return aptitudeAttributesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       *属性资质
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+       */
+      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+           getAptitudeAttributesOrBuilderList() {
+        if (aptitudeAttributesBuilder_ != null) {
+          return aptitudeAttributesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(aptitudeAttributes_);
+        }
+      }
+      /**
+       * <pre>
+       *属性资质
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+       */
+      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addAptitudeAttributesBuilder() {
+        return getAptitudeAttributesFieldBuilder().addBuilder(
+            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *属性资质
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+       */
+      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addAptitudeAttributesBuilder(
+          int index) {
+        return getAptitudeAttributesFieldBuilder().addBuilder(
+            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       *属性资质
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPairInfo aptitudeAttributes = 10;</code>
+       */
+      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+           getAptitudeAttributesBuilderList() {
+        return getAptitudeAttributesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          getAptitudeAttributesFieldBuilder() {
+        if (aptitudeAttributesBuilder_ == null) {
+          aptitudeAttributesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+                  aptitudeAttributes_,
+                  ((bitField0_ & 0x00000002) != 0),
+                  getParentForChildren(),
+                  isClean());
+          aptitudeAttributes_ = null;
+        }
+        return aptitudeAttributesBuilder_;
       }
 
       private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> skills_ =
@@ -2792,48 +2979,6 @@ public final class PBPet {
       public Builder clearAttrPoint() {
         
         attrPoint_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private boolean dormancy_ ;
-      /**
-       * <pre>
-       *是否休眠,true为休眠
-       * </pre>
-       *
-       * <code>bool dormancy = 16;</code>
-       * @return The dormancy.
-       */
-      public boolean getDormancy() {
-        return dormancy_;
-      }
-      /**
-       * <pre>
-       *是否休眠,true为休眠
-       * </pre>
-       *
-       * <code>bool dormancy = 16;</code>
-       * @param value The dormancy to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDormancy(boolean value) {
-        
-        dormancy_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *是否休眠,true为休眠
-       * </pre>
-       *
-       * <code>bool dormancy = 16;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearDormancy() {
-        
-        dormancy_ = false;
         onChanged();
         return this;
       }
@@ -8740,27 +8885,27 @@ public final class PBPet {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013PBPet.proto\022\010Protocol\032\014PBItem.proto\"\336\002" +
+      "\n\013PBPet.proto\022\010Protocol\032\014PBItem.proto\"\342\002" +
       "\n\010PBPetDto\022\020\n\010uniqueId\030\001 \001(\003\022\020\n\010configId" +
       "\030\002 \001(\005\022\020\n\010prefixId\030\003 \001(\005\022\r\n\005level\030\004 \001(\005\022" +
       "\013\n\003exp\030\005 \001(\003\022\020\n\010nickName\030\006 \001(\t\022\016\n\006gender" +
       "\030\007 \001(\005\022\032\n\022reproductiveNumber\030\010 \001(\005\022,\n\016ba" +
       "seAttributes\030\t \003(\0132\024.Protocol.PBPairInfo" +
-      "\022\032\n\022aptitudeAttributes\030\n \003(\005\022$\n\006skills\030\013" +
-      " \003(\0132\024.Protocol.PBPairInfo\022\r\n\005trust\030\014 \001(" +
-      "\005\022\016\n\006hungry\030\r \001(\005\022\016\n\006active\030\016 \001(\010\022\021\n\tatt" +
-      "rPoint\030\017 \001(\005\022\020\n\010dormancy\030\020 \001(\010\"!\n\rReqPet" +
-      "Levelup\022\020\n\010uniqueId\030\001 \001(\003\"\"\n\016ReqPetIdent" +
-      "ify\022\020\n\010uniqueId\030\001 \001(\003\"#\n\023RespPetUseAttrP" +
-      "oint\022\014\n\004code\030\001 \001(\005\"\036\n\016RespPetLevelup\022\014\n\004" +
-      "code\030\001 \001(\005\"1\n\rRespPetUpdate\022 \n\004pets\030\001 \003(" +
-      "\0132\022.Protocol.PBPetDto\"\037\n\017RespPetIdentify" +
-      "\022\014\n\004code\030\001 \001(\005\"!\n\rRespPetDelete\022\020\n\010uniqu" +
-      "eId\030\001 \003(\003\"\035\n\rRespPetActive\022\014\n\004code\030\001 \001(\005" +
-      "\" \n\014ReqPetActive\022\020\n\010uniqueId\030\001 \001(\003\"8\n\022Re" +
-      "qPetUseAttrPoint\022\020\n\010uniqueId\030\001 \001(\003\022\020\n\010at" +
-      "trType\030\002 \001(\005B\'\n\036com.cat.server.game.data" +
-      ".protoB\005PBPetb\006proto3"
+      "\0220\n\022aptitudeAttributes\030\n \003(\0132\024.Protocol." +
+      "PBPairInfo\022$\n\006skills\030\013 \003(\0132\024.Protocol.PB" +
+      "PairInfo\022\r\n\005trust\030\014 \001(\005\022\016\n\006hungry\030\r \001(\005\022" +
+      "\016\n\006active\030\016 \001(\010\022\021\n\tattrPoint\030\017 \001(\005\"!\n\rRe" +
+      "qPetLevelup\022\020\n\010uniqueId\030\001 \001(\003\"\"\n\016ReqPetI" +
+      "dentify\022\020\n\010uniqueId\030\001 \001(\003\"#\n\023RespPetUseA" +
+      "ttrPoint\022\014\n\004code\030\001 \001(\005\"\036\n\016RespPetLevelup" +
+      "\022\014\n\004code\030\001 \001(\005\"1\n\rRespPetUpdate\022 \n\004pets\030" +
+      "\001 \003(\0132\022.Protocol.PBPetDto\"\037\n\017RespPetIden" +
+      "tify\022\014\n\004code\030\001 \001(\005\"!\n\rRespPetDelete\022\020\n\010u" +
+      "niqueId\030\001 \003(\003\"\035\n\rRespPetActive\022\014\n\004code\030\001" +
+      " \001(\005\" \n\014ReqPetActive\022\020\n\010uniqueId\030\001 \001(\003\"8" +
+      "\n\022ReqPetUseAttrPoint\022\020\n\010uniqueId\030\001 \001(\003\022\020" +
+      "\n\010attrType\030\002 \001(\005B\'\n\036com.cat.server.game." +
+      "data.protoB\005PBPetb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -8772,7 +8917,7 @@ public final class PBPet {
     internal_static_Protocol_PBPetDto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_PBPetDto_descriptor,
-        new java.lang.String[] { "UniqueId", "ConfigId", "PrefixId", "Level", "Exp", "NickName", "Gender", "ReproductiveNumber", "BaseAttributes", "AptitudeAttributes", "Skills", "Trust", "Hungry", "Active", "AttrPoint", "Dormancy", });
+        new java.lang.String[] { "UniqueId", "ConfigId", "PrefixId", "Level", "Exp", "NickName", "Gender", "ReproductiveNumber", "BaseAttributes", "AptitudeAttributes", "Skills", "Trust", "Hungry", "Active", "AttrPoint", });
     internal_static_Protocol_ReqPetLevelup_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Protocol_ReqPetLevelup_fieldAccessorTable = new

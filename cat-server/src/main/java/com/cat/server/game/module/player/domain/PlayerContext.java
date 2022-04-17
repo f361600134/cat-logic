@@ -54,7 +54,7 @@ public class PlayerContext{
 		if (isOnline()) {
 			session.send(Packet.encode(protocol));
 			log.info("send message:[{}], playerId:{}, size={}B, data:{}", protocol.protocol(), player.getPlayerId(),
-					protocol, protocol.toBytes().length);
+					protocol.toBytes().length, protocol);
 		}
 	}
 

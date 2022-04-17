@@ -1,5 +1,11 @@
 package com.cat.server.game.module.pet.skill;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import com.cat.server.game.data.proto.PBItem.PBPairInfo;
+import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
 import com.cat.server.game.module.pet.domain.Pet;
 import com.cat.server.game.module.skill.domain.AbstractSkillNode;
 
@@ -26,5 +32,20 @@ public abstract class AbstractPetSkillNode extends AbstractSkillNode {
 		.concat("-" ).concat(String.valueOf(pet.getConfigId()));
     	return this.getClass().getSimpleName().concat("-").concat(name);
     }
+    
+	/**
+	 * 技能信息转协议对象
+	 * @return
+	 */
+	public Collection<PBPairInfo> toProto(){
+		List<PBPairInfo> ret = new ArrayList<>();
+		this.getDic().getDictionary().forEach((skillId, skillLv)->{
+			PBPairInfoBuilder builder = PBPairInfoBuilder.newInstance();
+			builder.setConfigId(skillId);
+			builder.setValue(skillLv);
+			ret.add(builder.build());
+		});
+		return ret;
+	}
 
 }

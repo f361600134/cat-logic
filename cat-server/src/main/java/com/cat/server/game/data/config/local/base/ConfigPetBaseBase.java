@@ -39,6 +39,16 @@ public class ConfigPetBaseBase implements IGameConfig {
      */
     private int trainLimit;
     /**
+     * 饥饿值上限<br>
+     * 饥饿值越低,信任度下降越慢,反之越快,达到上限时,加速信任度降低
+     */
+    private int hungryLimit;
+    /**
+     * 恢复间隔.饥饿值,信任度共用<br>
+     * 间隔时间:分(M)
+     */
+    private int restoreInterval;
+    /**
      * 信任度上限<br>
      * 信任度降低至0时,宠物冬眠,需要唤醒
      */
@@ -110,6 +120,26 @@ public class ConfigPetBaseBase implements IGameConfig {
     /** @param trainLimit 可以培养上限*/
     public void setTrainLimit(int trainLimit) {
         this.trainLimit = trainLimit;
+    }
+
+    /** @return 饥饿值上限*/
+    public int getHungryLimit() {
+        return this.hungryLimit;
+    }
+
+    /** @param hungryLimit 饥饿值上限*/
+    public void setHungryLimit(int hungryLimit) {
+        this.hungryLimit = hungryLimit;
+    }
+
+    /** @return 恢复间隔.饥饿值,信任度共用*/
+    public int getRestoreInterval() {
+        return this.restoreInterval;
+    }
+
+    /** @param restoreInterval 恢复间隔.饥饿值,信任度共用*/
+    public void setRestoreInterval(int restoreInterval) {
+        this.restoreInterval = restoreInterval;
     }
 
     /** @return 信任度上限*/

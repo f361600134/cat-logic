@@ -39,12 +39,22 @@ public class PetAttrRootNode extends AbstractPetAttrNode{
 		this.addChild(prefixAttrPointNode);
 	}
 	
+	@Override
+	public boolean isRoot() {
+		return true;
+	}
+	
+	@Override
+    public boolean isLeaf() {
+        return false;
+    }
+	
 	 /**
-     * 计算前缀增加的属性, 从配置中获取 * level
+     * 计算前缀增加的属性
      */
     @Override
     protected AttributeDictionary calculateAttrDic() {
-        return attrDic;
+        return this.getAttrDic();
     }
 
 	public PetAttrBaseNode getPetBaseNode() {
@@ -66,5 +76,5 @@ public class PetAttrRootNode extends AbstractPetAttrNode{
 	public PetAttrPrefixPointNode getPrefixAttrPointNode() {
 		return prefixAttrPointNode;
 	}
-    
+	
 }

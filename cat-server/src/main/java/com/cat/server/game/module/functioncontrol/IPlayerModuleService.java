@@ -26,7 +26,7 @@ public interface IPlayerModuleService extends IModuleService, IFunctionReset{
 	 * 当玩家登录
 	 */
 	default public void onLogin(long playerId, long now) {
-		Object obj = this.getModuleManager().getDomain(playerId);
+		Object obj = this.getModuleManager().getOrLoadDomain(playerId);
 		if (obj == null) {
 			log.info("onLogin error, domain is null, playerId:{}", playerId);
 			return;

@@ -32,6 +32,7 @@ import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
 import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
+import com.cat.server.game.module.player.event.PlayerLoginEvent;
 import com.cat.server.game.module.player.proto.RespPlayerCreateRoleBuilder;
 import com.cat.server.game.module.player.proto.RespPlayerHeartBuilder;
 import com.cat.server.game.module.player.proto.RespPlayerLoginBuilder;
@@ -175,7 +176,7 @@ class PlayerService implements IPlayerService, IResourceService {
 		context.setSession(session);
 		addContext(context);
 		//	登录事件
-//		eventBus.post(PlayerLoginEvent.create(playerId));
+		eventBus.post(PlayerLoginEvent.create(playerId));
 		eventBus.post(PlayerLoginEndEvent.create(context.getPlayerId()));
 		return ErrorCode.SUCCESS;
 	}

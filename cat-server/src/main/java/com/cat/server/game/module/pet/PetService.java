@@ -1,13 +1,19 @@
 package com.cat.server.game.module.pet;
 
 import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.server.IModuleManager;
+import com.cat.server.game.data.config.local.ConfigPetBase;
+import com.cat.server.game.data.config.local.ConfigPetLevel;
 import com.cat.server.game.data.proto.PBPet.ReqPetActive;
 import com.cat.server.game.data.proto.PBPet.ReqPetIdentify;
+import com.cat.server.game.data.proto.PBPet.ReqPetLevelup;
 import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
@@ -18,6 +24,7 @@ import com.cat.server.game.module.pet.domain.PetDomain;
 import com.cat.server.game.module.pet.proto.RespPetActiveBuilder;
 import com.cat.server.game.module.pet.proto.RespPetDeleteBuilder;
 import com.cat.server.game.module.pet.proto.RespPetIdentifyBuilder;
+import com.cat.server.game.module.pet.proto.RespPetLevelupBuilder;
 import com.cat.server.game.module.pet.proto.RespPetUpdateBuilder;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceService;
@@ -27,7 +34,7 @@ import com.cat.server.game.module.resource.IResourceService;
  * @author Jeremy
  */
 @Service
-public class PetService implements IPetService, IResourceService, IPlayerModuleService{
+class PetService implements IPetService, IResourceService, IPlayerModuleService{
 	
 	private static final Logger log = LoggerFactory.getLogger(PetService.class);
 	
@@ -45,12 +52,13 @@ public class PetService implements IPetService, IResourceService, IPlayerModuleS
 		if (pet == null) {
 			return;
 		}
-		playerService.sendMessage(domain.getId(), pet.toProto());
+		RespPetUpdateBuilder builder = RespPetUpdateBuilder.newInstance();
+		builder.addPets(pet.toProto().build());
+		playerService.sendMessage(domain.getId(), builder);
 	}
 	
 	// 推送更新物品列表至前端
 	public void responseUpdateItemList(long playerId, Collection<Pet> petList) {
-		// 更新物品
 		if (!petList.isEmpty()) {
 			RespPetUpdateBuilder ack = RespPetUpdateBuilder.newInstance();
 			petList.forEach((pet)->{
@@ -61,7 +69,6 @@ public class PetService implements IPetService, IResourceService, IPlayerModuleS
 	}
 	//推送删除物品列表至前端
 	public void responseDeleteItemList(long playerId, Collection<Long> petList){
-		//更新物品
 		if (!petList.isEmpty()) {
 			RespPetDeleteBuilder ack = RespPetDeleteBuilder.newInstance();
 			ack.addAllUniqueId(petList);
@@ -72,32 +79,87 @@ public class PetService implements IPetService, IResourceService, IPlayerModuleS
 	/////////////业务逻辑//////////////////
 	
 	/**
+	* 请求宠物升级
+	* @param long playerId
+	* @param ReqPetLevelup req
+	* @param RespPetLevelupResp ack
+	*/
+	public ErrorCode reqPetLevelup(long playerId, ReqPetLevelup req, RespPetLevelupBuilder ack){
+		PetDomain domain = petManager.getDomain(playerId);
+		if (domain == null) {
+			return ErrorCode.DOMAIN_IS_NULL;
+		}
+		final long uniqueId = req.getUniqueId();
+		Pet pet = domain.getBean(uniqueId);
+		if (pet == null) {
+			return ErrorCode.INVALID_PARAM;
+		}
+		else if (!pet.getActive()) {
+			return ErrorCode.PET_NOT_ACTIVE;
+		}
+		ConfigPetLevel configPetLevel = ConfigManager.getInstance().getConfig(ConfigPetLevel.class, pet.getLevel());
+		if (configPetLevel == null) {
+			log.warn("reqPetLevelup error, configPetLevel is null, configId:{}", pet.getLevel());
+			return ErrorCode.CONFIG_NOT_EXISTS;
+		}
+		if (configPetLevel.getExp() == -1) {
+			return ErrorCode.PET_LEVEL_LIMIT;
+		}
+		ConfigPetBase configPetBase = ConfigManager.getInstance().getConfig(ConfigPetBase.class, pet.getConfigId());
+		if(configPetBase == null) {
+			log.warn("reqPetLevelup error, ConfigPetBase is null, configId:{}", pet.getConfigId());
+			return ErrorCode.CONFIG_NOT_EXISTS;
+		}
+		if (pet.getExp() >= configPetLevel.getExp()) {
+			//1.升级
+			pet.setLevel((short)(pet.getLevel() + 1));
+			pet.setExp(pet.getExp()-configPetLevel.getExp());
+			//2.尝试领悟技能
+			domain.comprehensionSkill(pet, configPetBase);
+			pet.getSkillRootNode().setAttrChange();
+			pet.update();
+		}
+		this.responsePetInfo(domain, uniqueId);
+		return ErrorCode.SUCCESS;
+	}
+	
+	/**
 	* 请求宠物激活
 	* @param playerId 玩家id
 	* @param req 消息请求
 	* @param ack 消息响应
 	*/
 	public ErrorCode reqPetActive(long playerId, ReqPetActive req, RespPetActiveBuilder ack){
-		try {
-			PetDomain domain = petManager.getDomain(playerId);
-			if (domain == null) {
-				return ErrorCode.DOMAIN_IS_NULL;
-			}
-			final long uniqueId = req.getUniqueId();
-			Pet pet = domain.getBean(uniqueId);
-			if (pet == null) {
-				return ErrorCode.INVALID_PARAM;
-			}
-			else if (pet.getActive()) {
-				return ErrorCode.PET_NOT_EXIST;
-			}
-			domain.active(uniqueId);
-			this.responsePetInfo(domain, uniqueId);
-			return ErrorCode.SUCCESS;
-		} catch (Exception e) {
-			log.error("reqPetActive error, playerId:{}", playerId, e);
-			return ErrorCode.UNKNOWN_ERROR;
+		PetDomain domain = petManager.getDomain(playerId);
+		if (domain == null) {
+			return ErrorCode.DOMAIN_IS_NULL;
 		}
+		final long uniqueId = req.getUniqueId();
+		Pet pet = domain.getBean(uniqueId);
+		if (pet == null) {
+			return ErrorCode.INVALID_PARAM;
+		}
+		ConfigPetBase configPetBase = ConfigManager.getInstance().getConfig(ConfigPetBase.class, pet.getConfigId());
+		if(configPetBase == null) {
+			log.warn("reqPetActive error, ConfigPetBase is null, configId:{}", pet.getConfigId());
+			return ErrorCode.CONFIG_NOT_EXISTS;
+		}
+		pet.setActive(true);
+		//初始化性别
+		domain.initializeGender(pet, configPetBase);
+		//初始化技能池
+		domain.initializeSkillPoolType(pet, configPetBase);
+		//领悟技能
+		domain.comprehensionSkill(pet, configPetBase);
+		//初始前缀
+		domain.initializePrefix(pet);
+		pet.update();
+		//计算属性和技能
+		pet.getAttrRootNode().setAttrChange();
+		pet.getSkillRootNode().setAttrChange();
+		//响应给客户端
+		this.responsePetInfo(domain, uniqueId);
+		return ErrorCode.SUCCESS;
 	}
 	
 	/**
@@ -107,19 +169,24 @@ public class PetService implements IPetService, IResourceService, IPlayerModuleS
 	* @param ack
 	*/
 	public ErrorCode reqPetIdentify(long playerId, ReqPetIdentify req, RespPetIdentifyBuilder ack){
-		try {
-			PetDomain domain = petManager.getDomain(playerId);
-			if (domain == null) {
-				return ErrorCode.DOMAIN_IS_NULL;
-			}
-			final long uniqueId = req.getUniqueId();
-			//TODO Somthing.
-			this.responsePetInfo(domain, uniqueId);
-			return ErrorCode.SUCCESS;
-		} catch (Exception e) {
-			log.error("reqPetIdentify error, playerId:{}", playerId, e);
-			return ErrorCode.UNKNOWN_ERROR;
+		PetDomain domain = petManager.getDomain(playerId);
+		if (domain == null) {
+			return ErrorCode.DOMAIN_IS_NULL;
 		}
+		final long uniqueId = req.getUniqueId();
+		Pet pet = domain.getBean(uniqueId);
+		if (pet == null) {
+			return ErrorCode.INVALID_PARAM;
+		}
+		else if (!pet.getActive()) {
+			return ErrorCode.PET_NOT_ACTIVE;
+		}
+		domain.randomAptitudeAttr(pet);
+		pet.update();
+		//重新计算宠物属性
+		pet.getAttrRootNode().setAttrChange();
+		this.responsePetInfo(domain, uniqueId);
+		return ErrorCode.SUCCESS;
 	}
 	
 	/////////////接口方法////////////////////////

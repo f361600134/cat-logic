@@ -71,11 +71,11 @@ public class PBPetDtoBuilder extends AbstractProtocol {
 		this.builder.addAllBaseAttributes(value);
 	}
 	/** 属性资质**/
-	public void addAptitudeAttributes(PBPairInfo value){
+	public void addAptitudeAttributes(int value){
 		this.builder.addAptitudeAttributes(value);
 	}
 	
-	public void addAllAptitudeAttributes(Collection<PBPairInfo> value){
+	public void addAllAptitudeAttributes(Collection<java.lang.Integer> value){
 		this.builder.addAllAptitudeAttributes(value);
 	}
 	/** 当前拥有技能**/
@@ -101,6 +101,10 @@ public class PBPetDtoBuilder extends AbstractProtocol {
 	/** 属性点,含等级属性点,前缀属性点**/
 	public void setAttrPoint(int value){
 		this.builder.setAttrPoint(value);
+	}
+	/** 是否休眠,true为休眠**/
+	public void setDormancy(boolean value){
+		this.builder.setDormancy(value);
 	}
 	
 	@Override

@@ -34,7 +34,7 @@ public class Pet extends PetPo implements IResource{
 	 * 顺序存储
 	 */
 	@Column(PROP_SKILLSTR)
-	private LinkedHashMap<Integer, Short> skillMap;
+	private LinkedHashMap<Integer, Short> skillMap = new LinkedHashMap<>();
 	
 	/**
 	 * 等级的属性点使用记录
@@ -58,6 +58,18 @@ public class Pet extends PetPo implements IResource{
 	 */
 	@Column(PROP_APTITUDESTR)
 	private List<Integer> aptitudeAttrList = new ArrayList<>();
+	
+//	/**
+//	 * 饥饿值定时增长<br>
+//	 */
+//	@Column(PROP_HUNGRYSTR)
+//	private DefaultRestorableValue hungryRestore;
+//	
+//	/**
+//	 * 不信任度定时增长<br>
+//	 */
+//	@Column(PROP_DISTRUSTSTR)
+//	private DefaultRestorableValue distrustRestore;
 	
 	/**
 	 * 宠物装备列表
@@ -86,6 +98,7 @@ public class Pet extends PetPo implements IResource{
 		this.playerId = playerId;
 		this.uniqueId = uniqueId;
 		this.configId = configId;
+		this.level = 1;//固定的写死
 	}
 	
 	public Map<Integer, Short> getSkillMap() {
@@ -112,8 +125,6 @@ public class Pet extends PetPo implements IResource{
 	/**
 	 * 自定义属性点使用
 	 * @return  
-	 * @return Map<Integer,Integer>  
-	 * @date 2022年4月10日下午3:58:49
 	 */
 	public Map<Integer, Integer> getUsedAttrPointMap() {
 		return usedAttrPointMap;
@@ -122,13 +133,19 @@ public class Pet extends PetPo implements IResource{
 	/**
 	 * 自定义前缀属性点使用
 	 * @return  
-	 * @return Map<Integer,Integer>  
-	 * @date 2022年4月10日下午3:59:03
 	 */
 	public Map<Integer, Integer> getUsedPrefixAttrPointMap() {
 		return usedPrefixAttrPointMap;
 	}
 	
+//	public DefaultRestorableValue getHungryRestore() {
+//		return hungryRestore;
+//	}
+//
+//	public DefaultRestorableValue getDistrustRestore() {
+//		return distrustRestore;
+//	}
+
 	/***
 	 * 宠物属性根节点
 	 * @return  
@@ -186,11 +203,29 @@ public class Pet extends PetPo implements IResource{
 	 */
 	private int getRemainPrefixAttrPoint() {
 		ConfigPetPrefix config = ConfigManager.getInstance().getConfig(ConfigPetPrefix.class, this.getPrefixId());
+		if (config == null) {
+			return 0;
+		}
 		int prefixPoint = config.getAttributePoint() * this.level;
 		//前缀技能点数量 = 前缀等级总技能点数 - 已使用前缀技能点数量;
 		int usedCnt = usedPrefixAttrPointMap.values().stream().reduce(0, Integer::sum);
 		return prefixPoint - usedCnt;
 	}
+	
+//	/**
+//	 * 获取信任度<br>
+//	 * 信任度上限-不信任度=信任度
+//	 * @return  
+//	 * @return int  
+//	 * @date 2022年4月16日下午9:13:36
+//	 */
+//	protected int getTrust() {
+//		ConfigPetBase config = ConfigManager.getInstance().getConfig(ConfigPetBase.class, this.getConfigId());
+//		if (config == null) {
+//			return 0;
+//		}
+//		return config.getTrustLimit() - this.getDistrustRestore().getNum();
+//	}
 	
 	/**
 	 * 获取技能等级<br>
@@ -247,8 +282,13 @@ public class Pet extends PetPo implements IResource{
 		builder.setPrefixId(this.getPrefixId());
 		builder.addAllSkills(skillRootNode.toProto());
 		builder.setAttrPoint(this.getRemainAtrrPoint());
+		builder.addAllBaseAttributes(attrRootNode.getPetBaseNode().toProto());
+		builder.addAllAptitudeAttributes(this.getAptitudeAttrList());
+//		builder.setTrust(this.getTrust());
+//		builder.setHungry(this.getHungryRestore().getNum());
+//		builder.setDormancy(this.getDormancy());
 		//TODO something...
 		return builder;
 	}
-	
+
 }

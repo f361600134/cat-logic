@@ -18,13 +18,13 @@ import org.springframework.stereotype.Component;
 public class LifecycleManager {
 
 	@Autowired(required = false)
-	private List<Lifecycle> lifecycles;
+	private List<ILifecycle> lifecycles;
 
 	private Logger logger = LoggerFactory.getLogger(LifecycleManager.class);
 
 	public void start() {
 		lifecycles.sort(Comparator.comparingInt(l -> l.priority()));
-		for (Lifecycle lifecycle : lifecycles) {
+		for (ILifecycle lifecycle : lifecycles) {
 			logger.info("启动 [{}]服务!", lifecycle.name());
 			try {
 				lifecycle.start();

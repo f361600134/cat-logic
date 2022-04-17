@@ -120,6 +120,7 @@ public abstract class AbstractModuleMultiDomain<I, K, T extends IBasePo> impleme
     public void initData(I id) {
         this.id = id;
         this.afterCreate();
+        this.afterInit();
     }
 
     @Override

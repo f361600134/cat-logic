@@ -91,7 +91,7 @@ public class Robot {
 //		robot.setServerId(Config.serverId);
 		robot.setChannal(1);
 		robot.setServerId(1);
-		RobotLogin robotLogin = new RobotLogin(0, 1, "127.0.0.1", "一区", 5001, "sessionKey", 1, "1", "username");
+		RobotLogin robotLogin = new RobotLogin(0, 1, "127.0.0.1", "一区", 5101, "sessionKey", 1, "1", "username");
 		robot.setRobotLogin(robotLogin);
 		return robot;
 	}

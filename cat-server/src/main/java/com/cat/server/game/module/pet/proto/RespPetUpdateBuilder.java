@@ -7,6 +7,8 @@ import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBDefine.*;
 //import com.cat.server.game.data.proto.*;
 import com.cat.server.game.data.proto.PBPet.*;
+import com.google.protobuf.AbstractMessage;
+
 import java.util.Collection;
 
 /**
@@ -46,5 +48,10 @@ public class RespPetUpdateBuilder extends AbstractProtocol {
 	@Override
 	public byte[] toBytes() {
 		return builder.build().toByteArray();
+	}
+	
+	@Override
+	public AbstractMessage getBuilder() {
+		return this.build();
 	}
 }

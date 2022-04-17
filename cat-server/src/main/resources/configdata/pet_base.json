@@ -1,5 +1,5 @@
 [ {
-  "id" : 60001,
+  "id" : 600001,
   "name" : "小白兔",
   "bear" : [ 20, 40, 60 ],
   "gender" : [ 0, 1, 2 ],
@@ -7,9 +7,10 @@
   "trustLimit" : 100,
   "levelLimit" : 60,
   "attribute" : { },
-  "skillPollId" : [ 1 ]
+  "skillPoollType" : [ 1 ],
+  "skillRateHit" : 3300
 }, {
-  "id" : 60002,
+  "id" : 600002,
   "name" : "粉粉兔",
   "bear" : [ 20, 40, 60 ],
   "gender" : [ 0, 1, 2 ],
@@ -17,9 +18,10 @@
   "trustLimit" : 100,
   "levelLimit" : 60,
   "attribute" : { },
-  "skillPollId" : [ 1 ]
+  "skillPoollType" : [ 1 ],
+  "skillRateHit" : 3000
 }, {
-  "id" : 60003,
+  "id" : 600003,
   "name" : "兔王",
   "bear" : [ ],
   "gender" : [ 0 ],
@@ -27,9 +29,10 @@
   "trustLimit" : 100,
   "levelLimit" : 60,
   "attribute" : { },
-  "skillPollId" : [ 3, 4 ]
+  "skillPoollType" : [ 3, 4 ],
+  "skillRateHit" : 2700
 }, {
-  "id" : 60004,
+  "id" : 600004,
   "name" : "粉粉兔王",
   "bear" : [ ],
   "gender" : [ 0 ],
@@ -37,9 +40,10 @@
   "trustLimit" : 100,
   "levelLimit" : 60,
   "attribute" : { },
-  "skillPollId" : [ 2, 3, 4, 5 ]
+  "skillPoollType" : [ 2, 3, 4, 5 ],
+  "skillRateHit" : 2700
 }, {
-  "id" : 60005,
+  "id" : 600005,
   "name" : "小花狗",
   "bear" : [ 20, 40, 60 ],
   "gender" : [ 0, 1, 2 ],
@@ -47,9 +51,10 @@
   "trustLimit" : 100,
   "levelLimit" : 60,
   "attribute" : { },
-  "skillPollId" : [ 1 ]
+  "skillPoollType" : [ 1 ],
+  "skillRateHit" : 3300
 }, {
-  "id" : 60006,
+  "id" : 600006,
   "name" : "藏獒",
   "bear" : [ ],
   "gender" : [ 0 ],
@@ -57,9 +62,10 @@
   "trustLimit" : 100,
   "levelLimit" : 60,
   "attribute" : { },
-  "skillPollId" : [ 3, 4 ]
+  "skillPoollType" : [ 3, 4 ],
+  "skillRateHit" : 2700
 }, {
-  "id" : 60007,
+  "id" : 600007,
   "name" : "黄金藏獒",
   "bear" : [ ],
   "gender" : [ 0 ],
@@ -67,9 +73,10 @@
   "trustLimit" : 100,
   "levelLimit" : 60,
   "attribute" : { },
-  "skillPollId" : [ 2, 3, 4, 5 ]
+  "skillPoollType" : [ 2, 3, 4, 5 ],
+  "skillRateHit" : 2700
 }, {
-  "id" : 60008,
+  "id" : 600008,
   "name" : "小水滴",
   "bear" : [ 20, 40, 60 ],
   "gender" : [ 0, 1, 2 ],
@@ -77,9 +84,10 @@
   "trustLimit" : 100,
   "levelLimit" : 60,
   "attribute" : { },
-  "skillPollId" : [ 1 ]
+  "skillPoollType" : [ 1 ],
+  "skillRateHit" : 3300
 }, {
-  "id" : 60009,
+  "id" : 600009,
   "name" : "冰爽夏蓝",
   "bear" : [ ],
   "gender" : [ 0 ],
@@ -87,9 +95,10 @@
   "trustLimit" : 100,
   "levelLimit" : 60,
   "attribute" : { },
-  "skillPollId" : [ 3, 4 ]
+  "skillPoollType" : [ 3, 4 ],
+  "skillRateHit" : 2700
 }, {
-  "id" : 60010,
+  "id" : 600010,
   "name" : "清凉一夏",
   "bear" : [ ],
   "gender" : [ 0 ],
@@ -97,5 +106,6 @@
   "trustLimit" : 100,
   "levelLimit" : 60,
   "attribute" : { },
-  "skillPollId" : [ 2, 3, 4, 5 ]
+  "skillPoollType" : [ 2, 3, 4, 5 ],
+  "skillRateHit" : 2700
 } ]

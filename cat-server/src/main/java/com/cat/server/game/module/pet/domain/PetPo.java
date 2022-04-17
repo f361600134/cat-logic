@@ -12,8 +12,8 @@ public abstract class PetPo extends BasePo {
 	public static final String PROP_UNIQUEID = "uniqueId";
 	public static final String PROP_NICKNAME = "nickname";
 	public static final String PROP_BIRTHDATE = "birthDate";
-	public static final String PROP_HUNGRY = "hungry";
-	public static final String PROP_TRUST = "trust";
+	public static final String PROP_HUNGRYSTR = "hungryStr";
+	public static final String PROP_DISTRUSTSTR = "distrustStr";
 	public static final String PROP_APTITUDESTR = "aptitudeStr";
 	public static final String PROP_GENDER = "gender";
 	public static final String PROP_LEVEL = "level";
@@ -26,6 +26,7 @@ public abstract class PetPo extends BasePo {
 	public static final String PROP_USEDATTRPOINTSTR = "usedAttrPointStr";
 	public static final String PROP_USEDATTRPREFIXPOINTSTR = "usedAttrPrefixPointStr";
 	public static final String PROP_SKILLPOOLTYPE = "skillPoolType";
+	public static final String PROP_DORMANCY = "dormancy";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
@@ -33,8 +34,8 @@ public abstract class PetPo extends BasePo {
 			PROP_UNIQUEID,
 			PROP_NICKNAME,
 			PROP_BIRTHDATE,
-			PROP_HUNGRY,
-			PROP_TRUST,
+			PROP_HUNGRYSTR,
+			PROP_DISTRUSTSTR,
 			PROP_APTITUDESTR,
 			PROP_GENDER,
 			PROP_LEVEL,
@@ -47,6 +48,7 @@ public abstract class PetPo extends BasePo {
 			PROP_USEDATTRPOINTSTR,
 			PROP_USEDATTRPREFIXPOINTSTR,
 			PROP_SKILLPOOLTYPE,
+			PROP_DORMANCY,
 			};
 			
 	/** 所有主键索引字段数组*/
@@ -69,10 +71,10 @@ public abstract class PetPo extends BasePo {
 	protected String nickname;
 	/** 出生日期时间戳*/
 	protected long birthDate;
-	/** 饥饿点*/
-	protected short hungry;
-	/** 信任点*/
-	protected short trust;
+	/** 饥饿点字符串,包含饥饿点,最后恢复时间戳*/
+	protected String hungryStr;
+	/** 不信任度,包含饥饿点,最后恢复时间戳*/
+	protected String distrustStr;
 	/** 属性资质鉴定随机绑定,列表*/
 	protected String aptitudeStr;
 	/** 性别随机*/
@@ -97,9 +99,13 @@ public abstract class PetPo extends BasePo {
 	protected String usedAttrPrefixPointStr;
 	/** 绑定的技能池类型*/
 	protected int skillPoolType;
+	/** 是否休眠,信任度为0时进入休眠,需要唤醒*/
+	protected boolean dormancy;
 	
 	public PetPo(){
 		this.nickname = "";
+		this.hungryStr = "";
+		this.distrustStr = "";
 		this.aptitudeStr = "";
 		this.skillStr = "";
 		this.usedAttrPointStr = "";
@@ -142,22 +148,22 @@ public abstract class PetPo extends BasePo {
 		this.birthDate = birthDate;
 	}
 	
-	/** 饥饿点 **/
-	public short getHungry(){
-		return this.hungry;
+	/** 饥饿点字符串,包含饥饿点,最后恢复时间戳 **/
+	public String getHungryStr(){
+		return this.hungryStr;
 	}
 	
-	public void setHungry(short hungry){
-		this.hungry = hungry;
+	public void setHungryStr(String hungryStr){
+		this.hungryStr = hungryStr;
 	}
 	
-	/** 信任点 **/
-	public short getTrust(){
-		return this.trust;
+	/** 不信任度,包含饥饿点,最后恢复时间戳 **/
+	public String getDistrustStr(){
+		return this.distrustStr;
 	}
 	
-	public void setTrust(short trust){
-		this.trust = trust;
+	public void setDistrustStr(String distrustStr){
+		this.distrustStr = distrustStr;
 	}
 	
 	/** 属性资质鉴定随机绑定,列表 **/
@@ -268,13 +274,22 @@ public abstract class PetPo extends BasePo {
 		this.skillPoolType = skillPoolType;
 	}
 	
+	/** 是否休眠,信任度为0时进入休眠,需要唤醒 **/
+	public boolean getDormancy(){
+		return this.dormancy;
+	}
+	
+	public void setDormancy(boolean dormancy){
+		this.dormancy = dormancy;
+	}
+	
 	
 	@Override
 	public String toString() {
-		return "Pet [configId= "+ configId +", uniqueId= "+ uniqueId +", nickname= "+ nickname +", birthDate= "+ birthDate +", hungry= "+ hungry
-				 +", trust= "+ trust +", aptitudeStr= "+ aptitudeStr +", gender= "+ gender +", level= "+ level +", skillStr= "+ skillStr
+		return "Pet [configId= "+ configId +", uniqueId= "+ uniqueId +", nickname= "+ nickname +", birthDate= "+ birthDate +", hungryStr= "+ hungryStr
+				 +", distrustStr= "+ distrustStr +", aptitudeStr= "+ aptitudeStr +", gender= "+ gender +", level= "+ level +", skillStr= "+ skillStr
 				 +", playerId= "+ playerId +", exp= "+ exp +", prefixId= "+ prefixId +", reproductive= "+ reproductive +", active= "+ active
-				 +", usedAttrPointStr= "+ usedAttrPointStr +", usedAttrPrefixPointStr= "+ usedAttrPrefixPointStr +", skillPoolType= "+ skillPoolType+"]";
+				 +", usedAttrPointStr= "+ usedAttrPointStr +", usedAttrPrefixPointStr= "+ usedAttrPrefixPointStr +", skillPoolType= "+ skillPoolType +", dormancy= "+ dormancy+"]";
 	}
 	
 	@Override
@@ -289,8 +304,8 @@ public abstract class PetPo extends BasePo {
 		getUniqueId(),
 		getNickname(),
 		getBirthDate(),
-		getHungry(),
-		getTrust(),
+		getHungryStr(),
+		getDistrustStr(),
 		getAptitudeStr(),
 		getGender(),
 		getLevel(),
@@ -303,6 +318,7 @@ public abstract class PetPo extends BasePo {
 		getUsedAttrPointStr(),
 		getUsedAttrPrefixPointStr(),
 		getSkillPoolType(),
+		getDormancy(),
 		};
 	}
 	

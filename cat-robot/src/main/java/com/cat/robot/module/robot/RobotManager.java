@@ -2,12 +2,11 @@ package com.cat.robot.module.robot;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RobotManager {
 
 	private final Logger logger = LoggerFactory.getLogger(RobotManager.class.getName());
@@ -25,6 +24,13 @@ public class RobotManager {
 //		executor = Executors.newScheduledThreadPool(1);//1条线程,阻塞执行,任务交替运行
 	}
 
+	public void addRobot(RobotContext context) {
+		this.robotMap.put(context.getName(), context);
+	}
+	
+	public Map<String, RobotContext> getRobotMap() {
+		return robotMap;
+	}
 //	/**
 //	 * 创建机器人上下文对象
 //	 */

@@ -26,6 +26,9 @@ public interface IFunctionReset{
 	default public boolean checkAndReset(long playerId, long now) {
 		int functionId = this.getModuleId();
 		ConfigFunction config = ConfigManager.getInstance().getConfig(ConfigFunction.class, functionId);
+		if (config == null) {
+			return true;
+		}
 		long resetTime = config.getResetTimePoint().getResetTimePoint(now);
 		if (this.getLastResetTime(playerId) != resetTime && resetTime!= IResetTimePoint.RESET_FREE) {
 			//判断最近一个重置时间的时间点,如果时间不一样, 则重置

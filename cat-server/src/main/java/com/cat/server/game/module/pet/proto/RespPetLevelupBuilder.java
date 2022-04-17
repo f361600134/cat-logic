@@ -12,22 +12,22 @@ import com.google.protobuf.AbstractMessage;
 import java.util.Collection;
 
 /**
-* RespPetIdentifyBuilder
+* RespPetLevelupBuilder
 * @author Jeremy
 */
-public class RespPetIdentifyBuilder extends AbstractProtocol {
+public class RespPetLevelupBuilder extends AbstractProtocol {
 
-	//private static final Logger log = LoggerFactory.getLogger(RespPetIdentifyBuilder.class);
+	//private static final Logger log = LoggerFactory.getLogger(RespPetLevelupBuilder.class);
 	
-	private final RespPetIdentify.Builder builder = RespPetIdentify.newBuilder();
+	private final RespPetLevelup.Builder builder = RespPetLevelup.newBuilder();
 	
-	public RespPetIdentifyBuilder() {}
+	public RespPetLevelupBuilder() {}
 	
-	public static RespPetIdentifyBuilder newInstance() {
-		return new RespPetIdentifyBuilder();
+	public static RespPetLevelupBuilder newInstance() {
+		return new RespPetLevelupBuilder();
 	}
 	
-	public RespPetIdentify build() {
+	public RespPetLevelup build() {
 		return builder.build();
 	}
 	
@@ -38,7 +38,7 @@ public class RespPetIdentifyBuilder extends AbstractProtocol {
 	
 	@Override
 	public int protocol() {
-		return PBProtocol.RespPetIdentify_VALUE;
+		return PBProtocol.RespPetLevelup_VALUE;
 	}
 
 	@Override

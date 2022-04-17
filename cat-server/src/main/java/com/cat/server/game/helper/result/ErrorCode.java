@@ -125,6 +125,8 @@ public enum ErrorCode implements CodeEnum{
     
     // -----------------宠物---------------------
     PET_NOT_EXIST(PET, 1, "宠物不存在"),
+    PET_NOT_ACTIVE(PET, 2, "宠物未激活"),
+    PET_LEVEL_LIMIT(PET, 3, "宠物等级已满"),
     ;
 	
 	

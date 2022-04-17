@@ -34,6 +34,12 @@ public class PetSkillRootNode extends AbstractPetSkillNode {
 		this.addChild(comprehendNode);
 	}
 	
+	
+	@Override
+	public boolean isRoot() {
+		return true;
+	}
+	
 	@Override
     public boolean isLeaf() {
         return false;
@@ -52,20 +58,5 @@ public class PetSkillRootNode extends AbstractPetSkillNode {
         }
         return dictionary;
     }
-	
-	/**
-	 * 技能信息转协议对象
-	 * @return
-	 */
-	public Collection<PBPairInfo> toProto(){
-		List<PBPairInfo> ret = new ArrayList<>();
-		this.getDic().getDictionary().forEach((skillId, skillLv)->{
-			PBPairInfoBuilder builder = PBPairInfoBuilder.newInstance();
-			builder.setConfigId(skillId);
-			builder.setValue(skillLv);
-			ret.add(builder.build());
-		});
-		return ret;
-	}
 	
 }

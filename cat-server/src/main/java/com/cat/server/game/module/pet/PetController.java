@@ -31,6 +31,17 @@ public class PetController extends AbstractController{
 	@Autowired
 	private PetService petService;
 	
+	/*
+	*请求宠物升级
+	*/
+	@Cmd(value = PBProtocol.ReqPetLevelup_VALUE)
+	public void reqPetLevelup(ISession session, ReqPetLevelup req) {
+		long playerId = session.getUserData();
+		RespPetLevelupBuilder ack = RespPetLevelupBuilder.newInstance();
+		ErrorCode code = petService.reqPetLevelup(playerId, req, ack);
+		ack.setCode(code.getCode());
+		playerService.sendMessage(playerId, ack);
+	}
 	
 	/*
 	*宠物资质鉴定
