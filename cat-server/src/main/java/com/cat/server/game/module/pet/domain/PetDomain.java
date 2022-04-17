@@ -24,7 +24,7 @@ import com.google.common.primitives.Ints;
 
 /**
 * PetDomain
-* @author Jeremy
+* @author Jeremy Feng
 */
 public class PetDomain extends AbstractModuleMultiDomain<Long, Long, Pet> implements IResourceDomain<Long, Pet>{
 
