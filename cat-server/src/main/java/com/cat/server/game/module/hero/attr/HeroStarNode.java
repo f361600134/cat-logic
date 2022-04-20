@@ -7,7 +7,7 @@ import com.cat.server.game.data.config.local.base.ConfigBufferBase;
 import com.cat.server.game.data.config.local.base.ConfigHeroInfoBase;
 import com.cat.server.game.data.config.local.base.ConfigHeroStarBase;
 import com.cat.server.game.data.config.local.base.ConfigHeroTalentsBase;
-import com.cat.server.game.module.attribute.domain.AttributeDictionary;
+import com.cat.server.game.helper.attribute.AttributeDictionary;
 import com.cat.server.game.module.hero.domain.Hero;
 
 import com.google.common.collect.Lists;

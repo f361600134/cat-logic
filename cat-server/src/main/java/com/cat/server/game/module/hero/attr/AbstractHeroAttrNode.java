@@ -1,6 +1,6 @@
 package com.cat.server.game.module.hero.attr;
 
-import com.cat.server.game.module.attribute.domain.AbstractAttributeNode;
+import com.cat.server.game.helper.attribute.AbstractAttributeNode;
 import com.cat.server.game.module.hero.domain.Hero;
 
 public abstract class AbstractHeroAttrNode extends AbstractAttributeNode {

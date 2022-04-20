@@ -1,7 +1,7 @@
 package com.cat.server.game.module.hero.attr;
 
-import com.cat.server.game.module.attribute.domain.AttributeDictionary;
-import com.cat.server.game.module.attribute.domain.IAttributeNode;
+import com.cat.server.game.helper.attribute.AttributeDictionary;
+import com.cat.server.game.helper.attribute.IAttributeNode;
 import com.cat.server.game.module.hero.domain.Hero;
 
 /**

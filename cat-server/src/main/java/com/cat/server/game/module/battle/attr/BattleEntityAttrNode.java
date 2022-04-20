@@ -1,7 +1,7 @@
 package com.cat.server.game.module.battle.attr;
 
-import com.cat.server.game.module.attribute.domain.AbstractAttributeNode;
-import com.cat.server.game.module.attribute.domain.AttributeDictionary;
+import com.cat.server.game.helper.attribute.AbstractAttributeNode;
+import com.cat.server.game.helper.attribute.AttributeDictionary;
 import com.cat.server.game.module.battle.domain.BattleEntity;
 
 public class BattleEntityAttrNode extends AbstractAttributeNode {

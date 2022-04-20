@@ -1,7 +1,7 @@
 package com.cat.server.game.module.pet.skill;
 
+import com.cat.server.game.helper.skill.SkillDictionary;
 import com.cat.server.game.module.pet.domain.Pet;
-import com.cat.server.game.module.skill.domain.SkillDictionary;
 
 /**
  * 宠物领悟的技能

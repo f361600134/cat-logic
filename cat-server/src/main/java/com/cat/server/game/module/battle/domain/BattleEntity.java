@@ -3,9 +3,9 @@ package com.cat.server.game.module.battle.domain;
 import java.util.List;
 import java.util.Objects;
 
-import com.cat.server.game.module.attribute.domain.AttributeDictionary;
-import com.cat.server.game.module.attribute.domain.IAttributeEntity;
-import com.cat.server.game.module.attribute.domain.IAttributeNode;
+import com.cat.server.game.helper.attribute.AttributeDictionary;
+import com.cat.server.game.helper.attribute.IAttributeEntity;
+import com.cat.server.game.helper.attribute.IAttributeNode;
 import com.cat.server.game.module.battle.attr.BattleEntityAttrNode;
 import com.cat.server.game.module.battle.report.BattleRound;
 

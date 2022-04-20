@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.cat.server.game.helper.skill.SkillDictionary;
 import com.cat.server.game.module.pet.domain.Pet;
-import com.cat.server.game.module.skill.domain.SkillDictionary;
 
 /**
  * 宠物装备携带的的技能增益

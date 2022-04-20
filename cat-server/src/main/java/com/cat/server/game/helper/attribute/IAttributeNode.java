@@ -1,4 +1,4 @@
-package com.cat.server.game.module.skill.domain;
+package com.cat.server.game.helper.attribute;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import com.cat.server.game.helper.log.NatureEnum;
 /**
  * 属性节点
  */
-public interface ISkillNode {
+public interface IAttributeNode {
 
     /**
      * 获取该属性的路径
@@ -42,25 +42,25 @@ public interface ISkillNode {
      * 
      * @return
      */
-    ISkillNode getRoot();
+    IAttributeNode getRoot();
 
     /**
      * 获取该节点的父节点
      * 
      * @return
      */
-    ISkillNode getParent();
+    IAttributeNode getParent();
 
-    void setParent(ISkillNode parent);
+    void setParent(IAttributeNode parent);
 
     /**
      * 获取该节点的子节点列表
      * 
      * @return
      */
-    List<ISkillNode> getChilds();
+    List<IAttributeNode> getChilds();
 
-    void addChild(ISkillNode child);
+    void addChild(IAttributeNode child);
 
     /**
      * 获取该节点的属性字典<br>
@@ -68,7 +68,7 @@ public interface ISkillNode {
      * 
      * @return
      */
-    SkillDictionary getDic();
+    AttributeDictionary getAttrDic();
 
     /**
      * 该节点的属性是否有变化<br>

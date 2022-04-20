@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.game.data.config.local.ConfigPetPropertyAptitude;
-import com.cat.server.game.module.attribute.domain.AttributeDictionary;
-import com.cat.server.game.module.attribute.domain.AttributeUtils;
+import com.cat.server.game.helper.attribute.AttributeDictionary;
+import com.cat.server.game.helper.attribute.AttributeUtils;
 import com.cat.server.game.module.pet.domain.Pet;
 
 /**

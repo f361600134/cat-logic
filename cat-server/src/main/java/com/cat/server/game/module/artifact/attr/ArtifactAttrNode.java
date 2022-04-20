@@ -1,8 +1,8 @@
 package com.cat.server.game.module.artifact.attr;
 
+import com.cat.server.game.helper.attribute.AbstractAttributeNode;
+import com.cat.server.game.helper.attribute.AttributeDictionary;
 import com.cat.server.game.module.artifact.domain.Artifact;
-import com.cat.server.game.module.attribute.domain.AbstractAttributeNode;
-import com.cat.server.game.module.attribute.domain.AttributeDictionary;
 
 /**
  * 武将星格属性节点

@@ -1,6 +1,6 @@
 package com.cat.server.game.module.pet.attr;
 
-import com.cat.server.game.module.attribute.domain.AttributeDictionary;
+import com.cat.server.game.helper.attribute.AttributeDictionary;
 import com.cat.server.game.module.pet.domain.Pet;
 
 /**

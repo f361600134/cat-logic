@@ -1,17 +1,17 @@
-package com.cat.server.game.module.attribute.domain;
+package com.cat.server.game.helper.skill;
 
 /**
  * 带有属性的实体对象
  */
-public interface IAttributeEntity extends IAttributeNodeHolder {
+public interface ISkillEntity extends ISkillNodeHolder {
 
     /**
      * 获取该属性实体的属性字典
      * 
      * @return
      */
-    default AttributeDictionary getAttrDic() {
-        return getAttributeNode().getAttrDic();
+    default SkillDictionary getAttrDic() {
+        return getAttributeNode().getDic();
     }
 
     /**
@@ -20,7 +20,7 @@ public interface IAttributeEntity extends IAttributeNodeHolder {
      * @param attributeType
      * @return
      */
-    default long getAttributeValue(AttributeType attributeType) {
+    default long getAttributeValue(SkillType attributeType) {
         return getAttributeValue(attributeType.getId());
     }
 
@@ -31,10 +31,10 @@ public interface IAttributeEntity extends IAttributeNodeHolder {
      * @return
      */
     default long getAttributeValue(int attributeType) {
-        AttributeDictionary dictionary = getAttrDic();
+        SkillDictionary dictionary = getAttrDic();
         if (dictionary == null) {
             return 0;
         }
-        return dictionary.getAttr(attributeType);
+        return dictionary.getSkill(attributeType);
     }
 }

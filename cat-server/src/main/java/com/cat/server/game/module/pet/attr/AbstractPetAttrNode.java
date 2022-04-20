@@ -2,7 +2,8 @@ package com.cat.server.game.module.pet.attr;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.cat.server.game.module.attribute.domain.AbstractAttributeNode;
+
+import com.cat.server.game.helper.attribute.AbstractAttributeNode;
 import com.cat.server.game.module.pet.domain.Pet;
 
 public abstract class AbstractPetAttrNode extends AbstractAttributeNode {

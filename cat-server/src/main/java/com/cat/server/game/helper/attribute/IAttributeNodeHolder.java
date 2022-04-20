@@ -1,4 +1,4 @@
-package com.cat.server.game.module.attribute.domain;
+package com.cat.server.game.helper.attribute;
 
 /**
  * 属性节点持有者

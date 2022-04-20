@@ -1,31 +1,28 @@
-package com.cat.server.game.module.attribute.domain;
+package com.cat.server.game.helper.skill;
 
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.function.Predicate;
 
-import com.cat.server.game.data.proto.PBItem.PBPairInfo;
 import com.cat.server.game.helper.log.NatureEnum;
-import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
 
-public abstract class AbstractAttributeNode implements IAttributeNode {
+public abstract class AbstractSkillNode implements ISkillNode {
 	
     /**
      * 父节点
      */
-    protected IAttributeNode parent;
+    protected ISkillNode parent;
     /**
      * 子节点
      */
-    protected List<IAttributeNode> childs;
+    protected List<ISkillNode> childs;
     /**
      * 该节点的总属性
      */
-    protected AttributeDictionary attrDic;
+    protected SkillDictionary attrDic;
     /**
      * 属性是否需要计算
      */
@@ -42,12 +39,12 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
     }
 
     @Override
-    public void setParent(IAttributeNode parent) {
+    public void setParent(ISkillNode parent) {
         this.parent = parent;
     }
 
     @Override
-    public void addChild(IAttributeNode child) {
+    public void addChild(ISkillNode child) {
         if (isLeaf()) {
             throw new UnsupportedOperationException(getClass().getName() + " is leaf node.cant add child.");
         }
@@ -60,7 +57,7 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
     }
 
     @Override
-    public IAttributeNode getRoot() {
+    public ISkillNode getRoot() {
         if (isRoot()) {
             return this;
         }
@@ -71,19 +68,19 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
     }
 
     @Override
-    public IAttributeNode getParent() {
+    public ISkillNode getParent() {
         return parent;
     }
 
     @Override
-    public List<IAttributeNode> getChilds() {
+    public List<ISkillNode> getChilds() {
         return childs;
     }
 
     @Override
-    public AttributeDictionary getAttrDic() {
+    public SkillDictionary getDic() {
         if (change) {
-            attrDic = calculateAttrDic();
+            attrDic = calculateDic();
             change = false;
         }
         return attrDic;
@@ -92,8 +89,8 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
     /**
      * 刷新该节点属性
      */
-    protected void refreshAttrDic() {
-        attrDic = calculateAttrDic();
+    protected void refreshDic() {
+        attrDic = calculateDic();
         change = false;
     }
 
@@ -103,32 +100,32 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
      * 
      * @return
      */
-    protected AttributeDictionary calculateAttrDic() {
-        AttributeDictionary dictionary = new AttributeDictionary();
+    protected SkillDictionary calculateDic() {
+        SkillDictionary dictionary = new SkillDictionary();
         if (isLeaf()) {
             throw new UnsupportedOperationException(getClass().getName() + " is leaf node.need override calculateAttrDic.");
         }
         if (childs == null || childs.isEmpty()) {
             return dictionary;
         }
-        for (IAttributeNode child : childs) {
-            dictionary.addAttr(child.getAttrDic());
+        for (ISkillNode child : childs) {
+            dictionary.addSkill(child.getDic());
         }
         //refreshInfluenceAttr(dictionary);
         return dictionary;
     }
 
-    protected AttributeDictionary calculateAttrDic(Predicate<IAttributeNode> predicate) {
-        AttributeDictionary dictionary = new AttributeDictionary();
+    protected SkillDictionary calculateDic(Predicate<ISkillNode> predicate) {
+        SkillDictionary dictionary = new SkillDictionary();
         if (isLeaf()) {
             throw new UnsupportedOperationException(getClass().getName() + " is leaf node.need override calculateAttrDic.");
         }
         if (childs == null || childs.isEmpty()) {
             return dictionary;
         }
-        for (IAttributeNode child : childs) {
+        for (ISkillNode child : childs) {
             if (predicate == null || predicate.test(child)) {
-                dictionary.addAttr(child.getAttrDic());
+                dictionary.addSkill(child.getDic());
             }
         }
         //refreshInfluenceAttr(dictionary);
@@ -164,14 +161,14 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
     @Override
     public void refresh(boolean recursion, NatureEnum nEnum) {
         if (childs != null && !childs.isEmpty()) {
-            for (IAttributeNode child : childs) {
+            for (ISkillNode child : childs) {
                 if (child.isAttrChange() || recursion) {
                     child.refresh(recursion, nEnum);
                 }
             }
         }
         setAttrChange();
-        refreshAttrDic();
+        refreshDic();
     }
 
     @Override
@@ -179,7 +176,7 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
         // 从下往上标记发生变化
         setAttrChange();
         // 从上往下刷新
-        IAttributeNode root = getRoot();
+        ISkillNode root = getRoot();
         root.refresh(false, nEnum);
     }
 
@@ -196,7 +193,7 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
         StringBuffer sb = new StringBuffer();
         String path = getPath();
         sb.append(path).append("==");
-        AttributeDictionary curAttrDic = getAttrDic();
+        SkillDictionary curAttrDic = getDic();
         boolean first = true;
         for (Entry<Integer, Integer> entry : curAttrDic.getDictionary().entrySet()) {
             long value = entry.getValue();
@@ -207,7 +204,7 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
                 sb.append(',');
             }
             int type = entry.getKey();
-            AttributeType attrType = AttributeType.valueOf(type);
+            SkillType attrType = SkillType.valueOf(type);
             if (attrType != null) {
                 sb.append(attrType.name());
             } else {
@@ -224,25 +221,10 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
         StringBuffer sb = new StringBuffer();
         sb.append(nodeToString());
         if (childs != null && !childs.isEmpty()) {
-            for (IAttributeNode child : childs) {
+            for (ISkillNode child : childs) {
                 sb.append('\n').append(child.treeToString());
             }
         }
         return sb.toString();
     }
-    
-	/**
-	 * 技能信息转协议对象
-	 * @return
-	 */
-	public Collection<PBPairInfo> toProto(){
-		List<PBPairInfo> ret = new ArrayList<>();
-		this.getAttrDic().getDictionary().forEach((attrId, value)->{
-			PBPairInfoBuilder builder = PBPairInfoBuilder.newInstance();
-			builder.setConfigId(attrId);
-			builder.setValue(value);
-			ret.add(builder.build());
-		});
-		return ret;
-	}
 }

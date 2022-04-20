@@ -5,9 +5,9 @@ import java.util.Collection;
 import java.util.List;
 
 import com.cat.server.game.data.proto.PBItem.PBPairInfo;
+import com.cat.server.game.helper.skill.AbstractSkillNode;
 import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
 import com.cat.server.game.module.pet.domain.Pet;
-import com.cat.server.game.module.skill.domain.AbstractSkillNode;
 
 public abstract class AbstractPetSkillNode extends AbstractSkillNode {
 
