@@ -5,6 +5,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -278,7 +280,7 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 		}
 		boolean change = false;
 		boolean allGoalComplete = true;
-		//FIXME
+		//如果当前事件没有被监听,则跳过
 		String eventId = event.getEventId();
 		for (int i = 0; i < goals.size(); i++) {
 			QuestGoal goal = goals.get(i);
@@ -291,9 +293,14 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
                 allGoalComplete = false;
                 continue;
             }
+            if (!ArrayUtils.contains(goalTypeLogic.focusEvents(), eventId)) {
+            	allGoalComplete = false;
+                continue;
+			}
             int completeCondition = missionConfig.getCompleteCondition()[i];
 			int completeValue = missionConfig.getCompleteValue()[i];
-            change |= goalTypeLogic.refresh(playerId, goal, completeCondition, completeValue);
+            //change |= goalTypeLogic.refresh(playerId, goal, completeCondition, completeValue);
+			change |= goalTypeLogic.process(playerId, event, goal, completeCondition, completeValue);
             if (goal.getState() != QuestState.STATE_COMPLETE.getValue()) {
                 allGoalComplete = false;
             }

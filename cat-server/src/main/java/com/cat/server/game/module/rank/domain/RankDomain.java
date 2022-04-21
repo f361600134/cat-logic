@@ -34,6 +34,7 @@ import com.google.common.collect.Sets;
 * FIXME 所有的阻塞响应,改为异步回调的方式处理, 或者通过锁的方式去处理, 最好的解决方式应该还是acotr(akka),reactor的方式实现
 * FIXME 20211020 尝试第一次修改线程模型, 在现在基础的线程模型增加异步回调, 尝试失败, 原因:
 * 加了回调之后的, 没有办法在同一个线程内去执行相同模块的任务
+* @change 20220421 修改排行榜实现, 原本排行榜不使用活动. 修改其实现, 适用于活动排行
 */
 public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Long, Rank>, IRankType{
 
@@ -230,7 +231,7 @@ public class RankDomain implements IModuleDomain<Integer, Rank>, ILeaderboard<Lo
 				iter.remove();
 			}
 			//有数据变动的,修改或添加入库
-			 iter = deleteMap.iterator();
+			iter = deleteMap.iterator();
 			while(iter.hasNext()) {
 				Rank rank = iter.next();
 				log.info("rank remove:{}", rank);

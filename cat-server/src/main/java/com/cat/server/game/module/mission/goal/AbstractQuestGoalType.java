@@ -1,7 +1,5 @@
 package com.cat.server.game.module.mission.goal;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import com.cat.server.core.event.IEvent;
 import com.cat.server.game.module.mission.domain.QuestGoal;
 
@@ -17,9 +15,9 @@ public abstract class AbstractQuestGoalType implements IQuestGoalType {
 	 */
 	@Override
 	public boolean process(long playerId, IEvent event, QuestGoal goal, int complateCondition, int complateValue) {
-		if(!ArrayUtils.contains(focusEvents(), event.getEventId())) {
-			return false;
-		}
+//		if(!ArrayUtils.contains(focusEvents(), event.getEventId())) {
+//			return false;
+//		}
 		int addValue = getAddValue(event, goal);
 		if (addValue == 0) {
 			return false;

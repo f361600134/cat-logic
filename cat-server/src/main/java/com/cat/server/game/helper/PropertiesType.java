@@ -23,7 +23,7 @@ public enum PropertiesType {
 	/** 友情点 */
 	FriendShipPoint(100006),
 	/** 先知结晶 */
-	ProphetCrystal(100007),
+	ProphetCrystal(100007), 
 	/** 星命卡牌 */
 	ProphetCard(100008),
 	/** 远航情报 */

@@ -18,8 +18,15 @@ public enum RankTypeEnum {
 		}
 	},
 	
+	/**研习社*/
+	LearnCommunityRank(2){
+		public IRankType newRankType() {
+			return new PlayerOtherRankType();
+		}
+	},
+	
 	/**其他排行*/
-	OTHER(2){
+	OTHER(3){
 		public IRankType newRankType() {
 			return new PlayerOtherRankType();
 		}

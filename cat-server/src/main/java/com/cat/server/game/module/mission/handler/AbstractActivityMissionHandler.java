@@ -2,6 +2,7 @@ package com.cat.server.game.module.mission.handler;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Collections;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -63,6 +64,9 @@ public abstract class AbstractActivityMissionHandler<T extends IConfigActivityMi
     @Override
     public Map<Integer, T> getConfigs() {
     	A activity = this.getActivityType();
+    	if (activity == null) {
+			return Collections.emptyMap();
+		}
     	return ConfigManager.getInstance().getAllConfigs(missionConfigClazz)
     	 .values().stream().filter(c->c.getActivityId() == activity.getConfigId())
     	 .collect(Collectors.toMap(IConfigActivityMission::getId, Function.identity()));
