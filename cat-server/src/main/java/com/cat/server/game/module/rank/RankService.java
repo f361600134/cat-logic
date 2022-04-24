@@ -62,7 +62,7 @@ class RankService implements IRankService{
 		rank.setSecondValue(value2);
 		rank.setRankType(rankType.getConfigId());
 		//更新入排行榜
-		domain.put(rank.getUniqueId(), rank);
+		domain.onRefresh(rank);
 		
 		//FIXME 这里暂时设定为每次必定同步到跨服, 用于模拟测试
 		RpcClientStarter client = requesterManager.getClient(ServerConstant.NODE_TYPE_RANK);
@@ -116,14 +116,7 @@ class RankService implements IRankService{
 			logger.info("reqCoverRankInfo error, domain is null");
 			return;
 		}
-		domain.putAll(rankMap);
-		/**
-		 * FIXME 严重
-		 * 这里覆盖数据,本地排行榜所有的数据, 都是先删掉, 再插入, 所以都会被清掉一次
-		 * 优化方法: 1. 如果当前排名未变化, 则不插入排行榜(不会重新覆盖原先数据)
-		 * 
-		 */
-		domain.onSave();
+		domain.onRefresh(rankMap);
 	}
 
 	/////////////接口方法////////////////////////
@@ -140,10 +133,9 @@ class RankService implements IRankService{
 			return ret;
 		}
 		try {
-			ret = domain.getRankByKey(uniqueId);
+			ret = domain.getRanking(uniqueId);
 		} catch (Exception e) {
-			logger.info("getRank error. rankType:{}, uniqueId:{}, rank:{}", rankType.getConfigId(), uniqueId, ret);
-			logger.error("getRank error, e:{}", e);
+			logger.info("getRank error. rankType:{}, uniqueId:{}, rank:{}", rankType.getConfigId(), uniqueId, ret, e);
 		}
 		return ret;
 	}
@@ -166,7 +158,7 @@ class RankService implements IRankService{
 	}
 	
 	@Override
-	public IProtocol buildRankList(RankTypeEnum rankType, int limit) {
+	public IProtocol buildRankList(RankTypeEnum rankType, long playerId, int limit) {
 		if (rankType == null) {
 			return null;
 		}
@@ -180,7 +172,7 @@ class RankService implements IRankService{
 		} catch (Exception e) {
 			logger.error("buildRankList error, e:", e);
 		}
-		IProtocol protocol = domain.buildProtocol(ranks, limit);
+		IProtocol protocol = domain.buildProtocol(ranks, playerId);
 		return protocol;
 	}
 	

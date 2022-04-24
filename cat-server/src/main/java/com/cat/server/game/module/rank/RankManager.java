@@ -2,13 +2,14 @@ package com.cat.server.game.module.rank;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.server.AbstractModuleManager;
 import com.cat.server.game.module.rank.domain.Rank;
 import com.cat.server.game.module.rank.domain.RankDomain;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.cat.server.game.module.rank.type.IRankType;
 
 /**
  * 排行榜管理器
@@ -16,9 +17,10 @@ import org.springframework.stereotype.Component;
 * @author Jeremy
 */
 @Component
-class RankManager extends AbstractModuleManager<Integer, RankDomain>{
+public class RankManager extends AbstractModuleManager<Integer, RankDomain>{
 	
 	@Autowired private ServerConfig serverConfig;
+	@Autowired private List<IRankType> rankTypes;
 	
 	
 	@Override
@@ -42,7 +44,7 @@ class RankManager extends AbstractModuleManager<Integer, RankDomain>{
 	@Override
 	public RankDomain getFromDb(Integer id) {
 		try {
-			RankDomain domain = new RankDomain(id);
+			RankDomain domain = new RankDomain();
 			String[] cols = new String[] {Rank.PROP_CURSERVERID, Rank.PROP_RANKTYPE};
 			List<Rank> list = process.selectByIndex(Rank.class, cols, new Object[] {serverConfig.getServerId(),id});
 			if (list.isEmpty()) {
@@ -57,6 +59,14 @@ class RankManager extends AbstractModuleManager<Integer, RankDomain>{
 			logger.error("getFromDb error", e);
 		}
 		return null;
+	}
+	
+	/**
+	 * 根据排行榜配置id获取排行榜类型
+	 * @return
+	 */
+	public IRankType getRankType(int configId) {
+		return rankTypes.stream().filter(r->r.rankTypeEnum().getConfigId() == configId).findFirst().get();
 	}
 	
 }

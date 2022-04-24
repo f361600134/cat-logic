@@ -15,7 +15,7 @@ import com.cat.server.game.module.rank.domain.Rank;
  * 活动关闭后, 需清空排行榜, 可以由活动结束事件通知排行模块清除排行数据, 也可以由活动结束时直接调用.
  * @author Jeremy
  */
-public abstract class AbstractActivityRankType<A extends IActivityType> extends AbstractRankType {
+public abstract class AbstractActivityRankType<A extends IActivityType> extends AbstractPlayerRankType {
 	
 	@Autowired protected IActivityService activityService;
 	
@@ -43,6 +43,5 @@ public abstract class AbstractActivityRankType<A extends IActivityType> extends 
     		super.onRefresh(rank);
 		}
     }
-    
     
 }

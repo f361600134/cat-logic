@@ -60,6 +60,7 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
  		T domain = domains.get(id);
 		if (domain == null) {
 			domain = getFromDb(id);
+			domains.put(id, domain);
 		}
 		return domain;
 	}
@@ -92,7 +93,6 @@ public abstract class AbstractModuleManager<I, T extends IModuleDomain<I, ? exte
 				//	有数据初始化
 				domain.initData(id, list);
 			}
-			domains.put(id, domain);
 			return domain;
 		}catch (Exception e) {
 			logger.error("getFromDb error", e);

@@ -1,35 +1,32 @@
 package com.cat.server.game.module.rank.domain;
 
+import java.util.Comparator;
+
 import com.cat.api.module.rank.assist.RankAscComparator;
 import com.cat.api.module.rank.assist.RankComparators;
 import com.cat.api.module.rank.assist.RankDescComparator;
-import com.cat.server.game.module.rank.type.IRankType;
-import com.cat.server.game.module.rank.type.impl.PlayerOtherRankType;
-import com.cat.server.game.module.rank.type.impl.PlayerPowerRankType;
-
-import java.util.Comparator;
 
 public enum RankTypeEnum {
 	
 	/**战力排行*/
 	POWER(1){
-		public IRankType newRankType() {
-			return new PlayerPowerRankType();
-		}
+//		public IRankType newRankType() {
+//			return new PlayerPowerRankType();
+//		}
 	},
 	
 	/**研习社*/
 	LearnCommunityRank(2){
-		public IRankType newRankType() {
-			return new PlayerOtherRankType();
-		}
+//		public IRankType newRankType() {
+//			return new PlayerLearnCommunityRankType();
+//		}
 	},
 	
-	/**其他排行*/
-	OTHER(3){
-		public IRankType newRankType() {
-			return new PlayerOtherRankType();
-		}
+	/**家族排行*/
+	FAMILY(4){
+//		public IRankType newRankType() {
+//			return new FamilyRankType();
+//		}
 	},
 	;
 
@@ -68,11 +65,11 @@ public enum RankTypeEnum {
 		return sorted;
 	}
 	
-	/**
-	 * 根据不同的类型构建不同的排行榜实现类
-	 * @return
-	 */
-	public abstract IRankType newRankType();
+//	/**
+//	 * 根据不同的类型构建不同的排行榜实现类
+//	 * @return
+//	 */
+//	public abstract IRankType newRankType();
 	
 	public static RankTypeEnum getRankType(int configId) {
 		for (RankTypeEnum type : values()) {

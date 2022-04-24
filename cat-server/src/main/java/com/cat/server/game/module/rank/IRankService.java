@@ -32,9 +32,10 @@ public interface IRankService {
 	/**
 	 * 根据排行榜类型和数量构建排行榜消息
 	 * @param rankType 排行榜类型
+	 * @param playerId 玩家id
 	 * @param limit 数量
-	 * @return
+	 * @return 排行榜协议列表
 	 */
-	public IProtocol buildRankList(RankTypeEnum rankType, int limit);
+	public IProtocol buildRankList(RankTypeEnum rankType, long playerId, int limit);
 
 }

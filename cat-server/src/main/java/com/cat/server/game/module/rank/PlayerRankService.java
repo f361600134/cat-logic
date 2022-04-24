@@ -38,7 +38,7 @@ public class PlayerRankService {
 		}
 		ConfigRank config = ConfigManager.getInstance().getConfig(ConfigRank.class, rankType);
 		int showNum = config.getShowNum();
-		IProtocol protocol = rankService.buildRankList(rankTypeEnum, showNum);
+		IProtocol protocol = rankService.buildRankList(rankTypeEnum, playerId, showNum);
 		if (protocol == null) {
 			log.info("reqRankInfo error, the result of buildRankList is null.");
 			return ErrorCode.UNKNOWN_ERROR;

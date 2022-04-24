@@ -175,6 +175,16 @@ public class LearnCommunityService implements ILearnCommunityService{
 		LearnCommunity learnCommunity = domain.getBean();
 		return learnCommunity.getQuestTypeData();
 	}
+
+	@Override
+	public LearnCommunity getLearnCommunity(long playerId) {
+		LearnCommunityDomain domain = manager.getOrLoadDomain(playerId);
+		if (domain == null) {
+			log.info("LearnCommunityService error, domain is null");
+			return null;
+		}
+		return domain.getBean();
+	}
 }
  
  

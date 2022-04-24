@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.alibaba.fastjson.JSON;
 import com.cat.server.game.data.proto.PBItem.PBPairInfo;
 import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
 import com.cat.server.game.module.item.proto.PBPairInfoBuilder;

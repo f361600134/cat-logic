@@ -1,5 +1,6 @@
 package com.cat.server.game.module.activityoperation.learncommunity;
 
+import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunity;
 import com.cat.server.game.module.mission.domain.QuestTypeData;
 
 /**
@@ -7,6 +8,18 @@ import com.cat.server.game.module.mission.domain.QuestTypeData;
  */
 public interface ILearnCommunityService{
 	
+	/**
+	 * 获取玩家研习社数据
+	 * @param playerId 玩家id
+	 * @return
+	 */
+	public LearnCommunity getLearnCommunity(long playerId);
+	
+	/**
+	 * 获取玩家任务数据
+	 * @param playerId 玩家id
+	 * @return
+	 */
 	public QuestTypeData getQuestTypeData(long playerId);
 
 }

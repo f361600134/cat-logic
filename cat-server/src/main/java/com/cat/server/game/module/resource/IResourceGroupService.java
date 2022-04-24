@@ -2,7 +2,6 @@ package com.cat.server.game.module.resource;
 
 import java.util.Collection;
 
-import com.cat.server.core.annotation.NotUse;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.resource.domain.ResourceGroup;
 
@@ -10,41 +9,40 @@ import com.cat.server.game.module.resource.domain.ResourceGroup;
  * 资源组接口
  * @author Jeremy
  */
-@NotUse
 public interface IResourceGroupService {
 	
 	/**
 	 * 检查数量是否足够
 	 * @param playerId 玩家id
-	 * @param costMap  消耗map, value值为正整数. 逐个判断, 全部满足返回true, 否则返回false
+	 * @param costGroup  消耗组, value值为正整数. 逐个判断, 全部满足返回true, 否则返回false
 	 * @return true 表示满足, 否则不满足
 	 */
-	public boolean check(long playerId, ResourceGroup costMap);
+	public boolean check(long playerId, ResourceGroup costGroup);
 	
 	/**
 	 * 消耗
 	 * @param playerId 玩家id
-	 * @param costMap value值为正整数
+	 * @param costGroup value值为正整数
 	 * @param nEnum 资源枚举
 	 * @param desc 其他描述
 	 */
-	public void cost(long playerId, ResourceGroup costMap, NatureEnum nEnum);
+	public void cost(long playerId, ResourceGroup costGroup, NatureEnum nEnum);
 	
 	/**
 	 * 检查数量是否足够, 足够则消耗, 但凡有一个资源不满足, 就不能消耗
 	 * @param playerId 玩家id
-	 * @param costMap  消耗map, value值为正整数. 逐个判断, 全部满足返回true, 否则返回false
+	 * @param costGroup  消耗map, value值为正整数. 逐个判断, 全部满足返回true, 否则返回false
 	 * @return true 表示满足, 否则不满足
 	 */
-	public boolean checkAndCost(long playerId, ResourceGroup costMap, NatureEnum nEnum);
+	public boolean checkAndCost(long playerId, ResourceGroup costGroup, NatureEnum nEnum);
 	
 	/**
 	 * 奖励
 	 * @param playerId 玩家id
-	 * @param rewardMap value值为正整数
+	 * @param rewardGroup value值为正整数
 	 * @param nEnum 资源枚举
 	 */
-	public void reward(long playerId, ResourceGroup rewardMap, NatureEnum nEnum);
+	public void reward(long playerId, ResourceGroup rewardGroup, NatureEnum nEnum);
 	
 	/**
 	 * 获取资源数量
