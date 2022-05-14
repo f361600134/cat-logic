@@ -10,6 +10,8 @@ import java.util.List;
  */
 public interface IResourceDomain<K, V extends IResource>{
 	
+	public static final int LIMIT = 999;
+	
 	/**
 	 * 	通过配置id获取到实体, 默认返回查找到的第一个
 	 * @param configId 配置id

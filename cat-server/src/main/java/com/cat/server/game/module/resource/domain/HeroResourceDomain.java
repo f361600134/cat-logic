@@ -18,8 +18,6 @@ import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
  */
 public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 	
-	public static final int LIMIT = 999;
-
 	HeroResourceDomain(long playerId) {
 		super(playerId);
 	}

@@ -121,25 +121,6 @@ public class ResourceGroup {
         dictionary.put(configId, count);
     }
 
-//    /**
-//     * 	根据枚举类型获取百分比值
-//     * @param attrType
-//     * @param value
-//     */
-//    public double getRateAttr(AttributeType attrType) {
-//        int id = attrType.getId();
-//        return getRateAttr(id);
-//    }
-    
-//    /**
-//     * 	百分比值计算
-//     * @param attrType
-//     * @param value
-//     */
-//    public double getRateAttr(int attrType) {
-//        return getAttr(attrType) / 10000d;
-//    }
-
     /**
      * 	判断字典是否为空
      * @return
@@ -201,23 +182,6 @@ public class ResourceGroup {
         return ret;
     }
     
-    public static void main(String[] args) {
-//    	Map<Integer, Integer> ret = new HashMap<>();
-//    	ret.put(1, 1);
-//    	ret.put(2, 2);
-//    	String json = JSON.toJSONString(ret);
-//    	System.out.println(json);
-    	
-//    	ResourceMap map = new ResourceMap(ret);
-//    	json = JSON.toJSONString(map);
-//    	System.out.println(json);
-    	
-//    	ResourceGroup map = JSON.parseObject(json, ResourceGroup.class);
-//    	System.out.println(map);
-//    	long exp = 100
-//    	System.out.println(exp);
-	}
-
 	@Override
 	public String toString() {
 		return "ResourceGroup [dictionary=" + dictionary + "]";

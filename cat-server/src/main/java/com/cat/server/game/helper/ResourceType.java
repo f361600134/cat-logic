@@ -19,6 +19,8 @@ public enum ResourceType {
 	ActivityItem(5),
 	/**宠物*/
 	Pet(6),
+	/** 家园*/
+	Home(10),
 	;
 	private int type;
 	private ResourceType(int type) {

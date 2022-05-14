@@ -13,8 +13,6 @@ import com.google.common.collect.Lists;
 
 public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 	
-	public static final int LIMIT = 999;
-	
 	private ItemResourceDomain(long playerId) {
 		super(playerId);
 	}

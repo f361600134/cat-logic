@@ -251,6 +251,18 @@ public final class PBDefine {
     ReqShopQuickBuy(110103),
     /**
      * <pre>
+     *Equip
+     * </pre>
+     *
+     * <code>ReqEquipInfo = 113101;</code>
+     */
+    ReqEquipInfo(113101),
+    /**
+     * <code>RespEquipInfo = 113201;</code>
+     */
+    RespEquipInfo(113201),
+    /**
+     * <pre>
      *LearnCommunity
      * </pre>
      *
@@ -333,6 +345,66 @@ public final class PBDefine {
      * <code>ReqGroupMailInfo = 900101;</code>
      */
     ReqGroupMailInfo(900101),
+    /**
+     * <pre>
+     *Home
+     * </pre>
+     *
+     * <code>RespHomeFurnitureRemove = 998201;</code>
+     */
+    RespHomeFurnitureRemove(998201),
+    /**
+     * <code>ReqHomeInfo = 998101;</code>
+     */
+    ReqHomeInfo(998101),
+    /**
+     * <code>ReqHomeFurnitureRemove = 998102;</code>
+     */
+    ReqHomeFurnitureRemove(998102),
+    /**
+     * <code>RespHomeSchemeLayoutInfo = 998202;</code>
+     */
+    RespHomeSchemeLayoutInfo(998202),
+    /**
+     * <code>ReqHomeSchemeLayoutSave = 998103;</code>
+     */
+    ReqHomeSchemeLayoutSave(998103),
+    /**
+     * <code>RespHomeBetsuinInfo = 998203;</code>
+     */
+    RespHomeBetsuinInfo(998203),
+    /**
+     * <code>ReqHomeFurnitureCreate = 998104;</code>
+     */
+    ReqHomeFurnitureCreate(998104),
+    /**
+     * <code>RespHomeSchemeLayoutSave = 998204;</code>
+     */
+    RespHomeSchemeLayoutSave(998204),
+    /**
+     * <code>ReqHomeFurnitureUpdate = 998105;</code>
+     */
+    ReqHomeFurnitureUpdate(998105),
+    /**
+     * <code>RespHomeFurnitureUpdate = 998205;</code>
+     */
+    RespHomeFurnitureUpdate(998205),
+    /**
+     * <code>ReqHomeSchemeLayoutInfo = 998106;</code>
+     */
+    ReqHomeSchemeLayoutInfo(998106),
+    /**
+     * <code>RespHomeInfo = 998206;</code>
+     */
+    RespHomeInfo(998206),
+    /**
+     * <code>ReqHomeBetsuinInfo = 998107;</code>
+     */
+    ReqHomeBetsuinInfo(998107),
+    /**
+     * <code>RespHomeFurnitureCreate = 998207;</code>
+     */
+    RespHomeFurnitureCreate(998207),
     /**
      * <pre>
      *ActivityItem
@@ -622,6 +694,18 @@ public final class PBDefine {
     public static final int ReqShopQuickBuy_VALUE = 110103;
     /**
      * <pre>
+     *Equip
+     * </pre>
+     *
+     * <code>ReqEquipInfo = 113101;</code>
+     */
+    public static final int ReqEquipInfo_VALUE = 113101;
+    /**
+     * <code>RespEquipInfo = 113201;</code>
+     */
+    public static final int RespEquipInfo_VALUE = 113201;
+    /**
+     * <pre>
      *LearnCommunity
      * </pre>
      *
@@ -704,6 +788,66 @@ public final class PBDefine {
      * <code>ReqGroupMailInfo = 900101;</code>
      */
     public static final int ReqGroupMailInfo_VALUE = 900101;
+    /**
+     * <pre>
+     *Home
+     * </pre>
+     *
+     * <code>RespHomeFurnitureRemove = 998201;</code>
+     */
+    public static final int RespHomeFurnitureRemove_VALUE = 998201;
+    /**
+     * <code>ReqHomeInfo = 998101;</code>
+     */
+    public static final int ReqHomeInfo_VALUE = 998101;
+    /**
+     * <code>ReqHomeFurnitureRemove = 998102;</code>
+     */
+    public static final int ReqHomeFurnitureRemove_VALUE = 998102;
+    /**
+     * <code>RespHomeSchemeLayoutInfo = 998202;</code>
+     */
+    public static final int RespHomeSchemeLayoutInfo_VALUE = 998202;
+    /**
+     * <code>ReqHomeSchemeLayoutSave = 998103;</code>
+     */
+    public static final int ReqHomeSchemeLayoutSave_VALUE = 998103;
+    /**
+     * <code>RespHomeBetsuinInfo = 998203;</code>
+     */
+    public static final int RespHomeBetsuinInfo_VALUE = 998203;
+    /**
+     * <code>ReqHomeFurnitureCreate = 998104;</code>
+     */
+    public static final int ReqHomeFurnitureCreate_VALUE = 998104;
+    /**
+     * <code>RespHomeSchemeLayoutSave = 998204;</code>
+     */
+    public static final int RespHomeSchemeLayoutSave_VALUE = 998204;
+    /**
+     * <code>ReqHomeFurnitureUpdate = 998105;</code>
+     */
+    public static final int ReqHomeFurnitureUpdate_VALUE = 998105;
+    /**
+     * <code>RespHomeFurnitureUpdate = 998205;</code>
+     */
+    public static final int RespHomeFurnitureUpdate_VALUE = 998205;
+    /**
+     * <code>ReqHomeSchemeLayoutInfo = 998106;</code>
+     */
+    public static final int ReqHomeSchemeLayoutInfo_VALUE = 998106;
+    /**
+     * <code>RespHomeInfo = 998206;</code>
+     */
+    public static final int RespHomeInfo_VALUE = 998206;
+    /**
+     * <code>ReqHomeBetsuinInfo = 998107;</code>
+     */
+    public static final int ReqHomeBetsuinInfo_VALUE = 998107;
+    /**
+     * <code>RespHomeFurnitureCreate = 998207;</code>
+     */
+    public static final int RespHomeFurnitureCreate_VALUE = 998207;
     /**
      * <pre>
      *ActivityItem
@@ -837,6 +981,8 @@ public final class PBDefine {
         case 110102: return ReqShopBuy;
         case 110203: return RespShopQuickBuy;
         case 110103: return ReqShopQuickBuy;
+        case 113101: return ReqEquipInfo;
+        case 113201: return RespEquipInfo;
         case 200201: return RespLearnCommunityInfo;
         case 200202: return RespLearnCommunityReward;
         case 200101: return ReqLearnCommunityInfo;
@@ -852,6 +998,20 @@ public final class PBDefine {
         case 111203: return RespMissionInfo;
         case 2101: return ReqFunctionControl;
         case 900101: return ReqGroupMailInfo;
+        case 998201: return RespHomeFurnitureRemove;
+        case 998101: return ReqHomeInfo;
+        case 998102: return ReqHomeFurnitureRemove;
+        case 998202: return RespHomeSchemeLayoutInfo;
+        case 998103: return ReqHomeSchemeLayoutSave;
+        case 998203: return RespHomeBetsuinInfo;
+        case 998104: return ReqHomeFurnitureCreate;
+        case 998204: return RespHomeSchemeLayoutSave;
+        case 998105: return ReqHomeFurnitureUpdate;
+        case 998205: return RespHomeFurnitureUpdate;
+        case 998106: return ReqHomeSchemeLayoutInfo;
+        case 998206: return RespHomeInfo;
+        case 998107: return ReqHomeBetsuinInfo;
+        case 998207: return RespHomeFurnitureCreate;
         case 201201: return RespActivityItemDelete;
         case 201202: return RespActivityItemsInfo;
         case 201203: return RespActivityItemsUpdate;
@@ -926,7 +1086,7 @@ public final class PBDefine {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020PBProtocol.proto\022\010Protocol*\204\016\n\nPBProto" +
+      "\n\020PBProtocol.proto\022\010Protocol*\276\021\n\nPBProto" +
       "col\022\r\n\tDEFAULTID\020\000\022\032\n\024RespPlayerCreateRo" +
       "le\020\321\226\006\022\031\n\023ReqPlayerCreateRole\020\355\225\006\022\026\n\020Req" +
       "PlayerReLogin\020\356\225\006\022\025\n\017RespPlayerHeart\020\322\226\006" +
@@ -953,26 +1113,38 @@ public final class PBDefine {
       "spRewards\020\274\236\006\022\022\n\014RespItemSell\020\275\236\006\022\021\n\013Req" +
       "ShopInfo\020\225\334\006\022\022\n\014RespShopInfo\020\371\334\006\022\021\n\013Resp" +
       "ShopBuy\020\372\334\006\022\020\n\nReqShopBuy\020\226\334\006\022\026\n\020RespSho" +
-      "pQuickBuy\020\373\334\006\022\025\n\017ReqShopQuickBuy\020\227\334\006\022\034\n\026" +
-      "RespLearnCommunityInfo\020\211\234\014\022\036\n\030RespLearnC" +
-      "ommunityReward\020\212\234\014\022\033\n\025ReqLearnCommunityI" +
-      "nfo\020\245\233\014\022\035\n\027ReqLearnCommunityReward\020\246\233\014\022\034" +
-      "\n\026ReqResourceRecycleInfo\020\305\314\006\022\035\n\027RespReso" +
-      "urceRecycleInfo\020\251\315\006\022\016\n\010RespChat\020\211\256\006\022\r\n\007R" +
-      "eqChat\020\245\255\006\022\024\n\016ReqMissionInfo\020\375\343\006\022\034\n\026Resp" +
-      "MissionSingleQuest\020\341\344\006\022\033\n\025ReqMissionQues" +
-      "tReward\020\376\343\006\022\034\n\026RespMissionQuestReward\020\342\344" +
-      "\006\022\025\n\017RespMissionInfo\020\343\344\006\022\027\n\022ReqFunctionC" +
-      "ontrol\020\265\020\022\026\n\020ReqGroupMailInfo\020\205\3706\022\034\n\026Res" +
-      "pActivityItemDelete\020\361\243\014\022\033\n\025RespActivityI" +
-      "temsInfo\020\362\243\014\022\035\n\027RespActivityItemsUpdate\020" +
-      "\363\243\014\022\023\n\rReqPetLevelup\020\345\353\006\022\024\n\016ReqPetIdenti" +
-      "fy\020\346\353\006\022\031\n\023RespPetUseAttrPoint\020\311\354\006\022\024\n\016Res" +
-      "pPetLevelup\020\312\354\006\022\023\n\rRespPetUpdate\020\313\354\006\022\025\n\017" +
-      "RespPetIdentify\020\314\354\006\022\023\n\rRespPetDelete\020\315\354\006" +
-      "\022\023\n\rRespPetActive\020\316\354\006\022\022\n\014ReqPetActive\020\347\353" +
-      "\006\022\030\n\022ReqPetUseAttrPoint\020\350\353\006B*\n\036com.cat.s" +
-      "erver.game.data.protoB\010PBDefineb\006proto3"
+      "pQuickBuy\020\373\334\006\022\025\n\017ReqShopQuickBuy\020\227\334\006\022\022\n\014" +
+      "ReqEquipInfo\020\315\363\006\022\023\n\rRespEquipInfo\020\261\364\006\022\034\n" +
+      "\026RespLearnCommunityInfo\020\211\234\014\022\036\n\030RespLearn" +
+      "CommunityReward\020\212\234\014\022\033\n\025ReqLearnCommunity" +
+      "Info\020\245\233\014\022\035\n\027ReqLearnCommunityReward\020\246\233\014\022" +
+      "\034\n\026ReqResourceRecycleInfo\020\305\314\006\022\035\n\027RespRes" +
+      "ourceRecycleInfo\020\251\315\006\022\016\n\010RespChat\020\211\256\006\022\r\n\007" +
+      "ReqChat\020\245\255\006\022\024\n\016ReqMissionInfo\020\375\343\006\022\034\n\026Res" +
+      "pMissionSingleQuest\020\341\344\006\022\033\n\025ReqMissionQue" +
+      "stReward\020\376\343\006\022\034\n\026RespMissionQuestReward\020\342" +
+      "\344\006\022\025\n\017RespMissionInfo\020\343\344\006\022\027\n\022ReqFunction" +
+      "Control\020\265\020\022\026\n\020ReqGroupMailInfo\020\205\3706\022\035\n\027Re" +
+      "spHomeFurnitureRemove\020\271\366<\022\021\n\013ReqHomeInfo" +
+      "\020\325\365<\022\034\n\026ReqHomeFurnitureRemove\020\326\365<\022\036\n\030Re" +
+      "spHomeSchemeLayoutInfo\020\272\366<\022\035\n\027ReqHomeSch" +
+      "emeLayoutSave\020\327\365<\022\031\n\023RespHomeBetsuinInfo" +
+      "\020\273\366<\022\034\n\026ReqHomeFurnitureCreate\020\330\365<\022\036\n\030Re" +
+      "spHomeSchemeLayoutSave\020\274\366<\022\034\n\026ReqHomeFur" +
+      "nitureUpdate\020\331\365<\022\035\n\027RespHomeFurnitureUpd" +
+      "ate\020\275\366<\022\035\n\027ReqHomeSchemeLayoutInfo\020\332\365<\022\022" +
+      "\n\014RespHomeInfo\020\276\366<\022\030\n\022ReqHomeBetsuinInfo" +
+      "\020\333\365<\022\035\n\027RespHomeFurnitureCreate\020\277\366<\022\034\n\026R" +
+      "espActivityItemDelete\020\361\243\014\022\033\n\025RespActivit" +
+      "yItemsInfo\020\362\243\014\022\035\n\027RespActivityItemsUpdat" +
+      "e\020\363\243\014\022\023\n\rReqPetLevelup\020\345\353\006\022\024\n\016ReqPetIden" +
+      "tify\020\346\353\006\022\031\n\023RespPetUseAttrPoint\020\311\354\006\022\024\n\016R" +
+      "espPetLevelup\020\312\354\006\022\023\n\rRespPetUpdate\020\313\354\006\022\025" +
+      "\n\017RespPetIdentify\020\314\354\006\022\023\n\rRespPetDelete\020\315" +
+      "\354\006\022\023\n\rRespPetActive\020\316\354\006\022\022\n\014ReqPetActive\020" +
+      "\347\353\006\022\030\n\022ReqPetUseAttrPoint\020\350\353\006B*\n\036com.cat" +
+      ".server.game.data.protoB\010PBDefineb\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
