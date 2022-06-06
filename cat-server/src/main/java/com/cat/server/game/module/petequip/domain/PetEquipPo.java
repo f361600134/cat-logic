@@ -1,12 +1,12 @@
-package com.cat.server.game.module.equip.domain;
+package com.cat.server.game.module.petequip.domain;
 
 import com.cat.orm.core.base.BasePo;
 
 /**
-* EquipPo
+* PetEquipPo
 * @author Jeremy
 */
-public abstract class EquipPo extends BasePo {
+public abstract class PetEquipPo extends BasePo {
 
 	public static final String PROP_PLAYERID = "playerId";
 	public static final String PROP_ID = "id";
@@ -15,11 +15,6 @@ public abstract class EquipPo extends BasePo {
 	public static final String PROP_RECIEVETIME = "recieveTime";
 	public static final String PROP_STAR = "star";
 	public static final String PROP_STARHIDDENATTRSTR = "starHiddenAttrStr";
-	public static final String PROP_HOLE = "hole";
-	public static final String PROP_HOLEHIDDENATTRSTR = "holeHiddenAttrStr";
-	public static final String PROP_CARDSTR = "cardStr";
-	public static final String PROP_CARDATTRSTR = "cardAttrStr";
-	public static final String PROP_ENCHANTMENTATTRSTR = "enchantmentAttrStr";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
@@ -30,11 +25,6 @@ public abstract class EquipPo extends BasePo {
 			PROP_RECIEVETIME,
 			PROP_STAR,
 			PROP_STARHIDDENATTRSTR,
-			PROP_HOLE,
-			PROP_HOLEHIDDENATTRSTR,
-			PROP_CARDSTR,
-			PROP_CARDATTRSTR,
-			PROP_ENCHANTMENTATTRSTR,
 			};
 			
 	/** 所有主键索引字段数组*/
@@ -61,23 +51,9 @@ public abstract class EquipPo extends BasePo {
 	protected int star;
 	/** 加工隐藏属性*/
 	protected String starHiddenAttrStr;
-	/** 孔数*/
-	protected int hole;
-	/** 打孔隐藏属性*/
-	protected String holeHiddenAttrStr;
-	/** 镶嵌卡牌*/
-	protected String cardStr;
-	/** 卡牌属性列表*/
-	protected String cardAttrStr;
-	/** 附魂属性*/
-	protected String enchantmentAttrStr;
 	
-	public EquipPo(){
+	public PetEquipPo(){
 		this.starHiddenAttrStr = "";
-		this.holeHiddenAttrStr = "";
-		this.cardStr = "";
-		this.cardAttrStr = "";
-		this.enchantmentAttrStr = "";
 	}
 	
 	/** 玩家ID **/
@@ -143,57 +119,11 @@ public abstract class EquipPo extends BasePo {
 		this.starHiddenAttrStr = starHiddenAttrStr;
 	}
 	
-	/** 孔数 **/
-	public int getHole(){
-		return this.hole;
-	}
-	
-	public void setHole(int hole){
-		this.hole = hole;
-	}
-	
-	/** 打孔隐藏属性 **/
-	public String getHoleHiddenAttrStr(){
-		return this.holeHiddenAttrStr;
-	}
-	
-	public void setHoleHiddenAttrStr(String holeHiddenAttrStr){
-		this.holeHiddenAttrStr = holeHiddenAttrStr;
-	}
-	
-	/** 镶嵌卡牌 **/
-	public String getCardStr(){
-		return this.cardStr;
-	}
-	
-	public void setCardStr(String cardStr){
-		this.cardStr = cardStr;
-	}
-	
-	/** 卡牌属性列表 **/
-	public String getCardAttrStr(){
-		return this.cardAttrStr;
-	}
-	
-	public void setCardAttrStr(String cardAttrStr){
-		this.cardAttrStr = cardAttrStr;
-	}
-	
-	/** 附魂属性 **/
-	public String getEnchantmentAttrStr(){
-		return this.enchantmentAttrStr;
-	}
-	
-	public void setEnchantmentAttrStr(String enchantmentAttrStr){
-		this.enchantmentAttrStr = enchantmentAttrStr;
-	}
-	
 	
 	@Override
 	public String toString() {
-		return "Equip [playerId= "+ playerId +", id= "+ id +", configId= "+ configId +", holder= "+ holder +", recieveTime= "+ recieveTime
-				 +", star= "+ star +", starHiddenAttrStr= "+ starHiddenAttrStr +", hole= "+ hole +", holeHiddenAttrStr= "+ holeHiddenAttrStr +", cardStr= "+ cardStr
-				 +", cardAttrStr= "+ cardAttrStr +", enchantmentAttrStr= "+ enchantmentAttrStr+"]";
+		return "PetEquip [playerId= "+ playerId +", id= "+ id +", configId= "+ configId +", holder= "+ holder +", recieveTime= "+ recieveTime
+				 +", star= "+ star +", starHiddenAttrStr= "+ starHiddenAttrStr+"]";
 	}
 	
 	@Override
@@ -211,11 +141,6 @@ public abstract class EquipPo extends BasePo {
 		getRecieveTime(),
 		getStar(),
 		getStarHiddenAttrStr(),
-		getHole(),
-		getHoleHiddenAttrStr(),
-		getCardStr(),
-		getCardAttrStr(),
-		getEnchantmentAttrStr(),
 		};
 	}
 	

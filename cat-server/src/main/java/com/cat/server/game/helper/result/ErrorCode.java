@@ -128,6 +128,11 @@ public enum ErrorCode implements CodeEnum{
     PET_NOT_ACTIVE(PET, 2, "宠物未激活"),
     PET_LEVEL_LIMIT(PET, 3, "宠物等级已满"),
     
+    // -----------------装备---------------------
+    EQUIP_NOT_EXIST(EQUIT, 1, "装备不存在"),
+    EQUIP_ALREAD_WEAR(EQUIT, 2, "装备已穿戴"),
+    
+    
     // -----------------家具资源不充足--------------
     ;
 	

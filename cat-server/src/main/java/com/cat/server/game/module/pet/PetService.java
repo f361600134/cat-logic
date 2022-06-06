@@ -285,6 +285,13 @@ class PetService implements IPetService, IResourceService, IPlayerModuleService{
 		//	通知客户端数据删除
 		this.responseDeleteItemList(playerId, domain.getAndClearDeleteList());
 	}
+
+	@Override
+	public Pet getPet(long playerId, long petId) {
+		PetDomain domain = petManager.getDomain(playerId);
+		if (domain == null) return null;
+		return domain.getBean(petId);
+	}
 }
  
  

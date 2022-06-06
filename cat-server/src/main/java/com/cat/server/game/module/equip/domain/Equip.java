@@ -1,18 +1,45 @@
 package com.cat.server.game.module.equip.domain;
 
+import java.util.List;
+
+import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IPersistence;
+import com.cat.server.game.data.proto.PBEquip.PBEquipDto;
+import com.cat.server.game.helper.attribute.AttributeDictionary;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
-import com.cat.server.game.module.hero.domain.Hero;
-import com.cat.server.game.module.resource.IResource; 
+import com.cat.server.game.module.equip.proto.PBEquipDtoBuilder;
+import com.cat.server.game.module.resource.IResource;
 
 /**
+ * 装备对象
 * @author Jeremy
 */
 @PO(name = "equip")
 public class Equip extends EquipPo implements IPersistence, IResource{
+	
+	/*** 卡牌列表 */
+	@Column(value = PROP_CARDSTR)
+	private List<Integer> cards;
+	
+	/*** 卡牌属性列表 */
+	@Column(value = PROP_CARDATTRSTR)
+	private AttributeDictionary catdAttrDic;
 
+	/*** 附魂属性 */
+	@Column(value = PROP_ENCHANTMENTATTRSTR)
+	private AttributeDictionary enchantmentAttrDic;
+	
+	/*** 打孔隐藏属性 */
+	@Column(value = PROP_HOLEHIDDENATTRSTR)
+	private AttributeDictionary holehiddenAttrDic;
+	
+	/*** 加工隐藏属性 */
+	@Column(value = PROP_STARHIDDENATTRSTR)
+	private AttributeDictionary starhiddenAttrDic;
+	
+	
 	public Equip() {
 
 	}
@@ -34,10 +61,10 @@ public class Equip extends EquipPo implements IPersistence, IResource{
 	}
 	
 	/**
-	 * 创建一个武器对象
+	 * 创建一个带有持有者的武器对象
 	 * @param playerId 玩家id
 	 * @param configId 武将配置
-	 * @return Equip  
+	 * @return Equip
 	 * @date 2021年1月17日上午12:22:09
 	 */
 	public static Equip create(long playerId, int configId) {
@@ -48,5 +75,58 @@ public class Equip extends EquipPo implements IPersistence, IResource{
 		return equip;
 	}
 
+	public List<Integer> getCards() {
+		return cards;
+	}
+
+	public void setCards(List<Integer> cards) {
+		this.cards = cards;
+	}
+
+	public AttributeDictionary getCatdAttrDic() {
+		return catdAttrDic;
+	}
+
+	public void setCatdAttrDic(AttributeDictionary catdAttrDic) {
+		this.catdAttrDic = catdAttrDic;
+	}
+
+	public AttributeDictionary getEnchantmentAttrDic() {
+		return enchantmentAttrDic;
+	}
+
+	public void setEnchantmentAttrDic(AttributeDictionary enchantmentAttrDic) {
+		this.enchantmentAttrDic = enchantmentAttrDic;
+	}
+
+	public AttributeDictionary getHolehiddenAttrDic() {
+		return holehiddenAttrDic;
+	}
+
+	public void setHolehiddenAttrDic(AttributeDictionary holehiddenAttrDic) {
+		this.holehiddenAttrDic = holehiddenAttrDic;
+	}
+
+	public AttributeDictionary getStarhiddenAttrDic() {
+		return starhiddenAttrDic;
+	}
+
+	public void setStarhiddenAttrDic(AttributeDictionary starhiddenAttrDic) {
+		this.starhiddenAttrDic = starhiddenAttrDic;
+	}
+
+	/**
+	 * 装备转协议对象
+	 * @return  
+	 * @return PBEquipDto  
+	 * @date 2022年6月3日下午9:56:40
+	 */
+	public PBEquipDto toProto() {
+		PBEquipDtoBuilder dto = PBEquipDtoBuilder.newInstance();
+		dto.setUniqueId(this.getId());
+		dto.setConfigId(this.getConfigId());
+		dto.setHolderId(this.getHolder());
+		return dto.build();
+	}
 	
 }

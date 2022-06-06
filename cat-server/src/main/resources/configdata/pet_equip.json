@@ -1,0 +1,145 @@
+[ {
+  "id" : 309001,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 9, 10, 11, 12 ],
+  "slot" : 0
+}, {
+  "id" : 309002,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 9, 10, 11, 12 ],
+  "slot" : 0
+}, {
+  "id" : 309003,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 9, 10, 11, 12 ],
+  "slot" : 0
+}, {
+  "id" : 309004,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 9, 10, 11, 12 ],
+  "slot" : 0
+}, {
+  "id" : 309005,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 17, 18, 21, 22 ],
+  "slot" : 1
+}, {
+  "id" : 309006,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 17, 18, 21, 22 ],
+  "slot" : 1
+}, {
+  "id" : 309007,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 17, 18, 21, 22 ],
+  "slot" : 1
+}, {
+  "id" : 309008,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 17, 18, 21, 22 ],
+  "slot" : 1
+}, {
+  "id" : 309009,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 13, 14, 15, 16 ],
+  "slot" : 2
+}, {
+  "id" : 309010,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 13, 14, 15, 16 ],
+  "slot" : 2
+}, {
+  "id" : 309011,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 13, 14, 15, 16 ],
+  "slot" : 2
+}, {
+  "id" : 309012,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 13, 14, 15, 16 ],
+  "slot" : 2
+}, {
+  "id" : 309013,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 19, 20, 23, 24 ],
+  "slot" : 3
+}, {
+  "id" : 309014,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 19, 20, 23, 24 ],
+  "slot" : 3
+}, {
+  "id" : 309015,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 19, 20, 23, 24 ],
+  "slot" : 3
+}, {
+  "id" : 309016,
+  "stack" : 1,
+  "quality" : 0,
+  "holderType" : 2,
+  "attribute" : { },
+  "hiddenAttrs" : [ ],
+  "hiddenSkill" : [ 19, 20, 23, 24 ],
+  "slot" : 3
+} ]

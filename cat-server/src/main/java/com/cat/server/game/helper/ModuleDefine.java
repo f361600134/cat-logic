@@ -28,15 +28,19 @@ public enum ModuleDefine {
 	/** 资源回收*/
 	RECYCLE(108),
 	/** 商店*/
-	SHOP(109),
+	SHOP(110),
 	/** 商店-主界面 */
 	MAIN_SHOP(SHOP, 1),
 	/**任务*/
-	MISSION(110),
+	MISSION(111),
 	/**主线任务*/
 	MISSION_MAIN(MISSION, 1),
 	/**宠物*/
-	PET(111),
+	PET(112),
+	/**武器*/
+	EQUIT(113),
+	/**宠物装备*/
+	PET_EQUIT(114),
 	/** 研习社*/
 	LEARNCOMMUNITY(200),
 	/** 研习社*/
