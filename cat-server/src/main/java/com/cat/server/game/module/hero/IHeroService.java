@@ -10,5 +10,15 @@ public interface IHeroService {
 	 * @return
 	 */
 	public Hero getHero(long playerId, long heroId);
+	
+	/**
+	 * 检测武将是否存在
+	 * @param playerId
+	 * @param heroId
+	 * @return
+	 */
+	default boolean checkExist(long playerId, long heroId) {
+		return getHero(playerId, heroId) == null;
+	}
 
 }

@@ -40,12 +40,6 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	AbstractResourceDomain() {
 	}
 	
-	AbstractResourceDomain(long playerId) {
-		this.playerId = playerId;
-		this.beanMap = new HashMap<>();
-		this.recycleService = SpringContextHolder.getBean(IRecycleService.class);
-	}
-	
 	AbstractResourceDomain(long playerId, Map<K, V> itemMap) {
 		this.playerId = playerId;
 		this.beanMap = itemMap;
@@ -57,11 +51,6 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 		return playerId;
 	}
 	
-//	public void setBeanMap(Map<K, V> beanMap) {
-//		this.beanMap = beanMap;
-//		this.afterInit();
-//	}
-
 	public Map<K, V> getBeanMap() {
 		return this.beanMap;
 	}

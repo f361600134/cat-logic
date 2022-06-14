@@ -148,4 +148,29 @@
   "type" : 106,
   "value" : 396,
   "weight" : 500
+}, {
+  "id" : 31,
+  "type" : 107,
+  "value" : 180,
+  "weight" : 4000
+}, {
+  "id" : 32,
+  "type" : 107,
+  "value" : 240,
+  "weight" : 2000
+}, {
+  "id" : 33,
+  "type" : 107,
+  "value" : 319,
+  "weight" : 2000
+}, {
+  "id" : 34,
+  "type" : 107,
+  "value" : 380,
+  "weight" : 1500
+}, {
+  "id" : 35,
+  "type" : 107,
+  "value" : 396,
+  "weight" : 500
 } ]

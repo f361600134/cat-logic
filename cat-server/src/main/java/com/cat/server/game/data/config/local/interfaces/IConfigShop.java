@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.local.ext;
+package com.cat.server.game.data.config.local.interfaces;
 
 import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.game.module.resource.domain.ResourceGroup;

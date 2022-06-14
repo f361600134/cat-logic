@@ -3,18 +3,16 @@ package com.cat.server.game.module.petequip.domain;
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IPersistence;
-import com.cat.server.game.data.proto.PBEquip.PBEquipDto;
 import com.cat.server.game.data.proto.PBPetEquip.PBPetEquipDto;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
-import com.cat.server.game.module.equip.proto.PBEquipDtoBuilder;
 import com.cat.server.game.module.petequip.proto.PBPetEquipDtoBuilder;
-import com.cat.server.game.module.resource.IResource; 
+import com.cat.server.game.module.resource.IEquip; 
 
 /**
 * @author Jeremy
 */
 @PO(name = "pet_equip")
-public class PetEquip extends PetEquipPo implements IPersistence, IResource{
+public class PetEquip extends PetEquipPo implements IPersistence, IEquip{
 
 	public PetEquip() {
 

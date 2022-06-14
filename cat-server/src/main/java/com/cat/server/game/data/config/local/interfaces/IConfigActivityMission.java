@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.local.ext;
+package com.cat.server.game.data.config.local.interfaces;
 
 public interface IConfigActivityMission extends IConfigMission{
 	

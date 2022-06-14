@@ -1,401 +1,325 @@
 [ {
-  "id" : 300001,
+  "id" : 310001,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "[{103:30},{103:40},{103:50}]",
+  "holeHiddenAttrs" : "[{103:30},{103:40},{103:50}]",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300003,
+  "id" : 310002,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300004,
+  "id" : 310003,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300005,
+  "id" : 310004,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300006,
+  "id" : 310005,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300007,
+  "id" : 310006,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300008,
+  "id" : 310007,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300009,
+  "id" : 310008,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300010,
+  "id" : 310009,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300011,
+  "id" : 310010,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300012,
+  "id" : 310011,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300013,
+  "id" : 310012,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300014,
+  "id" : 310013,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300015,
+  "id" : 310014,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300016,
+  "id" : 310015,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300017,
+  "id" : 310016,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300018,
+  "id" : 310017,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300019,
+  "id" : 310018,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300020,
+  "id" : 310019,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300021,
+  "id" : 310020,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300022,
+  "id" : 310021,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300023,
+  "id" : 310022,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300024,
+  "id" : 310023,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300025,
+  "id" : 310024,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300026,
+  "id" : 310025,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300027,
+  "id" : 310026,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300028,
+  "id" : 310027,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300029,
+  "id" : 310028,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 300030,
+  "id" : 310029,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 1,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 1
 }, {
-  "id" : 301001,
-  "stack" : 0,
-  "quality" : 0,
-  "holderType" : 0,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
-}, {
-  "id" : 302001,
-  "stack" : 0,
-  "quality" : 0,
-  "holderType" : 0,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
-}, {
-  "id" : 303001,
-  "stack" : 0,
-  "quality" : 0,
-  "holderType" : 0,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
-}, {
-  "id" : 304001,
-  "stack" : 0,
-  "quality" : 0,
-  "holderType" : 0,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
-}, {
-  "id" : 305001,
-  "stack" : 0,
-  "quality" : 0,
-  "holderType" : 0,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ ]
-}, {
-  "id" : 309001,
+  "id" : 320001,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 2,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 9, 10, 11, 12 ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 2
 }, {
-  "id" : 309002,
+  "id" : 330001,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 2,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 9, 10, 11, 12 ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 3
 }, {
-  "id" : 309003,
+  "id" : 340001,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 2,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 9, 10, 11, 12 ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 4
 }, {
-  "id" : 309004,
+  "id" : 350001,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 2,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 9, 10, 11, 12 ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 5
 }, {
-  "id" : 309005,
+  "id" : 360001,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 2,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 17, 18, 21, 22 ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 6
 }, {
-  "id" : 309006,
+  "id" : 370001,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 2,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 17, 18, 21, 22 ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 7
 }, {
-  "id" : 309007,
+  "id" : 380001,
   "stack" : 1,
   "quality" : 0,
-  "holderType" : 2,
   "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 17, 18, 21, 22 ]
-}, {
-  "id" : 309008,
-  "stack" : 1,
-  "quality" : 0,
-  "holderType" : 2,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 17, 18, 21, 22 ]
-}, {
-  "id" : 309009,
-  "stack" : 1,
-  "quality" : 0,
-  "holderType" : 2,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 13, 14, 15, 16 ]
-}, {
-  "id" : 309010,
-  "stack" : 1,
-  "quality" : 0,
-  "holderType" : 2,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 13, 14, 15, 16 ]
-}, {
-  "id" : 309011,
-  "stack" : 1,
-  "quality" : 0,
-  "holderType" : 2,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 13, 14, 15, 16 ]
-}, {
-  "id" : 309012,
-  "stack" : 1,
-  "quality" : 0,
-  "holderType" : 2,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 13, 14, 15, 16 ]
-}, {
-  "id" : 309013,
-  "stack" : 1,
-  "quality" : 0,
-  "holderType" : 2,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 19, 20, 23, 24 ]
-}, {
-  "id" : 309014,
-  "stack" : 1,
-  "quality" : 0,
-  "holderType" : 2,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 19, 20, 23, 24 ]
-}, {
-  "id" : 309015,
-  "stack" : 1,
-  "quality" : 0,
-  "holderType" : 2,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 19, 20, 23, 24 ]
-}, {
-  "id" : 309016,
-  "stack" : 1,
-  "quality" : 0,
-  "holderType" : 2,
-  "attribute" : { },
-  "hiddenAttrs" : [ ],
-  "hiddenSkill" : [ 19, 20, 23, 24 ]
+  "starHiddenAttrs" : "",
+  "holeHiddenAttrs" : "",
+  "hiddenSkill" : [ ],
+  "category" : 8
 } ]

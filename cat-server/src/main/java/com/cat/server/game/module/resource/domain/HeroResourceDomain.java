@@ -18,9 +18,9 @@ import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
  */
 public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 	
-	HeroResourceDomain(long playerId) {
-		super(playerId);
-	}
+//	HeroResourceDomain(long playerId) {
+//		super(playerId);
+//	}
 	
 	HeroResourceDomain(long playerId, Map<Long, Hero> heroMap) {
 		super(playerId, heroMap);

@@ -1,41 +1,58 @@
 package com.cat.server.game.module.equip;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
-import com.cat.server.game.helper.ModuleDefine;
-import com.cat.server.game.helper.ResourceType;
-import com.cat.server.game.helper.log.NatureEnum;
-import com.cat.server.game.module.equip.IEquipService;
-import com.cat.server.game.module.equip.domain.Equip;
-import com.cat.server.game.module.equip.domain.EquipDomain;
-import com.cat.server.game.module.equip.proto.RespEquipInfoBuilder;
-import com.cat.server.game.module.equip.proto.RespWearEquipBuilder;
-import com.cat.server.game.module.player.IPlayerService;
-import com.cat.server.game.module.resource.IResourceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.cat.server.game.helper.result.ErrorCode;
+
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.data.config.local.ConfigEquip;
-import com.cat.server.game.data.proto.PBEquip.*;
+import com.cat.server.game.data.config.local.ConfigEquipHole;
+import com.cat.server.game.data.config.local.ConfigEquipStar;
+import com.cat.server.game.data.proto.PBEquip.ReqEquipInfo;
+import com.cat.server.game.data.proto.PBEquip.ReqEquipPunching;
+import com.cat.server.game.data.proto.PBEquip.ReqEquipUpgrade;
+import com.cat.server.game.data.proto.PBEquip.ReqTakeoutEquip;
+import com.cat.server.game.data.proto.PBEquip.ReqWearEquip;
+import com.cat.server.game.helper.ModuleDefine;
+import com.cat.server.game.helper.ResourceType;
+import com.cat.server.game.helper.log.NatureEnum;
+import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.equip.domain.Equip;
+import com.cat.server.game.module.equip.domain.EquipDomain;
+import com.cat.server.game.module.equip.proto.RespEquipInfoBuilder;
+import com.cat.server.game.module.equip.proto.RespEquipPunchingBuilder;
+import com.cat.server.game.module.equip.proto.RespEquipUpdateBuilder;
+import com.cat.server.game.module.equip.proto.RespEquipUpgradeBuilder;
+import com.cat.server.game.module.equip.proto.RespTakeoutEquipBuilder;
+import com.cat.server.game.module.equip.proto.RespWearEquipBuilder;
+import com.cat.server.game.module.hero.IHeroService;
+import com.cat.server.game.module.item.proto.RespItemDeleteBuilder;
+import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.resource.IResourceGroupService;
+import com.cat.server.game.module.resource.IResourceService;
+import com.cat.server.utils.RandomUtil;
+import com.google.common.collect.Lists;
 
 /**
  * Equip控制器
  * @author Jeremy
  */
 @Service
-public class EquipService implements IEquipService, IResourceService {
+class EquipService implements IEquipService, IResourceService {
 	
 	private static final Logger log = LoggerFactory.getLogger(EquipService.class);
 	
 	@Autowired private IPlayerService playerService;
 	
 	@Autowired private EquipManager equipManager;
+	
+	@Autowired private IHeroService heroService;
+	
+	@Autowired private IResourceGroupService resourceGroupService;
 	
 	@Override
 	public void responseAllInfo(long playerId) {
@@ -50,6 +67,32 @@ public class EquipService implements IEquipService, IResourceService {
 			resp.addEquips(equip.toProto());
 		}
 		playerService.sendMessage(domain.getId(), resp);
+	}
+	
+	// 推送更新物品列表至前端
+	public void responseUpdateList(long playerId, Collection<Equip> updates) {
+		// 更新物品
+		if (!updates.isEmpty()) {
+			RespEquipUpdateBuilder ack = RespEquipUpdateBuilder.newInstance();
+			updates.forEach((equip)->{
+				ack.addEquips(equip.toProto());
+				log.info("responseUpdateList equip:{}", equip);
+			});
+			playerService.sendMessage(playerId, ack);
+		}
+	}
+	
+	//推送删除物品列表至前端
+	public void responseDeleteList(long playerId, Collection<Long> deletes){
+		//更新物品
+		if (!deletes.isEmpty()) {
+			RespItemDeleteBuilder ack = RespItemDeleteBuilder.newInstance();
+			deletes.forEach((uniqueId)->{
+				ack.addIds(uniqueId);
+				log.info("equip delete...equip:{}", uniqueId);
+			});
+			playerService.sendMessage(playerId, ack);
+		}
 	}
 	
 	/////////////业务逻辑//////////////////
@@ -96,13 +139,11 @@ public class EquipService implements IEquipService, IResourceService {
 			if (configEquip == null) {
 				return ErrorCode.CONFIG_NOT_EXISTS;
 			}
-			if (configEquip.getHolderType() == 1) {
-				this.wearToHero(holderId, equipId);
-			}else {
-				this.wearToPet(domain, equip, holderId);
+			if (heroService.checkExist(playerId, holderId)) {
+				return ErrorCode.CONFIG_NOT_EXISTS;
 			}
-			//TODO Somthing.
-			this.responseAllInfo(domain.getId());
+			domain.wear(holderId, configEquip.getCategory(), equip);
+			this.responseUpdateList(playerId, domain.getAndClearUpdateList());
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {
 			log.error("reqWearEquip error, playerId:{}", playerId, e);
@@ -110,22 +151,148 @@ public class EquipService implements IEquipService, IResourceService {
 		}
 	}
 	
-	
-	private ErrorCode wearToHero(long holderId, long equipId) {
-		return ErrorCode.SUCCESS;
+	/**
+	* 请求脱下装备
+	* @param long playerId
+	* @param ReqTakeoutEquip req
+	* @param RespTakeoutEquipResp ack
+	*/
+	public ErrorCode reqTakeoutEquip(long playerId, ReqTakeoutEquip req, RespTakeoutEquipBuilder ack){
+		try {
+			EquipDomain domain = equipManager.getDomain(playerId);
+			if (domain == null) {
+				return ErrorCode.DOMAIN_IS_NULL;
+			}
+			final long equipId = req.getEquipId();
+			Equip equip = this.getEquip(playerId, equipId);
+			if (equip == null) {
+				return ErrorCode.EQUIP_NOT_EXIST;
+			}
+			if (equip.getHolder() == 0) {
+				return ErrorCode.EQUIP_NOT_WEAR;
+			}
+			ConfigEquip configEquip = ConfigManager.getInstance().getConfig(ConfigEquip.class, equip.getConfigId());
+			if (configEquip == null) {
+				return ErrorCode.CONFIG_NOT_EXISTS;
+			}
+			domain.takeOut(equip.getHolder(), configEquip.getStack(), equip);
+			this.responseUpdateList(playerId, domain.getAndClearUpdateList());
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			log.error("reqTakeoutEquip error, playerId:{}", playerId, e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
 	}
 	
 	/**
-	 * 穿戴装备, 装备实际还在玩家身上, 只不过没有下发至客户端
-	 * @param domain
-	 * @param equip
-	 * @param holderId
-	 * @return  
-	 * @return ErrorCode  
-	 * @date 2022年6月4日下午1:44:47
-	 */
-	private ErrorCode wearToPet(EquipDomain domain, Equip equip, long holderId) {
-		return ErrorCode.SUCCESS;
+	* 请求装备加工
+	* @param long playerId
+	* @param ReqEquipUpgrade req
+	* @param RespEquipUpgradeResp ack
+	*/
+	public ErrorCode reqEquipUpgrade(long playerId, ReqEquipUpgrade req, RespEquipUpgradeBuilder ack){
+		try {
+			EquipDomain domain = equipManager.getDomain(playerId);
+			if (domain == null) {
+				return ErrorCode.DOMAIN_IS_NULL;
+			}
+			//装备基础判断
+			final long equipId = req.getEquipId();
+			Equip equip = this.getEquip(playerId, equipId);
+			if (equip == null) {
+				return ErrorCode.EQUIP_NOT_EXIST;
+			}
+			ConfigEquip configEquip = ConfigManager.getInstance().getConfig(ConfigEquip.class, equip.getConfigId());
+			if (configEquip == null) {
+				return ErrorCode.CONFIG_NOT_EXISTS;
+			}
+			//升星判断
+			final int star = equip.getStar();
+			ConfigEquipStar configEquipStar = ConfigManager.getInstance().getConfig(ConfigEquipStar.class, star);
+			if (configEquipStar == null) {
+				return ErrorCode.CONFIG_NOT_EXISTS;
+			}
+			if (configEquipStar.getNextStar() == -1) {
+				return ErrorCode.EQUIP_STAR_LIMIT;
+			}
+//			if (!resourceGroupService.checkAndCost(playerId, configEquipStar.getConsume(), NatureEnum.EquipStar)) {
+//				return ErrorCode.AMOUNT_NOT_ENOUGH;
+//			}
+			//加工结果
+			final boolean hit = RandomUtil.isHit10000(configEquipStar.getRate());
+			//加工成功, 星级+1, 失败回退到指定等级
+			final int nextStar = hit ? configEquipStar.getNextStar() : configEquipStar.getFallbackStar();
+			//加工成功, 并且出现隐藏, 增加隐藏等级
+			final int addedHiddenLv = hit && RandomUtil.isHit10000(configEquipStar.getHiddenAttrRate()) ? 1 : 0;
+			
+			equip.setStar(nextStar);
+			equip.setStarHiddenLevel(equip.getStarHiddenLevel() + addedHiddenLv);
+			//加工属性节点刷新
+			equip.getAttrRootNode().getStarNode().setAttrChange();
+			equip.getAttrRootNode().getStarHiddenNode().setAttrChange();
+			
+			//更新最新的武器信息给客户端
+			this.responseUpdateList(playerId, Lists.newArrayList(equip));
+			//通知客户端结果
+			ack.setResult(hit);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			log.error("reqEquipUpgrade error, playerId:{}", playerId, e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
+	}
+	
+	/**
+	* 请求装备打孔<br>
+	* 1. 新增装备打孔表
+	* @param long playerId
+	* @param ReqEquipPunching req
+	* @param RespEquipPunchingResp ack
+	*/
+	public ErrorCode reqEquipPunching(long playerId, ReqEquipPunching req, RespEquipPunchingBuilder ack){
+		try {
+			EquipDomain domain = equipManager.getDomain(playerId);
+			if (domain == null) {
+				return ErrorCode.DOMAIN_IS_NULL;
+			}
+			final long equipId = req.getEquipId();
+			Equip equip = this.getEquip(playerId, equipId);
+			if (equip == null) {
+				return ErrorCode.EQUIP_NOT_EXIST;
+			}
+			ConfigEquip configEquip = ConfigManager.getInstance().getConfig(ConfigEquip.class, equip.getConfigId());
+			if (configEquip == null) {
+				return ErrorCode.CONFIG_NOT_EXISTS;
+			}
+			
+			final int hole = equip.getHole();
+			int nextHole = hole + 1;
+			ConfigEquipHole configEquipHole = ConfigManager.getInstance().getConfig(ConfigEquipHole.class, c->(c.getCategory() == configEquip.getCategory() && c.getHole() == nextHole));
+			if (configEquipHole == null) {
+				return ErrorCode.EQUIP_HOLE_LIMIT;
+			}
+//			if (!resourceGroupService.checkAndCost(playerId, configEquipHole.getConsume(), NatureEnum.EquipHole)) {
+//				return ErrorCode.AMOUNT_NOT_ENOUGH;
+//			}
+			final boolean hit = RandomUtil.isHit10000(configEquipHole.getRate());
+			if(hit) {
+				//如果打孔成功,孔数+1
+				equip.setHole(equip.getHole() + 1);
+				//隐藏等级概率+1
+				if (RandomUtil.isHit10000(configEquipHole.getHiddenAttrRate())) {
+					equip.setHoleHiddenLevel(equip.getHoleHiddenLevel() + 1);
+				}
+				this.responseUpdateList(playerId, Lists.newArrayList(equip));
+			}else if(RandomUtil.isHit10000(configEquipHole.getDestoryRate())){
+//				equip.delete();
+				this.responseDeleteList(playerId, Lists.newArrayList(equip.getId()));
+			}
+			ack.setResult(hit);
+			return ErrorCode.SUCCESS;
+		} catch (Exception e) {
+			log.error("reqEquipPunching error, playerId:{}", playerId, e);
+			return ErrorCode.UNKNOWN_ERROR;
+		}
 	}
 	
 	/////////////接口方法////////////////////////
@@ -204,29 +371,4 @@ public class EquipService implements IEquipService, IResourceService {
 		return ModuleDefine.EQUIT.getModuleId();
 	}
 
-	@Override
-	public void doReset(long playerId, long now) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public Collection<Long> getEquipIds(long playerId, long holderId) {
-		EquipDomain domain = equipManager.getDomain(playerId);
-		if (domain == null) {
-			return Collections.emptyList();
-		}
-		return domain.getUsedEquipIds(holderId);
-	}
-
-	@Override
-	public List<Equip> getEquips(long playerId, long holderId) {
-		EquipDomain domain = equipManager.getDomain(playerId);
-		if (domain == null) {
-			return Collections.emptyList();
-		}
-		return domain.getUsedEquips(holderId);
-	}
-
 }
- 
- 

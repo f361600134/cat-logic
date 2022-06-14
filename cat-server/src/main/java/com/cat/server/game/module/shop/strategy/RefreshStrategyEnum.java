@@ -1,6 +1,6 @@
 package com.cat.server.game.module.shop.strategy;
 
-import com.cat.server.game.data.config.local.ext.IConfigShop;
+import com.cat.server.game.data.config.local.interfaces.IConfigShop;
 import com.cat.server.game.module.shop.strategy.impl.NonRefreshStrategy;
 import com.cat.server.game.module.shop.strategy.impl.ResRefreshNoLimitStrategy;
 import com.cat.server.game.module.shop.type.AbstractShopType;

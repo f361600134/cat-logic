@@ -1,0 +1,385 @@
+[ {
+  "id" : 1,
+  "category" : 1,
+  "hole" : 1,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 2,
+  "category" : 1,
+  "hole" : 2,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 3,
+  "category" : 1,
+  "hole" : 3,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 5700,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 3000
+}, {
+  "id" : 4,
+  "category" : 1,
+  "hole" : 4,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 4300,
+  "hiddenAttrRate" : 3500,
+  "destoryRate" : 3000
+}, {
+  "id" : 5,
+  "category" : 1,
+  "hole" : 5,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3800,
+  "hiddenAttrRate" : 3800,
+  "destoryRate" : 3000
+}, {
+  "id" : 6,
+  "category" : 1,
+  "hole" : 6,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 4100,
+  "destoryRate" : 3300
+}, {
+  "id" : 7,
+  "category" : 1,
+  "hole" : 7,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 4500,
+  "destoryRate" : 3600
+}, {
+  "id" : 8,
+  "category" : 2,
+  "hole" : 1,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 9,
+  "category" : 2,
+  "hole" : 2,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 10,
+  "category" : 2,
+  "hole" : 3,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 5700,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 3000
+}, {
+  "id" : 11,
+  "category" : 2,
+  "hole" : 4,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 4300,
+  "hiddenAttrRate" : 3500,
+  "destoryRate" : 3000
+}, {
+  "id" : 12,
+  "category" : 2,
+  "hole" : 5,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3800,
+  "hiddenAttrRate" : 3800,
+  "destoryRate" : 3000
+}, {
+  "id" : 13,
+  "category" : 2,
+  "hole" : 6,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 4100,
+  "destoryRate" : 3300
+}, {
+  "id" : 14,
+  "category" : 2,
+  "hole" : 7,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 4500,
+  "destoryRate" : 3600
+}, {
+  "id" : 15,
+  "category" : 3,
+  "hole" : 1,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 16,
+  "category" : 3,
+  "hole" : 2,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 17,
+  "category" : 3,
+  "hole" : 3,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 5700,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 3000
+}, {
+  "id" : 18,
+  "category" : 3,
+  "hole" : 4,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 4300,
+  "hiddenAttrRate" : 3500,
+  "destoryRate" : 3000
+}, {
+  "id" : 19,
+  "category" : 3,
+  "hole" : 5,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3800,
+  "hiddenAttrRate" : 3800,
+  "destoryRate" : 3000
+}, {
+  "id" : 20,
+  "category" : 3,
+  "hole" : 6,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 4100,
+  "destoryRate" : 3300
+}, {
+  "id" : 21,
+  "category" : 3,
+  "hole" : 7,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 4500,
+  "destoryRate" : 3600
+}, {
+  "id" : 22,
+  "category" : 4,
+  "hole" : 1,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 23,
+  "category" : 4,
+  "hole" : 2,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 24,
+  "category" : 4,
+  "hole" : 3,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 5700,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 3000
+}, {
+  "id" : 25,
+  "category" : 4,
+  "hole" : 4,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 4300,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 3000
+}, {
+  "id" : 26,
+  "category" : 4,
+  "hole" : 5,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3800,
+  "hiddenAttrRate" : 3000,
+  "destoryRate" : 3000
+}, {
+  "id" : 27,
+  "category" : 4,
+  "hole" : 6,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 3300,
+  "destoryRate" : 3300
+}, {
+  "id" : 28,
+  "category" : 4,
+  "hole" : 7,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 3600,
+  "destoryRate" : 3600
+}, {
+  "id" : 29,
+  "category" : 5,
+  "hole" : 1,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 30,
+  "category" : 5,
+  "hole" : 2,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 31,
+  "category" : 5,
+  "hole" : 3,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 5700,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 3000
+}, {
+  "id" : 32,
+  "category" : 5,
+  "hole" : 4,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 4300,
+  "hiddenAttrRate" : 3000,
+  "destoryRate" : 3000
+}, {
+  "id" : 33,
+  "category" : 5,
+  "hole" : 5,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3800,
+  "hiddenAttrRate" : 3300,
+  "destoryRate" : 3300
+}, {
+  "id" : 34,
+  "category" : 5,
+  "hole" : 6,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 3600,
+  "destoryRate" : 3600
+}, {
+  "id" : 35,
+  "category" : 6,
+  "hole" : 1,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 36,
+  "category" : 6,
+  "hole" : 2,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 37,
+  "category" : 6,
+  "hole" : 3,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 5700,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 3000
+}, {
+  "id" : 38,
+  "category" : 6,
+  "hole" : 4,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 4300,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 3000
+}, {
+  "id" : 39,
+  "category" : 6,
+  "hole" : 5,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3800,
+  "hiddenAttrRate" : 3000,
+  "destoryRate" : 3000
+}, {
+  "id" : 40,
+  "category" : 6,
+  "hole" : 6,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 3300,
+  "destoryRate" : 3300
+}, {
+  "id" : 41,
+  "category" : 6,
+  "hole" : 7,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 3600,
+  "destoryRate" : 3600
+}, {
+  "id" : 42,
+  "category" : 7,
+  "hole" : 1,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 43,
+  "category" : 7,
+  "hole" : 2,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 8000,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 0
+}, {
+  "id" : 44,
+  "category" : 7,
+  "hole" : 3,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 5700,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 3000
+}, {
+  "id" : 45,
+  "category" : 7,
+  "hole" : 4,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 4300,
+  "hiddenAttrRate" : 0,
+  "destoryRate" : 3000
+}, {
+  "id" : 46,
+  "category" : 7,
+  "hole" : 5,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3800,
+  "hiddenAttrRate" : 3000,
+  "destoryRate" : 3000
+}, {
+  "id" : 47,
+  "category" : 7,
+  "hole" : 6,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 3300,
+  "destoryRate" : 3300
+}, {
+  "id" : 48,
+  "category" : 7,
+  "hole" : 7,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 3600,
+  "destoryRate" : 3600
+} ]

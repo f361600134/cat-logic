@@ -1,13 +1,9 @@
 package com.cat.server.game.module.equip.proto;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.cat.net.network.base.AbstractProtocol;
-import com.cat.server.game.data.proto.PBDefine.*;
 //import com.cat.server.game.data.proto;
-import com.cat.server.game.data.proto.PBEquip.*;
-import java.util.Collection;
+import com.cat.server.game.data.proto.PBEquip.PBEquipDto;
+import com.google.protobuf.AbstractMessage;
 
 /**
 * PBEquipDtoBuilder
@@ -50,5 +46,10 @@ public class PBEquipDtoBuilder extends AbstractProtocol {
 	@Override
 	public byte[] toBytes() {
 		return builder.build().toByteArray();
+	}
+	
+	@Override
+	public AbstractMessage getBuilder() {
+		return builder.build();
 	}
 }

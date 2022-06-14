@@ -1,13 +1,13 @@
 package com.cat.server.game.module.equip.proto;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Collection;
 
 import com.cat.net.network.base.AbstractProtocol;
-import com.cat.server.game.data.proto.PBDefine.*;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 //import com.cat.server.game.data.proto;
-import com.cat.server.game.data.proto.PBEquip.*;
-import java.util.Collection;
+import com.cat.server.game.data.proto.PBEquip.PBEquipDto;
+import com.cat.server.game.data.proto.PBEquip.RespEquipInfo;
+import com.google.protobuf.AbstractMessage;
 
 /**
 * RespEquipInfoBuilder
@@ -41,6 +41,11 @@ public class RespEquipInfoBuilder extends AbstractProtocol {
 	@Override
 	public int protocol() {
 		return PBProtocol.RespEquipInfo_VALUE;
+	}
+	
+	@Override
+	public AbstractMessage getBuilder() {
+		return builder.build();
 	}
 
 	@Override

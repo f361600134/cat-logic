@@ -13,9 +13,9 @@ import com.google.common.collect.Lists;
 
 public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 	
-	private ItemResourceDomain(long playerId) {
-		super(playerId);
-	}
+//	private ItemResourceDomain(long playerId) {
+//		super(playerId);
+//	}
 	
 	private ItemResourceDomain(long playerId, Map<Long, Item> itemMap) {
 		super(playerId, itemMap);

@@ -1,7 +1,7 @@
 package com.cat.server.game.module.shop.strategy.impl;
 
 import com.cat.server.game.data.config.local.ConfigShopControl;
-import com.cat.server.game.data.config.local.ext.IConfigShop;
+import com.cat.server.game.data.config.local.interfaces.IConfigShop;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.shop.domain.ShopDomain;

@@ -4,6 +4,7 @@ import com.cat.net.network.base.AbstractProtocol;
 import com.cat.net.network.base.IProtocol;
 import com.cat.server.game.data.proto.PBChat;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
+import com.google.protobuf.AbstractMessage;
 import com.google.protobuf.AbstractMessageLite.Builder;
 
 public class ReqChat extends AbstractProtocol{
@@ -37,13 +38,13 @@ public class ReqChat extends AbstractProtocol{
 	}
 	
 	@Override
+	public AbstractMessage getBuilder() {
+		return builder.build();
+	}
+	
+	@Override
 	public int protocol() {
 		return PBProtocol.ReqChat_VALUE;
-	}
-
-	@Override
-	public byte[] toBytes() {
-		return builder.build().toByteArray();
 	}
 
 }

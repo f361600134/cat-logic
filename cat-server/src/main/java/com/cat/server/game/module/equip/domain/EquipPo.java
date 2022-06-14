@@ -14,9 +14,9 @@ public abstract class EquipPo extends BasePo {
 	public static final String PROP_HOLDER = "holder";
 	public static final String PROP_RECIEVETIME = "recieveTime";
 	public static final String PROP_STAR = "star";
-	public static final String PROP_STARHIDDENATTRSTR = "starHiddenAttrStr";
+	public static final String PROP_STARHIDDENLEVEL = "starHiddenLevel";
 	public static final String PROP_HOLE = "hole";
-	public static final String PROP_HOLEHIDDENATTRSTR = "holeHiddenAttrStr";
+	public static final String PROP_HOLEHIDDENLEVEL = "holeHiddenLevel";
 	public static final String PROP_CARDSTR = "cardStr";
 	public static final String PROP_CARDATTRSTR = "cardAttrStr";
 	public static final String PROP_ENCHANTMENTATTRSTR = "enchantmentAttrStr";
@@ -29,9 +29,9 @@ public abstract class EquipPo extends BasePo {
 			PROP_HOLDER,
 			PROP_RECIEVETIME,
 			PROP_STAR,
-			PROP_STARHIDDENATTRSTR,
+			PROP_STARHIDDENLEVEL,
 			PROP_HOLE,
-			PROP_HOLEHIDDENATTRSTR,
+			PROP_HOLEHIDDENLEVEL,
 			PROP_CARDSTR,
 			PROP_CARDATTRSTR,
 			PROP_ENCHANTMENTATTRSTR,
@@ -40,10 +40,12 @@ public abstract class EquipPo extends BasePo {
 	/** 所有主键索引字段数组*/
 	public static final String[] KEY_AND_INDEX_COLUMN = new String[] {
 			PROP_ID,
+			PROP_PLAYERID,
 			};
 		
 	/** 所有索引字段数组*/
 	public static final String[] INDEX_ALL = new String[] {
+			PROP_PLAYERID,
 			};
 	
 	
@@ -59,12 +61,12 @@ public abstract class EquipPo extends BasePo {
 	protected long recieveTime;
 	/** 星级,加工等级*/
 	protected int star;
-	/** 加工隐藏属性*/
-	protected String starHiddenAttrStr;
+	/** 升星隐藏等级*/
+	protected int starHiddenLevel;
 	/** 孔数*/
 	protected int hole;
-	/** 打孔隐藏属性*/
-	protected String holeHiddenAttrStr;
+	/** 打孔隐藏等级*/
+	protected int holeHiddenLevel;
 	/** 镶嵌卡牌*/
 	protected String cardStr;
 	/** 卡牌属性列表*/
@@ -73,8 +75,6 @@ public abstract class EquipPo extends BasePo {
 	protected String enchantmentAttrStr;
 	
 	public EquipPo(){
-		this.starHiddenAttrStr = "";
-		this.holeHiddenAttrStr = "";
 		this.cardStr = "";
 		this.cardAttrStr = "";
 		this.enchantmentAttrStr = "";
@@ -134,13 +134,13 @@ public abstract class EquipPo extends BasePo {
 		this.star = star;
 	}
 	
-	/** 加工隐藏属性 **/
-	public String getStarHiddenAttrStr(){
-		return this.starHiddenAttrStr;
+	/** 升星隐藏等级 **/
+	public int getStarHiddenLevel(){
+		return this.starHiddenLevel;
 	}
 	
-	public void setStarHiddenAttrStr(String starHiddenAttrStr){
-		this.starHiddenAttrStr = starHiddenAttrStr;
+	public void setStarHiddenLevel(int starHiddenLevel){
+		this.starHiddenLevel = starHiddenLevel;
 	}
 	
 	/** 孔数 **/
@@ -152,13 +152,13 @@ public abstract class EquipPo extends BasePo {
 		this.hole = hole;
 	}
 	
-	/** 打孔隐藏属性 **/
-	public String getHoleHiddenAttrStr(){
-		return this.holeHiddenAttrStr;
+	/** 打孔隐藏等级 **/
+	public int getHoleHiddenLevel(){
+		return this.holeHiddenLevel;
 	}
 	
-	public void setHoleHiddenAttrStr(String holeHiddenAttrStr){
-		this.holeHiddenAttrStr = holeHiddenAttrStr;
+	public void setHoleHiddenLevel(int holeHiddenLevel){
+		this.holeHiddenLevel = holeHiddenLevel;
 	}
 	
 	/** 镶嵌卡牌 **/
@@ -192,7 +192,7 @@ public abstract class EquipPo extends BasePo {
 	@Override
 	public String toString() {
 		return "Equip [playerId= "+ playerId +", id= "+ id +", configId= "+ configId +", holder= "+ holder +", recieveTime= "+ recieveTime
-				 +", star= "+ star +", starHiddenAttrStr= "+ starHiddenAttrStr +", hole= "+ hole +", holeHiddenAttrStr= "+ holeHiddenAttrStr +", cardStr= "+ cardStr
+				 +", star= "+ star +", starHiddenLevel= "+ starHiddenLevel +", hole= "+ hole +", holeHiddenLevel= "+ holeHiddenLevel +", cardStr= "+ cardStr
 				 +", cardAttrStr= "+ cardAttrStr +", enchantmentAttrStr= "+ enchantmentAttrStr+"]";
 	}
 	
@@ -210,9 +210,9 @@ public abstract class EquipPo extends BasePo {
 		getHolder(),
 		getRecieveTime(),
 		getStar(),
-		getStarHiddenAttrStr(),
+		getStarHiddenLevel(),
 		getHole(),
-		getHoleHiddenAttrStr(),
+		getHoleHiddenLevel(),
 		getCardStr(),
 		getCardAttrStr(),
 		getEnchantmentAttrStr(),
@@ -238,6 +238,7 @@ public abstract class EquipPo extends BasePo {
 	public Object[] keyAndIndexValues() {
 		return new Object[] {
 			getId(),
+			getPlayerId(),
 		};
 	}
 	
@@ -249,6 +250,7 @@ public abstract class EquipPo extends BasePo {
 	@Override
 	public String[] indexValues() {
 		return new String[] {
+			PROP_PLAYERID,
 		};
 	}
 	

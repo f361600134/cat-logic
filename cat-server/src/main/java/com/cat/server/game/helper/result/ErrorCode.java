@@ -131,7 +131,9 @@ public enum ErrorCode implements CodeEnum{
     // -----------------装备---------------------
     EQUIP_NOT_EXIST(EQUIT, 1, "装备不存在"),
     EQUIP_ALREAD_WEAR(EQUIT, 2, "装备已穿戴"),
-    
+    EQUIP_NOT_WEAR(EQUIT, 3, "装备未穿戴"),
+    EQUIP_STAR_LIMIT(EQUIT, 4, "装备已加工至最高星级"),
+    EQUIP_HOLE_LIMIT(EQUIT, 5, "装备孔数已最高"),
     
     // -----------------家具资源不充足--------------
     ;

@@ -34,365 +34,513 @@ public final class PBDefine {
      *Player
      * </pre>
      *
-     * <code>RespPlayerCreateRole = 101201;</code>
+     * <code>RespPlayerCreateRole = 101002;</code>
      */
-    RespPlayerCreateRole(101201),
+    RespPlayerCreateRole(101002),
     /**
-     * <code>ReqPlayerCreateRole = 101101;</code>
+     * <code>ReqPlayerCreateRole = 101001;</code>
      */
-    ReqPlayerCreateRole(101101),
+    ReqPlayerCreateRole(101001),
     /**
-     * <code>ReqPlayerReLogin = 101102;</code>
+     * <code>ReqPlayerReLogin = 101003;</code>
      */
-    ReqPlayerReLogin(101102),
+    ReqPlayerReLogin(101003),
     /**
-     * <code>RespPlayerHeart = 101202;</code>
+     * <code>RespPlayerHeart = 101010;</code>
      */
-    RespPlayerHeart(101202),
+    RespPlayerHeart(101010),
     /**
-     * <code>RespInitPlayerInfo = 101203;</code>
+     * <code>RespInitPlayerInfo = 101011;</code>
      */
-    RespInitPlayerInfo(101203),
+    RespInitPlayerInfo(101011),
     /**
-     * <code>RespPlayerRandName = 101204;</code>
+     * <code>RespPlayerRandName = 101006;</code>
      */
-    RespPlayerRandName(101204),
+    RespPlayerRandName(101006),
     /**
-     * <code>RespPlayerDisconnect = 101205;</code>
+     * <code>RespPlayerDisconnect = 101012;</code>
      */
-    RespPlayerDisconnect(101205),
+    RespPlayerDisconnect(101012),
     /**
-     * <code>RespPlayerEnterGame = 101206;</code>
+     * <code>RespPlayerEnterGame = 101013;</code>
      */
-    RespPlayerEnterGame(101206),
+    RespPlayerEnterGame(101013),
     /**
-     * <code>RespPlayerReLogin = 101207;</code>
+     * <code>RespPlayerReLogin = 101004;</code>
      */
-    RespPlayerReLogin(101207),
+    RespPlayerReLogin(101004),
     /**
-     * <code>RespPlayerLogin = 101208;</code>
+     * <code>RespPlayerLogin = 101008;</code>
      */
-    RespPlayerLogin(101208),
+    RespPlayerLogin(101008),
     /**
-     * <code>ReqPlayerRandName = 101103;</code>
+     * <code>ReqPlayerRandName = 101005;</code>
      */
-    ReqPlayerRandName(101103),
+    ReqPlayerRandName(101005),
     /**
-     * <code>RespUpdatePlayerInfo = 101209;</code>
+     * <code>RespUpdatePlayerInfo = 101014;</code>
      */
-    RespUpdatePlayerInfo(101209),
+    RespUpdatePlayerInfo(101014),
     /**
-     * <code>ReqPlayerLogin = 101104;</code>
+     * <code>ReqPlayerLogin = 101007;</code>
      */
-    ReqPlayerLogin(101104),
+    ReqPlayerLogin(101007),
     /**
-     * <code>ReqPlayerHeart = 101105;</code>
+     * <code>ReqPlayerHeart = 101009;</code>
      */
-    ReqPlayerHeart(101105),
+    ReqPlayerHeart(101009),
     /**
      * <pre>
      *PlayerMail
      * </pre>
      *
-     * <code>ReqPlayerMailRead = 103101;</code>
+     * <code>ReqPlayerMailRead = 103001;</code>
      */
-    ReqPlayerMailRead(103101),
+    ReqPlayerMailRead(103001),
     /**
-     * <code>RespPlayerMailDelete = 103201;</code>
+     * <code>RespPlayerMailDelete = 103004;</code>
      */
-    RespPlayerMailDelete(103201),
+    RespPlayerMailDelete(103004),
     /**
-     * <code>ReqPlayerMailDelete = 103102;</code>
+     * <code>ReqPlayerMailDelete = 103003;</code>
      */
-    ReqPlayerMailDelete(103102),
+    ReqPlayerMailDelete(103003),
     /**
-     * <code>ReqPlayerMailReward = 103103;</code>
+     * <code>ReqPlayerMailReward = 103005;</code>
      */
-    ReqPlayerMailReward(103103),
+    ReqPlayerMailReward(103005),
     /**
-     * <code>RespPlayerMailList = 103202;</code>
+     * <code>RespPlayerMailList = 103008;</code>
      */
-    RespPlayerMailList(103202),
+    RespPlayerMailList(103008),
     /**
-     * <code>RespPlayerMailReward = 103203;</code>
+     * <code>RespPlayerMailReward = 103006;</code>
      */
-    RespPlayerMailReward(103203),
+    RespPlayerMailReward(103006),
     /**
-     * <code>ReqPlayerMailList = 103104;</code>
+     * <code>ReqPlayerMailList = 103007;</code>
      */
-    ReqPlayerMailList(103104),
+    ReqPlayerMailList(103007),
     /**
-     * <code>RespPlayerMailRead = 103204;</code>
+     * <code>RespPlayerMailRead = 103002;</code>
      */
-    RespPlayerMailRead(103204),
+    RespPlayerMailRead(103002),
     /**
      * <pre>
      *Activity
      * </pre>
      *
-     * <code>ReqActivityInfo = 105101;</code>
+     * <code>ReqActivityInfo = 105001;</code>
      */
-    ReqActivityInfo(105101),
+    ReqActivityInfo(105001),
     /**
-     * <code>RespActivityInfo = 105201;</code>
+     * <code>RespActivityInfo = 105002;</code>
      */
-    RespActivityInfo(105201),
+    RespActivityInfo(105002),
     /**
-     * <code>RespActivityInfoUpdate = 105202;</code>
+     * <code>RespActivityInfoUpdate = 105003;</code>
      */
-    RespActivityInfoUpdate(105202),
+    RespActivityInfoUpdate(105003),
     /**
      * <pre>
      *Shadow
      * </pre>
      *
-     * <code>RespShadowInfo = 107201;</code>
+     * <code>RespShadowInfo = 107002;</code>
      */
-    RespShadowInfo(107201),
+    RespShadowInfo(107002),
     /**
-     * <code>ReqShadowInfo = 107101;</code>
+     * <code>ReqShadowInfo = 107001;</code>
      */
-    ReqShadowInfo(107101),
+    ReqShadowInfo(107001),
     /**
      * <pre>
      *Rank
      * </pre>
      *
-     * <code>ReqRankInfo = 106101;</code>
+     * <code>ReqRankInfo = 106001;</code>
      */
-    ReqRankInfo(106101),
+    ReqRankInfo(106001),
     /**
-     * <code>RespRankInfo = 106201;</code>
+     * <code>RespRankInfo = 106002;</code>
      */
-    RespRankInfo(106201),
+    RespRankInfo(106002),
     /**
      * <pre>
      *Login
      * </pre>
      *
-     * <code>ReqLogin = 100101;</code>
+     * <code>ReqLogin = 100001;</code>
      */
-    ReqLogin(100101),
+    ReqLogin(100001),
     /**
-     * <code>ReqRandName = 100102;</code>
+     * <code>ReqRandName = 100002;</code>
      */
-    ReqRandName(100102),
+    ReqRandName(100002),
     /**
-     * <code>ReqCreateRole = 100103;</code>
+     * <code>ReqCreateRole = 100003;</code>
      */
-    ReqCreateRole(100103),
+    ReqCreateRole(100003),
     /**
      * <pre>
      *Common
      * </pre>
      *
-     * <code>RespTips = 1201;</code>
+     * <code>RespTips = 1001;</code>
      */
-    RespTips(1201),
+    RespTips(1001),
+    /**
+     * <pre>
+     *Equip
+     * </pre>
+     *
+     * <code>ReqEquipUpgrade = 113001;</code>
+     */
+    ReqEquipUpgrade(113001),
+    /**
+     * <code>RespEquipUpdate = 113011;</code>
+     */
+    RespEquipUpdate(113011),
+    /**
+     * <code>RespTakeoutEquip = 113006;</code>
+     */
+    RespTakeoutEquip(113006),
+    /**
+     * <code>RespWearEquip = 113010;</code>
+     */
+    RespWearEquip(113010),
+    /**
+     * <code>RespEquipUpgrade = 113002;</code>
+     */
+    RespEquipUpgrade(113002),
+    /**
+     * <code>ReqEquipInfo = 113003;</code>
+     */
+    ReqEquipInfo(113003),
+    /**
+     * <code>ReqTakeoutEquip = 113005;</code>
+     */
+    ReqTakeoutEquip(113005),
+    /**
+     * <code>ReqEquipPunching = 113007;</code>
+     */
+    ReqEquipPunching(113007),
+    /**
+     * <code>ReqWearEquip = 113009;</code>
+     */
+    ReqWearEquip(113009),
+    /**
+     * <code>RespEquipDelete = 113012;</code>
+     */
+    RespEquipDelete(113012),
+    /**
+     * <code>RespEquipInfo = 113004;</code>
+     */
+    RespEquipInfo(113004),
+    /**
+     * <code>RespEquipPunching = 113008;</code>
+     */
+    RespEquipPunching(113008),
     /**
      * <pre>
      *Item
      * </pre>
      *
-     * <code>ReqItemUse = 102101;</code>
+     * <code>ReqItemUse = 102001;</code>
      */
-    ReqItemUse(102101),
+    ReqItemUse(102001),
     /**
-     * <code>RespItemUpdate = 102201;</code>
+     * <code>RespItemUpdate = 102005;</code>
      */
-    RespItemUpdate(102201),
+    RespItemUpdate(102005),
     /**
-     * <code>RespItemUse = 102202;</code>
+     * <code>RespItemUse = 102002;</code>
      */
-    RespItemUse(102202),
+    RespItemUse(102002),
     /**
-     * <code>ReqItemSell = 102102;</code>
+     * <code>ReqItemSell = 102003;</code>
      */
-    ReqItemSell(102102),
+    ReqItemSell(102003),
     /**
-     * <code>RespItemDelete = 102203;</code>
+     * <code>RespItemDelete = 102006;</code>
      */
-    RespItemDelete(102203),
+    RespItemDelete(102006),
     /**
-     * <code>RespRewards = 102204;</code>
+     * <code>RespRewards = 102007;</code>
      */
-    RespRewards(102204),
+    RespRewards(102007),
     /**
-     * <code>RespItemSell = 102205;</code>
+     * <code>RespItemSell = 102004;</code>
      */
-    RespItemSell(102205),
+    RespItemSell(102004),
     /**
      * <pre>
      *Shop
      * </pre>
      *
-     * <code>ReqShopInfo = 110101;</code>
+     * <code>ReqShopInfo = 110001;</code>
      */
-    ReqShopInfo(110101),
+    ReqShopInfo(110001),
     /**
-     * <code>RespShopInfo = 110201;</code>
+     * <code>RespShopInfo = 110002;</code>
      */
-    RespShopInfo(110201),
+    RespShopInfo(110002),
     /**
-     * <code>RespShopBuy = 110202;</code>
+     * <code>RespShopBuy = 110004;</code>
      */
-    RespShopBuy(110202),
+    RespShopBuy(110004),
     /**
-     * <code>ReqShopBuy = 110102;</code>
+     * <code>ReqShopBuy = 110003;</code>
      */
-    ReqShopBuy(110102),
+    ReqShopBuy(110003),
     /**
-     * <code>RespShopQuickBuy = 110203;</code>
+     * <code>RespShopQuickBuy = 110006;</code>
      */
-    RespShopQuickBuy(110203),
+    RespShopQuickBuy(110006),
     /**
-     * <code>ReqShopQuickBuy = 110103;</code>
+     * <code>ReqShopQuickBuy = 110005;</code>
      */
-    ReqShopQuickBuy(110103),
+    ReqShopQuickBuy(110005),
     /**
      * <pre>
      *LearnCommunity
      * </pre>
      *
-     * <code>RespLearnCommunityInfo = 200201;</code>
+     * <code>RespLearnCommunityInfo = 200002;</code>
      */
-    RespLearnCommunityInfo(200201),
+    RespLearnCommunityInfo(200002),
     /**
-     * <code>RespLearnCommunityReward = 200202;</code>
+     * <code>RespLearnCommunityReward = 200004;</code>
      */
-    RespLearnCommunityReward(200202),
+    RespLearnCommunityReward(200004),
     /**
-     * <code>ReqLearnCommunityInfo = 200101;</code>
+     * <code>ReqLearnCommunityInfo = 200001;</code>
      */
-    ReqLearnCommunityInfo(200101),
+    ReqLearnCommunityInfo(200001),
     /**
-     * <code>ReqLearnCommunityReward = 200102;</code>
+     * <code>ReqLearnCommunityReward = 200003;</code>
      */
-    ReqLearnCommunityReward(200102),
+    ReqLearnCommunityReward(200003),
+    /**
+     * <pre>
+     *PetEquip
+     * </pre>
+     *
+     * <code>ReqPetEquipInfo = 114001;</code>
+     */
+    ReqPetEquipInfo(114001),
+    /**
+     * <code>RespPetEquipInfo = 114002;</code>
+     */
+    RespPetEquipInfo(114002),
+    /**
+     * <code>ReqWearPetEquip = 114003;</code>
+     */
+    ReqWearPetEquip(114003),
+    /**
+     * <code>RespPetEquipDelete = 114007;</code>
+     */
+    RespPetEquipDelete(114007),
+    /**
+     * <code>RespPetEquipUpdate = 114008;</code>
+     */
+    RespPetEquipUpdate(114008),
+    /**
+     * <code>RespWearPetEquip = 114004;</code>
+     */
+    RespWearPetEquip(114004),
+    /**
+     * <code>ReqTakeoutPetEquip = 114005;</code>
+     */
+    ReqTakeoutPetEquip(114005),
+    /**
+     * <code>RespTakeoutPetEquip = 114006;</code>
+     */
+    RespTakeoutPetEquip(114006),
     /**
      * <pre>
      *Recycle
      * </pre>
      *
-     * <code>ReqResourceRecycleInfo = 108101;</code>
+     * <code>ReqResourceRecycleInfo = 108001;</code>
      */
-    ReqResourceRecycleInfo(108101),
+    ReqResourceRecycleInfo(108001),
     /**
-     * <code>RespResourceRecycleInfo = 108201;</code>
+     * <code>RespResourceRecycleInfo = 108002;</code>
      */
-    RespResourceRecycleInfo(108201),
+    RespResourceRecycleInfo(108002),
     /**
      * <pre>
      *Chat
      * </pre>
      *
-     * <code>RespChat = 104201;</code>
+     * <code>RespChat = 104002;</code>
      */
-    RespChat(104201),
+    RespChat(104002),
     /**
-     * <code>ReqChat = 104101;</code>
+     * <code>ReqChat = 104001;</code>
      */
-    ReqChat(104101),
+    ReqChat(104001),
     /**
      * <pre>
      *Mission
      * </pre>
      *
-     * <code>ReqMissionInfo = 111101;</code>
+     * <code>ReqMissionInfo = 111001;</code>
      */
-    ReqMissionInfo(111101),
+    ReqMissionInfo(111001),
     /**
-     * <code>RespMissionSingleQuest = 111201;</code>
+     * <code>RespMissionSingleQuest = 111005;</code>
      */
-    RespMissionSingleQuest(111201),
+    RespMissionSingleQuest(111005),
     /**
-     * <code>ReqMissionQuestReward = 111102;</code>
+     * <code>ReqMissionQuestReward = 111003;</code>
      */
-    ReqMissionQuestReward(111102),
+    ReqMissionQuestReward(111003),
     /**
-     * <code>RespMissionQuestReward = 111202;</code>
+     * <code>RespMissionQuestReward = 111004;</code>
      */
-    RespMissionQuestReward(111202),
+    RespMissionQuestReward(111004),
     /**
-     * <code>RespMissionInfo = 111203;</code>
+     * <code>RespMissionInfo = 111002;</code>
      */
-    RespMissionInfo(111203),
+    RespMissionInfo(111002),
     /**
      * <pre>
      *FunctionControl
      * </pre>
      *
-     * <code>ReqFunctionControl = 2101;</code>
+     * <code>ReqFunctionControl = 2001;</code>
      */
-    ReqFunctionControl(2101),
+    ReqFunctionControl(2001),
     /**
      * <pre>
      *GroupMail
      * </pre>
      *
-     * <code>ReqGroupMailInfo = 900101;</code>
+     * <code>ReqGroupMailInfo = 900001;</code>
      */
-    ReqGroupMailInfo(900101),
+    ReqGroupMailInfo(900001),
+    /**
+     * <pre>
+     *Home
+     * </pre>
+     *
+     * <code>RespHomeFurnitureRemove = 998004;</code>
+     */
+    RespHomeFurnitureRemove(998004),
+    /**
+     * <code>ReqHomeInfo = 998001;</code>
+     */
+    ReqHomeInfo(998001),
+    /**
+     * <code>ReqHomeFurnitureRemove = 998003;</code>
+     */
+    ReqHomeFurnitureRemove(998003),
+    /**
+     * <code>RespHomeSchemeLayoutInfo = 998012;</code>
+     */
+    RespHomeSchemeLayoutInfo(998012),
+    /**
+     * <code>ReqHomeSchemeLayoutSave = 998005;</code>
+     */
+    ReqHomeSchemeLayoutSave(998005),
+    /**
+     * <code>RespHomeBetsuinInfo = 998014;</code>
+     */
+    RespHomeBetsuinInfo(998014),
+    /**
+     * <code>ReqHomeFurnitureCreate = 998007;</code>
+     */
+    ReqHomeFurnitureCreate(998007),
+    /**
+     * <code>RespHomeSchemeLayoutSave = 998006;</code>
+     */
+    RespHomeSchemeLayoutSave(998006),
+    /**
+     * <code>ReqHomeFurnitureUpdate = 998009;</code>
+     */
+    ReqHomeFurnitureUpdate(998009),
+    /**
+     * <code>RespHomeFurnitureUpdate = 998010;</code>
+     */
+    RespHomeFurnitureUpdate(998010),
+    /**
+     * <code>ReqHomeSchemeLayoutInfo = 998011;</code>
+     */
+    ReqHomeSchemeLayoutInfo(998011),
+    /**
+     * <code>RespHomeInfo = 998002;</code>
+     */
+    RespHomeInfo(998002),
+    /**
+     * <code>ReqHomeBetsuinInfo = 998013;</code>
+     */
+    ReqHomeBetsuinInfo(998013),
+    /**
+     * <code>RespHomeFurnitureCreate = 998008;</code>
+     */
+    RespHomeFurnitureCreate(998008),
     /**
      * <pre>
      *ActivityItem
      * </pre>
      *
-     * <code>RespActivityItemDelete = 201201;</code>
+     * <code>RespActivityItemDelete = 201001;</code>
      */
-    RespActivityItemDelete(201201),
+    RespActivityItemDelete(201001),
     /**
-     * <code>RespActivityItemsInfo = 201202;</code>
+     * <code>RespActivityItemsInfo = 201002;</code>
      */
-    RespActivityItemsInfo(201202),
+    RespActivityItemsInfo(201002),
     /**
-     * <code>RespActivityItemsUpdate = 201203;</code>
+     * <code>RespActivityItemsUpdate = 201003;</code>
      */
-    RespActivityItemsUpdate(201203),
+    RespActivityItemsUpdate(201003),
     /**
      * <pre>
      *Pet
      * </pre>
      *
-     * <code>ReqPetLevelup = 112101;</code>
+     * <code>ReqPetLevelup = 112001;</code>
      */
-    ReqPetLevelup(112101),
+    ReqPetLevelup(112001),
     /**
-     * <code>ReqPetIdentify = 112102;</code>
+     * <code>ReqPetIdentify = 112003;</code>
      */
-    ReqPetIdentify(112102),
+    ReqPetIdentify(112003),
     /**
-     * <code>RespPetUseAttrPoint = 112201;</code>
+     * <code>RespPetUseAttrPoint = 112008;</code>
      */
-    RespPetUseAttrPoint(112201),
+    RespPetUseAttrPoint(112008),
     /**
-     * <code>RespPetLevelup = 112202;</code>
+     * <code>RespPetLevelup = 112002;</code>
      */
-    RespPetLevelup(112202),
+    RespPetLevelup(112002),
     /**
-     * <code>RespPetUpdate = 112203;</code>
+     * <code>RespPetUpdate = 112009;</code>
      */
-    RespPetUpdate(112203),
+    RespPetUpdate(112009),
     /**
-     * <code>RespPetIdentify = 112204;</code>
+     * <code>RespPetIdentify = 112004;</code>
      */
-    RespPetIdentify(112204),
+    RespPetIdentify(112004),
     /**
-     * <code>RespPetDelete = 112205;</code>
+     * <code>RespPetDelete = 112010;</code>
      */
-    RespPetDelete(112205),
+    RespPetDelete(112010),
     /**
-     * <code>RespPetActive = 112206;</code>
+     * <code>RespPetActive = 112006;</code>
      */
-    RespPetActive(112206),
+    RespPetActive(112006),
     /**
-     * <code>ReqPetActive = 112103;</code>
+     * <code>ReqPetActive = 112005;</code>
      */
-    ReqPetActive(112103),
+    ReqPetActive(112005),
     /**
-     * <code>ReqPetUseAttrPoint = 112104;</code>
+     * <code>ReqPetUseAttrPoint = 112007;</code>
      */
-    ReqPetUseAttrPoint(112104),
+    ReqPetUseAttrPoint(112007),
     UNRECOGNIZED(-1),
     ;
 
@@ -405,365 +553,513 @@ public final class PBDefine {
      *Player
      * </pre>
      *
-     * <code>RespPlayerCreateRole = 101201;</code>
+     * <code>RespPlayerCreateRole = 101002;</code>
      */
-    public static final int RespPlayerCreateRole_VALUE = 101201;
+    public static final int RespPlayerCreateRole_VALUE = 101002;
     /**
-     * <code>ReqPlayerCreateRole = 101101;</code>
+     * <code>ReqPlayerCreateRole = 101001;</code>
      */
-    public static final int ReqPlayerCreateRole_VALUE = 101101;
+    public static final int ReqPlayerCreateRole_VALUE = 101001;
     /**
-     * <code>ReqPlayerReLogin = 101102;</code>
+     * <code>ReqPlayerReLogin = 101003;</code>
      */
-    public static final int ReqPlayerReLogin_VALUE = 101102;
+    public static final int ReqPlayerReLogin_VALUE = 101003;
     /**
-     * <code>RespPlayerHeart = 101202;</code>
+     * <code>RespPlayerHeart = 101010;</code>
      */
-    public static final int RespPlayerHeart_VALUE = 101202;
+    public static final int RespPlayerHeart_VALUE = 101010;
     /**
-     * <code>RespInitPlayerInfo = 101203;</code>
+     * <code>RespInitPlayerInfo = 101011;</code>
      */
-    public static final int RespInitPlayerInfo_VALUE = 101203;
+    public static final int RespInitPlayerInfo_VALUE = 101011;
     /**
-     * <code>RespPlayerRandName = 101204;</code>
+     * <code>RespPlayerRandName = 101006;</code>
      */
-    public static final int RespPlayerRandName_VALUE = 101204;
+    public static final int RespPlayerRandName_VALUE = 101006;
     /**
-     * <code>RespPlayerDisconnect = 101205;</code>
+     * <code>RespPlayerDisconnect = 101012;</code>
      */
-    public static final int RespPlayerDisconnect_VALUE = 101205;
+    public static final int RespPlayerDisconnect_VALUE = 101012;
     /**
-     * <code>RespPlayerEnterGame = 101206;</code>
+     * <code>RespPlayerEnterGame = 101013;</code>
      */
-    public static final int RespPlayerEnterGame_VALUE = 101206;
+    public static final int RespPlayerEnterGame_VALUE = 101013;
     /**
-     * <code>RespPlayerReLogin = 101207;</code>
+     * <code>RespPlayerReLogin = 101004;</code>
      */
-    public static final int RespPlayerReLogin_VALUE = 101207;
+    public static final int RespPlayerReLogin_VALUE = 101004;
     /**
-     * <code>RespPlayerLogin = 101208;</code>
+     * <code>RespPlayerLogin = 101008;</code>
      */
-    public static final int RespPlayerLogin_VALUE = 101208;
+    public static final int RespPlayerLogin_VALUE = 101008;
     /**
-     * <code>ReqPlayerRandName = 101103;</code>
+     * <code>ReqPlayerRandName = 101005;</code>
      */
-    public static final int ReqPlayerRandName_VALUE = 101103;
+    public static final int ReqPlayerRandName_VALUE = 101005;
     /**
-     * <code>RespUpdatePlayerInfo = 101209;</code>
+     * <code>RespUpdatePlayerInfo = 101014;</code>
      */
-    public static final int RespUpdatePlayerInfo_VALUE = 101209;
+    public static final int RespUpdatePlayerInfo_VALUE = 101014;
     /**
-     * <code>ReqPlayerLogin = 101104;</code>
+     * <code>ReqPlayerLogin = 101007;</code>
      */
-    public static final int ReqPlayerLogin_VALUE = 101104;
+    public static final int ReqPlayerLogin_VALUE = 101007;
     /**
-     * <code>ReqPlayerHeart = 101105;</code>
+     * <code>ReqPlayerHeart = 101009;</code>
      */
-    public static final int ReqPlayerHeart_VALUE = 101105;
+    public static final int ReqPlayerHeart_VALUE = 101009;
     /**
      * <pre>
      *PlayerMail
      * </pre>
      *
-     * <code>ReqPlayerMailRead = 103101;</code>
+     * <code>ReqPlayerMailRead = 103001;</code>
      */
-    public static final int ReqPlayerMailRead_VALUE = 103101;
+    public static final int ReqPlayerMailRead_VALUE = 103001;
     /**
-     * <code>RespPlayerMailDelete = 103201;</code>
+     * <code>RespPlayerMailDelete = 103004;</code>
      */
-    public static final int RespPlayerMailDelete_VALUE = 103201;
+    public static final int RespPlayerMailDelete_VALUE = 103004;
     /**
-     * <code>ReqPlayerMailDelete = 103102;</code>
+     * <code>ReqPlayerMailDelete = 103003;</code>
      */
-    public static final int ReqPlayerMailDelete_VALUE = 103102;
+    public static final int ReqPlayerMailDelete_VALUE = 103003;
     /**
-     * <code>ReqPlayerMailReward = 103103;</code>
+     * <code>ReqPlayerMailReward = 103005;</code>
      */
-    public static final int ReqPlayerMailReward_VALUE = 103103;
+    public static final int ReqPlayerMailReward_VALUE = 103005;
     /**
-     * <code>RespPlayerMailList = 103202;</code>
+     * <code>RespPlayerMailList = 103008;</code>
      */
-    public static final int RespPlayerMailList_VALUE = 103202;
+    public static final int RespPlayerMailList_VALUE = 103008;
     /**
-     * <code>RespPlayerMailReward = 103203;</code>
+     * <code>RespPlayerMailReward = 103006;</code>
      */
-    public static final int RespPlayerMailReward_VALUE = 103203;
+    public static final int RespPlayerMailReward_VALUE = 103006;
     /**
-     * <code>ReqPlayerMailList = 103104;</code>
+     * <code>ReqPlayerMailList = 103007;</code>
      */
-    public static final int ReqPlayerMailList_VALUE = 103104;
+    public static final int ReqPlayerMailList_VALUE = 103007;
     /**
-     * <code>RespPlayerMailRead = 103204;</code>
+     * <code>RespPlayerMailRead = 103002;</code>
      */
-    public static final int RespPlayerMailRead_VALUE = 103204;
+    public static final int RespPlayerMailRead_VALUE = 103002;
     /**
      * <pre>
      *Activity
      * </pre>
      *
-     * <code>ReqActivityInfo = 105101;</code>
+     * <code>ReqActivityInfo = 105001;</code>
      */
-    public static final int ReqActivityInfo_VALUE = 105101;
+    public static final int ReqActivityInfo_VALUE = 105001;
     /**
-     * <code>RespActivityInfo = 105201;</code>
+     * <code>RespActivityInfo = 105002;</code>
      */
-    public static final int RespActivityInfo_VALUE = 105201;
+    public static final int RespActivityInfo_VALUE = 105002;
     /**
-     * <code>RespActivityInfoUpdate = 105202;</code>
+     * <code>RespActivityInfoUpdate = 105003;</code>
      */
-    public static final int RespActivityInfoUpdate_VALUE = 105202;
+    public static final int RespActivityInfoUpdate_VALUE = 105003;
     /**
      * <pre>
      *Shadow
      * </pre>
      *
-     * <code>RespShadowInfo = 107201;</code>
+     * <code>RespShadowInfo = 107002;</code>
      */
-    public static final int RespShadowInfo_VALUE = 107201;
+    public static final int RespShadowInfo_VALUE = 107002;
     /**
-     * <code>ReqShadowInfo = 107101;</code>
+     * <code>ReqShadowInfo = 107001;</code>
      */
-    public static final int ReqShadowInfo_VALUE = 107101;
+    public static final int ReqShadowInfo_VALUE = 107001;
     /**
      * <pre>
      *Rank
      * </pre>
      *
-     * <code>ReqRankInfo = 106101;</code>
+     * <code>ReqRankInfo = 106001;</code>
      */
-    public static final int ReqRankInfo_VALUE = 106101;
+    public static final int ReqRankInfo_VALUE = 106001;
     /**
-     * <code>RespRankInfo = 106201;</code>
+     * <code>RespRankInfo = 106002;</code>
      */
-    public static final int RespRankInfo_VALUE = 106201;
+    public static final int RespRankInfo_VALUE = 106002;
     /**
      * <pre>
      *Login
      * </pre>
      *
-     * <code>ReqLogin = 100101;</code>
+     * <code>ReqLogin = 100001;</code>
      */
-    public static final int ReqLogin_VALUE = 100101;
+    public static final int ReqLogin_VALUE = 100001;
     /**
-     * <code>ReqRandName = 100102;</code>
+     * <code>ReqRandName = 100002;</code>
      */
-    public static final int ReqRandName_VALUE = 100102;
+    public static final int ReqRandName_VALUE = 100002;
     /**
-     * <code>ReqCreateRole = 100103;</code>
+     * <code>ReqCreateRole = 100003;</code>
      */
-    public static final int ReqCreateRole_VALUE = 100103;
+    public static final int ReqCreateRole_VALUE = 100003;
     /**
      * <pre>
      *Common
      * </pre>
      *
-     * <code>RespTips = 1201;</code>
+     * <code>RespTips = 1001;</code>
      */
-    public static final int RespTips_VALUE = 1201;
+    public static final int RespTips_VALUE = 1001;
+    /**
+     * <pre>
+     *Equip
+     * </pre>
+     *
+     * <code>ReqEquipUpgrade = 113001;</code>
+     */
+    public static final int ReqEquipUpgrade_VALUE = 113001;
+    /**
+     * <code>RespEquipUpdate = 113011;</code>
+     */
+    public static final int RespEquipUpdate_VALUE = 113011;
+    /**
+     * <code>RespTakeoutEquip = 113006;</code>
+     */
+    public static final int RespTakeoutEquip_VALUE = 113006;
+    /**
+     * <code>RespWearEquip = 113010;</code>
+     */
+    public static final int RespWearEquip_VALUE = 113010;
+    /**
+     * <code>RespEquipUpgrade = 113002;</code>
+     */
+    public static final int RespEquipUpgrade_VALUE = 113002;
+    /**
+     * <code>ReqEquipInfo = 113003;</code>
+     */
+    public static final int ReqEquipInfo_VALUE = 113003;
+    /**
+     * <code>ReqTakeoutEquip = 113005;</code>
+     */
+    public static final int ReqTakeoutEquip_VALUE = 113005;
+    /**
+     * <code>ReqEquipPunching = 113007;</code>
+     */
+    public static final int ReqEquipPunching_VALUE = 113007;
+    /**
+     * <code>ReqWearEquip = 113009;</code>
+     */
+    public static final int ReqWearEquip_VALUE = 113009;
+    /**
+     * <code>RespEquipDelete = 113012;</code>
+     */
+    public static final int RespEquipDelete_VALUE = 113012;
+    /**
+     * <code>RespEquipInfo = 113004;</code>
+     */
+    public static final int RespEquipInfo_VALUE = 113004;
+    /**
+     * <code>RespEquipPunching = 113008;</code>
+     */
+    public static final int RespEquipPunching_VALUE = 113008;
     /**
      * <pre>
      *Item
      * </pre>
      *
-     * <code>ReqItemUse = 102101;</code>
+     * <code>ReqItemUse = 102001;</code>
      */
-    public static final int ReqItemUse_VALUE = 102101;
+    public static final int ReqItemUse_VALUE = 102001;
     /**
-     * <code>RespItemUpdate = 102201;</code>
+     * <code>RespItemUpdate = 102005;</code>
      */
-    public static final int RespItemUpdate_VALUE = 102201;
+    public static final int RespItemUpdate_VALUE = 102005;
     /**
-     * <code>RespItemUse = 102202;</code>
+     * <code>RespItemUse = 102002;</code>
      */
-    public static final int RespItemUse_VALUE = 102202;
+    public static final int RespItemUse_VALUE = 102002;
     /**
-     * <code>ReqItemSell = 102102;</code>
+     * <code>ReqItemSell = 102003;</code>
      */
-    public static final int ReqItemSell_VALUE = 102102;
+    public static final int ReqItemSell_VALUE = 102003;
     /**
-     * <code>RespItemDelete = 102203;</code>
+     * <code>RespItemDelete = 102006;</code>
      */
-    public static final int RespItemDelete_VALUE = 102203;
+    public static final int RespItemDelete_VALUE = 102006;
     /**
-     * <code>RespRewards = 102204;</code>
+     * <code>RespRewards = 102007;</code>
      */
-    public static final int RespRewards_VALUE = 102204;
+    public static final int RespRewards_VALUE = 102007;
     /**
-     * <code>RespItemSell = 102205;</code>
+     * <code>RespItemSell = 102004;</code>
      */
-    public static final int RespItemSell_VALUE = 102205;
+    public static final int RespItemSell_VALUE = 102004;
     /**
      * <pre>
      *Shop
      * </pre>
      *
-     * <code>ReqShopInfo = 110101;</code>
+     * <code>ReqShopInfo = 110001;</code>
      */
-    public static final int ReqShopInfo_VALUE = 110101;
+    public static final int ReqShopInfo_VALUE = 110001;
     /**
-     * <code>RespShopInfo = 110201;</code>
+     * <code>RespShopInfo = 110002;</code>
      */
-    public static final int RespShopInfo_VALUE = 110201;
+    public static final int RespShopInfo_VALUE = 110002;
     /**
-     * <code>RespShopBuy = 110202;</code>
+     * <code>RespShopBuy = 110004;</code>
      */
-    public static final int RespShopBuy_VALUE = 110202;
+    public static final int RespShopBuy_VALUE = 110004;
     /**
-     * <code>ReqShopBuy = 110102;</code>
+     * <code>ReqShopBuy = 110003;</code>
      */
-    public static final int ReqShopBuy_VALUE = 110102;
+    public static final int ReqShopBuy_VALUE = 110003;
     /**
-     * <code>RespShopQuickBuy = 110203;</code>
+     * <code>RespShopQuickBuy = 110006;</code>
      */
-    public static final int RespShopQuickBuy_VALUE = 110203;
+    public static final int RespShopQuickBuy_VALUE = 110006;
     /**
-     * <code>ReqShopQuickBuy = 110103;</code>
+     * <code>ReqShopQuickBuy = 110005;</code>
      */
-    public static final int ReqShopQuickBuy_VALUE = 110103;
+    public static final int ReqShopQuickBuy_VALUE = 110005;
     /**
      * <pre>
      *LearnCommunity
      * </pre>
      *
-     * <code>RespLearnCommunityInfo = 200201;</code>
+     * <code>RespLearnCommunityInfo = 200002;</code>
      */
-    public static final int RespLearnCommunityInfo_VALUE = 200201;
+    public static final int RespLearnCommunityInfo_VALUE = 200002;
     /**
-     * <code>RespLearnCommunityReward = 200202;</code>
+     * <code>RespLearnCommunityReward = 200004;</code>
      */
-    public static final int RespLearnCommunityReward_VALUE = 200202;
+    public static final int RespLearnCommunityReward_VALUE = 200004;
     /**
-     * <code>ReqLearnCommunityInfo = 200101;</code>
+     * <code>ReqLearnCommunityInfo = 200001;</code>
      */
-    public static final int ReqLearnCommunityInfo_VALUE = 200101;
+    public static final int ReqLearnCommunityInfo_VALUE = 200001;
     /**
-     * <code>ReqLearnCommunityReward = 200102;</code>
+     * <code>ReqLearnCommunityReward = 200003;</code>
      */
-    public static final int ReqLearnCommunityReward_VALUE = 200102;
+    public static final int ReqLearnCommunityReward_VALUE = 200003;
+    /**
+     * <pre>
+     *PetEquip
+     * </pre>
+     *
+     * <code>ReqPetEquipInfo = 114001;</code>
+     */
+    public static final int ReqPetEquipInfo_VALUE = 114001;
+    /**
+     * <code>RespPetEquipInfo = 114002;</code>
+     */
+    public static final int RespPetEquipInfo_VALUE = 114002;
+    /**
+     * <code>ReqWearPetEquip = 114003;</code>
+     */
+    public static final int ReqWearPetEquip_VALUE = 114003;
+    /**
+     * <code>RespPetEquipDelete = 114007;</code>
+     */
+    public static final int RespPetEquipDelete_VALUE = 114007;
+    /**
+     * <code>RespPetEquipUpdate = 114008;</code>
+     */
+    public static final int RespPetEquipUpdate_VALUE = 114008;
+    /**
+     * <code>RespWearPetEquip = 114004;</code>
+     */
+    public static final int RespWearPetEquip_VALUE = 114004;
+    /**
+     * <code>ReqTakeoutPetEquip = 114005;</code>
+     */
+    public static final int ReqTakeoutPetEquip_VALUE = 114005;
+    /**
+     * <code>RespTakeoutPetEquip = 114006;</code>
+     */
+    public static final int RespTakeoutPetEquip_VALUE = 114006;
     /**
      * <pre>
      *Recycle
      * </pre>
      *
-     * <code>ReqResourceRecycleInfo = 108101;</code>
+     * <code>ReqResourceRecycleInfo = 108001;</code>
      */
-    public static final int ReqResourceRecycleInfo_VALUE = 108101;
+    public static final int ReqResourceRecycleInfo_VALUE = 108001;
     /**
-     * <code>RespResourceRecycleInfo = 108201;</code>
+     * <code>RespResourceRecycleInfo = 108002;</code>
      */
-    public static final int RespResourceRecycleInfo_VALUE = 108201;
+    public static final int RespResourceRecycleInfo_VALUE = 108002;
     /**
      * <pre>
      *Chat
      * </pre>
      *
-     * <code>RespChat = 104201;</code>
+     * <code>RespChat = 104002;</code>
      */
-    public static final int RespChat_VALUE = 104201;
+    public static final int RespChat_VALUE = 104002;
     /**
-     * <code>ReqChat = 104101;</code>
+     * <code>ReqChat = 104001;</code>
      */
-    public static final int ReqChat_VALUE = 104101;
+    public static final int ReqChat_VALUE = 104001;
     /**
      * <pre>
      *Mission
      * </pre>
      *
-     * <code>ReqMissionInfo = 111101;</code>
+     * <code>ReqMissionInfo = 111001;</code>
      */
-    public static final int ReqMissionInfo_VALUE = 111101;
+    public static final int ReqMissionInfo_VALUE = 111001;
     /**
-     * <code>RespMissionSingleQuest = 111201;</code>
+     * <code>RespMissionSingleQuest = 111005;</code>
      */
-    public static final int RespMissionSingleQuest_VALUE = 111201;
+    public static final int RespMissionSingleQuest_VALUE = 111005;
     /**
-     * <code>ReqMissionQuestReward = 111102;</code>
+     * <code>ReqMissionQuestReward = 111003;</code>
      */
-    public static final int ReqMissionQuestReward_VALUE = 111102;
+    public static final int ReqMissionQuestReward_VALUE = 111003;
     /**
-     * <code>RespMissionQuestReward = 111202;</code>
+     * <code>RespMissionQuestReward = 111004;</code>
      */
-    public static final int RespMissionQuestReward_VALUE = 111202;
+    public static final int RespMissionQuestReward_VALUE = 111004;
     /**
-     * <code>RespMissionInfo = 111203;</code>
+     * <code>RespMissionInfo = 111002;</code>
      */
-    public static final int RespMissionInfo_VALUE = 111203;
+    public static final int RespMissionInfo_VALUE = 111002;
     /**
      * <pre>
      *FunctionControl
      * </pre>
      *
-     * <code>ReqFunctionControl = 2101;</code>
+     * <code>ReqFunctionControl = 2001;</code>
      */
-    public static final int ReqFunctionControl_VALUE = 2101;
+    public static final int ReqFunctionControl_VALUE = 2001;
     /**
      * <pre>
      *GroupMail
      * </pre>
      *
-     * <code>ReqGroupMailInfo = 900101;</code>
+     * <code>ReqGroupMailInfo = 900001;</code>
      */
-    public static final int ReqGroupMailInfo_VALUE = 900101;
+    public static final int ReqGroupMailInfo_VALUE = 900001;
+    /**
+     * <pre>
+     *Home
+     * </pre>
+     *
+     * <code>RespHomeFurnitureRemove = 998004;</code>
+     */
+    public static final int RespHomeFurnitureRemove_VALUE = 998004;
+    /**
+     * <code>ReqHomeInfo = 998001;</code>
+     */
+    public static final int ReqHomeInfo_VALUE = 998001;
+    /**
+     * <code>ReqHomeFurnitureRemove = 998003;</code>
+     */
+    public static final int ReqHomeFurnitureRemove_VALUE = 998003;
+    /**
+     * <code>RespHomeSchemeLayoutInfo = 998012;</code>
+     */
+    public static final int RespHomeSchemeLayoutInfo_VALUE = 998012;
+    /**
+     * <code>ReqHomeSchemeLayoutSave = 998005;</code>
+     */
+    public static final int ReqHomeSchemeLayoutSave_VALUE = 998005;
+    /**
+     * <code>RespHomeBetsuinInfo = 998014;</code>
+     */
+    public static final int RespHomeBetsuinInfo_VALUE = 998014;
+    /**
+     * <code>ReqHomeFurnitureCreate = 998007;</code>
+     */
+    public static final int ReqHomeFurnitureCreate_VALUE = 998007;
+    /**
+     * <code>RespHomeSchemeLayoutSave = 998006;</code>
+     */
+    public static final int RespHomeSchemeLayoutSave_VALUE = 998006;
+    /**
+     * <code>ReqHomeFurnitureUpdate = 998009;</code>
+     */
+    public static final int ReqHomeFurnitureUpdate_VALUE = 998009;
+    /**
+     * <code>RespHomeFurnitureUpdate = 998010;</code>
+     */
+    public static final int RespHomeFurnitureUpdate_VALUE = 998010;
+    /**
+     * <code>ReqHomeSchemeLayoutInfo = 998011;</code>
+     */
+    public static final int ReqHomeSchemeLayoutInfo_VALUE = 998011;
+    /**
+     * <code>RespHomeInfo = 998002;</code>
+     */
+    public static final int RespHomeInfo_VALUE = 998002;
+    /**
+     * <code>ReqHomeBetsuinInfo = 998013;</code>
+     */
+    public static final int ReqHomeBetsuinInfo_VALUE = 998013;
+    /**
+     * <code>RespHomeFurnitureCreate = 998008;</code>
+     */
+    public static final int RespHomeFurnitureCreate_VALUE = 998008;
     /**
      * <pre>
      *ActivityItem
      * </pre>
      *
-     * <code>RespActivityItemDelete = 201201;</code>
+     * <code>RespActivityItemDelete = 201001;</code>
      */
-    public static final int RespActivityItemDelete_VALUE = 201201;
+    public static final int RespActivityItemDelete_VALUE = 201001;
     /**
-     * <code>RespActivityItemsInfo = 201202;</code>
+     * <code>RespActivityItemsInfo = 201002;</code>
      */
-    public static final int RespActivityItemsInfo_VALUE = 201202;
+    public static final int RespActivityItemsInfo_VALUE = 201002;
     /**
-     * <code>RespActivityItemsUpdate = 201203;</code>
+     * <code>RespActivityItemsUpdate = 201003;</code>
      */
-    public static final int RespActivityItemsUpdate_VALUE = 201203;
+    public static final int RespActivityItemsUpdate_VALUE = 201003;
     /**
      * <pre>
      *Pet
      * </pre>
      *
-     * <code>ReqPetLevelup = 112101;</code>
+     * <code>ReqPetLevelup = 112001;</code>
      */
-    public static final int ReqPetLevelup_VALUE = 112101;
+    public static final int ReqPetLevelup_VALUE = 112001;
     /**
-     * <code>ReqPetIdentify = 112102;</code>
+     * <code>ReqPetIdentify = 112003;</code>
      */
-    public static final int ReqPetIdentify_VALUE = 112102;
+    public static final int ReqPetIdentify_VALUE = 112003;
     /**
-     * <code>RespPetUseAttrPoint = 112201;</code>
+     * <code>RespPetUseAttrPoint = 112008;</code>
      */
-    public static final int RespPetUseAttrPoint_VALUE = 112201;
+    public static final int RespPetUseAttrPoint_VALUE = 112008;
     /**
-     * <code>RespPetLevelup = 112202;</code>
+     * <code>RespPetLevelup = 112002;</code>
      */
-    public static final int RespPetLevelup_VALUE = 112202;
+    public static final int RespPetLevelup_VALUE = 112002;
     /**
-     * <code>RespPetUpdate = 112203;</code>
+     * <code>RespPetUpdate = 112009;</code>
      */
-    public static final int RespPetUpdate_VALUE = 112203;
+    public static final int RespPetUpdate_VALUE = 112009;
     /**
-     * <code>RespPetIdentify = 112204;</code>
+     * <code>RespPetIdentify = 112004;</code>
      */
-    public static final int RespPetIdentify_VALUE = 112204;
+    public static final int RespPetIdentify_VALUE = 112004;
     /**
-     * <code>RespPetDelete = 112205;</code>
+     * <code>RespPetDelete = 112010;</code>
      */
-    public static final int RespPetDelete_VALUE = 112205;
+    public static final int RespPetDelete_VALUE = 112010;
     /**
-     * <code>RespPetActive = 112206;</code>
+     * <code>RespPetActive = 112006;</code>
      */
-    public static final int RespPetActive_VALUE = 112206;
+    public static final int RespPetActive_VALUE = 112006;
     /**
-     * <code>ReqPetActive = 112103;</code>
+     * <code>ReqPetActive = 112005;</code>
      */
-    public static final int ReqPetActive_VALUE = 112103;
+    public static final int ReqPetActive_VALUE = 112005;
     /**
-     * <code>ReqPetUseAttrPoint = 112104;</code>
+     * <code>ReqPetUseAttrPoint = 112007;</code>
      */
-    public static final int ReqPetUseAttrPoint_VALUE = 112104;
+    public static final int ReqPetUseAttrPoint_VALUE = 112007;
 
 
     public final int getNumber() {
@@ -791,80 +1087,114 @@ public final class PBDefine {
     public static PBProtocol forNumber(int value) {
       switch (value) {
         case 0: return DEFAULTID;
-        case 101201: return RespPlayerCreateRole;
-        case 101101: return ReqPlayerCreateRole;
-        case 101102: return ReqPlayerReLogin;
-        case 101202: return RespPlayerHeart;
-        case 101203: return RespInitPlayerInfo;
-        case 101204: return RespPlayerRandName;
-        case 101205: return RespPlayerDisconnect;
-        case 101206: return RespPlayerEnterGame;
-        case 101207: return RespPlayerReLogin;
-        case 101208: return RespPlayerLogin;
-        case 101103: return ReqPlayerRandName;
-        case 101209: return RespUpdatePlayerInfo;
-        case 101104: return ReqPlayerLogin;
-        case 101105: return ReqPlayerHeart;
-        case 103101: return ReqPlayerMailRead;
-        case 103201: return RespPlayerMailDelete;
-        case 103102: return ReqPlayerMailDelete;
-        case 103103: return ReqPlayerMailReward;
-        case 103202: return RespPlayerMailList;
-        case 103203: return RespPlayerMailReward;
-        case 103104: return ReqPlayerMailList;
-        case 103204: return RespPlayerMailRead;
-        case 105101: return ReqActivityInfo;
-        case 105201: return RespActivityInfo;
-        case 105202: return RespActivityInfoUpdate;
-        case 107201: return RespShadowInfo;
-        case 107101: return ReqShadowInfo;
-        case 106101: return ReqRankInfo;
-        case 106201: return RespRankInfo;
-        case 100101: return ReqLogin;
-        case 100102: return ReqRandName;
-        case 100103: return ReqCreateRole;
-        case 1201: return RespTips;
-        case 102101: return ReqItemUse;
-        case 102201: return RespItemUpdate;
-        case 102202: return RespItemUse;
-        case 102102: return ReqItemSell;
-        case 102203: return RespItemDelete;
-        case 102204: return RespRewards;
-        case 102205: return RespItemSell;
-        case 110101: return ReqShopInfo;
-        case 110201: return RespShopInfo;
-        case 110202: return RespShopBuy;
-        case 110102: return ReqShopBuy;
-        case 110203: return RespShopQuickBuy;
-        case 110103: return ReqShopQuickBuy;
-        case 200201: return RespLearnCommunityInfo;
-        case 200202: return RespLearnCommunityReward;
-        case 200101: return ReqLearnCommunityInfo;
-        case 200102: return ReqLearnCommunityReward;
-        case 108101: return ReqResourceRecycleInfo;
-        case 108201: return RespResourceRecycleInfo;
-        case 104201: return RespChat;
-        case 104101: return ReqChat;
-        case 111101: return ReqMissionInfo;
-        case 111201: return RespMissionSingleQuest;
-        case 111102: return ReqMissionQuestReward;
-        case 111202: return RespMissionQuestReward;
-        case 111203: return RespMissionInfo;
-        case 2101: return ReqFunctionControl;
-        case 900101: return ReqGroupMailInfo;
-        case 201201: return RespActivityItemDelete;
-        case 201202: return RespActivityItemsInfo;
-        case 201203: return RespActivityItemsUpdate;
-        case 112101: return ReqPetLevelup;
-        case 112102: return ReqPetIdentify;
-        case 112201: return RespPetUseAttrPoint;
-        case 112202: return RespPetLevelup;
-        case 112203: return RespPetUpdate;
-        case 112204: return RespPetIdentify;
-        case 112205: return RespPetDelete;
-        case 112206: return RespPetActive;
-        case 112103: return ReqPetActive;
-        case 112104: return ReqPetUseAttrPoint;
+        case 101002: return RespPlayerCreateRole;
+        case 101001: return ReqPlayerCreateRole;
+        case 101003: return ReqPlayerReLogin;
+        case 101010: return RespPlayerHeart;
+        case 101011: return RespInitPlayerInfo;
+        case 101006: return RespPlayerRandName;
+        case 101012: return RespPlayerDisconnect;
+        case 101013: return RespPlayerEnterGame;
+        case 101004: return RespPlayerReLogin;
+        case 101008: return RespPlayerLogin;
+        case 101005: return ReqPlayerRandName;
+        case 101014: return RespUpdatePlayerInfo;
+        case 101007: return ReqPlayerLogin;
+        case 101009: return ReqPlayerHeart;
+        case 103001: return ReqPlayerMailRead;
+        case 103004: return RespPlayerMailDelete;
+        case 103003: return ReqPlayerMailDelete;
+        case 103005: return ReqPlayerMailReward;
+        case 103008: return RespPlayerMailList;
+        case 103006: return RespPlayerMailReward;
+        case 103007: return ReqPlayerMailList;
+        case 103002: return RespPlayerMailRead;
+        case 105001: return ReqActivityInfo;
+        case 105002: return RespActivityInfo;
+        case 105003: return RespActivityInfoUpdate;
+        case 107002: return RespShadowInfo;
+        case 107001: return ReqShadowInfo;
+        case 106001: return ReqRankInfo;
+        case 106002: return RespRankInfo;
+        case 100001: return ReqLogin;
+        case 100002: return ReqRandName;
+        case 100003: return ReqCreateRole;
+        case 1001: return RespTips;
+        case 113001: return ReqEquipUpgrade;
+        case 113011: return RespEquipUpdate;
+        case 113006: return RespTakeoutEquip;
+        case 113010: return RespWearEquip;
+        case 113002: return RespEquipUpgrade;
+        case 113003: return ReqEquipInfo;
+        case 113005: return ReqTakeoutEquip;
+        case 113007: return ReqEquipPunching;
+        case 113009: return ReqWearEquip;
+        case 113012: return RespEquipDelete;
+        case 113004: return RespEquipInfo;
+        case 113008: return RespEquipPunching;
+        case 102001: return ReqItemUse;
+        case 102005: return RespItemUpdate;
+        case 102002: return RespItemUse;
+        case 102003: return ReqItemSell;
+        case 102006: return RespItemDelete;
+        case 102007: return RespRewards;
+        case 102004: return RespItemSell;
+        case 110001: return ReqShopInfo;
+        case 110002: return RespShopInfo;
+        case 110004: return RespShopBuy;
+        case 110003: return ReqShopBuy;
+        case 110006: return RespShopQuickBuy;
+        case 110005: return ReqShopQuickBuy;
+        case 200002: return RespLearnCommunityInfo;
+        case 200004: return RespLearnCommunityReward;
+        case 200001: return ReqLearnCommunityInfo;
+        case 200003: return ReqLearnCommunityReward;
+        case 114001: return ReqPetEquipInfo;
+        case 114002: return RespPetEquipInfo;
+        case 114003: return ReqWearPetEquip;
+        case 114007: return RespPetEquipDelete;
+        case 114008: return RespPetEquipUpdate;
+        case 114004: return RespWearPetEquip;
+        case 114005: return ReqTakeoutPetEquip;
+        case 114006: return RespTakeoutPetEquip;
+        case 108001: return ReqResourceRecycleInfo;
+        case 108002: return RespResourceRecycleInfo;
+        case 104002: return RespChat;
+        case 104001: return ReqChat;
+        case 111001: return ReqMissionInfo;
+        case 111005: return RespMissionSingleQuest;
+        case 111003: return ReqMissionQuestReward;
+        case 111004: return RespMissionQuestReward;
+        case 111002: return RespMissionInfo;
+        case 2001: return ReqFunctionControl;
+        case 900001: return ReqGroupMailInfo;
+        case 998004: return RespHomeFurnitureRemove;
+        case 998001: return ReqHomeInfo;
+        case 998003: return ReqHomeFurnitureRemove;
+        case 998012: return RespHomeSchemeLayoutInfo;
+        case 998005: return ReqHomeSchemeLayoutSave;
+        case 998014: return RespHomeBetsuinInfo;
+        case 998007: return ReqHomeFurnitureCreate;
+        case 998006: return RespHomeSchemeLayoutSave;
+        case 998009: return ReqHomeFurnitureUpdate;
+        case 998010: return RespHomeFurnitureUpdate;
+        case 998011: return ReqHomeSchemeLayoutInfo;
+        case 998002: return RespHomeInfo;
+        case 998013: return ReqHomeBetsuinInfo;
+        case 998008: return RespHomeFurnitureCreate;
+        case 201001: return RespActivityItemDelete;
+        case 201002: return RespActivityItemsInfo;
+        case 201003: return RespActivityItemsUpdate;
+        case 112001: return ReqPetLevelup;
+        case 112003: return ReqPetIdentify;
+        case 112008: return RespPetUseAttrPoint;
+        case 112002: return RespPetLevelup;
+        case 112009: return RespPetUpdate;
+        case 112004: return RespPetIdentify;
+        case 112010: return RespPetDelete;
+        case 112006: return RespPetActive;
+        case 112005: return ReqPetActive;
+        case 112007: return ReqPetUseAttrPoint;
         default: return null;
       }
     }
@@ -926,53 +1256,75 @@ public final class PBDefine {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020PBProtocol.proto\022\010Protocol*\204\016\n\nPBProto" +
+      "\n\020PBProtocol.proto\022\010Protocol*\353\024\n\nPBProto" +
       "col\022\r\n\tDEFAULTID\020\000\022\032\n\024RespPlayerCreateRo" +
-      "le\020\321\226\006\022\031\n\023ReqPlayerCreateRole\020\355\225\006\022\026\n\020Req" +
-      "PlayerReLogin\020\356\225\006\022\025\n\017RespPlayerHeart\020\322\226\006" +
-      "\022\030\n\022RespInitPlayerInfo\020\323\226\006\022\030\n\022RespPlayer" +
-      "RandName\020\324\226\006\022\032\n\024RespPlayerDisconnect\020\325\226\006" +
-      "\022\031\n\023RespPlayerEnterGame\020\326\226\006\022\027\n\021RespPlaye" +
-      "rReLogin\020\327\226\006\022\025\n\017RespPlayerLogin\020\330\226\006\022\027\n\021R" +
-      "eqPlayerRandName\020\357\225\006\022\032\n\024RespUpdatePlayer" +
-      "Info\020\331\226\006\022\024\n\016ReqPlayerLogin\020\360\225\006\022\024\n\016ReqPla" +
-      "yerHeart\020\361\225\006\022\027\n\021ReqPlayerMailRead\020\275\245\006\022\032\n" +
-      "\024RespPlayerMailDelete\020\241\246\006\022\031\n\023ReqPlayerMa" +
-      "ilDelete\020\276\245\006\022\031\n\023ReqPlayerMailReward\020\277\245\006\022" +
-      "\030\n\022RespPlayerMailList\020\242\246\006\022\032\n\024RespPlayerM" +
-      "ailReward\020\243\246\006\022\027\n\021ReqPlayerMailList\020\300\245\006\022\030" +
-      "\n\022RespPlayerMailRead\020\244\246\006\022\025\n\017ReqActivityI" +
-      "nfo\020\215\265\006\022\026\n\020RespActivityInfo\020\361\265\006\022\034\n\026RespA" +
-      "ctivityInfoUpdate\020\362\265\006\022\024\n\016RespShadowInfo\020" +
-      "\301\305\006\022\023\n\rReqShadowInfo\020\335\304\006\022\021\n\013ReqRankInfo\020" +
-      "\365\274\006\022\022\n\014RespRankInfo\020\331\275\006\022\016\n\010ReqLogin\020\205\216\006\022" +
-      "\021\n\013ReqRandName\020\206\216\006\022\023\n\rReqCreateRole\020\207\216\006\022" +
-      "\r\n\010RespTips\020\261\t\022\020\n\nReqItemUse\020\325\235\006\022\024\n\016Resp" +
-      "ItemUpdate\020\271\236\006\022\021\n\013RespItemUse\020\272\236\006\022\021\n\013Req" +
-      "ItemSell\020\326\235\006\022\024\n\016RespItemDelete\020\273\236\006\022\021\n\013Re" +
-      "spRewards\020\274\236\006\022\022\n\014RespItemSell\020\275\236\006\022\021\n\013Req" +
-      "ShopInfo\020\225\334\006\022\022\n\014RespShopInfo\020\371\334\006\022\021\n\013Resp" +
-      "ShopBuy\020\372\334\006\022\020\n\nReqShopBuy\020\226\334\006\022\026\n\020RespSho" +
-      "pQuickBuy\020\373\334\006\022\025\n\017ReqShopQuickBuy\020\227\334\006\022\034\n\026" +
-      "RespLearnCommunityInfo\020\211\234\014\022\036\n\030RespLearnC" +
-      "ommunityReward\020\212\234\014\022\033\n\025ReqLearnCommunityI" +
-      "nfo\020\245\233\014\022\035\n\027ReqLearnCommunityReward\020\246\233\014\022\034" +
-      "\n\026ReqResourceRecycleInfo\020\305\314\006\022\035\n\027RespReso" +
-      "urceRecycleInfo\020\251\315\006\022\016\n\010RespChat\020\211\256\006\022\r\n\007R" +
-      "eqChat\020\245\255\006\022\024\n\016ReqMissionInfo\020\375\343\006\022\034\n\026Resp" +
-      "MissionSingleQuest\020\341\344\006\022\033\n\025ReqMissionQues" +
-      "tReward\020\376\343\006\022\034\n\026RespMissionQuestReward\020\342\344" +
-      "\006\022\025\n\017RespMissionInfo\020\343\344\006\022\027\n\022ReqFunctionC" +
-      "ontrol\020\265\020\022\026\n\020ReqGroupMailInfo\020\205\3706\022\034\n\026Res" +
-      "pActivityItemDelete\020\361\243\014\022\033\n\025RespActivityI" +
-      "temsInfo\020\362\243\014\022\035\n\027RespActivityItemsUpdate\020" +
-      "\363\243\014\022\023\n\rReqPetLevelup\020\345\353\006\022\024\n\016ReqPetIdenti" +
-      "fy\020\346\353\006\022\031\n\023RespPetUseAttrPoint\020\311\354\006\022\024\n\016Res" +
-      "pPetLevelup\020\312\354\006\022\023\n\rRespPetUpdate\020\313\354\006\022\025\n\017" +
-      "RespPetIdentify\020\314\354\006\022\023\n\rRespPetDelete\020\315\354\006" +
-      "\022\023\n\rRespPetActive\020\316\354\006\022\022\n\014ReqPetActive\020\347\353" +
-      "\006\022\030\n\022ReqPetUseAttrPoint\020\350\353\006B*\n\036com.cat.s" +
-      "erver.game.data.protoB\010PBDefineb\006proto3"
+      "le\020\212\225\006\022\031\n\023ReqPlayerCreateRole\020\211\225\006\022\026\n\020Req" +
+      "PlayerReLogin\020\213\225\006\022\025\n\017RespPlayerHeart\020\222\225\006" +
+      "\022\030\n\022RespInitPlayerInfo\020\223\225\006\022\030\n\022RespPlayer" +
+      "RandName\020\216\225\006\022\032\n\024RespPlayerDisconnect\020\224\225\006" +
+      "\022\031\n\023RespPlayerEnterGame\020\225\225\006\022\027\n\021RespPlaye" +
+      "rReLogin\020\214\225\006\022\025\n\017RespPlayerLogin\020\220\225\006\022\027\n\021R" +
+      "eqPlayerRandName\020\215\225\006\022\032\n\024RespUpdatePlayer" +
+      "Info\020\226\225\006\022\024\n\016ReqPlayerLogin\020\217\225\006\022\024\n\016ReqPla" +
+      "yerHeart\020\221\225\006\022\027\n\021ReqPlayerMailRead\020\331\244\006\022\032\n" +
+      "\024RespPlayerMailDelete\020\334\244\006\022\031\n\023ReqPlayerMa" +
+      "ilDelete\020\333\244\006\022\031\n\023ReqPlayerMailReward\020\335\244\006\022" +
+      "\030\n\022RespPlayerMailList\020\340\244\006\022\032\n\024RespPlayerM" +
+      "ailReward\020\336\244\006\022\027\n\021ReqPlayerMailList\020\337\244\006\022\030" +
+      "\n\022RespPlayerMailRead\020\332\244\006\022\025\n\017ReqActivityI" +
+      "nfo\020\251\264\006\022\026\n\020RespActivityInfo\020\252\264\006\022\034\n\026RespA" +
+      "ctivityInfoUpdate\020\253\264\006\022\024\n\016RespShadowInfo\020" +
+      "\372\303\006\022\023\n\rReqShadowInfo\020\371\303\006\022\021\n\013ReqRankInfo\020" +
+      "\221\274\006\022\022\n\014RespRankInfo\020\222\274\006\022\016\n\010ReqLogin\020\241\215\006\022" +
+      "\021\n\013ReqRandName\020\242\215\006\022\023\n\rReqCreateRole\020\243\215\006\022" +
+      "\r\n\010RespTips\020\351\007\022\025\n\017ReqEquipUpgrade\020\351\362\006\022\025\n" +
+      "\017RespEquipUpdate\020\363\362\006\022\026\n\020RespTakeoutEquip" +
+      "\020\356\362\006\022\023\n\rRespWearEquip\020\362\362\006\022\026\n\020RespEquipUp" +
+      "grade\020\352\362\006\022\022\n\014ReqEquipInfo\020\353\362\006\022\025\n\017ReqTake" +
+      "outEquip\020\355\362\006\022\026\n\020ReqEquipPunching\020\357\362\006\022\022\n\014" +
+      "ReqWearEquip\020\361\362\006\022\025\n\017RespEquipDelete\020\364\362\006\022" +
+      "\023\n\rRespEquipInfo\020\354\362\006\022\027\n\021RespEquipPunchin" +
+      "g\020\360\362\006\022\020\n\nReqItemUse\020\361\234\006\022\024\n\016RespItemUpdat" +
+      "e\020\365\234\006\022\021\n\013RespItemUse\020\362\234\006\022\021\n\013ReqItemSell\020" +
+      "\363\234\006\022\024\n\016RespItemDelete\020\366\234\006\022\021\n\013RespRewards" +
+      "\020\367\234\006\022\022\n\014RespItemSell\020\364\234\006\022\021\n\013ReqShopInfo\020" +
+      "\261\333\006\022\022\n\014RespShopInfo\020\262\333\006\022\021\n\013RespShopBuy\020\264" +
+      "\333\006\022\020\n\nReqShopBuy\020\263\333\006\022\026\n\020RespShopQuickBuy" +
+      "\020\266\333\006\022\025\n\017ReqShopQuickBuy\020\265\333\006\022\034\n\026RespLearn" +
+      "CommunityInfo\020\302\232\014\022\036\n\030RespLearnCommunityR" +
+      "eward\020\304\232\014\022\033\n\025ReqLearnCommunityInfo\020\301\232\014\022\035" +
+      "\n\027ReqLearnCommunityReward\020\303\232\014\022\025\n\017ReqPetE" +
+      "quipInfo\020\321\372\006\022\026\n\020RespPetEquipInfo\020\322\372\006\022\025\n\017" +
+      "ReqWearPetEquip\020\323\372\006\022\030\n\022RespPetEquipDelet" +
+      "e\020\327\372\006\022\030\n\022RespPetEquipUpdate\020\330\372\006\022\026\n\020RespW" +
+      "earPetEquip\020\324\372\006\022\030\n\022ReqTakeoutPetEquip\020\325\372" +
+      "\006\022\031\n\023RespTakeoutPetEquip\020\326\372\006\022\034\n\026ReqResou" +
+      "rceRecycleInfo\020\341\313\006\022\035\n\027RespResourceRecycl" +
+      "eInfo\020\342\313\006\022\016\n\010RespChat\020\302\254\006\022\r\n\007ReqChat\020\301\254\006" +
+      "\022\024\n\016ReqMissionInfo\020\231\343\006\022\034\n\026RespMissionSin" +
+      "gleQuest\020\235\343\006\022\033\n\025ReqMissionQuestReward\020\233\343" +
+      "\006\022\034\n\026RespMissionQuestReward\020\234\343\006\022\025\n\017RespM" +
+      "issionInfo\020\232\343\006\022\027\n\022ReqFunctionControl\020\321\017\022" +
+      "\026\n\020ReqGroupMailInfo\020\241\3676\022\035\n\027RespHomeFurni" +
+      "tureRemove\020\364\364<\022\021\n\013ReqHomeInfo\020\361\364<\022\034\n\026Req" +
+      "HomeFurnitureRemove\020\363\364<\022\036\n\030RespHomeSchem" +
+      "eLayoutInfo\020\374\364<\022\035\n\027ReqHomeSchemeLayoutSa" +
+      "ve\020\365\364<\022\031\n\023RespHomeBetsuinInfo\020\376\364<\022\034\n\026Req" +
+      "HomeFurnitureCreate\020\367\364<\022\036\n\030RespHomeSchem" +
+      "eLayoutSave\020\366\364<\022\034\n\026ReqHomeFurnitureUpdat" +
+      "e\020\371\364<\022\035\n\027RespHomeFurnitureUpdate\020\372\364<\022\035\n\027" +
+      "ReqHomeSchemeLayoutInfo\020\373\364<\022\022\n\014RespHomeI" +
+      "nfo\020\362\364<\022\030\n\022ReqHomeBetsuinInfo\020\375\364<\022\035\n\027Res" +
+      "pHomeFurnitureCreate\020\370\364<\022\034\n\026RespActivity" +
+      "ItemDelete\020\251\242\014\022\033\n\025RespActivityItemsInfo\020" +
+      "\252\242\014\022\035\n\027RespActivityItemsUpdate\020\253\242\014\022\023\n\rRe" +
+      "qPetLevelup\020\201\353\006\022\024\n\016ReqPetIdentify\020\203\353\006\022\031\n" +
+      "\023RespPetUseAttrPoint\020\210\353\006\022\024\n\016RespPetLevel" +
+      "up\020\202\353\006\022\023\n\rRespPetUpdate\020\211\353\006\022\025\n\017RespPetId" +
+      "entify\020\204\353\006\022\023\n\rRespPetDelete\020\212\353\006\022\023\n\rRespP" +
+      "etActive\020\206\353\006\022\022\n\014ReqPetActive\020\205\353\006\022\030\n\022ReqP" +
+      "etUseAttrPoint\020\207\353\006B*\n\036com.cat.server.gam" +
+      "e.data.protoB\010PBDefineb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

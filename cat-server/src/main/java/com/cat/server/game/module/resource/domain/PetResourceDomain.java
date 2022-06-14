@@ -15,9 +15,9 @@ public class PetResourceDomain extends AbstractResourceDomain<Long, Pet>{
 	
 	public static final int LIMIT = 999;
 
-	PetResourceDomain(long playerId) {
-		super(playerId);
-	}
+//	PetResourceDomain(long playerId) {
+//		super(playerId);
+//	}
 	
 	PetResourceDomain(long playerId, Map<Long, Pet> petMap) {
 		super(playerId, petMap);

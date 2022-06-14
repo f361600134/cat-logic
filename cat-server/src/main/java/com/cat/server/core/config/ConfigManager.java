@@ -57,6 +57,30 @@ public class ConfigManager implements IConfigManager, ILifecycle {
 		return getConfig(clazz, id) != null;
 	}
 	
+	/**
+	 * 根据条件获取到最先匹配到的配置
+	 * @param <T>
+	 */
+	public <T extends IGameConfig>T getConfig(Class<T> clazz, Predicate<T> predicate){
+		if (clazz == null) {
+            throw new NullPointerException("clazz is null");
+        }
+        if (predicate == null) {
+        	throw new NullPointerException("predicate is null");
+        }
+        IConfigContainer<T> container = getContainer(clazz);
+        if (container == null) {
+            return null;
+        }
+        Map<Integer, T> allConfigs = container.getAllConfigs();
+        for (T config : allConfigs.values()) {
+            if (predicate.test(config)) {
+            	return config;
+            }
+        }
+        return null;
+	}
+	
 	 /**
      * 获取满足条件的配置
      * @param <T>

@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.local.ext;
+package com.cat.server.game.data.config.local.interfaces;
 
 import com.cat.server.game.helper.condition.ICondition;
 

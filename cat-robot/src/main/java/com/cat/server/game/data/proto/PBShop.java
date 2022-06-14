@@ -1684,6 +1684,520 @@ public final class PBShop {
 
   }
 
+  public interface ResShopRefreshOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.ResShopRefresh)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *错误码
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     * @return The code.
+     */
+    int getCode();
+  }
+  /**
+   * <pre>
+   * 响应商店刷新,成功则返回商店信息
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.ResShopRefresh}
+   */
+  public  static final class ResShopRefresh extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.ResShopRefresh)
+      ResShopRefreshOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ResShopRefresh.newBuilder() to construct.
+    private ResShopRefresh(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ResShopRefresh() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ResShopRefresh();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ResShopRefresh(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              code_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBShop.internal_static_Protocol_ResShopRefresh_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBShop.internal_static_Protocol_ResShopRefresh_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBShop.ResShopRefresh.class, com.cat.server.game.data.proto.PBShop.ResShopRefresh.Builder.class);
+    }
+
+    public static final int CODE_FIELD_NUMBER = 1;
+    private int code_;
+    /**
+     * <pre>
+     *错误码
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     * @return The code.
+     */
+    public int getCode() {
+      return code_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (code_ != 0) {
+        output.writeInt32(1, code_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (code_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, code_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBShop.ResShopRefresh)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBShop.ResShopRefresh other = (com.cat.server.game.data.proto.PBShop.ResShopRefresh) obj;
+
+      if (getCode()
+          != other.getCode()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBShop.ResShopRefresh prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 响应商店刷新,成功则返回商店信息
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.ResShopRefresh}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.ResShopRefresh)
+        com.cat.server.game.data.proto.PBShop.ResShopRefreshOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBShop.internal_static_Protocol_ResShopRefresh_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBShop.internal_static_Protocol_ResShopRefresh_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBShop.ResShopRefresh.class, com.cat.server.game.data.proto.PBShop.ResShopRefresh.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBShop.ResShopRefresh.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        code_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBShop.internal_static_Protocol_ResShopRefresh_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBShop.ResShopRefresh getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBShop.ResShopRefresh.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBShop.ResShopRefresh build() {
+        com.cat.server.game.data.proto.PBShop.ResShopRefresh result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBShop.ResShopRefresh buildPartial() {
+        com.cat.server.game.data.proto.PBShop.ResShopRefresh result = new com.cat.server.game.data.proto.PBShop.ResShopRefresh(this);
+        result.code_ = code_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBShop.ResShopRefresh) {
+          return mergeFrom((com.cat.server.game.data.proto.PBShop.ResShopRefresh)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBShop.ResShopRefresh other) {
+        if (other == com.cat.server.game.data.proto.PBShop.ResShopRefresh.getDefaultInstance()) return this;
+        if (other.getCode() != 0) {
+          setCode(other.getCode());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBShop.ResShopRefresh parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBShop.ResShopRefresh) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int code_ ;
+      /**
+       * <pre>
+       *错误码
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @return The code.
+       */
+      public int getCode() {
+        return code_;
+      }
+      /**
+       * <pre>
+       *错误码
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @param value The code to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCode(int value) {
+        
+        code_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *错误码
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCode() {
+        
+        code_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.ResShopRefresh)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.ResShopRefresh)
+    private static final com.cat.server.game.data.proto.PBShop.ResShopRefresh DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBShop.ResShopRefresh();
+    }
+
+    public static com.cat.server.game.data.proto.PBShop.ResShopRefresh getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ResShopRefresh>
+        PARSER = new com.google.protobuf.AbstractParser<ResShopRefresh>() {
+      @java.lang.Override
+      public ResShopRefresh parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ResShopRefresh(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ResShopRefresh> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ResShopRefresh> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBShop.ResShopRefresh getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface RespShopBuyOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Protocol.RespShopBuy)
       com.google.protobuf.MessageOrBuilder {
@@ -2883,6 +3397,520 @@ public final class PBShop {
 
     @java.lang.Override
     public com.cat.server.game.data.proto.PBShop.ReqShopBuy getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ReqShopRefreshOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.ReqShopRefresh)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *商店id
+     * </pre>
+     *
+     * <code>int32 shopId = 1;</code>
+     * @return The shopId.
+     */
+    int getShopId();
+  }
+  /**
+   * <pre>
+   * 请求商店刷新
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.ReqShopRefresh}
+   */
+  public  static final class ReqShopRefresh extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.ReqShopRefresh)
+      ReqShopRefreshOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReqShopRefresh.newBuilder() to construct.
+    private ReqShopRefresh(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReqShopRefresh() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReqShopRefresh();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ReqShopRefresh(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              shopId_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBShop.internal_static_Protocol_ReqShopRefresh_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBShop.internal_static_Protocol_ReqShopRefresh_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBShop.ReqShopRefresh.class, com.cat.server.game.data.proto.PBShop.ReqShopRefresh.Builder.class);
+    }
+
+    public static final int SHOPID_FIELD_NUMBER = 1;
+    private int shopId_;
+    /**
+     * <pre>
+     *商店id
+     * </pre>
+     *
+     * <code>int32 shopId = 1;</code>
+     * @return The shopId.
+     */
+    public int getShopId() {
+      return shopId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (shopId_ != 0) {
+        output.writeInt32(1, shopId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (shopId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, shopId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBShop.ReqShopRefresh)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBShop.ReqShopRefresh other = (com.cat.server.game.data.proto.PBShop.ReqShopRefresh) obj;
+
+      if (getShopId()
+          != other.getShopId()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + SHOPID_FIELD_NUMBER;
+      hash = (53 * hash) + getShopId();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBShop.ReqShopRefresh prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 请求商店刷新
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.ReqShopRefresh}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.ReqShopRefresh)
+        com.cat.server.game.data.proto.PBShop.ReqShopRefreshOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBShop.internal_static_Protocol_ReqShopRefresh_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBShop.internal_static_Protocol_ReqShopRefresh_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBShop.ReqShopRefresh.class, com.cat.server.game.data.proto.PBShop.ReqShopRefresh.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBShop.ReqShopRefresh.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        shopId_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBShop.internal_static_Protocol_ReqShopRefresh_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBShop.ReqShopRefresh getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBShop.ReqShopRefresh.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBShop.ReqShopRefresh build() {
+        com.cat.server.game.data.proto.PBShop.ReqShopRefresh result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBShop.ReqShopRefresh buildPartial() {
+        com.cat.server.game.data.proto.PBShop.ReqShopRefresh result = new com.cat.server.game.data.proto.PBShop.ReqShopRefresh(this);
+        result.shopId_ = shopId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBShop.ReqShopRefresh) {
+          return mergeFrom((com.cat.server.game.data.proto.PBShop.ReqShopRefresh)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBShop.ReqShopRefresh other) {
+        if (other == com.cat.server.game.data.proto.PBShop.ReqShopRefresh.getDefaultInstance()) return this;
+        if (other.getShopId() != 0) {
+          setShopId(other.getShopId());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBShop.ReqShopRefresh parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBShop.ReqShopRefresh) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int shopId_ ;
+      /**
+       * <pre>
+       *商店id
+       * </pre>
+       *
+       * <code>int32 shopId = 1;</code>
+       * @return The shopId.
+       */
+      public int getShopId() {
+        return shopId_;
+      }
+      /**
+       * <pre>
+       *商店id
+       * </pre>
+       *
+       * <code>int32 shopId = 1;</code>
+       * @param value The shopId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setShopId(int value) {
+        
+        shopId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *商店id
+       * </pre>
+       *
+       * <code>int32 shopId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearShopId() {
+        
+        shopId_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.ReqShopRefresh)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.ReqShopRefresh)
+    private static final com.cat.server.game.data.proto.PBShop.ReqShopRefresh DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBShop.ReqShopRefresh();
+    }
+
+    public static com.cat.server.game.data.proto.PBShop.ReqShopRefresh getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReqShopRefresh>
+        PARSER = new com.google.protobuf.AbstractParser<ReqShopRefresh>() {
+      @java.lang.Override
+      public ReqShopRefresh parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ReqShopRefresh(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReqShopRefresh> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReqShopRefresh> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBShop.ReqShopRefresh getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -5433,6 +6461,11 @@ public final class PBShop {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_RespShopInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_ResShopRefresh_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_ResShopRefresh_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_RespShopBuy_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -5442,6 +6475,11 @@ public final class PBShop {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_ReqShopBuy_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_ReqShopRefresh_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_ReqShopRefresh_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_RespShopQuickBuy_descriptor;
   private static final 
@@ -5469,16 +6507,18 @@ public final class PBShop {
       "\n\014PBShop.proto\022\010Protocol\032\014PBItem.proto\"\035" +
       "\n\013ReqShopInfo\022\016\n\006shopId\030\001 \003(\005\"E\n\014RespSho" +
       "pInfo\022\'\n\tshopInfos\030\001 \003(\0132\024.Protocol.PBSh" +
-      "opInfo\022\014\n\004code\030\002 \001(\005\"\033\n\013RespShopBuy\022\014\n\004c" +
-      "ode\030\001 \001(\005\">\n\nReqShopBuy\022\016\n\006shopId\030\001 \001(\005\022" +
-      "\020\n\010configId\030\002 \001(\005\022\016\n\006number\030\003 \001(\005\" \n\020Res" +
-      "pShopQuickBuy\022\014\n\004code\030\001 \001(\005\"\243\001\n\nPBShopIn" +
-      "fo\022\016\n\006shopId\030\001 \001(\005\022\027\n\017freeRefreshTime\030\002 " +
-      "\001(\003\022\026\n\016freeRefreshNum\030\003 \001(\005\022(\n\nitemRecor" +
-      "d\030\004 \003(\0132\024.Protocol.PBPairInfo\022\025\n\rresRefr" +
-      "eshNum\030\005 \001(\005\022\023\n\013commodities\030\006 \003(\005\"!\n\017Req" +
-      "ShopQuickBuy\022\016\n\006shopId\030\001 \001(\005B(\n\036com.cat." +
-      "server.game.data.protoB\006PBShopb\006proto3"
+      "opInfo\022\014\n\004code\030\002 \001(\005\"\036\n\016ResShopRefresh\022\014" +
+      "\n\004code\030\001 \001(\005\"\033\n\013RespShopBuy\022\014\n\004code\030\001 \001(" +
+      "\005\">\n\nReqShopBuy\022\016\n\006shopId\030\001 \001(\005\022\020\n\010confi" +
+      "gId\030\002 \001(\005\022\016\n\006number\030\003 \001(\005\" \n\016ReqShopRefr" +
+      "esh\022\016\n\006shopId\030\001 \001(\005\" \n\020RespShopQuickBuy\022" +
+      "\014\n\004code\030\001 \001(\005\"\243\001\n\nPBShopInfo\022\016\n\006shopId\030\001" +
+      " \001(\005\022\027\n\017freeRefreshTime\030\002 \001(\003\022\026\n\016freeRef" +
+      "reshNum\030\003 \001(\005\022(\n\nitemRecord\030\004 \003(\0132\024.Prot" +
+      "ocol.PBPairInfo\022\025\n\rresRefreshNum\030\005 \001(\005\022\023" +
+      "\n\013commodities\030\006 \003(\005\"!\n\017ReqShopQuickBuy\022\016" +
+      "\n\006shopId\030\001 \001(\005B(\n\036com.cat.server.game.da" +
+      "ta.protoB\006PBShopb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -5497,32 +6537,44 @@ public final class PBShop {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_RespShopInfo_descriptor,
         new java.lang.String[] { "ShopInfos", "Code", });
-    internal_static_Protocol_RespShopBuy_descriptor =
+    internal_static_Protocol_ResShopRefresh_descriptor =
       getDescriptor().getMessageTypes().get(2);
+    internal_static_Protocol_ResShopRefresh_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_ResShopRefresh_descriptor,
+        new java.lang.String[] { "Code", });
+    internal_static_Protocol_RespShopBuy_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_Protocol_RespShopBuy_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_RespShopBuy_descriptor,
         new java.lang.String[] { "Code", });
     internal_static_Protocol_ReqShopBuy_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_Protocol_ReqShopBuy_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqShopBuy_descriptor,
         new java.lang.String[] { "ShopId", "ConfigId", "Number", });
+    internal_static_Protocol_ReqShopRefresh_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_Protocol_ReqShopRefresh_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_ReqShopRefresh_descriptor,
+        new java.lang.String[] { "ShopId", });
     internal_static_Protocol_RespShopQuickBuy_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_Protocol_RespShopQuickBuy_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_RespShopQuickBuy_descriptor,
         new java.lang.String[] { "Code", });
     internal_static_Protocol_PBShopInfo_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_Protocol_PBShopInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_PBShopInfo_descriptor,
         new java.lang.String[] { "ShopId", "FreeRefreshTime", "FreeRefreshNum", "ItemRecord", "ResRefreshNum", "Commodities", });
     internal_static_Protocol_ReqShopQuickBuy_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_Protocol_ReqShopQuickBuy_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqShopQuickBuy_descriptor,

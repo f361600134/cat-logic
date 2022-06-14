@@ -3,7 +3,7 @@ package com.cat.server.game.module.mission.handler;
 import java.util.Map;
 
 import com.cat.server.core.event.IEvent;
-import com.cat.server.game.data.config.local.ext.IConfigMission;
+import com.cat.server.game.data.config.local.interfaces.IConfigMission;
 import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.functioncontrol.IFunctionReset;
 import com.cat.server.game.module.mission.define.MissionTypeEnum;

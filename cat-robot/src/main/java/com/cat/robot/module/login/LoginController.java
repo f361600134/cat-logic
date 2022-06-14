@@ -42,14 +42,14 @@ public class LoginController implements IController {
 //				context.send(PBDefine.PBProtocol.ReqRandName_VALUE, newBuilder.build());
 			}
 		}
-		robotManager.getRobotMap().forEach((key, robot)->{
-			ReqChat req = ReqChat.create();
-			req.setChannel(0);
-			//req.setContent("@mail sendMail,1");
-			req.setContent("@resource 600001,1,600002,1");
-			req.setRecvId(-1);
-			robot.send(req);
-		});
+//		robotManager.getRobotMap().forEach((key, robot)->{
+//			ReqChat req = ReqChat.create();
+//			req.setChannel(0);
+//			//req.setContent("@mail sendMail,1");
+//			req.setContent("@resource 600001,1,600002,1");
+//			req.setRecvId(-1);
+//			robot.send(req);
+//		});
 		
 	}
 

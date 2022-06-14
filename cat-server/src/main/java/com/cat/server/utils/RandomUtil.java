@@ -134,7 +134,9 @@ public class RandomUtil {
             return true;
         }
         // [0,10000)
-        return ThreadLocalRandom.current().nextInt(10000) < probablility;
+        int random = ThreadLocalRandom.current().nextInt(10000);
+        System.out.println("=============>"+random);
+        return  random < probablility;
     }
 
     /**

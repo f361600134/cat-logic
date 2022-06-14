@@ -1,24 +1,19 @@
 package com.cat.server.game.module.petequip;
 
-import java.util.List;
-import java.util.Map;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.cat.net.network.annotation.Cmd;
 import com.cat.net.network.base.ISession;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
-
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.cat.server.game.module.player.IPlayerService;
-import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.petequip.proto.*;
 //import com.cat.server.game.data.proto;
-import com.cat.server.game.data.proto.PBPetEquip.*;
+import com.cat.server.game.data.proto.PBPetEquip.ReqPetEquipInfo;
+import com.cat.server.game.data.proto.PBPetEquip.ReqWearPetEquip;
+import com.cat.server.game.module.petequip.proto.RespPetEquipInfoBuilder;
+import com.cat.server.game.module.petequip.proto.RespWearPetEquipBuilder;
+import com.cat.server.game.module.player.IPlayerService;
 
 /**
  * PetEquip控制器
@@ -32,7 +27,6 @@ public class PetEquipController {
 	
 	@Autowired
 	private PetEquipService petEquipService;
-	
 	
 	/*
 	*请求装备信息

@@ -29,7 +29,11 @@ public interface IFunctionReset{
 		if (config == null) {
 			return true;
 		}
-		long resetTime = config.getResetTimePoint().getResetTimePoint(now);
+		IResetTimePoint timePoint = config.getResetTimePoint();
+		if (timePoint == null) {
+			return true;
+		}
+		long resetTime = timePoint.getResetTimePoint(now);
 		if (this.getLastResetTime(playerId) != resetTime && resetTime!= IResetTimePoint.RESET_FREE) {
 			//判断最近一个重置时间的时间点,如果时间不一样, 则重置
 			this.doReset(playerId, now);
@@ -70,6 +74,6 @@ public interface IFunctionReset{
 	 * @param playerId 玩家id
 	 * @param now 时间戳
 	 */
-	public abstract void doReset(long playerId, long now);
+	default void doReset(long playerId, long now) {}
 	
 }

@@ -18,7 +18,7 @@ import com.cat.robot.common.akka.AkkaContext;
 import com.cat.robot.common.config.Config;
 import com.cat.robot.common.context.SpringContextHolder;
 import com.cat.robot.module.login.proto.ReqLogin;
-import com.cat.robot.module.login.proto.ReqPlayerLogin;
+import com.cat.robot.module.login.proto.ReqPlayerLoginBuilder;
 import com.cat.robot.util.HttpClientUtil;
 import com.cat.server.game.data.proto.PBPlayer.RespInitPlayerInfo;
 
@@ -167,7 +167,8 @@ public class RobotContext {
 	 * @param time
 	 */
 	public void serverLogin(){
-		send(ReqPlayerLogin.create("aaa"));
+		ReqPlayerLoginBuilder builder = ReqPlayerLoginBuilder.create("aaa");
+		send(builder);
 	}
 	
 	public void send(IProtocol protocol) {

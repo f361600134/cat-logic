@@ -1,0 +1,85 @@
+[ {
+  "id" : 0,
+  "nextStar" : 1,
+  "consume" : [ ],
+  "rate" : 10000,
+  "hiddenAttrRate" : 0,
+  "fallbackStar" : 0
+}, {
+  "id" : 1,
+  "nextStar" : 2,
+  "consume" : [ ],
+  "rate" : 10000,
+  "hiddenAttrRate" : 0,
+  "fallbackStar" : 0
+}, {
+  "id" : 2,
+  "nextStar" : 3,
+  "consume" : [ ],
+  "rate" : 10000,
+  "hiddenAttrRate" : 0,
+  "fallbackStar" : 0
+}, {
+  "id" : 3,
+  "nextStar" : 4,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 5700,
+  "hiddenAttrRate" : 0,
+  "fallbackStar" : 0
+}, {
+  "id" : 4,
+  "nextStar" : 5,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 4300,
+  "hiddenAttrRate" : 0,
+  "fallbackStar" : 0
+}, {
+  "id" : 5,
+  "nextStar" : 6,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3800,
+  "hiddenAttrRate" : 0,
+  "fallbackStar" : 0
+}, {
+  "id" : 6,
+  "nextStar" : 7,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3330,
+  "hiddenAttrRate" : 0,
+  "fallbackStar" : 4
+}, {
+  "id" : 7,
+  "nextStar" : 8,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 3000,
+  "hiddenAttrRate" : 0,
+  "fallbackStar" : 5
+}, {
+  "id" : 8,
+  "nextStar" : 9,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 2750,
+  "hiddenAttrRate" : 0,
+  "fallbackStar" : 6
+}, {
+  "id" : 9,
+  "nextStar" : 10,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 2480,
+  "hiddenAttrRate" : 3000,
+  "fallbackStar" : 7
+}, {
+  "id" : 10,
+  "nextStar" : 11,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 2480,
+  "hiddenAttrRate" : 3300,
+  "fallbackStar" : 8
+}, {
+  "id" : 11,
+  "nextStar" : 12,
+  "consume" : [ [ 100001, 1 ] ],
+  "rate" : 2480,
+  "hiddenAttrRate" : 3600,
+  "fallbackStar" : 10
+} ]

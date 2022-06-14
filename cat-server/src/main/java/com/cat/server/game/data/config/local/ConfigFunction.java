@@ -3,7 +3,7 @@ package com.cat.server.game.data.config.local;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.game.data.config.local.base.ConfigFunctionBase;
-import com.cat.server.game.data.config.local.ext.IConfigFunction;
+import com.cat.server.game.data.config.local.interfaces.IConfigFunction;
 import com.cat.server.game.helper.condition.ICondition;
 import com.cat.server.game.helper.condition.parse.ConditionParse;
 import com.cat.server.game.module.functioncontrol.time.parse.ResetTimePointParser;

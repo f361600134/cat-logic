@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.GameEventBus;
+import com.cat.server.game.data.config.local.ConfigEquip;
 import com.cat.server.game.module.equip.domain.Equip;
 import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
 
@@ -12,11 +14,7 @@ import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
 * 装备资源域<br>
 * @author Jeremy
 */
-public class EquipResourceDomain extends AbstractResourceDomain<Long, Equip>{
-	
-	EquipResourceDomain(long playerId) {
-		super(playerId);
-	}
+public class EquipResourceDomain extends AbstractEquipResourceDomain<Long, Equip>{
 	
 	EquipResourceDomain(long playerId, Map<Long, Equip> beanMap) {
 		super(playerId, beanMap);
@@ -59,5 +57,19 @@ public class EquipResourceDomain extends AbstractResourceDomain<Long, Equip>{
 	public static EquipResourceDomain create(long playerId, Map<Long, Equip> beanMap) {
 		EquipResourceDomain domain = new EquipResourceDomain(playerId, beanMap);
 		return domain;
+	}
+
+	@Override
+	public void initUsedEquips(Map<Long, Equip> itemMap) {
+		for (Equip equip : getBeanMap().values()) {
+			if (equip.getHolder() != 0L) {
+				continue;
+			}
+			ConfigEquip configPetEquip = ConfigManager.getInstance().getConfig(ConfigEquip.class, equip.getConfigId());
+			if (configPetEquip == null) {
+				continue;
+			}
+			usedEquips.put(equip.getHolder(), configPetEquip.getCategory(), equip.getId());
+		}
 	}
 }

@@ -19,23 +19,23 @@ public interface IEquipService extends IPlayerModuleService {
 	 */
 	public Equip getEquip(long playerId, long equipId);
 	
-	/**
-	 * 获取装备id列表
-	 * @param playerId 玩家id
-	 * @param holderId 装备持有者id，武将/宠物
-	 * @return List<Long> 装备Id列表
-	 * @date 2022年6月3日下午10:14:24
-	 */
-	public Collection<Long> getEquipIds(long playerId, long holderId);
-	
-	/**
-	 * 获取装备列表
-	 * @param playerId 玩家id
-	 * @param holderId 装备持有者id，武将/宠物
-	 * @return List<Long> 装备列表
-	 * @date 2022年6月3日下午10:14:24
-	 */
-	public List<Equip> getEquips(long playerId, long holderId);
+//	/**
+//	 * 获取装备id列表
+//	 * @param playerId 玩家id
+//	 * @param holderId 装备持有者id，武将/宠物
+//	 * @return List<Long> 装备Id列表
+//	 * @date 2022年6月3日下午10:14:24
+//	 */
+//	public Collection<Long> getEquipIds(long playerId, long holderId);
+//	
+//	/**
+//	 * 获取装备列表
+//	 * @param playerId 玩家id
+//	 * @param holderId 装备持有者id，武将/宠物
+//	 * @return List<Long> 装备列表
+//	 * @date 2022年6月3日下午10:14:24
+//	 */
+//	public List<Equip> getEquips(long playerId, long holderId);
 	
 	
 

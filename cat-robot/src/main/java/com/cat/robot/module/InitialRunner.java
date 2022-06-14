@@ -29,10 +29,11 @@ public class InitialRunner implements ILifecycle {
 			Robot robot = Robot.create();
 			RobotContext context = RobotContext.create(robot);
 			context.gameServerConnection();
+			
+			Thread.sleep(1000);
 			context.serverLogin();
 			
 			robotManager.addRobot(context);
-			Thread.sleep(1000);
 			// 测试GM命令
 
 //			ReqChat req = ReqChat.create();

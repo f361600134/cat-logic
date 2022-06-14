@@ -26,7 +26,7 @@
 }, {
   "id" : 105,
   "shield" : 0,
-  "unlock" : "1:20,2:10010",
+  "unlock" : "1:20&2:10010",
   "reset" : ""
 }, {
   "id" : 106,
@@ -44,22 +44,27 @@
   "unlock" : "",
   "reset" : ""
 }, {
-  "id" : 109,
-  "shield" : 0,
-  "unlock" : "",
-  "reset" : "h_0"
-}, {
-  "id" : 10901,
-  "shield" : 0,
-  "unlock" : "",
-  "reset" : ""
-}, {
   "id" : 110,
   "shield" : 0,
+  "unlock" : "1:20|2:10010",
+  "reset" : "h_0"
+}, {
+  "id" : 11001,
+  "shield" : 0,
   "unlock" : "",
   "reset" : ""
 }, {
-  "id" : 11001,
+  "id" : 111,
+  "shield" : 0,
+  "unlock" : "",
+  "reset" : ""
+}, {
+  "id" : 11101,
+  "shield" : 0,
+  "unlock" : "",
+  "reset" : ""
+}, {
+  "id" : 112,
   "shield" : 0,
   "unlock" : "",
   "reset" : ""

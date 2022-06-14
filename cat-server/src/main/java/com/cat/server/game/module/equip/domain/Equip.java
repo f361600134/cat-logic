@@ -1,5 +1,6 @@
 package com.cat.server.game.module.equip.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cat.orm.core.annotation.Column;
@@ -9,36 +10,38 @@ import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.data.proto.PBEquip.PBEquipDto;
 import com.cat.server.game.helper.attribute.AttributeDictionary;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
+import com.cat.server.game.module.equip.attr.EquipAttrRootNode;
 import com.cat.server.game.module.equip.proto.PBEquipDtoBuilder;
-import com.cat.server.game.module.resource.IResource;
+import com.cat.server.game.module.resource.IEquip;
 
 /**
  * 装备对象
 * @author Jeremy
 */
 @PO(name = "equip")
-public class Equip extends EquipPo implements IPersistence, IResource{
+public class Equip extends EquipPo implements IPersistence, IEquip{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3159723799785160474L;
+
 	/*** 卡牌列表 */
 	@Column(value = PROP_CARDSTR)
-	private List<Integer> cards;
+	private List<Integer> cards = new ArrayList<>();
 	
 	/*** 卡牌属性列表 */
 	@Column(value = PROP_CARDATTRSTR)
-	private AttributeDictionary catdAttrDic;
+	private AttributeDictionary catdAttrDic = new AttributeDictionary();
 
 	/*** 附魂属性 */
 	@Column(value = PROP_ENCHANTMENTATTRSTR)
-	private AttributeDictionary enchantmentAttrDic;
+	private AttributeDictionary enchantmentAttrDic = new AttributeDictionary();
 	
-	/*** 打孔隐藏属性 */
-	@Column(value = PROP_HOLEHIDDENATTRSTR)
-	private AttributeDictionary holehiddenAttrDic;
-	
-	/*** 加工隐藏属性 */
-	@Column(value = PROP_STARHIDDENATTRSTR)
-	private AttributeDictionary starhiddenAttrDic;
-	
+	/**
+	 * 宠物技能根节点
+	 */
+	private transient final EquipAttrRootNode attrRootNode = new EquipAttrRootNode(this);
 	
 	public Equip() {
 
@@ -58,21 +61,6 @@ public class Equip extends EquipPo implements IPersistence, IResource{
 	@Override
 	public int getCount() {
 		return 1;
-	}
-	
-	/**
-	 * 创建一个带有持有者的武器对象
-	 * @param playerId 玩家id
-	 * @param configId 武将配置
-	 * @return Equip
-	 * @date 2021年1月17日上午12:22:09
-	 */
-	public static Equip create(long playerId, int configId) {
-		SnowflakeGenerator generator = SpringContextHolder.getBean(SnowflakeGenerator.class);
-		long id = generator.nextId();
-		Equip equip = new Equip(playerId, id, configId);
-		equip.save();
-		return equip;
 	}
 
 	public List<Integer> getCards() {
@@ -99,20 +87,24 @@ public class Equip extends EquipPo implements IPersistence, IResource{
 		this.enchantmentAttrDic = enchantmentAttrDic;
 	}
 
-	public AttributeDictionary getHolehiddenAttrDic() {
-		return holehiddenAttrDic;
-	}
+//	public AttributeDictionary getHolehiddenAttrDic() {
+//		return holehiddenAttrDic;
+//	}
+//
+//	public void setHolehiddenAttrDic(AttributeDictionary holehiddenAttrDic) {
+//		this.holehiddenAttrDic = holehiddenAttrDic;
+//	}
 
-	public void setHolehiddenAttrDic(AttributeDictionary holehiddenAttrDic) {
-		this.holehiddenAttrDic = holehiddenAttrDic;
-	}
-
-	public AttributeDictionary getStarhiddenAttrDic() {
-		return starhiddenAttrDic;
-	}
-
-	public void setStarhiddenAttrDic(AttributeDictionary starhiddenAttrDic) {
-		this.starhiddenAttrDic = starhiddenAttrDic;
+//	public AttributeDictionary getStarhiddenAttrDic() {
+//		return starhiddenAttrDic;
+//	}
+//
+//	public void setStarhiddenAttrDic(AttributeDictionary starhiddenAttrDic) {
+//		this.starhiddenAttrDic = starhiddenAttrDic;
+//	}
+	
+	public EquipAttrRootNode getAttrRootNode() {
+		return attrRootNode;
 	}
 
 	/**
@@ -127,6 +119,22 @@ public class Equip extends EquipPo implements IPersistence, IResource{
 		dto.setConfigId(this.getConfigId());
 		dto.setHolderId(this.getHolder());
 		return dto.build();
+	}
+	
+
+	/**
+	 * 创建一个带有持有者的武器对象
+	 * @param playerId 玩家id
+	 * @param configId 武将配置
+	 * @return Equip
+	 * @date 2021年1月17日上午12:22:09
+	 */
+	public static Equip create(long playerId, int configId) {
+		SnowflakeGenerator generator = SpringContextHolder.getBean(SnowflakeGenerator.class);
+		long id = generator.nextId();
+		Equip equip = new Equip(playerId, id, configId);
+		equip.save();
+		return equip;
 	}
 	
 }

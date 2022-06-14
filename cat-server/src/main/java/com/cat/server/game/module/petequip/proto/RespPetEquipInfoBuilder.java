@@ -1,13 +1,12 @@
 package com.cat.server.game.module.petequip.proto;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Collection;
 
 import com.cat.net.network.base.AbstractProtocol;
-import com.cat.server.game.data.proto.PBDefine.*;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 //import com.cat.server.game.data.proto;
-import com.cat.server.game.data.proto.PBPetEquip.*;
-import java.util.Collection;
+import com.cat.server.game.data.proto.PBPetEquip.PBPetEquipDto;
+import com.cat.server.game.data.proto.PBPetEquip.RespPetEquipInfo;
 
 /**
 * RespPetEquipInfoBuilder

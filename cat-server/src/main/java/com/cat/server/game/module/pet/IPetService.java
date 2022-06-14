@@ -8,5 +8,9 @@ import com.cat.server.game.module.pet.domain.Pet;
 public interface IPetService {
 	
 	public Pet getPet(long playerId, long petId);
+	
+	default boolean checkExist(long playerId, long petId) {
+		return this.getPet(playerId, petId) == null;
+	}
 
 }

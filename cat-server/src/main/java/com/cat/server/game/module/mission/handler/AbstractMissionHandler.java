@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.IEvent;
-import com.cat.server.game.data.config.local.ext.IConfigMission;
+import com.cat.server.game.data.config.local.interfaces.IConfigMission;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;

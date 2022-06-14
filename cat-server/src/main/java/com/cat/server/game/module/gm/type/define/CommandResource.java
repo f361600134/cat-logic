@@ -1,7 +1,6 @@
 package com.cat.server.game.module.gm.type.define;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -11,7 +10,6 @@ import com.cat.server.game.module.gm.type.AbstractResourceCommand;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.resource.domain.ResourceGroup;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 
 /**
  * 资源GMService, 正数表示增加, 负数表示减少

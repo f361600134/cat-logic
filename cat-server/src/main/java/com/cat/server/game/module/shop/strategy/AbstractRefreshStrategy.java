@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.data.config.local.ConfigShopControl;
-import com.cat.server.game.data.config.local.ext.IConfigShop;
+import com.cat.server.game.data.config.local.interfaces.IConfigShop;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.shop.domain.Shop;

@@ -3,6 +3,7 @@ package com.cat.server.game.helper.log;
 import static com.cat.server.game.helper.ModuleDefine.*;
 
 import com.cat.server.game.helper.ModuleDefine;
+import com.cat.server.game.module.equip.domain.Equip;
 
 /**
  * 资源类型, 资源描述
@@ -65,6 +66,9 @@ public enum NatureEnum {
 	ShopQuickBuy(SHOP, 2,"商店一键购买"),
 	ShopRefresh(SHOP, 3,"商店刷新"),
 	ShopAutoRestore(SHOP, 4,"商店自动恢复免费次数"),
+	//装备
+	EquipStar(EQUIT, 1, "装备加工"),
+	EquipHole(EQUIT, 2, "装备打孔"),
 //	//5:武将
 //	HeroActiveStar(5001,"武将升星"),
 //	HeroRelation(5002,"武将羁绊"),

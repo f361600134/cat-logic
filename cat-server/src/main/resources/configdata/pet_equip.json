@@ -1,145 +1,145 @@
 [ {
-  "id" : 309001,
+  "id" : 700001,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 9, 10, 11, 12 ],
-  "slot" : 0
+  "category" : 1
 }, {
-  "id" : 309002,
+  "id" : 700002,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 9, 10, 11, 12 ],
-  "slot" : 0
+  "category" : 1
 }, {
-  "id" : 309003,
+  "id" : 700003,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 9, 10, 11, 12 ],
-  "slot" : 0
+  "category" : 1
 }, {
-  "id" : 309004,
+  "id" : 700004,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 9, 10, 11, 12 ],
-  "slot" : 0
+  "category" : 1
 }, {
-  "id" : 309005,
+  "id" : 700005,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 17, 18, 21, 22 ],
-  "slot" : 1
+  "category" : 2
 }, {
-  "id" : 309006,
+  "id" : 700006,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 17, 18, 21, 22 ],
-  "slot" : 1
+  "category" : 2
 }, {
-  "id" : 309007,
+  "id" : 700007,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 17, 18, 21, 22 ],
-  "slot" : 1
+  "category" : 2
 }, {
-  "id" : 309008,
+  "id" : 700008,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 17, 18, 21, 22 ],
-  "slot" : 1
+  "category" : 2
 }, {
-  "id" : 309009,
+  "id" : 700009,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 13, 14, 15, 16 ],
-  "slot" : 2
+  "category" : 3
 }, {
-  "id" : 309010,
+  "id" : 700010,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 13, 14, 15, 16 ],
-  "slot" : 2
+  "category" : 3
 }, {
-  "id" : 309011,
+  "id" : 700011,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 13, 14, 15, 16 ],
-  "slot" : 2
+  "category" : 3
 }, {
-  "id" : 309012,
+  "id" : 700012,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 13, 14, 15, 16 ],
-  "slot" : 2
+  "category" : 3
 }, {
-  "id" : 309013,
+  "id" : 700013,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 19, 20, 23, 24 ],
-  "slot" : 3
+  "category" : 4
 }, {
-  "id" : 309014,
+  "id" : 700014,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 19, 20, 23, 24 ],
-  "slot" : 3
+  "category" : 4
 }, {
-  "id" : 309015,
+  "id" : 700015,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 19, 20, 23, 24 ],
-  "slot" : 3
+  "category" : 4
 }, {
-  "id" : 309016,
+  "id" : 700016,
   "stack" : 1,
   "quality" : 0,
   "holderType" : 2,
   "attribute" : { },
   "hiddenAttrs" : [ ],
   "hiddenSkill" : [ 19, 20, 23, 24 ],
-  "slot" : 3
+  "category" : 4
 } ]

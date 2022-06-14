@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.cat.server.core.config.ConfigManager;
-import com.cat.server.game.data.config.local.ext.IConfigShop;
+import com.cat.server.game.data.config.local.interfaces.IConfigShop;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.activity.IActivityService;
 import com.cat.server.game.module.activity.type.IActivityType;

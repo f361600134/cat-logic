@@ -35,26 +35,36 @@ public class ConfigEquipBase implements IGameConfig {
      */
     private int quality;
     /**
-     * 持有者类型<br>
-     * 1:英雄<br>
-     * 2:宠物
-     */
-    private int holderType;
-    /**
-     * 初始属性<br>
-     * 增加的基础属性
+     * 初始属性
      */
     private Map<Integer, Integer> attribute;
     /**
-     * 隐藏技能<br>
-     * 隐藏属性
+     * 加工隐藏属性<br>
+     * [1级加工隐藏,2级隐藏,3级隐藏]
      */
-    private int[] hiddenAttrs;
+    private String starHiddenAttrs;
     /**
-     * 隐藏技能<br>
+     * 打孔隐藏属性<br>
+     * [1级打孔属性,2级隐藏,3级隐藏]
+     */
+    private String holeHiddenAttrs;
+    /**
      * 隐藏技能
      */
     private int[] hiddenSkill;
+    /**
+     * 类别<br>
+     * 对应槽位<br>
+     * 1:武器<br>
+     * 2:衣服<br>
+     * 3:帽子<br>
+     * 4:项链<br>
+     * 5:鞋子<br>
+     * 6:面具<br>
+     * 7:戒指<br>
+     * 8:背包
+     */
+    private int category;
 
     /** @return id*/
     @Override
@@ -87,16 +97,6 @@ public class ConfigEquipBase implements IGameConfig {
         this.quality = quality;
     }
 
-    /** @return 持有者类型*/
-    public int getHolderType() {
-        return this.holderType;
-    }
-
-    /** @param holderType 持有者类型*/
-    public void setHolderType(int holderType) {
-        this.holderType = holderType;
-    }
-
     /** @return 初始属性*/
     public Map<Integer, Integer> getAttribute() {
         return this.attribute;
@@ -107,14 +107,24 @@ public class ConfigEquipBase implements IGameConfig {
         this.attribute = attribute;
     }
 
-    /** @return 隐藏技能*/
-    public int[] getHiddenAttrs() {
-        return this.hiddenAttrs;
+    /** @return 加工隐藏属性*/
+    public String getStarHiddenAttrs() {
+        return this.starHiddenAttrs;
     }
 
-    /** @param hiddenAttrs 隐藏技能*/
-    public void setHiddenAttrs(int[] hiddenAttrs) {
-        this.hiddenAttrs = hiddenAttrs;
+    /** @param starHiddenAttrs 加工隐藏属性*/
+    public void setStarHiddenAttrs(String starHiddenAttrs) {
+        this.starHiddenAttrs = starHiddenAttrs;
+    }
+
+    /** @return 打孔隐藏属性*/
+    public String getHoleHiddenAttrs() {
+        return this.holeHiddenAttrs;
+    }
+
+    /** @param holeHiddenAttrs 打孔隐藏属性*/
+    public void setHoleHiddenAttrs(String holeHiddenAttrs) {
+        this.holeHiddenAttrs = holeHiddenAttrs;
     }
 
     /** @return 隐藏技能*/
@@ -125,6 +135,16 @@ public class ConfigEquipBase implements IGameConfig {
     /** @param hiddenSkill 隐藏技能*/
     public void setHiddenSkill(int[] hiddenSkill) {
         this.hiddenSkill = hiddenSkill;
+    }
+
+    /** @return 类别*/
+    public int getCategory() {
+        return this.category;
+    }
+
+    /** @param category 类别*/
+    public void setCategory(int category) {
+        this.category = category;
     }
 
 }

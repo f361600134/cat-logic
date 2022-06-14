@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBDefine.*;
+import com.google.protobuf.AbstractMessage;
 //import com.cat.server.game.data.proto;
 import com.cat.server.game.data.proto.PBActivity.*;
 
@@ -37,5 +38,10 @@ public class ReqActivityInfoBuilder extends AbstractProtocol {
 	@Override
 	public byte[] toBytes() {
 		return builder.build().toByteArray();
+	}
+	
+	@Override
+	public AbstractMessage getBuilder() {
+		return builder.build();
 	}
 }

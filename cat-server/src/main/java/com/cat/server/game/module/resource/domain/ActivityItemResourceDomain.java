@@ -14,9 +14,9 @@ public class ActivityItemResourceDomain extends AbstractResourceDomain<Long, Act
 	
 	public static final int LIMIT = 999;
 
-	ActivityItemResourceDomain(long playerId) {
-		super(playerId);
-	}
+//	ActivityItemResourceDomain(long playerId) {
+//		super(playerId);
+//	}
 	
 	ActivityItemResourceDomain(long playerId, Map<Long, ActivityItem> itemMap) {
 		super(playerId, itemMap);

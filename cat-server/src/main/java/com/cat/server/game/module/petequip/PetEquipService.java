@@ -1,37 +1,28 @@
 package com.cat.server.game.module.petequip;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
-import com.cat.server.game.helper.ModuleDefine;
-import com.cat.server.game.helper.ResourceType;
-import com.cat.server.game.helper.log.NatureEnum;
-import com.cat.server.game.module.equip.domain.Equip;
-import com.cat.server.game.module.equip.domain.EquipDomain;
-import com.cat.server.game.module.equip.proto.RespEquipInfoBuilder;
-import com.cat.server.game.module.item.domain.Item;
-import com.cat.server.game.module.item.proto.RespItemDeleteBuilder;
-import com.cat.server.game.module.item.proto.RespItemUpdateBuilder;
-import com.cat.server.game.module.pet.IPetService;
-import com.cat.server.game.module.pet.domain.Pet;
-import com.cat.server.game.module.petequip.IPetEquipService;
-import com.cat.server.game.module.petequip.domain.PetEquip;
-import com.cat.server.game.module.petequip.domain.PetEquipDomain;
-import com.cat.server.game.module.petequip.PetEquipManager;
-import com.cat.server.game.module.petequip.proto.*;
-import com.cat.server.game.module.player.IPlayerService;
-import com.cat.server.game.module.resource.IResourceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.cat.server.game.helper.result.ErrorCode;
+
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.server.IModuleManager;
-import com.cat.server.game.data.config.local.ConfigEquip;
 import com.cat.server.game.data.config.local.ConfigPetEquip;
-import com.cat.server.game.data.proto.PBPetEquip.*;
+import com.cat.server.game.data.proto.PBPetEquip.ReqPetEquipInfo;
+import com.cat.server.game.data.proto.PBPetEquip.ReqWearPetEquip;
+import com.cat.server.game.helper.ModuleDefine;
+import com.cat.server.game.helper.ResourceType;
+import com.cat.server.game.helper.log.NatureEnum;
+import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.pet.IPetService;
+import com.cat.server.game.module.petequip.domain.PetEquip;
+import com.cat.server.game.module.petequip.domain.PetEquipDomain;
+import com.cat.server.game.module.petequip.proto.RespPetEquipInfoBuilder;
+import com.cat.server.game.module.petequip.proto.RespWearPetEquipBuilder;
+import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.resource.IResourceService;
 
 
 /**
@@ -48,27 +39,7 @@ public class PetEquipService implements IPetEquipService, IResourceService{
 	@Autowired private PetEquipManager petEquipManager;
 	
 	@Autowired private IPetService petService;
-	
  
-	/**
-	 * 登陆
-	 */
-	public void onLogin(long playerId) {
-		PetEquipDomain domain = petEquipManager.getDomain(playerId);
-		Collection<PetEquip> beans = domain.getBeans();
-		//FSC todo somthing...
-		//Codes for proto
-		//playerService.sendMessage(playerId, ack);
-	}
-	
-	/**
-	 * 当玩家离线,移除掉道具模块数据
-	 * @param playerId
-	 */
-	public void onLogout(long playerId) {
-		petEquipManager.remove(playerId);
-	}
-  
 	@Override
 	public void responseAllInfo(long playerId) {
 		PetEquipDomain domain = petEquipManager.getDomain(playerId);
@@ -177,12 +148,11 @@ public class PetEquipService implements IPetEquipService, IResourceService{
 				return ErrorCode.CONFIG_NOT_EXISTS;
 			}
 			//判断穿戴装备的宠物是否存在
-			Pet pet = petService.getPet(domain.getId(), holderId);
-			if (pet == null) {
+			if (petService.checkExist(playerId, equipId)) {
 				return ErrorCode.PET_NOT_EXIST;
 			}
 			final int slot = configPetEquip.getSlot();
-			domain.replaceNewEquip(slot, holderId, petEquip);
+			domain.wear(holderId, slot, petEquip);
 			this.responsePetEquipInfo(playerId, equipId);
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {
@@ -191,6 +161,34 @@ public class PetEquipService implements IPetEquipService, IResourceService{
 		}
 	}
   
+	/**
+	 * 请求脱下装备<br>
+	 */
+	public ErrorCode reqTakeOutEquip(long playerId) {
+		PetEquipDomain domain = petEquipManager.getDomain(playerId);
+		if (domain == null) {
+			return ErrorCode.DOMAIN_IS_NULL;
+		}
+		final long equipId = 0;
+		//判断装备是否存在
+		PetEquip petEquip = this.getPetEquip(playerId, equipId);
+		if (petEquip == null) {
+			return ErrorCode.EQUIP_NOT_EXIST;
+		}
+		//判断装备是否已经被装备, 或装备重复装备
+		if (petEquip.getHolder() == 0) {
+			return ErrorCode.EQUIP_ALREAD_WEAR;
+		}
+		//判断装备配置
+		ConfigPetEquip configPetEquip = ConfigManager.getInstance().getConfig(ConfigPetEquip.class, petEquip.getConfigId());
+		if (configPetEquip == null) {
+			return ErrorCode.CONFIG_NOT_EXISTS;
+		}
+		final int slot = configPetEquip.getSlot();
+		final long holderId = petEquip.getHolder();
+		domain.takeOut(holderId, slot, petEquip);
+		return ErrorCode.SUCCESS;
+	}
 	
 	/////////////接口方法////////////////////////
 	
@@ -250,11 +248,6 @@ public class PetEquipService implements IPetEquipService, IResourceService{
 	@Override
 	public int getModuleId() {
 		return ModuleDefine.PET_EQUIT.getModuleId();
-	}
-
-	@Override
-	public void doReset(long playerId, long now) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override

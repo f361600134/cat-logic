@@ -2,13 +2,14 @@ package com.cat.robot.module.login.proto;
 
 import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
+import com.google.protobuf.AbstractMessage;
 import com.cat.server.game.data.proto.PBPlayer;
 
-public class ReqPlayerLogin extends AbstractProtocol{
+public class ReqPlayerLoginBuilder extends AbstractProtocol{
 	
 	private PBPlayer.ReqPlayerLogin.Builder builder;
 	
-	public ReqPlayerLogin() {
+	public ReqPlayerLoginBuilder() {
 		this.builder = PBPlayer.ReqPlayerLogin.newBuilder();
 	}
 	
@@ -32,11 +33,16 @@ public class ReqPlayerLogin extends AbstractProtocol{
 		this.builder.setLoginSid(value);
 	}
 	
-	public static ReqPlayerLogin create(String userName) {
-		ReqPlayerLogin req = new ReqPlayerLogin();
+	public static ReqPlayerLoginBuilder create(String userName) {
+		ReqPlayerLoginBuilder req = new ReqPlayerLoginBuilder();
 		req.setUserName(userName);
 		req.setServerId(1);
 		return req;
+	}
+	
+	@Override
+	public AbstractMessage getBuilder() {
+		return this.builder.build();
 	}
 	
 	@Override
