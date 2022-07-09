@@ -7,6 +7,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.game.data.config.local.base.ConfigEquipBase;
 import com.cat.server.game.data.config.local.ext.ListMapParse;
+import com.cat.server.game.data.config.local.interfaces.IConfigResource;
 
 
 /**
@@ -15,7 +16,7 @@ import com.cat.server.game.data.config.local.ext.ListMapParse;
  * @author auto gen
  */
 @ConfigPath("equip.json")
-public class ConfigEquip extends ConfigEquipBase {
+public class ConfigEquip extends ConfigEquipBase implements IConfigResource{
 	
 	/**
 	 * 隐藏属性列表
@@ -41,6 +42,11 @@ public class ConfigEquip extends ConfigEquipBase {
 	 */
 	public Map<Integer, Integer> getHoleHiddenAttr(int index) {
 		return holeHiddenAttrList.get(index);
+	}
+
+	@Override
+	public String getName() {
+		return null;
 	}
 
 }

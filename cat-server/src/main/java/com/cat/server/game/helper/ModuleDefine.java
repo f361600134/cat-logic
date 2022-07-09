@@ -49,10 +49,11 @@ public enum ModuleDefine {
 	LEARNCOMMUNITY_MISSION(LEARNCOMMUNITY, 2),
 	/** 活动物品*/
 	ActivityItem(201),
+	
+	/** 摆摊*/
+	STALL(899),
 	/** 群邮件*/
 	GROUPMAIL(900),
-	
-	
 	FAMILY(901),
 	TEAM(902),
 	ACCOUNT(903),

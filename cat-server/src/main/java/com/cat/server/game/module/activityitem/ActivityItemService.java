@@ -6,7 +6,10 @@ import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.activityitem.domain.ActivityItem;
 import com.cat.server.game.module.activityitem.domain.ActivityItemDomain;
+import com.cat.server.game.module.item.domain.Item;
+import com.cat.server.game.module.item.domain.ItemDomain;
 import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -149,6 +152,17 @@ public class ActivityItemService implements IActivityItemService, IResourceServi
 	@Override
 	public int priority() {
 		return Priority.LOGIC.getPriority();
+	}
+
+	@Override
+	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+		ActivityItemDomain domain = activityItemManager.getDomain(playerId);
+		if (domain == null) return ;
+		if (!(res instanceof ActivityItem)) {
+			return;
+		}
+		ActivityItem item = (ActivityItem)res;
+		domain.addReource(item.getUniqueId(), item);
 	}
 }
  

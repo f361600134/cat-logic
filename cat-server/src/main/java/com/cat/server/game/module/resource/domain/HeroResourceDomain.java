@@ -7,6 +7,7 @@ import java.util.Map;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.module.hero.domain.Hero;
+import com.cat.server.game.module.item.domain.Item;
 import com.cat.server.game.module.mail.IMailService;
 import com.cat.server.game.module.mail.assist.MailTemplate;
 import com.cat.server.game.module.mail.assist.MailType;
@@ -85,4 +86,12 @@ public class HeroResourceDomain extends AbstractResourceDomain<Long, Hero>{
 		IMailService mailService = SpringContextHolder.getBean(IMailService.class);
 		mailService.sendMail(MailType.PLAYER_MAIL.getMailType(), playerId, MailTemplate.HERO_RECYCLE.getMailConfigId(), resource, hero.getConfigId());
 	}
+	
+//	@Override
+//	public void addReource(Hero res) {
+//		getBeanMap().put(res.getUniqueId(), res);
+//		updateList.add(res);
+//		//发送事件
+//		GameEventBus.getInstance().post(ResourceUpdateEvent.create(res, 1));
+//	}
 }

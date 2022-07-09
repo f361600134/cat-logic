@@ -135,6 +135,13 @@ public enum ErrorCode implements CodeEnum{
     EQUIP_STAR_LIMIT(EQUIT, 4, "装备已加工至最高星级"),
     EQUIP_HOLE_LIMIT(EQUIT, 5, "装备孔数已最高"),
     
+    // -----------------摆摊---------------------
+    STALL_EQUIP_NEED_CLEAR(STALL, 1, "装备需要脱下才可以出售"),
+    STALL_PET_NEED_CLEAR(STALL, 2, "宠物需要脱下装备才可以出售"),
+    STALL_REPEAT(STALL, 3, "不能重复摆摊"),
+    STALL_INVALID_COMMODITY(STALL, 4, "无效的出售商品"),
+    STALL_EMPTY(STALL, 5, "出售商品为空"),
+    
     // -----------------家具资源不充足--------------
     ;
 	

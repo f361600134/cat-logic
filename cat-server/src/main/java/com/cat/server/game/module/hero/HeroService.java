@@ -4,6 +4,9 @@ import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.hero.domain.Hero;
 import com.cat.server.game.module.hero.domain.HeroDomain;
+import com.cat.server.game.module.item.domain.Item;
+import com.cat.server.game.module.item.domain.ItemDomain;
+import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,4 +112,14 @@ class HeroService implements IHeroService, IResourceService{
 		domain.clearExpire(configId);
 	}
 
+	@Override
+	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+		HeroDomain domain = heroManager.getDomain(playerId);
+		if (domain == null) return ;
+		if (!(res instanceof Hero)) {
+			return;
+		}
+		Hero hero = (Hero)res;
+		domain.addReource(hero.getUniqueId(), hero);
+	}
 }

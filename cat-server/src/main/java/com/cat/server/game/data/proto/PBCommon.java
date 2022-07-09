@@ -14,6 +14,608 @@ public final class PBCommon {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  public interface PBPairInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.PBPairInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *键
+     * </pre>
+     *
+     * <code>int32 key = 1;</code>
+     * @return The key.
+     */
+    int getKey();
+
+    /**
+     * <pre>
+     *值
+     * </pre>
+     *
+     * <code>int32 value = 2;</code>
+     * @return The value.
+     */
+    int getValue();
+  }
+  /**
+   * <pre>
+   * 成对的结构,key-value结构,可用于资源, 属性等kv格式的数据
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.PBPairInfo}
+   */
+  public  static final class PBPairInfo extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.PBPairInfo)
+      PBPairInfoOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use PBPairInfo.newBuilder() to construct.
+    private PBPairInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private PBPairInfo() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new PBPairInfo();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PBPairInfo(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              key_ = input.readInt32();
+              break;
+            }
+            case 16: {
+
+              value_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_PBPairInfo_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_PBPairInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo.class, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder.class);
+    }
+
+    public static final int KEY_FIELD_NUMBER = 1;
+    private int key_;
+    /**
+     * <pre>
+     *键
+     * </pre>
+     *
+     * <code>int32 key = 1;</code>
+     * @return The key.
+     */
+    public int getKey() {
+      return key_;
+    }
+
+    public static final int VALUE_FIELD_NUMBER = 2;
+    private int value_;
+    /**
+     * <pre>
+     *值
+     * </pre>
+     *
+     * <code>int32 value = 2;</code>
+     * @return The value.
+     */
+    public int getValue() {
+      return value_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (key_ != 0) {
+        output.writeInt32(1, key_);
+      }
+      if (value_ != 0) {
+        output.writeInt32(2, value_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (key_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, key_);
+      }
+      if (value_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, value_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBCommon.PBPairInfo)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBCommon.PBPairInfo other = (com.cat.server.game.data.proto.PBCommon.PBPairInfo) obj;
+
+      if (getKey()
+          != other.getKey()) return false;
+      if (getValue()
+          != other.getValue()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + KEY_FIELD_NUMBER;
+      hash = (53 * hash) + getKey();
+      hash = (37 * hash) + VALUE_FIELD_NUMBER;
+      hash = (53 * hash) + getValue();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBCommon.PBPairInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 成对的结构,key-value结构,可用于资源, 属性等kv格式的数据
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.PBPairInfo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.PBPairInfo)
+        com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_PBPairInfo_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_PBPairInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBCommon.PBPairInfo.class, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBCommon.PBPairInfo.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        key_ = 0;
+
+        value_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBCommon.internal_static_Protocol_PBPairInfo_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo build() {
+        com.cat.server.game.data.proto.PBCommon.PBPairInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo buildPartial() {
+        com.cat.server.game.data.proto.PBCommon.PBPairInfo result = new com.cat.server.game.data.proto.PBCommon.PBPairInfo(this);
+        result.key_ = key_;
+        result.value_ = value_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBCommon.PBPairInfo) {
+          return mergeFrom((com.cat.server.game.data.proto.PBCommon.PBPairInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBCommon.PBPairInfo other) {
+        if (other == com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance()) return this;
+        if (other.getKey() != 0) {
+          setKey(other.getKey());
+        }
+        if (other.getValue() != 0) {
+          setValue(other.getValue());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBCommon.PBPairInfo parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBCommon.PBPairInfo) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int key_ ;
+      /**
+       * <pre>
+       *键
+       * </pre>
+       *
+       * <code>int32 key = 1;</code>
+       * @return The key.
+       */
+      public int getKey() {
+        return key_;
+      }
+      /**
+       * <pre>
+       *键
+       * </pre>
+       *
+       * <code>int32 key = 1;</code>
+       * @param value The key to set.
+       * @return This builder for chaining.
+       */
+      public Builder setKey(int value) {
+        
+        key_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *键
+       * </pre>
+       *
+       * <code>int32 key = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearKey() {
+        
+        key_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int value_ ;
+      /**
+       * <pre>
+       *值
+       * </pre>
+       *
+       * <code>int32 value = 2;</code>
+       * @return The value.
+       */
+      public int getValue() {
+        return value_;
+      }
+      /**
+       * <pre>
+       *值
+       * </pre>
+       *
+       * <code>int32 value = 2;</code>
+       * @param value The value to set.
+       * @return This builder for chaining.
+       */
+      public Builder setValue(int value) {
+        
+        value_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *值
+       * </pre>
+       *
+       * <code>int32 value = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearValue() {
+        
+        value_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.PBPairInfo)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.PBPairInfo)
+    private static final com.cat.server.game.data.proto.PBCommon.PBPairInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBCommon.PBPairInfo();
+    }
+
+    public static com.cat.server.game.data.proto.PBCommon.PBPairInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<PBPairInfo>
+        PARSER = new com.google.protobuf.AbstractParser<PBPairInfo>() {
+      @java.lang.Override
+      public PBPairInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PBPairInfo(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<PBPairInfo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PBPairInfo> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface RespTipsOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Protocol.RespTips)
       com.google.protobuf.MessageOrBuilder {
@@ -607,6 +1209,11 @@ public final class PBCommon {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_PBPairInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_PBPairInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_RespTips_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -620,17 +1227,24 @@ public final class PBCommon {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016PBCommon.proto\022\010Protocol\"*\n\010RespTips\022\016" +
-      "\n\006tipsId\030\001 \001(\005\022\016\n\006params\030\002 \001(\005B*\n\036com.ca" +
-      "t.server.game.data.protoB\010PBCommonb\006prot" +
-      "o3"
+      "\n\016PBCommon.proto\022\010Protocol\"(\n\nPBPairInfo" +
+      "\022\013\n\003key\030\001 \001(\005\022\r\n\005value\030\002 \001(\005\"*\n\010RespTips" +
+      "\022\016\n\006tipsId\030\001 \001(\005\022\016\n\006params\030\002 \001(\005B*\n\036com." +
+      "cat.server.game.data.protoB\010PBCommonb\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_Protocol_RespTips_descriptor =
+    internal_static_Protocol_PBPairInfo_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_Protocol_PBPairInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_PBPairInfo_descriptor,
+        new java.lang.String[] { "Key", "Value", });
+    internal_static_Protocol_RespTips_descriptor =
+      getDescriptor().getMessageTypes().get(1);
     internal_static_Protocol_RespTips_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_RespTips_descriptor,

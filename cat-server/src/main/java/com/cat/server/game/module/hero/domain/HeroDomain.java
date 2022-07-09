@@ -83,5 +83,10 @@ public class HeroDomain extends AbstractModuleMultiDomain<Long, Long, Hero> impl
 	public int getCount(int configId) {
 		return resourceDomainProxy.getCount(configId);
 	}
+
+	@Override
+	public void addReource(Long k, Hero v) {
+		resourceDomainProxy.addReource(k, v);
+	}
 }
 

@@ -1,14 +1,11 @@
 package com.cat.server.game.module.shop.proto;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Collection;
 
 import com.cat.net.network.base.AbstractProtocol;
-import com.cat.server.game.data.proto.PBDefine.*;
-import com.cat.server.game.data.proto.PBItem.PBPairInfo;
+import com.cat.server.game.data.proto.PBCommon.PBPairInfo;
 //import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBShop.*;
-import java.util.Collection;
+import com.cat.server.game.data.proto.PBShop.PBShopInfo;
 
 /**
 * PBShopInfoBuilder

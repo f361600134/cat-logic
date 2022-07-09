@@ -20,7 +20,7 @@ public final class PBMail {
 
     /**
      * <pre>
-     *错误码,非0表示弹提示
+     *閿欒鐮�,闈�0琛ㄧず寮规彁绀�
      * </pre>
      *
      * <code>int32 code = 1;</code>
@@ -30,7 +30,7 @@ public final class PBMail {
   }
   /**
    * <pre>
-   * 响应读取邮件
+   * 鍝嶅簲璇诲彇閭欢
    * </pre>
    *
    * Protobuf type {@code Protocol.RespMailRead}
@@ -118,7 +118,7 @@ public final class PBMail {
     private int code_;
     /**
      * <pre>
-     *错误码,非0表示弹提示
+     *閿欒鐮�,闈�0琛ㄧず寮规彁绀�
      * </pre>
      *
      * <code>int32 code = 1;</code>
@@ -285,7 +285,7 @@ public final class PBMail {
     }
     /**
      * <pre>
-     * 响应读取邮件
+     * 鍝嶅簲璇诲彇閭欢
      * </pre>
      *
      * Protobuf type {@code Protocol.RespMailRead}
@@ -437,7 +437,7 @@ public final class PBMail {
       private int code_ ;
       /**
        * <pre>
-       *错误码,非0表示弹提示
+       *閿欒鐮�,闈�0琛ㄧず寮规彁绀�
        * </pre>
        *
        * <code>int32 code = 1;</code>
@@ -448,7 +448,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *错误码,非0表示弹提示
+       *閿欒鐮�,闈�0琛ㄧず寮规彁绀�
        * </pre>
        *
        * <code>int32 code = 1;</code>
@@ -463,7 +463,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *错误码,非0表示弹提示
+       *閿欒鐮�,闈�0琛ㄧず寮规彁绀�
        * </pre>
        *
        * <code>int32 code = 1;</code>
@@ -534,7 +534,7 @@ public final class PBMail {
 
     /**
      * <pre>
-     *mailId,-1表示所有
+     *mailId,-1琛ㄧず鎵�鏈�
      * </pre>
      *
      * <code>int64 mailId = 1;</code>
@@ -544,7 +544,7 @@ public final class PBMail {
   }
   /**
    * <pre>
-   * 获取邮件附件
+   * 鑾峰彇閭欢闄勪欢
    * </pre>
    *
    * Protobuf type {@code Protocol.ReqMailReward}
@@ -632,7 +632,7 @@ public final class PBMail {
     private long mailId_;
     /**
      * <pre>
-     *mailId,-1表示所有
+     *mailId,-1琛ㄧず鎵�鏈�
      * </pre>
      *
      * <code>int64 mailId = 1;</code>
@@ -800,7 +800,7 @@ public final class PBMail {
     }
     /**
      * <pre>
-     * 获取邮件附件
+     * 鑾峰彇閭欢闄勪欢
      * </pre>
      *
      * Protobuf type {@code Protocol.ReqMailReward}
@@ -952,7 +952,7 @@ public final class PBMail {
       private long mailId_ ;
       /**
        * <pre>
-       *mailId,-1表示所有
+       *mailId,-1琛ㄧず鎵�鏈�
        * </pre>
        *
        * <code>int64 mailId = 1;</code>
@@ -963,7 +963,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *mailId,-1表示所有
+       *mailId,-1琛ㄧず鎵�鏈�
        * </pre>
        *
        * <code>int64 mailId = 1;</code>
@@ -978,7 +978,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *mailId,-1表示所有
+       *mailId,-1琛ㄧず鎵�鏈�
        * </pre>
        *
        * <code>int64 mailId = 1;</code>
@@ -1049,7 +1049,7 @@ public final class PBMail {
 
     /**
      * <pre>
-     *错误码
+     *閿欒鐮�
      * </pre>
      *
      * <code>int32 code = 1;</code>
@@ -1088,7 +1088,7 @@ public final class PBMail {
   }
   /**
    * <pre>
-   * 请求删除邮件
+   * 璇锋眰鍒犻櫎閭欢
    * </pre>
    *
    * Protobuf type {@code Protocol.RespMailDelete}
@@ -1202,7 +1202,7 @@ public final class PBMail {
     private int code_;
     /**
      * <pre>
-     *错误码
+     *閿欒鐮�
      * </pre>
      *
      * <code>int32 code = 1;</code>
@@ -1436,7 +1436,7 @@ public final class PBMail {
     }
     /**
      * <pre>
-     * 请求删除邮件
+     * 璇锋眰鍒犻櫎閭欢
      * </pre>
      *
      * Protobuf type {@code Protocol.RespMailDelete}
@@ -1607,7 +1607,7 @@ public final class PBMail {
       private int code_ ;
       /**
        * <pre>
-       *错误码
+       *閿欒鐮�
        * </pre>
        *
        * <code>int32 code = 1;</code>
@@ -1618,7 +1618,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *错误码
+       *閿欒鐮�
        * </pre>
        *
        * <code>int32 code = 1;</code>
@@ -1633,7 +1633,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *错误码
+       *閿欒鐮�
        * </pre>
        *
        * <code>int32 code = 1;</code>
@@ -1821,7 +1821,7 @@ public final class PBMail {
 
     /**
      * <pre>
-     *标题
+     *鏍囬
      * </pre>
      *
      * <code>string title = 2;</code>
@@ -1830,7 +1830,7 @@ public final class PBMail {
     java.lang.String getTitle();
     /**
      * <pre>
-     *标题
+     *鏍囬
      * </pre>
      *
      * <code>string title = 2;</code>
@@ -1841,7 +1841,7 @@ public final class PBMail {
 
     /**
      * <pre>
-     *聊天内容
+     *鑱婂ぉ鍐呭
      * </pre>
      *
      * <code>string content = 3;</code>
@@ -1850,7 +1850,7 @@ public final class PBMail {
     java.lang.String getContent();
     /**
      * <pre>
-     *聊天内容
+     *鑱婂ぉ鍐呭
      * </pre>
      *
      * <code>string content = 3;</code>
@@ -1861,24 +1861,24 @@ public final class PBMail {
 
     /**
      * <pre>
-     *附件
+     *闄勪欢
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+    java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> 
         getRewardsList();
     /**
      * <pre>
-     *附件
+     *闄勪欢
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index);
+    com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index);
     /**
      * <pre>
-     *附件
+     *闄勪欢
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
@@ -1886,26 +1886,26 @@ public final class PBMail {
     int getRewardsCount();
     /**
      * <pre>
-     *附件
+     *闄勪欢
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getRewardsOrBuilderList();
     /**
      * <pre>
-     *附件
+     *闄勪欢
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+    com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
         int index);
 
     /**
      * <pre>
-     *0=未读取;1=已读取
+     *0=鏈鍙�;1=宸茶鍙�
      * </pre>
      *
      * <code>int32 state = 5;</code>
@@ -1935,7 +1935,7 @@ public final class PBMail {
   }
   /**
    * <pre>
-   * 邮件
+   * 閭欢
    * </pre>
    *
    * Protobuf type {@code Protocol.PBMailInfo}
@@ -2006,11 +2006,11 @@ public final class PBMail {
             }
             case 34: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
+                rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000001;
               }
               rewards_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
+                  input.readMessage(com.cat.server.game.data.proto.PBCommon.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             case 40: {
@@ -2077,7 +2077,7 @@ public final class PBMail {
     private volatile java.lang.Object title_;
     /**
      * <pre>
-     *标题
+     *鏍囬
      * </pre>
      *
      * <code>string title = 2;</code>
@@ -2097,7 +2097,7 @@ public final class PBMail {
     }
     /**
      * <pre>
-     *标题
+     *鏍囬
      * </pre>
      *
      * <code>string title = 2;</code>
@@ -2121,7 +2121,7 @@ public final class PBMail {
     private volatile java.lang.Object content_;
     /**
      * <pre>
-     *聊天内容
+     *鑱婂ぉ鍐呭
      * </pre>
      *
      * <code>string content = 3;</code>
@@ -2141,7 +2141,7 @@ public final class PBMail {
     }
     /**
      * <pre>
-     *聊天内容
+     *鑱婂ぉ鍐呭
      * </pre>
      *
      * <code>string content = 3;</code>
@@ -2162,31 +2162,31 @@ public final class PBMail {
     }
 
     public static final int REWARDS_FIELD_NUMBER = 4;
-    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> rewards_;
+    private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> rewards_;
     /**
      * <pre>
-     *附件
+     *闄勪欢
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getRewardsList() {
+    public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getRewardsList() {
       return rewards_;
     }
     /**
      * <pre>
-     *附件
+     *闄勪欢
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getRewardsOrBuilderList() {
       return rewards_;
     }
     /**
      * <pre>
-     *附件
+     *闄勪欢
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
@@ -2196,22 +2196,22 @@ public final class PBMail {
     }
     /**
      * <pre>
-     *附件
+     *闄勪欢
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index) {
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index) {
       return rewards_.get(index);
     }
     /**
      * <pre>
-     *附件
+     *闄勪欢
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
         int index) {
       return rewards_.get(index);
     }
@@ -2220,7 +2220,7 @@ public final class PBMail {
     private int state_;
     /**
      * <pre>
-     *0=未读取;1=已读取
+     *0=鏈鍙�;1=宸茶鍙�
      * </pre>
      *
      * <code>int32 state = 5;</code>
@@ -2486,7 +2486,7 @@ public final class PBMail {
     }
     /**
      * <pre>
-     * 邮件
+     * 閭欢
      * </pre>
      *
      * Protobuf type {@code Protocol.PBMailInfo}
@@ -2751,7 +2751,7 @@ public final class PBMail {
       private java.lang.Object title_ = "";
       /**
        * <pre>
-       *标题
+       *鏍囬
        * </pre>
        *
        * <code>string title = 2;</code>
@@ -2771,7 +2771,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *标题
+       *鏍囬
        * </pre>
        *
        * <code>string title = 2;</code>
@@ -2792,7 +2792,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *标题
+       *鏍囬
        * </pre>
        *
        * <code>string title = 2;</code>
@@ -2811,7 +2811,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *标题
+       *鏍囬
        * </pre>
        *
        * <code>string title = 2;</code>
@@ -2825,7 +2825,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *标题
+       *鏍囬
        * </pre>
        *
        * <code>string title = 2;</code>
@@ -2847,7 +2847,7 @@ public final class PBMail {
       private java.lang.Object content_ = "";
       /**
        * <pre>
-       *聊天内容
+       *鑱婂ぉ鍐呭
        * </pre>
        *
        * <code>string content = 3;</code>
@@ -2867,7 +2867,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *聊天内容
+       *鑱婂ぉ鍐呭
        * </pre>
        *
        * <code>string content = 3;</code>
@@ -2888,7 +2888,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *聊天内容
+       *鑱婂ぉ鍐呭
        * </pre>
        *
        * <code>string content = 3;</code>
@@ -2907,7 +2907,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *聊天内容
+       *鑱婂ぉ鍐呭
        * </pre>
        *
        * <code>string content = 3;</code>
@@ -2921,7 +2921,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *聊天内容
+       *鑱婂ぉ鍐呭
        * </pre>
        *
        * <code>string content = 3;</code>
@@ -2940,26 +2940,26 @@ public final class PBMail {
         return this;
       }
 
-      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> rewards_ =
+      private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> rewards_ =
         java.util.Collections.emptyList();
       private void ensureRewardsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(rewards_);
+          rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>(rewards_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> rewardsBuilder_;
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> rewardsBuilder_;
 
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getRewardsList() {
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getRewardsList() {
         if (rewardsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(rewards_);
         } else {
@@ -2968,7 +2968,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
@@ -2982,12 +2982,12 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index) {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index) {
         if (rewardsBuilder_ == null) {
           return rewards_.get(index);
         } else {
@@ -2996,13 +2996,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder setRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -3017,13 +3017,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder setRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.set(index, builderForValue.build());
@@ -3035,12 +3035,12 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public Builder addRewards(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+      public Builder addRewards(com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -3055,13 +3055,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder addRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -3076,13 +3076,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder addRewards(
-          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.add(builderForValue.build());
@@ -3094,13 +3094,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder addRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.add(index, builderForValue.build());
@@ -3112,13 +3112,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder addAllRewards(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfo> values) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -3131,7 +3131,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
@@ -3148,7 +3148,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
@@ -3165,23 +3165,23 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getRewardsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder getRewardsBuilder(
           int index) {
         return getRewardsFieldBuilder().getBuilder(index);
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
           int index) {
         if (rewardsBuilder_ == null) {
           return rewards_.get(index);  } else {
@@ -3190,12 +3190,12 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+      public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
            getRewardsOrBuilderList() {
         if (rewardsBuilder_ != null) {
           return rewardsBuilder_.getMessageOrBuilderList();
@@ -3205,44 +3205,44 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addRewardsBuilder() {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addRewardsBuilder() {
         return getRewardsFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addRewardsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addRewardsBuilder(
           int index) {
         return getRewardsFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
-       *附件
+       *闄勪欢
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder> 
            getRewardsBuilderList() {
         return getRewardsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
           getRewardsFieldBuilder() {
         if (rewardsBuilder_ == null) {
           rewardsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder>(
                   rewards_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -3255,7 +3255,7 @@ public final class PBMail {
       private int state_ ;
       /**
        * <pre>
-       *0=未读取;1=已读取
+       *0=鏈鍙�;1=宸茶鍙�
        * </pre>
        *
        * <code>int32 state = 5;</code>
@@ -3266,7 +3266,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *0=未读取;1=已读取
+       *0=鏈鍙�;1=宸茶鍙�
        * </pre>
        *
        * <code>int32 state = 5;</code>
@@ -3281,7 +3281,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *0=未读取;1=已读取
+       *0=鏈鍙�;1=宸茶鍙�
        * </pre>
        *
        * <code>int32 state = 5;</code>
@@ -3458,7 +3458,7 @@ public final class PBMail {
   }
   /**
    * <pre>
-   * 请求读取邮件
+   * 璇锋眰璇诲彇閭欢
    * </pre>
    *
    * Protobuf type {@code Protocol.ReqMailRead}
@@ -3714,7 +3714,7 @@ public final class PBMail {
     }
     /**
      * <pre>
-     * 请求读取邮件
+     * 璇锋眰璇诲彇閭欢
      * </pre>
      *
      * Protobuf type {@code Protocol.ReqMailRead}
@@ -3963,7 +3963,7 @@ public final class PBMail {
   }
   /**
    * <pre>
-   * 请求邮件列表
+   * 璇锋眰閭欢鍒楄〃
    * </pre>
    *
    * Protobuf type {@code Protocol.ReqMailList}
@@ -4188,7 +4188,7 @@ public final class PBMail {
     }
     /**
      * <pre>
-     * 请求邮件列表
+     * 璇锋眰閭欢鍒楄〃
      * </pre>
      *
      * Protobuf type {@code Protocol.ReqMailList}
@@ -4389,7 +4389,7 @@ public final class PBMail {
 
     /**
      * <pre>
-     *错误码,非0表示弹提示
+     *閿欒鐮�,闈�0琛ㄧず寮规彁绀�
      * </pre>
      *
      * <code>int32 code = 1;</code>
@@ -4399,24 +4399,24 @@ public final class PBMail {
 
     /**
      * <pre>
-     *奖励
+     *濂栧姳
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+    java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> 
         getRewardsList();
     /**
      * <pre>
-     *奖励
+     *濂栧姳
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index);
+    com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index);
     /**
      * <pre>
-     *奖励
+     *濂栧姳
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
@@ -4424,26 +4424,26 @@ public final class PBMail {
     int getRewardsCount();
     /**
      * <pre>
-     *奖励
+     *濂栧姳
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getRewardsOrBuilderList();
     /**
      * <pre>
-     *奖励
+     *濂栧姳
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+    com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
         int index);
   }
   /**
    * <pre>
-   * 响应领取附件
+   * 鍝嶅簲棰嗗彇闄勪欢
    * </pre>
    *
    * Protobuf type {@code Protocol.RespMailReward}
@@ -4499,11 +4499,11 @@ public final class PBMail {
             }
             case 18: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
+                rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000001;
               }
               rewards_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
+                  input.readMessage(com.cat.server.game.data.proto.PBCommon.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -4545,7 +4545,7 @@ public final class PBMail {
     private int code_;
     /**
      * <pre>
-     *错误码,非0表示弹提示
+     *閿欒鐮�,闈�0琛ㄧず寮规彁绀�
      * </pre>
      *
      * <code>int32 code = 1;</code>
@@ -4556,31 +4556,31 @@ public final class PBMail {
     }
 
     public static final int REWARDS_FIELD_NUMBER = 2;
-    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> rewards_;
+    private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> rewards_;
     /**
      * <pre>
-     *奖励
+     *濂栧姳
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getRewardsList() {
+    public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getRewardsList() {
       return rewards_;
     }
     /**
      * <pre>
-     *奖励
+     *濂栧姳
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getRewardsOrBuilderList() {
       return rewards_;
     }
     /**
      * <pre>
-     *奖励
+     *濂栧姳
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
@@ -4590,22 +4590,22 @@ public final class PBMail {
     }
     /**
      * <pre>
-     *奖励
+     *濂栧姳
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index) {
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index) {
       return rewards_.get(index);
     }
     /**
      * <pre>
-     *奖励
+     *濂栧姳
      * </pre>
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
         int index) {
       return rewards_.get(index);
     }
@@ -4780,7 +4780,7 @@ public final class PBMail {
     }
     /**
      * <pre>
-     * 响应领取附件
+     * 鍝嶅簲棰嗗彇闄勪欢
      * </pre>
      *
      * Protobuf type {@code Protocol.RespMailReward}
@@ -4976,7 +4976,7 @@ public final class PBMail {
       private int code_ ;
       /**
        * <pre>
-       *错误码,非0表示弹提示
+       *閿欒鐮�,闈�0琛ㄧず寮规彁绀�
        * </pre>
        *
        * <code>int32 code = 1;</code>
@@ -4987,7 +4987,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *错误码,非0表示弹提示
+       *閿欒鐮�,闈�0琛ㄧず寮规彁绀�
        * </pre>
        *
        * <code>int32 code = 1;</code>
@@ -5002,7 +5002,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *错误码,非0表示弹提示
+       *閿欒鐮�,闈�0琛ㄧず寮规彁绀�
        * </pre>
        *
        * <code>int32 code = 1;</code>
@@ -5015,26 +5015,26 @@ public final class PBMail {
         return this;
       }
 
-      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> rewards_ =
+      private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> rewards_ =
         java.util.Collections.emptyList();
       private void ensureRewardsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(rewards_);
+          rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>(rewards_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> rewardsBuilder_;
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> rewardsBuilder_;
 
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getRewardsList() {
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getRewardsList() {
         if (rewardsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(rewards_);
         } else {
@@ -5043,7 +5043,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
@@ -5057,12 +5057,12 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index) {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index) {
         if (rewardsBuilder_ == null) {
           return rewards_.get(index);
         } else {
@@ -5071,13 +5071,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder setRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5092,13 +5092,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder setRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.set(index, builderForValue.build());
@@ -5110,12 +5110,12 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public Builder addRewards(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+      public Builder addRewards(com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5130,13 +5130,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5151,13 +5151,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addRewards(
-          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.add(builderForValue.build());
@@ -5169,13 +5169,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.add(index, builderForValue.build());
@@ -5187,13 +5187,13 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addAllRewards(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfo> values) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -5206,7 +5206,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
@@ -5223,7 +5223,7 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
@@ -5240,23 +5240,23 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getRewardsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder getRewardsBuilder(
           int index) {
         return getRewardsFieldBuilder().getBuilder(index);
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
           int index) {
         if (rewardsBuilder_ == null) {
           return rewards_.get(index);  } else {
@@ -5265,12 +5265,12 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+      public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
            getRewardsOrBuilderList() {
         if (rewardsBuilder_ != null) {
           return rewardsBuilder_.getMessageOrBuilderList();
@@ -5280,44 +5280,44 @@ public final class PBMail {
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addRewardsBuilder() {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addRewardsBuilder() {
         return getRewardsFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addRewardsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addRewardsBuilder(
           int index) {
         return getRewardsFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
-       *奖励
+       *濂栧姳
        * </pre>
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder> 
            getRewardsBuilderList() {
         return getRewardsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
           getRewardsFieldBuilder() {
         if (rewardsBuilder_ == null) {
           rewardsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder>(
                   rewards_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -5424,7 +5424,7 @@ public final class PBMail {
   }
   /**
    * <pre>
-   * 邮件列表
+   * 閭欢鍒楄〃
    * </pre>
    *
    * Protobuf type {@code Protocol.RespMailList}
@@ -5726,7 +5726,7 @@ public final class PBMail {
     }
     /**
      * <pre>
-     * 邮件列表
+     * 閭欢鍒楄〃
      * </pre>
      *
      * Protobuf type {@code Protocol.RespMailList}
@@ -6275,7 +6275,7 @@ public final class PBMail {
   }
   /**
    * <pre>
-   * 请求删除邮件
+   * 璇锋眰鍒犻櫎閭欢
    * </pre>
    *
    * Protobuf type {@code Protocol.ReqMailDelete}
@@ -6531,7 +6531,7 @@ public final class PBMail {
     }
     /**
      * <pre>
-     * 请求删除邮件
+     * 璇锋眰鍒犻櫎閭欢
      * </pre>
      *
      * Protobuf type {@code Protocol.ReqMailDelete}
@@ -6846,7 +6846,7 @@ public final class PBMail {
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.cat.server.game.data.proto.PBItem.getDescriptor(),
+          com.cat.server.game.data.proto.PBCommon.getDescriptor(),
         });
     internal_static_Protocol_RespMailRead_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -6902,7 +6902,7 @@ public final class PBMail {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqMailDelete_descriptor,
         new java.lang.String[] { "MailId", });
-    com.cat.server.game.data.proto.PBItem.getDescriptor();
+    com.cat.server.game.data.proto.PBCommon.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

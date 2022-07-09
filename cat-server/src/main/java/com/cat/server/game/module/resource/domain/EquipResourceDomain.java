@@ -8,6 +8,7 @@ import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.data.config.local.ConfigEquip;
 import com.cat.server.game.module.equip.domain.Equip;
+import com.cat.server.game.module.hero.domain.Hero;
 import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
 
 /**
@@ -72,4 +73,12 @@ public class EquipResourceDomain extends AbstractEquipResourceDomain<Long, Equip
 			usedEquips.put(equip.getHolder(), configPetEquip.getCategory(), equip.getId());
 		}
 	}
+	
+//	@Override
+//	public void addReource(Equip res) {
+//		getBeanMap().put(res.getUniqueId(), res);
+//		updateList.add(res);
+//		//发送事件
+//		GameEventBus.getInstance().post(ResourceUpdateEvent.create(res, 1));
+//	}
 }

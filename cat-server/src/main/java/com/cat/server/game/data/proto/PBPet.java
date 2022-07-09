@@ -115,7 +115,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
      */
-    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+    java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> 
         getBaseAttributesList();
     /**
      * <pre>
@@ -124,7 +124,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfo getBaseAttributes(int index);
+    com.cat.server.game.data.proto.PBCommon.PBPairInfo getBaseAttributes(int index);
     /**
      * <pre>
      *基础属性
@@ -140,7 +140,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getBaseAttributesOrBuilderList();
     /**
      * <pre>
@@ -149,7 +149,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getBaseAttributesOrBuilder(
+    com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getBaseAttributesOrBuilder(
         int index);
 
     /**
@@ -188,7 +188,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
      */
-    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+    java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> 
         getSkillsList();
     /**
      * <pre>
@@ -197,7 +197,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfo getSkills(int index);
+    com.cat.server.game.data.proto.PBCommon.PBPairInfo getSkills(int index);
     /**
      * <pre>
      *当前拥有技能
@@ -213,7 +213,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getSkillsOrBuilderList();
     /**
      * <pre>
@@ -222,7 +222,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getSkillsOrBuilder(
+    com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getSkillsOrBuilder(
         int index);
 
     /**
@@ -372,11 +372,11 @@ public final class PBPet {
             }
             case 74: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                baseAttributes_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
+                baseAttributes_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000001;
               }
               baseAttributes_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
+                  input.readMessage(com.cat.server.game.data.proto.PBCommon.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             case 80: {
@@ -402,11 +402,11 @@ public final class PBPet {
             }
             case 90: {
               if (!((mutable_bitField0_ & 0x00000004) != 0)) {
-                skills_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
+                skills_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000004;
               }
               skills_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
+                  input.readMessage(com.cat.server.game.data.proto.PBCommon.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             case 96: {
@@ -618,7 +618,7 @@ public final class PBPet {
     }
 
     public static final int BASEATTRIBUTES_FIELD_NUMBER = 9;
-    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> baseAttributes_;
+    private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> baseAttributes_;
     /**
      * <pre>
      *基础属性
@@ -626,7 +626,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
      */
-    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getBaseAttributesList() {
+    public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getBaseAttributesList() {
       return baseAttributes_;
     }
     /**
@@ -636,7 +636,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getBaseAttributesOrBuilderList() {
       return baseAttributes_;
     }
@@ -657,7 +657,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getBaseAttributes(int index) {
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getBaseAttributes(int index) {
       return baseAttributes_.get(index);
     }
     /**
@@ -667,7 +667,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getBaseAttributesOrBuilder(
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getBaseAttributesOrBuilder(
         int index) {
       return baseAttributes_.get(index);
     }
@@ -712,7 +712,7 @@ public final class PBPet {
     private int aptitudeAttributesMemoizedSerializedSize = -1;
 
     public static final int SKILLS_FIELD_NUMBER = 11;
-    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> skills_;
+    private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> skills_;
     /**
      * <pre>
      *当前拥有技能
@@ -720,7 +720,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
      */
-    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getSkillsList() {
+    public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getSkillsList() {
       return skills_;
     }
     /**
@@ -730,7 +730,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getSkillsOrBuilderList() {
       return skills_;
     }
@@ -751,7 +751,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getSkills(int index) {
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getSkills(int index) {
       return skills_.get(index);
     }
     /**
@@ -761,7 +761,7 @@ public final class PBPet {
      *
      * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getSkillsOrBuilder(
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getSkillsOrBuilder(
         int index) {
       return skills_.get(index);
     }
@@ -1897,17 +1897,17 @@ public final class PBPet {
         return this;
       }
 
-      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> baseAttributes_ =
+      private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> baseAttributes_ =
         java.util.Collections.emptyList();
       private void ensureBaseAttributesIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          baseAttributes_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(baseAttributes_);
+          baseAttributes_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>(baseAttributes_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> baseAttributesBuilder_;
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> baseAttributesBuilder_;
 
       /**
        * <pre>
@@ -1916,7 +1916,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getBaseAttributesList() {
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getBaseAttributesList() {
         if (baseAttributesBuilder_ == null) {
           return java.util.Collections.unmodifiableList(baseAttributes_);
         } else {
@@ -1944,7 +1944,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getBaseAttributes(int index) {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getBaseAttributes(int index) {
         if (baseAttributesBuilder_ == null) {
           return baseAttributes_.get(index);
         } else {
@@ -1959,7 +1959,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
       public Builder setBaseAttributes(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (baseAttributesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1980,7 +1980,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
       public Builder setBaseAttributes(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (baseAttributesBuilder_ == null) {
           ensureBaseAttributesIsMutable();
           baseAttributes_.set(index, builderForValue.build());
@@ -1997,7 +1997,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
-      public Builder addBaseAttributes(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+      public Builder addBaseAttributes(com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (baseAttributesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2018,7 +2018,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
       public Builder addBaseAttributes(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (baseAttributesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2039,7 +2039,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
       public Builder addBaseAttributes(
-          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (baseAttributesBuilder_ == null) {
           ensureBaseAttributesIsMutable();
           baseAttributes_.add(builderForValue.build());
@@ -2057,7 +2057,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
       public Builder addBaseAttributes(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (baseAttributesBuilder_ == null) {
           ensureBaseAttributesIsMutable();
           baseAttributes_.add(index, builderForValue.build());
@@ -2075,7 +2075,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
       public Builder addAllBaseAttributes(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfo> values) {
         if (baseAttributesBuilder_ == null) {
           ensureBaseAttributesIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2127,7 +2127,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getBaseAttributesBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder getBaseAttributesBuilder(
           int index) {
         return getBaseAttributesFieldBuilder().getBuilder(index);
       }
@@ -2138,7 +2138,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getBaseAttributesOrBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getBaseAttributesOrBuilder(
           int index) {
         if (baseAttributesBuilder_ == null) {
           return baseAttributes_.get(index);  } else {
@@ -2152,7 +2152,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+      public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
            getBaseAttributesOrBuilderList() {
         if (baseAttributesBuilder_ != null) {
           return baseAttributesBuilder_.getMessageOrBuilderList();
@@ -2167,9 +2167,9 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addBaseAttributesBuilder() {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addBaseAttributesBuilder() {
         return getBaseAttributesFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -2178,10 +2178,10 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addBaseAttributesBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addBaseAttributesBuilder(
           int index) {
         return getBaseAttributesFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -2190,16 +2190,16 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo baseAttributes = 9;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder> 
            getBaseAttributesBuilderList() {
         return getBaseAttributesFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
           getBaseAttributesFieldBuilder() {
         if (baseAttributesBuilder_ == null) {
           baseAttributesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder>(
                   baseAttributes_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -2316,17 +2316,17 @@ public final class PBPet {
         return this;
       }
 
-      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> skills_ =
+      private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> skills_ =
         java.util.Collections.emptyList();
       private void ensureSkillsIsMutable() {
         if (!((bitField0_ & 0x00000004) != 0)) {
-          skills_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(skills_);
+          skills_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>(skills_);
           bitField0_ |= 0x00000004;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> skillsBuilder_;
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> skillsBuilder_;
 
       /**
        * <pre>
@@ -2335,7 +2335,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getSkillsList() {
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getSkillsList() {
         if (skillsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(skills_);
         } else {
@@ -2363,7 +2363,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getSkills(int index) {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getSkills(int index) {
         if (skillsBuilder_ == null) {
           return skills_.get(index);
         } else {
@@ -2378,7 +2378,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
       public Builder setSkills(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (skillsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2399,7 +2399,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
       public Builder setSkills(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (skillsBuilder_ == null) {
           ensureSkillsIsMutable();
           skills_.set(index, builderForValue.build());
@@ -2416,7 +2416,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
-      public Builder addSkills(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+      public Builder addSkills(com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (skillsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2437,7 +2437,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
       public Builder addSkills(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (skillsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -2458,7 +2458,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
       public Builder addSkills(
-          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (skillsBuilder_ == null) {
           ensureSkillsIsMutable();
           skills_.add(builderForValue.build());
@@ -2476,7 +2476,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
       public Builder addSkills(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (skillsBuilder_ == null) {
           ensureSkillsIsMutable();
           skills_.add(index, builderForValue.build());
@@ -2494,7 +2494,7 @@ public final class PBPet {
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
       public Builder addAllSkills(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfo> values) {
         if (skillsBuilder_ == null) {
           ensureSkillsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2546,7 +2546,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getSkillsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder getSkillsBuilder(
           int index) {
         return getSkillsFieldBuilder().getBuilder(index);
       }
@@ -2557,7 +2557,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getSkillsOrBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getSkillsOrBuilder(
           int index) {
         if (skillsBuilder_ == null) {
           return skills_.get(index);  } else {
@@ -2571,7 +2571,7 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+      public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
            getSkillsOrBuilderList() {
         if (skillsBuilder_ != null) {
           return skillsBuilder_.getMessageOrBuilderList();
@@ -2586,9 +2586,9 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addSkillsBuilder() {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addSkillsBuilder() {
         return getSkillsFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -2597,10 +2597,10 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addSkillsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addSkillsBuilder(
           int index) {
         return getSkillsFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -2609,16 +2609,16 @@ public final class PBPet {
        *
        * <code>repeated .Protocol.PBPairInfo skills = 11;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder> 
            getSkillsBuilderList() {
         return getSkillsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
           getSkillsFieldBuilder() {
         if (skillsBuilder_ == null) {
           skillsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder>(
                   skills_,
                   ((bitField0_ & 0x00000004) != 0),
                   getParentForChildren(),
@@ -3920,520 +3920,6 @@ public final class PBPet {
 
   }
 
-  public interface RespPetUseAttrPointOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.RespPetUseAttrPoint)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     *code
-     * </pre>
-     *
-     * <code>int32 code = 1;</code>
-     * @return The code.
-     */
-    int getCode();
-  }
-  /**
-   * <pre>
-   * 响应宠物使用属性点
-   * </pre>
-   *
-   * Protobuf type {@code Protocol.RespPetUseAttrPoint}
-   */
-  public  static final class RespPetUseAttrPoint extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.RespPetUseAttrPoint)
-      RespPetUseAttrPointOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RespPetUseAttrPoint.newBuilder() to construct.
-    private RespPetUseAttrPoint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RespPetUseAttrPoint() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RespPetUseAttrPoint();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RespPetUseAttrPoint(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              code_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetUseAttrPoint_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetUseAttrPoint_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.class, com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.Builder.class);
-    }
-
-    public static final int CODE_FIELD_NUMBER = 1;
-    private int code_;
-    /**
-     * <pre>
-     *code
-     * </pre>
-     *
-     * <code>int32 code = 1;</code>
-     * @return The code.
-     */
-    public int getCode() {
-      return code_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (code_ != 0) {
-        output.writeInt32(1, code_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (code_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, code_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint)) {
-        return super.equals(obj);
-      }
-      com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint other = (com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint) obj;
-
-      if (getCode()
-          != other.getCode()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CODE_FIELD_NUMBER;
-      hash = (53 * hash) + getCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 响应宠物使用属性点
-     * </pre>
-     *
-     * Protobuf type {@code Protocol.RespPetUseAttrPoint}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.RespPetUseAttrPoint)
-        com.cat.server.game.data.proto.PBPet.RespPetUseAttrPointOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetUseAttrPoint_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetUseAttrPoint_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.class, com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.Builder.class);
-      }
-
-      // Construct using com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        code_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetUseAttrPoint_descriptor;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint build() {
-        com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint buildPartial() {
-        com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint result = new com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint(this);
-        result.code_ = code_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint other) {
-        if (other == com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.getDefaultInstance()) return this;
-        if (other.getCode() != 0) {
-          setCode(other.getCode());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int code_ ;
-      /**
-       * <pre>
-       *code
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
-       * @return The code.
-       */
-      public int getCode() {
-        return code_;
-      }
-      /**
-       * <pre>
-       *code
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
-       * @param value The code to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCode(int value) {
-        
-        code_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *code
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCode() {
-        
-        code_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Protocol.RespPetUseAttrPoint)
-    }
-
-    // @@protoc_insertion_point(class_scope:Protocol.RespPetUseAttrPoint)
-    private static final com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint();
-    }
-
-    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RespPetUseAttrPoint>
-        PARSER = new com.google.protobuf.AbstractParser<RespPetUseAttrPoint>() {
-      @java.lang.Override
-      public RespPetUseAttrPoint parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RespPetUseAttrPoint(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RespPetUseAttrPoint> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RespPetUseAttrPoint> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface RespPetLevelupOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Protocol.RespPetLevelup)
       com.google.protobuf.MessageOrBuilder {
@@ -4943,6 +4429,520 @@ public final class PBPet {
 
     @java.lang.Override
     public com.cat.server.game.data.proto.PBPet.RespPetLevelup getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface RespPetUseAttrPointOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespPetUseAttrPoint)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *code
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     * @return The code.
+     */
+    int getCode();
+  }
+  /**
+   * <pre>
+   * 响应宠物使用属性点
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.RespPetUseAttrPoint}
+   */
+  public  static final class RespPetUseAttrPoint extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.RespPetUseAttrPoint)
+      RespPetUseAttrPointOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RespPetUseAttrPoint.newBuilder() to construct.
+    private RespPetUseAttrPoint(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RespPetUseAttrPoint() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RespPetUseAttrPoint();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RespPetUseAttrPoint(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              code_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetUseAttrPoint_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetUseAttrPoint_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.class, com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.Builder.class);
+    }
+
+    public static final int CODE_FIELD_NUMBER = 1;
+    private int code_;
+    /**
+     * <pre>
+     *code
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     * @return The code.
+     */
+    public int getCode() {
+      return code_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (code_ != 0) {
+        output.writeInt32(1, code_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (code_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, code_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint other = (com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint) obj;
+
+      if (getCode()
+          != other.getCode()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 响应宠物使用属性点
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.RespPetUseAttrPoint}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.RespPetUseAttrPoint)
+        com.cat.server.game.data.proto.PBPet.RespPetUseAttrPointOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetUseAttrPoint_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetUseAttrPoint_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.class, com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        code_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetUseAttrPoint_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint build() {
+        com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint buildPartial() {
+        com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint result = new com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint(this);
+        result.code_ = code_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint other) {
+        if (other == com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint.getDefaultInstance()) return this;
+        if (other.getCode() != 0) {
+          setCode(other.getCode());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int code_ ;
+      /**
+       * <pre>
+       *code
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @return The code.
+       */
+      public int getCode() {
+        return code_;
+      }
+      /**
+       * <pre>
+       *code
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @param value The code to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCode(int value) {
+        
+        code_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *code
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCode() {
+        
+        code_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.RespPetUseAttrPoint)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.RespPetUseAttrPoint)
+    private static final com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint();
+    }
+
+    public static com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RespPetUseAttrPoint>
+        PARSER = new com.google.protobuf.AbstractParser<RespPetUseAttrPoint>() {
+      @java.lang.Override
+      public RespPetUseAttrPoint parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RespPetUseAttrPoint(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RespPetUseAttrPoint> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RespPetUseAttrPoint> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBPet.RespPetUseAttrPoint getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -6370,6 +6370,520 @@ public final class PBPet {
 
   }
 
+  public interface RespPetActiveOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespPetActive)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *错误码
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     * @return The code.
+     */
+    int getCode();
+  }
+  /**
+   * <pre>
+   * 响应宠物激活
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.RespPetActive}
+   */
+  public  static final class RespPetActive extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.RespPetActive)
+      RespPetActiveOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RespPetActive.newBuilder() to construct.
+    private RespPetActive(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RespPetActive() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RespPetActive();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RespPetActive(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              code_ = input.readInt32();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetActive_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetActive_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBPet.RespPetActive.class, com.cat.server.game.data.proto.PBPet.RespPetActive.Builder.class);
+    }
+
+    public static final int CODE_FIELD_NUMBER = 1;
+    private int code_;
+    /**
+     * <pre>
+     *错误码
+     * </pre>
+     *
+     * <code>int32 code = 1;</code>
+     * @return The code.
+     */
+    public int getCode() {
+      return code_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (code_ != 0) {
+        output.writeInt32(1, code_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (code_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, code_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPet.RespPetActive)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBPet.RespPetActive other = (com.cat.server.game.data.proto.PBPet.RespPetActive) obj;
+
+      if (getCode()
+          != other.getCode()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPet.RespPetActive prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 响应宠物激活
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.RespPetActive}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.RespPetActive)
+        com.cat.server.game.data.proto.PBPet.RespPetActiveOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetActive_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetActive_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBPet.RespPetActive.class, com.cat.server.game.data.proto.PBPet.RespPetActive.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBPet.RespPetActive.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        code_ = 0;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetActive_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPet.RespPetActive getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPet.RespPetActive.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPet.RespPetActive build() {
+        com.cat.server.game.data.proto.PBPet.RespPetActive result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPet.RespPetActive buildPartial() {
+        com.cat.server.game.data.proto.PBPet.RespPetActive result = new com.cat.server.game.data.proto.PBPet.RespPetActive(this);
+        result.code_ = code_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBPet.RespPetActive) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPet.RespPetActive)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPet.RespPetActive other) {
+        if (other == com.cat.server.game.data.proto.PBPet.RespPetActive.getDefaultInstance()) return this;
+        if (other.getCode() != 0) {
+          setCode(other.getCode());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBPet.RespPetActive parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBPet.RespPetActive) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int code_ ;
+      /**
+       * <pre>
+       *错误码
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @return The code.
+       */
+      public int getCode() {
+        return code_;
+      }
+      /**
+       * <pre>
+       *错误码
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @param value The code to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCode(int value) {
+        
+        code_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *错误码
+       * </pre>
+       *
+       * <code>int32 code = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCode() {
+        
+        code_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.RespPetActive)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.RespPetActive)
+    private static final com.cat.server.game.data.proto.PBPet.RespPetActive DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPet.RespPetActive();
+    }
+
+    public static com.cat.server.game.data.proto.PBPet.RespPetActive getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RespPetActive>
+        PARSER = new com.google.protobuf.AbstractParser<RespPetActive>() {
+      @java.lang.Override
+      public RespPetActive parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RespPetActive(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RespPetActive> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RespPetActive> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBPet.RespPetActive getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface RespPetDeleteOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Protocol.RespPetDelete)
       com.google.protobuf.MessageOrBuilder {
@@ -7039,520 +7553,6 @@ public final class PBPet {
 
     @java.lang.Override
     public com.cat.server.game.data.proto.PBPet.RespPetDelete getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface RespPetActiveOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.RespPetActive)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     *错误码
-     * </pre>
-     *
-     * <code>int32 code = 1;</code>
-     * @return The code.
-     */
-    int getCode();
-  }
-  /**
-   * <pre>
-   * 响应宠物激活
-   * </pre>
-   *
-   * Protobuf type {@code Protocol.RespPetActive}
-   */
-  public  static final class RespPetActive extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.RespPetActive)
-      RespPetActiveOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RespPetActive.newBuilder() to construct.
-    private RespPetActive(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RespPetActive() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RespPetActive();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RespPetActive(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              code_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetActive_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetActive_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPet.RespPetActive.class, com.cat.server.game.data.proto.PBPet.RespPetActive.Builder.class);
-    }
-
-    public static final int CODE_FIELD_NUMBER = 1;
-    private int code_;
-    /**
-     * <pre>
-     *错误码
-     * </pre>
-     *
-     * <code>int32 code = 1;</code>
-     * @return The code.
-     */
-    public int getCode() {
-      return code_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (code_ != 0) {
-        output.writeInt32(1, code_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (code_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, code_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPet.RespPetActive)) {
-        return super.equals(obj);
-      }
-      com.cat.server.game.data.proto.PBPet.RespPetActive other = (com.cat.server.game.data.proto.PBPet.RespPetActive) obj;
-
-      if (getCode()
-          != other.getCode()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CODE_FIELD_NUMBER;
-      hash = (53 * hash) + getCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPet.RespPetActive prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 响应宠物激活
-     * </pre>
-     *
-     * Protobuf type {@code Protocol.RespPetActive}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.RespPetActive)
-        com.cat.server.game.data.proto.PBPet.RespPetActiveOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetActive_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetActive_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPet.RespPetActive.class, com.cat.server.game.data.proto.PBPet.RespPetActive.Builder.class);
-      }
-
-      // Construct using com.cat.server.game.data.proto.PBPet.RespPetActive.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        code_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPet.internal_static_Protocol_RespPetActive_descriptor;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPet.RespPetActive getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPet.RespPetActive.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPet.RespPetActive build() {
-        com.cat.server.game.data.proto.PBPet.RespPetActive result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPet.RespPetActive buildPartial() {
-        com.cat.server.game.data.proto.PBPet.RespPetActive result = new com.cat.server.game.data.proto.PBPet.RespPetActive(this);
-        result.code_ = code_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPet.RespPetActive) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPet.RespPetActive)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPet.RespPetActive other) {
-        if (other == com.cat.server.game.data.proto.PBPet.RespPetActive.getDefaultInstance()) return this;
-        if (other.getCode() != 0) {
-          setCode(other.getCode());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPet.RespPetActive parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPet.RespPetActive) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int code_ ;
-      /**
-       * <pre>
-       *错误码
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
-       * @return The code.
-       */
-      public int getCode() {
-        return code_;
-      }
-      /**
-       * <pre>
-       *错误码
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
-       * @param value The code to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCode(int value) {
-        
-        code_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *错误码
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCode() {
-        
-        code_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Protocol.RespPetActive)
-    }
-
-    // @@protoc_insertion_point(class_scope:Protocol.RespPetActive)
-    private static final com.cat.server.game.data.proto.PBPet.RespPetActive DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPet.RespPetActive();
-    }
-
-    public static com.cat.server.game.data.proto.PBPet.RespPetActive getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RespPetActive>
-        PARSER = new com.google.protobuf.AbstractParser<RespPetActive>() {
-      @java.lang.Override
-      public RespPetActive parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RespPetActive(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RespPetActive> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RespPetActive> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.cat.server.game.data.proto.PBPet.RespPetActive getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -8692,15 +8692,15 @@ public final class PBPet {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_ReqPetIdentify_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_RespPetUseAttrPoint_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_RespPetUseAttrPoint_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_RespPetLevelup_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_RespPetLevelup_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_RespPetUseAttrPoint_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_RespPetUseAttrPoint_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_RespPetUpdate_descriptor;
   private static final 
@@ -8712,15 +8712,15 @@ public final class PBPet {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_RespPetIdentify_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_RespPetDelete_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_RespPetDelete_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_RespPetActive_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_RespPetActive_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_RespPetDelete_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_RespPetDelete_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_ReqPetActive_descriptor;
   private static final 
@@ -8740,32 +8740,32 @@ public final class PBPet {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013PBPet.proto\022\010Protocol\032\014PBItem.proto\"\336\002" +
-      "\n\010PBPetDto\022\020\n\010uniqueId\030\001 \001(\003\022\020\n\010configId" +
-      "\030\002 \001(\005\022\020\n\010prefixId\030\003 \001(\005\022\r\n\005level\030\004 \001(\005\022" +
-      "\013\n\003exp\030\005 \001(\003\022\020\n\010nickName\030\006 \001(\t\022\016\n\006gender" +
-      "\030\007 \001(\005\022\032\n\022reproductiveNumber\030\010 \001(\005\022,\n\016ba" +
-      "seAttributes\030\t \003(\0132\024.Protocol.PBPairInfo" +
-      "\022\032\n\022aptitudeAttributes\030\n \003(\005\022$\n\006skills\030\013" +
-      " \003(\0132\024.Protocol.PBPairInfo\022\r\n\005trust\030\014 \001(" +
-      "\005\022\016\n\006hungry\030\r \001(\005\022\016\n\006active\030\016 \001(\010\022\021\n\tatt" +
-      "rPoint\030\017 \001(\005\022\020\n\010dormancy\030\020 \001(\010\"!\n\rReqPet" +
-      "Levelup\022\020\n\010uniqueId\030\001 \001(\003\"\"\n\016ReqPetIdent" +
-      "ify\022\020\n\010uniqueId\030\001 \001(\003\"#\n\023RespPetUseAttrP" +
-      "oint\022\014\n\004code\030\001 \001(\005\"\036\n\016RespPetLevelup\022\014\n\004" +
-      "code\030\001 \001(\005\"1\n\rRespPetUpdate\022 \n\004pets\030\001 \003(" +
-      "\0132\022.Protocol.PBPetDto\"\037\n\017RespPetIdentify" +
-      "\022\014\n\004code\030\001 \001(\005\"!\n\rRespPetDelete\022\020\n\010uniqu" +
-      "eId\030\001 \003(\003\"\035\n\rRespPetActive\022\014\n\004code\030\001 \001(\005" +
-      "\" \n\014ReqPetActive\022\020\n\010uniqueId\030\001 \001(\003\"8\n\022Re" +
-      "qPetUseAttrPoint\022\020\n\010uniqueId\030\001 \001(\003\022\020\n\010at" +
-      "trType\030\002 \001(\005B\'\n\036com.cat.server.game.data" +
-      ".protoB\005PBPetb\006proto3"
+      "\n\013PBPet.proto\022\010Protocol\032\016PBCommon.proto\"" +
+      "\336\002\n\010PBPetDto\022\020\n\010uniqueId\030\001 \001(\003\022\020\n\010config" +
+      "Id\030\002 \001(\005\022\020\n\010prefixId\030\003 \001(\005\022\r\n\005level\030\004 \001(" +
+      "\005\022\013\n\003exp\030\005 \001(\003\022\020\n\010nickName\030\006 \001(\t\022\016\n\006gend" +
+      "er\030\007 \001(\005\022\032\n\022reproductiveNumber\030\010 \001(\005\022,\n\016" +
+      "baseAttributes\030\t \003(\0132\024.Protocol.PBPairIn" +
+      "fo\022\032\n\022aptitudeAttributes\030\n \003(\005\022$\n\006skills" +
+      "\030\013 \003(\0132\024.Protocol.PBPairInfo\022\r\n\005trust\030\014 " +
+      "\001(\005\022\016\n\006hungry\030\r \001(\005\022\016\n\006active\030\016 \001(\010\022\021\n\ta" +
+      "ttrPoint\030\017 \001(\005\022\020\n\010dormancy\030\020 \001(\010\"!\n\rReqP" +
+      "etLevelup\022\020\n\010uniqueId\030\001 \001(\003\"\"\n\016ReqPetIde" +
+      "ntify\022\020\n\010uniqueId\030\001 \001(\003\"\036\n\016RespPetLevelu" +
+      "p\022\014\n\004code\030\001 \001(\005\"#\n\023RespPetUseAttrPoint\022\014" +
+      "\n\004code\030\001 \001(\005\"1\n\rRespPetUpdate\022 \n\004pets\030\001 " +
+      "\003(\0132\022.Protocol.PBPetDto\"\037\n\017RespPetIdenti" +
+      "fy\022\014\n\004code\030\001 \001(\005\"\035\n\rRespPetActive\022\014\n\004cod" +
+      "e\030\001 \001(\005\"!\n\rRespPetDelete\022\020\n\010uniqueId\030\001 \003" +
+      "(\003\" \n\014ReqPetActive\022\020\n\010uniqueId\030\001 \001(\003\"8\n\022" +
+      "ReqPetUseAttrPoint\022\020\n\010uniqueId\030\001 \001(\003\022\020\n\010" +
+      "attrType\030\002 \001(\005B\'\n\036com.cat.server.game.da" +
+      "ta.protoB\005PBPetb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.cat.server.game.data.proto.PBItem.getDescriptor(),
+          com.cat.server.game.data.proto.PBCommon.getDescriptor(),
         });
     internal_static_Protocol_PBPetDto_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -8785,17 +8785,17 @@ public final class PBPet {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqPetIdentify_descriptor,
         new java.lang.String[] { "UniqueId", });
-    internal_static_Protocol_RespPetUseAttrPoint_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_Protocol_RespPetUseAttrPoint_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_RespPetUseAttrPoint_descriptor,
-        new java.lang.String[] { "Code", });
     internal_static_Protocol_RespPetLevelup_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_Protocol_RespPetLevelup_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_RespPetLevelup_descriptor,
+        new java.lang.String[] { "Code", });
+    internal_static_Protocol_RespPetUseAttrPoint_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_Protocol_RespPetUseAttrPoint_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_RespPetUseAttrPoint_descriptor,
         new java.lang.String[] { "Code", });
     internal_static_Protocol_RespPetUpdate_descriptor =
       getDescriptor().getMessageTypes().get(5);
@@ -8809,18 +8809,18 @@ public final class PBPet {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_RespPetIdentify_descriptor,
         new java.lang.String[] { "Code", });
-    internal_static_Protocol_RespPetDelete_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_Protocol_RespPetDelete_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_RespPetDelete_descriptor,
-        new java.lang.String[] { "UniqueId", });
     internal_static_Protocol_RespPetActive_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_Protocol_RespPetActive_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_RespPetActive_descriptor,
         new java.lang.String[] { "Code", });
+    internal_static_Protocol_RespPetDelete_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_Protocol_RespPetDelete_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_RespPetDelete_descriptor,
+        new java.lang.String[] { "UniqueId", });
     internal_static_Protocol_ReqPetActive_descriptor =
       getDescriptor().getMessageTypes().get(9);
     internal_static_Protocol_ReqPetActive_fieldAccessorTable = new
@@ -8833,7 +8833,7 @@ public final class PBPet {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqPetUseAttrPoint_descriptor,
         new java.lang.String[] { "UniqueId", "AttrType", });
-    com.cat.server.game.data.proto.PBItem.getDescriptor();
+    com.cat.server.game.data.proto.PBCommon.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

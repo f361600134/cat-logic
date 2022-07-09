@@ -726,7 +726,7 @@ public final class PBLearnCommunity {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+    java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> 
         getRewardsList();
     /**
      * <pre>
@@ -735,7 +735,7 @@ public final class PBLearnCommunity {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index);
+    com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index);
     /**
      * <pre>
      *奖励内容
@@ -751,7 +751,7 @@ public final class PBLearnCommunity {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getRewardsOrBuilderList();
     /**
      * <pre>
@@ -760,7 +760,7 @@ public final class PBLearnCommunity {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+    com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
         int index);
   }
   /**
@@ -821,11 +821,11 @@ public final class PBLearnCommunity {
             }
             case 18: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
+                rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000001;
               }
               rewards_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
+                  input.readMessage(com.cat.server.game.data.proto.PBCommon.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -878,7 +878,7 @@ public final class PBLearnCommunity {
     }
 
     public static final int REWARDS_FIELD_NUMBER = 2;
-    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> rewards_;
+    private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> rewards_;
     /**
      * <pre>
      *奖励内容
@@ -886,7 +886,7 @@ public final class PBLearnCommunity {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getRewardsList() {
+    public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getRewardsList() {
       return rewards_;
     }
     /**
@@ -896,7 +896,7 @@ public final class PBLearnCommunity {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getRewardsOrBuilderList() {
       return rewards_;
     }
@@ -917,7 +917,7 @@ public final class PBLearnCommunity {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index) {
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index) {
       return rewards_.get(index);
     }
     /**
@@ -927,7 +927,7 @@ public final class PBLearnCommunity {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
         int index) {
       return rewards_.get(index);
     }
@@ -1337,17 +1337,17 @@ public final class PBLearnCommunity {
         return this;
       }
 
-      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> rewards_ =
+      private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> rewards_ =
         java.util.Collections.emptyList();
       private void ensureRewardsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(rewards_);
+          rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>(rewards_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> rewardsBuilder_;
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> rewardsBuilder_;
 
       /**
        * <pre>
@@ -1356,7 +1356,7 @@ public final class PBLearnCommunity {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getRewardsList() {
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getRewardsList() {
         if (rewardsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(rewards_);
         } else {
@@ -1384,7 +1384,7 @@ public final class PBLearnCommunity {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index) {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index) {
         if (rewardsBuilder_ == null) {
           return rewards_.get(index);
         } else {
@@ -1399,7 +1399,7 @@ public final class PBLearnCommunity {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder setRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1420,7 +1420,7 @@ public final class PBLearnCommunity {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder setRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.set(index, builderForValue.build());
@@ -1437,7 +1437,7 @@ public final class PBLearnCommunity {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public Builder addRewards(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+      public Builder addRewards(com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1458,7 +1458,7 @@ public final class PBLearnCommunity {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -1479,7 +1479,7 @@ public final class PBLearnCommunity {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addRewards(
-          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.add(builderForValue.build());
@@ -1497,7 +1497,7 @@ public final class PBLearnCommunity {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.add(index, builderForValue.build());
@@ -1515,7 +1515,7 @@ public final class PBLearnCommunity {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addAllRewards(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfo> values) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -1567,7 +1567,7 @@ public final class PBLearnCommunity {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getRewardsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder getRewardsBuilder(
           int index) {
         return getRewardsFieldBuilder().getBuilder(index);
       }
@@ -1578,7 +1578,7 @@ public final class PBLearnCommunity {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
           int index) {
         if (rewardsBuilder_ == null) {
           return rewards_.get(index);  } else {
@@ -1592,7 +1592,7 @@ public final class PBLearnCommunity {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+      public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
            getRewardsOrBuilderList() {
         if (rewardsBuilder_ != null) {
           return rewardsBuilder_.getMessageOrBuilderList();
@@ -1607,9 +1607,9 @@ public final class PBLearnCommunity {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addRewardsBuilder() {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addRewardsBuilder() {
         return getRewardsFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -1618,10 +1618,10 @@ public final class PBLearnCommunity {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addRewardsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addRewardsBuilder(
           int index) {
         return getRewardsFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -1630,16 +1630,16 @@ public final class PBLearnCommunity {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder> 
            getRewardsBuilderList() {
         return getRewardsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
           getRewardsFieldBuilder() {
         if (rewardsBuilder_ == null) {
           rewardsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder>(
                   rewards_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -3365,22 +3365,22 @@ public final class PBLearnCommunity {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026PBLearnCommunity.proto\022\010Protocol\032\014PBIt" +
-      "em.proto\"G\n\026RespLearnCommunityInfo\022\r\n\005le" +
-      "vel\030\001 \001(\005\022\013\n\003exp\030\002 \001(\005\022\021\n\texclusive\030\003 \001(" +
-      "\010\"S\n\030RespLearnCommunityReward\022\020\n\010configI" +
-      "d\030\001 \001(\005\022%\n\007rewards\030\002 \003(\0132\024.Protocol.PBPa" +
-      "irInfo\"\027\n\025ReqLearnCommunityInfo\"S\n\026PBLea" +
-      "rnCommunityReward\022\020\n\010configId\030\001 \001(\005\022\016\n\006s" +
-      "tatus\030\002 \001(\005\022\027\n\017exclusiveStatus\030\003 \001(\005\"+\n\027" +
-      "ReqLearnCommunityReward\022\020\n\010configId\030\001 \001(" +
-      "\005B2\n\036com.cat.server.game.data.protoB\020PBL" +
-      "earnCommunityb\006proto3"
+      "\n\026PBLearnCommunity.proto\022\010Protocol\032\016PBCo" +
+      "mmon.proto\"G\n\026RespLearnCommunityInfo\022\r\n\005" +
+      "level\030\001 \001(\005\022\013\n\003exp\030\002 \001(\005\022\021\n\texclusive\030\003 " +
+      "\001(\010\"S\n\030RespLearnCommunityReward\022\020\n\010confi" +
+      "gId\030\001 \001(\005\022%\n\007rewards\030\002 \003(\0132\024.Protocol.PB" +
+      "PairInfo\"\027\n\025ReqLearnCommunityInfo\"S\n\026PBL" +
+      "earnCommunityReward\022\020\n\010configId\030\001 \001(\005\022\016\n" +
+      "\006status\030\002 \001(\005\022\027\n\017exclusiveStatus\030\003 \001(\005\"+" +
+      "\n\027ReqLearnCommunityReward\022\020\n\010configId\030\001 " +
+      "\001(\005B2\n\036com.cat.server.game.data.protoB\020P" +
+      "BLearnCommunityb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.cat.server.game.data.proto.PBItem.getDescriptor(),
+          com.cat.server.game.data.proto.PBCommon.getDescriptor(),
         });
     internal_static_Protocol_RespLearnCommunityInfo_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -3412,7 +3412,7 @@ public final class PBLearnCommunity {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqLearnCommunityReward_descriptor,
         new java.lang.String[] { "ConfigId", });
-    com.cat.server.game.data.proto.PBItem.getDescriptor();
+    com.cat.server.game.data.proto.PBCommon.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

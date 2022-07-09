@@ -18,6 +18,8 @@ import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
+import com.cat.server.game.module.activityitem.domain.ActivityItem;
+import com.cat.server.game.module.activityitem.domain.ActivityItemDomain;
 import com.cat.server.game.module.home.define.HomeConstant;
 import com.cat.server.game.module.home.domain.Betsuin;
 import com.cat.server.game.module.home.domain.Furniture;
@@ -35,6 +37,7 @@ import com.cat.server.game.module.home.proto.RespHomeInfoBuilder;
 import com.cat.server.game.module.home.proto.RespHomeSchemeLayoutInfoBuilder;
 import com.cat.server.game.module.home.proto.RespHomeSchemeLayoutSaveBuilder;
 import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceService;
 import com.cat.server.game.module.resource.helper.ResourceHelper;
 
@@ -378,6 +381,18 @@ public class HomeService implements IHomeService, IResourceService{
 		HomeDomain domain = homeManager.getDomain(playerId);
 		if (domain == null) return;
 		domain.getBean().getFurnitureMap().remove(uniqueId);
+	}
+	
+	@Override
+	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+		HomeDomain domain = homeManager.getDomain(playerId);
+		if (domain == null) return ;
+		if (!(res instanceof Furniture)) {
+			return;
+		}
+		//FIXME
+		Furniture item = (Furniture)res;
+//		domain.addReource(item.getUniqueId(), item);
 	}
 	
 }

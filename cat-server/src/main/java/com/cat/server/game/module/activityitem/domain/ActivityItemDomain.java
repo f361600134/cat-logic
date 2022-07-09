@@ -89,4 +89,11 @@ public class ActivityItemDomain extends AbstractModuleMultiDomain<Long, Long, Ac
 	public int getCount(int configId) {
 		return resourceDomainProxy.getCount(configId);
 	}
+
+
+	@Override
+	public void addReource(Long k, ActivityItem v) {
+		resourceDomainProxy.addReource(k, v);
+	}
+	
 }

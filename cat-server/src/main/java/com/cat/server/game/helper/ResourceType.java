@@ -21,8 +21,6 @@ public enum ResourceType {
 	Pet(6),
 	/**宠物装备*/
 	PetEquip(7),
-	
-	
 	/** 家园*/
 	Home(10),
 	;

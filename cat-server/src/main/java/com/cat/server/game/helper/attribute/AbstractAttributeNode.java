@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.function.Predicate;
 
-import com.cat.server.game.data.proto.PBItem.PBPairInfo;
+import com.cat.server.game.data.proto.PBCommon.PBPairInfo;
 import com.cat.server.game.helper.log.NatureEnum;
-import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
+import com.cat.server.game.module.common.proto.PBPairInfoBuilder;
 
 public abstract class AbstractAttributeNode implements IAttributeNode {
 	
@@ -239,7 +239,7 @@ public abstract class AbstractAttributeNode implements IAttributeNode {
 		List<PBPairInfo> ret = new ArrayList<>();
 		this.getAttrDic().getDictionary().forEach((attrId, value)->{
 			PBPairInfoBuilder builder = PBPairInfoBuilder.newInstance();
-			builder.setConfigId(attrId);
+			builder.setKey(attrId);
 			builder.setValue(value);
 			ret.add(builder.build());
 		});

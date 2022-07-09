@@ -1,6 +1,7 @@
 package com.cat.server.game.module.hero.domain;
 
 import com.cat.orm.core.base.BasePo;
+import com.cat.server.game.module.user.Stu;
 
 /**
 * HeroPo

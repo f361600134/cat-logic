@@ -43,7 +43,7 @@ public abstract class AbstractActivityType implements IActivityType{
 
 	public AbstractActivityType(Activity activity) {
 		this.activity = activity;
-		this.statusManager =  new ActivityStatusManager(this);
+		this.statusManager = new ActivityStatusManager(this);
 	}
 	
 	@Override

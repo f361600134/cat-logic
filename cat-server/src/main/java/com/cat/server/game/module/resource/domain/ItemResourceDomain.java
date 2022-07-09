@@ -8,6 +8,7 @@ import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.data.config.local.ConfigItem;
 import com.cat.server.game.module.item.domain.Item;
+import com.cat.server.game.module.petequip.domain.PetEquip;
 import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
 import com.google.common.collect.Lists;
 
@@ -143,5 +144,13 @@ public class ItemResourceDomain extends AbstractResourceDomain<Long, Item>{
 		ItemResourceDomain domain = new ItemResourceDomain(playerId, beanMap);
 		return domain;
 	}
+	
+//	@Override
+//	public void addReource(Item res) {
+//		getBeanMap().put(res.getUniqueId(), res);
+//		updateList.add(res);
+//		//发送事件
+//		GameEventBus.getInstance().post(ResourceUpdateEvent.create(res, 1));
+//	}
 
 }

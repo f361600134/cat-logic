@@ -14,527 +14,13 @@ public final class PBPlayerMail {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface RespMailReadOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.RespMailRead)
+  public interface ReqPlayerMailReadOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.ReqPlayerMailRead)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     *错误码,非0表示弹提示
-     * </pre>
-     *
-     * <code>int32 code = 1;</code>
-     * @return The code.
-     */
-    int getCode();
-  }
-  /**
-   * <pre>
-   * 响应读取邮件
-   * </pre>
-   *
-   * Protobuf type {@code Protocol.RespMailRead}
-   */
-  public  static final class RespMailRead extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.RespMailRead)
-      RespMailReadOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use RespMailRead.newBuilder() to construct.
-    private RespMailRead(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private RespMailRead() {
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new RespMailRead();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private RespMailRead(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              code_ = input.readInt32();
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailRead_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailRead_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPlayerMail.RespMailRead.class, com.cat.server.game.data.proto.PBPlayerMail.RespMailRead.Builder.class);
-    }
-
-    public static final int CODE_FIELD_NUMBER = 1;
-    private int code_;
-    /**
-     * <pre>
-     *错误码,非0表示弹提示
-     * </pre>
-     *
-     * <code>int32 code = 1;</code>
-     * @return The code.
-     */
-    public int getCode() {
-      return code_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (code_ != 0) {
-        output.writeInt32(1, code_);
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (code_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, code_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.RespMailRead)) {
-        return super.equals(obj);
-      }
-      com.cat.server.game.data.proto.PBPlayerMail.RespMailRead other = (com.cat.server.game.data.proto.PBPlayerMail.RespMailRead) obj;
-
-      if (getCode()
-          != other.getCode()) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CODE_FIELD_NUMBER;
-      hash = (53 * hash) + getCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.RespMailRead prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * 响应读取邮件
-     * </pre>
-     *
-     * Protobuf type {@code Protocol.RespMailRead}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.RespMailRead)
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailReadOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailRead_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailRead_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPlayerMail.RespMailRead.class, com.cat.server.game.data.proto.PBPlayerMail.RespMailRead.Builder.class);
-      }
-
-      // Construct using com.cat.server.game.data.proto.PBPlayerMail.RespMailRead.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        code_ = 0;
-
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailRead_descriptor;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailRead getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.RespMailRead.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailRead build() {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailRead result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailRead buildPartial() {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailRead result = new com.cat.server.game.data.proto.PBPlayerMail.RespMailRead(this);
-        result.code_ = code_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.RespMailRead) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.RespMailRead)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.RespMailRead other) {
-        if (other == com.cat.server.game.data.proto.PBPlayerMail.RespMailRead.getDefaultInstance()) return this;
-        if (other.getCode() != 0) {
-          setCode(other.getCode());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailRead parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.RespMailRead) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private int code_ ;
-      /**
-       * <pre>
-       *错误码,非0表示弹提示
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
-       * @return The code.
-       */
-      public int getCode() {
-        return code_;
-      }
-      /**
-       * <pre>
-       *错误码,非0表示弹提示
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
-       * @param value The code to set.
-       * @return This builder for chaining.
-       */
-      public Builder setCode(int value) {
-        
-        code_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *错误码,非0表示弹提示
-       * </pre>
-       *
-       * <code>int32 code = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearCode() {
-        
-        code_ = 0;
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:Protocol.RespMailRead)
-    }
-
-    // @@protoc_insertion_point(class_scope:Protocol.RespMailRead)
-    private static final com.cat.server.game.data.proto.PBPlayerMail.RespMailRead DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.RespMailRead();
-    }
-
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailRead getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<RespMailRead>
-        PARSER = new com.google.protobuf.AbstractParser<RespMailRead>() {
-      @java.lang.Override
-      public RespMailRead parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RespMailRead(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<RespMailRead> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<RespMailRead> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.cat.server.game.data.proto.PBPlayerMail.RespMailRead getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface ReqMailRewardOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.ReqMailReward)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     *mailId,-1表示所有
+     *Mail id
      * </pre>
      *
      * <code>int64 mailId = 1;</code>
@@ -544,28 +30,28 @@ public final class PBPlayerMail {
   }
   /**
    * <pre>
-   * 获取邮件附件
+   * 请求读取邮件
    * </pre>
    *
-   * Protobuf type {@code Protocol.ReqMailReward}
+   * Protobuf type {@code Protocol.ReqPlayerMailRead}
    */
-  public  static final class ReqMailReward extends
+  public  static final class ReqPlayerMailRead extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.ReqMailReward)
-      ReqMailRewardOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.ReqPlayerMailRead)
+      ReqPlayerMailReadOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ReqMailReward.newBuilder() to construct.
-    private ReqMailReward(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ReqPlayerMailRead.newBuilder() to construct.
+    private ReqPlayerMailRead(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ReqMailReward() {
+    private ReqPlayerMailRead() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new ReqMailReward();
+      return new ReqPlayerMailRead();
     }
 
     @java.lang.Override
@@ -573,7 +59,7 @@ public final class PBPlayerMail {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ReqMailReward(
+    private ReqPlayerMailRead(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -617,22 +103,22 @@ public final class PBPlayerMail {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailReward_descriptor;
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailRead_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailReward_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailRead_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward.class, com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward.Builder.class);
+              com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead.class, com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead.Builder.class);
     }
 
     public static final int MAILID_FIELD_NUMBER = 1;
     private long mailId_;
     /**
      * <pre>
-     *mailId,-1表示所有
+     *Mail id
      * </pre>
      *
      * <code>int64 mailId = 1;</code>
@@ -682,10 +168,10 @@ public final class PBPlayerMail {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward other = (com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward) obj;
+      com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead other = (com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead) obj;
 
       if (getMailId()
           != other.getMailId()) return false;
@@ -708,69 +194,69 @@ public final class PBPlayerMail {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -783,7 +269,7 @@ public final class PBPlayerMail {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -800,29 +286,29 @@ public final class PBPlayerMail {
     }
     /**
      * <pre>
-     * 获取邮件附件
+     * 请求读取邮件
      * </pre>
      *
-     * Protobuf type {@code Protocol.ReqMailReward}
+     * Protobuf type {@code Protocol.ReqPlayerMailRead}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.ReqMailReward)
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailRewardOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.ReqPlayerMailRead)
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReadOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailReward_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailRead_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailReward_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailRead_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward.class, com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward.Builder.class);
+                com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead.class, com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -848,17 +334,17 @@ public final class PBPlayerMail {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailReward_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailRead_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward build() {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward result = buildPartial();
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead build() {
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -866,8 +352,8 @@ public final class PBPlayerMail {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward buildPartial() {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward result = new com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward(this);
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead buildPartial() {
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead result = new com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead(this);
         result.mailId_ = mailId_;
         onBuilt();
         return result;
@@ -907,16 +393,16 @@ public final class PBPlayerMail {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward)other);
+        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward other) {
-        if (other == com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead other) {
+        if (other == com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead.getDefaultInstance()) return this;
         if (other.getMailId() != 0L) {
           setMailId(other.getMailId());
         }
@@ -935,11 +421,11 @@ public final class PBPlayerMail {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward parsedMessage = null;
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -952,7 +438,7 @@ public final class PBPlayerMail {
       private long mailId_ ;
       /**
        * <pre>
-       *mailId,-1表示所有
+       *Mail id
        * </pre>
        *
        * <code>int64 mailId = 1;</code>
@@ -963,7 +449,7 @@ public final class PBPlayerMail {
       }
       /**
        * <pre>
-       *mailId,-1表示所有
+       *Mail id
        * </pre>
        *
        * <code>int64 mailId = 1;</code>
@@ -978,7 +464,7 @@ public final class PBPlayerMail {
       }
       /**
        * <pre>
-       *mailId,-1表示所有
+       *Mail id
        * </pre>
        *
        * <code>int64 mailId = 1;</code>
@@ -1003,48 +489,48 @@ public final class PBPlayerMail {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.ReqMailReward)
+      // @@protoc_insertion_point(builder_scope:Protocol.ReqPlayerMailRead)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.ReqMailReward)
-    private static final com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.ReqPlayerMailRead)
+    private static final com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead();
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ReqMailReward>
-        PARSER = new com.google.protobuf.AbstractParser<ReqMailReward>() {
+    private static final com.google.protobuf.Parser<ReqPlayerMailRead>
+        PARSER = new com.google.protobuf.AbstractParser<ReqPlayerMailRead>() {
       @java.lang.Override
-      public ReqMailReward parsePartialFrom(
+      public ReqPlayerMailRead parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ReqMailReward(input, extensionRegistry);
+        return new ReqPlayerMailRead(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ReqMailReward> parser() {
+    public static com.google.protobuf.Parser<ReqPlayerMailRead> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ReqMailReward> getParserForType() {
+    public com.google.protobuf.Parser<ReqPlayerMailRead> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBPlayerMail.ReqMailReward getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRead getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface RespMailDeleteOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.RespMailDelete)
+  public interface RespPlayerMailDeleteOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespPlayerMailDelete)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -1091,18 +577,18 @@ public final class PBPlayerMail {
    * 请求删除邮件
    * </pre>
    *
-   * Protobuf type {@code Protocol.RespMailDelete}
+   * Protobuf type {@code Protocol.RespPlayerMailDelete}
    */
-  public  static final class RespMailDelete extends
+  public  static final class RespPlayerMailDelete extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.RespMailDelete)
-      RespMailDeleteOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.RespPlayerMailDelete)
+      RespPlayerMailDeleteOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RespMailDelete.newBuilder() to construct.
-    private RespMailDelete(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RespPlayerMailDelete.newBuilder() to construct.
+    private RespPlayerMailDelete(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RespMailDelete() {
+    private RespPlayerMailDelete() {
       mailIds_ = emptyLongList();
     }
 
@@ -1110,7 +596,7 @@ public final class PBPlayerMail {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RespMailDelete();
+      return new RespPlayerMailDelete();
     }
 
     @java.lang.Override
@@ -1118,7 +604,7 @@ public final class PBPlayerMail {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RespMailDelete(
+    private RespPlayerMailDelete(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1187,15 +673,15 @@ public final class PBPlayerMail {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailDelete_descriptor;
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailDelete_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailDelete_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailDelete_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete.class, com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete.Builder.class);
+              com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete.class, com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete.Builder.class);
     }
 
     public static final int CODE_FIELD_NUMBER = 1;
@@ -1313,10 +799,10 @@ public final class PBPlayerMail {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete other = (com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete) obj;
+      com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete other = (com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete) obj;
 
       if (getCode()
           != other.getCode()) return false;
@@ -1344,69 +830,69 @@ public final class PBPlayerMail {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1419,7 +905,7 @@ public final class PBPlayerMail {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1439,26 +925,26 @@ public final class PBPlayerMail {
      * 请求删除邮件
      * </pre>
      *
-     * Protobuf type {@code Protocol.RespMailDelete}
+     * Protobuf type {@code Protocol.RespPlayerMailDelete}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.RespMailDelete)
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailDeleteOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.RespPlayerMailDelete)
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDeleteOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailDelete_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailDelete_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailDelete_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailDelete_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete.class, com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete.Builder.class);
+                com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete.class, com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1486,17 +972,17 @@ public final class PBPlayerMail {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailDelete_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailDelete_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete build() {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete result = buildPartial();
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete build() {
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1504,8 +990,8 @@ public final class PBPlayerMail {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete buildPartial() {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete result = new com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete(this);
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete buildPartial() {
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete result = new com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete(this);
         int from_bitField0_ = bitField0_;
         result.code_ = code_;
         if (((bitField0_ & 0x00000001) != 0)) {
@@ -1551,16 +1037,16 @@ public final class PBPlayerMail {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete)other);
+        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete other) {
-        if (other == com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete other) {
+        if (other == com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete.getDefaultInstance()) return this;
         if (other.getCode() != 0) {
           setCode(other.getCode());
         }
@@ -1589,11 +1075,11 @@ public final class PBPlayerMail {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete parsedMessage = null;
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1765,48 +1251,563 @@ public final class PBPlayerMail {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.RespMailDelete)
+      // @@protoc_insertion_point(builder_scope:Protocol.RespPlayerMailDelete)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.RespMailDelete)
-    private static final com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.RespPlayerMailDelete)
+    private static final com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete();
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RespMailDelete>
-        PARSER = new com.google.protobuf.AbstractParser<RespMailDelete>() {
+    private static final com.google.protobuf.Parser<RespPlayerMailDelete>
+        PARSER = new com.google.protobuf.AbstractParser<RespPlayerMailDelete>() {
       @java.lang.Override
-      public RespMailDelete parsePartialFrom(
+      public RespPlayerMailDelete parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RespMailDelete(input, extensionRegistry);
+        return new RespPlayerMailDelete(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RespMailDelete> parser() {
+    public static com.google.protobuf.Parser<RespPlayerMailDelete> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RespMailDelete> getParserForType() {
+    public com.google.protobuf.Parser<RespPlayerMailDelete> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailDelete getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface PBMailInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.PBMailInfo)
+  public interface ReqPlayerMailDeleteOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.ReqPlayerMailDelete)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *mail ids
+     * </pre>
+     *
+     * <code>int64 mailId = 1;</code>
+     * @return The mailId.
+     */
+    long getMailId();
+  }
+  /**
+   * <pre>
+   * 请求删除邮件
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.ReqPlayerMailDelete}
+   */
+  public  static final class ReqPlayerMailDelete extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.ReqPlayerMailDelete)
+      ReqPlayerMailDeleteOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ReqPlayerMailDelete.newBuilder() to construct.
+    private ReqPlayerMailDelete(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ReqPlayerMailDelete() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ReqPlayerMailDelete();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ReqPlayerMailDelete(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              mailId_ = input.readInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailDelete_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailDelete_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete.class, com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete.Builder.class);
+    }
+
+    public static final int MAILID_FIELD_NUMBER = 1;
+    private long mailId_;
+    /**
+     * <pre>
+     *mail ids
+     * </pre>
+     *
+     * <code>int64 mailId = 1;</code>
+     * @return The mailId.
+     */
+    public long getMailId() {
+      return mailId_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (mailId_ != 0L) {
+        output.writeInt64(1, mailId_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (mailId_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(1, mailId_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete other = (com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete) obj;
+
+      if (getMailId()
+          != other.getMailId()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + MAILID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getMailId());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 请求删除邮件
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.ReqPlayerMailDelete}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.ReqPlayerMailDelete)
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDeleteOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailDelete_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailDelete_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete.class, com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        mailId_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailDelete_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete build() {
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete buildPartial() {
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete result = new com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete(this);
+        result.mailId_ = mailId_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete other) {
+        if (other == com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete.getDefaultInstance()) return this;
+        if (other.getMailId() != 0L) {
+          setMailId(other.getMailId());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private long mailId_ ;
+      /**
+       * <pre>
+       *mail ids
+       * </pre>
+       *
+       * <code>int64 mailId = 1;</code>
+       * @return The mailId.
+       */
+      public long getMailId() {
+        return mailId_;
+      }
+      /**
+       * <pre>
+       *mail ids
+       * </pre>
+       *
+       * <code>int64 mailId = 1;</code>
+       * @param value The mailId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMailId(long value) {
+        
+        mailId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *mail ids
+       * </pre>
+       *
+       * <code>int64 mailId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMailId() {
+        
+        mailId_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.ReqPlayerMailDelete)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.ReqPlayerMailDelete)
+    private static final com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete();
+    }
+
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ReqPlayerMailDelete>
+        PARSER = new com.google.protobuf.AbstractParser<ReqPlayerMailDelete>() {
+      @java.lang.Override
+      public ReqPlayerMailDelete parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ReqPlayerMailDelete(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ReqPlayerMailDelete> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ReqPlayerMailDelete> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailDelete getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface PBPlayerMailInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.PBPlayerMailInfo)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -1866,7 +1867,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+    java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> 
         getRewardsList();
     /**
      * <pre>
@@ -1875,7 +1876,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index);
+    com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index);
     /**
      * <pre>
      *附件
@@ -1891,7 +1892,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getRewardsOrBuilderList();
     /**
      * <pre>
@@ -1900,7 +1901,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+    com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
         int index);
 
     /**
@@ -1948,18 +1949,18 @@ public final class PBPlayerMail {
    * 邮件
    * </pre>
    *
-   * Protobuf type {@code Protocol.PBMailInfo}
+   * Protobuf type {@code Protocol.PBPlayerMailInfo}
    */
-  public  static final class PBMailInfo extends
+  public  static final class PBPlayerMailInfo extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.PBMailInfo)
-      PBMailInfoOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.PBPlayerMailInfo)
+      PBPlayerMailInfoOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use PBMailInfo.newBuilder() to construct.
-    private PBMailInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use PBPlayerMailInfo.newBuilder() to construct.
+    private PBPlayerMailInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private PBMailInfo() {
+    private PBPlayerMailInfo() {
       title_ = "";
       content_ = "";
       rewards_ = java.util.Collections.emptyList();
@@ -1970,7 +1971,7 @@ public final class PBPlayerMail {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new PBMailInfo();
+      return new PBPlayerMailInfo();
     }
 
     @java.lang.Override
@@ -1978,7 +1979,7 @@ public final class PBPlayerMail {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private PBMailInfo(
+    private PBPlayerMailInfo(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -2016,11 +2017,11 @@ public final class PBPlayerMail {
             }
             case 34: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
+                rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000001;
               }
               rewards_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
+                  input.readMessage(com.cat.server.game.data.proto.PBCommon.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             case 40: {
@@ -2063,15 +2064,15 @@ public final class PBPlayerMail {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_PBMailInfo_descriptor;
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_PBPlayerMailInfo_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_PBMailInfo_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_PBPlayerMailInfo_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.class, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder.class);
+              com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.class, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder.class);
     }
 
     public static final int MAILID_FIELD_NUMBER = 1;
@@ -2177,7 +2178,7 @@ public final class PBPlayerMail {
     }
 
     public static final int REWARDS_FIELD_NUMBER = 4;
-    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> rewards_;
+    private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> rewards_;
     /**
      * <pre>
      *附件
@@ -2185,7 +2186,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getRewardsList() {
+    public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getRewardsList() {
       return rewards_;
     }
     /**
@@ -2195,7 +2196,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getRewardsOrBuilderList() {
       return rewards_;
     }
@@ -2216,7 +2217,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index) {
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index) {
       return rewards_.get(index);
     }
     /**
@@ -2226,7 +2227,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
         int index) {
       return rewards_.get(index);
     }
@@ -2382,10 +2383,10 @@ public final class PBPlayerMail {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo other = (com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo) obj;
+      com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo other = (com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo) obj;
 
       if (getMailId()
           != other.getMailId()) return false;
@@ -2434,69 +2435,69 @@ public final class PBPlayerMail {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -2509,7 +2510,7 @@ public final class PBPlayerMail {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -2529,26 +2530,26 @@ public final class PBPlayerMail {
      * 邮件
      * </pre>
      *
-     * Protobuf type {@code Protocol.PBMailInfo}
+     * Protobuf type {@code Protocol.PBPlayerMailInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.PBMailInfo)
-        com.cat.server.game.data.proto.PBPlayerMail.PBMailInfoOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.PBPlayerMailInfo)
+        com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfoOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_PBMailInfo_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_PBPlayerMailInfo_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_PBMailInfo_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_PBPlayerMailInfo_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.class, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder.class);
+                com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.class, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2591,17 +2592,17 @@ public final class PBPlayerMail {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_PBMailInfo_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_PBPlayerMailInfo_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo build() {
-        com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo result = buildPartial();
+      public com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo build() {
+        com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -2609,8 +2610,8 @@ public final class PBPlayerMail {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo buildPartial() {
-        com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo result = new com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo(this);
+      public com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo buildPartial() {
+        com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo result = new com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo(this);
         int from_bitField0_ = bitField0_;
         result.mailId_ = mailId_;
         result.title_ = title_;
@@ -2665,16 +2666,16 @@ public final class PBPlayerMail {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo)other);
+        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo other) {
-        if (other == com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo other) {
+        if (other == com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.getDefaultInstance()) return this;
         if (other.getMailId() != 0L) {
           setMailId(other.getMailId());
         }
@@ -2737,11 +2738,11 @@ public final class PBPlayerMail {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo parsedMessage = null;
+        com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -2986,17 +2987,17 @@ public final class PBPlayerMail {
         return this;
       }
 
-      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> rewards_ =
+      private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> rewards_ =
         java.util.Collections.emptyList();
       private void ensureRewardsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(rewards_);
+          rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>(rewards_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> rewardsBuilder_;
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> rewardsBuilder_;
 
       /**
        * <pre>
@@ -3005,7 +3006,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getRewardsList() {
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getRewardsList() {
         if (rewardsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(rewards_);
         } else {
@@ -3033,7 +3034,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index) {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index) {
         if (rewardsBuilder_ == null) {
           return rewards_.get(index);
         } else {
@@ -3048,7 +3049,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder setRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -3069,7 +3070,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder setRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.set(index, builderForValue.build());
@@ -3086,7 +3087,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public Builder addRewards(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+      public Builder addRewards(com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -3107,7 +3108,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder addRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -3128,7 +3129,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder addRewards(
-          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.add(builderForValue.build());
@@ -3146,7 +3147,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder addRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.add(index, builderForValue.build());
@@ -3164,7 +3165,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
       public Builder addAllRewards(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfo> values) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -3216,7 +3217,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getRewardsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder getRewardsBuilder(
           int index) {
         return getRewardsFieldBuilder().getBuilder(index);
       }
@@ -3227,7 +3228,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
           int index) {
         if (rewardsBuilder_ == null) {
           return rewards_.get(index);  } else {
@@ -3241,7 +3242,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+      public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
            getRewardsOrBuilderList() {
         if (rewardsBuilder_ != null) {
           return rewardsBuilder_.getMessageOrBuilderList();
@@ -3256,9 +3257,9 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addRewardsBuilder() {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addRewardsBuilder() {
         return getRewardsFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -3267,10 +3268,10 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addRewardsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addRewardsBuilder(
           int index) {
         return getRewardsFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -3279,16 +3280,16 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 4;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder> 
            getRewardsBuilderList() {
         return getRewardsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
           getRewardsFieldBuilder() {
         if (rewardsBuilder_ == null) {
           rewardsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder>(
                   rewards_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -3490,53 +3491,53 @@ public final class PBPlayerMail {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.PBMailInfo)
+      // @@protoc_insertion_point(builder_scope:Protocol.PBPlayerMailInfo)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.PBMailInfo)
-    private static final com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.PBPlayerMailInfo)
+    private static final com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo();
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<PBMailInfo>
-        PARSER = new com.google.protobuf.AbstractParser<PBMailInfo>() {
+    private static final com.google.protobuf.Parser<PBPlayerMailInfo>
+        PARSER = new com.google.protobuf.AbstractParser<PBPlayerMailInfo>() {
       @java.lang.Override
-      public PBMailInfo parsePartialFrom(
+      public PBPlayerMailInfo parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PBMailInfo(input, extensionRegistry);
+        return new PBPlayerMailInfo(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<PBMailInfo> parser() {
+    public static com.google.protobuf.Parser<PBPlayerMailInfo> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<PBMailInfo> getParserForType() {
+    public com.google.protobuf.Parser<PBPlayerMailInfo> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface ReqMailReadOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.ReqMailRead)
+  public interface ReqPlayerMailRewardOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.ReqPlayerMailReward)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     *Mail id
+     *mailId,-1表示所有
      * </pre>
      *
      * <code>int64 mailId = 1;</code>
@@ -3546,28 +3547,28 @@ public final class PBPlayerMail {
   }
   /**
    * <pre>
-   * 请求读取邮件
+   * 获取邮件附件
    * </pre>
    *
-   * Protobuf type {@code Protocol.ReqMailRead}
+   * Protobuf type {@code Protocol.ReqPlayerMailReward}
    */
-  public  static final class ReqMailRead extends
+  public  static final class ReqPlayerMailReward extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.ReqMailRead)
-      ReqMailReadOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.ReqPlayerMailReward)
+      ReqPlayerMailRewardOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ReqMailRead.newBuilder() to construct.
-    private ReqMailRead(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ReqPlayerMailReward.newBuilder() to construct.
+    private ReqPlayerMailReward(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ReqMailRead() {
+    private ReqPlayerMailReward() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new ReqMailRead();
+      return new ReqPlayerMailReward();
     }
 
     @java.lang.Override
@@ -3575,7 +3576,7 @@ public final class PBPlayerMail {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ReqMailRead(
+    private ReqPlayerMailReward(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3619,22 +3620,22 @@ public final class PBPlayerMail {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailRead_descriptor;
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailReward_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailRead_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailReward_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead.class, com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead.Builder.class);
+              com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward.class, com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward.Builder.class);
     }
 
     public static final int MAILID_FIELD_NUMBER = 1;
     private long mailId_;
     /**
      * <pre>
-     *Mail id
+     *mailId,-1表示所有
      * </pre>
      *
      * <code>int64 mailId = 1;</code>
@@ -3684,10 +3685,10 @@ public final class PBPlayerMail {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead other = (com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead) obj;
+      com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward other = (com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward) obj;
 
       if (getMailId()
           != other.getMailId()) return false;
@@ -3710,69 +3711,69 @@ public final class PBPlayerMail {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3785,7 +3786,7 @@ public final class PBPlayerMail {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -3802,29 +3803,29 @@ public final class PBPlayerMail {
     }
     /**
      * <pre>
-     * 请求读取邮件
+     * 获取邮件附件
      * </pre>
      *
-     * Protobuf type {@code Protocol.ReqMailRead}
+     * Protobuf type {@code Protocol.ReqPlayerMailReward}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.ReqMailRead)
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailReadOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.ReqPlayerMailReward)
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailRewardOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailRead_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailReward_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailRead_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailReward_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead.class, com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead.Builder.class);
+                com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward.class, com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3850,17 +3851,17 @@ public final class PBPlayerMail {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailRead_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailReward_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead build() {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead result = buildPartial();
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward build() {
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -3868,8 +3869,8 @@ public final class PBPlayerMail {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead buildPartial() {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead result = new com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead(this);
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward buildPartial() {
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward result = new com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward(this);
         result.mailId_ = mailId_;
         onBuilt();
         return result;
@@ -3909,16 +3910,16 @@ public final class PBPlayerMail {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead)other);
+        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead other) {
-        if (other == com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward other) {
+        if (other == com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward.getDefaultInstance()) return this;
         if (other.getMailId() != 0L) {
           setMailId(other.getMailId());
         }
@@ -3937,11 +3938,11 @@ public final class PBPlayerMail {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead parsedMessage = null;
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3954,7 +3955,7 @@ public final class PBPlayerMail {
       private long mailId_ ;
       /**
        * <pre>
-       *Mail id
+       *mailId,-1表示所有
        * </pre>
        *
        * <code>int64 mailId = 1;</code>
@@ -3965,7 +3966,7 @@ public final class PBPlayerMail {
       }
       /**
        * <pre>
-       *Mail id
+       *mailId,-1表示所有
        * </pre>
        *
        * <code>int64 mailId = 1;</code>
@@ -3980,7 +3981,7 @@ public final class PBPlayerMail {
       }
       /**
        * <pre>
-       *Mail id
+       *mailId,-1表示所有
        * </pre>
        *
        * <code>int64 mailId = 1;</code>
@@ -4005,74 +4006,114 @@ public final class PBPlayerMail {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.ReqMailRead)
+      // @@protoc_insertion_point(builder_scope:Protocol.ReqPlayerMailReward)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.ReqMailRead)
-    private static final com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.ReqPlayerMailReward)
+    private static final com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward();
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ReqMailRead>
-        PARSER = new com.google.protobuf.AbstractParser<ReqMailRead>() {
+    private static final com.google.protobuf.Parser<ReqPlayerMailReward>
+        PARSER = new com.google.protobuf.AbstractParser<ReqPlayerMailReward>() {
       @java.lang.Override
-      public ReqMailRead parsePartialFrom(
+      public ReqPlayerMailReward parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ReqMailRead(input, extensionRegistry);
+        return new ReqPlayerMailReward(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ReqMailRead> parser() {
+    public static com.google.protobuf.Parser<ReqPlayerMailReward> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ReqMailRead> getParserForType() {
+    public com.google.protobuf.Parser<ReqPlayerMailReward> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBPlayerMail.ReqMailRead getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailReward getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface ReqMailListOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.ReqMailList)
+  public interface RespPlayerMailListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespPlayerMailList)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+     */
+    java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo> 
+        getMailsList();
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+     */
+    com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo getMails(int index);
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+     */
+    int getMailsCount();
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+     */
+    java.util.List<? extends com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfoOrBuilder> 
+        getMailsOrBuilderList();
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+     */
+    com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfoOrBuilder getMailsOrBuilder(
+        int index);
   }
   /**
    * <pre>
-   * 请求邮件列表
+   * 邮件列表
    * </pre>
    *
-   * Protobuf type {@code Protocol.ReqMailList}
+   * Protobuf type {@code Protocol.RespPlayerMailList}
    */
-  public  static final class ReqMailList extends
+  public  static final class RespPlayerMailList extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.ReqMailList)
-      ReqMailListOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.RespPlayerMailList)
+      RespPlayerMailListOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ReqMailList.newBuilder() to construct.
-    private ReqMailList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RespPlayerMailList.newBuilder() to construct.
+    private RespPlayerMailList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ReqMailList() {
+    private RespPlayerMailList() {
+      mails_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new ReqMailList();
+      return new RespPlayerMailList();
     }
 
     @java.lang.Override
@@ -4080,7 +4121,7 @@ public final class PBPlayerMail {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ReqMailList(
+    private RespPlayerMailList(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4088,6 +4129,7 @@ public final class PBPlayerMail {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -4098,6 +4140,15 @@ public final class PBPlayerMail {
             case 0:
               done = true;
               break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                mails_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              mails_.add(
+                  input.readMessage(com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.parser(), extensionRegistry));
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -4113,21 +4164,74 @@ public final class PBPlayerMail {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          mails_ = java.util.Collections.unmodifiableList(mails_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailList_descriptor;
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailList_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailList_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailList_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPlayerMail.ReqMailList.class, com.cat.server.game.data.proto.PBPlayerMail.ReqMailList.Builder.class);
+              com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList.class, com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList.Builder.class);
+    }
+
+    public static final int MAILS_FIELD_NUMBER = 1;
+    private java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo> mails_;
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+     */
+    public java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo> getMailsList() {
+      return mails_;
+    }
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+     */
+    public java.util.List<? extends com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfoOrBuilder> 
+        getMailsOrBuilderList() {
+      return mails_;
+    }
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+     */
+    public int getMailsCount() {
+      return mails_.size();
+    }
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+     */
+    public com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo getMails(int index) {
+      return mails_.get(index);
+    }
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+     */
+    public com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfoOrBuilder getMailsOrBuilder(
+        int index) {
+      return mails_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -4144,6 +4248,9 @@ public final class PBPlayerMail {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      for (int i = 0; i < mails_.size(); i++) {
+        output.writeMessage(1, mails_.get(i));
+      }
       unknownFields.writeTo(output);
     }
 
@@ -4153,6 +4260,10 @@ public final class PBPlayerMail {
       if (size != -1) return size;
 
       size = 0;
+      for (int i = 0; i < mails_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, mails_.get(i));
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -4163,11 +4274,13 @@ public final class PBPlayerMail {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqMailList)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBPlayerMail.ReqMailList other = (com.cat.server.game.data.proto.PBPlayerMail.ReqMailList) obj;
+      com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList other = (com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList) obj;
 
+      if (!getMailsList()
+          .equals(other.getMailsList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -4179,74 +4292,78 @@ public final class PBPlayerMail {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      if (getMailsCount() > 0) {
+        hash = (37 * hash) + MAILS_FIELD_NUMBER;
+        hash = (53 * hash) + getMailsList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4259,7 +4376,7 @@ public final class PBPlayerMail {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.ReqMailList prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -4276,29 +4393,29 @@ public final class PBPlayerMail {
     }
     /**
      * <pre>
-     * 请求邮件列表
+     * 邮件列表
      * </pre>
      *
-     * Protobuf type {@code Protocol.ReqMailList}
+     * Protobuf type {@code Protocol.RespPlayerMailList}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.ReqMailList)
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailListOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.RespPlayerMailList)
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailListOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailList_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailList_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailList_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailList_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPlayerMail.ReqMailList.class, com.cat.server.game.data.proto.PBPlayerMail.ReqMailList.Builder.class);
+                com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList.class, com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBPlayerMail.ReqMailList.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4311,28 +4428,35 @@ public final class PBPlayerMail {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getMailsFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        if (mailsBuilder_ == null) {
+          mails_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          mailsBuilder_.clear();
+        }
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailList_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailList_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailList getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.ReqMailList.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailList build() {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailList result = buildPartial();
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList build() {
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -4340,8 +4464,18 @@ public final class PBPlayerMail {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailList buildPartial() {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailList result = new com.cat.server.game.data.proto.PBPlayerMail.ReqMailList(this);
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList buildPartial() {
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList result = new com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList(this);
+        int from_bitField0_ = bitField0_;
+        if (mailsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            mails_ = java.util.Collections.unmodifiableList(mails_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.mails_ = mails_;
+        } else {
+          result.mails_ = mailsBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -4380,16 +4514,42 @@ public final class PBPlayerMail {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqMailList) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.ReqMailList)other);
+        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.ReqMailList other) {
-        if (other == com.cat.server.game.data.proto.PBPlayerMail.ReqMailList.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList other) {
+        if (other == com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList.getDefaultInstance()) return this;
+        if (mailsBuilder_ == null) {
+          if (!other.mails_.isEmpty()) {
+            if (mails_.isEmpty()) {
+              mails_ = other.mails_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureMailsIsMutable();
+              mails_.addAll(other.mails_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.mails_.isEmpty()) {
+            if (mailsBuilder_.isEmpty()) {
+              mailsBuilder_.dispose();
+              mailsBuilder_ = null;
+              mails_ = other.mails_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              mailsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getMailsFieldBuilder() : null;
+            } else {
+              mailsBuilder_.addAllMessages(other.mails_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -4405,11 +4565,11 @@ public final class PBPlayerMail {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailList parsedMessage = null;
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.ReqMailList) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4417,6 +4577,301 @@ public final class PBPlayerMail {
           }
         }
         return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo> mails_ =
+        java.util.Collections.emptyList();
+      private void ensureMailsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          mails_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo>(mails_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfoOrBuilder> mailsBuilder_;
+
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo> getMailsList() {
+        if (mailsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(mails_);
+        } else {
+          return mailsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public int getMailsCount() {
+        if (mailsBuilder_ == null) {
+          return mails_.size();
+        } else {
+          return mailsBuilder_.getCount();
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo getMails(int index) {
+        if (mailsBuilder_ == null) {
+          return mails_.get(index);
+        } else {
+          return mailsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public Builder setMails(
+          int index, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo value) {
+        if (mailsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMailsIsMutable();
+          mails_.set(index, value);
+          onChanged();
+        } else {
+          mailsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public Builder setMails(
+          int index, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder builderForValue) {
+        if (mailsBuilder_ == null) {
+          ensureMailsIsMutable();
+          mails_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          mailsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public Builder addMails(com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo value) {
+        if (mailsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMailsIsMutable();
+          mails_.add(value);
+          onChanged();
+        } else {
+          mailsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public Builder addMails(
+          int index, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo value) {
+        if (mailsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMailsIsMutable();
+          mails_.add(index, value);
+          onChanged();
+        } else {
+          mailsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public Builder addMails(
+          com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder builderForValue) {
+        if (mailsBuilder_ == null) {
+          ensureMailsIsMutable();
+          mails_.add(builderForValue.build());
+          onChanged();
+        } else {
+          mailsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public Builder addMails(
+          int index, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder builderForValue) {
+        if (mailsBuilder_ == null) {
+          ensureMailsIsMutable();
+          mails_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          mailsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public Builder addAllMails(
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo> values) {
+        if (mailsBuilder_ == null) {
+          ensureMailsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, mails_);
+          onChanged();
+        } else {
+          mailsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public Builder clearMails() {
+        if (mailsBuilder_ == null) {
+          mails_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          mailsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public Builder removeMails(int index) {
+        if (mailsBuilder_ == null) {
+          ensureMailsIsMutable();
+          mails_.remove(index);
+          onChanged();
+        } else {
+          mailsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder getMailsBuilder(
+          int index) {
+        return getMailsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfoOrBuilder getMailsOrBuilder(
+          int index) {
+        if (mailsBuilder_ == null) {
+          return mails_.get(index);  } else {
+          return mailsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public java.util.List<? extends com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfoOrBuilder> 
+           getMailsOrBuilderList() {
+        if (mailsBuilder_ != null) {
+          return mailsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(mails_);
+        }
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder addMailsBuilder() {
+        return getMailsFieldBuilder().addBuilder(
+            com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder addMailsBuilder(
+          int index) {
+        return getMailsFieldBuilder().addBuilder(
+            index, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.getDefaultInstance());
+      }
+      /**
+       * <pre>
+       * </pre>
+       *
+       * <code>repeated .Protocol.PBPlayerMailInfo mails = 1;</code>
+       */
+      public java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder> 
+           getMailsBuilderList() {
+        return getMailsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfoOrBuilder> 
+          getMailsFieldBuilder() {
+        if (mailsBuilder_ == null) {
+          mailsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfo.Builder, com.cat.server.game.data.proto.PBPlayerMail.PBPlayerMailInfoOrBuilder>(
+                  mails_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          mails_ = null;
+        }
+        return mailsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -4431,48 +4886,48 @@ public final class PBPlayerMail {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.ReqMailList)
+      // @@protoc_insertion_point(builder_scope:Protocol.RespPlayerMailList)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.ReqMailList)
-    private static final com.cat.server.game.data.proto.PBPlayerMail.ReqMailList DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.RespPlayerMailList)
+    private static final com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.ReqMailList();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList();
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailList getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ReqMailList>
-        PARSER = new com.google.protobuf.AbstractParser<ReqMailList>() {
+    private static final com.google.protobuf.Parser<RespPlayerMailList>
+        PARSER = new com.google.protobuf.AbstractParser<RespPlayerMailList>() {
       @java.lang.Override
-      public ReqMailList parsePartialFrom(
+      public RespPlayerMailList parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ReqMailList(input, extensionRegistry);
+        return new RespPlayerMailList(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ReqMailList> parser() {
+    public static com.google.protobuf.Parser<RespPlayerMailList> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ReqMailList> getParserForType() {
+    public com.google.protobuf.Parser<RespPlayerMailList> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBPlayerMail.ReqMailList getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailList getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface RespMailRewardOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.RespMailReward)
+  public interface RespPlayerMailRewardOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespPlayerMailReward)
       com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -4492,7 +4947,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+    java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> 
         getRewardsList();
     /**
      * <pre>
@@ -4501,7 +4956,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index);
+    com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index);
     /**
      * <pre>
      *奖励
@@ -4517,7 +4972,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getRewardsOrBuilderList();
     /**
      * <pre>
@@ -4526,7 +4981,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+    com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
         int index);
   }
   /**
@@ -4534,18 +4989,18 @@ public final class PBPlayerMail {
    * 响应领取附件
    * </pre>
    *
-   * Protobuf type {@code Protocol.RespMailReward}
+   * Protobuf type {@code Protocol.RespPlayerMailReward}
    */
-  public  static final class RespMailReward extends
+  public  static final class RespPlayerMailReward extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.RespMailReward)
-      RespMailRewardOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.RespPlayerMailReward)
+      RespPlayerMailRewardOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RespMailReward.newBuilder() to construct.
-    private RespMailReward(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RespPlayerMailReward.newBuilder() to construct.
+    private RespPlayerMailReward(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RespMailReward() {
+    private RespPlayerMailReward() {
       rewards_ = java.util.Collections.emptyList();
     }
 
@@ -4553,7 +5008,7 @@ public final class PBPlayerMail {
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RespMailReward();
+      return new RespPlayerMailReward();
     }
 
     @java.lang.Override
@@ -4561,7 +5016,7 @@ public final class PBPlayerMail {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RespMailReward(
+    private RespPlayerMailReward(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -4587,11 +5042,11 @@ public final class PBPlayerMail {
             }
             case 18: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
+                rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000001;
               }
               rewards_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
+                  input.readMessage(com.cat.server.game.data.proto.PBCommon.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -4618,15 +5073,15 @@ public final class PBPlayerMail {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailReward_descriptor;
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailReward_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailReward_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailReward_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPlayerMail.RespMailReward.class, com.cat.server.game.data.proto.PBPlayerMail.RespMailReward.Builder.class);
+              com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward.class, com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward.Builder.class);
     }
 
     public static final int CODE_FIELD_NUMBER = 1;
@@ -4644,7 +5099,7 @@ public final class PBPlayerMail {
     }
 
     public static final int REWARDS_FIELD_NUMBER = 2;
-    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> rewards_;
+    private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> rewards_;
     /**
      * <pre>
      *奖励
@@ -4652,7 +5107,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getRewardsList() {
+    public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getRewardsList() {
       return rewards_;
     }
     /**
@@ -4662,7 +5117,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getRewardsOrBuilderList() {
       return rewards_;
     }
@@ -4683,7 +5138,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index) {
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index) {
       return rewards_.get(index);
     }
     /**
@@ -4693,7 +5148,7 @@ public final class PBPlayerMail {
      *
      * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
         int index) {
       return rewards_.get(index);
     }
@@ -4745,10 +5200,10 @@ public final class PBPlayerMail {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.RespMailReward)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBPlayerMail.RespMailReward other = (com.cat.server.game.data.proto.PBPlayerMail.RespMailReward) obj;
+      com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward other = (com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward) obj;
 
       if (getCode()
           != other.getCode()) return false;
@@ -4776,69 +5231,69 @@ public final class PBPlayerMail {
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4851,7 +5306,7 @@ public final class PBPlayerMail {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.RespMailReward prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -4871,26 +5326,26 @@ public final class PBPlayerMail {
      * 响应领取附件
      * </pre>
      *
-     * Protobuf type {@code Protocol.RespMailReward}
+     * Protobuf type {@code Protocol.RespPlayerMailReward}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.RespMailReward)
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailRewardOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.RespPlayerMailReward)
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRewardOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailReward_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailReward_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailReward_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailReward_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPlayerMail.RespMailReward.class, com.cat.server.game.data.proto.PBPlayerMail.RespMailReward.Builder.class);
+                com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward.class, com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBPlayerMail.RespMailReward.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4923,17 +5378,17 @@ public final class PBPlayerMail {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailReward_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailReward_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailReward getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.RespMailReward.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailReward build() {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailReward result = buildPartial();
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward build() {
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -4941,8 +5396,8 @@ public final class PBPlayerMail {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailReward buildPartial() {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailReward result = new com.cat.server.game.data.proto.PBPlayerMail.RespMailReward(this);
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward buildPartial() {
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward result = new com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward(this);
         int from_bitField0_ = bitField0_;
         result.code_ = code_;
         if (rewardsBuilder_ == null) {
@@ -4992,16 +5447,16 @@ public final class PBPlayerMail {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.RespMailReward) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.RespMailReward)other);
+        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.RespMailReward other) {
-        if (other == com.cat.server.game.data.proto.PBPlayerMail.RespMailReward.getDefaultInstance()) return this;
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward other) {
+        if (other == com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward.getDefaultInstance()) return this;
         if (other.getCode() != 0) {
           setCode(other.getCode());
         }
@@ -5046,11 +5501,11 @@ public final class PBPlayerMail {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailReward parsedMessage = null;
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.RespMailReward) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -5103,17 +5558,17 @@ public final class PBPlayerMail {
         return this;
       }
 
-      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> rewards_ =
+      private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> rewards_ =
         java.util.Collections.emptyList();
       private void ensureRewardsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(rewards_);
+          rewards_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>(rewards_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> rewardsBuilder_;
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> rewardsBuilder_;
 
       /**
        * <pre>
@@ -5122,7 +5577,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getRewardsList() {
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getRewardsList() {
         if (rewardsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(rewards_);
         } else {
@@ -5150,7 +5605,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getRewards(int index) {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getRewards(int index) {
         if (rewardsBuilder_ == null) {
           return rewards_.get(index);
         } else {
@@ -5165,7 +5620,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder setRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5186,7 +5641,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder setRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.set(index, builderForValue.build());
@@ -5203,7 +5658,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public Builder addRewards(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+      public Builder addRewards(com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5224,7 +5679,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (rewardsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -5245,7 +5700,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addRewards(
-          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.add(builderForValue.build());
@@ -5263,7 +5718,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addRewards(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           rewards_.add(index, builderForValue.build());
@@ -5281,7 +5736,7 @@ public final class PBPlayerMail {
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
       public Builder addAllRewards(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfo> values) {
         if (rewardsBuilder_ == null) {
           ensureRewardsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -5333,7 +5788,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getRewardsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder getRewardsBuilder(
           int index) {
         return getRewardsFieldBuilder().getBuilder(index);
       }
@@ -5344,7 +5799,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getRewardsOrBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getRewardsOrBuilder(
           int index) {
         if (rewardsBuilder_ == null) {
           return rewards_.get(index);  } else {
@@ -5358,7 +5813,7 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+      public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
            getRewardsOrBuilderList() {
         if (rewardsBuilder_ != null) {
           return rewardsBuilder_.getMessageOrBuilderList();
@@ -5373,9 +5828,9 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addRewardsBuilder() {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addRewardsBuilder() {
         return getRewardsFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -5384,10 +5839,10 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addRewardsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addRewardsBuilder(
           int index) {
         return getRewardsFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -5396,16 +5851,16 @@ public final class PBPlayerMail {
        *
        * <code>repeated .Protocol.PBPairInfo rewards = 2;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder> 
            getRewardsBuilderList() {
         return getRewardsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
           getRewardsFieldBuilder() {
         if (rewardsBuilder_ == null) {
           rewardsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder>(
                   rewards_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -5427,114 +5882,74 @@ public final class PBPlayerMail {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.RespMailReward)
+      // @@protoc_insertion_point(builder_scope:Protocol.RespPlayerMailReward)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.RespMailReward)
-    private static final com.cat.server.game.data.proto.PBPlayerMail.RespMailReward DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.RespPlayerMailReward)
+    private static final com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.RespMailReward();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward();
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailReward getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RespMailReward>
-        PARSER = new com.google.protobuf.AbstractParser<RespMailReward>() {
+    private static final com.google.protobuf.Parser<RespPlayerMailReward>
+        PARSER = new com.google.protobuf.AbstractParser<RespPlayerMailReward>() {
       @java.lang.Override
-      public RespMailReward parsePartialFrom(
+      public RespPlayerMailReward parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RespMailReward(input, extensionRegistry);
+        return new RespPlayerMailReward(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RespMailReward> parser() {
+    public static com.google.protobuf.Parser<RespPlayerMailReward> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RespMailReward> getParserForType() {
+    public com.google.protobuf.Parser<RespPlayerMailReward> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBPlayerMail.RespMailReward getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReward getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface RespMailListOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.RespMailList)
+  public interface ReqPlayerMailListOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.ReqPlayerMailList)
       com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <pre>
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-     */
-    java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo> 
-        getMailsList();
-    /**
-     * <pre>
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-     */
-    com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo getMails(int index);
-    /**
-     * <pre>
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-     */
-    int getMailsCount();
-    /**
-     * <pre>
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-     */
-    java.util.List<? extends com.cat.server.game.data.proto.PBPlayerMail.PBMailInfoOrBuilder> 
-        getMailsOrBuilderList();
-    /**
-     * <pre>
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-     */
-    com.cat.server.game.data.proto.PBPlayerMail.PBMailInfoOrBuilder getMailsOrBuilder(
-        int index);
   }
   /**
    * <pre>
-   * 邮件列表
+   * 请求邮件列表
    * </pre>
    *
-   * Protobuf type {@code Protocol.RespMailList}
+   * Protobuf type {@code Protocol.ReqPlayerMailList}
    */
-  public  static final class RespMailList extends
+  public  static final class ReqPlayerMailList extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.RespMailList)
-      RespMailListOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.ReqPlayerMailList)
+      ReqPlayerMailListOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RespMailList.newBuilder() to construct.
-    private RespMailList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use ReqPlayerMailList.newBuilder() to construct.
+    private ReqPlayerMailList(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RespMailList() {
-      mails_ = java.util.Collections.emptyList();
+    private ReqPlayerMailList() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RespMailList();
+      return new ReqPlayerMailList();
     }
 
     @java.lang.Override
@@ -5542,7 +5957,7 @@ public final class PBPlayerMail {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RespMailList(
+    private ReqPlayerMailList(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -5550,7 +5965,6 @@ public final class PBPlayerMail {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -5561,15 +5975,6 @@ public final class PBPlayerMail {
             case 0:
               done = true;
               break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                mails_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              mails_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.parser(), extensionRegistry));
-              break;
-            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -5585,74 +5990,21 @@ public final class PBPlayerMail {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          mails_ = java.util.Collections.unmodifiableList(mails_);
-        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailList_descriptor;
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailList_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailList_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailList_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPlayerMail.RespMailList.class, com.cat.server.game.data.proto.PBPlayerMail.RespMailList.Builder.class);
-    }
-
-    public static final int MAILS_FIELD_NUMBER = 1;
-    private java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo> mails_;
-    /**
-     * <pre>
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-     */
-    public java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo> getMailsList() {
-      return mails_;
-    }
-    /**
-     * <pre>
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-     */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBPlayerMail.PBMailInfoOrBuilder> 
-        getMailsOrBuilderList() {
-      return mails_;
-    }
-    /**
-     * <pre>
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-     */
-    public int getMailsCount() {
-      return mails_.size();
-    }
-    /**
-     * <pre>
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-     */
-    public com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo getMails(int index) {
-      return mails_.get(index);
-    }
-    /**
-     * <pre>
-     * </pre>
-     *
-     * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-     */
-    public com.cat.server.game.data.proto.PBPlayerMail.PBMailInfoOrBuilder getMailsOrBuilder(
-        int index) {
-      return mails_.get(index);
+              com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList.class, com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList.Builder.class);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -5669,9 +6021,6 @@ public final class PBPlayerMail {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < mails_.size(); i++) {
-        output.writeMessage(1, mails_.get(i));
-      }
       unknownFields.writeTo(output);
     }
 
@@ -5681,10 +6030,6 @@ public final class PBPlayerMail {
       if (size != -1) return size;
 
       size = 0;
-      for (int i = 0; i < mails_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, mails_.get(i));
-      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -5695,13 +6040,11 @@ public final class PBPlayerMail {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.RespMailList)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBPlayerMail.RespMailList other = (com.cat.server.game.data.proto.PBPlayerMail.RespMailList) obj;
+      com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList other = (com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList) obj;
 
-      if (!getMailsList()
-          .equals(other.getMailsList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -5713,78 +6056,74 @@ public final class PBPlayerMail {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getMailsCount() > 0) {
-        hash = (37 * hash) + MAILS_FIELD_NUMBER;
-        hash = (53 * hash) + getMailsList().hashCode();
-      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -5797,7 +6136,7 @@ public final class PBPlayerMail {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.RespMailList prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -5814,29 +6153,29 @@ public final class PBPlayerMail {
     }
     /**
      * <pre>
-     * 邮件列表
+     * 请求邮件列表
      * </pre>
      *
-     * Protobuf type {@code Protocol.RespMailList}
+     * Protobuf type {@code Protocol.ReqPlayerMailList}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.RespMailList)
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailListOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.ReqPlayerMailList)
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailListOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailList_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailList_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailList_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailList_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPlayerMail.RespMailList.class, com.cat.server.game.data.proto.PBPlayerMail.RespMailList.Builder.class);
+                com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList.class, com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBPlayerMail.RespMailList.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -5849,35 +6188,28 @@ public final class PBPlayerMail {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getMailsFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (mailsBuilder_ == null) {
-          mails_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          mailsBuilder_.clear();
-        }
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespMailList_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqPlayerMailList_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailList getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.RespMailList.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailList build() {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailList result = buildPartial();
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList build() {
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -5885,18 +6217,8 @@ public final class PBPlayerMail {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.RespMailList buildPartial() {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailList result = new com.cat.server.game.data.proto.PBPlayerMail.RespMailList(this);
-        int from_bitField0_ = bitField0_;
-        if (mailsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            mails_ = java.util.Collections.unmodifiableList(mails_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.mails_ = mails_;
-        } else {
-          result.mails_ = mailsBuilder_.build();
-        }
+      public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList buildPartial() {
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList result = new com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList(this);
         onBuilt();
         return result;
       }
@@ -5935,42 +6257,16 @@ public final class PBPlayerMail {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.RespMailList) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.RespMailList)other);
+        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.RespMailList other) {
-        if (other == com.cat.server.game.data.proto.PBPlayerMail.RespMailList.getDefaultInstance()) return this;
-        if (mailsBuilder_ == null) {
-          if (!other.mails_.isEmpty()) {
-            if (mails_.isEmpty()) {
-              mails_ = other.mails_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureMailsIsMutable();
-              mails_.addAll(other.mails_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.mails_.isEmpty()) {
-            if (mailsBuilder_.isEmpty()) {
-              mailsBuilder_.dispose();
-              mailsBuilder_ = null;
-              mails_ = other.mails_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              mailsBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getMailsFieldBuilder() : null;
-            } else {
-              mailsBuilder_.addAllMessages(other.mails_);
-            }
-          }
-        }
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList other) {
+        if (other == com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList.getDefaultInstance()) return this;
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -5986,11 +6282,11 @@ public final class PBPlayerMail {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPlayerMail.RespMailList parsedMessage = null;
+        com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.RespMailList) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -5998,301 +6294,6 @@ public final class PBPlayerMail {
           }
         }
         return this;
-      }
-      private int bitField0_;
-
-      private java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo> mails_ =
-        java.util.Collections.emptyList();
-      private void ensureMailsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          mails_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo>(mails_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfoOrBuilder> mailsBuilder_;
-
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo> getMailsList() {
-        if (mailsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(mails_);
-        } else {
-          return mailsBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public int getMailsCount() {
-        if (mailsBuilder_ == null) {
-          return mails_.size();
-        } else {
-          return mailsBuilder_.getCount();
-        }
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo getMails(int index) {
-        if (mailsBuilder_ == null) {
-          return mails_.get(index);
-        } else {
-          return mailsBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public Builder setMails(
-          int index, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo value) {
-        if (mailsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureMailsIsMutable();
-          mails_.set(index, value);
-          onChanged();
-        } else {
-          mailsBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public Builder setMails(
-          int index, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder builderForValue) {
-        if (mailsBuilder_ == null) {
-          ensureMailsIsMutable();
-          mails_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          mailsBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public Builder addMails(com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo value) {
-        if (mailsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureMailsIsMutable();
-          mails_.add(value);
-          onChanged();
-        } else {
-          mailsBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public Builder addMails(
-          int index, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo value) {
-        if (mailsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureMailsIsMutable();
-          mails_.add(index, value);
-          onChanged();
-        } else {
-          mailsBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public Builder addMails(
-          com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder builderForValue) {
-        if (mailsBuilder_ == null) {
-          ensureMailsIsMutable();
-          mails_.add(builderForValue.build());
-          onChanged();
-        } else {
-          mailsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public Builder addMails(
-          int index, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder builderForValue) {
-        if (mailsBuilder_ == null) {
-          ensureMailsIsMutable();
-          mails_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          mailsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public Builder addAllMails(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo> values) {
-        if (mailsBuilder_ == null) {
-          ensureMailsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, mails_);
-          onChanged();
-        } else {
-          mailsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public Builder clearMails() {
-        if (mailsBuilder_ == null) {
-          mails_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          mailsBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public Builder removeMails(int index) {
-        if (mailsBuilder_ == null) {
-          ensureMailsIsMutable();
-          mails_.remove(index);
-          onChanged();
-        } else {
-          mailsBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder getMailsBuilder(
-          int index) {
-        return getMailsFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public com.cat.server.game.data.proto.PBPlayerMail.PBMailInfoOrBuilder getMailsOrBuilder(
-          int index) {
-        if (mailsBuilder_ == null) {
-          return mails_.get(index);  } else {
-          return mailsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBPlayerMail.PBMailInfoOrBuilder> 
-           getMailsOrBuilderList() {
-        if (mailsBuilder_ != null) {
-          return mailsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(mails_);
-        }
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder addMailsBuilder() {
-        return getMailsFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.getDefaultInstance());
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder addMailsBuilder(
-          int index) {
-        return getMailsFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.getDefaultInstance());
-      }
-      /**
-       * <pre>
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBMailInfo mails = 1;</code>
-       */
-      public java.util.List<com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder> 
-           getMailsBuilderList() {
-        return getMailsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfoOrBuilder> 
-          getMailsFieldBuilder() {
-        if (mailsBuilder_ == null) {
-          mailsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfo.Builder, com.cat.server.game.data.proto.PBPlayerMail.PBMailInfoOrBuilder>(
-                  mails_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          mails_ = null;
-        }
-        return mailsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -6307,84 +6308,84 @@ public final class PBPlayerMail {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.RespMailList)
+      // @@protoc_insertion_point(builder_scope:Protocol.ReqPlayerMailList)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.RespMailList)
-    private static final com.cat.server.game.data.proto.PBPlayerMail.RespMailList DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.ReqPlayerMailList)
+    private static final com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.RespMailList();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList();
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.RespMailList getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RespMailList>
-        PARSER = new com.google.protobuf.AbstractParser<RespMailList>() {
+    private static final com.google.protobuf.Parser<ReqPlayerMailList>
+        PARSER = new com.google.protobuf.AbstractParser<ReqPlayerMailList>() {
       @java.lang.Override
-      public RespMailList parsePartialFrom(
+      public ReqPlayerMailList parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RespMailList(input, extensionRegistry);
+        return new ReqPlayerMailList(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RespMailList> parser() {
+    public static com.google.protobuf.Parser<ReqPlayerMailList> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RespMailList> getParserForType() {
+    public com.google.protobuf.Parser<ReqPlayerMailList> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBPlayerMail.RespMailList getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBPlayerMail.ReqPlayerMailList getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface ReqMailDeleteOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Protocol.ReqMailDelete)
+  public interface RespPlayerMailReadOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespPlayerMailRead)
       com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
-     *mail ids
+     *错误码,非0表示弹提示
      * </pre>
      *
-     * <code>int64 mailId = 1;</code>
-     * @return The mailId.
+     * <code>int32 code = 1;</code>
+     * @return The code.
      */
-    long getMailId();
+    int getCode();
   }
   /**
    * <pre>
-   * 请求删除邮件
+   * 响应读取邮件
    * </pre>
    *
-   * Protobuf type {@code Protocol.ReqMailDelete}
+   * Protobuf type {@code Protocol.RespPlayerMailRead}
    */
-  public  static final class ReqMailDelete extends
+  public  static final class RespPlayerMailRead extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Protocol.ReqMailDelete)
-      ReqMailDeleteOrBuilder {
+      // @@protoc_insertion_point(message_implements:Protocol.RespPlayerMailRead)
+      RespPlayerMailReadOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ReqMailDelete.newBuilder() to construct.
-    private ReqMailDelete(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use RespPlayerMailRead.newBuilder() to construct.
+    private RespPlayerMailRead(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ReqMailDelete() {
+    private RespPlayerMailRead() {
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new ReqMailDelete();
+      return new RespPlayerMailRead();
     }
 
     @java.lang.Override
@@ -6392,7 +6393,7 @@ public final class PBPlayerMail {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ReqMailDelete(
+    private RespPlayerMailRead(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -6412,7 +6413,7 @@ public final class PBPlayerMail {
               break;
             case 8: {
 
-              mailId_ = input.readInt64();
+              code_ = input.readInt32();
               break;
             }
             default: {
@@ -6436,29 +6437,29 @@ public final class PBPlayerMail {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailDelete_descriptor;
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailRead_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailDelete_fieldAccessorTable
+      return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailRead_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete.class, com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete.Builder.class);
+              com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead.class, com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead.Builder.class);
     }
 
-    public static final int MAILID_FIELD_NUMBER = 1;
-    private long mailId_;
+    public static final int CODE_FIELD_NUMBER = 1;
+    private int code_;
     /**
      * <pre>
-     *mail ids
+     *错误码,非0表示弹提示
      * </pre>
      *
-     * <code>int64 mailId = 1;</code>
-     * @return The mailId.
+     * <code>int32 code = 1;</code>
+     * @return The code.
      */
-    public long getMailId() {
-      return mailId_;
+    public int getCode() {
+      return code_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -6475,8 +6476,8 @@ public final class PBPlayerMail {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (mailId_ != 0L) {
-        output.writeInt64(1, mailId_);
+      if (code_ != 0) {
+        output.writeInt32(1, code_);
       }
       unknownFields.writeTo(output);
     }
@@ -6487,9 +6488,9 @@ public final class PBPlayerMail {
       if (size != -1) return size;
 
       size = 0;
-      if (mailId_ != 0L) {
+      if (code_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(1, mailId_);
+          .computeInt32Size(1, code_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -6501,13 +6502,13 @@ public final class PBPlayerMail {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete)) {
+      if (!(obj instanceof com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead)) {
         return super.equals(obj);
       }
-      com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete other = (com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete) obj;
+      com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead other = (com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead) obj;
 
-      if (getMailId()
-          != other.getMailId()) return false;
+      if (getCode()
+          != other.getCode()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -6519,77 +6520,76 @@ public final class PBPlayerMail {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + MAILID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getMailId());
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseFrom(byte[] data)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseDelimitedFrom(java.io.InputStream input)
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseDelimitedFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parseFrom(
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -6602,7 +6602,7 @@ public final class PBPlayerMail {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete prototype) {
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -6619,29 +6619,29 @@ public final class PBPlayerMail {
     }
     /**
      * <pre>
-     * 请求删除邮件
+     * 响应读取邮件
      * </pre>
      *
-     * Protobuf type {@code Protocol.ReqMailDelete}
+     * Protobuf type {@code Protocol.RespPlayerMailRead}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Protocol.ReqMailDelete)
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailDeleteOrBuilder {
+        // @@protoc_insertion_point(builder_implements:Protocol.RespPlayerMailRead)
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailReadOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailDelete_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailRead_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailDelete_fieldAccessorTable
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailRead_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete.class, com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete.Builder.class);
+                com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead.class, com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead.Builder.class);
       }
 
-      // Construct using com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete.newBuilder()
+      // Construct using com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -6659,7 +6659,7 @@ public final class PBPlayerMail {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        mailId_ = 0L;
+        code_ = 0;
 
         return this;
       }
@@ -6667,17 +6667,17 @@ public final class PBPlayerMail {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_ReqMailDelete_descriptor;
+        return com.cat.server.game.data.proto.PBPlayerMail.internal_static_Protocol_RespPlayerMailRead_descriptor;
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete getDefaultInstanceForType() {
-        return com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete.getDefaultInstance();
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead.getDefaultInstance();
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete build() {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete result = buildPartial();
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead build() {
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -6685,9 +6685,9 @@ public final class PBPlayerMail {
       }
 
       @java.lang.Override
-      public com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete buildPartial() {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete result = new com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete(this);
-        result.mailId_ = mailId_;
+      public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead buildPartial() {
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead result = new com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead(this);
+        result.code_ = code_;
         onBuilt();
         return result;
       }
@@ -6726,18 +6726,18 @@ public final class PBPlayerMail {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete) {
-          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete)other);
+        if (other instanceof com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead) {
+          return mergeFrom((com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete other) {
-        if (other == com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete.getDefaultInstance()) return this;
-        if (other.getMailId() != 0L) {
-          setMailId(other.getMailId());
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead other) {
+        if (other == com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead.getDefaultInstance()) return this;
+        if (other.getCode() != 0) {
+          setCode(other.getCode());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -6754,11 +6754,11 @@ public final class PBPlayerMail {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete parsedMessage = null;
+        com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete) e.getUnfinishedMessage();
+          parsedMessage = (com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -6768,44 +6768,44 @@ public final class PBPlayerMail {
         return this;
       }
 
-      private long mailId_ ;
+      private int code_ ;
       /**
        * <pre>
-       *mail ids
+       *错误码,非0表示弹提示
        * </pre>
        *
-       * <code>int64 mailId = 1;</code>
-       * @return The mailId.
+       * <code>int32 code = 1;</code>
+       * @return The code.
        */
-      public long getMailId() {
-        return mailId_;
+      public int getCode() {
+        return code_;
       }
       /**
        * <pre>
-       *mail ids
+       *错误码,非0表示弹提示
        * </pre>
        *
-       * <code>int64 mailId = 1;</code>
-       * @param value The mailId to set.
+       * <code>int32 code = 1;</code>
+       * @param value The code to set.
        * @return This builder for chaining.
        */
-      public Builder setMailId(long value) {
+      public Builder setCode(int value) {
         
-        mailId_ = value;
+        code_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *mail ids
+       *错误码,非0表示弹提示
        * </pre>
        *
-       * <code>int64 mailId = 1;</code>
+       * <code>int32 code = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearMailId() {
+      public Builder clearCode() {
         
-        mailId_ = 0L;
+        code_ = 0;
         onChanged();
         return this;
       }
@@ -6822,91 +6822,91 @@ public final class PBPlayerMail {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:Protocol.ReqMailDelete)
+      // @@protoc_insertion_point(builder_scope:Protocol.RespPlayerMailRead)
     }
 
-    // @@protoc_insertion_point(class_scope:Protocol.ReqMailDelete)
-    private static final com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:Protocol.RespPlayerMailRead)
+    private static final com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete();
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead();
     }
 
-    public static com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete getDefaultInstance() {
+    public static com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ReqMailDelete>
-        PARSER = new com.google.protobuf.AbstractParser<ReqMailDelete>() {
+    private static final com.google.protobuf.Parser<RespPlayerMailRead>
+        PARSER = new com.google.protobuf.AbstractParser<RespPlayerMailRead>() {
       @java.lang.Override
-      public ReqMailDelete parsePartialFrom(
+      public RespPlayerMailRead parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ReqMailDelete(input, extensionRegistry);
+        return new RespPlayerMailRead(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ReqMailDelete> parser() {
+    public static com.google.protobuf.Parser<RespPlayerMailRead> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ReqMailDelete> getParserForType() {
+    public com.google.protobuf.Parser<RespPlayerMailRead> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.cat.server.game.data.proto.PBPlayerMail.ReqMailDelete getDefaultInstanceForType() {
+    public com.cat.server.game.data.proto.PBPlayerMail.RespPlayerMailRead getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_RespMailRead_descriptor;
+    internal_static_Protocol_ReqPlayerMailRead_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_RespMailRead_fieldAccessorTable;
+      internal_static_Protocol_ReqPlayerMailRead_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_ReqMailReward_descriptor;
+    internal_static_Protocol_RespPlayerMailDelete_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_ReqMailReward_fieldAccessorTable;
+      internal_static_Protocol_RespPlayerMailDelete_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_RespMailDelete_descriptor;
+    internal_static_Protocol_ReqPlayerMailDelete_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_RespMailDelete_fieldAccessorTable;
+      internal_static_Protocol_ReqPlayerMailDelete_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_PBMailInfo_descriptor;
+    internal_static_Protocol_PBPlayerMailInfo_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_PBMailInfo_fieldAccessorTable;
+      internal_static_Protocol_PBPlayerMailInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_ReqMailRead_descriptor;
+    internal_static_Protocol_ReqPlayerMailReward_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_ReqMailRead_fieldAccessorTable;
+      internal_static_Protocol_ReqPlayerMailReward_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_ReqMailList_descriptor;
+    internal_static_Protocol_RespPlayerMailList_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_ReqMailList_fieldAccessorTable;
+      internal_static_Protocol_RespPlayerMailList_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_RespMailReward_descriptor;
+    internal_static_Protocol_RespPlayerMailReward_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_RespMailReward_fieldAccessorTable;
+      internal_static_Protocol_RespPlayerMailReward_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_RespMailList_descriptor;
+    internal_static_Protocol_ReqPlayerMailList_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_RespMailList_fieldAccessorTable;
+      internal_static_Protocol_ReqPlayerMailList_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Protocol_ReqMailDelete_descriptor;
+    internal_static_Protocol_RespPlayerMailRead_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Protocol_ReqMailDelete_fieldAccessorTable;
+      internal_static_Protocol_RespPlayerMailRead_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -6916,82 +6916,83 @@ public final class PBPlayerMail {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\022PBPlayerMail.proto\022\010Protocol\032\014PBItem.p" +
-      "roto\"\034\n\014RespMailRead\022\014\n\004code\030\001 \001(\005\"\037\n\rRe" +
-      "qMailReward\022\016\n\006mailId\030\001 \001(\003\"/\n\016RespMailD" +
-      "elete\022\014\n\004code\030\001 \001(\005\022\017\n\007mailIds\030\002 \003(\003\"\222\001\n" +
-      "\nPBMailInfo\022\016\n\006mailId\030\001 \001(\003\022\r\n\005title\030\002 \001" +
-      "(\t\022\017\n\007content\030\003 \001(\t\022%\n\007rewards\030\004 \003(\0132\024.P" +
-      "rotocol.PBPairInfo\022\r\n\005state\030\005 \001(\005\022\014\n\004dat" +
-      "e\030\006 \001(\t\022\020\n\010mailType\030\007 \001(\005\"\035\n\013ReqMailRead" +
-      "\022\016\n\006mailId\030\001 \001(\003\"\r\n\013ReqMailList\"E\n\016RespM" +
-      "ailReward\022\014\n\004code\030\001 \001(\005\022%\n\007rewards\030\002 \003(\013" +
-      "2\024.Protocol.PBPairInfo\"3\n\014RespMailList\022#" +
-      "\n\005mails\030\001 \003(\0132\024.Protocol.PBMailInfo\"\037\n\rR" +
-      "eqMailDelete\022\016\n\006mailId\030\001 \001(\003B.\n\036com.cat." +
-      "server.game.data.protoB\014PBPlayerMailb\006pr" +
-      "oto3"
+      "\n\022PBPlayerMail.proto\022\010Protocol\032\016PBCommon" +
+      ".proto\"#\n\021ReqPlayerMailRead\022\016\n\006mailId\030\001 " +
+      "\001(\003\"5\n\024RespPlayerMailDelete\022\014\n\004code\030\001 \001(" +
+      "\005\022\017\n\007mailIds\030\002 \003(\003\"%\n\023ReqPlayerMailDelet" +
+      "e\022\016\n\006mailId\030\001 \001(\003\"\230\001\n\020PBPlayerMailInfo\022\016" +
+      "\n\006mailId\030\001 \001(\003\022\r\n\005title\030\002 \001(\t\022\017\n\007content" +
+      "\030\003 \001(\t\022%\n\007rewards\030\004 \003(\0132\024.Protocol.PBPai" +
+      "rInfo\022\r\n\005state\030\005 \001(\005\022\014\n\004date\030\006 \001(\t\022\020\n\010ma" +
+      "ilType\030\007 \001(\005\"%\n\023ReqPlayerMailReward\022\016\n\006m" +
+      "ailId\030\001 \001(\003\"?\n\022RespPlayerMailList\022)\n\005mai" +
+      "ls\030\001 \003(\0132\032.Protocol.PBPlayerMailInfo\"K\n\024" +
+      "RespPlayerMailReward\022\014\n\004code\030\001 \001(\005\022%\n\007re" +
+      "wards\030\002 \003(\0132\024.Protocol.PBPairInfo\"\023\n\021Req" +
+      "PlayerMailList\"\"\n\022RespPlayerMailRead\022\014\n\004" +
+      "code\030\001 \001(\005B.\n\036com.cat.server.game.data.p" +
+      "rotoB\014PBPlayerMailb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.cat.server.game.data.proto.PBItem.getDescriptor(),
+          com.cat.server.game.data.proto.PBCommon.getDescriptor(),
         });
-    internal_static_Protocol_RespMailRead_descriptor =
+    internal_static_Protocol_ReqPlayerMailRead_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_Protocol_RespMailRead_fieldAccessorTable = new
+    internal_static_Protocol_ReqPlayerMailRead_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_RespMailRead_descriptor,
-        new java.lang.String[] { "Code", });
-    internal_static_Protocol_ReqMailReward_descriptor =
+        internal_static_Protocol_ReqPlayerMailRead_descriptor,
+        new java.lang.String[] { "MailId", });
+    internal_static_Protocol_RespPlayerMailDelete_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_Protocol_ReqMailReward_fieldAccessorTable = new
+    internal_static_Protocol_RespPlayerMailDelete_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_ReqMailReward_descriptor,
-        new java.lang.String[] { "MailId", });
-    internal_static_Protocol_RespMailDelete_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_Protocol_RespMailDelete_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_RespMailDelete_descriptor,
+        internal_static_Protocol_RespPlayerMailDelete_descriptor,
         new java.lang.String[] { "Code", "MailIds", });
-    internal_static_Protocol_PBMailInfo_descriptor =
+    internal_static_Protocol_ReqPlayerMailDelete_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_Protocol_ReqPlayerMailDelete_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_ReqPlayerMailDelete_descriptor,
+        new java.lang.String[] { "MailId", });
+    internal_static_Protocol_PBPlayerMailInfo_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_Protocol_PBMailInfo_fieldAccessorTable = new
+    internal_static_Protocol_PBPlayerMailInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_PBMailInfo_descriptor,
+        internal_static_Protocol_PBPlayerMailInfo_descriptor,
         new java.lang.String[] { "MailId", "Title", "Content", "Rewards", "State", "Date", "MailType", });
-    internal_static_Protocol_ReqMailRead_descriptor =
+    internal_static_Protocol_ReqPlayerMailReward_descriptor =
       getDescriptor().getMessageTypes().get(4);
-    internal_static_Protocol_ReqMailRead_fieldAccessorTable = new
+    internal_static_Protocol_ReqPlayerMailReward_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_ReqMailRead_descriptor,
+        internal_static_Protocol_ReqPlayerMailReward_descriptor,
         new java.lang.String[] { "MailId", });
-    internal_static_Protocol_ReqMailList_descriptor =
+    internal_static_Protocol_RespPlayerMailList_descriptor =
       getDescriptor().getMessageTypes().get(5);
-    internal_static_Protocol_ReqMailList_fieldAccessorTable = new
+    internal_static_Protocol_RespPlayerMailList_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_ReqMailList_descriptor,
-        new java.lang.String[] { });
-    internal_static_Protocol_RespMailReward_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_Protocol_RespMailReward_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_RespMailReward_descriptor,
-        new java.lang.String[] { "Code", "Rewards", });
-    internal_static_Protocol_RespMailList_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_Protocol_RespMailList_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_RespMailList_descriptor,
+        internal_static_Protocol_RespPlayerMailList_descriptor,
         new java.lang.String[] { "Mails", });
-    internal_static_Protocol_ReqMailDelete_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_Protocol_ReqMailDelete_fieldAccessorTable = new
+    internal_static_Protocol_RespPlayerMailReward_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_Protocol_RespPlayerMailReward_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Protocol_ReqMailDelete_descriptor,
-        new java.lang.String[] { "MailId", });
-    com.cat.server.game.data.proto.PBItem.getDescriptor();
+        internal_static_Protocol_RespPlayerMailReward_descriptor,
+        new java.lang.String[] { "Code", "Rewards", });
+    internal_static_Protocol_ReqPlayerMailList_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_Protocol_ReqPlayerMailList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_ReqPlayerMailList_descriptor,
+        new java.lang.String[] { });
+    internal_static_Protocol_RespPlayerMailRead_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_Protocol_RespPlayerMailRead_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_RespPlayerMailRead_descriptor,
+        new java.lang.String[] { "Code", });
+    com.cat.server.game.data.proto.PBCommon.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

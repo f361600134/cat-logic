@@ -10,7 +10,9 @@ import com.cat.orm.core.annotation.Column;
 import com.cat.orm.core.annotation.PO;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.data.config.local.ConfigPetPrefix;
+import com.cat.server.game.data.proto.PBPet.PBPetDto;
 import com.cat.server.game.helper.uuid.SnowflakeGenerator;
 import com.cat.server.game.module.pet.attr.PetAttrRootNode;
 import com.cat.server.game.module.pet.define.PetConstant;
@@ -22,7 +24,7 @@ import com.cat.server.game.module.resource.IResource;
 * @author Jeremy
 */
 @PO(name = "pet")
-public class Pet extends PetPo implements IResource{
+public class Pet extends PetPo implements IResource, IPersistence{
 	/**
 	 * 
 	 */
@@ -265,14 +267,14 @@ public class Pet extends PetPo implements IResource{
 	/**
 	 * 宠物对象转协议对象
 	 */
-	public PBPetDtoBuilder toProto() {
+	public PBPetDto toProto() {
 		PBPetDtoBuilder builder = PBPetDtoBuilder.newInstance();
 		builder.setUniqueId(this.getUniqueId());
 		builder.setConfigId(this.getConfigId());
 		builder.setActive(this.getActive());
 		if (!this.getActive()) {
 			//如果没有激活,不组装以下信息
-			return builder;
+			return builder.build();
 		}
 		builder.setExp(this.getExp());
 		builder.setLevel(this.getLevel());
@@ -288,7 +290,7 @@ public class Pet extends PetPo implements IResource{
 //		builder.setHungry(this.getHungryRestore().getNum());
 //		builder.setDormancy(this.getDormancy());
 		//TODO something...
-		return builder;
+		return builder.build();
 	}
 
 }

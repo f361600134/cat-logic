@@ -28,7 +28,7 @@ public class ResRefreshAndFreeRefreshRecoverStrategy extends AbstractRefreshStra
 		if (shop.getFreeRefreshNum() + 1 < config.getFreeRefreshNum()) {
 			return ErrorCode.SUCCESS;
 		}else if (shop.getResRefreshNum() + 1 < config.getResRefreshNum()) {
-			if (!resourceGroupService.check(domain.getId(), config.getRefreshCost())) {
+			if (!resourceGroupService.checkEnought(domain.getId(), config.getRefreshCost())) {
 				//次数足够, 但是消耗不足
 				return ErrorCode.SHOP_COST_NO_ENOUGH;
 			}

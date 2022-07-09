@@ -3,7 +3,10 @@ package com.cat.server.game.module.resource.domain;
 import java.util.List;
 import java.util.Map;
 
+import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.module.activityitem.domain.ActivityItem;
+import com.cat.server.game.module.equip.domain.Equip;
+import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
 import com.google.common.collect.Lists;
 
 /**
@@ -86,5 +89,13 @@ public class ActivityItemResourceDomain extends AbstractResourceDomain<Long, Act
 	public void beforeClearExpire(ActivityItem v) {
 		// TODO Auto-generated method stub
 	}
+	
+//	@Override
+//	public void addReource(ActivityItem res) {
+//		getBeanMap().put(res.getUniqueId(), res);
+//		updateList.add(res);
+//		//发送事件
+//		GameEventBus.getInstance().post(ResourceUpdateEvent.create(res, 1));
+//	}
 	
 }

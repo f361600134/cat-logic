@@ -219,4 +219,9 @@ public class PetDomain extends AbstractModuleMultiDomain<Long, Long, Pet> implem
 	public void clearExpire(int configId) {
 		resourceDomainProxy.clearExpire(configId);
 	}
+
+	@Override
+	public void addReource(Long uniqueId, Pet pet) {
+		resourceDomainProxy.addReource(uniqueId, pet);
+	}
 }

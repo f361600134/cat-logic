@@ -1,9 +1,8 @@
 package com.cat.server.game.data.config.local;
 
-import java.util.Map;
-import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.core.config.annotation.ConfigPath;
 import com.cat.server.game.data.config.local.base.ConfigPetBaseBase;
+import com.cat.server.game.data.config.local.interfaces.IConfigResource;
 
 
 /**
@@ -12,6 +11,6 @@ import com.cat.server.game.data.config.local.base.ConfigPetBaseBase;
  * @author auto gen
  */
 @ConfigPath("pet_base.json")
-public class ConfigPetBase extends ConfigPetBaseBase {
+public class ConfigPetBase extends ConfigPetBaseBase implements IConfigResource{
 
 }

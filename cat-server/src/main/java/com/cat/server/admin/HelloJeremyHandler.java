@@ -1,8 +1,10 @@
 package com.cat.server.admin;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.curator.shaded.com.google.common.collect.Lists;
 import org.apache.http.entity.ContentType;
 import org.springframework.stereotype.Controller;
 
@@ -86,21 +88,30 @@ public class HelloJeremyHandler {
 	}
 	
 	public static void main(String[] args) {
-		Stu stu = new Stu();
-		stu.setA(1);
-		stu.setB("aa");
-		String json = JSON.toJSONString(stu);
-		System.out.println(json);
+		List<Stu> stus = Lists.newArrayList(new Stu(1, "aa"), new Stu(1, "bb"));
+		for (Stu stu : stus) {
+			stu.setB("cc");
+		}
+		System.out.println(stus);
+//		stu.setA(1);
+//		stu.setB("aa");
+//		String json = JSON.toJSONString(stu);
+//		System.out.println(json);
 //		String url = "http://localhost:8001/hello/index6";
 //		String ret = HttpClientUtil.doHttpPost(url, json, ContentType.APPLICATION_JSON);
 //		System.out.println(ret);
+		
 	}
 	
 	public static class Stu{
 		int a;
 		String b;
 		
-		public Stu() {}
+		public Stu() {}	
+		public Stu(int a, String b) {
+			this.a = a;
+			this.b = b;
+		}
 		public int getA() {
 			return a;
 		}

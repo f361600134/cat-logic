@@ -14,8 +14,11 @@ import com.cat.server.game.module.item.domain.Item;
 import com.cat.server.game.module.item.domain.ItemDomain;
 import com.cat.server.game.module.item.proto.RespItemDeleteBuilder;
 import com.cat.server.game.module.item.proto.RespItemUpdateBuilder;
+import com.cat.server.game.module.pet.domain.Pet;
+import com.cat.server.game.module.pet.domain.PetDomain;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.recycle.IRecycleService;
+import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceService;
 
 /**
@@ -154,6 +157,17 @@ class ItemService implements IItemService, IResourceService{
 		}
 		IItem item = domain.getBeanByConfigId(configId);
 		return item == null ? 0 : item.getCount();
+	}
+	
+	@Override
+	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+		ItemDomain domain = itemManager.getDomain(playerId);
+		if (domain == null) return ;
+		if (!(res instanceof Item)) {
+			return;
+		}
+		Item item = (Item)res;
+		domain.addReource(item.getUniqueId(), item);
 	}
 
 }

@@ -5627,7 +5627,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
      */
-    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+    java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> 
         getPropertiesList();
     /**
      * <pre>
@@ -5636,7 +5636,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfo getProperties(int index);
+    com.cat.server.game.data.proto.PBCommon.PBPairInfo getProperties(int index);
     /**
      * <pre>
      *玩家资源信息
@@ -5652,7 +5652,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getPropertiesOrBuilderList();
     /**
      * <pre>
@@ -5661,7 +5661,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getPropertiesOrBuilder(
+    com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getPropertiesOrBuilder(
         int index);
 
     /**
@@ -5671,7 +5671,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
      */
-    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+    java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> 
         getAttrsList();
     /**
      * <pre>
@@ -5680,7 +5680,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfo getAttrs(int index);
+    com.cat.server.game.data.proto.PBCommon.PBPairInfo getAttrs(int index);
     /**
      * <pre>
      *玩家属性信息
@@ -5696,7 +5696,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getAttrsOrBuilderList();
     /**
      * <pre>
@@ -5705,7 +5705,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getAttrsOrBuilder(
+    com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getAttrsOrBuilder(
         int index);
   }
   /**
@@ -5811,20 +5811,20 @@ public final class PBPlayer {
             }
             case 82: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                properties_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
+                properties_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000001;
               }
               properties_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
+                  input.readMessage(com.cat.server.game.data.proto.PBCommon.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             case 90: {
               if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                attrs_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
+                attrs_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000002;
               }
               attrs_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
+                  input.readMessage(com.cat.server.game.data.proto.PBCommon.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -6052,7 +6052,7 @@ public final class PBPlayer {
     }
 
     public static final int PROPERTIES_FIELD_NUMBER = 10;
-    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> properties_;
+    private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> properties_;
     /**
      * <pre>
      *玩家资源信息
@@ -6060,7 +6060,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
      */
-    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getPropertiesList() {
+    public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getPropertiesList() {
       return properties_;
     }
     /**
@@ -6070,7 +6070,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getPropertiesOrBuilderList() {
       return properties_;
     }
@@ -6091,7 +6091,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getProperties(int index) {
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getProperties(int index) {
       return properties_.get(index);
     }
     /**
@@ -6101,13 +6101,13 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getPropertiesOrBuilder(
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getPropertiesOrBuilder(
         int index) {
       return properties_.get(index);
     }
 
     public static final int ATTRS_FIELD_NUMBER = 11;
-    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> attrs_;
+    private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> attrs_;
     /**
      * <pre>
      *玩家属性信息
@@ -6115,7 +6115,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
      */
-    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getAttrsList() {
+    public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getAttrsList() {
       return attrs_;
     }
     /**
@@ -6125,7 +6125,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getAttrsOrBuilderList() {
       return attrs_;
     }
@@ -6146,7 +6146,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getAttrs(int index) {
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getAttrs(int index) {
       return attrs_.get(index);
     }
     /**
@@ -6156,7 +6156,7 @@ public final class PBPlayer {
      *
      * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getAttrsOrBuilder(
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getAttrsOrBuilder(
         int index) {
       return attrs_.get(index);
     }
@@ -7202,17 +7202,17 @@ public final class PBPlayer {
         return this;
       }
 
-      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> properties_ =
+      private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> properties_ =
         java.util.Collections.emptyList();
       private void ensurePropertiesIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          properties_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(properties_);
+          properties_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>(properties_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> propertiesBuilder_;
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> propertiesBuilder_;
 
       /**
        * <pre>
@@ -7221,7 +7221,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getPropertiesList() {
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getPropertiesList() {
         if (propertiesBuilder_ == null) {
           return java.util.Collections.unmodifiableList(properties_);
         } else {
@@ -7249,7 +7249,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getProperties(int index) {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getProperties(int index) {
         if (propertiesBuilder_ == null) {
           return properties_.get(index);
         } else {
@@ -7264,7 +7264,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
       public Builder setProperties(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (propertiesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -7285,7 +7285,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
       public Builder setProperties(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (propertiesBuilder_ == null) {
           ensurePropertiesIsMutable();
           properties_.set(index, builderForValue.build());
@@ -7302,7 +7302,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
-      public Builder addProperties(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+      public Builder addProperties(com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (propertiesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -7323,7 +7323,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
       public Builder addProperties(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (propertiesBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -7344,7 +7344,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
       public Builder addProperties(
-          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (propertiesBuilder_ == null) {
           ensurePropertiesIsMutable();
           properties_.add(builderForValue.build());
@@ -7362,7 +7362,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
       public Builder addProperties(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (propertiesBuilder_ == null) {
           ensurePropertiesIsMutable();
           properties_.add(index, builderForValue.build());
@@ -7380,7 +7380,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
       public Builder addAllProperties(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfo> values) {
         if (propertiesBuilder_ == null) {
           ensurePropertiesIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -7432,7 +7432,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getPropertiesBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder getPropertiesBuilder(
           int index) {
         return getPropertiesFieldBuilder().getBuilder(index);
       }
@@ -7443,7 +7443,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getPropertiesOrBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getPropertiesOrBuilder(
           int index) {
         if (propertiesBuilder_ == null) {
           return properties_.get(index);  } else {
@@ -7457,7 +7457,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+      public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
            getPropertiesOrBuilderList() {
         if (propertiesBuilder_ != null) {
           return propertiesBuilder_.getMessageOrBuilderList();
@@ -7472,9 +7472,9 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addPropertiesBuilder() {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addPropertiesBuilder() {
         return getPropertiesFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -7483,10 +7483,10 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addPropertiesBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addPropertiesBuilder(
           int index) {
         return getPropertiesFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -7495,16 +7495,16 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo properties = 10;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder> 
            getPropertiesBuilderList() {
         return getPropertiesFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
           getPropertiesFieldBuilder() {
         if (propertiesBuilder_ == null) {
           propertiesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder>(
                   properties_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -7514,17 +7514,17 @@ public final class PBPlayer {
         return propertiesBuilder_;
       }
 
-      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> attrs_ =
+      private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> attrs_ =
         java.util.Collections.emptyList();
       private void ensureAttrsIsMutable() {
         if (!((bitField0_ & 0x00000002) != 0)) {
-          attrs_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(attrs_);
+          attrs_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>(attrs_);
           bitField0_ |= 0x00000002;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> attrsBuilder_;
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> attrsBuilder_;
 
       /**
        * <pre>
@@ -7533,7 +7533,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getAttrsList() {
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getAttrsList() {
         if (attrsBuilder_ == null) {
           return java.util.Collections.unmodifiableList(attrs_);
         } else {
@@ -7561,7 +7561,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getAttrs(int index) {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getAttrs(int index) {
         if (attrsBuilder_ == null) {
           return attrs_.get(index);
         } else {
@@ -7576,7 +7576,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
       public Builder setAttrs(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (attrsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -7597,7 +7597,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
       public Builder setAttrs(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (attrsBuilder_ == null) {
           ensureAttrsIsMutable();
           attrs_.set(index, builderForValue.build());
@@ -7614,7 +7614,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
-      public Builder addAttrs(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+      public Builder addAttrs(com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (attrsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -7635,7 +7635,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
       public Builder addAttrs(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (attrsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -7656,7 +7656,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
       public Builder addAttrs(
-          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (attrsBuilder_ == null) {
           ensureAttrsIsMutable();
           attrs_.add(builderForValue.build());
@@ -7674,7 +7674,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
       public Builder addAttrs(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (attrsBuilder_ == null) {
           ensureAttrsIsMutable();
           attrs_.add(index, builderForValue.build());
@@ -7692,7 +7692,7 @@ public final class PBPlayer {
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
       public Builder addAllAttrs(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfo> values) {
         if (attrsBuilder_ == null) {
           ensureAttrsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -7744,7 +7744,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getAttrsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder getAttrsBuilder(
           int index) {
         return getAttrsFieldBuilder().getBuilder(index);
       }
@@ -7755,7 +7755,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getAttrsOrBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getAttrsOrBuilder(
           int index) {
         if (attrsBuilder_ == null) {
           return attrs_.get(index);  } else {
@@ -7769,7 +7769,7 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+      public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
            getAttrsOrBuilderList() {
         if (attrsBuilder_ != null) {
           return attrsBuilder_.getMessageOrBuilderList();
@@ -7784,9 +7784,9 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addAttrsBuilder() {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addAttrsBuilder() {
         return getAttrsFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -7795,10 +7795,10 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addAttrsBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addAttrsBuilder(
           int index) {
         return getAttrsFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -7807,16 +7807,16 @@ public final class PBPlayer {
        *
        * <code>repeated .Protocol.PBPairInfo attrs = 11;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder> 
            getAttrsBuilderList() {
         return getAttrsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
           getAttrsFieldBuilder() {
         if (attrsBuilder_ == null) {
           attrsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder>(
                   attrs_,
                   ((bitField0_ & 0x00000002) != 0),
                   getParentForChildren(),
@@ -13370,44 +13370,44 @@ public final class PBPlayer {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016PBPlayer.proto\022\010Protocol\032\014PBItem.proto" +
-      "\"$\n\024RespPlayerCreateRole\022\014\n\004code\030\001 \001(\005\"L" +
-      "\n\023ReqPlayerCreateRole\022\020\n\010roleType\030\001 \001(\005\022" +
-      "\020\n\010nickName\030\002 \001(\t\022\021\n\tinputName\030\003 \001(\t\"\204\001\n" +
-      "\020ReqPlayerReLogin\022\020\n\010userName\030\001 \001(\t\022\017\n\007c" +
-      "hannel\030\002 \001(\005\022\022\n\nsessionKey\030\003 \001(\t\022\026\n\016recv" +
-      "SequenceNo\030\004 \001(\005\022\020\n\010serverId\030\005 \001(\005\022\017\n\007ve" +
-      "rsion\030\006 \001(\t\")\n\017RespPlayerHeart\022\026\n\016recvSe" +
-      "quenceNo\030\001 \001(\005\"@\n\022RespInitPlayerInfo\022*\n\n" +
-      "playerInfo\030\001 \001(\0132\026.Protocol.PBPlayerInfo" +
-      "\"#\n\022RespPlayerRandName\022\r\n\005names\030\001 \003(\t\"$\n" +
-      "\024RespPlayerDisconnect\022\014\n\004code\030\001 \001(\005\"\025\n\023R" +
-      "espPlayerEnterGame\"\357\001\n\014PBPlayerInfo\022\023\n\013a" +
-      "ccountName\030\001 \001(\t\022\020\n\010playerId\030\002 \001(\003\022\020\n\010ni" +
-      "ckName\030\003 \001(\t\022\r\n\005power\030\004 \001(\005\022\017\n\007channel\030\005" +
-      " \001(\005\022\r\n\005level\030\006 \001(\005\022\013\n\003exp\030\007 \001(\005\022\013\n\003vip\030" +
-      "\010 \001(\005\022\016\n\006vipExp\030\t \001(\005\022(\n\nproperties\030\n \003(" +
-      "\0132\024.Protocol.PBPairInfo\022#\n\005attrs\030\013 \003(\0132\024" +
-      ".Protocol.PBPairInfo\"9\n\021RespPlayerReLogi" +
-      "n\022\014\n\004code\030\001 \001(\005\022\026\n\016recvSequenceNo\030\002 \001(\005\"" +
-      "/\n\017RespPlayerLogin\022\014\n\004code\030\001 \001(\005\022\016\n\006stat" +
-      "us\030\002 \001(\005\"\023\n\021ReqPlayerRandName\"t\n\017PBPlaye" +
-      "rProfile\022\020\n\010playerId\030\001 \001(\003\022\020\n\010nickName\030\002" +
-      " \001(\t\022\r\n\005level\030\003 \001(\005\022\r\n\005power\030\004 \001(\005\022\022\n\nfa" +
-      "milyName\030\005 \001(\t\022\013\n\003vip\030\006 \001(\005\"@\n\024RespUpdat" +
-      "ePlayerInfo\022(\n\010playinfo\030\001 \001(\0132\026.Protocol" +
-      ".PBPlayerInfo\"\217\001\n\016ReqPlayerLogin\022\023\n\013acco" +
-      "untName\030\001 \001(\t\022\017\n\007channel\030\002 \001(\005\022\022\n\nsessio" +
-      "nKey\030\003 \001(\t\022\020\n\010serverId\030\004 \001(\005\022\017\n\007version\030" +
-      "\005 \001(\t\022\020\n\010loginSid\030\006 \001(\005\022\016\n\006device\030\007 \001(\t\"" +
-      "(\n\016ReqPlayerHeart\022\026\n\016recvSequenceNo\030\001 \001(" +
-      "\005B*\n\036com.cat.server.game.data.protoB\010PBP" +
-      "layerb\006proto3"
+      "\n\016PBPlayer.proto\022\010Protocol\032\016PBCommon.pro" +
+      "to\"$\n\024RespPlayerCreateRole\022\014\n\004code\030\001 \001(\005" +
+      "\"L\n\023ReqPlayerCreateRole\022\020\n\010roleType\030\001 \001(" +
+      "\005\022\020\n\010nickName\030\002 \001(\t\022\021\n\tinputName\030\003 \001(\t\"\204" +
+      "\001\n\020ReqPlayerReLogin\022\020\n\010userName\030\001 \001(\t\022\017\n" +
+      "\007channel\030\002 \001(\005\022\022\n\nsessionKey\030\003 \001(\t\022\026\n\016re" +
+      "cvSequenceNo\030\004 \001(\005\022\020\n\010serverId\030\005 \001(\005\022\017\n\007" +
+      "version\030\006 \001(\t\")\n\017RespPlayerHeart\022\026\n\016recv" +
+      "SequenceNo\030\001 \001(\005\"@\n\022RespInitPlayerInfo\022*" +
+      "\n\nplayerInfo\030\001 \001(\0132\026.Protocol.PBPlayerIn" +
+      "fo\"#\n\022RespPlayerRandName\022\r\n\005names\030\001 \003(\t\"" +
+      "$\n\024RespPlayerDisconnect\022\014\n\004code\030\001 \001(\005\"\025\n" +
+      "\023RespPlayerEnterGame\"\357\001\n\014PBPlayerInfo\022\023\n" +
+      "\013accountName\030\001 \001(\t\022\020\n\010playerId\030\002 \001(\003\022\020\n\010" +
+      "nickName\030\003 \001(\t\022\r\n\005power\030\004 \001(\005\022\017\n\007channel" +
+      "\030\005 \001(\005\022\r\n\005level\030\006 \001(\005\022\013\n\003exp\030\007 \001(\005\022\013\n\003vi" +
+      "p\030\010 \001(\005\022\016\n\006vipExp\030\t \001(\005\022(\n\nproperties\030\n " +
+      "\003(\0132\024.Protocol.PBPairInfo\022#\n\005attrs\030\013 \003(\013" +
+      "2\024.Protocol.PBPairInfo\"9\n\021RespPlayerReLo" +
+      "gin\022\014\n\004code\030\001 \001(\005\022\026\n\016recvSequenceNo\030\002 \001(" +
+      "\005\"/\n\017RespPlayerLogin\022\014\n\004code\030\001 \001(\005\022\016\n\006st" +
+      "atus\030\002 \001(\005\"\023\n\021ReqPlayerRandName\"t\n\017PBPla" +
+      "yerProfile\022\020\n\010playerId\030\001 \001(\003\022\020\n\010nickName" +
+      "\030\002 \001(\t\022\r\n\005level\030\003 \001(\005\022\r\n\005power\030\004 \001(\005\022\022\n\n" +
+      "familyName\030\005 \001(\t\022\013\n\003vip\030\006 \001(\005\"@\n\024RespUpd" +
+      "atePlayerInfo\022(\n\010playinfo\030\001 \001(\0132\026.Protoc" +
+      "ol.PBPlayerInfo\"\217\001\n\016ReqPlayerLogin\022\023\n\013ac" +
+      "countName\030\001 \001(\t\022\017\n\007channel\030\002 \001(\005\022\022\n\nsess" +
+      "ionKey\030\003 \001(\t\022\020\n\010serverId\030\004 \001(\005\022\017\n\007versio" +
+      "n\030\005 \001(\t\022\020\n\010loginSid\030\006 \001(\005\022\016\n\006device\030\007 \001(" +
+      "\t\"(\n\016ReqPlayerHeart\022\026\n\016recvSequenceNo\030\001 " +
+      "\001(\005B*\n\036com.cat.server.game.data.protoB\010P" +
+      "BPlayerb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.cat.server.game.data.proto.PBItem.getDescriptor(),
+          com.cat.server.game.data.proto.PBCommon.getDescriptor(),
         });
     internal_static_Protocol_RespPlayerCreateRole_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -13505,7 +13505,7 @@ public final class PBPlayer {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqPlayerHeart_descriptor,
         new java.lang.String[] { "RecvSequenceNo", });
-    com.cat.server.game.data.proto.PBItem.getDescriptor();
+    com.cat.server.game.data.proto.PBCommon.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

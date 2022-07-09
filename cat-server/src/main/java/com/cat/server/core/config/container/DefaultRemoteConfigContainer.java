@@ -1,90 +1,51 @@
 package com.cat.server.core.config.container;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
-import org.apache.commons.lang3.StringUtils;
-import com.cat.server.common.ServerConfig;
-import com.cat.server.core.config.annotation.ConfigUrl;
-import com.cat.server.core.context.SpringContextHolder;
-import com.cat.server.utils.HttpClientUtil;
-import com.cat.server.utils.MD5;
+import org.apache.commons.io.FileUtils;
+
+import com.cat.server.common.ServerConstant;
+import com.cat.server.core.config.annotation.ConfigPath;
 
 /**
- * 	远程配置容器 
+ * 本地配置容器
  * @author Jeremy
+ *
  */
-public class DefaultRemoteConfigContainer<T extends IGameConfig> extends AbstractConfigContainer<T>{
+public class DefaultRemoteConfigContainer<T extends IGameConfig> extends AbstractConfigContainer<T> {
 
-	/**
-     * 本次加载成功时 配置所使用的格式
-     */
-    protected String md5;
-    
 	public DefaultRemoteConfigContainer(Class<T> configClazz) {
 		super(configClazz);
 	}
-	
+
 	@Override
 	public String getFileName() {
-		ConfigUrl configUrl = configClazz.getAnnotation(ConfigUrl.class);
-		if (configUrl == null) {
-			  logger.error("config[{}] file path is null.", configClazz.getName());
-	          throw new NullPointerException("config[" + configClazz.getName() + "] file path is null.");
+		ConfigPath configPath = configClazz.getAnnotation(ConfigPath.class);
+		if (configPath == null) {
+			logger.error("config[{}] file path is null.", configClazz.getName());
+			throw new NullPointerException("config[" + configClazz.getName() + "] file path is null.");
 		}
-		return configUrl.value();
+		return configPath.value();
 	}
 
 	@Override
 	protected String readContent() throws IOException {
-		ServerConfig config = SpringContextHolder.getBean(ServerConfig.class);
-		String url = config.getBackstageUrl() + getFileName();
-		if (StringUtils.isEmpty(url)) {
-            logger.error("config[{}] read url[{}] error.url is empty.", configClazz.getName(), url);
-            throw new NullPointerException("config[" + configClazz.getName() + "] url is empty.");
-        }
-		try {
-			String content = HttpClientUtil.doGet(url);
-			 if (StringUtils.isEmpty(content)) {
-	            /*	后台读到的配置为空字符串
-			            * 视为后台正在清空文件开始写入
-			            * 直接视为错误
-			            * 正确的空配置 至少应有[] 或{}
-	             */
-	            logger.error("config[{}] read url[{}] fail.content is empty.", configClazz.getName(), url);
-	            throw new NullPointerException("config[" + configClazz.getName() + "] url[" + url + "] content is empty.");
-	        }
-			return content;
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error("config[{}] read url[{}] fail.", configClazz.getName(), url);
-		}
-		return null;
+		String fileName = ServerConstant.JsonPath + getFileName();
+		return FileUtils.readFileToString(new File(fileName), StandardCharsets.UTF_8);
 	}
-	
-	@Override
-	public void load(String content) throws Exception {
-		super.load(content);
-		md5 = MD5.digest(content, true);
-	}
-	
+
 	/**
-	 * 远程配置刷新
+	 * 本地配置刷新, 通常热更调用, 刷新全部配置
 	 */
 	@Override
 	public void refresh() {
-		 try {
-            String content = readContent();
-            String newMd5 = MD5.digest(content, true);
-            if (StringUtils.equals(md5, newMd5)) {
-                // 2次配置内容一致不再刷新
-                return;
-            }
-            load(content);
-            logger.info("config[{}] refresh.md5[{}]", configClazz.getName(), newMd5);
-        } catch (Exception e) {
-            logger.error("config[{}] refresh fail.", configClazz.getName(), e);
-        }
+		try {
+			loadAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-	
 
 }

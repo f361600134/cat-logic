@@ -102,4 +102,11 @@ public interface IResourceDomain<K, V extends IResource>{
 	 */
 	public void clearExpire(int configId);
 	
+	/**
+	 * 清理过期资源, 只要配置id符合configId, 就清理掉
+	 * @return void  
+	 * @date 2021年11月16日下午10:49:44
+	 */
+	public void addReource(K k, V v);
+	
 }

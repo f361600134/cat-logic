@@ -89,7 +89,7 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 		//TODO 敏感字判断,特殊字符,长度判断
 		//TODO 判断消耗
 		ResourceGroup costMap = new ResourceGroup();
-		if (!resourceGroupService.check(playerId, costMap)) {
+		if (!resourceGroupService.checkEnought(playerId, costMap)) {
 			return ErrorCode.AMOUNT_NOT_ENOUGH;
 		}
 		// 判断重复进入家族

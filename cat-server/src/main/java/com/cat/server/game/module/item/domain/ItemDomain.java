@@ -88,6 +88,11 @@ public class ItemDomain extends AbstractModuleMultiDomain<Long, Long, Item> impl
 	public int getCount(int configId) {
 		return resourceDomainProxy.getCount(configId);
 	}
+
+	@Override
+	public void addReource(Long k, Item v) {
+		resourceDomainProxy.addReource(k, v);
+	}
 	
 }
 

@@ -1,13 +1,8 @@
 package com.cat.server.game.module.playermail.proto;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.cat.net.network.base.AbstractProtocol;
-import com.cat.server.game.data.proto.PBDefine.*;
-//import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBPlayerMail.*;
-import java.util.Collection;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
+import com.cat.server.game.data.proto.PBMail.RespMailRead;
 
 /**
 * RespMailReadBuilder

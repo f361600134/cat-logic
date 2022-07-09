@@ -3,7 +3,7 @@ package com.cat.server.game.module.mail.proto;
 import java.util.Collection;
 
 import com.cat.net.network.base.AbstractProtocol;
-import com.cat.server.game.data.proto.PBItem.PBPairInfo;
+import com.cat.server.game.data.proto.PBCommon.PBPairInfo;
 //import com.cat.server.game.data.proto.*;
 import com.cat.server.game.data.proto.PBMail.PBMailInfo;
 

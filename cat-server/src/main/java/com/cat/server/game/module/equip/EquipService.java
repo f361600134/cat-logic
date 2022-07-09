@@ -30,8 +30,11 @@ import com.cat.server.game.module.equip.proto.RespEquipUpgradeBuilder;
 import com.cat.server.game.module.equip.proto.RespTakeoutEquipBuilder;
 import com.cat.server.game.module.equip.proto.RespWearEquipBuilder;
 import com.cat.server.game.module.hero.IHeroService;
+import com.cat.server.game.module.hero.domain.Hero;
+import com.cat.server.game.module.hero.domain.HeroDomain;
 import com.cat.server.game.module.item.proto.RespItemDeleteBuilder;
 import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.resource.IResourceService;
 import com.cat.server.utils.RandomUtil;
@@ -369,6 +372,17 @@ class EquipService implements IEquipService, IResourceService {
 	@Override
 	public int getModuleId() {
 		return ModuleDefine.EQUIT.getModuleId();
+	}
+	
+	@Override
+	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+		EquipDomain domain = equipManager.getDomain(playerId);
+		if (domain == null) return ;
+		if (!(res instanceof Equip)) {
+			return;
+		}
+		Equip equip = (Equip)res;
+		domain.addReource(equip.getUniqueId(), equip);
 	}
 
 }

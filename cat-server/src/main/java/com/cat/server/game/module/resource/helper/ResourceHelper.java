@@ -1,17 +1,17 @@
 package com.cat.server.game.module.resource.helper;
 
-import com.cat.server.game.data.proto.PBItem.PBPairInfo;
-import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
-import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
-import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
-import com.cat.server.game.module.item.proto.RespRewardsBuilder;
-import com.google.common.collect.Maps;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import com.cat.server.game.data.proto.PBCommon.PBPairInfo;
+import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
+import com.cat.server.game.module.common.proto.PBPairInfoBuilder;
+import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
+import com.cat.server.game.module.item.proto.RespRewardsBuilder;
+import com.google.common.collect.Maps;
 
 /**
  * 没有想打合适的办法把资源类, 在配置里反序列化成ResourceMap<br>
@@ -117,7 +117,7 @@ public class ResourceHelper {
         Collection<PBPairInfo> ret = new ArrayList<>();
         map.forEach((key, val) -> {
             PBPairInfoBuilder builder = new PBPairInfoBuilder();
-            builder.setConfigId(key);
+            builder.setKey(key);
             builder.setValue(val);
             ret.add(builder.build());
         });

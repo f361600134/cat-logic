@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.cat.server.game.data.proto.PBItem.PBPairInfo;
+import com.cat.server.game.data.proto.PBCommon.PBPairInfo;
 import com.cat.server.game.helper.skill.AbstractSkillNode;
-import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
+import com.cat.server.game.module.common.proto.PBPairInfoBuilder;
 import com.cat.server.game.module.pet.domain.Pet;
 
 public abstract class AbstractPetSkillNode extends AbstractSkillNode {
@@ -41,7 +41,7 @@ public abstract class AbstractPetSkillNode extends AbstractSkillNode {
 		List<PBPairInfo> ret = new ArrayList<>();
 		this.getDic().getDictionary().forEach((skillId, skillLv)->{
 			PBPairInfoBuilder builder = PBPairInfoBuilder.newInstance();
-			builder.setConfigId(skillId);
+			builder.setKey(skillId);
 			builder.setValue(skillLv);
 			ret.add(builder.build());
 		});

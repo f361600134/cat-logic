@@ -4,10 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.net.network.base.AbstractProtocol;
-import com.cat.server.game.data.proto.PBDefine.*;
-import com.cat.server.game.data.proto.PBItem.PBPairInfo;
+import com.cat.server.game.data.proto.PBCommon.PBPairInfo;
+import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 //import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBLearnCommunity.*;
+import com.cat.server.game.data.proto.PBLearnCommunity.RespLearnCommunityReward;
 
 /**
 * RespLearnCommunityRewardBuilder

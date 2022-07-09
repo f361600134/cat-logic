@@ -7,6 +7,7 @@ import java.util.Map;
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.data.config.local.ConfigPetEquip;
+import com.cat.server.game.module.pet.domain.Pet;
 import com.cat.server.game.module.petequip.domain.PetEquip;
 import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
 
@@ -71,5 +72,13 @@ public class PetEquipResourceDomain extends AbstractEquipResourceDomain<Long, Pe
 		PetEquipResourceDomain domain = new PetEquipResourceDomain(playerId, beanMap);
 		return domain;
 	}
+	
+//	@Override
+//	public void addReource(PetEquip res) {
+//		getBeanMap().put(res.getUniqueId(), res);
+//		updateList.add(res);
+//		//发送事件
+//		GameEventBus.getInstance().post(ResourceUpdateEvent.create(res, 1));
+//	}
 
 }

@@ -4940,7 +4940,7 @@ public final class PBHome {
      *
      * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
      */
-    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+    java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> 
         getFurnitureResList();
     /**
      * <pre>
@@ -4949,7 +4949,7 @@ public final class PBHome {
      *
      * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfo getFurnitureRes(int index);
+    com.cat.server.game.data.proto.PBCommon.PBPairInfo getFurnitureRes(int index);
     /**
      * <pre>
      *家具资源
@@ -4965,7 +4965,7 @@ public final class PBHome {
      *
      * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getFurnitureResOrBuilderList();
     /**
      * <pre>
@@ -4974,7 +4974,7 @@ public final class PBHome {
      *
      * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getFurnitureResOrBuilder(
+    com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getFurnitureResOrBuilder(
         int index);
 
     /**
@@ -5111,11 +5111,11 @@ public final class PBHome {
             }
             case 50: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                furnitureRes_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
+                furnitureRes_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000001;
               }
               furnitureRes_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
+                  input.readMessage(com.cat.server.game.data.proto.PBCommon.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             case 58: {
@@ -5280,7 +5280,7 @@ public final class PBHome {
     }
 
     public static final int FURNITURERES_FIELD_NUMBER = 6;
-    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> furnitureRes_;
+    private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> furnitureRes_;
     /**
      * <pre>
      *家具资源
@@ -5288,7 +5288,7 @@ public final class PBHome {
      *
      * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
      */
-    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getFurnitureResList() {
+    public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getFurnitureResList() {
       return furnitureRes_;
     }
     /**
@@ -5298,7 +5298,7 @@ public final class PBHome {
      *
      * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getFurnitureResOrBuilderList() {
       return furnitureRes_;
     }
@@ -5319,7 +5319,7 @@ public final class PBHome {
      *
      * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getFurnitureRes(int index) {
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getFurnitureRes(int index) {
       return furnitureRes_.get(index);
     }
     /**
@@ -5329,7 +5329,7 @@ public final class PBHome {
      *
      * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getFurnitureResOrBuilder(
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getFurnitureResOrBuilder(
         int index) {
       return furnitureRes_.get(index);
     }
@@ -6160,17 +6160,17 @@ public final class PBHome {
         return this;
       }
 
-      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> furnitureRes_ =
+      private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> furnitureRes_ =
         java.util.Collections.emptyList();
       private void ensureFurnitureResIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          furnitureRes_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(furnitureRes_);
+          furnitureRes_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>(furnitureRes_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> furnitureResBuilder_;
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> furnitureResBuilder_;
 
       /**
        * <pre>
@@ -6179,7 +6179,7 @@ public final class PBHome {
        *
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getFurnitureResList() {
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getFurnitureResList() {
         if (furnitureResBuilder_ == null) {
           return java.util.Collections.unmodifiableList(furnitureRes_);
         } else {
@@ -6207,7 +6207,7 @@ public final class PBHome {
        *
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getFurnitureRes(int index) {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getFurnitureRes(int index) {
         if (furnitureResBuilder_ == null) {
           return furnitureRes_.get(index);
         } else {
@@ -6222,7 +6222,7 @@ public final class PBHome {
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
       public Builder setFurnitureRes(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (furnitureResBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6243,7 +6243,7 @@ public final class PBHome {
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
       public Builder setFurnitureRes(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (furnitureResBuilder_ == null) {
           ensureFurnitureResIsMutable();
           furnitureRes_.set(index, builderForValue.build());
@@ -6260,7 +6260,7 @@ public final class PBHome {
        *
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
-      public Builder addFurnitureRes(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+      public Builder addFurnitureRes(com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (furnitureResBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6281,7 +6281,7 @@ public final class PBHome {
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
       public Builder addFurnitureRes(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (furnitureResBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -6302,7 +6302,7 @@ public final class PBHome {
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
       public Builder addFurnitureRes(
-          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (furnitureResBuilder_ == null) {
           ensureFurnitureResIsMutable();
           furnitureRes_.add(builderForValue.build());
@@ -6320,7 +6320,7 @@ public final class PBHome {
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
       public Builder addFurnitureRes(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (furnitureResBuilder_ == null) {
           ensureFurnitureResIsMutable();
           furnitureRes_.add(index, builderForValue.build());
@@ -6338,7 +6338,7 @@ public final class PBHome {
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
       public Builder addAllFurnitureRes(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfo> values) {
         if (furnitureResBuilder_ == null) {
           ensureFurnitureResIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -6390,7 +6390,7 @@ public final class PBHome {
        *
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getFurnitureResBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder getFurnitureResBuilder(
           int index) {
         return getFurnitureResFieldBuilder().getBuilder(index);
       }
@@ -6401,7 +6401,7 @@ public final class PBHome {
        *
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getFurnitureResOrBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getFurnitureResOrBuilder(
           int index) {
         if (furnitureResBuilder_ == null) {
           return furnitureRes_.get(index);  } else {
@@ -6415,7 +6415,7 @@ public final class PBHome {
        *
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+      public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
            getFurnitureResOrBuilderList() {
         if (furnitureResBuilder_ != null) {
           return furnitureResBuilder_.getMessageOrBuilderList();
@@ -6430,9 +6430,9 @@ public final class PBHome {
        *
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addFurnitureResBuilder() {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addFurnitureResBuilder() {
         return getFurnitureResFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -6441,10 +6441,10 @@ public final class PBHome {
        *
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addFurnitureResBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addFurnitureResBuilder(
           int index) {
         return getFurnitureResFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -6453,16 +6453,16 @@ public final class PBHome {
        *
        * <code>repeated .Protocol.PBPairInfo furnitureRes = 6;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder> 
            getFurnitureResBuilderList() {
         return getFurnitureResFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
           getFurnitureResFieldBuilder() {
         if (furnitureResBuilder_ == null) {
           furnitureResBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder>(
                   furnitureRes_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -14775,50 +14775,50 @@ public final class PBHome {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014PBHome.proto\022\010Protocol\032\014PBItem.proto\"," +
-      "\n\027RespHomeFurnitureRemove\022\021\n\terrorCode\030\001" +
-      " \001(\005\"\034\n\013ReqHomeInfo\022\r\n\005mapId\030\001 \001(\005\"*\n\026Re" +
-      "qHomeFurnitureRemove\022\020\n\010uniqueId\030\001 \001(\003\"O" +
-      "\n\030RespHomeSchemeLayoutInfo\0223\n\rlayoutSche" +
-      "mes\030\001 \003(\0132\034.Protocol.PBHomeLayoutScheme\"" +
-      "8\n\027ReqHomeSchemeLayoutSave\022\r\n\005mapId\030\001 \001(" +
-      "\005\022\016\n\006planId\030\002 \001(\005\"R\n\023RespHomeBetsuinInfo" +
-      "\022(\n\007betsuin\030\001 \001(\0132\027.Protocol.PBHomeBetsu" +
-      "in\022\021\n\terrorCode\030\002 \001(\005\"*\n\026ReqHomeFurnitur" +
-      "eCreate\022\020\n\010configId\030\001 \001(\005\"-\n\030RespHomeSch" +
-      "emeLayoutSave\022\021\n\terrorCode\030\001 \001(\005\"\353\001\n\nPBH" +
-      "omeInfo\022\r\n\005mapId\030\001 \001(\005\022\r\n\005level\030\002 \001(\005\022\014\n" +
-      "\004name\030\003 \001(\t\022\026\n\016lastRenameTime\030\004 \001(\003\022\013\n\003e" +
-      "xp\030\005 \001(\005\022*\n\014furnitureRes\030\006 \003(\0132\024.Protoco" +
-      "l.PBPairInfo\0222\n\014layoutScheme\030\007 \001(\0132\034.Pro" +
-      "tocol.PBHomeLayoutScheme\022,\n\013mainBetsuin\030" +
-      "\010 \001(\0132\027.Protocol.PBHomeBetsuin\"V\n\026ReqHom" +
-      "eFurnitureUpdate\022<\n\021furnitureGeometry\030\001 " +
-      "\001(\0132!.Protocol.PBHomeFurnitureGeometry\"u" +
-      "\n\027PBHomeFurnitureGeometry\022,\n\tfurniture\030\001" +
-      " \001(\0132\031.Protocol.PBHomeFurniture\022,\n\trecta" +
-      "ngle\030\002 \001(\0132\031.Protocol.PBHomeRectangle\",\n" +
-      "\027RespHomeFurnitureUpdate\022\021\n\terrorCode\030\001 " +
-      "\001(\005\"5\n\017PBHomeFurniture\022\020\n\010uniqueId\030\001 \001(\003" +
-      "\022\020\n\010configId\030\002 \001(\005\"\031\n\027ReqHomeSchemeLayou" +
-      "tInfo\"d\n\022PBHomeLayoutScheme\022\016\n\006planId\030\001 " +
-      "\001(\005\022>\n\023furnitureGeometries\030\002 \003(\0132!.Proto" +
-      "col.PBHomeFurnitureGeometry\"b\n\rPBHomeBet" +
-      "suin\022\021\n\tbetsuinId\030\001 \001(\005\022>\n\023furnitureGeom" +
-      "etries\030\002 \003(\0132!.Protocol.PBHomeFurnitureG" +
-      "eometry\"2\n\014RespHomeInfo\022\"\n\004home\030\001 \001(\0132\024." +
-      "Protocol.PBHomeInfo\"\'\n\022ReqHomeBetsuinInf" +
-      "o\022\021\n\tbetsuinId\030\001 \001(\005\"j\n\027RespHomeFurnitur" +
-      "eCreate\022\021\n\terrorCode\030\001 \001(\005\022<\n\021furnitureG" +
-      "eometry\030\002 \001(\0132!.Protocol.PBHomeFurniture" +
-      "Geometry\"8\n\017PBHomeRectangle\022\t\n\001x\030\001 \001(\005\022\t" +
-      "\n\001y\030\002 \001(\005\022\017\n\007reverse\030\003 \001(\010B(\n\036com.cat.se" +
-      "rver.game.data.protoB\006PBHomeb\006proto3"
+      "\n\014PBHome.proto\022\010Protocol\032\016PBCommon.proto" +
+      "\",\n\027RespHomeFurnitureRemove\022\021\n\terrorCode" +
+      "\030\001 \001(\005\"\034\n\013ReqHomeInfo\022\r\n\005mapId\030\001 \001(\005\"*\n\026" +
+      "ReqHomeFurnitureRemove\022\020\n\010uniqueId\030\001 \001(\003" +
+      "\"O\n\030RespHomeSchemeLayoutInfo\0223\n\rlayoutSc" +
+      "hemes\030\001 \003(\0132\034.Protocol.PBHomeLayoutSchem" +
+      "e\"8\n\027ReqHomeSchemeLayoutSave\022\r\n\005mapId\030\001 " +
+      "\001(\005\022\016\n\006planId\030\002 \001(\005\"R\n\023RespHomeBetsuinIn" +
+      "fo\022(\n\007betsuin\030\001 \001(\0132\027.Protocol.PBHomeBet" +
+      "suin\022\021\n\terrorCode\030\002 \001(\005\"*\n\026ReqHomeFurnit" +
+      "ureCreate\022\020\n\010configId\030\001 \001(\005\"-\n\030RespHomeS" +
+      "chemeLayoutSave\022\021\n\terrorCode\030\001 \001(\005\"\353\001\n\nP" +
+      "BHomeInfo\022\r\n\005mapId\030\001 \001(\005\022\r\n\005level\030\002 \001(\005\022" +
+      "\014\n\004name\030\003 \001(\t\022\026\n\016lastRenameTime\030\004 \001(\003\022\013\n" +
+      "\003exp\030\005 \001(\005\022*\n\014furnitureRes\030\006 \003(\0132\024.Proto" +
+      "col.PBPairInfo\0222\n\014layoutScheme\030\007 \001(\0132\034.P" +
+      "rotocol.PBHomeLayoutScheme\022,\n\013mainBetsui" +
+      "n\030\010 \001(\0132\027.Protocol.PBHomeBetsuin\"V\n\026ReqH" +
+      "omeFurnitureUpdate\022<\n\021furnitureGeometry\030" +
+      "\001 \001(\0132!.Protocol.PBHomeFurnitureGeometry" +
+      "\"u\n\027PBHomeFurnitureGeometry\022,\n\tfurniture" +
+      "\030\001 \001(\0132\031.Protocol.PBHomeFurniture\022,\n\trec" +
+      "tangle\030\002 \001(\0132\031.Protocol.PBHomeRectangle\"" +
+      ",\n\027RespHomeFurnitureUpdate\022\021\n\terrorCode\030" +
+      "\001 \001(\005\"5\n\017PBHomeFurniture\022\020\n\010uniqueId\030\001 \001" +
+      "(\003\022\020\n\010configId\030\002 \001(\005\"\031\n\027ReqHomeSchemeLay" +
+      "outInfo\"d\n\022PBHomeLayoutScheme\022\016\n\006planId\030" +
+      "\001 \001(\005\022>\n\023furnitureGeometries\030\002 \003(\0132!.Pro" +
+      "tocol.PBHomeFurnitureGeometry\"b\n\rPBHomeB" +
+      "etsuin\022\021\n\tbetsuinId\030\001 \001(\005\022>\n\023furnitureGe" +
+      "ometries\030\002 \003(\0132!.Protocol.PBHomeFurnitur" +
+      "eGeometry\"2\n\014RespHomeInfo\022\"\n\004home\030\001 \001(\0132" +
+      "\024.Protocol.PBHomeInfo\"\'\n\022ReqHomeBetsuinI" +
+      "nfo\022\021\n\tbetsuinId\030\001 \001(\005\"j\n\027RespHomeFurnit" +
+      "ureCreate\022\021\n\terrorCode\030\001 \001(\005\022<\n\021furnitur" +
+      "eGeometry\030\002 \001(\0132!.Protocol.PBHomeFurnitu" +
+      "reGeometry\"8\n\017PBHomeRectangle\022\t\n\001x\030\001 \001(\005" +
+      "\022\t\n\001y\030\002 \001(\005\022\017\n\007reverse\030\003 \001(\010B(\n\036com.cat." +
+      "server.game.data.protoB\006PBHomeb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.cat.server.game.data.proto.PBItem.getDescriptor(),
+          com.cat.server.game.data.proto.PBCommon.getDescriptor(),
         });
     internal_static_Protocol_RespHomeFurnitureRemove_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -14940,7 +14940,7 @@ public final class PBHome {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_PBHomeRectangle_descriptor,
         new java.lang.String[] { "X", "Y", "Reverse", });
-    com.cat.server.game.data.proto.PBItem.getDescriptor();
+    com.cat.server.game.data.proto.PBCommon.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -3,10 +3,9 @@ package com.cat.server.game.module.playermail.proto;
 import java.util.Collection;
 
 import com.cat.net.network.base.AbstractProtocol;
+import com.cat.server.game.data.proto.PBCommon.PBPairInfo;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
-import com.cat.server.game.data.proto.PBItem.PBPairInfo;
-//import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBPlayerMail.RespMailReward;
+import com.cat.server.game.data.proto.PBMail.RespMailReward;
 
 /**
 * RespMailRewardBuilder

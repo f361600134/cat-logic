@@ -12,18 +12,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cat.server.core.annotation.NotUse;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.module.resource.domain.ResourceGroup;
+import com.cat.server.utils.Pair;
 
 /**
  * 可以考虑对资源进行分类去处理, 比如有3个道具,2个武将<br>
  * 那么根据类型进行分类, 处理完这个类型后, 就通知更新
  * @author Jeremy
  */
-@NotUse
 @Service
 class ResourceGroupService implements IResourceGroupService, ILifecycle {
 
@@ -85,7 +84,7 @@ class ResourceGroupService implements IResourceGroupService, ILifecycle {
 	}
 
 	@Override
-    public boolean check(long playerId, ResourceGroup costMap) {
+    public boolean checkEnought(long playerId, ResourceGroup costMap) {
 		for (Integer configId : costMap.getDictionary().keySet()) {
 			int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
 			IResourceService service = serviceMap.get(resourceType);
@@ -105,7 +104,7 @@ class ResourceGroupService implements IResourceGroupService, ILifecycle {
 	
 	@Override
 	public boolean checkAndCost(long playerId, ResourceGroup costMap, NatureEnum nEnum) {
-		if (this.check(playerId, costMap)) {
+		if (this.checkEnought(playerId, costMap)) {
 			this.cost(playerId, costMap, nEnum);
 			return true;
 		}
@@ -143,6 +142,63 @@ class ResourceGroupService implements IResourceGroupService, ILifecycle {
 	@Override
 	public int priority() {
 		return Priority.LOGIC.getPriority();
+	}
+
+	@Override
+	public void costByUniqueId(long playerId, Collection<Pair<Integer, Long>> pairs, NatureEnum nEnum) {
+		Set<IResourceService> set = new HashSet<>();
+		for (Pair<Integer, Long> pair : pairs) {
+			final int configId = pair.getKey();
+			final long uniqueId = pair.getValue();
+			int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
+			IResourceService service = serviceMap.get(resourceType);
+			if (service == null) {
+				throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
+			}
+			service.cost(playerId, uniqueId, nEnum);
+		}
+		//通知模块数据变化
+		set.forEach(service->{
+			service.notify(playerId);
+		});
+	}
+
+	@Override
+	public void addResource(long playerId, Collection<IResource> resources, NatureEnum nEnum) {
+		Set<IResourceService> set = new HashSet<>();
+		for (IResource resource : resources) {
+			final int configId = resource.getConfigId();
+			int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
+			IResourceService service = serviceMap.get(resourceType);
+			if (service == null) {
+				throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
+			}
+			service.addResource(playerId, resource, nEnum);
+		}
+		//通知模块数据变化
+		set.forEach(service->{
+			service.notify(playerId);
+		});
+	}
+
+	@Override
+	public boolean checkAddResource(long playerId, Collection<IResource> resources) {
+		for (IResource resource : resources) {
+			final int configId = resource.getConfigId();
+			int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
+			IResourceService service = serviceMap.get(resourceType);
+			if (service == null) {
+				throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
+			}
+			int number = resource.getCount();
+			if (number < 0) {
+				log.info("Negative item cost, playerId:{}, value:{}, nEnum:{}", playerId, number);
+				number = Math.abs(number);
+			}
+			boolean obj = service.checkAdd(playerId, configId, number);
+			if (!obj) return false;
+		}
+		return true;
 	}
 
 }

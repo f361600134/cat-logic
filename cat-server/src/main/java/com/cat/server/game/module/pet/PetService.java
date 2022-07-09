@@ -27,6 +27,7 @@ import com.cat.server.game.module.pet.proto.RespPetIdentifyBuilder;
 import com.cat.server.game.module.pet.proto.RespPetLevelupBuilder;
 import com.cat.server.game.module.pet.proto.RespPetUpdateBuilder;
 import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceService;
 
 /**
@@ -53,7 +54,7 @@ class PetService implements IPetService, IResourceService, IPlayerModuleService{
 			return;
 		}
 		RespPetUpdateBuilder builder = RespPetUpdateBuilder.newInstance();
-		builder.addPets(pet.toProto().build());
+		builder.addPets(pet.toProto());
 		playerService.sendMessage(domain.getId(), builder);
 	}
 	
@@ -62,7 +63,7 @@ class PetService implements IPetService, IResourceService, IPlayerModuleService{
 		if (!petList.isEmpty()) {
 			RespPetUpdateBuilder ack = RespPetUpdateBuilder.newInstance();
 			petList.forEach((pet)->{
-				ack.addPets(pet.toProto().build());
+				ack.addPets(pet.toProto());
 			});
 			playerService.sendMessage(playerId, ack);
 		}
@@ -269,7 +270,7 @@ class PetService implements IPetService, IResourceService, IPlayerModuleService{
 		Collection<Pet> beans = domain.getBeans();
 		RespPetUpdateBuilder builder = RespPetUpdateBuilder.newInstance();
 		for (Pet pet : beans) {
-			builder.addPets(pet.toProto().build());
+			builder.addPets(pet.toProto());
 		}
 		playerService.sendMessage(playerId, builder);
 	}
@@ -291,6 +292,17 @@ class PetService implements IPetService, IResourceService, IPlayerModuleService{
 		PetDomain domain = petManager.getDomain(playerId);
 		if (domain == null) return null;
 		return domain.getBean(petId);
+	}
+
+	@Override
+	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+		PetDomain domain = petManager.getDomain(playerId);
+		if (domain == null) return ;
+		if (!(res instanceof Pet)) {
+			return;
+		}
+		Pet pet = (Pet)res;
+		domain.addReource(pet.getUniqueId(), pet);
 	}
 }
  

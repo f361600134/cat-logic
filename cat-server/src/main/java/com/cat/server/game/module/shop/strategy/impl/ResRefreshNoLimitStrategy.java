@@ -23,7 +23,7 @@ public class ResRefreshNoLimitStrategy extends AbstractRefreshStrategy{
 	 */
 	@Override
 	public ErrorCode checkRefresh(ConfigShopControl config, ShopDomain domain) {
-		boolean bool = resourceGroupService.check(domain.getId(), config.getRefreshCost());
+		boolean bool = resourceGroupService.checkEnought(domain.getId(), config.getRefreshCost());
 		if (!bool) {
 			return ErrorCode.AMOUNT_NOT_ENOUGH;
 		}

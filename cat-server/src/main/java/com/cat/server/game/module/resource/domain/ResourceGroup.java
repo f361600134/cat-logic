@@ -5,9 +5,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.cat.server.game.data.proto.PBItem.PBPairInfo;
+import com.cat.server.game.data.proto.PBCommon.PBPairInfo;
 import com.cat.server.game.data.proto.PBItem.PBRewardInfo;
-import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
+import com.cat.server.game.module.common.proto.PBPairInfoBuilder;
 import com.cat.server.game.module.item.proto.PBRewardInfoBuilder;
 import com.cat.server.game.module.item.proto.RespRewardsBuilder;
 
@@ -160,7 +160,7 @@ public class ResourceGroup {
     	Collection<PBPairInfo> ret = new ArrayList<>();
         this.dictionary.forEach((key, val)->{
             PBPairInfoBuilder builder = new PBPairInfoBuilder();
-            builder.setConfigId(key);
+            builder.setKey(key);
             builder.setValue(val);
             ret.add(builder.build());
         });

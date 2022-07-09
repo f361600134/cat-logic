@@ -4,8 +4,7 @@ import java.util.Collection;
 
 import com.cat.net.network.base.AbstractProtocol;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
-//import com.cat.server.game.data.proto.*;
-import com.cat.server.game.data.proto.PBPlayerMail.RespMailDelete;
+import com.cat.server.game.data.proto.PBMail.RespMailDelete;
 
 /**
 * RespMailDeleteBuilder

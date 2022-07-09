@@ -3,6 +3,7 @@ package com.cat.server.game.module.resource.domain;
 import java.util.Collections;
 import java.util.Map;
 
+import com.cat.server.core.server.IPersistence;
 import com.cat.server.game.module.resource.IEquip;
 import com.cat.server.game.module.resource.IEquipResourceDomain;
 import com.google.common.collect.HashBasedTable;
@@ -13,7 +14,7 @@ import com.google.common.collect.Table;
  * @auth Jeremy
  * @date 2022年2月9日下午7:42:15
  */
-abstract class AbstractEquipResourceDomain<K, V extends IEquip> extends AbstractResourceDomain<K, V> implements IEquipResourceDomain<K, V>{
+abstract class AbstractEquipResourceDomain<K, V extends IEquip & IPersistence> extends AbstractResourceDomain<K, V> implements IEquipResourceDomain<K, V>{
 	
 	/**
 	 * 这种处理方式, 初始化时,需要根据装备的配置信息获取到槽位

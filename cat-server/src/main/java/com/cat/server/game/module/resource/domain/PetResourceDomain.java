@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.module.pet.domain.Pet;
+import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
 
 /**
@@ -62,4 +63,12 @@ public class PetResourceDomain extends AbstractResourceDomain<Long, Pet>{
 		PetResourceDomain domain = new PetResourceDomain(playerId, beanMap);
 		return domain;
 	}
+
+//	@Override
+//	public void addReource(Pet pet) {
+//		getBeanMap().put(pet.getUniqueId(), pet);
+//		updateList.add(pet);
+//		//发送事件
+//		GameEventBus.getInstance().post(ResourceUpdateEvent.create(pet, 1));
+//	}
 }

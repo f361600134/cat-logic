@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.server.game.module.activity.domain.Activity;
-import com.cat.server.game.module.activity.domain.ActivityDomain;
 import com.cat.server.game.module.activity.type.IActivityType;
 
 /**
@@ -16,7 +15,7 @@ import com.cat.server.game.module.activity.type.IActivityType;
  */
 public class ActivityStatusManager implements IActivityStatus{
 
-	private static final Logger log = LoggerFactory.getLogger(ActivityDomain.class);
+	private static final Logger log = LoggerFactory.getLogger(ActivityStatusManager.class);
 	
 	/**
 	 * 状态数组
@@ -52,7 +51,7 @@ public class ActivityStatusManager implements IActivityStatus{
 		statusMap.put(settleStatus.getCode(), settleStatus);
 		
 		//初始化当前状态
-		this.curStatus = statusMap.get(activityType.getActivity().getStatus());
+		this.curStatus = statusMap.get(activityType.getStatus());
 	}
 
 	public IActivityStatus getCurStatus() {

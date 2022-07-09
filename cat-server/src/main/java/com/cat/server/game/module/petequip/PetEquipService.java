@@ -1,6 +1,8 @@
 package com.cat.server.game.module.petequip;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +18,15 @@ import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.item.domain.Item;
+import com.cat.server.game.module.item.domain.ItemDomain;
 import com.cat.server.game.module.pet.IPetService;
 import com.cat.server.game.module.petequip.domain.PetEquip;
 import com.cat.server.game.module.petequip.domain.PetEquipDomain;
 import com.cat.server.game.module.petequip.proto.RespPetEquipInfoBuilder;
 import com.cat.server.game.module.petequip.proto.RespWearPetEquipBuilder;
 import com.cat.server.game.module.player.IPlayerService;
+import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceService;
 
 
@@ -262,6 +267,24 @@ public class PetEquipService implements IPetEquipService, IResourceService{
 		PetEquipDomain domain = petEquipManager.getDomain(playerId);
 		if (domain == null) return null;
 		return domain.getBean(petEquipId);
+	}
+	
+	@Override
+	public Map<Integer, Long> getPetEquipIds(long playerId, long holderId) {
+		PetEquipDomain domain = petEquipManager.getDomain(playerId);
+		if (domain == null) return Collections.emptyMap();
+		return domain.getUsedEquips(holderId);
+	}
+	
+	@Override
+	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+		PetEquipDomain domain = petEquipManager.getDomain(playerId);
+		if (domain == null) return ;
+		if (!(res instanceof PetEquip)) {
+			return;
+		}
+		PetEquip petEquip = (PetEquip)res;
+		domain.addReource(petEquip.getUniqueId(), petEquip);
 	}
 }
  

@@ -85,4 +85,11 @@ public interface IResourceService {
 	 * @date 2021年11月16日下午10:49:44
 	 */
 	default public void clearExpire(long playerId, int configId) {}
+	
+	/**
+	 * 添加资源
+	 * @param playerId
+	 * @param resource
+	 */
+	public void addResource(long playerId, IResource resource, NatureEnum nEnum);
 }

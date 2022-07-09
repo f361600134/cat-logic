@@ -1,13 +1,7 @@
 package com.cat.server.game.module.pet.skill;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import com.cat.server.game.data.proto.PBItem.PBPairInfo;
 import com.cat.server.game.helper.skill.ISkillNode;
 import com.cat.server.game.helper.skill.SkillDictionary;
-import com.cat.server.game.module.item.proto.PBPairInfoBuilder;
 import com.cat.server.game.module.pet.domain.Pet;
 
 /**

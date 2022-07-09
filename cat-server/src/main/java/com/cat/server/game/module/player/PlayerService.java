@@ -29,6 +29,8 @@ import com.cat.server.game.helper.AccountApiEnum;
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
+import com.cat.server.game.module.petequip.domain.PetEquip;
+import com.cat.server.game.module.petequip.domain.PetEquipDomain;
 import com.cat.server.game.module.player.domain.Player;
 import com.cat.server.game.module.player.domain.PlayerContext;
 import com.cat.server.game.module.player.event.PlayerLoginEndEvent;
@@ -39,6 +41,7 @@ import com.cat.server.game.module.player.proto.RespPlayerLoginBuilder;
 import com.cat.server.game.module.player.proto.RespPlayerRandNameBuilder;
 import com.cat.server.game.module.player.proto.RespPlayerReLoginBuilder;
 import com.cat.server.game.module.player.resp.ResAuthResult;
+import com.cat.server.game.module.resource.IResource;
 import com.cat.server.game.module.resource.IResourceService;
 import com.cat.server.utils.HttpClientUtil;
 
@@ -485,6 +488,11 @@ class PlayerService implements IPlayerService, IResourceService {
 		final PlayerContext playerContext = getPlayerContext(playerId);
 		final Player player = playerContext.getPlayer();
 		return player.getProperties(configId);
+	}
+	
+	@Override
+	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+		throw new UnsupportedOperationException("玩家属性不支持该操作");
 	}
 
 }

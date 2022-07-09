@@ -2,6 +2,7 @@ package com.cat.api.module.battle.request;
 
 import com.cat.api.ProtocolId;
 import com.cat.api.core.AbstractStuffProto;
+import com.google.protobuf.AbstractMessage;
 
 /**
  * 通知玩家下线

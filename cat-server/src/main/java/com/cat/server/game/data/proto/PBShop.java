@@ -3418,23 +3418,23 @@ public final class PBShop {
 
     /**
      * <pre>
-     *免费刷新的最后刷新时间
+     *最后刷新时间
      * </pre>
      *
-     * <code>int64 freeRefreshTime = 2;</code>
-     * @return The freeRefreshTime.
+     * <code>int64 refreshTime = 2;</code>
+     * @return The refreshTime.
      */
-    long getFreeRefreshTime();
+    long getRefreshTime();
 
     /**
      * <pre>
-     *免费刷新已刷新次数
+     *刷新次数
      * </pre>
      *
-     * <code>int32 freeRefreshNum = 3;</code>
-     * @return The freeRefreshNum.
+     * <code>int32 refreshNum = 3;</code>
+     * @return The refreshNum.
      */
-    int getFreeRefreshNum();
+    int getRefreshNum();
 
     /**
      * <pre>
@@ -3443,7 +3443,7 @@ public final class PBShop {
      *
      * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
      */
-    java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> 
+    java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> 
         getItemRecordList();
     /**
      * <pre>
@@ -3452,7 +3452,7 @@ public final class PBShop {
      *
      * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfo getItemRecord(int index);
+    com.cat.server.game.data.proto.PBCommon.PBPairInfo getItemRecord(int index);
     /**
      * <pre>
      *商品购买记录
@@ -3468,7 +3468,7 @@ public final class PBShop {
      *
      * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getItemRecordOrBuilderList();
     /**
      * <pre>
@@ -3477,25 +3477,35 @@ public final class PBShop {
      *
      * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
      */
-    com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getItemRecordOrBuilder(
+    com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getItemRecordOrBuilder(
         int index);
 
     /**
      * <pre>
-     *资源刷新已刷新次数
+     *免费刷新的最后刷新时间
      * </pre>
      *
-     * <code>int32 resRefreshNum = 5;</code>
+     * <code>int64 freeRefreshNum = 5;</code>
+     * @return The freeRefreshNum.
+     */
+    long getFreeRefreshNum();
+
+    /**
+     * <pre>
+     *资源刷新的最后刷新时间
+     * </pre>
+     *
+     * <code>int64 resRefreshNum = 6;</code>
      * @return The resRefreshNum.
      */
-    int getResRefreshNum();
+    long getResRefreshNum();
 
     /**
      * <pre>
      *当前商品id列表
      * </pre>
      *
-     * <code>repeated int32 commodities = 6;</code>
+     * <code>repeated int32 commodities = 7;</code>
      * @return A list containing the commodities.
      */
     java.util.List<java.lang.Integer> getCommoditiesList();
@@ -3504,7 +3514,7 @@ public final class PBShop {
      *当前商品id列表
      * </pre>
      *
-     * <code>repeated int32 commodities = 6;</code>
+     * <code>repeated int32 commodities = 7;</code>
      * @return The count of commodities.
      */
     int getCommoditiesCount();
@@ -3513,11 +3523,21 @@ public final class PBShop {
      *当前商品id列表
      * </pre>
      *
-     * <code>repeated int32 commodities = 6;</code>
+     * <code>repeated int32 commodities = 7;</code>
      * @param index The index of the element to return.
      * @return The commodities at the given index.
      */
     int getCommodities(int index);
+
+    /**
+     * <pre>
+     *免费刷新的最后刷新时间
+     * </pre>
+     *
+     * <code>int64 freeRefreshTime = 8;</code>
+     * @return The freeRefreshTime.
+     */
+    long getFreeRefreshTime();
   }
   /**
    * <pre>
@@ -3578,29 +3598,34 @@ public final class PBShop {
             }
             case 16: {
 
-              freeRefreshTime_ = input.readInt64();
+              refreshTime_ = input.readInt64();
               break;
             }
             case 24: {
 
-              freeRefreshNum_ = input.readInt32();
+              refreshNum_ = input.readInt32();
               break;
             }
             case 34: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                itemRecord_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>();
+                itemRecord_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>();
                 mutable_bitField0_ |= 0x00000001;
               }
               itemRecord_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBItem.PBPairInfo.parser(), extensionRegistry));
+                  input.readMessage(com.cat.server.game.data.proto.PBCommon.PBPairInfo.parser(), extensionRegistry));
               break;
             }
             case 40: {
 
-              resRefreshNum_ = input.readInt32();
+              freeRefreshNum_ = input.readInt64();
               break;
             }
             case 48: {
+
+              resRefreshNum_ = input.readInt64();
+              break;
+            }
+            case 56: {
               if (!((mutable_bitField0_ & 0x00000002) != 0)) {
                 commodities_ = newIntList();
                 mutable_bitField0_ |= 0x00000002;
@@ -3608,7 +3633,7 @@ public final class PBShop {
               commodities_.addInt(input.readInt32());
               break;
             }
-            case 50: {
+            case 58: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
@@ -3619,6 +3644,11 @@ public final class PBShop {
                 commodities_.addInt(input.readInt32());
               }
               input.popLimit(limit);
+              break;
+            }
+            case 64: {
+
+              freeRefreshTime_ = input.readInt64();
               break;
             }
             default: {
@@ -3673,36 +3703,36 @@ public final class PBShop {
       return shopId_;
     }
 
-    public static final int FREEREFRESHTIME_FIELD_NUMBER = 2;
-    private long freeRefreshTime_;
+    public static final int REFRESHTIME_FIELD_NUMBER = 2;
+    private long refreshTime_;
     /**
      * <pre>
-     *免费刷新的最后刷新时间
+     *最后刷新时间
      * </pre>
      *
-     * <code>int64 freeRefreshTime = 2;</code>
-     * @return The freeRefreshTime.
+     * <code>int64 refreshTime = 2;</code>
+     * @return The refreshTime.
      */
-    public long getFreeRefreshTime() {
-      return freeRefreshTime_;
+    public long getRefreshTime() {
+      return refreshTime_;
     }
 
-    public static final int FREEREFRESHNUM_FIELD_NUMBER = 3;
-    private int freeRefreshNum_;
+    public static final int REFRESHNUM_FIELD_NUMBER = 3;
+    private int refreshNum_;
     /**
      * <pre>
-     *免费刷新已刷新次数
+     *刷新次数
      * </pre>
      *
-     * <code>int32 freeRefreshNum = 3;</code>
-     * @return The freeRefreshNum.
+     * <code>int32 refreshNum = 3;</code>
+     * @return The refreshNum.
      */
-    public int getFreeRefreshNum() {
-      return freeRefreshNum_;
+    public int getRefreshNum() {
+      return refreshNum_;
     }
 
     public static final int ITEMRECORD_FIELD_NUMBER = 4;
-    private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> itemRecord_;
+    private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> itemRecord_;
     /**
      * <pre>
      *商品购买记录
@@ -3710,7 +3740,7 @@ public final class PBShop {
      *
      * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
      */
-    public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getItemRecordList() {
+    public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getItemRecordList() {
       return itemRecord_;
     }
     /**
@@ -3720,7 +3750,7 @@ public final class PBShop {
      *
      * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+    public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
         getItemRecordOrBuilderList() {
       return itemRecord_;
     }
@@ -3741,7 +3771,7 @@ public final class PBShop {
      *
      * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfo getItemRecord(int index) {
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfo getItemRecord(int index) {
       return itemRecord_.get(index);
     }
     /**
@@ -3751,33 +3781,47 @@ public final class PBShop {
      *
      * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
      */
-    public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getItemRecordOrBuilder(
+    public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getItemRecordOrBuilder(
         int index) {
       return itemRecord_.get(index);
     }
 
-    public static final int RESREFRESHNUM_FIELD_NUMBER = 5;
-    private int resRefreshNum_;
+    public static final int FREEREFRESHNUM_FIELD_NUMBER = 5;
+    private long freeRefreshNum_;
     /**
      * <pre>
-     *资源刷新已刷新次数
+     *免费刷新的最后刷新时间
      * </pre>
      *
-     * <code>int32 resRefreshNum = 5;</code>
+     * <code>int64 freeRefreshNum = 5;</code>
+     * @return The freeRefreshNum.
+     */
+    public long getFreeRefreshNum() {
+      return freeRefreshNum_;
+    }
+
+    public static final int RESREFRESHNUM_FIELD_NUMBER = 6;
+    private long resRefreshNum_;
+    /**
+     * <pre>
+     *资源刷新的最后刷新时间
+     * </pre>
+     *
+     * <code>int64 resRefreshNum = 6;</code>
      * @return The resRefreshNum.
      */
-    public int getResRefreshNum() {
+    public long getResRefreshNum() {
       return resRefreshNum_;
     }
 
-    public static final int COMMODITIES_FIELD_NUMBER = 6;
+    public static final int COMMODITIES_FIELD_NUMBER = 7;
     private com.google.protobuf.Internal.IntList commodities_;
     /**
      * <pre>
      *当前商品id列表
      * </pre>
      *
-     * <code>repeated int32 commodities = 6;</code>
+     * <code>repeated int32 commodities = 7;</code>
      * @return A list containing the commodities.
      */
     public java.util.List<java.lang.Integer>
@@ -3789,7 +3833,7 @@ public final class PBShop {
      *当前商品id列表
      * </pre>
      *
-     * <code>repeated int32 commodities = 6;</code>
+     * <code>repeated int32 commodities = 7;</code>
      * @return The count of commodities.
      */
     public int getCommoditiesCount() {
@@ -3800,7 +3844,7 @@ public final class PBShop {
      *当前商品id列表
      * </pre>
      *
-     * <code>repeated int32 commodities = 6;</code>
+     * <code>repeated int32 commodities = 7;</code>
      * @param index The index of the element to return.
      * @return The commodities at the given index.
      */
@@ -3808,6 +3852,20 @@ public final class PBShop {
       return commodities_.getInt(index);
     }
     private int commoditiesMemoizedSerializedSize = -1;
+
+    public static final int FREEREFRESHTIME_FIELD_NUMBER = 8;
+    private long freeRefreshTime_;
+    /**
+     * <pre>
+     *免费刷新的最后刷新时间
+     * </pre>
+     *
+     * <code>int64 freeRefreshTime = 8;</code>
+     * @return The freeRefreshTime.
+     */
+    public long getFreeRefreshTime() {
+      return freeRefreshTime_;
+    }
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
@@ -3827,24 +3885,30 @@ public final class PBShop {
       if (shopId_ != 0) {
         output.writeInt32(1, shopId_);
       }
-      if (freeRefreshTime_ != 0L) {
-        output.writeInt64(2, freeRefreshTime_);
+      if (refreshTime_ != 0L) {
+        output.writeInt64(2, refreshTime_);
       }
-      if (freeRefreshNum_ != 0) {
-        output.writeInt32(3, freeRefreshNum_);
+      if (refreshNum_ != 0) {
+        output.writeInt32(3, refreshNum_);
       }
       for (int i = 0; i < itemRecord_.size(); i++) {
         output.writeMessage(4, itemRecord_.get(i));
       }
-      if (resRefreshNum_ != 0) {
-        output.writeInt32(5, resRefreshNum_);
+      if (freeRefreshNum_ != 0L) {
+        output.writeInt64(5, freeRefreshNum_);
+      }
+      if (resRefreshNum_ != 0L) {
+        output.writeInt64(6, resRefreshNum_);
       }
       if (getCommoditiesList().size() > 0) {
-        output.writeUInt32NoTag(50);
+        output.writeUInt32NoTag(58);
         output.writeUInt32NoTag(commoditiesMemoizedSerializedSize);
       }
       for (int i = 0; i < commodities_.size(); i++) {
         output.writeInt32NoTag(commodities_.getInt(i));
+      }
+      if (freeRefreshTime_ != 0L) {
+        output.writeInt64(8, freeRefreshTime_);
       }
       unknownFields.writeTo(output);
     }
@@ -3859,21 +3923,25 @@ public final class PBShop {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, shopId_);
       }
-      if (freeRefreshTime_ != 0L) {
+      if (refreshTime_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, freeRefreshTime_);
+          .computeInt64Size(2, refreshTime_);
       }
-      if (freeRefreshNum_ != 0) {
+      if (refreshNum_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, freeRefreshNum_);
+          .computeInt32Size(3, refreshNum_);
       }
       for (int i = 0; i < itemRecord_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, itemRecord_.get(i));
       }
-      if (resRefreshNum_ != 0) {
+      if (freeRefreshNum_ != 0L) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, resRefreshNum_);
+          .computeInt64Size(5, freeRefreshNum_);
+      }
+      if (resRefreshNum_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, resRefreshNum_);
       }
       {
         int dataSize = 0;
@@ -3888,6 +3956,10 @@ public final class PBShop {
               .computeInt32SizeNoTag(dataSize);
         }
         commoditiesMemoizedSerializedSize = dataSize;
+      }
+      if (freeRefreshTime_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(8, freeRefreshTime_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3906,16 +3978,20 @@ public final class PBShop {
 
       if (getShopId()
           != other.getShopId()) return false;
-      if (getFreeRefreshTime()
-          != other.getFreeRefreshTime()) return false;
-      if (getFreeRefreshNum()
-          != other.getFreeRefreshNum()) return false;
+      if (getRefreshTime()
+          != other.getRefreshTime()) return false;
+      if (getRefreshNum()
+          != other.getRefreshNum()) return false;
       if (!getItemRecordList()
           .equals(other.getItemRecordList())) return false;
+      if (getFreeRefreshNum()
+          != other.getFreeRefreshNum()) return false;
       if (getResRefreshNum()
           != other.getResRefreshNum()) return false;
       if (!getCommoditiesList()
           .equals(other.getCommoditiesList())) return false;
+      if (getFreeRefreshTime()
+          != other.getFreeRefreshTime()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -3929,21 +4005,28 @@ public final class PBShop {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + SHOPID_FIELD_NUMBER;
       hash = (53 * hash) + getShopId();
-      hash = (37 * hash) + FREEREFRESHTIME_FIELD_NUMBER;
+      hash = (37 * hash) + REFRESHTIME_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getFreeRefreshTime());
-      hash = (37 * hash) + FREEREFRESHNUM_FIELD_NUMBER;
-      hash = (53 * hash) + getFreeRefreshNum();
+          getRefreshTime());
+      hash = (37 * hash) + REFRESHNUM_FIELD_NUMBER;
+      hash = (53 * hash) + getRefreshNum();
       if (getItemRecordCount() > 0) {
         hash = (37 * hash) + ITEMRECORD_FIELD_NUMBER;
         hash = (53 * hash) + getItemRecordList().hashCode();
       }
+      hash = (37 * hash) + FREEREFRESHNUM_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFreeRefreshNum());
       hash = (37 * hash) + RESREFRESHNUM_FIELD_NUMBER;
-      hash = (53 * hash) + getResRefreshNum();
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getResRefreshNum());
       if (getCommoditiesCount() > 0) {
         hash = (37 * hash) + COMMODITIES_FIELD_NUMBER;
         hash = (53 * hash) + getCommoditiesList().hashCode();
       }
+      hash = (37 * hash) + FREEREFRESHTIME_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFreeRefreshTime());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4084,9 +4167,9 @@ public final class PBShop {
         super.clear();
         shopId_ = 0;
 
-        freeRefreshTime_ = 0L;
+        refreshTime_ = 0L;
 
-        freeRefreshNum_ = 0;
+        refreshNum_ = 0;
 
         if (itemRecordBuilder_ == null) {
           itemRecord_ = java.util.Collections.emptyList();
@@ -4094,10 +4177,14 @@ public final class PBShop {
         } else {
           itemRecordBuilder_.clear();
         }
-        resRefreshNum_ = 0;
+        freeRefreshNum_ = 0L;
+
+        resRefreshNum_ = 0L;
 
         commodities_ = emptyIntList();
         bitField0_ = (bitField0_ & ~0x00000002);
+        freeRefreshTime_ = 0L;
+
         return this;
       }
 
@@ -4126,8 +4213,8 @@ public final class PBShop {
         com.cat.server.game.data.proto.PBShop.PBShopInfo result = new com.cat.server.game.data.proto.PBShop.PBShopInfo(this);
         int from_bitField0_ = bitField0_;
         result.shopId_ = shopId_;
-        result.freeRefreshTime_ = freeRefreshTime_;
-        result.freeRefreshNum_ = freeRefreshNum_;
+        result.refreshTime_ = refreshTime_;
+        result.refreshNum_ = refreshNum_;
         if (itemRecordBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             itemRecord_ = java.util.Collections.unmodifiableList(itemRecord_);
@@ -4137,12 +4224,14 @@ public final class PBShop {
         } else {
           result.itemRecord_ = itemRecordBuilder_.build();
         }
+        result.freeRefreshNum_ = freeRefreshNum_;
         result.resRefreshNum_ = resRefreshNum_;
         if (((bitField0_ & 0x00000002) != 0)) {
           commodities_.makeImmutable();
           bitField0_ = (bitField0_ & ~0x00000002);
         }
         result.commodities_ = commodities_;
+        result.freeRefreshTime_ = freeRefreshTime_;
         onBuilt();
         return result;
       }
@@ -4194,11 +4283,11 @@ public final class PBShop {
         if (other.getShopId() != 0) {
           setShopId(other.getShopId());
         }
-        if (other.getFreeRefreshTime() != 0L) {
-          setFreeRefreshTime(other.getFreeRefreshTime());
+        if (other.getRefreshTime() != 0L) {
+          setRefreshTime(other.getRefreshTime());
         }
-        if (other.getFreeRefreshNum() != 0) {
-          setFreeRefreshNum(other.getFreeRefreshNum());
+        if (other.getRefreshNum() != 0) {
+          setRefreshNum(other.getRefreshNum());
         }
         if (itemRecordBuilder_ == null) {
           if (!other.itemRecord_.isEmpty()) {
@@ -4226,7 +4315,10 @@ public final class PBShop {
             }
           }
         }
-        if (other.getResRefreshNum() != 0) {
+        if (other.getFreeRefreshNum() != 0L) {
+          setFreeRefreshNum(other.getFreeRefreshNum());
+        }
+        if (other.getResRefreshNum() != 0L) {
           setResRefreshNum(other.getResRefreshNum());
         }
         if (!other.commodities_.isEmpty()) {
@@ -4238,6 +4330,9 @@ public final class PBShop {
             commodities_.addAll(other.commodities_);
           }
           onChanged();
+        }
+        if (other.getFreeRefreshTime() != 0L) {
+          setFreeRefreshTime(other.getFreeRefreshTime());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -4311,101 +4406,101 @@ public final class PBShop {
         return this;
       }
 
-      private long freeRefreshTime_ ;
+      private long refreshTime_ ;
       /**
        * <pre>
-       *免费刷新的最后刷新时间
+       *最后刷新时间
        * </pre>
        *
-       * <code>int64 freeRefreshTime = 2;</code>
-       * @return The freeRefreshTime.
+       * <code>int64 refreshTime = 2;</code>
+       * @return The refreshTime.
        */
-      public long getFreeRefreshTime() {
-        return freeRefreshTime_;
+      public long getRefreshTime() {
+        return refreshTime_;
       }
       /**
        * <pre>
-       *免费刷新的最后刷新时间
+       *最后刷新时间
        * </pre>
        *
-       * <code>int64 freeRefreshTime = 2;</code>
-       * @param value The freeRefreshTime to set.
+       * <code>int64 refreshTime = 2;</code>
+       * @param value The refreshTime to set.
        * @return This builder for chaining.
        */
-      public Builder setFreeRefreshTime(long value) {
+      public Builder setRefreshTime(long value) {
         
-        freeRefreshTime_ = value;
+        refreshTime_ = value;
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *免费刷新的最后刷新时间
+       *最后刷新时间
        * </pre>
        *
-       * <code>int64 freeRefreshTime = 2;</code>
+       * <code>int64 refreshTime = 2;</code>
        * @return This builder for chaining.
        */
-      public Builder clearFreeRefreshTime() {
+      public Builder clearRefreshTime() {
         
-        freeRefreshTime_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private int freeRefreshNum_ ;
-      /**
-       * <pre>
-       *免费刷新已刷新次数
-       * </pre>
-       *
-       * <code>int32 freeRefreshNum = 3;</code>
-       * @return The freeRefreshNum.
-       */
-      public int getFreeRefreshNum() {
-        return freeRefreshNum_;
-      }
-      /**
-       * <pre>
-       *免费刷新已刷新次数
-       * </pre>
-       *
-       * <code>int32 freeRefreshNum = 3;</code>
-       * @param value The freeRefreshNum to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFreeRefreshNum(int value) {
-        
-        freeRefreshNum_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <pre>
-       *免费刷新已刷新次数
-       * </pre>
-       *
-       * <code>int32 freeRefreshNum = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearFreeRefreshNum() {
-        
-        freeRefreshNum_ = 0;
+        refreshTime_ = 0L;
         onChanged();
         return this;
       }
 
-      private java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> itemRecord_ =
+      private int refreshNum_ ;
+      /**
+       * <pre>
+       *刷新次数
+       * </pre>
+       *
+       * <code>int32 refreshNum = 3;</code>
+       * @return The refreshNum.
+       */
+      public int getRefreshNum() {
+        return refreshNum_;
+      }
+      /**
+       * <pre>
+       *刷新次数
+       * </pre>
+       *
+       * <code>int32 refreshNum = 3;</code>
+       * @param value The refreshNum to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRefreshNum(int value) {
+        
+        refreshNum_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *刷新次数
+       * </pre>
+       *
+       * <code>int32 refreshNum = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRefreshNum() {
+        
+        refreshNum_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> itemRecord_ =
         java.util.Collections.emptyList();
       private void ensureItemRecordIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          itemRecord_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBItem.PBPairInfo>(itemRecord_);
+          itemRecord_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBCommon.PBPairInfo>(itemRecord_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> itemRecordBuilder_;
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> itemRecordBuilder_;
 
       /**
        * <pre>
@@ -4414,7 +4509,7 @@ public final class PBShop {
        *
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo> getItemRecordList() {
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo> getItemRecordList() {
         if (itemRecordBuilder_ == null) {
           return java.util.Collections.unmodifiableList(itemRecord_);
         } else {
@@ -4442,7 +4537,7 @@ public final class PBShop {
        *
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo getItemRecord(int index) {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo getItemRecord(int index) {
         if (itemRecordBuilder_ == null) {
           return itemRecord_.get(index);
         } else {
@@ -4457,7 +4552,7 @@ public final class PBShop {
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
       public Builder setItemRecord(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (itemRecordBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4478,7 +4573,7 @@ public final class PBShop {
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
       public Builder setItemRecord(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (itemRecordBuilder_ == null) {
           ensureItemRecordIsMutable();
           itemRecord_.set(index, builderForValue.build());
@@ -4495,7 +4590,7 @@ public final class PBShop {
        *
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
-      public Builder addItemRecord(com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+      public Builder addItemRecord(com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (itemRecordBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4516,7 +4611,7 @@ public final class PBShop {
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
       public Builder addItemRecord(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo value) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo value) {
         if (itemRecordBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
@@ -4537,7 +4632,7 @@ public final class PBShop {
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
       public Builder addItemRecord(
-          com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (itemRecordBuilder_ == null) {
           ensureItemRecordIsMutable();
           itemRecord_.add(builderForValue.build());
@@ -4555,7 +4650,7 @@ public final class PBShop {
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
       public Builder addItemRecord(
-          int index, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder builderForValue) {
+          int index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder builderForValue) {
         if (itemRecordBuilder_ == null) {
           ensureItemRecordIsMutable();
           itemRecord_.add(index, builderForValue.build());
@@ -4573,7 +4668,7 @@ public final class PBShop {
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
       public Builder addAllItemRecord(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBItem.PBPairInfo> values) {
+          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfo> values) {
         if (itemRecordBuilder_ == null) {
           ensureItemRecordIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -4625,7 +4720,7 @@ public final class PBShop {
        *
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder getItemRecordBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder getItemRecordBuilder(
           int index) {
         return getItemRecordFieldBuilder().getBuilder(index);
       }
@@ -4636,7 +4731,7 @@ public final class PBShop {
        *
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder getItemRecordOrBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder getItemRecordOrBuilder(
           int index) {
         if (itemRecordBuilder_ == null) {
           return itemRecord_.get(index);  } else {
@@ -4650,7 +4745,7 @@ public final class PBShop {
        *
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+      public java.util.List<? extends com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
            getItemRecordOrBuilderList() {
         if (itemRecordBuilder_ != null) {
           return itemRecordBuilder_.getMessageOrBuilderList();
@@ -4665,9 +4760,9 @@ public final class PBShop {
        *
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addItemRecordBuilder() {
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addItemRecordBuilder() {
         return getItemRecordFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -4676,10 +4771,10 @@ public final class PBShop {
        *
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
-      public com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder addItemRecordBuilder(
+      public com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder addItemRecordBuilder(
           int index) {
         return getItemRecordFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBItem.PBPairInfo.getDefaultInstance());
+            index, com.cat.server.game.data.proto.PBCommon.PBPairInfo.getDefaultInstance());
       }
       /**
        * <pre>
@@ -4688,16 +4783,16 @@ public final class PBShop {
        *
        * <code>repeated .Protocol.PBPairInfo itemRecord = 4;</code>
        */
-      public java.util.List<com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder> 
+      public java.util.List<com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder> 
            getItemRecordBuilderList() {
         return getItemRecordFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder> 
+          com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder> 
           getItemRecordFieldBuilder() {
         if (itemRecordBuilder_ == null) {
           itemRecordBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBItem.PBPairInfo, com.cat.server.game.data.proto.PBItem.PBPairInfo.Builder, com.cat.server.game.data.proto.PBItem.PBPairInfoOrBuilder>(
+              com.cat.server.game.data.proto.PBCommon.PBPairInfo, com.cat.server.game.data.proto.PBCommon.PBPairInfo.Builder, com.cat.server.game.data.proto.PBCommon.PBPairInfoOrBuilder>(
                   itemRecord_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
@@ -4707,28 +4802,70 @@ public final class PBShop {
         return itemRecordBuilder_;
       }
 
-      private int resRefreshNum_ ;
+      private long freeRefreshNum_ ;
       /**
        * <pre>
-       *资源刷新已刷新次数
+       *免费刷新的最后刷新时间
        * </pre>
        *
-       * <code>int32 resRefreshNum = 5;</code>
+       * <code>int64 freeRefreshNum = 5;</code>
+       * @return The freeRefreshNum.
+       */
+      public long getFreeRefreshNum() {
+        return freeRefreshNum_;
+      }
+      /**
+       * <pre>
+       *免费刷新的最后刷新时间
+       * </pre>
+       *
+       * <code>int64 freeRefreshNum = 5;</code>
+       * @param value The freeRefreshNum to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFreeRefreshNum(long value) {
+        
+        freeRefreshNum_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *免费刷新的最后刷新时间
+       * </pre>
+       *
+       * <code>int64 freeRefreshNum = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFreeRefreshNum() {
+        
+        freeRefreshNum_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private long resRefreshNum_ ;
+      /**
+       * <pre>
+       *资源刷新的最后刷新时间
+       * </pre>
+       *
+       * <code>int64 resRefreshNum = 6;</code>
        * @return The resRefreshNum.
        */
-      public int getResRefreshNum() {
+      public long getResRefreshNum() {
         return resRefreshNum_;
       }
       /**
        * <pre>
-       *资源刷新已刷新次数
+       *资源刷新的最后刷新时间
        * </pre>
        *
-       * <code>int32 resRefreshNum = 5;</code>
+       * <code>int64 resRefreshNum = 6;</code>
        * @param value The resRefreshNum to set.
        * @return This builder for chaining.
        */
-      public Builder setResRefreshNum(int value) {
+      public Builder setResRefreshNum(long value) {
         
         resRefreshNum_ = value;
         onChanged();
@@ -4736,15 +4873,15 @@ public final class PBShop {
       }
       /**
        * <pre>
-       *资源刷新已刷新次数
+       *资源刷新的最后刷新时间
        * </pre>
        *
-       * <code>int32 resRefreshNum = 5;</code>
+       * <code>int64 resRefreshNum = 6;</code>
        * @return This builder for chaining.
        */
       public Builder clearResRefreshNum() {
         
-        resRefreshNum_ = 0;
+        resRefreshNum_ = 0L;
         onChanged();
         return this;
       }
@@ -4761,7 +4898,7 @@ public final class PBShop {
        *当前商品id列表
        * </pre>
        *
-       * <code>repeated int32 commodities = 6;</code>
+       * <code>repeated int32 commodities = 7;</code>
        * @return A list containing the commodities.
        */
       public java.util.List<java.lang.Integer>
@@ -4774,7 +4911,7 @@ public final class PBShop {
        *当前商品id列表
        * </pre>
        *
-       * <code>repeated int32 commodities = 6;</code>
+       * <code>repeated int32 commodities = 7;</code>
        * @return The count of commodities.
        */
       public int getCommoditiesCount() {
@@ -4785,7 +4922,7 @@ public final class PBShop {
        *当前商品id列表
        * </pre>
        *
-       * <code>repeated int32 commodities = 6;</code>
+       * <code>repeated int32 commodities = 7;</code>
        * @param index The index of the element to return.
        * @return The commodities at the given index.
        */
@@ -4797,7 +4934,7 @@ public final class PBShop {
        *当前商品id列表
        * </pre>
        *
-       * <code>repeated int32 commodities = 6;</code>
+       * <code>repeated int32 commodities = 7;</code>
        * @param index The index to set the value at.
        * @param value The commodities to set.
        * @return This builder for chaining.
@@ -4814,7 +4951,7 @@ public final class PBShop {
        *当前商品id列表
        * </pre>
        *
-       * <code>repeated int32 commodities = 6;</code>
+       * <code>repeated int32 commodities = 7;</code>
        * @param value The commodities to add.
        * @return This builder for chaining.
        */
@@ -4829,7 +4966,7 @@ public final class PBShop {
        *当前商品id列表
        * </pre>
        *
-       * <code>repeated int32 commodities = 6;</code>
+       * <code>repeated int32 commodities = 7;</code>
        * @param values The commodities to add.
        * @return This builder for chaining.
        */
@@ -4846,12 +4983,54 @@ public final class PBShop {
        *当前商品id列表
        * </pre>
        *
-       * <code>repeated int32 commodities = 6;</code>
+       * <code>repeated int32 commodities = 7;</code>
        * @return This builder for chaining.
        */
       public Builder clearCommodities() {
         commodities_ = emptyIntList();
         bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+
+      private long freeRefreshTime_ ;
+      /**
+       * <pre>
+       *免费刷新的最后刷新时间
+       * </pre>
+       *
+       * <code>int64 freeRefreshTime = 8;</code>
+       * @return The freeRefreshTime.
+       */
+      public long getFreeRefreshTime() {
+        return freeRefreshTime_;
+      }
+      /**
+       * <pre>
+       *免费刷新的最后刷新时间
+       * </pre>
+       *
+       * <code>int64 freeRefreshTime = 8;</code>
+       * @param value The freeRefreshTime to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFreeRefreshTime(long value) {
+        
+        freeRefreshTime_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *免费刷新的最后刷新时间
+       * </pre>
+       *
+       * <code>int64 freeRefreshTime = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFreeRefreshTime() {
+        
+        freeRefreshTime_ = 0L;
         onChanged();
         return this;
       }
@@ -5466,24 +5645,26 @@ public final class PBShop {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014PBShop.proto\022\010Protocol\032\014PBItem.proto\"\035" +
-      "\n\013ReqShopInfo\022\016\n\006shopId\030\001 \003(\005\"E\n\014RespSho" +
-      "pInfo\022\'\n\tshopInfos\030\001 \003(\0132\024.Protocol.PBSh" +
-      "opInfo\022\014\n\004code\030\002 \001(\005\"\033\n\013RespShopBuy\022\014\n\004c" +
-      "ode\030\001 \001(\005\">\n\nReqShopBuy\022\016\n\006shopId\030\001 \001(\005\022" +
-      "\020\n\010configId\030\002 \001(\005\022\016\n\006number\030\003 \001(\005\" \n\020Res" +
-      "pShopQuickBuy\022\014\n\004code\030\001 \001(\005\"\243\001\n\nPBShopIn" +
-      "fo\022\016\n\006shopId\030\001 \001(\005\022\027\n\017freeRefreshTime\030\002 " +
-      "\001(\003\022\026\n\016freeRefreshNum\030\003 \001(\005\022(\n\nitemRecor" +
-      "d\030\004 \003(\0132\024.Protocol.PBPairInfo\022\025\n\rresRefr" +
-      "eshNum\030\005 \001(\005\022\023\n\013commodities\030\006 \003(\005\"!\n\017Req" +
-      "ShopQuickBuy\022\016\n\006shopId\030\001 \001(\005B(\n\036com.cat." +
-      "server.game.data.protoB\006PBShopb\006proto3"
+      "\n\014PBShop.proto\022\010Protocol\032\016PBCommon.proto" +
+      "\"\035\n\013ReqShopInfo\022\016\n\006shopId\030\001 \003(\005\"E\n\014RespS" +
+      "hopInfo\022\'\n\tshopInfos\030\001 \003(\0132\024.Protocol.PB" +
+      "ShopInfo\022\014\n\004code\030\002 \001(\005\"\033\n\013RespShopBuy\022\014\n" +
+      "\004code\030\001 \001(\005\">\n\nReqShopBuy\022\016\n\006shopId\030\001 \001(" +
+      "\005\022\020\n\010configId\030\002 \001(\005\022\016\n\006number\030\003 \001(\005\" \n\020R" +
+      "espShopQuickBuy\022\014\n\004code\030\001 \001(\005\"\314\001\n\nPBShop" +
+      "Info\022\016\n\006shopId\030\001 \001(\005\022\023\n\013refreshTime\030\002 \001(" +
+      "\003\022\022\n\nrefreshNum\030\003 \001(\005\022(\n\nitemRecord\030\004 \003(" +
+      "\0132\024.Protocol.PBPairInfo\022\026\n\016freeRefreshNu" +
+      "m\030\005 \001(\003\022\025\n\rresRefreshNum\030\006 \001(\003\022\023\n\013commod" +
+      "ities\030\007 \003(\005\022\027\n\017freeRefreshTime\030\010 \001(\003\"!\n\017" +
+      "ReqShopQuickBuy\022\016\n\006shopId\030\001 \001(\005B(\n\036com.c" +
+      "at.server.game.data.protoB\006PBShopb\006proto" +
+      "3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.cat.server.game.data.proto.PBItem.getDescriptor(),
+          com.cat.server.game.data.proto.PBCommon.getDescriptor(),
         });
     internal_static_Protocol_ReqShopInfo_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -5520,14 +5701,14 @@ public final class PBShop {
     internal_static_Protocol_PBShopInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_PBShopInfo_descriptor,
-        new java.lang.String[] { "ShopId", "FreeRefreshTime", "FreeRefreshNum", "ItemRecord", "ResRefreshNum", "Commodities", });
+        new java.lang.String[] { "ShopId", "RefreshTime", "RefreshNum", "ItemRecord", "FreeRefreshNum", "ResRefreshNum", "Commodities", "FreeRefreshTime", });
     internal_static_Protocol_ReqShopQuickBuy_descriptor =
       getDescriptor().getMessageTypes().get(6);
     internal_static_Protocol_ReqShopQuickBuy_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqShopQuickBuy_descriptor,
         new java.lang.String[] { "ShopId", });
-    com.cat.server.game.data.proto.PBItem.getDescriptor();
+    com.cat.server.game.data.proto.PBCommon.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

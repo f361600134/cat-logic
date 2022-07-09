@@ -1,21 +1,28 @@
 package com.cat.server.game.module.resource.domain;
 
-import com.cat.server.core.context.SpringContextHolder;
-import com.cat.server.game.module.recycle.IRecycleService;
-import com.cat.server.game.module.resource.IResource;
-import com.cat.server.game.module.resource.IResourceDomain;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
-import java.util.Map.Entry;
+import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.core.event.GameEventBus;
+import com.cat.server.core.server.IPersistence;
+import com.cat.server.game.module.recycle.IRecycleService;
+import com.cat.server.game.module.resource.IResource;
+import com.cat.server.game.module.resource.IResourceDomain;
+import com.cat.server.game.module.resource.event.ResourceUpdateEvent;
 
 /**
  * 资源管理类域代理, 处理资源公共操作逻辑封装
  * @auth Jeremy
  * @date 2022年2月9日下午7:42:15
  */
-abstract class AbstractResourceDomain<K, V extends IResource> implements IResourceDomain<K, V>{
+abstract class AbstractResourceDomain<K, V extends IResource & IPersistence> implements IResourceDomain<K, V>{
 	
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 	
@@ -220,5 +227,13 @@ abstract class AbstractResourceDomain<K, V extends IResource> implements IResour
 	 * @param v
 	 */
 	public void beforeClearExpire(V v) {}
+	
+	@Override
+	public void addReource(K k, V v) {
+		getBeanMap().put(k, v);
+		updateList.add(v);
+		//发送事件
+		GameEventBus.getInstance().post(ResourceUpdateEvent.create(v, 1));
+	}
 	
 }

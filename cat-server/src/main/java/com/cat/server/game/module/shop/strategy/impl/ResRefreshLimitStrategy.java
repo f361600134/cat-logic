@@ -28,7 +28,7 @@ public class ResRefreshLimitStrategy extends AbstractRefreshStrategy{
 		if (shop.getResRefreshNum() + 1 > count) {
 			return ErrorCode.SHOP_NO_REFRESH;
 		}
-		boolean bool = resourceGroupService.check(domain.getId(), config.getRefreshCost());
+		boolean bool = resourceGroupService.checkEnought(domain.getId(), config.getRefreshCost());
 		if (!bool) {
 			return ErrorCode.AMOUNT_NOT_ENOUGH;
 		}

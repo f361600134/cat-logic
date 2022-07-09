@@ -69,6 +69,9 @@ public enum NatureEnum {
 	//装备
 	EquipStar(EQUIT, 1, "装备加工"),
 	EquipHole(EQUIT, 2, "装备打孔"),
+	//摆摊
+	StallStart(STALL, 1, "开始摆摊"),
+	StallFinish(STALL, 2, "结束摆摊"),
 //	//5:武将
 //	HeroActiveStar(5001,"武将升星"),
 //	HeroRelation(5002,"武将羁绊"),
