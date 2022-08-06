@@ -8,11 +8,11 @@ import com.cat.server.game.module.item.domain.Item;
 import com.cat.server.game.module.pet.domain.Pet;
 
 /**
- * 玩家出售信息
+ * 售货棚, 出售摊位
  * @author Jeremy
  *
  */
-public class StallCommodityInfo {
+public class StallBooth {
 	
 	/**
 	 * key: 商品唯一id

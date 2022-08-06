@@ -34,7 +34,7 @@ public class StallDomain extends AbstractModuleMultiDomain<Integer, Long, Stall>
 	 * @param keywords
 	 * @return
 	 */
-	public Collection<StallCommodityInfo> getStallCommoditys(String keywords){
+	public Collection<StallBooth> getStallCommoditys(String keywords){
 		return Collections.emptyList();
 	}
 	

@@ -11,7 +11,7 @@ import com.cat.server.core.server.IPersistence;
 public class Stall extends StallPo implements IPersistence{
 	
 	@Column(PROP_DATA)
-	private StallCommodityInfo stallCommodityInfo;
+	private StallBooth stallCommodityInfo;
 	
 	public Stall() {
 
@@ -21,11 +21,11 @@ public class Stall extends StallPo implements IPersistence{
 		this.playerId = playerId;
 	}
 
-	public StallCommodityInfo getStallCommodityInfo() {
+	public StallBooth getStallCommodityInfo() {
 		return stallCommodityInfo;
 	}
 
-	public void setStallCommodityInfo(StallCommodityInfo stallCommodityInfo) {
+	public void setStallCommodityInfo(StallBooth stallCommodityInfo) {
 		this.stallCommodityInfo = stallCommodityInfo;
 	}
 	

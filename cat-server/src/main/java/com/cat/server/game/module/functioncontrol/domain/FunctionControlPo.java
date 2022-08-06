@@ -11,12 +11,14 @@ public abstract class FunctionControlPo extends BasePo {
 	public static final String PROP_PLAYERID = "playerId";
 	public static final String PROP_FUNCTIONID = "functionId";
 	public static final String PROP_RESETTIME = "resetTime";
+	public static final String PROP_REDDOTSTR = "reddotStr";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
 			PROP_PLAYERID,
 			PROP_FUNCTIONID,
 			PROP_RESETTIME,
+			PROP_REDDOTSTR,
 			};
 			
 	/** 所有主键索引字段数组*/
@@ -36,8 +38,11 @@ public abstract class FunctionControlPo extends BasePo {
 	protected int functionId;
 	/** 重置时间*/
 	protected long resetTime;
+	/** 系统红点数据*/
+	protected String reddotStr;
 	
 	public FunctionControlPo(){
+		this.reddotStr = "";
 	}
 	
 	/** 玩家id **/
@@ -67,10 +72,19 @@ public abstract class FunctionControlPo extends BasePo {
 		this.resetTime = resetTime;
 	}
 	
+	/** 系统红点数据 **/
+	public String getReddotStr(){
+		return this.reddotStr;
+	}
+	
+	public void setReddotStr(String reddotStr){
+		this.reddotStr = reddotStr;
+	}
+	
 	
 	@Override
 	public String toString() {
-		return "FunctionControl [playerId= "+ playerId +", functionId= "+ functionId +", resetTime= "+ resetTime+"]";
+		return "FunctionControl [playerId= "+ playerId +", functionId= "+ functionId +", resetTime= "+ resetTime +", reddotStr= "+ reddotStr+"]";
 	}
 	
 	@Override
@@ -84,6 +98,7 @@ public abstract class FunctionControlPo extends BasePo {
 		getPlayerId(),
 		getFunctionId(),
 		getResetTime(),
+		getReddotStr(),
 		};
 	}
 	

@@ -22,7 +22,7 @@ import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.IResourceGroupService;
 import com.cat.server.game.module.stall.domain.Stall;
-import com.cat.server.game.module.stall.domain.StallCommodityInfo;
+import com.cat.server.game.module.stall.domain.StallBooth;
 import com.cat.server.game.module.stall.domain.StallDomain;
 import com.cat.server.game.module.stall.proto.RespStallBuyBuilder;
 import com.cat.server.game.module.stall.proto.RespStartStallBuilder;
@@ -124,7 +124,7 @@ public class StallService implements IStallService {
     		return ErrorCode.DOMAIN_IS_NULL;
 		}
     	final Stall stall = stallDomain.getBean(playerStallId);
-    	final StallCommodityInfo commodityInfo = stall.getStallCommodityInfo();
+    	final StallBooth commodityInfo = stall.getStallCommodityInfo();
 		final int price = commodityInfo.getPrice(uniqueId);
 //		final int configId = 
 		//判断是否还有空位置

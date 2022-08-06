@@ -1,8 +1,9 @@
 package com.cat.server.game.module.stall.domain;
 
 /**
- * 货架商品, 没有用到
+ * 货架商品
  * @author Jeremy
+ * @deprecated
  */
 public class StallCommodity {
 

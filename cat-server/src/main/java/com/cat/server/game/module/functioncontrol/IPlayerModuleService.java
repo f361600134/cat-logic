@@ -3,9 +3,7 @@ package com.cat.server.game.module.functioncontrol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.IModuleManager;
-import com.cat.server.core.server.IModuleService;
 
 /**
  * 此类为AbstractService扩展
@@ -13,14 +11,9 @@ import com.cat.server.core.server.IModuleService;
  * @auth Jeremy
  * @date 2022年3月14日上午7:36:16
  */
-public interface IPlayerModuleService extends IModuleService, IFunctionReset{
+public interface IPlayerModuleService extends IFunctionReset{
 
 	public final Logger log = LoggerFactory.getLogger(IPlayerModuleService.class);
-
-	default public boolean checkModuleOpen(long playerId) {
-		IFunctionControlService service = SpringContextHolder.getBean(IFunctionControlService.class);
-		return service.checkOpen(playerId, this.getModuleId());
-	}
 
 	/**
 	 * 当玩家登录
@@ -60,16 +53,16 @@ public interface IPlayerModuleService extends IModuleService, IFunctionReset{
 	 */
 	public abstract IModuleManager<Long, ?> getModuleManager();
 
-	/**
-	 * 监测红点数量, 默认大于0则就通知客户端.<br>
-	 * 有些系统需要统计出所有红点数量,用于客户端显示<br>
-	 * 
-	 * @param playerId
-	 *            玩家id
-	 * @return int
-	 */
-	default public int checkReddot(long playerId) {
-		return 0;
-	}
-	
+//	/**
+//	 * 监测红点数量, 默认大于0则就通知客户端.<br>
+//	 * 有些系统需要统计出所有红点数量,用于客户端显示<br>
+//	 * 
+//	 * @param playerId
+//	 *            玩家id
+//	 * @return int
+//	 */
+//	default public int checkReddot(long playerId) {
+//		return 0;
+//	}
+
 }

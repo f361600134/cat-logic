@@ -18,8 +18,8 @@ public class FunctionControlService implements IFunctionControlService{
 	 * 校验功能是否开启<br>
 	 */
 	@Override
-	public boolean checkOpen(long playerId, int moduleId) {
-		ConfigFunction config = ConfigManager.getInstance().getConfig(ConfigFunction.class, moduleId);
+	public boolean checkOpen(long playerId, int functionId) {
+		ConfigFunction config = ConfigManager.getInstance().getConfig(ConfigFunction.class, functionId);
 		return config.getCondition().accept(playerId);
 	}
 
@@ -42,6 +42,11 @@ public class FunctionControlService implements IFunctionControlService{
 		FunctionControl functionControl = domain.getOrCreate(functionId);
 		functionControl.setResetTime(now);
 		functionControl.update();
+	}
+	
+	@Override
+	public int checkReddot(long playerId, int functionId) {
+		return 0;
 	}
 	
 	@Override

@@ -36,11 +36,11 @@ public interface IFunctionControlService extends ILifecycle{
 	 */
 	void setLastResetTime(long playerId, int functionId, long now);
 	
-//	/**
-//	 * 检测是否存在红点
-//	 * @param playerId 玩家id
-//	 * @return int 红点数量,大于0客户端则显示红点
-//	 */
-//	int checkReddot(long playerId);
+	/**
+	 * 检测是否存在红点
+	 * @param playerId 玩家id
+	 * @return int 红点数量,大于0客户端则显示红点
+	 */
+	int checkReddot(long playerId, int functionId);
 	
 }
