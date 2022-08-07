@@ -25,7 +25,7 @@ public class Quest {
      */
     protected List<QuestGoal> goals;
     /**
-     * 任务状态
+     * 任务状态,{@link #QuestState}
      */
     protected byte state;
     /**

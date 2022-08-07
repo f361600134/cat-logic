@@ -38,5 +38,14 @@ public class FunctionControl extends FunctionControlPo implements IPersistence{
 	public int getReddot(int conditionId) {
 		return reddotMap.getOrDefault(conditionId, 0);
 	}
+	
+	/**
+	 * 获取指定条件的红点
+	 * @param conditionId 条件id
+	 * @return 红点数量, 大于0表示有红点
+	 */
+	public int replaceReddot(int conditionId, int reddotNumer) {
+		return reddotMap.put(conditionId, reddotNumer);
+	}
 
 }

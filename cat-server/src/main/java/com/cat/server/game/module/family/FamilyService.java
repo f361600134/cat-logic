@@ -144,9 +144,14 @@ class FamilyService implements IFamilyService, ILifecycle{
 			family.getApplys().put(familyApply.getPlayerId(), familyApply);
 			// 申请成功, 发送事件通知长老,族长进行审批, 通过红点系统通知
 			family.getMembers().forEach((memberId, member) ->{
-				if (member.getPosition() == FamilyPosition.PATRIARCH.getValue()
-						|| member.getPosition() == FamilyPosition.DEPUTY.getValue()
-						|| member.getPosition() == FamilyPosition.ELDERS.getValue()) {
+//				if (member.getPosition() == FamilyPosition.PATRIARCH.getValue()
+//						|| member.getPosition() == FamilyPosition.DEPUTY.getValue()
+//						|| member.getPosition() == FamilyPosition.ELDERS.getValue()) {
+//					DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(playerService.getSessionId(memberId), ()->{
+//						//TODO 发送红点事件,通知家族新申请
+//					});
+//				}
+				if (this.hasPrivilege(memberId, FamilyPrivilege.APPROVE)) {
 					DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(playerService.getSessionId(memberId), ()->{
 						//TODO 发送红点事件,通知家族新申请
 					});

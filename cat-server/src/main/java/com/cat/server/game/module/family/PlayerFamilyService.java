@@ -1,6 +1,7 @@
 package com.cat.server.game.module.family;
 
-import com.cat.server.game.helper.log.NatureEnum;
+import com.cat.server.core.server.IModuleManager;
+import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.family.assist.FamilyPrivilege;
@@ -16,10 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -254,8 +252,23 @@ public class PlayerFamilyService implements IPlayerFamilyService {
 		return ErrorCode.SUCCESS;
 	}
 	
-	
-	
 	/////////////接口方法////////////////////////
+	
+
+	@Override
+	public IModuleManager<Long, ?> getModuleManager() {
+		return playerFamilyManager;
+	}
+
+	@Override
+	public int getModuleId() {
+		return ModuleDefine.FAMILY.getModuleId();
+	}
+	
+//	@Override
+//	public int checkReddot(long playerId) {
+//		// TODO Auto-generated method stub
+//		return IPlayerFamilyService.super.checkReddot(playerId);
+//	}
 	
 }

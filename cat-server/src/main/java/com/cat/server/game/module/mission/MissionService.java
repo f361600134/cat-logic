@@ -11,6 +11,7 @@ import com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward;
 import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
+import com.cat.server.game.module.mission.define.MissionTypeEnum;
 import com.cat.server.game.module.mission.domain.MissionDomain;
 import com.cat.server.game.module.mission.domain.QuestTypeData;
 import com.cat.server.game.module.mission.handler.IQuestHandler;
@@ -140,6 +141,11 @@ public class MissionService implements IMissionService{
 	@Override
 	public void doReset(long playerId, long now) {
 		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public QuestTypeData getQuestTypeData(long playerId, MissionTypeEnum missionType) {
+		return this.getQuestTypeData(playerId, missionType.getType(), false);
 	}
 
 }

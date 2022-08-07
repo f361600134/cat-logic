@@ -1,5 +1,8 @@
 package com.cat.server.game.module.mission.handler.type;
 
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.cat.server.game.data.config.local.ConfigMissionLearnCommunity;
@@ -7,6 +10,8 @@ import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.module.activity.type.impl.LearnCommunityActivityType;
 import com.cat.server.game.module.activityoperation.learncommunity.ILearnCommunityService;
 import com.cat.server.game.module.mission.define.MissionTypeEnum;
+import com.cat.server.game.module.mission.define.QuestState;
+import com.cat.server.game.module.mission.domain.Quest;
 import com.cat.server.game.module.mission.domain.QuestTypeData;
 import com.cat.server.game.module.mission.handler.AbstractActivityMissionHandler;
 
@@ -34,4 +39,5 @@ public class LearnCommunityMissionHandler extends AbstractActivityMissionHandler
 	public int getModuleId() {
 		return ModuleDefine.LEARNCOMMUNITY_MISSION.getModuleId();
 	}
+	
 }

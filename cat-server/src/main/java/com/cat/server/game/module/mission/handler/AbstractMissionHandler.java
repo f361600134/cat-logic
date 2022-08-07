@@ -484,4 +484,17 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 		this.reset(playerId, now, true);
 	}
 	
+//	/**
+//	 * 主线任务红点, 检测是否有可领取的任务<br>
+//	 * @return 
+//	 */
+//	@Override
+//	public int checkReddot(long playerId) {
+//		QuestTypeData questTypeData = this.getQuestTypeData(playerId, true);
+//		Map<Integer, Quest> quests = questTypeData.getQuests();
+//		if (quests.isEmpty()) {
+//			return 0;
+//		}
+//		return (int)quests.values().stream().filter(c->c.getState()==QuestState.STATE_COMPLETE.getValue()).count();
+//	}
 }

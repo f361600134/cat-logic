@@ -18,5 +18,5 @@ public interface IModuleService {
 	 * @return int  
 	 */
 	public int getModuleId();
-
+	
 }

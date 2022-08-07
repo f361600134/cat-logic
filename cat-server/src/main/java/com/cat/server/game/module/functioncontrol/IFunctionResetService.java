@@ -12,7 +12,7 @@ import com.cat.server.utils.TimeUtil;
  * @auth Jeremy
  * @date 2022年3月28日下午9:38:24
  */
-public interface IFunctionReset extends IModuleService{
+public interface IFunctionResetService extends IModuleService{
 	
 //	/**
 //	 * 获取功能id
@@ -20,9 +20,9 @@ public interface IFunctionReset extends IModuleService{
 //	 */
 //	public int getModuleId();
 	
-	default public int checkReddot(long playerId) {
-		return 0;
-	}
+//	default public int checkReddot(long playerId) {
+//		return 0;
+//	}
 	
 	/**
 	 * 检测功能重置
