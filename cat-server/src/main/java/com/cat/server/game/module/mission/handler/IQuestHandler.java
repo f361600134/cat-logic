@@ -5,7 +5,7 @@ import java.util.Map;
 import com.cat.server.core.event.IEvent;
 import com.cat.server.game.data.config.local.interfaces.IConfigMission;
 import com.cat.server.game.helper.result.ResultCodeData;
-import com.cat.server.game.module.functioncontrol.IFunctionResetService;
+import com.cat.server.game.module.function.IFunctionResetService;
 import com.cat.server.game.module.mission.define.MissionTypeEnum;
 import com.cat.server.game.module.mission.domain.Quest;
 import com.cat.server.game.module.mission.proto.RespMissionInfoBuilder;

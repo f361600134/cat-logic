@@ -15,7 +15,9 @@ public class ConfigFunctionBase implements IGameConfig {
      * id<br>
      * 功能唯一id<br>
      * 策划填,通知程序<br>
-     * 或程序填,通知策划
+     * 或程序填,通知策划<br>
+     * 功能id:3位<br>
+     * 子功能id:5位
      */
     private int id;
     /**
@@ -27,13 +29,18 @@ public class ConfigFunctionBase implements IGameConfig {
     /**
      * 解锁条件<br>
      * DSL<br>
+     * 支持与,或判断,最多2个条件<br>
+     * 子功能解锁条件必须后于父功能<br>
+     * 空条件:无解锁条件<br>
      * 1:等级解锁<br>
-     * 2:关卡解锁
+     * 2:关卡解锁<br>
+     * 1:20|2:10010<br>
+     * 1:20&2:10010
      */
     private String unlock;
     /**
      * 重置类型<br>
-     * DSL<br>
+     * DSL(与)<br>
      * 每日重置:h_0<br>
      * 每日多时间点重置:h_0,8,16<br>
      * 每周单日期重置:dw_1(程序设置每周第一天)<br>
@@ -41,6 +48,12 @@ public class ConfigFunctionBase implements IGameConfig {
      * 每周指定日期及时间点重置:dw_1,3,5,7|h_0,8,16
      */
     private String reset;
+    /**
+     * 红点条件<br>
+     * 引用红点条件表,用于计算红点<br>
+     * 优先指向子功能,如没有子功能,指向父功能
+     */
+    private int[] reddots;
 
     /** @return id*/
     @Override
@@ -81,6 +94,16 @@ public class ConfigFunctionBase implements IGameConfig {
     /** @param reset 重置类型*/
     public void setReset(String reset) {
         this.reset = reset;
+    }
+
+    /** @return 红点条件*/
+    public int[] getReddots() {
+        return this.reddots;
+    }
+
+    /** @param reddots 红点条件*/
+    public void setReddots(int[] reddots) {
+        this.reddots = reddots;
     }
 
 }

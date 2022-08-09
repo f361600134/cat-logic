@@ -6,8 +6,8 @@ import com.cat.server.game.data.config.local.base.ConfigFunctionBase;
 import com.cat.server.game.data.config.local.interfaces.IConfigFunction;
 import com.cat.server.game.helper.condition.ICondition;
 import com.cat.server.game.helper.condition.parse.ConditionParse;
-import com.cat.server.game.module.functioncontrol.time.parse.ResetTimePointParser;
-import com.cat.server.game.module.functioncontrol.time.point.IResetTimePoint;
+import com.cat.server.game.module.function.time.parse.ResetTimePointParser;
+import com.cat.server.game.module.function.time.point.IResetTimePoint;
 
 
 /**

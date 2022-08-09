@@ -18,7 +18,7 @@ import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.ResourceType;
 import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
-import com.cat.server.game.module.functioncontrol.IPlayerModuleService;
+import com.cat.server.game.module.function.IPlayerModuleService;
 import com.cat.server.game.module.pet.domain.Pet;
 import com.cat.server.game.module.pet.domain.PetDomain;
 import com.cat.server.game.module.pet.proto.RespPetActiveBuilder;

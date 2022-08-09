@@ -1,11 +1,7 @@
 package com.cat.server.game.module.equip;
 
-import java.util.Collection;
-import java.util.List;
-
 import com.cat.server.game.module.equip.domain.Equip;
-import com.cat.server.game.module.functioncontrol.IPlayerModuleService;
-import com.cat.server.game.module.hero.domain.Hero;
+import com.cat.server.game.module.function.IPlayerModuleService;
 
 /**
  * Equip接口类,外部需要调用,需要在此接口定义方法,由此模块负责人实现

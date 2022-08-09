@@ -1,7 +1,7 @@
 package com.cat.server.game.module.mission;
 
 import com.cat.server.core.lifecycle.ILifecycle;
-import com.cat.server.game.module.functioncontrol.IPlayerModuleService;
+import com.cat.server.game.module.function.IPlayerModuleService;
 import com.cat.server.game.module.mission.define.MissionTypeEnum;
 import com.cat.server.game.module.mission.domain.QuestTypeData;
 
