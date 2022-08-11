@@ -7,7 +7,11 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.FileUtils;
 
 import com.cat.server.common.ServerConstant;
+import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.config.annotation.ConfigPath;
+import com.cat.server.core.config.event.RemoteConfigRefreshEvent;
+import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.core.event.GameEventBus;
 
 /**
  * 本地配置容器
@@ -48,4 +52,10 @@ public class DefaultRemoteConfigContainer<T extends IGameConfig> extends Abstrac
 		}
 	}
 
+	@Override
+	public void afterLoad(boolean startup) {
+		//如果是启动加载, 则不通知
+		if (startup) return;
+		GameEventBus.getInstance().post(RemoteConfigRefreshEvent.create(configClazz, getFileName()));
+	}
 }

@@ -19,6 +19,13 @@ public class FunctionData {
 	 */
 	private long resetTime;
 	
+	/**
+	 * 模块是否开启
+	 * true:开启
+	 * false:未开启
+	 */
+	private boolean open;
+	
 	public FunctionData() {
 	}
 	
@@ -44,6 +51,14 @@ public class FunctionData {
 		this.resetTime = resetTime;
 	}
 	
+	public boolean isOpen() {
+		return open;
+	}
+
+	public void setOpen(boolean open) {
+		this.open = open;
+	}
+
 	/**
 	 *  构建一个模块相关的数据
 	 * @param moduleId

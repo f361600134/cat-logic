@@ -8,6 +8,14 @@ import com.cat.server.core.config.container.IGameConfig;
 public interface IConfigManager {
 	
 	/**
+	 * 根据第一个配置, 某些配置只有一项, 并且默认configId为1
+	 * @param <T>
+	 * @param clazz
+	 * @return
+	 */
+	 public <T extends IGameConfig> T getUniqueConfig(Class<T> clazz);
+	
+	/**
 	 * 判断是否存在此配置
 	 * @param <T>
 	 * @param clazz 配置类

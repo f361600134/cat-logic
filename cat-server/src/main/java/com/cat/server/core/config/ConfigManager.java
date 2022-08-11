@@ -33,6 +33,15 @@ public class ConfigManager implements IConfigManager, ILifecycle {
 	public static ConfigManager getInstance() {
 		return SpringContextHolder.getBean(ConfigManager.class);
 	}
+	
+	@Override
+	public <T extends IGameConfig> T getUniqueConfig(Class<T> clazz) {
+		IConfigContainer<T> container = getContainer(clazz);
+		if (container == null) {
+			return null;
+		}
+		return container.getUnique();
+	}
 
 	@Override
 	public <T extends IGameConfig> T getConfig(Class<T> clazz, int id) {

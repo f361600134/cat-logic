@@ -3285,6 +3285,680 @@ public final class PBFunction {
 
   }
 
+  public interface RespFunctionSwitchNoticeOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:Protocol.RespFunctionSwitchNotice)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *强行关闭功能列表
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 1;</code>
+     * @return A list containing the forceCloseIds.
+     */
+    java.util.List<java.lang.Integer> getForceCloseIdsList();
+    /**
+     * <pre>
+     *强行关闭功能列表
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 1;</code>
+     * @return The count of forceCloseIds.
+     */
+    int getForceCloseIdsCount();
+    /**
+     * <pre>
+     *强行关闭功能列表
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 1;</code>
+     * @param index The index of the element to return.
+     * @return The forceCloseIds at the given index.
+     */
+    int getForceCloseIds(int index);
+  }
+  /**
+   * <pre>
+   * 后台功能开关通知
+   * </pre>
+   *
+   * Protobuf type {@code Protocol.RespFunctionSwitchNotice}
+   */
+  public  static final class RespFunctionSwitchNotice extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:Protocol.RespFunctionSwitchNotice)
+      RespFunctionSwitchNoticeOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use RespFunctionSwitchNotice.newBuilder() to construct.
+    private RespFunctionSwitchNotice(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private RespFunctionSwitchNotice() {
+      forceCloseIds_ = emptyIntList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new RespFunctionSwitchNotice();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RespFunctionSwitchNotice(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                forceCloseIds_ = newIntList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              forceCloseIds_.addInt(input.readInt32());
+              break;
+            }
+            case 10: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
+                forceCloseIds_ = newIntList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                forceCloseIds_.addInt(input.readInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          forceCloseIds_.makeImmutable(); // C
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.cat.server.game.data.proto.PBFunction.internal_static_Protocol_RespFunctionSwitchNotice_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.cat.server.game.data.proto.PBFunction.internal_static_Protocol_RespFunctionSwitchNotice_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice.class, com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice.Builder.class);
+    }
+
+    public static final int FORCECLOSEIDS_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.IntList forceCloseIds_;
+    /**
+     * <pre>
+     *强行关闭功能列表
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 1;</code>
+     * @return A list containing the forceCloseIds.
+     */
+    public java.util.List<java.lang.Integer>
+        getForceCloseIdsList() {
+      return forceCloseIds_;
+    }
+    /**
+     * <pre>
+     *强行关闭功能列表
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 1;</code>
+     * @return The count of forceCloseIds.
+     */
+    public int getForceCloseIdsCount() {
+      return forceCloseIds_.size();
+    }
+    /**
+     * <pre>
+     *强行关闭功能列表
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 1;</code>
+     * @param index The index of the element to return.
+     * @return The forceCloseIds at the given index.
+     */
+    public int getForceCloseIds(int index) {
+      return forceCloseIds_.getInt(index);
+    }
+    private int forceCloseIdsMemoizedSerializedSize = -1;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (getForceCloseIdsList().size() > 0) {
+        output.writeUInt32NoTag(10);
+        output.writeUInt32NoTag(forceCloseIdsMemoizedSerializedSize);
+      }
+      for (int i = 0; i < forceCloseIds_.size(); i++) {
+        output.writeInt32NoTag(forceCloseIds_.getInt(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < forceCloseIds_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(forceCloseIds_.getInt(i));
+        }
+        size += dataSize;
+        if (!getForceCloseIdsList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        forceCloseIdsMemoizedSerializedSize = dataSize;
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice)) {
+        return super.equals(obj);
+      }
+      com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice other = (com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice) obj;
+
+      if (!getForceCloseIdsList()
+          .equals(other.getForceCloseIdsList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getForceCloseIdsCount() > 0) {
+        hash = (37 * hash) + FORCECLOSEIDS_FIELD_NUMBER;
+        hash = (53 * hash) + getForceCloseIdsList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     * 后台功能开关通知
+     * </pre>
+     *
+     * Protobuf type {@code Protocol.RespFunctionSwitchNotice}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:Protocol.RespFunctionSwitchNotice)
+        com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNoticeOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.cat.server.game.data.proto.PBFunction.internal_static_Protocol_RespFunctionSwitchNotice_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.cat.server.game.data.proto.PBFunction.internal_static_Protocol_RespFunctionSwitchNotice_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice.class, com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice.Builder.class);
+      }
+
+      // Construct using com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        forceCloseIds_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.cat.server.game.data.proto.PBFunction.internal_static_Protocol_RespFunctionSwitchNotice_descriptor;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice getDefaultInstanceForType() {
+        return com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice build() {
+        com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice buildPartial() {
+        com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice result = new com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice(this);
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) != 0)) {
+          forceCloseIds_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.forceCloseIds_ = forceCloseIds_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice) {
+          return mergeFrom((com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice other) {
+        if (other == com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice.getDefaultInstance()) return this;
+        if (!other.forceCloseIds_.isEmpty()) {
+          if (forceCloseIds_.isEmpty()) {
+            forceCloseIds_ = other.forceCloseIds_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureForceCloseIdsIsMutable();
+            forceCloseIds_.addAll(other.forceCloseIds_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.Internal.IntList forceCloseIds_ = emptyIntList();
+      private void ensureForceCloseIdsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          forceCloseIds_ = mutableCopy(forceCloseIds_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <pre>
+       *强行关闭功能列表
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 1;</code>
+       * @return A list containing the forceCloseIds.
+       */
+      public java.util.List<java.lang.Integer>
+          getForceCloseIdsList() {
+        return ((bitField0_ & 0x00000001) != 0) ?
+                 java.util.Collections.unmodifiableList(forceCloseIds_) : forceCloseIds_;
+      }
+      /**
+       * <pre>
+       *强行关闭功能列表
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 1;</code>
+       * @return The count of forceCloseIds.
+       */
+      public int getForceCloseIdsCount() {
+        return forceCloseIds_.size();
+      }
+      /**
+       * <pre>
+       *强行关闭功能列表
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 1;</code>
+       * @param index The index of the element to return.
+       * @return The forceCloseIds at the given index.
+       */
+      public int getForceCloseIds(int index) {
+        return forceCloseIds_.getInt(index);
+      }
+      /**
+       * <pre>
+       *强行关闭功能列表
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The forceCloseIds to set.
+       * @return This builder for chaining.
+       */
+      public Builder setForceCloseIds(
+          int index, int value) {
+        ensureForceCloseIdsIsMutable();
+        forceCloseIds_.setInt(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *强行关闭功能列表
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 1;</code>
+       * @param value The forceCloseIds to add.
+       * @return This builder for chaining.
+       */
+      public Builder addForceCloseIds(int value) {
+        ensureForceCloseIdsIsMutable();
+        forceCloseIds_.addInt(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *强行关闭功能列表
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 1;</code>
+       * @param values The forceCloseIds to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllForceCloseIds(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureForceCloseIdsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, forceCloseIds_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *强行关闭功能列表
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearForceCloseIds() {
+        forceCloseIds_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:Protocol.RespFunctionSwitchNotice)
+    }
+
+    // @@protoc_insertion_point(class_scope:Protocol.RespFunctionSwitchNotice)
+    private static final com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice();
+    }
+
+    public static com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<RespFunctionSwitchNotice>
+        PARSER = new com.google.protobuf.AbstractParser<RespFunctionSwitchNotice>() {
+      @java.lang.Override
+      public RespFunctionSwitchNotice parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RespFunctionSwitchNotice(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<RespFunctionSwitchNotice> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RespFunctionSwitchNotice> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.cat.server.game.data.proto.PBFunction.RespFunctionSwitchNotice getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface PBFunctionReddotDtoOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Protocol.PBFunctionReddotDto)
       com.google.protobuf.MessageOrBuilder {
@@ -4161,6 +4835,11 @@ public final class PBFunction {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Protocol_ReqFunctionInfo_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_Protocol_RespFunctionSwitchNotice_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_Protocol_RespFunctionSwitchNotice_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Protocol_PBFunctionReddotDto_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -4180,11 +4859,12 @@ public final class PBFunction {
       "nctionReddotDto\"1\n\rPBFunctionDto\022\022\n\nfunc" +
       "tionId\030\001 \001(\005\022\014\n\004open\030\002 \001(\010\">\n\020RespFuncti" +
       "onInfo\022*\n\tfunctions\030\001 \003(\0132\027.Protocol.PBF" +
-      "unctionDto\"\021\n\017ReqFunctionInfo\"M\n\023PBFunct" +
-      "ionReddotDto\022\020\n\010reddotId\030\001 \001(\005\022\016\n\006number" +
-      "\030\002 \001(\005\022\024\n\014extendValues\030\003 \003(\005B,\n\036com.cat." +
-      "server.game.data.protoB\nPBFunctionb\006prot" +
-      "o3"
+      "unctionDto\"\021\n\017ReqFunctionInfo\"1\n\030RespFun" +
+      "ctionSwitchNotice\022\025\n\rforceCloseIds\030\001 \003(\005" +
+      "\"M\n\023PBFunctionReddotDto\022\020\n\010reddotId\030\001 \001(" +
+      "\005\022\016\n\006number\030\002 \001(\005\022\024\n\014extendValues\030\003 \003(\005B" +
+      ",\n\036com.cat.server.game.data.protoB\nPBFun" +
+      "ctionb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -4220,8 +4900,14 @@ public final class PBFunction {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_ReqFunctionInfo_descriptor,
         new java.lang.String[] { });
-    internal_static_Protocol_PBFunctionReddotDto_descriptor =
+    internal_static_Protocol_RespFunctionSwitchNotice_descriptor =
       getDescriptor().getMessageTypes().get(5);
+    internal_static_Protocol_RespFunctionSwitchNotice_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_Protocol_RespFunctionSwitchNotice_descriptor,
+        new java.lang.String[] { "ForceCloseIds", });
+    internal_static_Protocol_PBFunctionReddotDto_descriptor =
+      getDescriptor().getMessageTypes().get(6);
     internal_static_Protocol_PBFunctionReddotDto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_PBFunctionReddotDto_descriptor,

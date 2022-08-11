@@ -9,7 +9,5 @@ import com.cat.server.core.event.IObserver;
  */
 @Component
 class ActivityObserver implements IObserver{
-
-
-
+	
 }
