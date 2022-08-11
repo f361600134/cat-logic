@@ -57,6 +57,13 @@ public interface IPlayerService {
 	 */
 	public void kickPlayer(Collection<Long> playerIds);
 	
+	/**
+	 * 获取渠道
+	 * @param playerId 玩家id
+	 * @return
+	 */
+	public int getChannel(long playerId);
+	
 //	/**
 //	 * 通过session获取玩家id
 //	 * @param session

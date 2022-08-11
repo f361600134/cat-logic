@@ -9,12 +9,17 @@ import com.cat.server.core.lifecycle.ILifecycle;
  * @auth Jeremy
  * @date 2022年3月13日下午9:37:45
  */
-public interface IFunctionService extends ILifecycle{
+public interface IFunctionService extends IPlayerModuleService, ILifecycle{
 	
 	/**
-	 * 检查功能是否开启
-	 * @param functionId
-	 * @return boolean  
+	 * 检查功能是否开启<br>
+	 * 1. 校验配置是否屏蔽了功能<br>
+	 * 2. 校验后台是否强制关闭了功能<br>
+	 * 3. 校验玩家是否开启了此功能<br>
+	 * 4. 如存在其他校验,后续补充
+	 * @param playerId 玩家id
+	 * @param functionId 功能id
+	 * @return boolean true:开启, false:关闭
 	 */
 	boolean checkOpen(long playerId, int functionId);
 	

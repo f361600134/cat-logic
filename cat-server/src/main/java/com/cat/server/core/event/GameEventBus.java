@@ -1,6 +1,7 @@
 package com.cat.server.core.event;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
+import com.cat.server.game.module.function.event.FunctionCheckReddotEvent;
 import com.cat.server.game.module.player.IPlayerService;
 import com.google.common.eventbus.EventBus;
 
@@ -33,7 +35,7 @@ public class GameEventBus implements ILifecycle{
 	/**
 	 * 是否运行状态, 如果不是运行状态, 则不能把事件发送出去
 	 */
-	private transient boolean running;
+	private volatile boolean running;
 	
 	/**
 	 * 伪单例, 获取事件处理器
@@ -52,7 +54,17 @@ public class GameEventBus implements ILifecycle{
 	 * @param
 	 */
 	public void register() {
-		observers.forEach(o -> eventBus.register(o));
+//		observers.stream().sorted((o1, o2)-> {
+//			return Integer.compare(o1.order(), o2.order());
+//		});
+		Collections.sort(observers, (o1, o2)->{
+			return Integer.compare(o1.order(), o2.order());
+		});
+		observers.forEach(o -> { 
+			if(o.isRegister()) {
+				eventBus.register(o);
+			}
+		});
 	}
 	
 	/**

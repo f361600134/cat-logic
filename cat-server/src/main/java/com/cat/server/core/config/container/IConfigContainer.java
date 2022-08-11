@@ -62,15 +62,15 @@ public interface IConfigContainer<T extends IGameConfig> {
      */
     T getConfig(int id);
 
-//    /**
-//     * 获取唯一的配置<br>
-//     * 若该配置类对应的配置只有1条 且id为1<br>
-//     * 可使用该方式获取<br>
-//     * 若有多条 返回错误
-//     * 
-//     * @return
-//     */
-//    T getUnique();
+    /**
+     * 获取唯一的配置<br>
+     * 若该配置类对应的配置只有1条 且id为1<br>
+     * 可使用该方式获取<br>
+     * 若有多条 返回错误
+     * 
+     * @return
+     */
+    T getUnique();
     
     /**
      * 刷新配置<br>

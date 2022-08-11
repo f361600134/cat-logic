@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
+import com.cat.server.core.exception.NotUniqueConfigException;
+import com.cat.server.core.exception.RepeatConfigException;
 
 public abstract class AbstractConfigContainer<T extends IGameConfig> implements IConfigContainer<T>{
 	
@@ -72,7 +74,7 @@ public abstract class AbstractConfigContainer<T extends IGameConfig> implements 
         for (T config : allConfigs) {
             int id = config.getId();
             if (newConfigMap.containsKey(id)) {
-                throw new RuntimeException("config[" + configClazz.getName() + "] has repeat id[" + id + "]");
+                throw new RepeatConfigException("config[" + configClazz.getName() + "] has repeat id[" + id + "]");
             }
             config.parse();
             newConfigMap.put(id, config);
@@ -94,4 +96,16 @@ public abstract class AbstractConfigContainer<T extends IGameConfig> implements 
 	public Map<Integer, T> getAllConfigs() {
 		return configMap;
 	}
+    
+    @Override
+    public T getUnique() {
+        if (configMap.isEmpty()) {
+            return null;
+        }
+        if (configMap.size() > 1) {
+            logger.error("config[{}] size[{}] not unique.", configClazz.getName(), configMap.size());
+            throw new NotUniqueConfigException("config[" + configClazz.getName() + "] not unique.");
+        }
+        return configMap.get(1);
+    }
 }
