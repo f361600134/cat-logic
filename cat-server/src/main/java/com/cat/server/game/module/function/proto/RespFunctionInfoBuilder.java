@@ -30,13 +30,21 @@ public class RespFunctionInfoBuilder extends AbstractProtocol {
 		return builder.build();
 	}
 	
-	/** 功能信息**/
-	public void addFunctions(PBFunctionDto value){
-		this.builder.addFunctions(value);
+	/** 已开启的功能模块id**/
+	public void addFunctionIds(int value){
+		this.builder.addFunctionIds(value);
 	}
 	
-	public void addAllFunctions(Collection<PBFunctionDto> value){
-		this.builder.addAllFunctions(value);
+	public void addAllFunctionIds(Collection<java.lang.Integer> value){
+		this.builder.addAllFunctionIds(value);
+	}
+	/** 强行关闭的功能id**/
+	public void addForceCloseIds(int value){
+		this.builder.addForceCloseIds(value);
+	}
+	
+	public void addAllForceCloseIds(Collection<java.lang.Integer> value){
+		this.builder.addAllForceCloseIds(value);
 	}
 	
 	@Override

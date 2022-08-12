@@ -1,6 +1,8 @@
 package com.cat.server.game.module.function;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,7 +99,10 @@ class FunctionService implements IFunctionService  {
 				reddotIds.add(reddotId);
 			}
 		}
-		this.responseFunctionReddotInfo(domain, reddotIds);
+		if (!CollectionUtils.isEmpty(reddotIds)) {
+			function.save();
+			this.responseFunctionReddotInfo(domain, reddotIds);
+		}
 	}
 	
 	
@@ -204,6 +209,7 @@ class FunctionService implements IFunctionService  {
 				function.replaceReddot(reddotId, newReddot);
 			}
 		}
+		function.update();
 	}
 	
 	/////////////////业务代码//////////////////////////
@@ -219,28 +225,29 @@ class FunctionService implements IFunctionService  {
 		if (functionDataMap.isEmpty()) {
 			return;
 		}
+		
 		final long playerId = domain.getId();
+		final int channel = playerService.getChannel(playerId);
+		
+		//判断后台强制关闭了功能
+		ConfigFunctionSwitch configFunctionSwith = ConfigManager.getInstance().getUniqueConfig(ConfigFunctionSwitch.class);
+		Collection<Integer> forceCloseIds = configFunctionSwith == null ? Collections.emptyList() 
+				: configFunctionSwith.getCloseFunctionIds(channel);
+		
 		RespFunctionInfoBuilder builder = RespFunctionInfoBuilder.newInstance();
-		for (FunctionData functionData : functionDataMap.values()) {
-			boolean isOpen = this.checkOpen(playerId, functionData.getModuleId());
-			builder.addFunctions(functionData.toProto(isOpen));
-		}
+		builder.addAllFunctionIds(domain.getFunctionIds());
+		builder.addAllForceCloseIds(forceCloseIds);
+		
 		playerService.sendMessage(playerId, builder);
 	}
 	
 	/**
 	 * 更新指定功能信息<br>
-	 * @param functionIds 功能id列表
+	 * @param functionIds 玩家已开启的功能id列表
 	 */
 	protected void responseFunctionInfo(FunctionDomain domain, List<Integer> functionIds) {
 		RespFunctionInfoBuilder builder = RespFunctionInfoBuilder.newInstance();
-		Function bean = domain.getBean();
-		final long playerId = domain.getId();
-		functionIds.forEach(functionId->{
-			FunctionData functionData = bean.getFunctionData(functionId);
-			boolean isOpen = this.checkOpen(playerId, functionData.getModuleId());
-			builder.addFunctions(functionData.toProto(isOpen));
-		});
+		builder.addAllFunctionIds(functionIds);
 		playerService.sendMessage(domain.getId(), builder);
 	}
 	
@@ -311,23 +318,22 @@ class FunctionService implements IFunctionService  {
 	 */
 	@Override
 	public boolean checkOpen(long playerId, int functionId) {
-		ConfigFunction configFunction = ConfigManager.getInstance().getConfig(ConfigFunction.class, functionId);
-		//判断配置屏蔽了功能
-		if (configFunction.getShield() == 1) {
-			return false;
-		}
 		//判断后台强制关闭了功能
 		ConfigFunctionSwitch configFunctionSwith = ConfigManager.getInstance().getUniqueConfig(ConfigFunctionSwitch.class);
 		if (configFunctionSwith.isClose(playerService.getChannel(playerId), functionId)) {
 			return false;
 		}
-		// 判断玩家有没有解锁此功能
+		ConfigFunction configFunction = ConfigManager.getInstance().getConfig(ConfigFunction.class, functionId);
+		//判断配置屏蔽了功能
+		if (configFunction.getShield() == 1) {
+			return false;
+		}
+		//判断玩家有没有解锁此功能
 		FunctionDomain domain = manager.getDomain(playerId);
 		if (domain == null) {
 			return false;
 		}
-		FunctionData functionData = domain.getBean().getFunctionData(functionId);
-		return functionData.isOpen();
+		return domain.checkFunctionOpen(functionId);
 	}
 
 	@Override

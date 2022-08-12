@@ -30,13 +30,21 @@ public class PBFunctionDtoBuilder extends AbstractProtocol {
 		return builder.build();
 	}
 	
-	/** 功能模块id**/
-	public void setFunctionId(int value){
-		this.builder.setFunctionId(value);
+	/** 已开启的功能模块id**/
+	public void addFunctionIds(int value){
+		this.builder.addFunctionIds(value);
 	}
-	/** 是否开启**/
-	public void setOpen(boolean value){
-		this.builder.setOpen(value);
+	
+	public void addAllFunctionIds(Collection<java.lang.Integer> value){
+		this.builder.addAllFunctionIds(value);
+	}
+	/** 强行关闭的功能id**/
+	public void addForceCloseIds(int value){
+		this.builder.addForceCloseIds(value);
+	}
+	
+	public void addAllForceCloseIds(Collection<java.lang.Integer> value){
+		this.builder.addAllForceCloseIds(value);
 	}
 	
 	@Override

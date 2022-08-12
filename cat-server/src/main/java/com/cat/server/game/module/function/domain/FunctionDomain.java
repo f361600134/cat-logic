@@ -1,5 +1,8 @@
 package com.cat.server.game.module.function.domain;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -28,10 +31,6 @@ public class FunctionDomain extends AbstractModuleDomain<Long, Function> {
 	public void afterCreate() {
 		//初始化需要开启的功能
 		Map<Integer, ConfigFunction> configs = ConfigManager.getInstance().getConfigs(ConfigFunction.class, (c)->{
-			/* 配置控制的功能, 单独单独判断,不能影响功能初始化*/
-//			if (c.getShield() == 1) {
-//                return false;
-//          }
 			ICondition unlockCondition = c.getCondition();
             return unlockCondition == null;
 		});
@@ -41,6 +40,34 @@ public class FunctionDomain extends AbstractModuleDomain<Long, Function> {
 			functionData.setOpen(true);
 		}
 		function.update();
+	}
+	
+	/**
+	 * 获取开启的功能列表<br>
+	 * 这里返回的是玩家已解锁的所有功能列表, 不能受到配置屏蔽的影响
+	 * @return
+	 */
+	public Collection<Integer> getFunctionIds(){
+		List<Integer> ret = new ArrayList<>();
+		Map<Integer, FunctionData> functionDataMap = this.getBean().getFunctionDataMap();
+		for (FunctionData functionData : functionDataMap.values()) {
+			if (functionData.isOpen()) {
+				ret.add(functionData.getModuleId());
+			}
+		}
+		return ret;
+	}
+	
+	/**
+	 * domain层的功能校验<br>
+	 * 1. 校验配置
+	 * 2. 校验使玩家是否开启
+	 * @return
+	 */
+	public boolean checkFunctionOpen(int functionId){
+		//再判断是否开启
+		FunctionData functionData = this.getBean().getFunctionData(functionId);
+		return functionData.isOpen();
 	}
 	
 }

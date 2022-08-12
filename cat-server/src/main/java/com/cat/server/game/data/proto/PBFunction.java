@@ -1354,23 +1354,61 @@ public final class PBFunction {
 
     /**
      * <pre>
-     *功能模块id
+     *已开启的功能模块id
      * </pre>
      *
-     * <code>int32 functionId = 1;</code>
-     * @return The functionId.
+     * <code>repeated int32 functionIds = 1;</code>
+     * @return A list containing the functionIds.
      */
-    int getFunctionId();
+    java.util.List<java.lang.Integer> getFunctionIdsList();
+    /**
+     * <pre>
+     *已开启的功能模块id
+     * </pre>
+     *
+     * <code>repeated int32 functionIds = 1;</code>
+     * @return The count of functionIds.
+     */
+    int getFunctionIdsCount();
+    /**
+     * <pre>
+     *已开启的功能模块id
+     * </pre>
+     *
+     * <code>repeated int32 functionIds = 1;</code>
+     * @param index The index of the element to return.
+     * @return The functionIds at the given index.
+     */
+    int getFunctionIds(int index);
 
     /**
      * <pre>
-     *是否开启
+     *强行关闭的功能id
      * </pre>
      *
-     * <code>bool open = 2;</code>
-     * @return The open.
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @return A list containing the forceCloseIds.
      */
-    boolean getOpen();
+    java.util.List<java.lang.Integer> getForceCloseIdsList();
+    /**
+     * <pre>
+     *强行关闭的功能id
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @return The count of forceCloseIds.
+     */
+    int getForceCloseIdsCount();
+    /**
+     * <pre>
+     *强行关闭的功能id
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @param index The index of the element to return.
+     * @return The forceCloseIds at the given index.
+     */
+    int getForceCloseIds(int index);
   }
   /**
    * <pre>
@@ -1389,6 +1427,8 @@ public final class PBFunction {
       super(builder);
     }
     private PBFunctionDto() {
+      functionIds_ = emptyIntList();
+      forceCloseIds_ = emptyIntList();
     }
 
     @java.lang.Override
@@ -1411,6 +1451,7 @@ public final class PBFunction {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -1422,13 +1463,45 @@ public final class PBFunction {
               done = true;
               break;
             case 8: {
-
-              functionId_ = input.readInt32();
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                functionIds_ = newIntList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              functionIds_.addInt(input.readInt32());
+              break;
+            }
+            case 10: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
+                functionIds_ = newIntList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                functionIds_.addInt(input.readInt32());
+              }
+              input.popLimit(limit);
               break;
             }
             case 16: {
-
-              open_ = input.readBool();
+              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
+                forceCloseIds_ = newIntList();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              forceCloseIds_.addInt(input.readInt32());
+              break;
+            }
+            case 18: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
+                forceCloseIds_ = newIntList();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                forceCloseIds_.addInt(input.readInt32());
+              }
+              input.popLimit(limit);
               break;
             }
             default: {
@@ -1446,6 +1519,12 @@ public final class PBFunction {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          functionIds_.makeImmutable(); // C
+        }
+        if (((mutable_bitField0_ & 0x00000002) != 0)) {
+          forceCloseIds_.makeImmutable(); // C
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -1463,33 +1542,83 @@ public final class PBFunction {
               com.cat.server.game.data.proto.PBFunction.PBFunctionDto.class, com.cat.server.game.data.proto.PBFunction.PBFunctionDto.Builder.class);
     }
 
-    public static final int FUNCTIONID_FIELD_NUMBER = 1;
-    private int functionId_;
+    public static final int FUNCTIONIDS_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.IntList functionIds_;
     /**
      * <pre>
-     *功能模块id
+     *已开启的功能模块id
      * </pre>
      *
-     * <code>int32 functionId = 1;</code>
-     * @return The functionId.
+     * <code>repeated int32 functionIds = 1;</code>
+     * @return A list containing the functionIds.
      */
-    public int getFunctionId() {
-      return functionId_;
+    public java.util.List<java.lang.Integer>
+        getFunctionIdsList() {
+      return functionIds_;
     }
+    /**
+     * <pre>
+     *已开启的功能模块id
+     * </pre>
+     *
+     * <code>repeated int32 functionIds = 1;</code>
+     * @return The count of functionIds.
+     */
+    public int getFunctionIdsCount() {
+      return functionIds_.size();
+    }
+    /**
+     * <pre>
+     *已开启的功能模块id
+     * </pre>
+     *
+     * <code>repeated int32 functionIds = 1;</code>
+     * @param index The index of the element to return.
+     * @return The functionIds at the given index.
+     */
+    public int getFunctionIds(int index) {
+      return functionIds_.getInt(index);
+    }
+    private int functionIdsMemoizedSerializedSize = -1;
 
-    public static final int OPEN_FIELD_NUMBER = 2;
-    private boolean open_;
+    public static final int FORCECLOSEIDS_FIELD_NUMBER = 2;
+    private com.google.protobuf.Internal.IntList forceCloseIds_;
     /**
      * <pre>
-     *是否开启
+     *强行关闭的功能id
      * </pre>
      *
-     * <code>bool open = 2;</code>
-     * @return The open.
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @return A list containing the forceCloseIds.
      */
-    public boolean getOpen() {
-      return open_;
+    public java.util.List<java.lang.Integer>
+        getForceCloseIdsList() {
+      return forceCloseIds_;
     }
+    /**
+     * <pre>
+     *强行关闭的功能id
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @return The count of forceCloseIds.
+     */
+    public int getForceCloseIdsCount() {
+      return forceCloseIds_.size();
+    }
+    /**
+     * <pre>
+     *强行关闭的功能id
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @param index The index of the element to return.
+     * @return The forceCloseIds at the given index.
+     */
+    public int getForceCloseIds(int index) {
+      return forceCloseIds_.getInt(index);
+    }
+    private int forceCloseIdsMemoizedSerializedSize = -1;
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
@@ -1505,11 +1634,20 @@ public final class PBFunction {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (functionId_ != 0) {
-        output.writeInt32(1, functionId_);
+      getSerializedSize();
+      if (getFunctionIdsList().size() > 0) {
+        output.writeUInt32NoTag(10);
+        output.writeUInt32NoTag(functionIdsMemoizedSerializedSize);
       }
-      if (open_ != false) {
-        output.writeBool(2, open_);
+      for (int i = 0; i < functionIds_.size(); i++) {
+        output.writeInt32NoTag(functionIds_.getInt(i));
+      }
+      if (getForceCloseIdsList().size() > 0) {
+        output.writeUInt32NoTag(18);
+        output.writeUInt32NoTag(forceCloseIdsMemoizedSerializedSize);
+      }
+      for (int i = 0; i < forceCloseIds_.size(); i++) {
+        output.writeInt32NoTag(forceCloseIds_.getInt(i));
       }
       unknownFields.writeTo(output);
     }
@@ -1520,13 +1658,33 @@ public final class PBFunction {
       if (size != -1) return size;
 
       size = 0;
-      if (functionId_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, functionId_);
+      {
+        int dataSize = 0;
+        for (int i = 0; i < functionIds_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(functionIds_.getInt(i));
+        }
+        size += dataSize;
+        if (!getFunctionIdsList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        functionIdsMemoizedSerializedSize = dataSize;
       }
-      if (open_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(2, open_);
+      {
+        int dataSize = 0;
+        for (int i = 0; i < forceCloseIds_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(forceCloseIds_.getInt(i));
+        }
+        size += dataSize;
+        if (!getForceCloseIdsList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        forceCloseIdsMemoizedSerializedSize = dataSize;
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1543,10 +1701,10 @@ public final class PBFunction {
       }
       com.cat.server.game.data.proto.PBFunction.PBFunctionDto other = (com.cat.server.game.data.proto.PBFunction.PBFunctionDto) obj;
 
-      if (getFunctionId()
-          != other.getFunctionId()) return false;
-      if (getOpen()
-          != other.getOpen()) return false;
+      if (!getFunctionIdsList()
+          .equals(other.getFunctionIdsList())) return false;
+      if (!getForceCloseIdsList()
+          .equals(other.getForceCloseIdsList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1558,11 +1716,14 @@ public final class PBFunction {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + FUNCTIONID_FIELD_NUMBER;
-      hash = (53 * hash) + getFunctionId();
-      hash = (37 * hash) + OPEN_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getOpen());
+      if (getFunctionIdsCount() > 0) {
+        hash = (37 * hash) + FUNCTIONIDS_FIELD_NUMBER;
+        hash = (53 * hash) + getFunctionIdsList().hashCode();
+      }
+      if (getForceCloseIdsCount() > 0) {
+        hash = (37 * hash) + FORCECLOSEIDS_FIELD_NUMBER;
+        hash = (53 * hash) + getForceCloseIdsList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1700,10 +1861,10 @@ public final class PBFunction {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        functionId_ = 0;
-
-        open_ = false;
-
+        functionIds_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        forceCloseIds_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -1730,8 +1891,17 @@ public final class PBFunction {
       @java.lang.Override
       public com.cat.server.game.data.proto.PBFunction.PBFunctionDto buildPartial() {
         com.cat.server.game.data.proto.PBFunction.PBFunctionDto result = new com.cat.server.game.data.proto.PBFunction.PBFunctionDto(this);
-        result.functionId_ = functionId_;
-        result.open_ = open_;
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) != 0)) {
+          functionIds_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.functionIds_ = functionIds_;
+        if (((bitField0_ & 0x00000002) != 0)) {
+          forceCloseIds_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.forceCloseIds_ = forceCloseIds_;
         onBuilt();
         return result;
       }
@@ -1780,11 +1950,25 @@ public final class PBFunction {
 
       public Builder mergeFrom(com.cat.server.game.data.proto.PBFunction.PBFunctionDto other) {
         if (other == com.cat.server.game.data.proto.PBFunction.PBFunctionDto.getDefaultInstance()) return this;
-        if (other.getFunctionId() != 0) {
-          setFunctionId(other.getFunctionId());
+        if (!other.functionIds_.isEmpty()) {
+          if (functionIds_.isEmpty()) {
+            functionIds_ = other.functionIds_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureFunctionIdsIsMutable();
+            functionIds_.addAll(other.functionIds_);
+          }
+          onChanged();
         }
-        if (other.getOpen() != false) {
-          setOpen(other.getOpen());
+        if (!other.forceCloseIds_.isEmpty()) {
+          if (forceCloseIds_.isEmpty()) {
+            forceCloseIds_ = other.forceCloseIds_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureForceCloseIdsIsMutable();
+            forceCloseIds_.addAll(other.forceCloseIds_);
+          }
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1814,87 +1998,218 @@ public final class PBFunction {
         }
         return this;
       }
+      private int bitField0_;
 
-      private int functionId_ ;
-      /**
-       * <pre>
-       *功能模块id
-       * </pre>
-       *
-       * <code>int32 functionId = 1;</code>
-       * @return The functionId.
-       */
-      public int getFunctionId() {
-        return functionId_;
+      private com.google.protobuf.Internal.IntList functionIds_ = emptyIntList();
+      private void ensureFunctionIdsIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          functionIds_ = mutableCopy(functionIds_);
+          bitField0_ |= 0x00000001;
+         }
       }
       /**
        * <pre>
-       *功能模块id
+       *已开启的功能模块id
        * </pre>
        *
-       * <code>int32 functionId = 1;</code>
-       * @param value The functionId to set.
+       * <code>repeated int32 functionIds = 1;</code>
+       * @return A list containing the functionIds.
+       */
+      public java.util.List<java.lang.Integer>
+          getFunctionIdsList() {
+        return ((bitField0_ & 0x00000001) != 0) ?
+                 java.util.Collections.unmodifiableList(functionIds_) : functionIds_;
+      }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @return The count of functionIds.
+       */
+      public int getFunctionIdsCount() {
+        return functionIds_.size();
+      }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @param index The index of the element to return.
+       * @return The functionIds at the given index.
+       */
+      public int getFunctionIds(int index) {
+        return functionIds_.getInt(index);
+      }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The functionIds to set.
        * @return This builder for chaining.
        */
-      public Builder setFunctionId(int value) {
-        
-        functionId_ = value;
+      public Builder setFunctionIds(
+          int index, int value) {
+        ensureFunctionIdsIsMutable();
+        functionIds_.setInt(index, value);
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *功能模块id
+       *已开启的功能模块id
        * </pre>
        *
-       * <code>int32 functionId = 1;</code>
+       * <code>repeated int32 functionIds = 1;</code>
+       * @param value The functionIds to add.
        * @return This builder for chaining.
        */
-      public Builder clearFunctionId() {
-        
-        functionId_ = 0;
+      public Builder addFunctionIds(int value) {
+        ensureFunctionIdsIsMutable();
+        functionIds_.addInt(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @param values The functionIds to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllFunctionIds(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureFunctionIdsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, functionIds_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFunctionIds() {
+        functionIds_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
 
-      private boolean open_ ;
-      /**
-       * <pre>
-       *是否开启
-       * </pre>
-       *
-       * <code>bool open = 2;</code>
-       * @return The open.
-       */
-      public boolean getOpen() {
-        return open_;
+      private com.google.protobuf.Internal.IntList forceCloseIds_ = emptyIntList();
+      private void ensureForceCloseIdsIsMutable() {
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          forceCloseIds_ = mutableCopy(forceCloseIds_);
+          bitField0_ |= 0x00000002;
+         }
       }
       /**
        * <pre>
-       *是否开启
+       *强行关闭的功能id
        * </pre>
        *
-       * <code>bool open = 2;</code>
-       * @param value The open to set.
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @return A list containing the forceCloseIds.
+       */
+      public java.util.List<java.lang.Integer>
+          getForceCloseIdsList() {
+        return ((bitField0_ & 0x00000002) != 0) ?
+                 java.util.Collections.unmodifiableList(forceCloseIds_) : forceCloseIds_;
+      }
+      /**
+       * <pre>
+       *强行关闭的功能id
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @return The count of forceCloseIds.
+       */
+      public int getForceCloseIdsCount() {
+        return forceCloseIds_.size();
+      }
+      /**
+       * <pre>
+       *强行关闭的功能id
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @param index The index of the element to return.
+       * @return The forceCloseIds at the given index.
+       */
+      public int getForceCloseIds(int index) {
+        return forceCloseIds_.getInt(index);
+      }
+      /**
+       * <pre>
+       *强行关闭的功能id
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @param index The index to set the value at.
+       * @param value The forceCloseIds to set.
        * @return This builder for chaining.
        */
-      public Builder setOpen(boolean value) {
-        
-        open_ = value;
+      public Builder setForceCloseIds(
+          int index, int value) {
+        ensureForceCloseIdsIsMutable();
+        forceCloseIds_.setInt(index, value);
         onChanged();
         return this;
       }
       /**
        * <pre>
-       *是否开启
+       *强行关闭的功能id
        * </pre>
        *
-       * <code>bool open = 2;</code>
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @param value The forceCloseIds to add.
        * @return This builder for chaining.
        */
-      public Builder clearOpen() {
-        
-        open_ = false;
+      public Builder addForceCloseIds(int value) {
+        ensureForceCloseIdsIsMutable();
+        forceCloseIds_.addInt(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *强行关闭的功能id
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @param values The forceCloseIds to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllForceCloseIds(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureForceCloseIdsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, forceCloseIds_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *强行关闭的功能id
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearForceCloseIds() {
+        forceCloseIds_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
@@ -1957,47 +2272,61 @@ public final class PBFunction {
 
     /**
      * <pre>
-     *功能信息
+     *已开启的功能模块id
      * </pre>
      *
-     * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+     * <code>repeated int32 functionIds = 1;</code>
+     * @return A list containing the functionIds.
      */
-    java.util.List<com.cat.server.game.data.proto.PBFunction.PBFunctionDto> 
-        getFunctionsList();
+    java.util.List<java.lang.Integer> getFunctionIdsList();
     /**
      * <pre>
-     *功能信息
+     *已开启的功能模块id
      * </pre>
      *
-     * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+     * <code>repeated int32 functionIds = 1;</code>
+     * @return The count of functionIds.
      */
-    com.cat.server.game.data.proto.PBFunction.PBFunctionDto getFunctions(int index);
+    int getFunctionIdsCount();
     /**
      * <pre>
-     *功能信息
+     *已开启的功能模块id
      * </pre>
      *
-     * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+     * <code>repeated int32 functionIds = 1;</code>
+     * @param index The index of the element to return.
+     * @return The functionIds at the given index.
      */
-    int getFunctionsCount();
+    int getFunctionIds(int index);
+
     /**
      * <pre>
-     *功能信息
+     *强行关闭的功能id
      * </pre>
      *
-     * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @return A list containing the forceCloseIds.
      */
-    java.util.List<? extends com.cat.server.game.data.proto.PBFunction.PBFunctionDtoOrBuilder> 
-        getFunctionsOrBuilderList();
+    java.util.List<java.lang.Integer> getForceCloseIdsList();
     /**
      * <pre>
-     *功能信息
+     *强行关闭的功能id
      * </pre>
      *
-     * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @return The count of forceCloseIds.
      */
-    com.cat.server.game.data.proto.PBFunction.PBFunctionDtoOrBuilder getFunctionsOrBuilder(
-        int index);
+    int getForceCloseIdsCount();
+    /**
+     * <pre>
+     *强行关闭的功能id
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @param index The index of the element to return.
+     * @return The forceCloseIds at the given index.
+     */
+    int getForceCloseIds(int index);
   }
   /**
    * <pre>
@@ -2016,7 +2345,8 @@ public final class PBFunction {
       super(builder);
     }
     private RespFunctionInfo() {
-      functions_ = java.util.Collections.emptyList();
+      functionIds_ = emptyIntList();
+      forceCloseIds_ = emptyIntList();
     }
 
     @java.lang.Override
@@ -2050,13 +2380,46 @@ public final class PBFunction {
             case 0:
               done = true;
               break;
-            case 10: {
+            case 8: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                functions_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBFunction.PBFunctionDto>();
+                functionIds_ = newIntList();
                 mutable_bitField0_ |= 0x00000001;
               }
-              functions_.add(
-                  input.readMessage(com.cat.server.game.data.proto.PBFunction.PBFunctionDto.parser(), extensionRegistry));
+              functionIds_.addInt(input.readInt32());
+              break;
+            }
+            case 10: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
+                functionIds_ = newIntList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                functionIds_.addInt(input.readInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
+            case 16: {
+              if (!((mutable_bitField0_ & 0x00000002) != 0)) {
+                forceCloseIds_ = newIntList();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              forceCloseIds_.addInt(input.readInt32());
+              break;
+            }
+            case 18: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
+                forceCloseIds_ = newIntList();
+                mutable_bitField0_ |= 0x00000002;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                forceCloseIds_.addInt(input.readInt32());
+              }
+              input.popLimit(limit);
               break;
             }
             default: {
@@ -2075,7 +2438,10 @@ public final class PBFunction {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          functions_ = java.util.Collections.unmodifiableList(functions_);
+          functionIds_.makeImmutable(); // C
+        }
+        if (((mutable_bitField0_ & 0x00000002) != 0)) {
+          forceCloseIds_.makeImmutable(); // C
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -2094,60 +2460,83 @@ public final class PBFunction {
               com.cat.server.game.data.proto.PBFunction.RespFunctionInfo.class, com.cat.server.game.data.proto.PBFunction.RespFunctionInfo.Builder.class);
     }
 
-    public static final int FUNCTIONS_FIELD_NUMBER = 1;
-    private java.util.List<com.cat.server.game.data.proto.PBFunction.PBFunctionDto> functions_;
+    public static final int FUNCTIONIDS_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.IntList functionIds_;
     /**
      * <pre>
-     *功能信息
+     *已开启的功能模块id
      * </pre>
      *
-     * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+     * <code>repeated int32 functionIds = 1;</code>
+     * @return A list containing the functionIds.
      */
-    public java.util.List<com.cat.server.game.data.proto.PBFunction.PBFunctionDto> getFunctionsList() {
-      return functions_;
+    public java.util.List<java.lang.Integer>
+        getFunctionIdsList() {
+      return functionIds_;
     }
     /**
      * <pre>
-     *功能信息
+     *已开启的功能模块id
      * </pre>
      *
-     * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+     * <code>repeated int32 functionIds = 1;</code>
+     * @return The count of functionIds.
      */
-    public java.util.List<? extends com.cat.server.game.data.proto.PBFunction.PBFunctionDtoOrBuilder> 
-        getFunctionsOrBuilderList() {
-      return functions_;
+    public int getFunctionIdsCount() {
+      return functionIds_.size();
     }
     /**
      * <pre>
-     *功能信息
+     *已开启的功能模块id
      * </pre>
      *
-     * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+     * <code>repeated int32 functionIds = 1;</code>
+     * @param index The index of the element to return.
+     * @return The functionIds at the given index.
      */
-    public int getFunctionsCount() {
-      return functions_.size();
+    public int getFunctionIds(int index) {
+      return functionIds_.getInt(index);
+    }
+    private int functionIdsMemoizedSerializedSize = -1;
+
+    public static final int FORCECLOSEIDS_FIELD_NUMBER = 2;
+    private com.google.protobuf.Internal.IntList forceCloseIds_;
+    /**
+     * <pre>
+     *强行关闭的功能id
+     * </pre>
+     *
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @return A list containing the forceCloseIds.
+     */
+    public java.util.List<java.lang.Integer>
+        getForceCloseIdsList() {
+      return forceCloseIds_;
     }
     /**
      * <pre>
-     *功能信息
+     *强行关闭的功能id
      * </pre>
      *
-     * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @return The count of forceCloseIds.
      */
-    public com.cat.server.game.data.proto.PBFunction.PBFunctionDto getFunctions(int index) {
-      return functions_.get(index);
+    public int getForceCloseIdsCount() {
+      return forceCloseIds_.size();
     }
     /**
      * <pre>
-     *功能信息
+     *强行关闭的功能id
      * </pre>
      *
-     * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+     * <code>repeated int32 forceCloseIds = 2;</code>
+     * @param index The index of the element to return.
+     * @return The forceCloseIds at the given index.
      */
-    public com.cat.server.game.data.proto.PBFunction.PBFunctionDtoOrBuilder getFunctionsOrBuilder(
-        int index) {
-      return functions_.get(index);
+    public int getForceCloseIds(int index) {
+      return forceCloseIds_.getInt(index);
     }
+    private int forceCloseIdsMemoizedSerializedSize = -1;
 
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
@@ -2163,8 +2552,20 @@ public final class PBFunction {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < functions_.size(); i++) {
-        output.writeMessage(1, functions_.get(i));
+      getSerializedSize();
+      if (getFunctionIdsList().size() > 0) {
+        output.writeUInt32NoTag(10);
+        output.writeUInt32NoTag(functionIdsMemoizedSerializedSize);
+      }
+      for (int i = 0; i < functionIds_.size(); i++) {
+        output.writeInt32NoTag(functionIds_.getInt(i));
+      }
+      if (getForceCloseIdsList().size() > 0) {
+        output.writeUInt32NoTag(18);
+        output.writeUInt32NoTag(forceCloseIdsMemoizedSerializedSize);
+      }
+      for (int i = 0; i < forceCloseIds_.size(); i++) {
+        output.writeInt32NoTag(forceCloseIds_.getInt(i));
       }
       unknownFields.writeTo(output);
     }
@@ -2175,9 +2576,33 @@ public final class PBFunction {
       if (size != -1) return size;
 
       size = 0;
-      for (int i = 0; i < functions_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, functions_.get(i));
+      {
+        int dataSize = 0;
+        for (int i = 0; i < functionIds_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(functionIds_.getInt(i));
+        }
+        size += dataSize;
+        if (!getFunctionIdsList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        functionIdsMemoizedSerializedSize = dataSize;
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < forceCloseIds_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(forceCloseIds_.getInt(i));
+        }
+        size += dataSize;
+        if (!getForceCloseIdsList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        forceCloseIdsMemoizedSerializedSize = dataSize;
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2194,8 +2619,10 @@ public final class PBFunction {
       }
       com.cat.server.game.data.proto.PBFunction.RespFunctionInfo other = (com.cat.server.game.data.proto.PBFunction.RespFunctionInfo) obj;
 
-      if (!getFunctionsList()
-          .equals(other.getFunctionsList())) return false;
+      if (!getFunctionIdsList()
+          .equals(other.getFunctionIdsList())) return false;
+      if (!getForceCloseIdsList()
+          .equals(other.getForceCloseIdsList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2207,9 +2634,13 @@ public final class PBFunction {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getFunctionsCount() > 0) {
-        hash = (37 * hash) + FUNCTIONS_FIELD_NUMBER;
-        hash = (53 * hash) + getFunctionsList().hashCode();
+      if (getFunctionIdsCount() > 0) {
+        hash = (37 * hash) + FUNCTIONIDS_FIELD_NUMBER;
+        hash = (53 * hash) + getFunctionIdsList().hashCode();
+      }
+      if (getForceCloseIdsCount() > 0) {
+        hash = (37 * hash) + FORCECLOSEIDS_FIELD_NUMBER;
+        hash = (53 * hash) + getForceCloseIdsList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -2343,18 +2774,15 @@ public final class PBFunction {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getFunctionsFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (functionsBuilder_ == null) {
-          functions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          functionsBuilder_.clear();
-        }
+        functionIds_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        forceCloseIds_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -2382,15 +2810,16 @@ public final class PBFunction {
       public com.cat.server.game.data.proto.PBFunction.RespFunctionInfo buildPartial() {
         com.cat.server.game.data.proto.PBFunction.RespFunctionInfo result = new com.cat.server.game.data.proto.PBFunction.RespFunctionInfo(this);
         int from_bitField0_ = bitField0_;
-        if (functionsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            functions_ = java.util.Collections.unmodifiableList(functions_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.functions_ = functions_;
-        } else {
-          result.functions_ = functionsBuilder_.build();
+        if (((bitField0_ & 0x00000001) != 0)) {
+          functionIds_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000001);
         }
+        result.functionIds_ = functionIds_;
+        if (((bitField0_ & 0x00000002) != 0)) {
+          forceCloseIds_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        }
+        result.forceCloseIds_ = forceCloseIds_;
         onBuilt();
         return result;
       }
@@ -2439,31 +2868,25 @@ public final class PBFunction {
 
       public Builder mergeFrom(com.cat.server.game.data.proto.PBFunction.RespFunctionInfo other) {
         if (other == com.cat.server.game.data.proto.PBFunction.RespFunctionInfo.getDefaultInstance()) return this;
-        if (functionsBuilder_ == null) {
-          if (!other.functions_.isEmpty()) {
-            if (functions_.isEmpty()) {
-              functions_ = other.functions_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureFunctionsIsMutable();
-              functions_.addAll(other.functions_);
-            }
-            onChanged();
+        if (!other.functionIds_.isEmpty()) {
+          if (functionIds_.isEmpty()) {
+            functionIds_ = other.functionIds_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureFunctionIdsIsMutable();
+            functionIds_.addAll(other.functionIds_);
           }
-        } else {
-          if (!other.functions_.isEmpty()) {
-            if (functionsBuilder_.isEmpty()) {
-              functionsBuilder_.dispose();
-              functionsBuilder_ = null;
-              functions_ = other.functions_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              functionsBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getFunctionsFieldBuilder() : null;
-            } else {
-              functionsBuilder_.addAllMessages(other.functions_);
-            }
+          onChanged();
+        }
+        if (!other.forceCloseIds_.isEmpty()) {
+          if (forceCloseIds_.isEmpty()) {
+            forceCloseIds_ = other.forceCloseIds_;
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            ensureForceCloseIdsIsMutable();
+            forceCloseIds_.addAll(other.forceCloseIds_);
           }
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -2495,316 +2918,218 @@ public final class PBFunction {
       }
       private int bitField0_;
 
-      private java.util.List<com.cat.server.game.data.proto.PBFunction.PBFunctionDto> functions_ =
-        java.util.Collections.emptyList();
-      private void ensureFunctionsIsMutable() {
+      private com.google.protobuf.Internal.IntList functionIds_ = emptyIntList();
+      private void ensureFunctionIdsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          functions_ = new java.util.ArrayList<com.cat.server.game.data.proto.PBFunction.PBFunctionDto>(functions_);
+          functionIds_ = mutableCopy(functionIds_);
           bitField0_ |= 0x00000001;
          }
       }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @return A list containing the functionIds.
+       */
+      public java.util.List<java.lang.Integer>
+          getFunctionIdsList() {
+        return ((bitField0_ & 0x00000001) != 0) ?
+                 java.util.Collections.unmodifiableList(functionIds_) : functionIds_;
+      }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @return The count of functionIds.
+       */
+      public int getFunctionIdsCount() {
+        return functionIds_.size();
+      }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @param index The index of the element to return.
+       * @return The functionIds at the given index.
+       */
+      public int getFunctionIds(int index) {
+        return functionIds_.getInt(index);
+      }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The functionIds to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFunctionIds(
+          int index, int value) {
+        ensureFunctionIdsIsMutable();
+        functionIds_.setInt(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @param value The functionIds to add.
+       * @return This builder for chaining.
+       */
+      public Builder addFunctionIds(int value) {
+        ensureFunctionIdsIsMutable();
+        functionIds_.addInt(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @param values The functionIds to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllFunctionIds(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureFunctionIdsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, functionIds_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *已开启的功能模块id
+       * </pre>
+       *
+       * <code>repeated int32 functionIds = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFunctionIds() {
+        functionIds_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
 
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBFunction.PBFunctionDto, com.cat.server.game.data.proto.PBFunction.PBFunctionDto.Builder, com.cat.server.game.data.proto.PBFunction.PBFunctionDtoOrBuilder> functionsBuilder_;
-
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public java.util.List<com.cat.server.game.data.proto.PBFunction.PBFunctionDto> getFunctionsList() {
-        if (functionsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(functions_);
-        } else {
-          return functionsBuilder_.getMessageList();
-        }
+      private com.google.protobuf.Internal.IntList forceCloseIds_ = emptyIntList();
+      private void ensureForceCloseIdsIsMutable() {
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          forceCloseIds_ = mutableCopy(forceCloseIds_);
+          bitField0_ |= 0x00000002;
+         }
       }
       /**
        * <pre>
-       *功能信息
+       *强行关闭的功能id
        * </pre>
        *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @return A list containing the forceCloseIds.
        */
-      public int getFunctionsCount() {
-        if (functionsBuilder_ == null) {
-          return functions_.size();
-        } else {
-          return functionsBuilder_.getCount();
-        }
+      public java.util.List<java.lang.Integer>
+          getForceCloseIdsList() {
+        return ((bitField0_ & 0x00000002) != 0) ?
+                 java.util.Collections.unmodifiableList(forceCloseIds_) : forceCloseIds_;
       }
       /**
        * <pre>
-       *功能信息
+       *强行关闭的功能id
        * </pre>
        *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @return The count of forceCloseIds.
        */
-      public com.cat.server.game.data.proto.PBFunction.PBFunctionDto getFunctions(int index) {
-        if (functionsBuilder_ == null) {
-          return functions_.get(index);
-        } else {
-          return functionsBuilder_.getMessage(index);
-        }
+      public int getForceCloseIdsCount() {
+        return forceCloseIds_.size();
       }
       /**
        * <pre>
-       *功能信息
+       *强行关闭的功能id
        * </pre>
        *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @param index The index of the element to return.
+       * @return The forceCloseIds at the given index.
        */
-      public Builder setFunctions(
-          int index, com.cat.server.game.data.proto.PBFunction.PBFunctionDto value) {
-        if (functionsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureFunctionsIsMutable();
-          functions_.set(index, value);
-          onChanged();
-        } else {
-          functionsBuilder_.setMessage(index, value);
-        }
+      public int getForceCloseIds(int index) {
+        return forceCloseIds_.getInt(index);
+      }
+      /**
+       * <pre>
+       *强行关闭的功能id
+       * </pre>
+       *
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @param index The index to set the value at.
+       * @param value The forceCloseIds to set.
+       * @return This builder for chaining.
+       */
+      public Builder setForceCloseIds(
+          int index, int value) {
+        ensureForceCloseIdsIsMutable();
+        forceCloseIds_.setInt(index, value);
+        onChanged();
         return this;
       }
       /**
        * <pre>
-       *功能信息
+       *强行关闭的功能id
        * </pre>
        *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @param value The forceCloseIds to add.
+       * @return This builder for chaining.
        */
-      public Builder setFunctions(
-          int index, com.cat.server.game.data.proto.PBFunction.PBFunctionDto.Builder builderForValue) {
-        if (functionsBuilder_ == null) {
-          ensureFunctionsIsMutable();
-          functions_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          functionsBuilder_.setMessage(index, builderForValue.build());
-        }
+      public Builder addForceCloseIds(int value) {
+        ensureForceCloseIdsIsMutable();
+        forceCloseIds_.addInt(value);
+        onChanged();
         return this;
       }
       /**
        * <pre>
-       *功能信息
+       *强行关闭的功能id
        * </pre>
        *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @param values The forceCloseIds to add.
+       * @return This builder for chaining.
        */
-      public Builder addFunctions(com.cat.server.game.data.proto.PBFunction.PBFunctionDto value) {
-        if (functionsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureFunctionsIsMutable();
-          functions_.add(value);
-          onChanged();
-        } else {
-          functionsBuilder_.addMessage(value);
-        }
+      public Builder addAllForceCloseIds(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureForceCloseIdsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, forceCloseIds_);
+        onChanged();
         return this;
       }
       /**
        * <pre>
-       *功能信息
+       *强行关闭的功能id
        * </pre>
        *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
+       * <code>repeated int32 forceCloseIds = 2;</code>
+       * @return This builder for chaining.
        */
-      public Builder addFunctions(
-          int index, com.cat.server.game.data.proto.PBFunction.PBFunctionDto value) {
-        if (functionsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureFunctionsIsMutable();
-          functions_.add(index, value);
-          onChanged();
-        } else {
-          functionsBuilder_.addMessage(index, value);
-        }
+      public Builder clearForceCloseIds() {
+        forceCloseIds_ = emptyIntList();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
         return this;
-      }
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public Builder addFunctions(
-          com.cat.server.game.data.proto.PBFunction.PBFunctionDto.Builder builderForValue) {
-        if (functionsBuilder_ == null) {
-          ensureFunctionsIsMutable();
-          functions_.add(builderForValue.build());
-          onChanged();
-        } else {
-          functionsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public Builder addFunctions(
-          int index, com.cat.server.game.data.proto.PBFunction.PBFunctionDto.Builder builderForValue) {
-        if (functionsBuilder_ == null) {
-          ensureFunctionsIsMutable();
-          functions_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          functionsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public Builder addAllFunctions(
-          java.lang.Iterable<? extends com.cat.server.game.data.proto.PBFunction.PBFunctionDto> values) {
-        if (functionsBuilder_ == null) {
-          ensureFunctionsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, functions_);
-          onChanged();
-        } else {
-          functionsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public Builder clearFunctions() {
-        if (functionsBuilder_ == null) {
-          functions_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          functionsBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public Builder removeFunctions(int index) {
-        if (functionsBuilder_ == null) {
-          ensureFunctionsIsMutable();
-          functions_.remove(index);
-          onChanged();
-        } else {
-          functionsBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public com.cat.server.game.data.proto.PBFunction.PBFunctionDto.Builder getFunctionsBuilder(
-          int index) {
-        return getFunctionsFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public com.cat.server.game.data.proto.PBFunction.PBFunctionDtoOrBuilder getFunctionsOrBuilder(
-          int index) {
-        if (functionsBuilder_ == null) {
-          return functions_.get(index);  } else {
-          return functionsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public java.util.List<? extends com.cat.server.game.data.proto.PBFunction.PBFunctionDtoOrBuilder> 
-           getFunctionsOrBuilderList() {
-        if (functionsBuilder_ != null) {
-          return functionsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(functions_);
-        }
-      }
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public com.cat.server.game.data.proto.PBFunction.PBFunctionDto.Builder addFunctionsBuilder() {
-        return getFunctionsFieldBuilder().addBuilder(
-            com.cat.server.game.data.proto.PBFunction.PBFunctionDto.getDefaultInstance());
-      }
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public com.cat.server.game.data.proto.PBFunction.PBFunctionDto.Builder addFunctionsBuilder(
-          int index) {
-        return getFunctionsFieldBuilder().addBuilder(
-            index, com.cat.server.game.data.proto.PBFunction.PBFunctionDto.getDefaultInstance());
-      }
-      /**
-       * <pre>
-       *功能信息
-       * </pre>
-       *
-       * <code>repeated .Protocol.PBFunctionDto functions = 1;</code>
-       */
-      public java.util.List<com.cat.server.game.data.proto.PBFunction.PBFunctionDto.Builder> 
-           getFunctionsBuilderList() {
-        return getFunctionsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.cat.server.game.data.proto.PBFunction.PBFunctionDto, com.cat.server.game.data.proto.PBFunction.PBFunctionDto.Builder, com.cat.server.game.data.proto.PBFunction.PBFunctionDtoOrBuilder> 
-          getFunctionsFieldBuilder() {
-        if (functionsBuilder_ == null) {
-          functionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.cat.server.game.data.proto.PBFunction.PBFunctionDto, com.cat.server.game.data.proto.PBFunction.PBFunctionDto.Builder, com.cat.server.game.data.proto.PBFunction.PBFunctionDtoOrBuilder>(
-                  functions_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          functions_ = null;
-        }
-        return functionsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -4856,15 +5181,15 @@ public final class PBFunction {
       "\n\020PBFunction.proto\022\010Protocol\"\027\n\025ReqFunct" +
       "ionReddotInfo\"P\n\026RespFunctionReddotInfo\022" +
       "6\n\017functionReddots\030\001 \003(\0132\035.Protocol.PBFu" +
-      "nctionReddotDto\"1\n\rPBFunctionDto\022\022\n\nfunc" +
-      "tionId\030\001 \001(\005\022\014\n\004open\030\002 \001(\010\">\n\020RespFuncti" +
-      "onInfo\022*\n\tfunctions\030\001 \003(\0132\027.Protocol.PBF" +
-      "unctionDto\"\021\n\017ReqFunctionInfo\"1\n\030RespFun" +
-      "ctionSwitchNotice\022\025\n\rforceCloseIds\030\001 \003(\005" +
-      "\"M\n\023PBFunctionReddotDto\022\020\n\010reddotId\030\001 \001(" +
-      "\005\022\016\n\006number\030\002 \001(\005\022\024\n\014extendValues\030\003 \003(\005B" +
-      ",\n\036com.cat.server.game.data.protoB\nPBFun" +
-      "ctionb\006proto3"
+      "nctionReddotDto\";\n\rPBFunctionDto\022\023\n\013func" +
+      "tionIds\030\001 \003(\005\022\025\n\rforceCloseIds\030\002 \003(\005\">\n\020" +
+      "RespFunctionInfo\022\023\n\013functionIds\030\001 \003(\005\022\025\n" +
+      "\rforceCloseIds\030\002 \003(\005\"\021\n\017ReqFunctionInfo\"" +
+      "1\n\030RespFunctionSwitchNotice\022\025\n\rforceClos" +
+      "eIds\030\001 \003(\005\"M\n\023PBFunctionReddotDto\022\020\n\010red" +
+      "dotId\030\001 \001(\005\022\016\n\006number\030\002 \001(\005\022\024\n\014extendVal" +
+      "ues\030\003 \003(\005B,\n\036com.cat.server.game.data.pr" +
+      "otoB\nPBFunctionb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -4887,13 +5212,13 @@ public final class PBFunction {
     internal_static_Protocol_PBFunctionDto_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_PBFunctionDto_descriptor,
-        new java.lang.String[] { "FunctionId", "Open", });
+        new java.lang.String[] { "FunctionIds", "ForceCloseIds", });
     internal_static_Protocol_RespFunctionInfo_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_Protocol_RespFunctionInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Protocol_RespFunctionInfo_descriptor,
-        new java.lang.String[] { "Functions", });
+        new java.lang.String[] { "FunctionIds", "ForceCloseIds", });
     internal_static_Protocol_ReqFunctionInfo_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_Protocol_ReqFunctionInfo_fieldAccessorTable = new

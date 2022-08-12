@@ -69,17 +69,17 @@ public class FunctionData {
 		return new FunctionData(moduleId, 0L);
 	}
 	
-	/**
-	 * 功能数据转协议对象
-	 * @param open 是否
-	 * @return
-	 */
-	public PBFunctionDto toProto(boolean isOpen) {
-		PBFunctionDtoBuilder builder = PBFunctionDtoBuilder.newInstance();
-		builder.setFunctionId(moduleId);
-		builder.setOpen(isOpen);
-		return builder.build();
-	}
+//	/**
+//	 * 功能数据转协议对象
+//	 * @param open 是否
+//	 * @return
+//	 */
+//	public PBFunctionDto toProto(boolean isOpen) {
+//		PBFunctionDtoBuilder builder = PBFunctionDtoBuilder.newInstance();
+//		builder.setFunctionId(moduleId);
+//		builder.setOpen(isOpen);
+//		return builder.build();
+//	}
 
 	
 }
