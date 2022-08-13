@@ -67,9 +67,10 @@ public interface IQuestHandler<T extends IConfigMission> extends IFunctionResetS
      * 移除任务 领取奖励
      * @param playerId 玩家id
      * @param configId 任务id
+     * @param autoCommit 是否自动提交
      * @return
      */
-	ResultCodeData<ResourceGroup> submit(long playerId, int configId);
+	ResultCodeData<ResourceGroup> submit(long playerId, int configId, boolean autoCommit);
 	
     /**
      * 放弃任务
@@ -86,7 +87,7 @@ public interface IQuestHandler<T extends IConfigMission> extends IFunctionResetS
     void clear(long playerId, int configId);
     
     /**
-     * 处理事件<br>
+     * 处理指定任务的事件<br>
      * 尝试刷新任务进度/状态
      * @param playerId 玩家id
      * @param quest 任务对象
@@ -94,6 +95,16 @@ public interface IQuestHandler<T extends IConfigMission> extends IFunctionResetS
      * @return 若任务数据有变化 返回true
      */
     boolean handleEvent(long playerId, Quest quest, IEvent event);
+    
+    /**
+     * 处理所有任务的事件<br>
+     * 尝试刷新任务进度/状态
+     * @param playerId 玩家id
+     * @param quest 任务对象
+     * @param event 事件
+     * @return 若任务数据有变化 返回true
+     */
+    boolean handleEvent(long playerId, IEvent event);
     
     /**
      * 任务类型数据转协议对象

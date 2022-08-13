@@ -15,7 +15,7 @@ public enum ReddotTypeEnum {
 	LEARN_COMMUNITY_MISSION(1003),
 	/** 家族申请 */
 	FAMILY_APPLY(1004),
-	/** 新邮件 */
+	/** 邮件 */
 	MAIL(1005),
 	
 	;

@@ -1,10 +1,13 @@
 package com.cat.server.game.module.mission;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cat.server.core.event.PlayerBaseEvent;
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.data.proto.PBMission.ReqMissionInfo;
 import com.cat.server.game.data.proto.PBMission.ReqMissionQuestReward;
@@ -61,6 +64,20 @@ public class MissionService implements IMissionService{
 		return questTypeData;
 	}
 	
+	/**
+	 * 当发生事件,  存在多个任务模块监听同类型任务的可能, 所以需要尝试刷新已经接取的所有任务
+	 * @return void  
+	 * @date 2022年8月13日下午12:09:03
+	 */
+	public void onEvent(PlayerBaseEvent event) {
+		MissionDomain domain = missionManager.getDomain(event.getPlayerId());
+		if (domain == null) {
+			return;
+		}
+		List<IQuestHandler<?>> questHandlers = missionManager.getQuestHandlers();
+		questHandlers.forEach(handler->handler.handleEvent(event.getPlayerId(), event));
+	}
+	
 	/////////////业务逻辑//////////////////
 	
 	/**
@@ -95,7 +112,7 @@ public class MissionService implements IMissionService{
 			}
 			int missionType = 0;
 			IQuestHandler<?> handler = this.missionManager.getQuestHandler(missionType);
-			ResultCodeData<ResourceGroup> result = handler.submit(playerId, req.getId());
+			ResultCodeData<ResourceGroup> result = handler.submit(playerId, req.getId(), false);
 			return result.getErrorCode();
 		} catch (Exception e) {
 			log.error("reqMissionQuestReward error, playerId:{}", playerId, e);

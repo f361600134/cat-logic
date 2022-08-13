@@ -262,6 +262,21 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
         }
 		questTypeData.removeFinishId(missionId);
 	}
+	
+	@Override
+	public boolean handleEvent(long playerId, IEvent event) {
+		QuestTypeData questTypeData = this.getQuestTypeData(playerId, false);
+		if (questTypeData == null) {
+            return false;
+        }
+		boolean bool = false;
+		for (Quest quest : questTypeData.getQuests().values()) {
+			bool |= this.handleEvent(playerId, quest, event);
+		}
+		//如果触发了任务完成, 检测一次红点
+		if (bool) this.checkReddot(playerId);
+		return bool;
+	}
 
 	@Override
 	public boolean handleEvent(long playerId, Quest quest, IEvent event) {
@@ -331,14 +346,14 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 		T missionConfig = this.getConfig(quest.getConfigId());
 		if (missionConfig.autoSubmit()) {
 			// 如果自动提交任务, 则帮玩家领取任务奖励
-			this.submit(playerId, quest.getConfigId());
+			this.submit(playerId, quest.getConfigId(), true);
 		}
 	}
 
 	@Override
-	public ResultCodeData<ResourceGroup> submit(long playerId, int configId) {
+	public ResultCodeData<ResourceGroup> submit(long playerId, int configId, boolean autoCommit) {
 		Quest quest = this.getQuest(playerId, configId);
-		ErrorCode resultCode = checkSubmit(playerId, quest);
+		ErrorCode resultCode = this.checkSubmit(playerId, quest);
 		if (!resultCode.isSuccess()) {
 			return ResultCodeData.of(resultCode);
 		}
@@ -350,7 +365,11 @@ public abstract class AbstractMissionHandler<T extends IConfigMission> implement
 		this.afterSubmitMission(playerId, quest);
 		// 4.通知玩家
 		this.tellMissionUpdate(playerId, quest);
-		// 5.奖励返回上层
+		// 5.计算一下红点
+		if (!autoCommit) {
+			this.checkReddot(playerId);
+		}
+		// 6.奖励返回上层
 		return ResultCodeData.of(rewardMap);
 	}
 

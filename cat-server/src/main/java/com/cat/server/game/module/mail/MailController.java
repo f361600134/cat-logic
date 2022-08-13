@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 
 import com.cat.net.network.annotation.Cmd;
 import com.cat.net.network.base.ISession;
+import com.cat.server.core.server.AbstractController;
+import com.cat.server.core.server.IModuleService;
 import com.cat.server.game.data.proto.PBDefine.PBProtocol;
 
 
@@ -20,7 +22,7 @@ import com.cat.server.game.data.proto.PBMail.*;
  * Mail控制器
  */
 @Controller
-public class MailController {
+public class MailController extends AbstractController{
 	
 	private static final Logger log = LoggerFactory.getLogger(MailController.class);
   
@@ -73,6 +75,11 @@ public class MailController {
 		ErrorCode code = mailService.reqMailDelete(playerId, req, ack);
 		ack.setCode(code.getCode());
 		playerService.sendMessage(playerId, ack);
+	}
+
+	@Override
+	public IModuleService getService() {
+		return mailService;
 	}
 	
 

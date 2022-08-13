@@ -96,6 +96,8 @@ public enum ErrorCode implements CodeEnum{
     FAMILY_NO_PRIVILEGE(FAMILY, 6, "没有该权限"),
     FAMILY_FIRE_SELF(FAMILY, 7, "请先退位再退家族"),
     FAMILY_PLAYER_NOT_EXIST(FAMILY, 8, "此玩家不在家族"),
+    FAMILY_APPLY_NOT_EXIST(FAMILY, 9, "此申请已被处理"),
+    FAMILY_APPLYER_HAS_FAMILY(FAMILY, 10, "此玩家已进入其他家族"),
 
     // -----------------组队---------------------
     TEAM_NAME_EXIST(TEAM, 1, "队伍名被占用"),

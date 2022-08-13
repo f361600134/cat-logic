@@ -35,7 +35,7 @@ public class PlayerMailManager implements IModuleManager<Long, PlayerMailDomain>
 	private Cache<Long, PlayerMailDomain> domains = CacheBuilder.newBuilder()
 			//在给定时间内没有被读/写访问,则清除
 			.expireAfterAccess(30, TimeUnit.MINUTES)
-			//最大条目,超过这个聊天记录, 根据LRU特点移除
+			//最大条目,根据LRU特点移除
 			.build();
 
 	@Override

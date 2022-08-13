@@ -1,15 +1,12 @@
 package com.cat.server.game.module.groupmail;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSON;
 import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.lifecycle.ILifecycle;
@@ -21,9 +18,7 @@ import com.cat.server.game.module.groupmail.domain.GroupMailDomain;
 import com.cat.server.game.module.mail.IMail;
 import com.cat.server.game.module.mail.IMailServiceContainer;
 import com.cat.server.game.module.mail.assist.MailType;
-import com.cat.server.game.module.player.IPlayerService;
 import com.cat.server.game.module.resource.domain.ResourceGroup;
-
 
 /**
  * GroupMail控制器
@@ -33,8 +28,6 @@ import com.cat.server.game.module.resource.domain.ResourceGroup;
 class GroupMailService implements IMailServiceContainer, ILifecycle{
 	
 	private static final Logger log = LoggerFactory.getLogger(GroupMailService.class);
-	
-	@Autowired private IPlayerService playerService;
 	
 	@Autowired private ServerConfig serverConfig;
 	
@@ -111,5 +104,5 @@ class GroupMailService implements IMailServiceContainer, ILifecycle{
 	public int priority() {
 		return Priority.LOGIC.getPriority();
 	}
-	
+
 }

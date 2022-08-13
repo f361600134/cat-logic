@@ -15,12 +15,14 @@ import com.cat.net.core.executor.DisruptorStrategy;
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.lifecycle.ILifecycle;
 import com.cat.server.core.lifecycle.Priority;
+import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.family.assist.FamilyPosition;
 import com.cat.server.game.module.family.assist.FamilyPrivilege;
 import com.cat.server.game.module.family.domain.Family;
 import com.cat.server.game.module.family.domain.FamilyDomain;
+import com.cat.server.game.module.function.IFunctionResetService;
 import com.cat.server.game.module.group.domain.DefaultApply;
 import com.cat.server.game.module.player.IPlayerService;
 
@@ -30,7 +32,7 @@ import com.cat.server.game.module.player.IPlayerService;
  * 家族相关的公共操作, 都是线程安全的, 丢进公共线程池去处理
  */
 @Service
-class FamilyService implements IFamilyService, ILifecycle{
+class FamilyService implements IFamilyService, ILifecycle, IFunctionResetService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(FamilyService.class);
 	
@@ -144,19 +146,57 @@ class FamilyService implements IFamilyService, ILifecycle{
 			family.getApplys().put(familyApply.getPlayerId(), familyApply);
 			// 申请成功, 发送事件通知长老,族长进行审批, 通过红点系统通知
 			family.getMembers().forEach((memberId, member) ->{
-//				if (member.getPosition() == FamilyPosition.PATRIARCH.getValue()
-//						|| member.getPosition() == FamilyPosition.DEPUTY.getValue()
-//						|| member.getPosition() == FamilyPosition.ELDERS.getValue()) {
-//					DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(playerService.getSessionId(memberId), ()->{
-//						//TODO 发送红点事件,通知家族新申请
-//					});
-//				}
 				if (this.hasPrivilege(memberId, FamilyPrivilege.APPROVE)) {
 					DisruptorStrategy.get(DisruptorStrategy.SINGLE).execute(playerService.getSessionId(memberId), ()->{
 						//TODO 发送红点事件,通知家族新申请
+						this.checkReddot(playerId);
 					});
 				}
 			});
+			return ErrorCode.SUCCESS;
+		});
+		return future.get();
+	}
+	
+	/**
+	 * 审批进入家族的请求
+	 * @param playerId 当前审批的玩家id
+	 * @param familyId 家族id
+	 * @param applyId 申请的玩家id
+	 * @param type 0:不同意,1:同意
+	 */
+	public ErrorCode approveApplys(long playerId, long applyId, int type) throws Exception{
+		Future<ErrorCode> future = defaultExecutor.submit(0, ()->{
+			//权限判断--可以放在playerFamilyService判断
+			boolean bool = this.hasPrivilege(playerId, FamilyPrivilege.APPROVE);
+			if (!bool) {
+				return ErrorCode.FAMILY_NO_PRIVILEGE;
+			}
+			FamilyDomain domain = familyManager.getDomain(serverConfig.getServerId());
+			if (domain == null){
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			final Family family = domain.getGroupByPlayerId(playerId);
+			if (family == null) {
+				return ErrorCode.FAMILY_NO_FAMILY;
+			}
+			DefaultApply apply = family.getApplys().get(applyId);
+			if (apply == null) {
+				return ErrorCode.FAMILY_APPLY_NOT_EXIST;
+			}
+			//判断对方是否进入了新的家族
+			if (domain.getGroupIdByPlayerId(applyId) > 0) {
+				return ErrorCode.FAMILY_APPLYER_HAS_FAMILY;
+			}
+			if (type == 0) {
+				//to do nothing if type is 0.
+			}else if (type == 1) {
+				//全部判断完成, 允许其进入家族
+				domain.enter(family.newMember(applyId), family.getId());
+				//1.1生成家族日志
+				//1.2更新家族总贡献
+			}
+			
 			return ErrorCode.SUCCESS;
 		});
 		return future.get();
@@ -288,6 +328,11 @@ class FamilyService implements IFamilyService, ILifecycle{
 		}
 		//返回一个复制的成员ids, 并不是一个视图
 		return new ArrayList<>(family.getMembers().keySet());
+	}
+
+	@Override
+	public int getModuleId() {
+		return ModuleDefine.FAMILY.getModuleId();
 	}
 
 }

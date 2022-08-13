@@ -2,8 +2,10 @@ package com.cat.server.game.module.function;
 
 import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
+import com.cat.server.core.event.GameEventBus;
 import com.cat.server.core.server.IModuleService;
 import com.cat.server.game.data.config.local.ConfigFunction;
+import com.cat.server.game.module.function.event.FunctionCheckReddotEvent;
 import com.cat.server.game.module.function.time.point.IResetTimePoint;
 import com.cat.server.utils.TimeUtil;
 
@@ -14,15 +16,15 @@ import com.cat.server.utils.TimeUtil;
  */
 public interface IFunctionResetService extends IModuleService{
 	
-//	/**
-//	 * 获取功能id
-//	 * @param playerId
-//	 */
-//	public int getModuleId();
-	
-//	default public int checkReddot(long playerId) {
-//		return 0;
-//	}
+	/**
+	 * 发送检测红点事件
+	 * @param playerId  
+	 * @return void  
+	 * @date 2022年8月13日上午9:52:43
+	 */
+	default public void checkReddot(long playerId) {
+		GameEventBus.getInstance().post(playerId, FunctionCheckReddotEvent.create(playerId, this.getModuleId()));
+	}
 	
 	/**
 	 * 检测功能重置

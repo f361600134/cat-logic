@@ -1,8 +1,6 @@
 package com.cat.server.game.module.mail;
 
 import java.util.Collection;
-import java.util.Map;
-
 import com.cat.server.admin.module.mail.BackstageMail;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.module.resource.domain.ResourceGroup;
