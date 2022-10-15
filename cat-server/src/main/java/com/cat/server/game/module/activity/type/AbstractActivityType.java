@@ -5,6 +5,8 @@ import static com.cat.server.game.module.activity.status.IActivityStatus.CLOSE;
 import static com.cat.server.game.module.activity.status.IActivityStatus.PREPARE;
 import static com.cat.server.game.module.activity.status.IActivityStatus.SETTLE;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
@@ -16,6 +18,7 @@ import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
 import com.cat.server.game.data.proto.PBActivity.PBActivityInfo;
 import com.cat.server.game.module.activity.PlayerActivityService;
+import com.cat.server.game.module.activity.component.IActivityComponent;
 import com.cat.server.game.module.activity.define.ActivityConstant;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.event.ActivityStatusUpdateEvent;
@@ -40,6 +43,12 @@ public abstract class AbstractActivityType implements IActivityType{
 	 * 活动状态管理
 	 */
 	private final ActivityStatusManager statusManager;
+	
+	/**
+	 * 活动组件列表
+	 * @since 1.21
+	 */
+	protected transient final Map<Class<? extends IActivityComponent>, IActivityComponent> activityComponents = new HashMap<>();
 
 	public AbstractActivityType(Activity activity) {
 		this.activity = activity;
