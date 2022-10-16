@@ -1,4 +1,4 @@
-package com.cat.server.game.helper.badword.config;
+package com.cat.server.game.data.config.remote;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import com.cat.server.core.config.container.IGameConfig;
 /**
  * 敏感词库
  */
-@ConfigUrl("bad_word.json")
+//@ConfigUrl("bad_word.json")
 public class BadWordConfig implements IGameConfig {
     /**
      * 公共敏感词

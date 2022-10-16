@@ -99,8 +99,8 @@ public class EquipDomain extends AbstractModuleMultiDomain<Long, Long, Equip> im
 		resourceDomainProxy.takeOut(holderId, slot, equip);
 	}
 
-	@Override
-	public void addReource(Long k, Equip v) {
-		resourceDomainProxy.addReource(k, v);
-	}
+//	@Override
+//	public void addReource(Long k, Equip v) {
+//		resourceDomainProxy.addReource(k, v);
+//	}
 }

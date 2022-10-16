@@ -40,5 +40,14 @@ public interface IFunctionService extends IPlayerModuleService, ILifecycle{
 	 * @date 2022年3月28日下午10:18:34
 	 */
 	void setLastResetTime(long playerId, int functionId, long now);
+	
+	/**
+	 * 通知指定模块推送模块信息
+	 * @param playerId
+	 * @param functionId  
+	 * @return void  
+	 * @date 2022年10月16日下午10:51:39
+	 */
+	void responseModuleInfo(long playerId, int functionId);
 
 }

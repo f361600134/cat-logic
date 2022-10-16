@@ -112,14 +112,14 @@ class HeroService implements IHeroService, IResourceService{
 		domain.clearExpire(configId);
 	}
 
-	@Override
-	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
-		HeroDomain domain = heroManager.getDomain(playerId);
-		if (domain == null) return ;
-		if (!(res instanceof Hero)) {
-			return;
-		}
-		Hero hero = (Hero)res;
-		domain.addReource(hero.getUniqueId(), hero);
-	}
+//	@Override
+//	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+//		HeroDomain domain = heroManager.getDomain(playerId);
+//		if (domain == null) return ;
+//		if (!(res instanceof Hero)) {
+//			return;
+//		}
+//		Hero hero = (Hero)res;
+//		domain.addReource(hero.getUniqueId(), hero);
+//	}
 }

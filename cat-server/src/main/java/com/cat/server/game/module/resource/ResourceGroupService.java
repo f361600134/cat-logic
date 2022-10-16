@@ -163,42 +163,42 @@ class ResourceGroupService implements IResourceGroupService, ILifecycle {
 		});
 	}
 
-	@Override
-	public void addResource(long playerId, Collection<IResource> resources, NatureEnum nEnum) {
-		Set<IResourceService> set = new HashSet<>();
-		for (IResource resource : resources) {
-			final int configId = resource.getConfigId();
-			int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
-			IResourceService service = serviceMap.get(resourceType);
-			if (service == null) {
-				throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
-			}
-			service.addResource(playerId, resource, nEnum);
-		}
-		//通知模块数据变化
-		set.forEach(service->{
-			service.notify(playerId);
-		});
-	}
+//	@Override
+//	public void addResource(long playerId, Collection<IResource> resources, NatureEnum nEnum) {
+//		Set<IResourceService> set = new HashSet<>();
+//		for (IResource resource : resources) {
+//			final int configId = resource.getConfigId();
+//			int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
+//			IResourceService service = serviceMap.get(resourceType);
+//			if (service == null) {
+//				throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
+//			}
+//			service.addResource(playerId, resource, nEnum);
+//		}
+//		//通知模块数据变化
+//		set.forEach(service->{
+//			service.notify(playerId);
+//		});
+//	}
 
-	@Override
-	public boolean checkAddResource(long playerId, Collection<IResource> resources) {
-		for (IResource resource : resources) {
-			final int configId = resource.getConfigId();
-			int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
-			IResourceService service = serviceMap.get(resourceType);
-			if (service == null) {
-				throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
-			}
-			int number = resource.getCount();
-			if (number < 0) {
-				log.info("Negative item cost, playerId:{}, value:{}, nEnum:{}", playerId, number);
-				number = Math.abs(number);
-			}
-			boolean obj = service.checkAdd(playerId, configId, number);
-			if (!obj) return false;
-		}
-		return true;
-	}
+//	@Override
+//	public boolean checkAddResource(long playerId, Collection<IResource> resources) {
+//		for (IResource resource : resources) {
+//			final int configId = resource.getConfigId();
+//			int resourceType = configId / IResource.RESOURC_TYPE_SPLIT;
+//			IResourceService service = serviceMap.get(resourceType);
+//			if (service == null) {
+//				throw new IllegalArgumentException(String.format("No such type:%s", resourceType));
+//			}
+//			int number = resource.getCount();
+//			if (number < 0) {
+//				log.info("Negative item cost, playerId:{}, value:{}, nEnum:{}", playerId, number);
+//				number = Math.abs(number);
+//			}
+//			boolean obj = service.checkAdd(playerId, configId, number);
+//			if (!obj) return false;
+//		}
+//		return true;
+//	}
 
 }

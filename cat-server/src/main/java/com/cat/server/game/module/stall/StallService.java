@@ -128,11 +128,9 @@ public class StallService implements IStallService {
 		final int price = commodityInfo.getPrice(uniqueId);
 //		final int configId = 
 		//判断是否还有空位置
-		resourceGroupService.checkAddResource(playerId, null);
+//		resourceGroupService.checkAddResource(playerId, null);
 		//判断价格
 		Map<Integer, Integer> cost = Collections.singletonMap(PropertiesType.Ingot.getType(), price);
-		
-    	
     	return ErrorCode.SUCCESS;
     }
 	

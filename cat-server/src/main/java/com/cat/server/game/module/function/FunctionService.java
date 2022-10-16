@@ -19,7 +19,7 @@ import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.config.container.IGameConfig;
 import com.cat.server.core.server.IModuleManager;
 import com.cat.server.game.data.config.local.ConfigFunction;
-import com.cat.server.game.data.config.remote.base.ConfigFunctionSwitch;
+import com.cat.server.game.data.config.remote.ConfigFunctionSwitch;
 import com.cat.server.game.data.proto.PBFunction.ReqFunctionInfo;
 import com.cat.server.game.data.proto.PBFunction.ReqFunctionReddotInfo;
 import com.cat.server.game.helper.ModuleDefine;
@@ -49,6 +49,7 @@ class FunctionService implements IFunctionService  {
 	@Autowired private FunctionManager manager;
 	
 	private Map<Integer, IFunctionReddot> functionReddotMap = new HashMap<>();
+	private Map<Integer, IPlayerModuleService> moduleServiceMap = new HashMap<>();
 	
 	@Autowired
 	public void initServiceMap(List<IFunctionReddot> functionReddots) {
@@ -57,8 +58,17 @@ class FunctionService implements IFunctionService  {
 		}
 	}
 	
+	@Autowired
+	public void initModuleServiceMap(List<IPlayerModuleService> playerModules) {
+		for (IPlayerModuleService moduleService : playerModules) {
+			this.moduleServiceMap.put(moduleService.getModuleId(), moduleService);
+			log.info("FunctionService initModuleServiceMap, service:{}",moduleService.getClass());
+		}
+		log.info("FunctionService==============> moduleSize:{}", moduleServiceMap.size());
+	}
+	
 	@Override
-	public void responseAllInfo(long playerId) {
+	public void responseModuleInfo(long playerId) {
 		FunctionDomain domain = manager.getOrLoadDomain(playerId);
 		if (domain == null) {
 			return;
@@ -367,6 +377,12 @@ class FunctionService implements IFunctionService  {
 	@Override
 	public int getModuleId() {
 		return ModuleDefine.FUNCTION.getModuleId();
+	}
+
+	@Override
+	public void responseModuleInfo(long playerId, int functionId) {
+		IPlayerModuleService playerModuleService = moduleServiceMap.get(functionId);
+		playerModuleService.responseModuleInfo(playerId);
 	}
 	
 }

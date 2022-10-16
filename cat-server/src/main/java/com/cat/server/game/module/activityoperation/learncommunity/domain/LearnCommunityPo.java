@@ -17,7 +17,6 @@ public abstract class LearnCommunityPo extends BasePo {
 	public static final String PROP_DAILYACTIVEMAPSTR = "dailyActiveMapStr";
 	public static final String PROP_PLAYERID = "playerId";
 	public static final String PROP_ACTIVITYID = "activityId";
-	public static final String PROP_LASTRESETTIME = "lastResetTime";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
@@ -30,7 +29,6 @@ public abstract class LearnCommunityPo extends BasePo {
 			PROP_DAILYACTIVEMAPSTR,
 			PROP_PLAYERID,
 			PROP_ACTIVITYID,
-			PROP_LASTRESETTIME,
 			};
 			
 	/** 所有主键索引字段数组*/
@@ -61,8 +59,6 @@ public abstract class LearnCommunityPo extends BasePo {
 	protected long playerId;
 	/** 活动id*/
 	protected int activityId;
-	/** 最后重置时间*/
-	protected long lastResetTime;
 	
 	public LearnCommunityPo(){
 		this.rewardDataMapStr = "";
@@ -151,21 +147,11 @@ public abstract class LearnCommunityPo extends BasePo {
 		this.activityId = activityId;
 	}
 	
-	/** 最后重置时间 **/
-	public long getLastResetTime(){
-		return this.lastResetTime;
-	}
-	
-	public void setLastResetTime(long lastResetTime){
-		this.lastResetTime = lastResetTime;
-	}
-	
 	
 	@Override
 	public String toString() {
 		return "LearnCommunity [todayExp= "+ todayExp +", exp= "+ exp +", level= "+ level +", exclusive= "+ exclusive +", rewardDataMapStr= "+ rewardDataMapStr
-				 +", questTypeDataStr= "+ questTypeDataStr +", dailyActiveMapStr= "+ dailyActiveMapStr +", playerId= "+ playerId +", activityId= "+ activityId +", lastResetTime= "+ lastResetTime
-				+"]";
+				 +", questTypeDataStr= "+ questTypeDataStr +", dailyActiveMapStr= "+ dailyActiveMapStr +", playerId= "+ playerId +", activityId= "+ activityId+"]";
 	}
 	
 	@Override
@@ -185,7 +171,6 @@ public abstract class LearnCommunityPo extends BasePo {
 		getDailyActiveMapStr(),
 		getPlayerId(),
 		getActivityId(),
-		getLastResetTime(),
 		};
 	}
 	

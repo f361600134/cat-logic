@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import com.cat.server.core.lifecycle.Priority;
 import com.cat.server.game.data.config.local.ConfigShopLearnCommunity;
 import com.cat.server.game.module.activity.type.ActivityTypeEnum;
-import com.cat.server.game.module.activity.type.impl.LearnCommunityActivityType;
+import com.cat.server.game.module.activityoperation.learncommunity.LearnCommunityActivityType;
 import com.cat.server.game.module.shop.assist.ShopTypeEnum;
 import com.cat.server.game.module.shop.type.AbstractActivityShopType;
 

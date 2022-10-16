@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cat.server.game.data.proto.PBRank.PBRankDto;
-import com.cat.server.game.module.activity.type.impl.LearnCommunityActivityType;
 import com.cat.server.game.module.activityoperation.learncommunity.ILearnCommunityService;
+import com.cat.server.game.module.activityoperation.learncommunity.LearnCommunityActivityType;
 import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunity;
 import com.cat.server.game.module.rank.domain.RankTypeEnum;
 import com.cat.server.game.module.rank.proto.PBRankDtoBuilder;

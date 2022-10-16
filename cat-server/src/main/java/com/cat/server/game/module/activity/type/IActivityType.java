@@ -1,7 +1,10 @@
 package com.cat.server.game.module.activity.type;
 
-import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
+import java.util.Collection;
+import com.cat.server.game.data.config.local.interfaces.IConfigActivitySchedule;
 import com.cat.server.game.data.proto.PBActivity.PBActivityInfo;
+import com.cat.server.game.helper.ModuleDefine;
+import com.cat.server.game.module.activity.component.IActivityComponent;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.status.IActivityStatus;
 
@@ -16,6 +19,22 @@ public interface IActivityType {
 	 * @return
 	 */
 	Activity getActivity();
+	
+	/**
+	 * 定时调用
+	 * @param now  
+	 * @return void  
+	 * @date 2022年10月16日上午9:36:25
+	 */
+	void tick(long now);
+	
+	/**
+	 * 检测活动是否可以开启
+	 * @return  
+	 * @return booolean  true:可以正常开启
+	 * @date 2022年10月15日下午6:14:43
+	 */
+	boolean checkBegin(IConfigActivitySchedule activityConfig);
 	
     /**
      * 活动是否进行中<br>
@@ -54,7 +73,7 @@ public interface IActivityType {
      * @param activityConfig
      * @param now
      */
-    void checkAndUseConfig(ConfigActivityScheduleTime activityConfig, long now);
+    void checkAndUseConfig(IConfigActivitySchedule activityConfig, long now);
     
     /**
      * 判断并刷新活动状态<br>
@@ -152,4 +171,26 @@ public interface IActivityType {
      */
     PBActivityInfo toProto();
     
+    /**
+	 * 根据组件类型获取组件
+	 * @date 20221016 
+	 * @return 返回强转后的组件对象
+	 */
+	public <C extends IActivityComponent> C getComponent(Class<C> clazz);
+	
+	/**
+	 * 注册活动组件
+	 * @date 20221016
+	 * @return 返回组件列表对象
+	 */
+	public Collection<IActivityComponent> getComponents();
+	
+	/**
+	 * 所属模块
+	 * @return  
+	 * @return ModuleDefine  
+	 * @date 2022年10月16日下午10:55:41
+	 */
+	public abstract ModuleDefine getModuleType();
+	
 }

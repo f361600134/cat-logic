@@ -1,13 +1,15 @@
-package com.cat.server.game.module.activity.type.impl;
+package com.cat.server.game.module.activityoperation.learncommunity;
 
+import com.cat.server.game.helper.ModuleDefine;
 import com.cat.server.game.module.activity.domain.Activity;
 import com.cat.server.game.module.activity.type.AbstractActivityType;
+import com.cat.server.game.module.activityoperation.learncommunity.component.LearnCommunityRankComponent;
 
 /**
  * 研习社活动代理类
  * @author Jeremy
  */
-public class LearnCommunityActivityType extends AbstractActivityType{
+public class LearnCommunityActivityType extends AbstractActivityType {
 	
 	public LearnCommunityActivityType(Activity activity) {
 		super(activity);
@@ -42,6 +44,18 @@ public class LearnCommunityActivityType extends AbstractActivityType{
 		log.info("=====研习社活动进入[关闭]状态=======");
 		//TODO 不发送邮件, 直接在当前模块获取所有在线玩家, 处理???
 		
+	}
+	
+	@Override
+	public void initComponents() {
+		super.initComponents();
+		//注册组件
+		activityComponents.add(new LearnCommunityRankComponent(this));
+	}
+	
+	@Override
+	public ModuleDefine getModuleType() {
+		return ModuleDefine.LEARNCOMMUNITY;
 	}
 
 //	@Override

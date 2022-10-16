@@ -58,7 +58,7 @@ class EquipService implements IEquipService, IResourceService {
 	@Autowired private IResourceGroupService resourceGroupService;
 	
 	@Override
-	public void responseAllInfo(long playerId) {
+	public void responseModuleInfo(long playerId) {
 		EquipDomain domain = equipManager.getDomain(playerId);
 		if (domain == null) {
 			return;
@@ -112,7 +112,7 @@ class EquipService implements IEquipService, IResourceService {
 			if (domain == null) {
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
-			this.responseAllInfo(playerId);
+			this.responseModuleInfo(playerId);
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {
 			log.error("reqEquipInfo error, playerId:{}", playerId, e);
@@ -374,15 +374,15 @@ class EquipService implements IEquipService, IResourceService {
 		return ModuleDefine.EQUIT.getModuleId();
 	}
 	
-	@Override
-	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
-		EquipDomain domain = equipManager.getDomain(playerId);
-		if (domain == null) return ;
-		if (!(res instanceof Equip)) {
-			return;
-		}
-		Equip equip = (Equip)res;
-		domain.addReource(equip.getUniqueId(), equip);
-	}
+//	@Override
+//	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+//		EquipDomain domain = equipManager.getDomain(playerId);
+//		if (domain == null) return ;
+//		if (!(res instanceof Equip)) {
+//			return;
+//		}
+//		Equip equip = (Equip)res;
+//		domain.addReource(equip.getUniqueId(), equip);
+//	}
 
 }

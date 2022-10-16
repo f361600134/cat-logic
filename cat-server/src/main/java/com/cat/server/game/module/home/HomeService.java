@@ -383,17 +383,17 @@ public class HomeService implements IHomeService, IResourceService{
 		domain.getBean().getFurnitureMap().remove(uniqueId);
 	}
 	
-	@Override
-	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
-		HomeDomain domain = homeManager.getDomain(playerId);
-		if (domain == null) return ;
-		if (!(res instanceof Furniture)) {
-			return;
-		}
-		//FIXME
-		Furniture item = (Furniture)res;
-//		domain.addReource(item.getUniqueId(), item);
-	}
+//	@Override
+//	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+//		HomeDomain domain = homeManager.getDomain(playerId);
+//		if (domain == null) return ;
+//		if (!(res instanceof Furniture)) {
+//			return;
+//		}
+//		//FIXME
+//		Furniture item = (Furniture)res;
+////		domain.addReource(item.getUniqueId(), item);
+//	}
 	
 }
  

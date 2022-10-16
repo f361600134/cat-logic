@@ -1,4 +1,4 @@
-package com.cat.server.game.data.config.remote.base;
+package com.cat.server.game.data.config.remote;
 
 import java.util.Collections;
 import java.util.HashMap;

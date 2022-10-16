@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.server.core.exception.ServerStarupError;
-import com.cat.server.game.helper.badword.config.BadWordConfig;
+import com.cat.server.game.data.config.remote.BadWordConfig;
 import com.cat.server.game.helper.badword.impl.BadWordStrategy_CN;
 import com.cat.server.game.helper.badword.impl.BadWordStrategy_EN;
 import com.cat.server.game.helper.badword.struct.Trie;

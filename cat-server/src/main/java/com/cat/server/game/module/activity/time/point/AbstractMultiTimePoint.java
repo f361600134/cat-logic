@@ -2,9 +2,7 @@ package com.cat.server.game.module.activity.time.point;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import com.cat.server.utils.Pair;
-import com.cat.server.utils.TimeUtil;
 
 /**
  * 多时间点的抽象类, 一个表达式可以涵盖多个时间点, 但是一段时间仅只有一个时间点.<br>

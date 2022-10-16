@@ -95,10 +95,10 @@ public class PetEquipDomain extends AbstractModuleMultiDomain<Long, Long, PetEqu
 		return resourceDomainProxy.getUsedEquips(holderId);
 	}
 
-	@Override
-	public void addReource(Long k, PetEquip v) {
-		resourceDomainProxy.addReource(k, v);
-	}
+//	@Override
+//	public void addReource(Long k, PetEquip v) {
+//		resourceDomainProxy.addReource(k, v);
+//	}
 	
 //	public static void main(String[] args) {
 ////Map<Integer, int[]> usedEquips = new HashMap<>();

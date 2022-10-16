@@ -159,15 +159,15 @@ class ItemService implements IItemService, IResourceService{
 		return item == null ? 0 : item.getCount();
 	}
 	
-	@Override
-	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
-		ItemDomain domain = itemManager.getDomain(playerId);
-		if (domain == null) return ;
-		if (!(res instanceof Item)) {
-			return;
-		}
-		Item item = (Item)res;
-		domain.addReource(item.getUniqueId(), item);
-	}
+//	@Override
+//	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+//		ItemDomain domain = itemManager.getDomain(playerId);
+//		if (domain == null) return ;
+//		if (!(res instanceof Item)) {
+//			return;
+//		}
+//		Item item = (Item)res;
+//		domain.addReource(item.getUniqueId(), item);
+//	}
 
 }

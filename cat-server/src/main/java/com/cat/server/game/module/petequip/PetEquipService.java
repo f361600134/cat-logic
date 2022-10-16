@@ -46,7 +46,7 @@ public class PetEquipService implements IPetEquipService, IResourceService{
 	@Autowired private IPetService petService;
  
 	@Override
-	public void responseAllInfo(long playerId) {
+	public void responseModuleInfo(long playerId) {
 		PetEquipDomain domain = petEquipManager.getDomain(playerId);
 		if (domain == null) {
 			return;
@@ -117,7 +117,7 @@ public class PetEquipService implements IPetEquipService, IResourceService{
 				return ErrorCode.DOMAIN_IS_NULL;
 			}
 			//TODO Somthing.
-			this.responseAllInfo(playerId);
+			this.responseModuleInfo(playerId);
 			return ErrorCode.SUCCESS;
 		} catch (Exception e) {
 			log.error("reqPetEquipInfo error, playerId:{}", playerId, e);
@@ -276,16 +276,16 @@ public class PetEquipService implements IPetEquipService, IResourceService{
 		return domain.getUsedEquips(holderId);
 	}
 	
-	@Override
-	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
-		PetEquipDomain domain = petEquipManager.getDomain(playerId);
-		if (domain == null) return ;
-		if (!(res instanceof PetEquip)) {
-			return;
-		}
-		PetEquip petEquip = (PetEquip)res;
-		domain.addReource(petEquip.getUniqueId(), petEquip);
-	}
+//	@Override
+//	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+//		PetEquipDomain domain = petEquipManager.getDomain(playerId);
+//		if (domain == null) return ;
+//		if (!(res instanceof PetEquip)) {
+//			return;
+//		}
+//		PetEquip petEquip = (PetEquip)res;
+//		domain.addReource(petEquip.getUniqueId(), petEquip);
+//	}
 }
  
  

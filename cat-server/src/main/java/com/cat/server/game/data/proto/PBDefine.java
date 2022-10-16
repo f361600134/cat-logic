@@ -182,9 +182,17 @@ public final class PBDefine {
      */
     RespActivityInfo(105002),
     /**
-     * <code>RespActivityInfoUpdate = 105003;</code>
+     * <code>RespActivityRankReward = 105004;</code>
      */
-    RespActivityInfoUpdate(105003),
+    RespActivityRankReward(105004),
+    /**
+     * <code>ReqActivityRankReward = 105003;</code>
+     */
+    ReqActivityRankReward(105003),
+    /**
+     * <code>RespActivityInfoUpdate = 105005;</code>
+     */
+    RespActivityInfoUpdate(105005),
     /**
      * <pre>
      *Shadow
@@ -761,9 +769,17 @@ public final class PBDefine {
      */
     public static final int RespActivityInfo_VALUE = 105002;
     /**
-     * <code>RespActivityInfoUpdate = 105003;</code>
+     * <code>RespActivityRankReward = 105004;</code>
      */
-    public static final int RespActivityInfoUpdate_VALUE = 105003;
+    public static final int RespActivityRankReward_VALUE = 105004;
+    /**
+     * <code>ReqActivityRankReward = 105003;</code>
+     */
+    public static final int ReqActivityRankReward_VALUE = 105003;
+    /**
+     * <code>RespActivityInfoUpdate = 105005;</code>
+     */
+    public static final int RespActivityInfoUpdate_VALUE = 105005;
     /**
      * <pre>
      *Shadow
@@ -1241,7 +1257,9 @@ public final class PBDefine {
         case 899002: return RespStallCommoditySearch;
         case 105001: return ReqActivityInfo;
         case 105002: return RespActivityInfo;
-        case 105003: return RespActivityInfoUpdate;
+        case 105004: return RespActivityRankReward;
+        case 105003: return ReqActivityRankReward;
+        case 105005: return RespActivityInfoUpdate;
         case 107002: return RespShadowInfo;
         case 107001: return ReqShadowInfo;
         case 106001: return ReqRankInfo;
@@ -1390,7 +1408,7 @@ public final class PBDefine {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\020PBProtocol.proto\022\010Protocol*\302\027\n\nPBProto" +
+      "\n\020PBProtocol.proto\022\010Protocol*\375\027\n\nPBProto" +
       "col\022\r\n\tDEFAULTID\020\000\022\032\n\024RespPlayerCreateRo" +
       "le\020\212\225\006\022\031\n\023ReqPlayerCreateRole\020\211\225\006\022\026\n\020Req" +
       "PlayerReLogin\020\213\225\006\022\025\n\017RespPlayerHeart\020\222\225\006" +
@@ -1413,61 +1431,62 @@ public final class PBDefine {
       "uy\020\276\3576\022\023\n\rReqStartStall\020\301\3576\022\036\n\030RespStall" +
       "CommoditySearch\020\272\3576\022\025\n\017ReqActivityInfo\020\251" +
       "\264\006\022\026\n\020RespActivityInfo\020\252\264\006\022\034\n\026RespActivi" +
-      "tyInfoUpdate\020\253\264\006\022\024\n\016RespShadowInfo\020\372\303\006\022\023" +
-      "\n\rReqShadowInfo\020\371\303\006\022\021\n\013ReqRankInfo\020\221\274\006\022\022" +
-      "\n\014RespRankInfo\020\222\274\006\022\016\n\010ReqLogin\020\241\215\006\022\021\n\013Re" +
-      "qRandName\020\242\215\006\022\023\n\rReqCreateRole\020\243\215\006\022\r\n\010Re" +
-      "spTips\020\351\007\022\025\n\017ReqEquipUpgrade\020\351\362\006\022\025\n\017Resp" +
-      "EquipUpdate\020\363\362\006\022\026\n\020RespTakeoutEquip\020\356\362\006\022" +
-      "\023\n\rRespWearEquip\020\362\362\006\022\026\n\020RespEquipUpgrade" +
-      "\020\352\362\006\022\022\n\014ReqEquipInfo\020\353\362\006\022\025\n\017ReqTakeoutEq" +
-      "uip\020\355\362\006\022\026\n\020ReqEquipPunching\020\357\362\006\022\022\n\014ReqWe" +
-      "arEquip\020\361\362\006\022\025\n\017RespEquipDelete\020\364\362\006\022\023\n\rRe" +
-      "spEquipInfo\020\354\362\006\022\027\n\021RespEquipPunching\020\360\362\006" +
-      "\022\032\n\025ReqFunctionReddotInfo\020\321\017\022\033\n\026RespFunc" +
-      "tionReddotInfo\020\322\017\022\025\n\020RespFunctionInfo\020\324\017" +
-      "\022\024\n\017ReqFunctionInfo\020\323\017\022\035\n\030RespFunctionSw" +
-      "itchNotice\020\325\017\022\020\n\nReqItemUse\020\361\234\006\022\024\n\016RespI" +
-      "temUpdate\020\365\234\006\022\021\n\013RespItemUse\020\362\234\006\022\021\n\013ReqI" +
-      "temSell\020\363\234\006\022\024\n\016RespItemDelete\020\366\234\006\022\021\n\013Res" +
-      "pRewards\020\367\234\006\022\022\n\014RespItemSell\020\364\234\006\022\021\n\013ReqS" +
-      "hopInfo\020\261\333\006\022\022\n\014RespShopInfo\020\262\333\006\022\021\n\013RespS" +
-      "hopBuy\020\264\333\006\022\020\n\nReqShopBuy\020\263\333\006\022\026\n\020RespShop" +
-      "QuickBuy\020\266\333\006\022\025\n\017ReqShopQuickBuy\020\265\333\006\022\034\n\026R" +
-      "espLearnCommunityInfo\020\302\232\014\022\036\n\030RespLearnCo" +
-      "mmunityReward\020\304\232\014\022\033\n\025ReqLearnCommunityIn" +
-      "fo\020\301\232\014\022\035\n\027ReqLearnCommunityReward\020\303\232\014\022\025\n" +
-      "\017ReqPetEquipInfo\020\321\372\006\022\026\n\020RespPetEquipInfo" +
-      "\020\322\372\006\022\025\n\017ReqWearPetEquip\020\323\372\006\022\030\n\022RespPetEq" +
-      "uipDelete\020\327\372\006\022\030\n\022RespPetEquipUpdate\020\330\372\006\022" +
-      "\026\n\020RespWearPetEquip\020\324\372\006\022\030\n\022ReqTakeoutPet" +
-      "Equip\020\325\372\006\022\031\n\023RespTakeoutPetEquip\020\326\372\006\022\034\n\026" +
-      "ReqResourceRecycleInfo\020\341\313\006\022\035\n\027RespResour" +
-      "ceRecycleInfo\020\342\313\006\022\016\n\010RespChat\020\302\254\006\022\r\n\007Req" +
-      "Chat\020\301\254\006\022\024\n\016ReqMissionInfo\020\231\343\006\022\034\n\026RespMi" +
-      "ssionSingleQuest\020\235\343\006\022\033\n\025ReqMissionQuestR" +
-      "eward\020\233\343\006\022\034\n\026RespMissionQuestReward\020\234\343\006\022" +
-      "\025\n\017RespMissionInfo\020\232\343\006\022\026\n\020ReqGroupMailIn" +
-      "fo\020\241\3676\022\035\n\027RespHomeFurnitureRemove\020\364\364<\022\021\n" +
-      "\013ReqHomeInfo\020\361\364<\022\034\n\026ReqHomeFurnitureRemo" +
-      "ve\020\363\364<\022\036\n\030RespHomeSchemeLayoutInfo\020\374\364<\022\035" +
-      "\n\027ReqHomeSchemeLayoutSave\020\365\364<\022\031\n\023RespHom" +
-      "eBetsuinInfo\020\376\364<\022\034\n\026ReqHomeFurnitureCrea" +
-      "te\020\367\364<\022\036\n\030RespHomeSchemeLayoutSave\020\366\364<\022\034" +
-      "\n\026ReqHomeFurnitureUpdate\020\371\364<\022\035\n\027RespHome" +
-      "FurnitureUpdate\020\372\364<\022\035\n\027ReqHomeSchemeLayo" +
-      "utInfo\020\373\364<\022\022\n\014RespHomeInfo\020\362\364<\022\030\n\022ReqHom" +
-      "eBetsuinInfo\020\375\364<\022\035\n\027RespHomeFurnitureCre" +
-      "ate\020\370\364<\022\034\n\026RespActivityItemDelete\020\251\242\014\022\033\n" +
-      "\025RespActivityItemsInfo\020\252\242\014\022\035\n\027RespActivi" +
-      "tyItemsUpdate\020\253\242\014\022\023\n\rReqPetLevelup\020\201\353\006\022\024" +
-      "\n\016ReqPetIdentify\020\203\353\006\022\024\n\016RespPetLevelup\020\202" +
-      "\353\006\022\031\n\023RespPetUseAttrPoint\020\210\353\006\022\023\n\rRespPet" +
-      "Update\020\211\353\006\022\025\n\017RespPetIdentify\020\204\353\006\022\023\n\rRes" +
-      "pPetActive\020\206\353\006\022\023\n\rRespPetDelete\020\212\353\006\022\022\n\014R" +
-      "eqPetActive\020\205\353\006\022\030\n\022ReqPetUseAttrPoint\020\207\353" +
-      "\006B*\n\036com.cat.server.game.data.protoB\010PBD" +
-      "efineb\006proto3"
+      "tyRankReward\020\254\264\006\022\033\n\025ReqActivityRankRewar" +
+      "d\020\253\264\006\022\034\n\026RespActivityInfoUpdate\020\255\264\006\022\024\n\016R" +
+      "espShadowInfo\020\372\303\006\022\023\n\rReqShadowInfo\020\371\303\006\022\021" +
+      "\n\013ReqRankInfo\020\221\274\006\022\022\n\014RespRankInfo\020\222\274\006\022\016\n" +
+      "\010ReqLogin\020\241\215\006\022\021\n\013ReqRandName\020\242\215\006\022\023\n\rReqC" +
+      "reateRole\020\243\215\006\022\r\n\010RespTips\020\351\007\022\025\n\017ReqEquip" +
+      "Upgrade\020\351\362\006\022\025\n\017RespEquipUpdate\020\363\362\006\022\026\n\020Re" +
+      "spTakeoutEquip\020\356\362\006\022\023\n\rRespWearEquip\020\362\362\006\022" +
+      "\026\n\020RespEquipUpgrade\020\352\362\006\022\022\n\014ReqEquipInfo\020" +
+      "\353\362\006\022\025\n\017ReqTakeoutEquip\020\355\362\006\022\026\n\020ReqEquipPu" +
+      "nching\020\357\362\006\022\022\n\014ReqWearEquip\020\361\362\006\022\025\n\017RespEq" +
+      "uipDelete\020\364\362\006\022\023\n\rRespEquipInfo\020\354\362\006\022\027\n\021Re" +
+      "spEquipPunching\020\360\362\006\022\032\n\025ReqFunctionReddot" +
+      "Info\020\321\017\022\033\n\026RespFunctionReddotInfo\020\322\017\022\025\n\020" +
+      "RespFunctionInfo\020\324\017\022\024\n\017ReqFunctionInfo\020\323" +
+      "\017\022\035\n\030RespFunctionSwitchNotice\020\325\017\022\020\n\nReqI" +
+      "temUse\020\361\234\006\022\024\n\016RespItemUpdate\020\365\234\006\022\021\n\013Resp" +
+      "ItemUse\020\362\234\006\022\021\n\013ReqItemSell\020\363\234\006\022\024\n\016RespIt" +
+      "emDelete\020\366\234\006\022\021\n\013RespRewards\020\367\234\006\022\022\n\014RespI" +
+      "temSell\020\364\234\006\022\021\n\013ReqShopInfo\020\261\333\006\022\022\n\014RespSh" +
+      "opInfo\020\262\333\006\022\021\n\013RespShopBuy\020\264\333\006\022\020\n\nReqShop" +
+      "Buy\020\263\333\006\022\026\n\020RespShopQuickBuy\020\266\333\006\022\025\n\017ReqSh" +
+      "opQuickBuy\020\265\333\006\022\034\n\026RespLearnCommunityInfo" +
+      "\020\302\232\014\022\036\n\030RespLearnCommunityReward\020\304\232\014\022\033\n\025" +
+      "ReqLearnCommunityInfo\020\301\232\014\022\035\n\027ReqLearnCom" +
+      "munityReward\020\303\232\014\022\025\n\017ReqPetEquipInfo\020\321\372\006\022" +
+      "\026\n\020RespPetEquipInfo\020\322\372\006\022\025\n\017ReqWearPetEqu" +
+      "ip\020\323\372\006\022\030\n\022RespPetEquipDelete\020\327\372\006\022\030\n\022Resp" +
+      "PetEquipUpdate\020\330\372\006\022\026\n\020RespWearPetEquip\020\324" +
+      "\372\006\022\030\n\022ReqTakeoutPetEquip\020\325\372\006\022\031\n\023RespTake" +
+      "outPetEquip\020\326\372\006\022\034\n\026ReqResourceRecycleInf" +
+      "o\020\341\313\006\022\035\n\027RespResourceRecycleInfo\020\342\313\006\022\016\n\010" +
+      "RespChat\020\302\254\006\022\r\n\007ReqChat\020\301\254\006\022\024\n\016ReqMissio" +
+      "nInfo\020\231\343\006\022\034\n\026RespMissionSingleQuest\020\235\343\006\022" +
+      "\033\n\025ReqMissionQuestReward\020\233\343\006\022\034\n\026RespMiss" +
+      "ionQuestReward\020\234\343\006\022\025\n\017RespMissionInfo\020\232\343" +
+      "\006\022\026\n\020ReqGroupMailInfo\020\241\3676\022\035\n\027RespHomeFur" +
+      "nitureRemove\020\364\364<\022\021\n\013ReqHomeInfo\020\361\364<\022\034\n\026R" +
+      "eqHomeFurnitureRemove\020\363\364<\022\036\n\030RespHomeSch" +
+      "emeLayoutInfo\020\374\364<\022\035\n\027ReqHomeSchemeLayout" +
+      "Save\020\365\364<\022\031\n\023RespHomeBetsuinInfo\020\376\364<\022\034\n\026R" +
+      "eqHomeFurnitureCreate\020\367\364<\022\036\n\030RespHomeSch" +
+      "emeLayoutSave\020\366\364<\022\034\n\026ReqHomeFurnitureUpd" +
+      "ate\020\371\364<\022\035\n\027RespHomeFurnitureUpdate\020\372\364<\022\035" +
+      "\n\027ReqHomeSchemeLayoutInfo\020\373\364<\022\022\n\014RespHom" +
+      "eInfo\020\362\364<\022\030\n\022ReqHomeBetsuinInfo\020\375\364<\022\035\n\027R" +
+      "espHomeFurnitureCreate\020\370\364<\022\034\n\026RespActivi" +
+      "tyItemDelete\020\251\242\014\022\033\n\025RespActivityItemsInf" +
+      "o\020\252\242\014\022\035\n\027RespActivityItemsUpdate\020\253\242\014\022\023\n\r" +
+      "ReqPetLevelup\020\201\353\006\022\024\n\016ReqPetIdentify\020\203\353\006\022" +
+      "\024\n\016RespPetLevelup\020\202\353\006\022\031\n\023RespPetUseAttrP" +
+      "oint\020\210\353\006\022\023\n\rRespPetUpdate\020\211\353\006\022\025\n\017RespPet" +
+      "Identify\020\204\353\006\022\023\n\rRespPetActive\020\206\353\006\022\023\n\rRes" +
+      "pPetDelete\020\212\353\006\022\022\n\014ReqPetActive\020\205\353\006\022\030\n\022Re" +
+      "qPetUseAttrPoint\020\207\353\006B*\n\036com.cat.server.g" +
+      "ame.data.protoB\010PBDefineb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

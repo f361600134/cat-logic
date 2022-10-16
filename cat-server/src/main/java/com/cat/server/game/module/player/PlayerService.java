@@ -488,10 +488,10 @@ class PlayerService implements IPlayerService, IResourceService {
 		return player.getProperties(configId);
 	}
 	
-	@Override
-	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
-		throw new UnsupportedOperationException("玩家属性不支持该操作");
-	}
+//	@Override
+//	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+//		throw new UnsupportedOperationException("玩家属性不支持该操作");
+//	}
 	
 	@Override
 	public int getChannel(long playerId) {

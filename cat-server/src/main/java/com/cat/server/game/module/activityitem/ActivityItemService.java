@@ -154,16 +154,16 @@ public class ActivityItemService implements IActivityItemService, IResourceServi
 		return Priority.LOGIC.getPriority();
 	}
 
-	@Override
-	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
-		ActivityItemDomain domain = activityItemManager.getDomain(playerId);
-		if (domain == null) return ;
-		if (!(res instanceof ActivityItem)) {
-			return;
-		}
-		ActivityItem item = (ActivityItem)res;
-		domain.addReource(item.getUniqueId(), item);
-	}
+//	@Override
+//	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+//		ActivityItemDomain domain = activityItemManager.getDomain(playerId);
+//		if (domain == null) return ;
+//		if (!(res instanceof ActivityItem)) {
+//			return;
+//		}
+//		ActivityItem item = (ActivityItem)res;
+//		domain.addReource(item.getUniqueId(), item);
+//	}
 }
  
  

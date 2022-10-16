@@ -1,13 +1,17 @@
 package com.cat.server.game.module.activity.domain;
 
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.cat.server.common.ServerConfig;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.server.AbstractModuleDomain;
-import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
+import com.cat.server.game.data.config.local.interfaces.IConfigActivitySchedule;
 import com.cat.server.game.data.proto.PBActivity.PBActivityInfo;
+import com.cat.server.game.helper.ModuleDefine;
+import com.cat.server.game.module.activity.component.IActivityComponent;
 import com.cat.server.game.module.activity.type.ActivityTypeEnum;
 import com.cat.server.game.module.activity.type.IActivityType;
 
@@ -42,6 +46,11 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 	@Override
 	public Activity getActivity() {
 		return activityType.getActivity();
+	}
+	
+	@Override
+	public void tick(long now) {
+		activityType.tick(now);
 	}
 	
 	@Override
@@ -100,7 +109,7 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 	}
 
 	@Override
-	public void checkAndUseConfig(ConfigActivityScheduleTime activityConfig, long now) {
+	public void checkAndUseConfig(IConfigActivitySchedule activityConfig, long now) {
 		activityType.checkAndUseConfig(activityConfig, now);
 	}
 	
@@ -133,6 +142,27 @@ public class ActivityDomain extends AbstractModuleDomain<Integer, Activity> impl
 	public PBActivityInfo toProto() {
 		return activityType.toProto();
 	}
+
+	@Override
+	public boolean checkBegin(IConfigActivitySchedule activityConfig) {
+		return activityType.checkBegin(activityConfig);
+	}
+
+	@Override
+	public <C extends IActivityComponent> C getComponent(Class<C> clazz) {
+		return activityType.getComponent(clazz);
+	}
+
+	@Override
+	public Collection<IActivityComponent> getComponents() {
+		return activityType.getComponents();
+	}
+
+	@Override
+	public ModuleDefine getModuleType() {
+		return activityType.getModuleType();
+	}
+
 
 	////////////业务代码////////////////////
 	

@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.EnumMap;
 
 import com.cat.server.game.module.activity.domain.Activity;
-import com.cat.server.game.module.activity.type.impl.LearnCommunityActivityType;
+import com.cat.server.game.module.activityoperation.learncommunity.LearnCommunityActivityType;
 
 /**
  * 所有活动类型id, 初始化加载所有活动

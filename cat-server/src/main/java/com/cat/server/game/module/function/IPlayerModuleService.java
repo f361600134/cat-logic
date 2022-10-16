@@ -25,7 +25,7 @@ public interface IPlayerModuleService extends IFunctionResetService{
 			return;
 		}
 		this.checkAndReset(playerId, now);
-		this.responseAllInfo(playerId);
+		this.responseModuleInfo(playerId);
 	}
 
 	/**
@@ -42,7 +42,7 @@ public interface IPlayerModuleService extends IFunctionResetService{
 	 * @return void
 	 * @date 2022年3月17日下午10:16:10
 	 */
-	default public void responseAllInfo(long playerId) {}
+	default public void responseModuleInfo(long playerId) {}
 
 	/**
 	 * 获取manager管理类

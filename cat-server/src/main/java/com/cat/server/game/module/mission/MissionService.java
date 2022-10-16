@@ -133,7 +133,7 @@ public class MissionService implements IMissionService{
 	}
 
 	@Override
-	public void responseAllInfo(long playerId) {
+	public void responseModuleInfo(long playerId) {
 		for (IQuestHandler<?> handler : this.missionManager.getQuestHandlers()) {
 			RespMissionInfoBuilder builder = handler.toProto(playerId);
 			playerService.sendMessage(playerId, builder);

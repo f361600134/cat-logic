@@ -5,8 +5,9 @@ import static com.cat.server.game.module.activity.status.IActivityStatus.CLOSE;
 import static com.cat.server.game.module.activity.status.IActivityStatus.PREPARE;
 import static com.cat.server.game.module.activity.status.IActivityStatus.SETTLE;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import com.cat.server.core.config.ConfigManager;
 import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.core.event.GameEventBus;
 import com.cat.server.game.data.config.local.ConfigActivityScheduleTime;
+import com.cat.server.game.data.config.local.interfaces.IConfigActivitySchedule;
 import com.cat.server.game.data.proto.PBActivity.PBActivityInfo;
 import com.cat.server.game.module.activity.PlayerActivityService;
 import com.cat.server.game.module.activity.component.IActivityComponent;
@@ -46,18 +48,24 @@ public abstract class AbstractActivityType implements IActivityType{
 	
 	/**
 	 * 活动组件列表
-	 * @since 1.21
+	 * @date 20221016
 	 */
-	protected transient final Map<Class<? extends IActivityComponent>, IActivityComponent> activityComponents = new HashMap<>();
+	protected transient final List<IActivityComponent> activityComponents = new ArrayList<>();
 
 	public AbstractActivityType(Activity activity) {
 		this.activity = activity;
 		this.statusManager = new ActivityStatusManager(this);
+		this.initComponents();
 	}
 	
 	@Override
 	public Activity getActivity() {
 		return activity;
+	}
+	
+	@Override
+	public void tick(long now) {
+		this.activityComponents.forEach((c) -> c.tick(now));
 	}
 	
 	@Override
@@ -93,10 +101,13 @@ public abstract class AbstractActivityType implements IActivityType{
 	}
 	
 	@Override
-    public void checkAndUseConfig(ConfigActivityScheduleTime activityConfig, long now) {
-        if (!checkUseConfig(activityConfig, now)) {
+    public void checkAndUseConfig(IConfigActivitySchedule activityConfig, long now) {
+        if (!this.checkUseConfig(activityConfig, now)) {
             return;
         }
+        if (!this.checkBegin(activityConfig)) {
+			return;
+		}
         useConfig(activityConfig, now);
         checkAndRefreshStatus(now);
     }
@@ -120,7 +131,7 @@ public abstract class AbstractActivityType implements IActivityType{
      * @param now
      * @return
      */
-    protected boolean checkUseConfig(ConfigActivityScheduleTime activityConfig, long now) {
+    protected boolean checkUseConfig(IConfigActivitySchedule activityConfig, long now) {
 //        if (isPause()) {
 //            // 暂停状态 状态不会发生变化
 //            return false;
@@ -173,7 +184,7 @@ public abstract class AbstractActivityType implements IActivityType{
      * @param config
      * @param now
      */
-    protected void useConfig(ConfigActivityScheduleTime config, long now) {
+    protected void useConfig(IConfigActivitySchedule config, long now) {
         this.activity.setConfigId(config.getId());
         int planId = config.getPlanId();
         if (planId >= 0) {
@@ -212,9 +223,14 @@ public abstract class AbstractActivityType implements IActivityType{
 		activity.setSettleTime(0);
 		activity.setCloseTime(0);
 		activity.update();
+		
+		//组件执行状态下的操作
+		this.activityComponents.forEach((c) -> c.onClose(now));
+		
 		//通知客户端有活动状态发生了改变
         PlayerActivityService service = SpringContextHolder.getBean(PlayerActivityService.class);
         service.responseActivityUpdateInfo(activity.getId());
+        
 		//发送活动关闭事件
 		GameEventBus.getInstance().postOnlinePlayers(
 				ActivityStatusUpdateEvent.create(activity.getConfigId()
@@ -227,18 +243,24 @@ public abstract class AbstractActivityType implements IActivityType{
    	public void onPrepare(long now) {
     	activity.setStatus(PREPARE);
     	activity.update();
+    	//组件执行活动状态下的操作
+		this.activityComponents.forEach((c) -> c.onPrepare(now));
    	}
     
     @Override
     public void onBegin(long now) {
     	activity.setStatus(BEGIN);
     	activity.update();
+    	//组件执行活动状态下的操作
+		this.activityComponents.forEach((c) -> c.onBegin(now));
     }
     
     @Override
     public void onSettle(long now) {
     	activity.setStatus(SETTLE);
     	activity.update();
+    	//组件执行活动状态下的操作
+		this.activityComponents.forEach((c) -> c.onSettle(now));
     }
     
     @Override
@@ -269,6 +291,33 @@ public abstract class AbstractActivityType implements IActivityType{
 	@Override
 	public PBActivityInfo toProto() {
 		return this.activity.toProto();
+	}
+	
+	@Override
+	public boolean checkBegin(IConfigActivitySchedule activityConfig) {
+		return true;
+	}
+	
+	/**
+	 * 注册活动组件
+	 * @date 20221016
+	 */
+	public void initComponents() {
+		
+	}
+
+	@SuppressWarnings("unchecked")
+	public <C extends IActivityComponent> C getComponent(Class<C> clazz) {
+		for (IActivityComponent component : this.getComponents()) {
+			if (clazz.isInstance(component)) {
+				return (C)component;
+			}
+		}
+		return null;
+	}
+	
+	public Collection<IActivityComponent> getComponents() {
+		return this.activityComponents;
 	}
 	
 }

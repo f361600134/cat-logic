@@ -23,6 +23,8 @@ import java.util.Optional;
 /**
  * 活动初始化, 默认根据typeId进行初始化, 如果获取不到domain 从数据库获取 对于活动来说, 当启动服务器的时候,
  * 根据serverId获取所有活动, 然后加入活动缓存, 一次IO获取所有活动,这样才比较合理<br>
+ * @param key:活动id
+ * @param value:活动域
  * @author Jeremy
  */
 @Component
@@ -54,7 +56,7 @@ class ActivityManager extends AbstractModuleManager<Integer, ActivityDomain> {
 	public ActivityDomain getFromDb(Integer id) {
 		try {
 			ActivityDomain domain = clazz.newInstance();
-			List list = process.selectByIndex(domain.getBasePoClazz(),
+			List<Activity> list = process.selectByIndex(domain.getBasePoClazz(),
 					new String[] { Activity.PROP_CURSERVERID, Activity.PROP_ID },
 					new Object[] { serverConfig.getServerId(), id });
 			if (list.isEmpty()) {
@@ -131,6 +133,29 @@ class ActivityManager extends AbstractModuleManager<Integer, ActivityDomain> {
 	private class ActivityTickTask implements Task {
 
 		private int counter;
+		
+		/**
+		 * 检测并开启本地活动
+		 * @return void  
+		 * @date 2022年10月15日下午11:00:59
+		 */
+		private void checkBeginLocalActivity(long now) {
+			// 本地活动
+			Map<Integer, ConfigActivityScheduleTime> scheduleTimeConfigMap = ConfigManager.getInstance().getAllConfigs(ConfigActivityScheduleTime.class);
+			for (ConfigActivityScheduleTime config : scheduleTimeConfigMap.values()) {
+				//如果当前时间不在活动时间内,不初始化
+				if (now < config.getPrepareTimestamp(now) && now > config.getCloseTimestamp(now)) {
+					continue;
+				}
+				int type = config.getType();
+				ActivityDomain activityDomain = getOrLoadDomain(type);
+				if (activityDomain == null) {
+					logger.warn("activity[{}] tick fail.activity is null.schedule config id[{}]", type, config.getId());
+					continue;
+				}
+				activityDomain.checkAndUseConfig(config, now);
+			}
+		}
 
 		@Override
 		public void execute() throws Exception {
@@ -146,18 +171,8 @@ class ActivityManager extends AbstractModuleManager<Integer, ActivityDomain> {
 			for (ActivityDomain activityDomain : activityTypes) {
 				activityDomain.checkAndRefreshStatus(now);
 			}
-			// 本地活动
-			Map<Integer, ConfigActivityScheduleTime> scheduleTimeConfigMap = ConfigManager.getInstance()
-					.getAllConfigs(ConfigActivityScheduleTime.class);
-			for (ConfigActivityScheduleTime config : scheduleTimeConfigMap.values()) {
-				int type = config.getType();
-				ActivityDomain activityDomain = getOrLoadDomain(type);
-				if (activityDomain == null) {
-					logger.warn("activity[{}] tick fail.activity is null.schedule config id[{}]", type, config.getId());
-					continue;
-				}
-				activityDomain.checkAndUseConfig(config, now);
-			}
+			//本地活动检测开启
+			this.checkBeginLocalActivity(now);
 			// 自动保存
 			if (counter >= ActivityConstant.AUTO_SAVE_TICK_COUNT) {
 				for (ActivityDomain activityDomain : activityTypes) {

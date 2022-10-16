@@ -265,7 +265,7 @@ class PetService implements IPetService, IResourceService, IPlayerModuleService{
 	}
 	
 	@Override
-	public void responseAllInfo(long playerId) {
+	public void responseModuleInfo(long playerId) {
 		PetDomain domain = petManager.getDomain(playerId);
 		Collection<Pet> beans = domain.getBeans();
 		RespPetUpdateBuilder builder = RespPetUpdateBuilder.newInstance();
@@ -294,16 +294,16 @@ class PetService implements IPetService, IResourceService, IPlayerModuleService{
 		return domain.getBean(petId);
 	}
 
-	@Override
-	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
-		PetDomain domain = petManager.getDomain(playerId);
-		if (domain == null) return ;
-		if (!(res instanceof Pet)) {
-			return;
-		}
-		Pet pet = (Pet)res;
-		domain.addReource(pet.getUniqueId(), pet);
-	}
+//	@Override
+//	public void addResource(long playerId, IResource res, NatureEnum nEnum) {
+//		PetDomain domain = petManager.getDomain(playerId);
+//		if (domain == null) return ;
+//		if (!(res instanceof Pet)) {
+//			return;
+//		}
+//		Pet pet = (Pet)res;
+//		domain.addReource(pet.getUniqueId(), pet);
+//	}
 }
  
  

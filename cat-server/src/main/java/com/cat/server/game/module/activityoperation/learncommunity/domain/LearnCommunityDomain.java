@@ -34,15 +34,32 @@ public class LearnCommunityDomain extends AbstractModuleDomain<Long, LearnCommun
 	 * @date 2021年9月30日上午8:45:37
 	 */
 	public boolean checkAndReset() {
-		long now = TimeUtil.now();
-		if (!TimeUtil.isSameDay(now, bean.getLastResetTime())) {
-			return false;
-		}
-		bean.setLastResetTime(now);
+//		long now = TimeUtil.now();
+//		if (!TimeUtil.isSameDay(now, bean.getLastResetTime())) {
+//			return false;
+//		}
+//		bean.setLastResetTime(now);
 		bean.setTodayExp(0);
 		bean.getDailyActiveMap().clear();
 		bean.update();
 		return true;
+	}
+	
+	/**
+	 * 检测每日重置
+	 * @return void  
+	 * @date 2021年9月30日上午8:45:37
+	 */
+	public void doReset() {
+//		long now = TimeUtil.now();
+//		if (!TimeUtil.isSameDay(now, bean.getLastResetTime())) {
+//			return false;
+//		}
+//		bean.setLastResetTime(now);
+		bean.setTodayExp(0);
+		bean.getDailyActiveMap().clear();
+		bean.update();
+//		return true;
 	}
 	
 	/**
@@ -55,7 +72,7 @@ public class LearnCommunityDomain extends AbstractModuleDomain<Long, LearnCommun
 		bean.setExclusive(false);
 		bean.setLevel(0);
 		
-		bean.setLastResetTime(0);
+//		bean.setLastResetTime(0);
 		bean.getDailyActiveMap().clear();
 		bean.getQuestTypeData().clear();
 		bean.getRewardDataMap().clear();

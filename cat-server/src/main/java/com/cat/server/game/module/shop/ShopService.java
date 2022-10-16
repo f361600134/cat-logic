@@ -72,7 +72,7 @@ public class ShopService implements IShopService {
 	 * 更新所有
 	 */
 	@Override
-	public void responseAllInfo(long playerId) {
+	public void responseModuleInfo(long playerId) {
 		ShopDomain domain = this.shopManager.getDomain(playerId);
 		RespShopInfoBuilder builder = RespShopInfoBuilder.newInstance();
 		this.shopManager.getShopMap().forEach((k,shopType)->{
@@ -183,12 +183,6 @@ public class ShopService implements IShopService {
 			v.checkAndReset(domain, now);
 		});
 		return true;
-	}
-
-	@Override
-	public void doReset(long playerId, long now) {
-		// TODO nothing...
-		// 
 	}
 
 }

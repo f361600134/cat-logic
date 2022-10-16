@@ -114,6 +114,9 @@ public enum ErrorCode implements CodeEnum{
     // -----------------活动---------------------
     ACTIVITY_NOT_EXIST(ACTIVITY, 1, "活动不存在"),
     ACTIVITY_NOT_IN_ACTIVITY_TIME(ACTIVITY, 2, "未处于活动时间"),
+    ACTIVITY_NOT_RANK_ACTIVITY(ACTIVITY, 3, "非排行榜活动不能领奖"),
+    ACTIVITY_REWARD_ALREAD_RECEIVE(ACTIVITY, 4, "已领奖不能重复领奖"),
+    ACTIVITY_NOT_IN_RANK(ACTIVITY, 5, "未上榜不能领奖"),
     
     // -----------------商店---------------------
     SHOP_NOT_EXIST(SHOP, 1, "商店不存在"),

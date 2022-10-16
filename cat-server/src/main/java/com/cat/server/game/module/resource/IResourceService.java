@@ -86,10 +86,10 @@ public interface IResourceService {
 	 */
 	default public void clearExpire(long playerId, int configId) {}
 	
-	/**
-	 * 添加资源
-	 * @param playerId
-	 * @param resource
-	 */
-	public void addResource(long playerId, IResource resource, NatureEnum nEnum);
+//	/**
+//	 * 添加资源
+//	 * @param playerId
+//	 * @param resource
+//	 */
+//	public void addResource(long playerId, IResource resource, NatureEnum nEnum);
 }

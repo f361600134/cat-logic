@@ -228,12 +228,12 @@ abstract class AbstractResourceDomain<K, V extends IResource & IPersistence> imp
 	 */
 	public void beforeClearExpire(V v) {}
 	
-	@Override
-	public void addReource(K k, V v) {
-		getBeanMap().put(k, v);
-		updateList.add(v);
-		//发送事件
-		GameEventBus.getInstance().post(ResourceUpdateEvent.create(v, 1));
-	}
+//	@Override
+//	public void addReource(K k, V v) {
+//		getBeanMap().put(k, v);
+//		updateList.add(v);
+//		//发送事件
+//		GameEventBus.getInstance().post(ResourceUpdateEvent.create(v, 1));
+//	}
 	
 }
