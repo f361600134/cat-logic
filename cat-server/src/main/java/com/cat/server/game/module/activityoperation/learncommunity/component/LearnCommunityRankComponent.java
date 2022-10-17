@@ -1,7 +1,11 @@
 package com.cat.server.game.module.activityoperation.learncommunity.component;
 
+import com.cat.server.core.context.SpringContextHolder;
 import com.cat.server.game.module.activity.component.impl.AbstractRankActivityComponent;
+import com.cat.server.game.module.activity.type.IActivityPlayerRankData;
+import com.cat.server.game.module.activityoperation.learncommunity.ILearnCommunityService;
 import com.cat.server.game.module.activityoperation.learncommunity.LearnCommunityActivityType;
+import com.cat.server.game.module.activityoperation.learncommunity.domain.LearnCommunity;
 import com.cat.server.game.module.rank.domain.RankTypeEnum;
 
 /**
@@ -16,21 +20,15 @@ public class LearnCommunityRankComponent extends AbstractRankActivityComponent{
 	}
 
 	@Override
-	public boolean isRankReward(long playerId) {
-		// TODO Auto-generated method stub
-		return false;
+	public IActivityPlayerRankData getPlayerRankData(long playerId) {
+		ILearnCommunityService service = SpringContextHolder.getBean(ILearnCommunityService.class);
+		LearnCommunity learnCommunity = service.getLearnCommunity(playerId);
+		return learnCommunity;
 	}
-
-	@Override
-	public void setRankReward(boolean bool) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public RankTypeEnum getRankType() {
-		// TODO Auto-generated method stub
-		return null;
+		return RankTypeEnum.LearnCommunityRank;
 	}
 
 }

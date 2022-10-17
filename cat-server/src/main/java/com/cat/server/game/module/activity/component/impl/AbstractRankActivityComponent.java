@@ -8,6 +8,7 @@ import com.cat.server.game.helper.log.NatureEnum;
 import com.cat.server.game.helper.result.ErrorCode;
 import com.cat.server.game.helper.result.ResultCodeData;
 import com.cat.server.game.module.activity.component.IActivityComponent;
+import com.cat.server.game.module.activity.type.IActivityPlayerRankData;
 import com.cat.server.game.module.activity.type.IActivityType;
 import com.cat.server.game.module.rank.IRankService;
 import com.cat.server.game.module.rank.domain.RankTypeEnum;
@@ -36,32 +37,25 @@ public abstract class AbstractRankActivityComponent implements IActivityComponen
 	
 	@Override
 	public void tick(long now) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onPrepare(long now) {
-		// TODO Auto-generated method stub
-		
+		rankService.removeRankList(getRankType());
 	}
 
 	@Override
 	public void onBegin(long now) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onSettle(long now) {
-		// TODO Auto-generated method stub
-		
+		// TODO Save data to log.
 	}
 
 	@Override
 	public void onClose(long now) {
-		// TODO Auto-generated method stub
-		
+		rankService.removeRankList(getRankType());
 	}
 	
 	/**
@@ -80,9 +74,7 @@ public abstract class AbstractRankActivityComponent implements IActivityComponen
 			return ResultCodeData.of(ErrorCode.ACTIVITY_NOT_IN_RANK);
 		}
 		resourceGroupService.reward(playerId, rewardGroup, NatureEnum.GM);
-		this.setRankReward(true);
-		//TODO 通知客户端更新当前活动的最新信息
-		
+		this.setRankReward(playerId, true);
 		return ResultCodeData.of(rewardGroup);
 	}
 	
@@ -115,7 +107,10 @@ public abstract class AbstractRankActivityComponent implements IActivityComponen
 	 * @return boolean  
 	 * @date 2022年10月16日下午3:43:11
 	 */
-	public abstract boolean isRankReward(long playerId);
+	public boolean isRankReward(long playerId) {
+		IActivityPlayerRankData playerRankData = this.getPlayerRankData(playerId);
+		return playerRankData == null ? false : playerRankData.isRankReward();
+	}
 	
 	/**
 	 * 设置排行榜奖励已领取状态
@@ -123,7 +118,21 @@ public abstract class AbstractRankActivityComponent implements IActivityComponen
 	 * @return void  
 	 * @date 2022年10月16日下午3:44:36
 	 */
-	public abstract void setRankReward(boolean bool);
+	public void setRankReward(long playerId, boolean bool) {
+		IActivityPlayerRankData playerRankData = this.getPlayerRankData(playerId);
+		if (playerRankData == null) {
+			return;
+		}
+		playerRankData.setRankReward(bool);
+		playerRankData.update();
+	}
+	
+	/**
+	 * 获取玩家活动排行接口
+	 * @param playerId
+	 * @return
+	 */
+	public abstract IActivityPlayerRankData getPlayerRankData(long playerId);
 	
 	/**
 	 * 获取排行榜枚举

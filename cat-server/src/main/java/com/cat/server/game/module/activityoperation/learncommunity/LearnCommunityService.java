@@ -27,7 +27,7 @@ import com.cat.server.game.module.player.IPlayerService;
  * @author Jeremy
  */
 @Service
-public class LearnCommunityService implements ILearnCommunityService, IPlayerActivityService<LearnCommunityActivityType>{
+class LearnCommunityService implements ILearnCommunityService, IPlayerActivityService<LearnCommunityActivityType>{
 	
 	private static final Logger log = LoggerFactory.getLogger(LearnCommunityService.class);
 	
@@ -69,7 +69,7 @@ public class LearnCommunityService implements ILearnCommunityService, IPlayerAct
 		RespLearnCommunityInfoBuilder resp = RespLearnCommunityInfoBuilder.newInstance();
 		resp.setLevel(bean.getLevel());
 		resp.setExp(bean.getExp());
-		resp.setExclusive(bean.getExclusive());
+		resp.setExclusive(bean.isExclusive());
 		playerService.sendMessage(domain.getId(), resp);
 	}
 	

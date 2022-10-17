@@ -17,6 +17,7 @@ public abstract class LearnCommunityPo extends BasePo {
 	public static final String PROP_DAILYACTIVEMAPSTR = "dailyActiveMapStr";
 	public static final String PROP_PLAYERID = "playerId";
 	public static final String PROP_ACTIVITYID = "activityId";
+	public static final String PROP_RANKREWARD = "rankReward";
 	
 	/** 所有列字段数组*/
 	public static final String[] PROP_ALL = new String[] {
@@ -29,6 +30,7 @@ public abstract class LearnCommunityPo extends BasePo {
 			PROP_DAILYACTIVEMAPSTR,
 			PROP_PLAYERID,
 			PROP_ACTIVITYID,
+			PROP_RANKREWARD,
 			};
 			
 	/** 所有主键索引字段数组*/
@@ -59,6 +61,8 @@ public abstract class LearnCommunityPo extends BasePo {
 	protected long playerId;
 	/** 活动id*/
 	protected int activityId;
+	/** 是否领取了排行奖励*/
+	protected boolean rankReward;
 	
 	public LearnCommunityPo(){
 		this.rewardDataMapStr = "";
@@ -67,91 +71,101 @@ public abstract class LearnCommunityPo extends BasePo {
 	}
 	
 	/** 今日获得经验 **/
-	public int getTodayExp(){
+  public int getTodayExp(){
 		return this.todayExp;
 	}
-	
+  
 	public void setTodayExp(int todayExp){
 		this.todayExp = todayExp;
 	}
 	
 	/** 总经验=每日任务经验+每周任务经验 **/
-	public int getExp(){
+  public int getExp(){
 		return this.exp;
 	}
-	
+  
 	public void setExp(int exp){
 		this.exp = exp;
 	}
 	
 	/** 等级 **/
-	public int getLevel(){
+  public int getLevel(){
 		return this.level;
 	}
-	
+  
 	public void setLevel(int level){
 		this.level = level;
 	}
 	
 	/** 是否购买了专属奖励 **/
-	public boolean getExclusive(){
+  public boolean isExclusive(){
 		return this.exclusive;
 	}
-	
+  
 	public void setExclusive(boolean exclusive){
 		this.exclusive = exclusive;
 	}
 	
 	/** 奖励记录, 仅记录已领奖的配置 **/
-	public String getRewardDataMapStr(){
+  public String getRewardDataMapStr(){
 		return this.rewardDataMapStr;
 	}
-	
+  
 	public void setRewardDataMapStr(String rewardDataMapStr){
 		this.rewardDataMapStr = rewardDataMapStr;
 	}
 	
 	/** 任务数据,跟随者活动,活动结束,任务关闭 **/
-	public String getQuestTypeDataStr(){
+  public String getQuestTypeDataStr(){
 		return this.questTypeDataStr;
 	}
-	
+  
 	public void setQuestTypeDataStr(String questTypeDataStr){
 		this.questTypeDataStr = questTypeDataStr;
 	}
 	
 	/** 活跃记录, 记录已领取的日活跃奖励 **/
-	public String getDailyActiveMapStr(){
+  public String getDailyActiveMapStr(){
 		return this.dailyActiveMapStr;
 	}
-	
+  
 	public void setDailyActiveMapStr(String dailyActiveMapStr){
 		this.dailyActiveMapStr = dailyActiveMapStr;
 	}
 	
 	/** 玩家id **/
-	public long getPlayerId(){
+  public long getPlayerId(){
 		return this.playerId;
 	}
-	
+  
 	public void setPlayerId(long playerId){
 		this.playerId = playerId;
 	}
 	
 	/** 活动id **/
-	public int getActivityId(){
+  public int getActivityId(){
 		return this.activityId;
 	}
-	
+  
 	public void setActivityId(int activityId){
 		this.activityId = activityId;
+	}
+	
+	/** 是否领取了排行奖励 **/
+  public boolean isRankReward(){
+		return this.rankReward;
+	}
+  
+	public void setRankReward(boolean rankReward){
+		this.rankReward = rankReward;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "LearnCommunity [todayExp= "+ todayExp +", exp= "+ exp +", level= "+ level +", exclusive= "+ exclusive +", rewardDataMapStr= "+ rewardDataMapStr
-				 +", questTypeDataStr= "+ questTypeDataStr +", dailyActiveMapStr= "+ dailyActiveMapStr +", playerId= "+ playerId +", activityId= "+ activityId+"]";
+				 +", questTypeDataStr= "+ questTypeDataStr +", dailyActiveMapStr= "+ dailyActiveMapStr +", playerId= "+ playerId +", activityId= "+ activityId +", rankReward= "+ rankReward
+				+"]";
 	}
 	
 	@Override
@@ -162,15 +176,16 @@ public abstract class LearnCommunityPo extends BasePo {
 	@Override
 	public Object[] propValues() {
 		return new Object[] { 
-		getTodayExp(),
-		getExp(),
-		getLevel(),
-		getExclusive(),
-		getRewardDataMapStr(),
-		getQuestTypeDataStr(),
-		getDailyActiveMapStr(),
-		getPlayerId(),
-		getActivityId(),
+     getTodayExp(),
+     getExp(),
+     getLevel(),
+     isExclusive(),
+     getRewardDataMapStr(),
+     getQuestTypeDataStr(),
+     getDailyActiveMapStr(),
+     getPlayerId(),
+     getActivityId(),
+     isRankReward(),
 		};
 	}
 	

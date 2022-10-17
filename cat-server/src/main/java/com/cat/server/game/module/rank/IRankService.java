@@ -37,5 +37,11 @@ public interface IRankService {
 	 * @return 排行榜协议列表
 	 */
 	public IProtocol buildRankList(RankTypeEnum rankType, long playerId, int limit);
+	
+	/**
+	 * 移除掉指定的排行榜
+	 * @param rankType 排行榜类型
+	 */
+	public void removeRankList(RankTypeEnum rankType);
 
 }

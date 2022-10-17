@@ -382,6 +382,10 @@ class FunctionService implements IFunctionService  {
 	@Override
 	public void responseModuleInfo(long playerId, int functionId) {
 		IPlayerModuleService playerModuleService = moduleServiceMap.get(functionId);
+		if (playerModuleService == null) {
+			log.warn("responseModuleInfo failed, playerModuleService is null, functionId:{}", functionId);
+			return;
+		}
 		playerModuleService.responseModuleInfo(playerId);
 	}
 	

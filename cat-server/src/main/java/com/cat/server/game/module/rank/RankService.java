@@ -175,5 +175,13 @@ class RankService implements IRankService{
 		IProtocol protocol = domain.buildProtocol(ranks, playerId);
 		return protocol;
 	}
+
+	@Override
+	public void removeRankList(RankTypeEnum rankType) {
+		if (rankType == null) {
+			return;
+		}
+		this.rankManager.remove(rankType.getConfigId());
+	}
 	
 }
